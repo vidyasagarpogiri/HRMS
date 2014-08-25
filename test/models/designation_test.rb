@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DesginationTest < ActiveSupport::TestCase
+class DesignationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
