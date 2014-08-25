@@ -36,6 +36,13 @@ gem 'spring',        group: :development
 gem "devise"
 gem 'omniauth'
 gem "omniauth-google-oauth2"
+
+gem "capybara", :group => [:development, :test]
+                 group :test do
+                   gem "cucumber-rails", :require => false
+                   gem "database_cleaner"
+                   gem 'factory_girl_rails'   
+                 end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
