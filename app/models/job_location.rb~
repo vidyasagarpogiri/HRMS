@@ -1,4 +1,4 @@
 class JobLocation < ActiveRecord::Base
   has_many :employees
-  belongs_to :address
+  has_one :address
 end
