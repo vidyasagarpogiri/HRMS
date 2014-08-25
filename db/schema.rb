@@ -1,0 +1,196 @@
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 20140822135246) do
+
+  create_table "addresses", force: true do |t|
+    t.text     "line1"
+    t.text     "line"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "city_id"
+  end
+
+  add_index "addresses", ["city_id"], name: "index_addresses_on_city_id", using: :btree
+
+  create_table "blood_groups", force: true do |t|
+    t.string   "blood_group_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cities", force: true do |t|
+    t.string   "city_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "state_id"
+  end
+
+  add_index "cities", ["state_id"], name: "index_cities_on_state_id", using: :btree
+
+  create_table "countries", force: true do |t|
+    t.string   "country_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "departments", force: true do |t|
+    t.string   "department_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "desginations", force: true do |t|
+    t.string   "desgination_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "education_qualifications", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "education_id"
+    t.integer  "qualification_id"
+  end
+
+  add_index "education_qualifications", ["education_id"], name: "index_education_qualifications_on_education_id", using: :btree
+  add_index "education_qualifications", ["qualification_id"], name: "index_education_qualifications_on_qualification_id", using: :btree
+
+  create_table "educations", force: true do |t|
+    t.string   "specilization"
+    t.string   "institute"
+    t.date     "year_of_admission"
+    t.date     "year_of_pass"
+    t.float    "cgpa_percentage",   limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "Employee_id"
+    t.integer  "city_id"
+  end
+
+  add_index "educations", ["Employee_id"], name: "index_educations_on_Employee_id", using: :btree
+  add_index "educations", ["city_id"], name: "index_educations_on_city_id", using: :btree
+
+  create_table "email_ettiquities", force: true do |t|
+    t.text     "ettiquite"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "employee_id"
+  end
+
+  add_index "email_ettiquities", ["employee_id"], name: "index_email_ettiquities_on_employee_id", using: :btree
+
+  create_table "employees", force: true do |t|
+    t.string   "employee_id"
+    t.string   "title"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "date_of_birth"
+    t.string   "gender"
+    t.string   "marital_status"
+    t.float    "total_experience",     limit: 24
+    t.boolean  "status"
+    t.string   "mobile_number"
+    t.string   "father_name"
+    t.string   "pan"
+    t.date     "date_of_confirmation"
+    t.date     "date_of_join"
+    t.date     "date_of_exit"
+    t.text     "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "department_id"
+    t.integer  "blood_group_id"
+    t.integer  "ff_status_id"
+    t.integer  "designation_id"
+    t.integer  "grade_id"
+    t.integer  "Role_id"
+    t.integer  "job_location_id"
+    t.integer  "permanent_address_id"
+    t.integer  "present_address_id"
+  end
+
+  add_index "employees", ["Role_id"], name: "index_employees_on_Role_id", using: :btree
+  add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
+  add_index "employees", ["department_id"], name: "index_employees_on_department_id", using: :btree
+  add_index "employees", ["designation_id"], name: "index_employees_on_designation_id", using: :btree
+  add_index "employees", ["ff_status_id"], name: "index_employees_on_ff_status_id", using: :btree
+  add_index "employees", ["grade_id"], name: "index_employees_on_grade_id", using: :btree
+  add_index "employees", ["job_location_id"], name: "index_employees_on_job_location_id", using: :btree
+  add_index "employees", ["permanent_address_id"], name: "index_employees_on_permanent_address_id", using: :btree
+  add_index "employees", ["present_address_id"], name: "index_employees_on_present_address_id", using: :btree
+
+  create_table "ff_statuses", force: true do |t|
+    t.string   "status_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "grades", force: true do |t|
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "job_locations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "address_id"
+  end
+
+  add_index "job_locations", ["address_id"], name: "index_job_locations_on_address_id", using: :btree
+
+  create_table "promotions", force: true do |t|
+    t.date     "date_of_promotion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "employee_id"
+    t.integer  "designation_id"
+  end
+
+  add_index "promotions", ["designation_id"], name: "index_promotions_on_designation_id", using: :btree
+  add_index "promotions", ["employee_id"], name: "index_promotions_on_employee_id", using: :btree
+
+  create_table "qualifications", force: true do |t|
+    t.string   "qualification_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "role_previliges", force: true do |t|
+    t.text     "previlige_url"
+    t.text     "user_interface_url"
+    t.text     "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "role_id"
+  end
+
+  add_index "role_previliges", ["role_id"], name: "index_role_previliges_on_role_id", using: :btree
+
+  create_table "roles", force: true do |t|
+    t.string   "role_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "states", force: true do |t|
+    t.string   "state_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "country_id"
+  end
+
+  add_index "states", ["country_id"], name: "index_states_on_country_id", using: :btree
+
+end

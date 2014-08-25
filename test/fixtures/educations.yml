@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  specilization: MyString
+  institute: MyString
+  year_of_admission: 2014-08-22
+  year_of_pass: 2014-08-22
+  cgpa_percentage: 1.5
+
+two:
+  specilization: MyString
+  institute: MyString
+  year_of_admission: 2014-08-22
+  year_of_pass: 2014-08-22
+  cgpa_percentage: 1.5

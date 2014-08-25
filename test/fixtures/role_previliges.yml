@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  previlige_url: MyText
+  user_interface_url: MyText
+  image_url: MyText
+
+two:
+  previlige_url: MyText
+  user_interface_url: MyText
+  image_url: MyText
