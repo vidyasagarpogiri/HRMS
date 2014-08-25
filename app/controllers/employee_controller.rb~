@@ -1,0 +1,22 @@
+class EmployeeController < ApplicationController
+  def index
+  end
+
+  def show
+  end
+
+  def new
+    @employee = Employee.new
+  end
+
+  def edit
+  end
+  
+  private
+   
+  
+  
+  def params_employees
+    params.require(:employee).permit(:employee_id, :title, :first_name, :last_name, :date_of_birth, :gender, :marital_status, :total_experience, :status, :mobile_number, :father_name, :pan, :date_of_confirmation, :date_of_join, :date_of_exit, :image_url)
+  end
+end

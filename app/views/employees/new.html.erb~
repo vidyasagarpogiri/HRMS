@@ -1,0 +1,80 @@
+<h1>Employees#new</h1>
+<%= form_for(@employee) do |f| %>
+<p> Employee Form </p>
+  <%= f.label :employee_id, "Employee ID" %>
+  <%= f.text_field :employee_id %> <br>
+  
+  <%= f.label :title, "Title" %>
+  <%= f.select(:title, options_for_select([['Mr', 'Mr'], ['Mrs', 'Mrs']])) %><br>
+  
+  <%= f.label :first_name, "First Name" %>
+  <%= f.text_field :first_name %> <br>
+  
+  <%= f.label :last_name, "Last Name" %>
+  <%= f.text_field :last_name %> <br>
+  
+  <%= f.label :date_of_birth, "Born On" %>
+  <%= date_field(:employee, :date_of_birth) %> <br>
+  
+  <%= f.label :gender, "Gender" %>
+  <%= f.label :gender, "Male  " %>
+  <%= f.radio_button(:gender, "Male") %>
+  <%= f.label :gender, "Female" %>
+  <%= f.radio_button(:gender, "Female") %><br>
+  
+  <%= f.label :marital_status, "Marital Status" %>
+  
+  <%= f.label :marital_status, "Married  " %>
+  <%= f.radio_button(:marital_status, "Married") %>
+  <%= f.label :marital_status, "Unmarried" %>
+  <%= f.radio_button(:marital_status, "Unmarried") %><br>
+  
+  <%= f.label :total_experience, "Total_Experience " %>
+  <%= f.text_field :total_experience %> <br>
+  
+  <%= f.label :status, "Status " %>
+  
+  <%= f.label :status, "Active" %>
+  <%= f.radio_button(:status, "true") %>
+  <%= f.label :status, "Inactive" %>
+  <%= f.radio_button(:status, "false") %><br>
+  
+  
+  <%= f.label :mobile_number, "Mobile Number" %>
+  <%= f.text_field :mobile_number %> <br>
+  
+  <%= f.label :father_name, "Father Name" %>
+  <%= f.text_field :father_name %> <br>
+  
+  <%= f.label :pan, "Pan Number" %>
+  <%= f.text_field :pan %> <br>
+  
+  <%= f.label :date_confirmation, "Date of Confirmation" %>
+  <%= date_field(:employee, :date_of_join) %> <br>
+  
+  
+  <%= f.label :date_join, "Date of Join" %>
+  <%= date_field(:employee, :date_of_confirmation) %> <br>
+  
+  <%= f.label :date_confirmation, "Date of Exit" %>
+  <%= date_field(:employee, :date_of_exit) %> <br>
+  
+  <%= f.label :departmant_id, "Select Department" %>
+  <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "department" } %><br>
+  
+  <%= f.label :blood_group_id, "Select Blood Group" %>
+  <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group" } %><br>
+  
+  <%= f.label :ff_status_id, "F to F Status" %>
+    <%= f.collection_select :ff_status_id,FfStatus.all, :id, :status_name, { :prompt => "Please Select" }, { :class => "ff_status" } %><br>
+   
+   <%= f.label :designation_id, "Designation" %>
+   <%= f.collection_select :designation_id, Designation.all, :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation" } %><br>
+   
+   <%= f.label :grade_id, "Grade" %>
+   <%= f.collection_select :grade_id, Grade.all, :id, :value, { :prompt => "Please Select" }, { :class => "grade" } %><br>
+   
+   
+  <%= f.submit "Submit"%>
+  
+<%end%>
