@@ -33,6 +33,9 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 # gem 'unicorn'
 
+gem "devise"
+gem 'omniauth'
+gem "omniauth-google-oauth2"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
