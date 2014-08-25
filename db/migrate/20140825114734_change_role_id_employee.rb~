@@ -1,4 +1,8 @@
 class ChangeRoleIdEmployee < ActiveRecord::Migration
-  def change
+  def up
+    rename_column :employees, :Role_id, :role_id
+  end
+  def down
+    rename_column :employees, :role_id, :Role_id
   end
 end
