@@ -13,8 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140825103804) do
 
-
-
   create_table "addresses", force: true do |t|
     t.text     "line1"
     t.text     "line"

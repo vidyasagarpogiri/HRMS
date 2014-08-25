@@ -1,0 +1,4 @@
+class ChangeRoleIdEmployee < ActiveRecord::Migration
+  def change
+  end
+end
