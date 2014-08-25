@@ -50,12 +50,6 @@ ActiveRecord::Schema.define(version: 20140825103804) do
     t.datetime "updated_at"
   end
 
-  create_table "desginations", force: true do |t|
-    t.string   "desgination_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "designations", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -120,13 +114,12 @@ ActiveRecord::Schema.define(version: 20140825103804) do
     t.integer  "ff_status_id"
     t.integer  "designation_id"
     t.integer  "grade_id"
-    t.integer  "Role_id"
+    t.integer  "role_id"
     t.integer  "job_location_id"
     t.integer  "permanent_address_id"
     t.integer  "present_address_id"
   end
 
-  add_index "employees", ["Role_id"], name: "index_employees_on_Role_id", using: :btree
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
   add_index "employees", ["department_id"], name: "index_employees_on_department_id", using: :btree
   add_index "employees", ["designation_id"], name: "index_employees_on_designation_id", using: :btree
@@ -135,6 +128,7 @@ ActiveRecord::Schema.define(version: 20140825103804) do
   add_index "employees", ["job_location_id"], name: "index_employees_on_job_location_id", using: :btree
   add_index "employees", ["permanent_address_id"], name: "index_employees_on_permanent_address_id", using: :btree
   add_index "employees", ["present_address_id"], name: "index_employees_on_present_address_id", using: :btree
+  add_index "employees", ["role_id"], name: "index_employees_on_Role_id", using: :btree
 
   create_table "ff_statuses", force: true do |t|
     t.string   "status_name"
