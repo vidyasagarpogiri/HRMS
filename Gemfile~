@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-
+gem 'selenium-webdriver'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -36,6 +36,13 @@ gem 'spring',        group: :development
 gem "devise"
 gem 'omniauth'
 gem "omniauth-google-oauth2"
+
+gem "capybara", :group => [:development, :test]
+                 group :test do
+                   gem "cucumber-rails", :require => false
+                   gem "database_cleaner"
+                   gem 'factory_girl_rails'   
+                 end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
