@@ -1,4 +1,2 @@
-<h2>From for education </h2>
-
+<h2>Editing quslifications </h2>
 <%= render "qualification_form"%>
-
