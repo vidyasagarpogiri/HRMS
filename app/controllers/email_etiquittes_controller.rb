@@ -1,0 +1,2 @@
+class EmailEtiquittesController < ApplicationController
+end
