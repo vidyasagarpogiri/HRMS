@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
- 
-   resources :employees
 
-=======
+ 
+   
+
+
   #devise_for :users
->>>>>>> 4af9e6596e4fab08d84cb19ebc10b119b7cdb487
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -20,6 +20,15 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
+  end
+  
+  resources :employees
+  resources :educations do
+   collection do
+      get 'cities'
+      get 'states' 
+      get 'educations/countries'
+    end
   end
 
   # Example of regular route:

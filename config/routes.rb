@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
  
-   resources :employees
+   
 
 
   #devise_for :users
@@ -20,6 +20,15 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
+  end
+  
+  resources :employees
+  resources :educations do
+   collection do
+      get 'cities'
+      get 'states' 
+      get 'countries'
+    end
   end
 
   # Example of regular route:
