@@ -3,6 +3,7 @@ Feature: Employee Signup
         
 @javascript
 Scenario: Adds a New Employee
+				Given there are departments seeded
         Given I am on the new_employee page
         And I fill in "employee_employee_id" with "123"
         When I select "Mrs" from "employee_title"
@@ -19,4 +20,6 @@ Scenario: Adds a New Employee
 				And I fill in "employee_date_of_join" with "19-02-2009"
 				And I fill in "employee_date_of_confirmation" with "19-02-2009"
 				And I fill in "employee_date_of_exit" with "19-02-2013"
-				When I select "3", :from => "employee_blood_group_id"
+				When I select "HR" from "employee[department_id]"
+        When I press "Submit"
+				

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_one :employee
+ 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
     end
   end
   
+   has_one :employee
   def password_required?
     super && provider.blank?
   end 

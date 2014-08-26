@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
   end
   
+
   resources :employees
   resources :educations do
     collection do
@@ -27,6 +28,19 @@ Rails.application.routes.draw do
     end
   end
   resources :addresses do
+
+
+  resources :employees do
+    resources :addresses
+  end
+  
+
+	resources :email_ettiquities
+	resources :promotions
+
+  
+  resources :educations
+    resources :addresses do
      collection do
       get 'cities'
       get 'states' 

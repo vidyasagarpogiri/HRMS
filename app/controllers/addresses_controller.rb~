@@ -1,14 +1,18 @@
 class AddressesController < ApplicationController
   
+    
   include AddressHelper
   
   def new
+    session[:employee] = Employee.find(params[:employee_id])
+    
     @address = Address.new
     
   end
   
   def create
     #raise params.inspect
+    #raise current_user.employee.inspect
     country_id = if params[:new_country].present?
                     @country = Country.new(:country_name => params[:new_country])
                     @country.save
@@ -30,11 +34,13 @@ class AddressesController < ApplicationController
                   else
                     params[:ed_city]
                   end
-   @address1 = Address.create(params_permanent_address)
+   @address1 = Address.new(params_present_address)
+   @address1.save
    @address1.update(city_id: params[:ed_city])
-   
+   @employee = Employee.find(current_user.employee.id).update(:present_address_id => @address1.id)
    @address2 = Address.create(line: params[:line3], line1: params[:line4], city_id: params[:ed_city_parmanent])
-   redirect_to address_path(@address)
+   @employee = Employee.find(current_user.employee.id).update(:permanent_address_id => @address2.id)
+   redirect_to address_path(@address2)
    
   end
   
@@ -63,17 +69,14 @@ class AddressesController < ApplicationController
     end
   end
   
-  def qualifications
-    respond_to do |format|
-      format.json  { render :json => getQualificationList }
-    end
-  end
+  
   
   private
   
-  def params_permanent_address
+  def params_present_address
     params.require(:address).permit(:line, :line1)
   end
   
-
-end
+ 
+  
+end  
