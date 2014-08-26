@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825123850) do
+ActiveRecord::Schema.define(version: 20140826055514) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -19,9 +19,13 @@ ActiveRecord::Schema.define(version: 20140825123850) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "city_id"
+    t.integer  "state_id"
+    t.integer  "country_id"
   end
 
   add_index "addresses", ["city_id"], name: "index_addresses_on_city_id", using: :btree
+  add_index "addresses", ["country_id"], name: "index_addresses_on_country_id", using: :btree
+  add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree
 
   create_table "blood_groups", force: true do |t|
     t.string   "blood_group_name"

@@ -1,0 +1,17 @@
+class ContactsController < ApplicationController
+  def new
+    @contact = Address.new
+  end
+  
+  def create
+  end
+  
+  def show
+  end
+  
+  private
+  
+  def params_address
+    params.require(:address).permit(:line, :lline1, :city_id)
+  end
+end

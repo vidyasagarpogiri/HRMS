@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
  
+  
+
    resources :employees
+   resources :addresses
 
 
   #devise_for :users

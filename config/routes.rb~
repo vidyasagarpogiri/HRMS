@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
- 
-   resources :employees
 
-=======
+ 
+  
+
+   resources :employees
+   resources :addresses
+
+
   #devise_for :users
->>>>>>> 4af9e6596e4fab08d84cb19ebc10b119b7cdb487
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
