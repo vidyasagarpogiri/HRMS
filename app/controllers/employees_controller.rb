@@ -10,7 +10,7 @@ class EmployeesController < ApplicationController
   end
   
   def create
-    raise params.inspect
+    #raise params.inspect
     @employee = Employee.create(params_employees)
     redirect_to @employee
   end

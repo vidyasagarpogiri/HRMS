@@ -1,0 +1,4 @@
+class AddDataForState < ActiveRecord::Migration
+  def change
+  end
+end

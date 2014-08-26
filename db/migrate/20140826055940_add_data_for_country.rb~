@@ -1,0 +1,14 @@
+class AddDataForCountry < ActiveRecord::Migration
+  def change
+  puts "================================"
+  puts "creating cities"
+  Country.destroy_all
+  Country.create(country_name: "India")
+  Country.create(country_name: "USA")
+  Country.create(country_name: "UK")        
+  Country.create(country_name: "Australia")
+  
+  puts "================================"
+    
+  end
+end

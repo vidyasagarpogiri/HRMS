@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
- 
-   
 
 
   #devise_for :users
@@ -27,7 +25,7 @@ Rails.application.routes.draw do
    collection do
       get 'cities'
       get 'states' 
-      get 'educations/countries'
+      get 'countries'
     end
   end
 
