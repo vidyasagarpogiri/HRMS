@@ -36,13 +36,13 @@ class EducationsController < ApplicationController
                     params[:ed_city]
                   end
     @qualification_id = if params[:qualification].present?
-                          @qualification = Qualification.new(params[:qualification])
+                          @qualification = Qualification.new(:qualification_name => params[:qualification])
                           @qualification.save
                           @qualification.id
                         else
                           params[:qulification_id]
                         end
-    @education = Education.new(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(:city_id => city_id))
+    @education = Education.new(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(:city_id => city_id, :Employee_id => 1))
     @education.save
     EducationQualification.create(:qualification_id => @qualification_id, :education_id => @education.id)
     redirect_to @education
