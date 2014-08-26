@@ -5,9 +5,9 @@ class AddressesController < ApplicationController
   end
   
   def create
-    #raise params.inspect
+    raise params.inspect
    @address1 = Address.create(params_permanent_address)
-   @address2 = Address.create(line: params[:line3], line1: params[:line4])
+   @address2 = Address.create(line: params[:line3], line1: params[:line4], city_id: params[:city_id])
    redirect_to address_path(@address1)
    
   end
@@ -21,7 +21,7 @@ class AddressesController < ApplicationController
   private
   
   def params_permanent_address
-    params.require(:address).permit(:line, :line1)
+    params.require(:address).permit(:line, :line1, :city_id)
   end
   
 
