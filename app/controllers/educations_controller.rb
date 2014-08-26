@@ -1,9 +1,10 @@
 class EducationsController < ApplicationController
-  
-  include AddressHelper
+
+ 
   
   before_action :find_education, only: [:show, :edit, :update]
   
+
   def index
     @educations = Education.all
   end
@@ -59,35 +60,12 @@ class EducationsController < ApplicationController
   def update
     @education.update(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(:city_id => city_id))
   end
-  
-  def countries
-    respond_to do |format|
-      format.json  { render :json => getCountryList }
-    end
-  end
-  
-  def states
-    respond_to do |format|
-      format.json  { render :json => getStateList(params[:country_id]) }
-    end
-  end
-  
-  def cities
-    respond_to do |format|
-      format.json  { render :json => getCityList(params[:state_id]) }
-    end
-  end
-  
-  def qualifications
-    respond_to do |format|
-      format.json  { render :json => getQualificationList }
-    end
-  end
-  
+
   private
  
   def find_education
     @education = Education.find(params[:id])
   end
   
+
 end

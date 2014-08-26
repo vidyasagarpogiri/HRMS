@@ -11,7 +11,8 @@ class EmployeesController < ApplicationController
   
   def create
     #raise params.inspect
-    @employee = Employee.create(params_employees)
+    #raise current_user .inspect
+    @employee = Employee.create(params_employees) 
     redirect_to @employee
   end
 
@@ -20,8 +21,7 @@ class EmployeesController < ApplicationController
   end
   
   def edit
-  end
-  
+  end  
   
   private
    

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826055514) do
+ActiveRecord::Schema.define(version: 20140826104644) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20140826055514) do
     t.integer  "job_location_id"
     t.integer  "permanent_address_id"
     t.integer  "present_address_id"
+    t.integer  "user_id"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
@@ -133,6 +134,7 @@ ActiveRecord::Schema.define(version: 20140826055514) do
   add_index "employees", ["permanent_address_id"], name: "index_employees_on_permanent_address_id", using: :btree
   add_index "employees", ["present_address_id"], name: "index_employees_on_present_address_id", using: :btree
   add_index "employees", ["role_id"], name: "index_employees_on_role_id", using: :btree
+  add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
   create_table "ff_statuses", force: true do |t|
     t.string   "status_name"
