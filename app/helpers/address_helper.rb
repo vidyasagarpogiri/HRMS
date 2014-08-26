@@ -12,4 +12,8 @@ module AddressHelper
     @cities = City.where(:state_id=>state_id)
   end
   
+  def getQualificationList
+    @quslifications = Qualification.all
+  end
+  
 end

@@ -5,11 +5,15 @@ module AddressHelper
   end
   
   def getStateList(country_id)
-    @states = States.where(:country_id=>country_id)
+    @states = State.where(:country_id=>country_id)
   end
 
   def getCityList(state_id)
     @cities = City.where(:state_id=>state_id)
+  end
+  
+  def getQualificationList
+    @quslifications = Qualification.all
   end
   
 end

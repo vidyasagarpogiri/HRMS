@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
+  has_one :employee
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
-         
+  after_create :create_employee        
          
   def self.from_omniauth(auth)
     if auth.extra.raw_info.hd == "amzur.com"
@@ -27,5 +28,8 @@ class User < ActiveRecord::Base
     super && provider.blank?
   end 
   
-  
+  private 
+  def create_employee
+    @employee = Employee.create(:user_id => self.id)
+  end
 end
