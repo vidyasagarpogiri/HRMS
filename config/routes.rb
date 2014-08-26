@@ -21,13 +21,17 @@ Rails.application.routes.draw do
   end
   
   resources :employees
-  resources :educations
+  resources :educations do
+    collection do
+      get 'qualifications'
+    end
+  end
   resources :addresses do
      collection do
       get 'cities'
       get 'states' 
       get 'countries'
-      get 'qualifications'
+      
     end
   end
 

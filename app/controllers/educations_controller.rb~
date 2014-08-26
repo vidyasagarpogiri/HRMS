@@ -1,6 +1,6 @@
 class EducationsController < ApplicationController
 
- 
+ include EducationsHelper
   
   before_action :find_education, only: [:show, :edit, :update]
   
@@ -59,6 +59,12 @@ class EducationsController < ApplicationController
   
   def update
     @education.update(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(:city_id => city_id))
+  end
+
+  def qualifications
+    respond_to do |format|
+      format.json  { render :json => getQualificationList }
+    end
   end
 
   private

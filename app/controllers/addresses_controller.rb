@@ -63,6 +63,8 @@ class AddressesController < ApplicationController
     end
   end
   
+  
+  
   private
   
   def params_permanent_address
