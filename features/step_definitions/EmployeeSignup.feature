@@ -19,5 +19,4 @@ Scenario: Adds a New Employee
 				And I fill in "employee_date_of_join" with "19-02-2009"
 				And I fill in "employee_date_of_confirmation" with "19-02-2009"
 				And I fill in "employee_date_of_exit" with "19-02-2013"
-				#When I select "Please Select" from "employee_department_id"
-				When I select "4" from "blood_group"
+				When I select "3", :from => "employee_blood_group_id"
