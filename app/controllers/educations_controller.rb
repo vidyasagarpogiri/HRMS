@@ -1,5 +1,10 @@
 class EducationsController < ApplicationController
+
+ 
   
+  before_action :find_education, only: [:show, :edit, :update]
+  
+
   def index
     @educations = Education.all
   end
@@ -31,11 +36,36 @@ class EducationsController < ApplicationController
                   else
                     params[:ed_city]
                   end
-    @education = Education.create(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(:city_id => city_id))
+    @qualification_id = if params[:qualification].present?
+                          @qualification = Qualification.new(params[:qualification])
+                          @qualification.save
+                          @qualification.id
+                        else
+                          params[:qulification_id]
+                        end
+    @education = Education.new(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(:city_id => city_id))
+    @education.save
+    EducationQualification.create(:qualification_id => @qualification_id, :education_id => @education.id)
     redirect_to @education
   end
   
   def show
+    
   end
   
+  def edit
+    
+  end
+  
+  def update
+    @education.update(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(:city_id => city_id))
+  end
+
+  private
+ 
+  def find_education
+    @education = Education.find(params[:id])
+  end
+  
+
 end

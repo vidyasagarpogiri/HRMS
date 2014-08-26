@@ -1,0 +1,10 @@
+<h2>Education details</h2>
+
+  Qualification:<%= @education.specilization %><br/>
+  College/University: <%= @education.institute %><br/>
+  Starting Year: <%= @education.year_of_admission %>
+  Pass Out Year: <%= @education.year_of_pass %><br/>
+  Percentage/CGPA: <%= @education.cgpa_percentage %><br/>
+  City:<%= @education.city.city_name %>
+  
+  <%= link_to 'edit', edit_education_path %>

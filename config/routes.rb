@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'cities'
       get 'states' 
       get 'countries'
+      get 'qualifications'
     end
   end
 
