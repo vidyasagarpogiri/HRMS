@@ -72,22 +72,23 @@
            }
          });
        }     
-  });
+ 
   
-  $(function(){
+
      $("#qualification_list").append("<option value='0'>Select Qualification</option>");     
     $.getJSON("/educations/qualifications.json", function( data ) {
         parseQualificationData(data);
      } ) ;
-     });
-     
+   
      function parseQualificationData(data){
       $.each( data, function( key, val ) {
           value = val['id'];
           name = val["qualification_name"]
-          $("qualification_list").append("<option value='"+value+"'>"+name+"</option>");
+          $("#qualification_list").append("<option value='"+value+"'>"+name+"</option>");
+          console.log(value+" "+name);
         });
         }
-  
+        
+   });
   
 </script>

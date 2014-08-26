@@ -115,6 +115,12 @@ select date.hour.to_s, :from => "#{prefix}_#{dt_suffix[:hour]}"
 select date.min.to_s, :from => "#{prefix}_#{dt_suffix[:minute]}"
 end
 
+Given /^there are departments seeded$/ do
+  ["Development", "HR"].split(/,\s*/).each do |dept_name|
+		FactoryGirl.create(:departments, :name => dept_name)
+  end
+end
+
 def dt_suffix
 {
 :year => ’1i’,

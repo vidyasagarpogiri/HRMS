@@ -1,0 +1,7 @@
+FactoryGirl.define do
+  factory :departments do
+    department_name 'HR'
+  end
+
+  
+end

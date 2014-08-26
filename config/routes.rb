@@ -20,9 +20,15 @@ Rails.application.routes.draw do
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
   end
   
+
   resources :employees do
     resources :addresses
   end
+  
+
+	resources :email_ettiquities
+	resources :promotions
+
   
   resources :educations
     resources :addresses do
