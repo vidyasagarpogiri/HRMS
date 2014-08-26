@@ -1,0 +1,15 @@
+module ApplicationHelper
+
+  def getCountryList
+    @countries = Country.all
+  end
+  
+  def getCountryList
+    @states = States.where(:country_id=>country_id)
+  end
+
+  def getCountryList
+    @cities = City.where(:state_id=>state_id)
+  end
+
+end
