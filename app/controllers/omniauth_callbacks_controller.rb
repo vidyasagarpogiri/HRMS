@@ -1,5 +1,6 @@
 class OmniauthCallbacksController < ApplicationController
-
+      
+    
     def all
   
     @user = User.from_omniauth(request.env["omniauth.auth"])
@@ -19,5 +20,8 @@ class OmniauthCallbacksController < ApplicationController
     end
   end
   alias_method :google_oauth2, :all
+  
+ 
+  
   
 end

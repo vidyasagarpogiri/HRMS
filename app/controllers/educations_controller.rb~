@@ -1,7 +1,5 @@
 class EducationsController < ApplicationController
   
-  include AddressHelper
-  
   def index
     @educations = Education.all
   end

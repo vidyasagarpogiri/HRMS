@@ -1,7 +1,5 @@
 class EducationsController < ApplicationController
   
-  include AddressHelper
-  
   def index
     @educations = Education.all
   end
@@ -38,24 +36,6 @@ class EducationsController < ApplicationController
   end
   
   def show
-  end
-  
-  def countries
-    respond_to do |format|
-      format.json  { render :json => getCountryList }
-    end
-  end
-  
-  def states
-    respond_to do |format|
-      format.json  { render :json => getStateList(params[:country_id]) }
-    end
-  end
-  
-  def cities
-    respond_to do |format|
-      format.json  { render :json => getCityList(params[:state_id]) }
-    end
   end
   
 end

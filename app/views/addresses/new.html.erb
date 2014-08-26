@@ -8,26 +8,81 @@
   <%= f.label :line1, "Line2" %>
   <%= f.text_field :line1 %> <br>
   
-  <%= f.label :city_id, "City" %>
-  <%= f.collection_select :city_id, City.all, :id, :city_name, { :prompt => "Please Select" }, { :class => "city" } %><br>
-   <%= f.label :state_id, "State" %>
-  <%= f.collection_select :state_id, State.all, :id, :state_name, { :prompt => "Please Select" }, { :class => "state" } %><br>
-  <%= f.label :country_id, "Country" %>
-  <%= f.collection_select :country_id, Country.all, :id, :country_name, { :prompt => "Please Select" }, { :class => "country" } %><br>
-  
+  <select id="country_list" name="ed_country">
+  </select>
+  <input type='text' id='new_country' name='new_country'>
+  <span id="state_dpdwn"></span>
+  <span id="city_dpdwn"></span>  
   
 <h3>Parmanent Address </h3><hr>
   <%= f.label :line3, "Line1" %>
   <%= text_field_tag :line3 %> <br>
   <%= f.label :line4, "Line2" %>
   <%= text_field_tag :line4 %> <br>
-   <%= f.label :city_id, "City" %>
-  <%= f.collection_select :city_id, City.all, :id, :city_name, { :prompt => "Please Select" }, { :class => "city" } %><br>
-  <%= f.label :state_id, "State" %>
-  <%= f.collection_select :state_id, State.all, :id, :state_name, { :prompt => "Please Select" }, { :class => "state" } %><br>
-  <%= f.label :country_id, "Country" %>
-  <%= f.collection_select :country_id, Country.all, :id, :country_name, { :prompt => "Please Select" }, { :class => "country" } %><br>
+  <select id="country_list_parmanent" name="ed_country_parmanent">
+  </select>
+  <input type='text' id='new_country_parmanent' name='new_country_parmanent'>
+  <span id="state_dpdwn_parmanent"></span>
+  <span id="city_dpdwn_parmanent"></span>
   
   <%= f.submit "Submit"%>
   
 <% end %>
+
+<script>
+$(function(){
+   $("#new_country_parmanent").hide();
+   $("#country_list_parmanent").append("<option value='0'>Select Country</option>");     
+  $.getJSON("/addresses/countries.json", function( data ) {
+      parseDataD("country",data);
+   } ) ;
+   
+   add_new_fieldD("country");     
+   function statesD(){
+    $("#new_state_parmanent").hide();
+    $("#state_list_parmanent").append("<option value='0'>Select State</option>");
+    $.getJSON("/addresses/states.json?country_id="+$("#country_list_parmanent").val(), function( data ) {
+        parseDataD("state",data);
+     } ) ;
+     
+     add_new_fieldD("state");
+   }
+   
+   function citiesD(){
+    $("#new_city_parmanent").hide();
+    $("#city_list_parmanent").append("<option value='0'>Select City</option>");
+    $.getJSON("/addresses/cities.json?state_id="+$("#state_list_parmanent").val(), function( data ) {
+        parseDataD("city",data);
+     } ) ;
+     
+     add_new_fieldD("city");
+   }
+   
+  function parseDataD(field_type, data){
+    $.each( data, function( key, val ) {
+        value = val['id'];
+        name = val[""+field_type+"_name"]
+        $("#"+field_type+"_list_parmanent").append("<option value='"+value+"'>"+name+"</option>");
+      });
+        $("#"+field_type+"_list_parmanent").append("<option value='other' id='other_"+field_type+"_parmanent'>Other</option>");
+    }
+  
+  function add_new_fieldD(field_type){
+     $("#"+field_type+"_list_parmanent").change(function(){ 
+       if($("#"+field_type+"_list_parmanent").val()=="other"){
+        $("#new_"+field_type+"_parmanent").show();
+       } else {
+         $("#new_"+field_type+"_parmanent").hide();
+           if(field_type=="country"){
+               $("#state_dpdwn_parmanent").html("<select id='state_list_parmanent' name='ed_state_parmanent'></select><input type='text' id='new_state_parmanent' name='new_state_parmanent'>");
+               statesD();             
+           }
+           if(field_type=="state"){
+               $("#city_dpdwn_parmanent").html("<select id='city_list_parmanent' name='ed_city_parmanent'></select><input type='text' id='new_city_parmanent' name='new_city_parmanent'>");
+               citiesD();             
+           }
+         }
+       });
+     }     
+});
+</script>
