@@ -33,6 +33,7 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 # gem 'unicorn'
 
+gem 'factory_girl'
 gem "devise"
 gem 'omniauth'
 gem "omniauth-google-oauth2"
@@ -42,6 +43,7 @@ gem "capybara", :group => [:development, :test]
                    gem "cucumber-rails", :require => false
                    gem "database_cleaner"
                    gem 'factory_girl_rails'   
+										gem 'rspec-rails'
                  end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

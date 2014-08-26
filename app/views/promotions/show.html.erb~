@@ -1,0 +1,3 @@
+Promotion Id:<%= @promotion.id %><br/>
+Promotion Date:<%= @promotion.date_of_promotion %><br/>
+Employee Id:<%= @promotion.employee_id %><br/>

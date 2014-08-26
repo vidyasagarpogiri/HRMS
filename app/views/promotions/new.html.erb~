@@ -1,0 +1,12 @@
+<h1>Promotion</h1>
+<%= form_for(@promotion) do |p| %>
+<p> Promotion Form </p>
+
+<%= p.label :date_of_promotion, "Date of Promotion" %>
+<%= date_field(:promotion, :date_of_promotion) %> <br>
+<%= p.label :designation_id, "Designation" %>
+<%= p.collection_select :designation_id, Designation.all, :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation" } %><br>
+<%= p.label :employee_id, "Employee ID" %>
+<%= p.text_field :employee_id %> <br>
+<%= p.submit "Submit"%>
+<% end %>
