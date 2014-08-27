@@ -1,0 +1,6 @@
+<h2>Exit details</h2>
+Emplyee Id:<%= @employee.employee_id %><br/>
+Emplyee Name:<%= @employee.first_name%><br/>
+F&F Status:<%= @employee.ff_status.status_name %><br/>
+Date Of Exit:<%= @employee.date_of_exit %><br/>
+

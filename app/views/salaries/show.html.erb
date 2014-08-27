@@ -1,2 +1,12 @@
-<h1>Salaries#show</h1>
-<p>Find me in app/views/salaries/show.html.erb</p>
+<h1>Salaries show page</h1>
+ctc_fixed: <%= @salary.ctc_fixed %>&nbsp
+basic_fixed: <%= @salary.basic_salary %>
+ 
+ 
+<div>
+<%= render 'salaries/allowances' %>
+</div> 
+
+<div>
+<%= render 'salaries/insentives' %>
+</div> 
