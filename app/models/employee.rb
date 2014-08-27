@@ -10,6 +10,7 @@ class Employee < ActiveRecord::Base
   belongs_to :role
   belongs_to :grade
   belongs_to :user
+  belongs_to :salary
   has_many :promotions
  
 end

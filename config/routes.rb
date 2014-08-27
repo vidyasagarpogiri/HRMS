@@ -2,6 +2,12 @@ Rails.application.routes.draw do
 
 
 
+  get 'salaries/new'
+
+  get 'salaries/edit'
+
+  get 'salaries/show'
+
   #devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -33,6 +39,7 @@ Rails.application.routes.draw do
 
   resources :employees do
     resources :addresses
+    resources :salaries
   end
   
 
