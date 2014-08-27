@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20140827101901) do
+
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -138,6 +140,16 @@ ActiveRecord::Schema.define(version: 20140827101901) do
   add_index "employees", ["role_id"], name: "index_employees_on_role_id", using: :btree
   add_index "employees", ["salary_id"], name: "index_employees_on_salary_id", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
+
+  create_table "experiences", force: true do |t|
+    t.string   "previous_company"
+    t.string   "last_designation"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ff_statuses", force: true do |t|
     t.string   "status_name"
