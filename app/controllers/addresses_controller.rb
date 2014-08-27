@@ -4,14 +4,11 @@ class AddressesController < ApplicationController
   include AddressHelper
   
   def new
-       
     @address = Address.new
-    
+    @employee = Employee.find(params[:employee_id])
   end
   
   def create
-    #raise params.inspect
-    #raise current_user.employee.inspect
     country_id = if params[:new_country].present?
                     @country = Country.new(:country_name => params[:new_country])
                     @country.save
@@ -36,17 +33,15 @@ class AddressesController < ApplicationController
    @address1 = Address.new(params_present_address)
    @address1.save
    @address1.update(city_id: params[:ed_city])
-   @employee = Employee.find(current_user.employee.id).update(:present_address_id => @address1.id)
    @address2 = Address.create(line: params[:line3], line1: params[:line4], city_id: params[:ed_city_parmanent])
-   @employee = Employee.find(current_user.employee.id).update(:permanent_address_id => @address2.id)
+   @employee = Employee.find(params[:employee_id])
+   @employee.update(:present_address_id => @address1.id, :permanent_address_id => @address2.id)
    redirect_to address_path(@address2)
-   
   end
   
   def show
-  @address1 = Address.find(params[:id])
-  @address2 = Address.find(params[:id])
-  
+    @address1 = Address.find(params[:id])
+    @address2 = Address.find(params[:id])
   end
   
     

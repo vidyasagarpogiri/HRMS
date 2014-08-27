@@ -54,7 +54,6 @@ Rails.application.routes.draw do
       get 'cities'
       get 'states' 
       get 'countries'
-      
     end
   end
 
