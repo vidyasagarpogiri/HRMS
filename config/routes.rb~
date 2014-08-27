@@ -39,12 +39,18 @@ Rails.application.routes.draw do
 
   resources :employees do
     resources :addresses
+<<<<<<< HEAD
     resources :salaries
-  end
-  
+=======
 
-	resources :email_ettiquities
-	resources :promotions
+		resources :email_ettiquities
+		resources :promotions
+
+    resources :salaries
+
+>>>>>>> 79a8944123b28a3c0d94f80353cbffb51ddb39b8
+  end
+
 
   
   resources :educations

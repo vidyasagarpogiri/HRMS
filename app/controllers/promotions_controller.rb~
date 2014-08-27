@@ -6,12 +6,15 @@ class PromotionsController < ApplicationController
 	
   def new
     @promotion = Promotion.new
+		@employee = Employee.find(params[:employee_id])
   end
     
 	def create
-    @promotion = Promotion.new(params.require(:promotion).permit(:date_of_promotion, :employee_id , :designation_id))
+		#raise params.inspect
+    @promotion = Promotion.create(:date_of_promotion=> params[:promotion][:date_of_promotion], :employee_id=>params[:employee_id],
+		:designation_id=>params[:promotion][:designation_id])                      
     @promotion.save
-    redirect_to @promotion
+    redirect_to employee_promotion_path(@promotion.employee, @promotion)
   end
      
   def show
@@ -19,10 +22,8 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.find(params[:id])
   end
      
-  
-private
-  def promotion_params
-    params.require(:promotion).permit(:date_of_promotion, :employee_id , :designation_id)
-  end
+ 
 end
 
+
+  
