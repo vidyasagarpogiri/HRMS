@@ -2,8 +2,10 @@
 <% @promotions.each do |p| %>
    
 Employee Id:<%= p.employee_id %><br>
+Employee Name: <%= p.employee.first_name %><br/>
+Designated To: <%= p.designation.designation_name %><br/>
 Promotion Date:<%= p.date_of_promotion %><br><hr>
-   
+ 
 <% end %>
 
 
