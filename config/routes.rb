@@ -22,13 +22,13 @@ Rails.application.routes.draw do
   
 
   resources :employees
+  
   resources :educations do
     collection do
       get 'qualifications'
     end
   end
-  resources :addresses
-  
+
 
 
   resources :employees do
@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   
   resources :educations
+  
     resources :addresses do
      collection do
       get 'cities'
@@ -98,4 +99,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+end
+
 end
