@@ -4,8 +4,7 @@ class AddressesController < ApplicationController
   include AddressHelper
   
   def new
-    session[:employee] = Employee.find(params[:employee_id])
-    
+       
     @address = Address.new
     
   end

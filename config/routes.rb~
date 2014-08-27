@@ -22,12 +22,13 @@ Rails.application.routes.draw do
   
 
   resources :employees
+  
   resources :educations do
     collection do
       get 'qualifications'
     end
   end
-  resources :addresses do
+
 
 
   resources :employees do
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
 
   
   resources :educations
+  
     resources :addresses do
      collection do
       get 'cities'
