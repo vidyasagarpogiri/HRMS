@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 end
 
 
+  get 'profile/:id/edit' => "profile#edit" 
+  get 'profile/:id' => "profile#show"
 
 
 
