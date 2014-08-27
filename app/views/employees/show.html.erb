@@ -1,5 +1,32 @@
+<h3> Employee Show Page </h3>
 
 
-<%= @employee.id %><br/>
-<%= @employee.title %><br/>
-<%= @employee.first_name %><br/>
+<table border="1" style="width:300px">
+
+<tr><td>Employee Id:<%= @employee.id %></td></tr>
+<tr><td>Title:<%= @employee.title %></td></tr>
+<tr><td>First Name:<%= @employee.first_name %></td></tr>
+<tr><td>Last Name:<%= @employee.first_name %></td></tr>
+<tr><td>Mobile Number:<%= @employee.mobile_number %></td></tr>
+<tr><td>Date Of Birth:<%= @employee.first_name %></td></tr>
+<tr><td>Gender:<%= @employee.first_name %></td></tr>
+<tr><td>Marital Status:<%= @employee.marital_status %></td></tr>
+<tr><td>Total Experience:<%= @employee.total_experience %></td></tr>
+<tr><td>Status:<%= @employee.status %></td></tr>
+<tr><td>Pan Number:<%= @employee.pan %></td></tr>
+<tr><td>Blood Group:<%= @employee.blood_group.blood_group_name %></td></tr>
+<tr><td>Job Confirmation Date:<%= @employee.date_of_confirmation %></td></tr>
+<tr><td>Job Joining Date:<%= @employee.date_of_join %></td></tr>
+<tr><td>Job Exit Date:<%= @employee.date_of_exit %></td></tr>
+<tr><td>Designation:<%= @employee.designation.designation_name %></td></tr>
+<tr><td>Grade :<%# @employee.grade.value %></td></tr>
+<tr><td>Department:<%= @employee.department.department_name %></td></tr>
+<tr><td>Role:<%# @employee.role.role_name %></td></tr>
+<tr><td>Salary:<%# @employee.salary.basic_salary %></td></tr>
+
+
+</table>
+
+
+
+
