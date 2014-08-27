@@ -1,0 +1,7 @@
+<div>
+<%=render 'bonuses/index' %>
+</div>
+
+</div>
+<%=render 'bonuses/new' %>
+</div>

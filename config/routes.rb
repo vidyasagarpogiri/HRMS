@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   get 'exit/index'
 
   get 'exit/new'
@@ -13,6 +11,7 @@ Rails.application.routes.draw do
   get 'ff_status/new'
 
   get 'ff_status/show'
+
 
   #devise_for :users
 
@@ -51,12 +50,21 @@ Rails.application.routes.draw do
 		resources :promotions
 		resources :exits
     resources :salaries
-  
+    resources :experiences
   resources :addresses
 end
 
 
 #resources :exit
+
+  resources :employees do
+    resources :addresses
+      resources :salaries do 
+          resources :allowances
+          resources :insentives
+      end
+  end
+  
 
 
   
