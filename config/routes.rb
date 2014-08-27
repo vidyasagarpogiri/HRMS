@@ -1,18 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'exit/index'
-
-  get 'exit/new'
-
-  get 'exit/show'
-
-  get 'ff_status/index'
-
-  get 'ff_status/new'
-
-  get 'ff_status/show'
-
-
   #devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
