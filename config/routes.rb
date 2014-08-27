@@ -27,7 +27,8 @@ Rails.application.routes.draw do
       get 'qualifications'
     end
   end
-  resources :addresses do
+  resources :addresses
+  
 
 
   resources :employees do
