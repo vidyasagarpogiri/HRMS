@@ -41,7 +41,9 @@ Rails.application.routes.draw do
 end
 
 
-#resources :exit
+
+  get 'profile/:id/edit' => "profile#edit" 
+  get 'profile/:id' => "profile#show"
 
   resources :employees do
     resources :addresses

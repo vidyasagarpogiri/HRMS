@@ -39,6 +39,10 @@ $(function(){
      $("#"+field_type+"_list").change(function(){ 
        if($("#"+field_type+"_list").val()=="other"){
         $("#new_"+field_type+"").show();
+        if(field_type=="country"){
+        $("#new_"+field_type+"").attr('placeholder','Country');
+        $("#state_dpdwn").prepend("<input type='text' id='new_state' name='new_state' placeholder='State'><input type='text' id='new_city' name='new_city' placeholder='City'>");
+        }
        } else {
          $("#new_"+field_type+"").hide();
            if(field_type=="country"){

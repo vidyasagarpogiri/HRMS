@@ -1,10 +1,10 @@
 <h3>All Promotions</h3>
 <% @promotions.each do |p| %>
-   
-Employee Id:<%= p.employee_id %><br>
-Designated To: <%= p.designation.designation_name %><br/>
-Promotion Date:<%= p.date_of_promotion %><br><hr>
- 
+
+  Date Of Promotion:<%= p.date_of_promotion %><br/>
+  Designated To:<%= p.designation.designation_name %><br>
+  <%= link_to 'EDIT', edit_employee_promotion_path(@employee.id, p.id) %><hr>
+
 <% end %>
 
 
