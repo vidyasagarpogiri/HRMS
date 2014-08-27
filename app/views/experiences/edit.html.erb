@@ -1,0 +1,7 @@
+<%= form_for ([@employee, @experience]) do |f| %>
+   Previous Company<%= f.text_field :previous_company %><br>
+  Last_Designation: <%= f.text_field :last_designation %><br>
+ From: <%= f.date_field :from_date %><br>
+ To: <%= f.date_field :to_date %><br>
+  <%= f.submit %>
+<% end %>

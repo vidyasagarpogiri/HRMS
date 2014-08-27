@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 		resources :promotions
 
     resources :salaries
-  
+    resources :experiences
   resources :addresses
 end
 
