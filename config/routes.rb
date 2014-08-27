@@ -49,6 +49,7 @@ end
       get 'cities'
       get 'states' 
       get 'countries'
+      
     end
   end
 
@@ -101,4 +102,3 @@ end
   #     resources :products
   #   end
 end
-

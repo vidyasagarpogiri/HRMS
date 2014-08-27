@@ -29,21 +29,7 @@ Rails.application.routes.draw do
         post 'new_form'
       end
     end
-<<<<<<< HEAD
-  end
-
-
-
-  resources :employees do
-    resources :addresses
-<<<<<<< HEAD
-    resources :salaries
-=======
-
-		resources :email_ettiquities
-=======
     resources :email_ettiquities
->>>>>>> 40d7854ea502e19e83d48519d27186abc5f5e8fd
 		resources :promotions
 
     resources :salaries
@@ -53,11 +39,6 @@ end
 
 
 
-<<<<<<< HEAD
->>>>>>> 79a8944123b28a3c0d94f80353cbffb51ddb39b8
-  end
-=======
->>>>>>> 40d7854ea502e19e83d48519d27186abc5f5e8fd
 
 
   
@@ -68,6 +49,7 @@ end
       get 'cities'
       get 'states' 
       get 'countries'
+      
     end
   end
 
@@ -120,4 +102,3 @@ end
   #     resources :products
   #   end
 end
-
