@@ -1,0 +1,3 @@
+<% @educations.each do |education| %>
+  <%= education.specilization %>
+<% end %>

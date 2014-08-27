@@ -9,6 +9,8 @@ class Employee < ActiveRecord::Base
   belongs_to :ff_status
   belongs_to :role
   belongs_to :grade
+  belongs_to :user
   has_many :promotions
+  has_many :educations
  
 end

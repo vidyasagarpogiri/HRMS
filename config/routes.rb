@@ -21,26 +21,25 @@ Rails.application.routes.draw do
   end
   
 
-  resources :employees
-  
-  resources :educations do
-    collection do
-      get 'qualifications'
+  resources :employees do 
+    resources :educations do
+      collection do
+        get 'qualifications'
+        post 'new_form'
+      end
     end
-  end
+  
+  resources :addresses
+end
 
 
-
-  resources :employees do
-    resources :addresses
-  end
   
 
 	resources :email_ettiquities
 	resources :promotions
 
   
-  resources :educations
+  #resources :educations
   
     resources :addresses do
      collection do
