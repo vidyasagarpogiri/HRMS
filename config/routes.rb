@@ -2,6 +2,18 @@ Rails.application.routes.draw do
 
 
 
+  get 'exit/index'
+
+  get 'exit/new'
+
+  get 'exit/show'
+
+  get 'ff_status/index'
+
+  get 'ff_status/new'
+
+  get 'ff_status/show'
+
   #devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -22,23 +34,29 @@ Rails.application.routes.draw do
   
 
   resources :employees do 
+		member do
+			get 'exit_form'
+			post 'update_exit_form'
+			get 'show_exit'
+		end
   
   resources :educations do
      collection do
         get 'qualifications'
         post 'new_form'
+				
       end
     end
     resources :email_ettiquities
 		resources :promotions
-
+		resources :exits
     resources :salaries
   
   resources :addresses
 end
 
 
-
+#resources :exit
 
 
   
