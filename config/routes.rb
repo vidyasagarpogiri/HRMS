@@ -2,11 +2,7 @@ Rails.application.routes.draw do
 
 
 
-  get 'salaries/new'
 
-  get 'salaries/edit'
-
-  get 'salaries/show'
 
   #devise_for :users
 
@@ -39,7 +35,10 @@ Rails.application.routes.draw do
 
   resources :employees do
     resources :addresses
-    resources :salaries
+    resources :salaries do 
+      resources :allowances
+      resources :insentives
+    end
   end
   
 

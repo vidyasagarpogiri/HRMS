@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827055230) do
+ActiveRecord::Schema.define(version: 20140827115224) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20140827055230) do
   add_index "addresses", ["city_id"], name: "index_addresses_on_city_id", using: :btree
   add_index "addresses", ["country_id"], name: "index_addresses_on_country_id", using: :btree
   add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree
+
+  create_table "allowances", force: true do |t|
+    t.string   "allowance_name"
+    t.float    "value",          limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "salary_id"
+  end
+
+  add_index "allowances", ["salary_id"], name: "index_allowances_on_salary_id", using: :btree
 
   create_table "blood_groups", force: true do |t|
     t.string   "blood_group_name"
@@ -150,6 +160,16 @@ ActiveRecord::Schema.define(version: 20140827055230) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "insentives", force: true do |t|
+    t.string   "insentive_type"
+    t.float    "value",          limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "salary_id"
+  end
+
+  add_index "insentives", ["salary_id"], name: "index_insentives_on_salary_id", using: :btree
 
   create_table "job_locations", force: true do |t|
     t.datetime "created_at"

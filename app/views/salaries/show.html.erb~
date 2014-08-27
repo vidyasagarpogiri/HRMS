@@ -8,5 +8,5 @@ basic_fixed: <%= @salary.basic_salary %>
 </div> 
 
 <div>
-<%= render 'salaries/insentives' %>
+<%= render 'salaries/bonus' %>
 </div> 
