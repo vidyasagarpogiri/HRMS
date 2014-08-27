@@ -1,0 +1,6 @@
+<h3>All Increments </h3>
+<% @salary_increments.each do |salary_increment| %>
+
+ Increment Date: <%= salary_increment.increment_date %>&nbsp
+ Value/Percentage:<%= salary_increment.increment_value %><br>
+<% end %>

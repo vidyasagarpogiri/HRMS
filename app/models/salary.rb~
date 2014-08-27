@@ -1,5 +1,5 @@
 class Salary < ActiveRecord::Base
   has_one :employee
   has_many :allowances
-  has_many :bonus
+  has_many :insentives
 end

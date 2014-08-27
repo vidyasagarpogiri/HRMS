@@ -1,0 +1,8 @@
+<% if @form_type == "save" %>
+  $(".new-salary_increment").hide(); 
+ $(".salary_increment-index").html("<%=j render  'salary_increments/index' %>");
+
+<% else %>
+  $(".salary_increment-index").html("<%=j render  'salary_increments/index'  %>");
+  $(".new-salary_increment").html("<%=j render  'salary_increments/new' %>");
+<% end %>

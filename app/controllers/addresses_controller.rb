@@ -3,6 +3,14 @@ class AddressesController < ApplicationController
     
   include AddressHelper
   
+  def index
+    @employee = Employee.find(params[:employee_id])
+    @address1 = Address.find(@employee.present_address_id)
+    @address2 = Address.find(@employee.permanent_address_id)
+    #raise @address2.inspect
+    
+  end
+  
   def new
     @address = Address.new
     @employee = Employee.find(params[:employee_id])
@@ -32,17 +40,34 @@ class AddressesController < ApplicationController
                   end
    @address1 = Address.new(params_present_address)
    @address1.save
-   @address1.update(city_id: params[:ed_city])
+   @address1.update(city_id: city_id)  #upadting present address id in employee
+   
+   
+   
    @address2 = Address.create(line: params[:line3], line1: params[:line4], city_id: params[:ed_city_parmanent])
    @employee = Employee.find(params[:employee_id])
-   @employee.update(:present_address_id => @address1.id, :permanent_address_id => @address2.id)
-   redirect_to address_path(@address2)
-  end
+   @employee.update(:present_address_id => @address1.id, :permanent_address_id => @address2.id) #updating perminent address id in employee
+   
+   redirect_to employee_addresses_path
+    end
   
   def show
-    @address1 = Address.find(params[:id])
-    @address2 = Address.find(params[:id])
+   #raise params.ispect
   end
+  
+  def edit
+    #raise params.inspect
+    @employee = Employee.find(params[:employee_id])
+    @address = Address.find(params[:id])
+    
+  end
+  
+  def update
+    @address = Address.find(params[:id])
+    @address.update(params_present_address)
+    redirect_to employee_addresses_path
+  end
+  
   
     
   def countries

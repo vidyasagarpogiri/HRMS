@@ -17,14 +17,16 @@ class SalariesController < ApplicationController
   end
 
   def show
-    #raise params.inspect
+    
     @salary =  Salary.find(params[:id])
     
     @employee= Employee.find(params[:employee_id])
-   @allowance = Allowance.new
-   @bonus = Insentive.new
-   @allowances = @salary.allowances
+    @allowance = Allowance.new
+    @insentive = Insentive.new
+    @salary_increment = SalaryIncrement.new
+    @allowances = @salary.allowances
     @insentives =  @salary.insentives
+    @salary_increments =@salary.salary_increments
   end
   
   

@@ -2,6 +2,6 @@
 <%=render 'allowances/index' %>
 </div>
 
-</div>
+<div>
 <%=render 'allowances/new' %>
 </div>

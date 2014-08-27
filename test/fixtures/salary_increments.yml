@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  increment_date: 2014-08-27
+  increment_value: 1.5
+
+two:
+  increment_date: 2014-08-27
+  increment_value: 1.5

@@ -1,0 +1,9 @@
+<% if @form_type == "save" %>
+ 
+ $(".insentive-index").html("<%=j render  'insentives/index' %>");
+  $(".new-insentive").hide(); 
+
+<% else %>
+  $(".insentive-index").html("<%=j render  'insentives/index'  %>");
+  $(".new-insentive").html("<%=j render  'insentives/new' %>");
+<% end %>
