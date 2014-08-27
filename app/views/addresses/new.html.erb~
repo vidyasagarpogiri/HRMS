@@ -1,7 +1,7 @@
 <h1>Contact Details</h1>
 
 <h3>Present Address </h3><hr>
-<%= form_for(@address) do |f| %>
+<%= form_for([@employee, @address]) do |f| %>
   <%= f.label :line, "Line1" %>
   <%= f.text_field :line %> <br>
   

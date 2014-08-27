@@ -2,12 +2,6 @@ Rails.application.routes.draw do
 
 
 
-  get 'salaries/new'
-
-  get 'salaries/edit'
-
-  get 'salaries/show'
-
   #devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -27,29 +21,28 @@ Rails.application.routes.draw do
   end
   
 
-  resources :employees
+  resources :employees do 
   
   resources :educations do
-    collection do
-      get 'qualifications'
+     collection do
+        get 'qualifications'
+        post 'new_form'
+      end
     end
-  end
-
-
-
-  resources :employees do
-    resources :addresses
-
-		resources :email_ettiquities
+    resources :email_ettiquities
 		resources :promotions
 
     resources :salaries
+  
+  resources :addresses
+end
 
-  end
+
+
 
 
   
-  resources :educations
+  #resources :educations
   
     resources :addresses do
      collection do
@@ -109,4 +102,3 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
-

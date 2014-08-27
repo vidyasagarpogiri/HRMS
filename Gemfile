@@ -33,6 +33,13 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 # gem 'unicorn'
 
+#twitter bootstrap
+
+gem "twitter-bootstrap-rails"
+gem "less-rails"
+gem "therubyracer"
+############################
+
 gem 'factory_girl'
 gem "devise"
 gem 'omniauth'

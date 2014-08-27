@@ -1,23 +1,26 @@
 
-<%= form_for @education do |f| %>
-  Qualification:<select id="qualification_list" name="qualification">
-  </select><br/>
+<%= form_for ([@employee, @education]), :remote => true do |f| %>
+  Qualification:<%= f.text_field :specilization %><br>
+  <!--<select id="qualification_list" name="qualification">
+  </select> -->
+
  
-  College/University: <%= f.text_field :institute %><br/>
-  Starting Year: <%= f.date_field :year_of_admission %>
-  Pass Out Year: <%= f.date_field :year_of_pass %><br/>
-  Percentage/CGPA: <%= f.text_field :cgpa_percentage %><br/>
-  <select id="country_list" name="ed_country">
+  College/University: <%= f.text_field :institute %><br>
+  <!--Starting Year: <%= f.date_field :year_of_admission %> -->
+  Pass Out Year: <%= f.date_field :year_of_pass %><br>
+  Percentage/CGPA: <%= f.text_field :cgpa_percentage %><br>
+ <!-- <select id="country_list" name="ed_country">
   </select>
   <input type='text' id='new_country' name='new_country'>
   <span id="state_dpdwn"></span>
-  <span id="city_dpdwn"></span>
+  <span id="city_dpdwn"></span> -->
   
-  <%= f.submit %>
+  <%= f.submit  'save' %>
+  <%= f.submit 'save&new' %>
  
 <% end %>
 
-<script>
+<!-- <script>
   $(function(){
      $("#qualification_list").append("<option value='0'>Select Qualification</option>");     
     $.getJSON("/educations/qualifications.json", function( data ) {
@@ -35,4 +38,4 @@
         
    });
   
-</script>
+</script> -->

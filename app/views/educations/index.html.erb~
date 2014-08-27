@@ -1,0 +1,7 @@
+<% @eudcations.each do |education| %>
+  <%= education.specilization %>
+  <%= education.institute %>
+  <%= education.year_of_pass %>
+  <%= education.cgpa_percentage %>
+  <%= link_to 'edit', edit_employee_education_path(@employee.id, education.id) %><br><hr/>
+<% end %>
