@@ -1,1 +1,4 @@
-Hello
+Employee Id: <%= @email.employee_id %><br/>
+Employee Name :<%= @email.employee.first_name %><br/> 
+Email Content:<%= @email.ettiquite %><br/>
+Email Sent On:<%= @email.dateofsending %><br/>
