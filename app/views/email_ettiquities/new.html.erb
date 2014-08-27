@@ -1,8 +1,8 @@
 <h1>Email Ettiquite</h1>
-<%= form_for @email do |e| %>
+<%= form_for ([@employee, @email]) do |e| %>
 <p> Email Form </p>
   <%= e.label :dateofsending, "Date of Sending Email" %>
-  <%= date_field(:employee, :dateofsending) %> <br>
+  <%= date_field(:ettiquite, :dateofsending) %> <br>
 	<%= e.label :Name, "Email Content " %>
   <%= e.text_area :ettiquite %> <br>
 	<%= e.submit "Submit"%>

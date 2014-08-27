@@ -33,11 +33,10 @@ Rails.application.routes.draw do
 
   resources :employees do
     resources :addresses
+		resources :email_ettiquities
+		resources :promotions
   end
-  
 
-	resources :email_ettiquities
-	resources :promotions
 
   
   resources :educations

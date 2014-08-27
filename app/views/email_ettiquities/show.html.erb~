@@ -1,2 +1,1 @@
-Email Content:<%= @email.ettiquite %><br/>
-Email Sent On:<%= @email.dateofsending %><br/>
+Hello
