@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :invitable, :omniauth_providers => [:google_oauth2]
   after_create :create_employee        
          
   def self.from_omniauth(auth)
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
         user.email = auth.info.email
         #user.name = auth.info.name
         #user.remote_avatar_url = auth.info.image
-        user.save!
+        #user.save!
       end
     else
       false

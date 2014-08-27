@@ -1,0 +1,8 @@
+<% list.each do |experience| %>
+  <%= experience.previous_company %>
+  <%= experience.last_designation %>
+  <%= experience.from_date %>
+  <%= experience.to_date %>
+  <%= link_to 'edit', edit_employee_experience_path(@employee.id, experience.id) %><br><hr/>
+  
+<% end %>

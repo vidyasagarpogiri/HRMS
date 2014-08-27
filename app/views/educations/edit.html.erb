@@ -1,2 +1,9 @@
 <h2>Editing quslifications </h2>
-<%= render "qualification_form"%>
+
+<%= form_for ([@employee, @education]) do |f| %>
+  Qualification:<%= f.text_field :specilization %><br>
+  College/University: <%= f.text_field :institute %><br>
+   Pass Out Year: <%= f.date_field :year_of_pass %><br>
+  Percentage/CGPA: <%= f.text_field :cgpa_percentage %><br>
+  <%= f.submit %>
+<% end %>
