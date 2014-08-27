@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-
-
-
   #devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -23,23 +20,30 @@ Rails.application.routes.draw do
   
 
   resources :employees do 
+		member do
+			get 'exit_form'
+			post 'update_exit_form'
+			get 'show_exit'
+		end
   
   resources :educations do
      collection do
         get 'qualifications'
         post 'new_form'
+				
       end
     end
     resources :email_ettiquities
 		resources :promotions
-
-    resources :salaries
+		resources :salaries
     resources :experiences
   resources :addresses
 end
 
 
 
+  get 'profile/:id/edit' => "profile#edit" 
+  get 'profile/:id' => "profile#show"
 
   resources :employees do
     resources :addresses

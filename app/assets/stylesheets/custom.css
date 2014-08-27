@@ -1,0 +1,73 @@
+.hero-unit{
+  padding:10px;
+  
+}
+
+.list{
+height:50px;
+padding:10px;
+}
+
+li:hover{ <!-- not working -->
+  color:black;
+  font-size:18px;
+ }
+ 
+ li a {
+font-size: 16px !important;
+}
+
+.span8{
+padding-left:50px;
+}
+
+.article {
+  -webkit-columns: 2 400px;       (here 2 is the count and 200px is width)
+     -moz-columns: 2 400px;
+          columns: 2 400px;
+}
+
+
+.span3{
+border:solid 1px;
+}
+
+.panel-tools{
+margin-top:-20px;
+}
+
+.checkbox-grey{
+width:17px;
+height:17px;
+border-radius:2px;
+background-color:#C2C2C2;
+}
+
+.article label,.article label strong{
+ cursor: auto;
+}
+
+.navigation-btns li{
+line-height: 20px;
+display: inline-block;
+padding-right: 5px;
+padding-left: 5px
+} 
+
+ul .navigation-btns {
+margin: 0 0 10px 7px;
+}
+
+.sidebar {
+z-index: 1;
+position: absolute;
+width: 250px;
+margin-top: 51px;
+}
+.navbar-default {
+background-color: #f8f8f8;
+border-color: #e7e7e7;
+}
+
+
+

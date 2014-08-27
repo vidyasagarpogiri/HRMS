@@ -1,0 +1,2 @@
+module FfStatusHelper
+end
