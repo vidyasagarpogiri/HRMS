@@ -65,7 +65,7 @@
   <%= f.label :blood_group_id, "Select Blood Group" %>
   <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group" } %><br>
   
-  <%= f.label :ff_status_id, "F to F Status" %>
+  <%= f.label :ff_status_id, "F And F Status" %>
     <%= f.collection_select :ff_status_id,FfStatus.all, :id, :status_name, { :prompt => "Please Select" }, { :class => "ff_status" } %><br>
    
    <%= f.label :designation_id, "Designation" %>
@@ -78,3 +78,10 @@
   <%= f.submit "Submit"%>
   
 <%end%>
+
+
+<script>
+$(function(){
+  $("#employee_date_of_birth").datepicker();
+});
+</script>
