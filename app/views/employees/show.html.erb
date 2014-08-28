@@ -63,7 +63,7 @@
                                         </div>
                                        <br>
                                        <ul class="navigation-btns" style="list-style: none;display:inline;">
-                                        <li><button styple=type="submit" class="btn btn-success pull-left"><%= link_to "Edit", edit_employee_path(@employee)%></button></li>
+                                        <li><%= link_to "Edit", edit_employee_path(@employee), :class=>"btn btn-success pull-left" %></li>
                                         <li><button type="submit" class="btn btn-success pull-left"><a href="#">Next</a></button></li>
                                         </ul>
                                     </form>
