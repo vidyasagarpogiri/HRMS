@@ -94,13 +94,7 @@
                                             <label style="font-weight:normal;">Designation:</label>
                                             <label><%= @employee.designation.designation_name %></label>
                                         </div>
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Grade/Level:</label>
-                                            <label><%= @employee.grade.value %></label>
-
-                                            <label style="font-weight:normal;">Designation</label>
-                                            <label><%= @employee.designation.designation_name if @employee.designation.present? %></label>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Grade/Level</label>
                                             <label><%= @employee.grade.value if @employee.grade.present?  %></label>

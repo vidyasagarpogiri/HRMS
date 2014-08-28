@@ -25,9 +25,12 @@ class EmployeesController < ApplicationController
   end
   
   def update
+		#raise params.inspect
 		@employee = Employee.find(params[:id])
+		raise @employee.inspect 
     @employee.update(params_employees)
-    redirect_to @employee
+		raise @employee.inspect    
+		redirect_to @employee
   end  
 
 	def exit_form
