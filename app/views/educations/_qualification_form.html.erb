@@ -1,41 +1,68 @@
-
-<%= form_for ([@employee, @education]), :remote => true do |f| %>
-  Qualification:<%= f.text_field :specilization %><br>
-  <!--<select id="qualification_list" name="qualification">
-  </select> -->
-
- 
-  College/University: <%= f.text_field :institute %><br>
-  <!--Starting Year: <%= f.date_field :year_of_admission %> -->
-  Pass Out Year: <%= f.date_field :year_of_pass %><br>
-  Percentage/CGPA: <%= f.text_field :cgpa_percentage %><br>
- <!-- <select id="country_list" name="ed_country">
-  </select>
-  <input type='text' id='new_country' name='new_country'>
-  <span id="state_dpdwn"></span>
-  <span id="city_dpdwn"></span> -->
-  
-  <%= f.submit  'save' %>
-  <%= f.submit 'save&new' %>
- 
-<% end %>
-
-<!-- <script>
-  $(function(){
-     $("#qualification_list").append("<option value='0'>Select Qualification</option>");     
-    $.getJSON("/educations/qualifications.json", function( data ) {
-        parseQualificationData(data);
-     } ) ;
-   
-     function parseQualificationData(data){
-      $.each( data, function( key, val ) {
-          value = val['id'];
-          name = val["qualification_name"]
-          $("#qualification_list").append("<option value='"+value+"'>"+name+"</option>");
-          console.log(value+" "+name);
-        });
-        }
-        
-   });
-  
-</script> -->
+<div id="page-wrapper">
+                <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Education Details</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Basic Form Elements
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    
+                                    <%= form_for ([@employee, @education]), :remote => true do |f| %>
+                                        <div class="form-group">
+                                            <label>Name Of Graduation</label>
+                                          
+                                            <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation" %>                                            
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>College/University Name:</label><br>
+                                            <%= f.text_field :institute, :class => "form-control", :placeholder => "Enter College/University Name" %>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Year of Passing:</label>
+                                            <%= f.date_field :year_of_pass, :id => "disabledSelect", :class => "form-control" %>                                       
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Percentage/CGPA:</label>
+                                            <%= f.text_field :cgpa_percentage, :id => "disabledSelect", :class => "form-control", :placeholder => "Percentage/CGPA" %>
+                                        </div>
+                                        
+                                        <br>
+                                       
+                                        <%= f.submit  'save', :class => "btn btn-success pull-left" %>
+                                        <%= f.submit 'save&new', :class =>"btn btn-success pull-right" %>
+                                       
+                                   <% end %>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+                                    <h1></h1>
+                                    <form role="form">
+                                    <!--    <fieldset disabled> -->                                                                           
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+           
+         </div>
+          <!-- /#page wrapper -->

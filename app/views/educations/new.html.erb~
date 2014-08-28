@@ -1,8 +1,9 @@
-<h2>From for education </h2>
-<div class="education-index">
-</div>
-
 <div class="new-edcuation">
   <%= render "qualification_form"%>
 </div>
+
+<div class="education-index">
+</div>
+
+
 <%= link_to 'next'%>
