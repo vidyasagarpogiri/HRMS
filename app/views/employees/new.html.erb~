@@ -84,8 +84,14 @@
                                              <%= f.text_field :first_name, :class =>"form-control", :placeholder => "Enter Employee name" %>                                           
                                         </div>
                                         <div class="form-group">
+<<<<<<< HEAD
                                             <label>Date Of Birth:</label>
                                             <%= date_field(:employee, :date_of_birth, :placeholder=>"Enter Employee Date Of Birth", :class=>"form-control" ) %>
+=======
+                                           <label>Date Of Birth:</label>
+                                            <%= date_field(:employee, :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"form-control") %>
+                                        
+>>>>>>> 03bd048aba5564e4dd44ad4d35d92b616ab3f8df
                                         </div>
                                         <div class="form-group">
                                             <label>Mobile No:</label>   
