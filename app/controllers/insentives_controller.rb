@@ -15,11 +15,15 @@ def index
  
  def create
  #raise params.inspect
-  @insentive = Insentive.create(params_insentive)
-  @insentive.save
+ @form_type = params[:commit]
+  @insentive1 = Insentive.create(params_insentive)
+  @insentive1.save
+   @salary = Salary.find(params[:salary_id])
+   @insentives =  @salary.insentives
   @employee= Employee.find(params[:employee_id])
-  @salary = Salary.find(params[:salary_id])
-  redirect_to employee_salary_path(@employee, @salary)
+  @insentive = Insentive.new
+ 
+ # redirect_to employee_salary_path(@employee, @salary)
  end
  
  def show

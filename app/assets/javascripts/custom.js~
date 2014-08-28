@@ -40,20 +40,16 @@ $(function(){
        if($("#"+field_type+"_list").val()=="other"){
         $("#new_"+field_type+"").show();
         if(field_type=="country"){
-          $("#city_dpdwn").hide();
-          $("#state_dpdwn").hide();
-          $("#new_"+field_type+"").attr('placeholder','Country');
-          $("#state_dpdwn").prepend("<input type='text' id='new_state' name='new_state' placeholder='State'><input type='text' id='new_city' name='new_city' placeholder='City'>");
+        $("#new_"+field_type+"").attr('placeholder','Country');
+        $("#state_dpdwn").prepend("<input type='text' id='new_state' name='new_state' placeholder='State'><input type='text' id='new_city' name='new_city' placeholder='City'>");
         }
        } else {
          $("#new_"+field_type+"").hide();
            if(field_type=="country"){
-              $("#state_dpdwn").show();
                $("#state_dpdwn").html("<select id='state_list' name='ed_state'></select><input type='text' id='new_state' name='new_state'>");
                states();             
            }
            if(field_type=="state"){
-             $("#city_dpdwn").show();
                $("#city_dpdwn").html("<select id='city_list' name='ed_city'></select><input type='text' id='new_city' name='new_city'>");
                cities();             
            }

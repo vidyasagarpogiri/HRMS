@@ -1,6 +1,7 @@
 <h4>Add Bonus</h4>
-<%= form_for ([@employee, @salary, @insentive]) do |f| %>
+<%= form_for ([@employee, @salary, @insentive]), :remote => true do |f| %>
   Bonus name: <%= f.text_field :insentive_type %>&nbsp&nbsp
   Value: <%= f.text_field :value %></br>
-  <%= f.submit "Submit" %>
+  <%= f.submit  'save' %>
+  <%= f.submit 'save&new' %>
  <% end %>
