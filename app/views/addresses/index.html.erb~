@@ -1,17 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -33,7 +21,8 @@
                                     <form role="form">
                                     <br>
                                     <label><u>Present Address</u></label>
-                                    <button type="submit" class="btn btn-success pull-right"><a href="contact.html">Edit</a></button>
+                                    <%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right"%>
+                                    
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Address Line 1:</label>
                                             <%= @address1.line %>                                  
@@ -69,7 +58,7 @@
                                     <form role="form">
                                     <!--    <fieldset disabled> -->
                                     <label><u>Permanent Address</u></label>
-                                        <button type="submit" class="btn btn-success pull-right"><a href="contact.html">Edit</a></button>
+                                        <%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Address Line 1:</label>
                                             <%= @address2.line %>                                  
@@ -95,8 +84,7 @@
                                             <label>123456</label>
                                         </div>
                                           
-                                          <button type="submit" class="btn btn-success pull-right"><a href="eduview.html">Next</a></button>
-                                    </form>
+                                          
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
