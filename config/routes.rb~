@@ -35,7 +35,11 @@ Rails.application.routes.draw do
     end
     resources :email_ettiquities
 		resources :promotions
-		resources :salaries
+		resources :salaries do 
+          resources :allowances
+          resources :insentives
+          resources :salary_increments
+      end
     resources :experiences
   resources :addresses
 end
@@ -45,6 +49,9 @@ end
   get 'profile/:id/edit' => "profile#edit" 
   get 'profile/:id' => "profile#show"
 
+<<<<<<< HEAD
+
+=======
   resources :employees do
     resources :addresses
       resources :salaries do 
@@ -53,6 +60,7 @@ end
           resources :salary_increments
       end
   end
+>>>>>>> 8476e0161637e7f6449e211fa8c6ef7a8bd68bfe
   
 
 

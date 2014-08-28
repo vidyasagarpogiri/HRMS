@@ -2,5 +2,6 @@
 <% @salary_increments.each do |salary_increment| %>
 
  Increment Date: <%= salary_increment.increment_date %>&nbsp
- Value/Percentage:<%= salary_increment.increment_value %><br>
+ Value/Percentage:<%= salary_increment.increment_value %>
+  <%= link_to 'edit', edit_employee_salary_salary_increment_path(@employee.id, @salary.id, salary_increment.id) %><br>
 <% end %>

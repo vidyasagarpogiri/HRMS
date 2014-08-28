@@ -1,6 +1,1 @@
-<h1>Salaries#new</h1>
-<%= form_for ([@employee, @salary]) do |f| %>
-  CTC Fixed P.A: <%= f.text_field :ctc_fixed %><br/>
-  Basic Salary: <%= f.text_field :basic_salary %>
-  <%= f.submit "Submit" %>
- <% end %>
+<h1>Salaries new</h1>
