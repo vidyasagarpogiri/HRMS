@@ -36,7 +36,7 @@ class AddressesController < ApplicationController
    @address2 = Address.create(line: params[:line3], line1: params[:line4], city_id: params[:ed_city_parmanent])
    @employee = Employee.find(params[:employee_id])
    @employee.update(:present_address_id => @address1.id, :permanent_address_id => @address2.id)
-   redirect_to address_path(@address2)
+   redirect_to employee_address_path(@employee, @address2)
   end
   
   def show
