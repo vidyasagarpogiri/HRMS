@@ -1,4 +1,16 @@
 
+<<<<<<< HEAD
+<%= form_for ([@employee, @salary]) do |f| %>
+  CTC Fixed P.A: <%= f.text_field :ctc_fixed %><br/>
+  Basic Salary: <%= f.text_field :basic_salary %></br>
+  <%= f.submit "Submit" %>
+ <% end %>
+ 
+ 
+ 
+ 
+ 
+=======
  
    <div id="page-wrapper">
                 <div class="row">
@@ -93,3 +105,4 @@
            
          </div>
           <!-- /#page wrapper -->
+>>>>>>> 976c399c00fbc3364f7e103847b44325ce43984a

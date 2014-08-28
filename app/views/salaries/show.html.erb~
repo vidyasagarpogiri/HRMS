@@ -17,24 +17,26 @@
                                 <div class="col-lg-6">
                                     <form role="form">
                                         <ul class="nav nav-tabs" role="tablist">
-                                          <li class="active"><a href="salaryview.html">Basic</a></li>
-                                          <li><a href="varview.html">Variable Pay</a></li>
-                                          <li><a href="incview.html">Increments</a></li>
+                                          <li class="active"><a href="">Basic</a></li>
+                                          <li><a href="">Variable Pay</a></li>
+                                          <li><a href="">Increments</a></li>
                                         </ul><br>
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">CTC Fixed:</label>
-                                            <label><%= @salary.ctc_fixed %></label>                                 
-                                        </div>
                                         
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Basic Salary:</label>
-                                            <label><%= @salary.basic_salary %></label>
-                                        </div>
-                                        
-                                        <ul class="navigation-btns" style="list-style: none;display:inline;">
-                                          <li><button type="submit" class="btn btn-success pull-left">Edit</button></li>
-                                          <li><button type="submit" class="btn btn-success pull-left">Next</button></li>
-                                        </ul>
+                                        <div>
+                                          <div class="form-group">
+                                              <label style="font-weight:normal;">CTC Fixed:</label>
+                                              <label><%= @salary.ctc_fixed %></label>                                 
+                                          </div>
+                                          
+                                          <div class="form-group">
+                                              <label style="font-weight:normal;">Basic Salary:</label>
+                                              <label><%= @salary.basic_salary %></label>
+                                          </div>
+                                          
+                                          <ul class="navigation-btns" style="list-style: none;display:inline;">
+                                            <li><button type="submit" class="btn btn-success pull-left">Edit</button></li>
+                                            <li><button type="submit" class="btn btn-success pull-left">Next</button></li>
+                                          </ul>
                                                              
                                     </form>
                                 </div>
