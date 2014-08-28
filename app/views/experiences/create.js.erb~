@@ -1,16 +1,11 @@
 <% if @form_type == "Save" %>
- $(".experince-index").html("<%=j render  'experiences/list', :list => @list %>");
- $(".new-experince").hide(); 
+ $(".experience-index").html("<%=j render  'experiences/list', :list => @list %>");
+ $(".new-experience").hide(); 
 <% else %>
 
-  $(".experince-index").html("<%=j render  'experiences/list', :list => @list %>");
- 
+  $(".experience-index").html("<%=j render  'experiences/list', :list => @list %>");
+ $(".new-experience").html("<%=j render  'experiences/experience_form' %>");
 <% end %>
-
-
-
-
-
 
 
 
