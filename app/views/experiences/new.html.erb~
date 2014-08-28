@@ -1,8 +1,14 @@
-<h2>From for experience </h2>
-<div class="experince-index">
+<div class="new-experince">
+  
 </div>
 
-<div class="new-experince">
-  <%= render "experience_form"%>
+
+<div class="experince-index">
+<%= render "experience_form"%>
 </div>
-<%= link_to 'next'%>
+
+
+
+
+
+
