@@ -10,6 +10,7 @@ class EmployeesController < ApplicationController
   end
   
   def create
+		#raise params.inspect
     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
     @employee = Employee.create(params_employees) 
     @employee.update(:user_id => @user.id)
@@ -25,9 +26,12 @@ class EmployeesController < ApplicationController
   end
   
   def update
+		#raise params.inspect
 		@employee = Employee.find(params[:id])
+		#raise @employee.inspect 
     @employee.update(params_employees)
-    redirect_to @employee
+		#raise @employee.inspect    
+		redirect_to @employee
   end  
 
 	def exit_edit_form

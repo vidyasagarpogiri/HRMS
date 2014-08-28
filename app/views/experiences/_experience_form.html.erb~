@@ -1,9 +1,71 @@
-<%= form_for ([@employee, @experience]), :remote => true do |f| %>
-  Previous Company<%= f.text_field :previous_company %><br>
-  Last_Designation: <%= f.text_field :last_designation %><br>
- From: <%= f.date_field :from_date %><br>
- To: <%= f.date_field :to_date %><br>
- <%= f.submit  'save' %>
-  <%= f.submit 'save&new' %>
- 
-<% end %>
+
+<div id="page-wrapper">
+                <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Experience Details</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Basic Form Elements
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                   <%= form_for ([@employee, @experience]), :remote => true do |f| %>
+                                        <div class="form-group">
+                                            <label>Company Name</label>
+                                            <%= f.text_field :previous_company, :class => "form-control", :placeholder =>"Enter Company Name" %>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Designation:</label><br>
+                                            <%= f.text_field :last_designation, :class => "form-control", :placeholder =>"Enter Designation" %>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>From:</label>
+                                            <%= f.date_field :from_date, :class => "form-control" %>                    
+                                        </div>
+                                        
+                                        
+                                        <div class="form-group">
+                                            <label>To:</label>
+                                            <%= f.date_field :to_date, :class=>"form-control" %>
+                                                                
+                                        </div>
+                                        
+                                        <br>
+                                         <ul class="navigation-btns" style="list-style: none;display:inline;">
+                                           <li> <%= f.submit  'Save', :class => "btn btn-success pull-left" %></li>
+                                            <li><%= f.submit 'Save & New', :class =>"btn btn-success pull-left" %></li>
+                                         </ul>   
+                                                    
+                                    <% end %>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+                                    <h1></h1>
+                                    <form role="form">
+                                    <!--    <fieldset disabled> --> 
+                                                                                                              
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+           
+         </div>
+          <!-- /#page wrapper -->
