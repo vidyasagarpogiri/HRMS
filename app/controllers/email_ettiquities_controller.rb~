@@ -10,7 +10,7 @@ class EmailEttiquitiesController < ApplicationController
   end
   
   def create
-    @email = EmailEttiquitie.create(:ettiquite => params[:email_ettiquitie][:ettiquite], :dateofsending=>params[:ettiquite][:dateofsending],:employee_id => params[:employee_id])
+    @email = EmailEttiquitie.create(:ettiquite => params[:email_ettiquitie][:ettiquite], :dateofsending=>params[:email_ettiquitie][:dateofsending],:employee_id => params[:employee_id])
 		@email.save
 		redirect_to employee_email_ettiquity_path(@email.employee, @email)
   end

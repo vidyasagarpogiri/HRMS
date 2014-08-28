@@ -21,7 +21,8 @@
                                    <br>
                                         <div class="form-group">
                                             <label>Date Of Email Sending:</label>
-                                            <%= date_field(:ettiquite, :dateofsending, :placeholder=>"Enter Date Of Joining", :class=>"form-control") %>
+                                             <%= f.date_field :dateofsending, :id => "disabledSelect", :class => "form-control" %>
+                                            
                                            
                                         </div>
                                         
