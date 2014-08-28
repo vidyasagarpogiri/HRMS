@@ -1,7 +1,7 @@
 
 
-    <div id="page-wrapper">
-            <div class="row">
+  <div id="page-wrapper">
+                <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Exit Details</h1>
                 </div>
@@ -17,29 +17,28 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+
+                                    <%= form_for @employee, :url =>  update_exit_form_employee_path(@employee), method: :post  do |e| %>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Date of Exit:</label>
-                                            <label><%= @employee.date_of_exit %></label>                                            
+                                            <label>Date of Exit</label>
+                                            <%= date_field(:employee, :date_of_exit, :class=>"form-control") %>
+                                                 
                                         </div>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Status of F & F:</label>
-                                            <label><%= @employee.ff_status.status_name if @employee.ff_status.present? %></label>                                           
-                                        </div>
-                                        
+                                            <label>Status of F & F</label>
+                                            <%= e.collection_select :ff_status_id, FfStatus.all, :id, :status_name, { :prompt => "Please Select" }, { :class => "department form-control" } %>
+                                                                          
+                                        </div>             
                                         <br>
-                                        <ul class="navigation-btns" style="list-style: none;display:inline;">
-                                        <li><%= link_to "Edit", exit_edit_form_employee_path(@employee), :class => "btn btn-success pull-left"%></li>
-                                        <li><button type="submit" class="btn btn-success pull-left"><a href="index.html">Next</a></button> </li>
-                                        </ul>
-                                    </form>
+                                        <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
+                                                    
+                                    <% end %>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1></h1>
                                     <form role="form">
-                                    <!--    <fieldset disabled> -->
-                    
+                                    <!--    <fieldset disabled> -->                                                                           
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -53,5 +52,5 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+           
+         </div>

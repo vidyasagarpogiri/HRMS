@@ -15,13 +15,13 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                   
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Employee Id:</label>
                                             <label><%= @employee.id %></label>                                  
                                         </div>
                                         
-                                        <div class="form-group">
+                                         <div class="form-group">
                                             <label style="font-weight:normal;">Date Of Joining:</label>
                                             <label><%= @employee.date_of_join %></label>
                                         </div>
@@ -36,31 +36,33 @@
                                            <label><%= @employee.user.email%></label>                                            
                                         </div>
                                         
+                                                                                
                                         <div class="form-group">
+                                            
                                             <label style="font-weight:normal;">Blood Group</label>
 
                                             <label><%= @employee.blood_group.blood_group_name if @employee.blood_group.present? %></label>
-
 
                                         </div>
                                         
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Department</label>
                                             <label><%= @employee.department.department_name if @employee.department.present? %></label>
+
                                         </div> 
                                          
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Job Location</label>
+                                            <label style="font-weight:normal;">Job Location:</label>
                                             <label>Vishakaptnam</label>                                            
                                         </div>
                                             
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Upload Image</label>
+                                            <label style="font-weight:normal;">Upload Image:</label>
                                             <label>sam.jpg</label>
                                         </div>
                                        <br>
                                        <ul class="navigation-btns" style="list-style: none;display:inline;">
-                                        <li><button styple=type="submit" class="btn btn-success pull-left"><%= link_to "Edit", edit_employee_path(@employee)%></button></li>
+                                        <li><%= link_to "Edit", edit_employee_path(@employee), :class=>"btn btn-success pull-left" %></li>
                                         <li><button type="submit" class="btn btn-success pull-left"><a href="#">Next</a></button></li>
                                         </ul>
                                     </form>
@@ -83,16 +85,19 @@
                                             <label><%= @employee.mobile_number %></label>                                           
                                         </div>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Gender</label>
+                                            <label style="font-weight:normal;">Gender:</label>
                                             <label><%= @employee.gender %></label>
                                         </div>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Designation</label>
+
+                                            <label style="font-weight:normal;">Designation:</label>
                                             <label><%= @employee.designation.designation_name if @employee.designation.present? %></label>
                                         </div>
+
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Grade/Level</label>
                                             <label><%= @employee.grade.value if @employee.grade.present?  %></label>
+
 
                                         </div> 
                                       

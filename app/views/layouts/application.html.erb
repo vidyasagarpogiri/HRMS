@@ -259,29 +259,34 @@
                             <a href="forms.html"><i class="fa fa-bar-chart-o fa-fw"></i> Profile Show Case <span class="fa glyphicon-plus"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="view.html">Employee Details</a>
+                                    <%= link_to "Employee Details", employee_path(@id) %>
+                                </li>
+                                <% if @id.to_i!=0 %>
+                                <li>
+                                    <%= link_to "Contact Details", employee_addresses_path(@id) %>
+                                    
                                 </li>
                                 <li>
-                                    <a href="contactview.html">Contact Details</a>
+                                  <%= link_to "Education Details",  employee_educations_path(@id) %>
+
                                 </li>
                                 <li>
-                                    <a href="eduview.html">Education Details</a>
+                                  <%= link_to "Experience Details", employee_experiences_path(@id) %>
                                 </li>
                                 <li>
-                                    <a href="expview.html">Experience Details</a>
+                                  <%= link_to "Salary Details", employee_salaries_path(@id) %>
                                 </li>
                                 <li>
-                                    <a href="salaryview.html">Salary Details</a>
+                                  <%= link_to "Promotions", employee_promotions_path(@id) %>
+
                                 </li>
                                 <li>
-                                    <a href="promotionview.html">Promotions</a>
+                                  <%= link_to "Email Etiquette", employee_email_ettiquities_path(@id) %>
                                 </li>
                                 <li>
-                                    <a href="emailview.html">Email Etiquette</a>
+                                    <%= link_to "Exit Details", exit_form_employee_path(@id) %>
                                 </li>
-                                <li>
-                                    <a href="exitview.html">Exit Details</a>
-                                </li>       
+                                <% end %>       
                             </ul>
                          </li>
                          
