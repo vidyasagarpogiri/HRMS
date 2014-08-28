@@ -21,7 +21,7 @@
                                     <form role="form">
                                         <div class="form-group">
                                             <label style="font-weight:normal;"> Date Of Promotion:</label>
-                                            <%= p.date_of_promotion %>                                           
+                                            <label><%= p.date_of_promotion %></label>                                          
                                         </div>
                                         <div class="form-group">
                                           <label style="font-weight:normal;">Designated To:</label>
