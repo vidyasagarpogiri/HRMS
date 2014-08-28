@@ -1,0 +1,5 @@
+<%= form_for([@employee, @salary, @salary_increment]) do |f| %>
+  Increment Date: <%= f.date_field :increment_date%>&nbsp&nbsp
+  Increment Value: <%= f.text_field :increment_value %></br>
+  <%= f.submit %>
+<% end %>

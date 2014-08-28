@@ -29,6 +29,19 @@ class AllowancesController < ApplicationController
  def show
  end
  
+ def edit
+  @employee= Employee.find(params[:employee_id])
+  @salary = Salary.find(params[:salary_id])
+  @allowance = Allowance.find(params[:id])
+ end
+ 
+ def update
+  @employee= Employee.find(params[:employee_id])
+  @salary = Salary.find(params[:salary_id])
+  @allowance = Allowance.find(params[:id])
+  @allowance.update(params.require(:allowance).permit(:allowance_name, :value))
+  redirect_to employee_salary_path(@employee, @salary)
+ end
  private
    
   def params_allowance

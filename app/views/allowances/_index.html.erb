@@ -2,5 +2,7 @@
 <% @allowances.each do |allowance| %>
 
  Allowance Name: <%= allowance.allowance_name %>&nbsp
- Value/Percentage:<%= allowance.value %><br>
+ Value/Percentage:<%= allowance.value %>
+ 
+ <%= link_to 'edit', edit_employee_salary_allowance_path(@employee.id, @salary.id, allowance.id) %><br>
 <% end %>

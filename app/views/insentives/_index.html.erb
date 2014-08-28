@@ -2,5 +2,6 @@
 <% @insentives.each do |insentive| %>
 
  Bonus Name: <%= insentive.insentive_type %>&nbsp
- Value/Percentage:<%= insentive.value %><br>
+ Value/Percentage:<%= insentive.value %>
+  <%= link_to 'edit', edit_employee_salary_insentive_path(@employee.id, @salary.id, insentive.id) %><br>
 <% end %>

@@ -29,6 +29,21 @@ def index
  def show
  end
  
+ def edit
+  @employee= Employee.find(params[:employee_id])
+  @salary = Salary.find(params[:salary_id])
+  @insentive = Insentive.find(params[:id])
+ end
+ 
+ def update
+  @employee= Employee.find(params[:employee_id])
+  @salary = Salary.find(params[:salary_id])
+  @insentive = Insentive.find(params[:id])
+  @insentive.update( params.require(:insentive).permit(:insentive_type, :value))
+  redirect_to employee_salary_path(@employee, @salary)
+ end
+ 
+ 
  private
    
   def params_insentive

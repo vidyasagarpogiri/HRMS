@@ -1,7 +1,7 @@
 <h1>Salaries show page</h1>
 ctc_fixed: <%= @salary.ctc_fixed %>&nbsp
 basic_fixed: <%= @salary.basic_salary %>
- 
+<%= link_to 'edit', edit_employee_salary_path(@employee.id, @salary.id) %><br>
  
 <div class="allowance-index">
 <%= render 'salaries/allowances' %>
@@ -13,7 +13,6 @@ basic_fixed: <%= @salary.basic_salary %>
 <div class="insentive-index">
 <%= render 'salaries/insentives' %>
 </div> 
-<hr>
 <div class="new-insentive">
 </div>
 

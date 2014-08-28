@@ -4,6 +4,6 @@
   $(".new-insentive").hide(); 
 
 <% else %>
-  $(".insentive-index").html("<%=j render  'insentives/index'  %>");
-  $(".new-insentive").html("<%=j render  'insentives/new' %>");
+  $(".insentive-index").html("<%= j render  'insentives/index'  %>");
+  $(".new-insentive").html("<%= j render  'insentives/new' %>");
 <% end %>
