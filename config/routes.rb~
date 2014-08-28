@@ -50,6 +50,7 @@ end
       resources :salaries do 
           resources :allowances
           resources :insentives
+          resources :salary_increments
       end
   end
   

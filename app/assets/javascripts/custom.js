@@ -1,4 +1,8 @@
 $(function(){
+
+  $("#employee_date_of_birth").datepicker();
+
+
    $("#new_country").hide();
    $("#country_list").append("<option value='0'>Select Country</option>");     
   $.getJSON("/addresses/countries.json", function( data ) {
