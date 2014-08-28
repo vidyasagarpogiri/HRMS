@@ -23,7 +23,9 @@ class EmployeesController < ApplicationController
   end
   
   def update
-	
+		@employee = Employee.find(params[:id])
+    @employee.update(params_employees)
+    redirect_to @employee
   end  
 
 	def exit_form
