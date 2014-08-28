@@ -1,6 +1,95 @@
 
-<%= form_for ([@employee, @salary]) do |f| %>
-  CTC Fixed P.A: <%= f.text_field :ctc_fixed %><br/>
-  Basic Salary: <%= f.text_field :basic_salary %></br>
-  <%= f.submit "Submit" %>
- <% end %>
+ 
+   <div id="page-wrapper">
+                <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Salary Details</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Basic Form Elements
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                  <%= form_for ([@employee, @salary]) do |f| %>
+                                        <ul class="nav nav-tabs" role="tablist">
+                                          <li class="active"><a href="salary.html">Basic</a></li>
+                                          <li><a href="var.html">Variable Pay</a></li>
+                                          <li><a href="inc.html">Increments</a></li>
+                                        </ul>
+                                        <div class="form-group">
+                                            <label>CTC Fixed P.A</label>
+                                            <%= f.text_field :ctc_fixed,  :class=>"form-control",  :placeholder=>"Enter CTA P.A" %>                                          
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Basic Salary:</label><br>
+                                             <%= f.text_field :basic_salary, :class=>"form-control" , :placeholder=>"Enter Basic Salary" %>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>HRA:</label>
+                                            <input class="form-control" placeholder="Enter HRA">                                            
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Conv.Allowance:</label><br>
+                                            <input class="form-control" placeholder="Enter Conv.Allowance">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>LTA</label>
+                                            <input class="form-control" placeholder="Enter LTA">                                            
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Medical Allowance:</label><br>
+                                            <input class="form-control" placeholder="Enter Medical Allowance">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Child Allowance</label>
+                                            <input class="form-control" placeholder="Enter Child Allowance">                                            
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Other Allowance:</label><br>
+                                            <input class="form-control" placeholder="Enter Other Allowance">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>PT Allowance:</label><br>
+                                            <input class="form-control" placeholder="Enter PT Allowance">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Gross Earnings/Month</label>
+                                            <input class="form-control" placeholder="Enter Gross Earnings/Month">                                            
+                                        </div>                                                                                                                      
+                                        <br>
+                                        <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
+                                                    
+                                  <% end %>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+                                    <h1></h1>
+                                    <form role="form">
+                                    <!--    <fieldset disabled> -->                                                                           
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+           
+         </div>
+          <!-- /#page wrapper -->

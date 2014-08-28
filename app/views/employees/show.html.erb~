@@ -43,10 +43,6 @@
 
                                             <label><%= @employee.blood_group.blood_group_name if @employee.blood_group.present? %></label>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e3176b0d7b336b96c2b76f6d7e3a9eedb253fc2b
                                         </div>
                                         
                                         <div class="form-group">
@@ -95,7 +91,7 @@
                                         <div class="form-group">
 
                                             <label style="font-weight:normal;">Designation:</label>
-                                            <label><%= @employee.designation.designation_name %></label>
+                                            <label><%= @employee.designation.designation_name if @employee.designation.present? %></label>
                                         </div>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Grade/Level:</label>

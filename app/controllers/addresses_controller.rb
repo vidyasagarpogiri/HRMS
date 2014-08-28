@@ -5,8 +5,12 @@ class AddressesController < ApplicationController
   
   def index
     @employee = Employee.find(params[:employee_id])
-    @address1 = Address.find(@employee.present_address_id)
-    @address2 = Address.find(@employee.permanent_address_id)
+    if @employee.present_address_id.present? && @employee.permanent_address_id.present?
+      @address1 = Address.find(@employee.present_address_id)
+      @address2 = Address.find(@employee.permanent_address_id)
+    else
+      redirect_to new_employee_address_path(@id)
+    end
     #raise @address2.inspect
     
   end
