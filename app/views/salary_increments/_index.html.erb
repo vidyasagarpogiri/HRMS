@@ -1,7 +1,65 @@
-<h3>All Increments </h3>
-<% @salary_increments.each do |salary_increment| %>
 
- Increment Date: <%= salary_increment.increment_date %>&nbsp
- Value/Percentage:<%= salary_increment.increment_value %>
-  <%= link_to 'edit', edit_employee_salary_salary_increment_path(@employee.id, @salary.id, salary_increment.id) %><br>
-<% end %>
+<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Increment Details</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Basic Form Elements
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                               
+                                <% @salary_increments.each do |salary_increment| %>
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;"> Date Of Increment:</label>
+                                            <label><%= salary_increment.increment_date %></label>                                          
+                                        </div>
+                                        <div class="form-group">
+                                          <label style="font-weight:normal;">Value/Percentage :</label>
+                                          <label> <%= salary_increment.increment_value %><label>   
+                                                                                  
+                                        </div>
+                                         <br>
+                                         <ul class="navigation-btns" style="list-style: none;display:inline;">
+                                         
+                                          <%= link_to 'edit', edit_employee_salary_salary_increment_path(@employee.id, @salary.id, salary_increment.id), :class => "btn btn-success pull-left" %>
+                                         
+                                          
+                                          <li><button type="submit" class="btn btn-success pull-left">Next</button></li>
+                                        </ul>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+                                    <h1></h1>
+                                    <form role="form">
+                                    <!--    <fieldset disabled> -->
+                        
+                                       
+                                   
+                                    <% end %>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
