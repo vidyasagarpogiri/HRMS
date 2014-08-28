@@ -1,10 +1,13 @@
+<div class="new-experince">
+  
+</div>
+
 
 <div class="experince-index">
+<%= render "experience_form"%>
 </div>
 
-<div class="new-experince">
-  <%= render "experience_form"%>
-</div>
+
 
 
 
