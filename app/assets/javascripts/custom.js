@@ -1,5 +1,14 @@
 $(function(){
 
+		$("#country_list").change(function(){
+			if($("#country_list").val()=="other"){
+				$("#state_list").hide();
+				$("#city_list").hide();
+				$("#new_state").hide();
+				$("#new_city").hide();
+			}
+		});
+
   $("#employee_date_of_birth").datepicker();
 
 
@@ -42,6 +51,13 @@ $(function(){
   function add_new_field(field_type){
      $("#"+field_type+"_list").change(function(){ 
        if($("#"+field_type+"_list").val()=="other"){
+
+
+			if($("#state_list").val()=="other"){
+				$("#city_list").hide();
+				$("#new_city").hide();
+			}
+
         $("#new_"+field_type+"").show();
         if(field_type=="country"){
         $("#new_"+field_type+"").attr('placeholder','Country');
