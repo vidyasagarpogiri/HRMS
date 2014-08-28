@@ -10,7 +10,9 @@ class EmployeesController < ApplicationController
   end
   
   def create
+    @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
     @employee = Employee.create(params_employees) 
+    @employee.update(:user_id => @user.id)
     redirect_to @employee
   end
 

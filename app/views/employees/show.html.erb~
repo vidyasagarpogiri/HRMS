@@ -1,31 +1,116 @@
-<h3> Employee Show Page </h3>
 
 
-<table border="1" style="width:300px">
 
-<tr><td>Employee Id:<%= @employee.id %></td></tr>
-<tr><td>Title:<%= @employee.title %></td></tr>
-<tr><td>First Name:<%= @employee.first_name %></td></tr>
-<tr><td>Last Name:<%= @employee.first_name %></td></tr>
-<tr><td>Mobile Number:<%= @employee.mobile_number %></td></tr>
-<tr><td>Date Of Birth:<%= @employee.first_name %></td></tr>
-<tr><td>Gender:<%= @employee.first_name %></td></tr>
-<tr><td>Marital Status:<%= @employee.marital_status %></td></tr>
-<tr><td>Total Experience:<%= @employee.total_experience %></td></tr>
-<tr><td>Status:<%= @employee.status %></td></tr>
-<tr><td>Pan Number:<%= @employee.pan %></td></tr>
-<tr><td>Blood Group:<%= @employee.blood_group.blood_group_name %></td></tr>
-<tr><td>Job Confirmation Date:<%= @employee.date_of_confirmation %></td></tr>
-<tr><td>Job Joining Date:<%= @employee.date_of_join %></td></tr>
-<tr><td>Job Exit Date:<%= @employee.date_of_exit %></td></tr>
-<tr><td>Designation:<%= @employee.designation.designation_name %></td></tr>
-<tr><td>Grade :<%# @employee.grade.value %></td></tr>
-<tr><td>Department:<%= @employee.department.department_name %></td></tr>
-<tr><td>Role:<%# @employee.role.role_name %></td></tr>
-<tr><td>Salary:<%# @employee.salary.basic_salary %></td></tr>
+    <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Employee Details</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Basic Form Elements
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Employee Id:</label>
+                                            <label><%= @employee.id %></label>                                  
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Date Of Joining:</label>
+                                            <label><%= @employee.date_of_join %></label>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Father name:</label>
+                                            <label><%= @employee.father_name %></label>                                         
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Email id:</label>
+                                           <label><%= @employee.user.email%></label>                                            
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Blood Group</label>
+                                            <label><%= @employee.blood_group.blood_group_name %></label>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Department</label>
+                                            <label><%= @employee.department.department_name %></label>
+                                        </div> 
+                                         
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Job Location</label>
+                                            <label>Vishakaptnam</label>                                            
+                                        </div>
+                                            
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Upload Image</label>
+                                            <label>sam.jpg</label>
+                                        </div>
+                                       <br>
+                                       <ul class="navigation-btns" style="list-style: none;display:inline;">
+                                        <li><button styple=type="submit" class="btn btn-success pull-left"><%= link_to "Edit", edit_employee_path(@employee)%></button></li>
+                                        <li><button type="submit" class="btn btn-success pull-left"><a href="#">Next</a></button></li>
+                                        </ul>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+                                    <form role="form">
 
+                                        
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Employee name:</label>
+                                            <label><%= @employee.first_name %></label>                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Date Of Birth:</label>
+                                            <label><%= @employee.first_name %></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Mobile No:</label>
+                                            <label><%= @employee.mobile_number %></label>                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Gender</label>
+                                            <label><%= @employee.gender %></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Designation</label>
+                                            <label><%= @employee.designation.designation_name %></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-weight:normal;">Grade/Level</label>
+                                            <label><%= @employee.grade.value %></label>
 
-</table>
+                                        </div> 
+                                      
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
 
 
 
