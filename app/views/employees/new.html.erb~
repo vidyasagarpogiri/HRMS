@@ -58,7 +58,7 @@
                                         
                                         <div class="form-group">
                                             <label>Blood Group</label><br>
-                                             <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group, form-control", :id => "disabledSelect" } %>
+                                             <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group, form-control", :id => "disabledSelect" } if f.blood_group.present? %>
                                           
                                         </div>
                                         
