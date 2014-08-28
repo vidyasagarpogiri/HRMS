@@ -32,7 +32,7 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Father name:</label>
+                                            <label>Father Name:</label>
                                              <%= f.text_field :father_name, :class => "form-control",  :placeholder=>"Enter Father name" %>
                                                                               
                                         </div>
@@ -43,23 +43,26 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Blood Group</label><br>
-                                             <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group, form-control", :id => "disabledSelect" }  %>
+
+                                            <label>Blood Group:</label><br>
+                                             <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group, form-control", :id => "disabledSelect" } %>
+
+                                           
                                           
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Department</label><br>
+                                            <label>Department:</label><br>
                                             <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "department, form-control", :id => "disabledSelect" } %>
                                         </div> 
                                          
                                         <div class="form-group">
-                                            <label>Job Location</label>
+                                            <label>Job Location:</label>
                                             <input class="form-control" placeholder="Enter Job Location">                                            
                                         </div>
                                             
                                         <div class="form-group">
-                                            <label>Upload Image</label>
+                                            <label>Upload Image:</label>
                                             <input type="file">
                                         </div>
                                        <br>
@@ -73,11 +76,11 @@
                                     <!--    <fieldset disabled> -->
                                         <div class="form-group">
                                             <label>Date Of Joining:</label>
-                                            <%= date_field(:employee, :date_of_confirmation, :placeholder=>"Enter Date Of Birth", :class=>"form-control") %>
+                                            <%= date_field(:employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control") %>
                                            
                                         </div>
                                         <div class="form-group">
-                                            <label>Employee name:</label>
+                                            <label>Employee Name:</label>
                                              <%= f.text_field :first_name, :class =>"form-control", :placeholder => "Enter Employee name" %>                                           
                                         </div>
                                         <div class="form-group">
@@ -89,17 +92,17 @@
                                               <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No" %>                                         
                                         </div>
                                         <div class="form-group">
-                                            <label>Gender</label><br>
+                                            <label>Gender:</label><br>
                                              <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]), {}, :class=> "form-control", :id=>"disabledSelect") %>
                                         </div>
                                         <div class="form-group">
-                                            <label>Designation</label><br>
+                                            <label>Designation:</label><br>
                                             <%= f.collection_select :designation_id, Designation.all, :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control", :id=>"disabledSelect"  } %>
                                             
                                             
                                         </div>
                                         <div class="form-group">
-                                            <label>Grade/Level</label><br>
+                                            <label>Grade/Level:</label><br>
                                              <%= f.collection_select :grade_id, Grade.all, :id, :value, { :prompt => "Please Select" }, { :class => "grade form-control", :id=>"disabledSelect"  } %>
                                         </div>                                           
                                         <br>
