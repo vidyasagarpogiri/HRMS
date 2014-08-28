@@ -42,7 +42,11 @@
                                         
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Blood Group</label>
+<<<<<<< HEAD
                                             <label><%= @employee.blood_group.blood_group_name if @employee.blood_group.present? %></label>
+=======
+                                            <label><%= @employee.blood_group.blood_group_name if @employee.bloodgroup.present? %></label>
+>>>>>>> b23b7b00bab544d9ea2591b82eb701dac3326e6a
                                         </div>
                                         
                                         <div class="form-group">
