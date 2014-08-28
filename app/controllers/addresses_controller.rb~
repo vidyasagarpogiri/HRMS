@@ -46,10 +46,12 @@ class AddressesController < ApplicationController
    
    @address2 = Address.create(line: params[:line3], line1: params[:line4], city_id: params[:ed_city_parmanent])
    @employee = Employee.find(params[:employee_id])
+
    @employee.update(:present_address_id => @address1.id, :permanent_address_id => @address2.id) #updating perminent address id in employee
    
    redirect_to employee_addresses_path
     end
+
   
   def show
    #raise params.ispect

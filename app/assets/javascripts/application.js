@@ -15,3 +15,9 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+
+$(function(){
+  $("input[type='date']").datepicker();
+  $("input[type='date']").attr('type','text');
+});

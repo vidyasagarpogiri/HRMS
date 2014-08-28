@@ -3,7 +3,7 @@
 
 <table border="1" style="width:300px">
 
-<tr><td>Employee Id:<%= @employee.id %></td></tr>
+<tr><td>Employee Id:<%= @employee.employee_id %></td></tr>
 <tr><td>Title:<%= @employee.title %></td></tr>
 <tr><td>First Name:<%= @employee.first_name %></td></tr>
 <tr><td>Last Name:<%= @employee.first_name %></td></tr>

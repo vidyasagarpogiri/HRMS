@@ -49,7 +49,18 @@ end
   get 'profile/:id/edit' => "profile#edit" 
   get 'profile/:id' => "profile#show"
 
+<<<<<<< HEAD
 
+=======
+  resources :employees do
+    resources :addresses
+      resources :salaries do 
+          resources :allowances
+          resources :insentives
+          resources :salary_increments
+      end
+  end
+>>>>>>> 8476e0161637e7f6449e211fa8c6ef7a8bd68bfe
   
 
 

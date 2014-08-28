@@ -3,7 +3,13 @@
 <head>
   <title>EmployeeManagement</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<<<<<<< HEAD
   <%= javascript_include_tag 'application' %>
+=======
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+>>>>>>> 8476e0161637e7f6449e211fa8c6ef7a8bd68bfe
   <%= csrf_meta_tags %>
 </head>
 <body>
