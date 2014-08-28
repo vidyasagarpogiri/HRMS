@@ -34,8 +34,15 @@ class EmployeesController < ApplicationController
 		redirect_to @employee
   end  
 
+	def exit_edit_form
+		@employee = Employee.find(params[:id])
+	end
+
 	def exit_form
 		@employee = Employee.find(params[:id])
+		if !@employee.nil?
+		  redirect_to show_exit_employee_path(@id)
+		end
 	end
 
 	def update_exit_form

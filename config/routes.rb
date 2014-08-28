@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :employees do 
 		member do
 			get 'exit_form'
+			get 'exit_edit_form'
 			post 'update_exit_form'
 			get 'show_exit'
 		end
