@@ -1,1 +1,2 @@
 <h1>Salaries new</h1>
+<%= render 'salaries/form' %>
