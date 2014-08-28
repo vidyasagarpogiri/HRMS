@@ -21,34 +21,44 @@ class AddressesController < ApplicationController
   end
   
   def create
-    country_id = if params[:new_country].present?
-                    @country = Country.new(:country_name => params[:new_country])
+  
+    country_id1 = if params[:country].present?
+                    @country = Country.new(:country_name => params[:country])
                     @country.save
                     @country.id
-                  else
-                    params[:ed_country]
                   end
-    state_id = if params[:new_state].present?
-                    @state = State.new(:state_name => params[:new_state], :country_id => country_id)
+      country_id2 = if params[:country2].present?
+                    @country = Country.new(:country_name => params[:country2])
+                    @country.save
+                    @country.id
+                  end
+    state_id1 = if params[:state].present?
+                    @state = State.new(:state_name => params[:state], :country_id => country_id1)
                     @state.save
                     @state.id
-                  else
-                    params[:ed_state]
                   end
-    city_id = if params[:new_city].present?
-                    @city = City.new(:city_name => params[:new_city], :state_id => state_id)
+    state_id2 = if params[:state2].present?
+                    @state = State.new(:state_name => params[:state2], :country_id => country_id2)
+                    @state.save
+                    @state.id
+                  end
+    city_id1 = if params[:city].present?
+                    @city = City.new(:city_name => params[:city], :state_id => state_id1)
                     @city.save
                     @city.id
-                  else
-                    params[:ed_city]
+                  end
+   city_id2 = if params[:city2].present?
+                    @city = City.new(:city_name => params[:city2], :state_id => state_id2)
+                    @city.save
+                    @city.id
                   end
    @address1 = Address.new(params_present_address)
    @address1.save
-   @address1.update(city_id: city_id)  #upadting present address id in employee
+   @address1.update(city_id: city_id1)  #upadting present address id in employee
    
    
    
-   @address2 = Address.create(line: params[:line3], line1: params[:line4], city_id: params[:ed_city_parmanent])
+   @address2 = Address.create(line: params[:line3], line1: params[:line4], city_id: city_id2)
    @employee = Employee.find(params[:employee_id])
 
    @employee.update(:present_address_id => @address1.id, :permanent_address_id => @address2.id) #updating perminent address id in employee

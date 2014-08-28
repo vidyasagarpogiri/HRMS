@@ -1,88 +1,124 @@
-<h1>Contact Details</h1>
+<div id="page-wrapper">
+                <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Contact Details</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Basic Form Elements
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <%= form_for([@employee, @address]) do |f| %>
+                                    <br>
+                                    <label><u>Present Address</u></label> <br> 
+                                        <div class="form-group">
+                                                  
+                                           <label>Address Line 1:</label>
+                                           <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1" %>                  
+                                          
+                                         </div>
+                                         <div class="form-group">
+                                            <label>Address Line 2:</label>
+                                            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 1" %>                                       
+                                        </div>
+                                        <div class="form-group">
+                                            <label>City:</label>
+                                            <input class="form-control" placeholder="Enter City" name="city">                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label>State:</label>
+                                            <input class="form-control" placeholder="Enter State" name="state">                                            
+                                        </div>
+                                        
+                                          <div class="form-group">
+                                            <label>Country:</label>
+                                            <input class="form-control" placeholder="Enter Country" name="country">                                            
+                                        </div>
+                                        
+                                        <br>
+                                        <button type="submit" class="btn btn-success pull-left">Save & Continue</button>      
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+                                    <h1></h1>
+                                    <form role="form" >
+                                    <label><u>Permanent Address</u></label> <br> 
+                                    <!--    <fieldset disabled> -->
+                                        <div class="form-group">          
+                                           <label>Address Line 1:</label>                  
+                                           <input class="form-control" placeholder="Enter Address Line 1" name="line3">
+                                         </div>
+                                         <div class="form-group">
+                                            <label>Address Line 2:</label>
+                                            <input class="form-control" placeholder="Enter Address Line 2" name="line4">                                            
+                                        </div><div class="form-group">
+                                            <label>City:</label>
+                                            <input class="form-control" placeholder="Enter City" name="city2">                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label>State:</label>
+                                            <input class="form-control" placeholder="Enter State" name="state2">                                            
+                                        </div>
+                                        
+                                          <div class="form-group">
+                                            <label>Country:</label>
+                                            <input class="form-control" placeholder="Enter Country" name="country2">                                            
+                                        </div>
+                                      
+                                        
+                                    <% end %>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+           
+         </div>
+          <!-- /#page wrapper -->
 
-<h3>Present Address </h3><hr>
-<%= form_for([@employee, @address]) do |f| %>
-  <%= f.label :line, "Line1" %>
-  <%= f.text_field :line %> <br>
-  
-  <%= f.label :line1, "Line2" %>
-  <%= f.text_field :line1 %> <br>
-  
-  <select id="country_list" name="ed_country">
-  </select>
-  <input type='text' id='new_country' name='new_country'>
-  <span id="state_dpdwn"></span>
-  <span id="city_dpdwn"></span>  
-  
-<h3>Parmanent Address </h3><hr>
-  <%= f.label :line3, "Line1" %>
-  <%= text_field_tag :line3 %> <br>
-  <%= f.label :line4, "Line2" %>
-  <%= text_field_tag :line4 %> <br>
-  <select id="country_list_parmanent" name="ed_country_parmanent">
-  </select>
-  <input type='text' id='new_country_parmanent' name='new_country_parmanent'>
-  <span id="state_dpdwn_parmanent"></span>
-  <span id="city_dpdwn_parmanent"></span>
-  
-  <%= f.submit "Submit"%>
-  
-<% end %>
 
-<script>
-$(function(){
-   $("#new_country_parmanent").hide();
-   $("#country_list_parmanent").append("<option value='0'>Select Country</option>");     
-  $.getJSON("/addresses/countries.json", function( data ) {
-      parseDataD("country",data);
-   } ) ;
-   
-   add_new_fieldD("country");     
-   function statesD(){
-    $("#new_state_parmanent").hide();
-    $("#state_list_parmanent").append("<option value='0'>Select State</option>");
-    $.getJSON("/addresses/states.json?country_id="+$("#country_list_parmanent").val(), function( data ) {
-        parseDataD("state",data);
-     } ) ;
-     
-     add_new_fieldD("state");
-   }
-   
-   function citiesD(){
-    $("#new_city_parmanent").hide();
-    $("#city_list_parmanent").append("<option value='0'>Select City</option>");
-    $.getJSON("/addresses/cities.json?state_id="+$("#state_list_parmanent").val(), function( data ) {
-        parseDataD("city",data);
-     } ) ;
-     
-     add_new_fieldD("city");
-   }
-   
-  function parseDataD(field_type, data){
-    $.each( data, function( key, val ) {
-        value = val['id'];
-        name = val[""+field_type+"_name"]
-        $("#"+field_type+"_list_parmanent").append("<option value='"+value+"'>"+name+"</option>");
-      });
-        $("#"+field_type+"_list_parmanent").append("<option value='other' id='other_"+field_type+"_parmanent'>Other</option>");
-    }
-  
-  function add_new_fieldD(field_type){
-     $("#"+field_type+"_list_parmanent").change(function(){ 
-       if($("#"+field_type+"_list_parmanent").val()=="other"){
-        $("#new_"+field_type+"_parmanent").show();
-       } else {
-         $("#new_"+field_type+"_parmanent").hide();
-           if(field_type=="country"){
-               $("#state_dpdwn_parmanent").html("<select id='state_list_parmanent' name='ed_state_parmanent'></select><input type='text' id='new_state_parmanent' name='new_state_parmanent'>");
-               statesD();             
-           }
-           if(field_type=="state"){
-               $("#city_dpdwn_parmanent").html("<select id='city_list_parmanent' name='ed_city_parmanent'></select><input type='text' id='new_city_parmanent' name='new_city_parmanent'>");
-               citiesD();             
-           }
-         }
-       });
-     }     
-});
-</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
