@@ -1,5 +1,5 @@
 <h3>All Allowances </h3>
-<% @allowances.each do |allowance| %>
+<% allowances.each do |allowance| %>
 
  Allowance Name: <%= allowance.allowance_name %>&nbsp
  Value/Percentage:<%= allowance.value %><br>

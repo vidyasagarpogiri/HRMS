@@ -15,12 +15,15 @@ class AllowancesController < ApplicationController
  end
  
  def create
- #raise params.inspect
-  @allowance = Allowance.create(params_allowance)
-  @allowance.save
+  
+  @form_type = params[:commit]
+  @allowance1 = Allowance.create(params_allowance)
+  @allowance1.save
   @employee= Employee.find(params[:employee_id])
   @salary = Salary.find(params[:salary_id])
-  redirect_to employee_salary_allowances_path(@employee, @salary)
+  @allowances = @salary.allowances
+   @allowance = Allowance.new
+  #redirect_to employee_salary_path(@employee, @salary)
  end
  
  def show

@@ -1,0 +1,2 @@
+class SalaryIncrement < ActiveRecord::Base
+end
