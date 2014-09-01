@@ -18,12 +18,12 @@ class Employee < ActiveRecord::Base
 	#validations for fields
 	
 	validates :first_name, presence: true
-	validates :last_name, presence: true
-	validates :date_of_birth, presence: true
+	#validates :last_name, presence: true
 	validates :gender, presence: true
-	validates :marital_status, presence: true
-	validates :status, presence: true
+	#validates :marital_status, presence: true
+	#validates :status, presence: true
 	validates :mobile_number, presence: true
 	validates :father_name, presence: true
-	validates , presence: true
+	
+	
 end
