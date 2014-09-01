@@ -1,5 +1,10 @@
 class EmployeesController < ApplicationController
+
+layout "dashboard", only: :index
+
   def index
+    @employees =  Employee.all
+  
   end
 
  
@@ -33,6 +38,10 @@ class EmployeesController < ApplicationController
 		#raise @employee.inspect    
 		redirect_to @employee
   end  
+
+	def exit_edit_form
+		@employee = Employee.find(params[:id])
+	end
 
 	def exit_form
 		@employee = Employee.find(params[:id])
