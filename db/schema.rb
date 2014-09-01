@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827123927) do
+ActiveRecord::Schema.define(version: 20140901095800) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -171,6 +171,13 @@ ActiveRecord::Schema.define(version: 20140827123927) do
     t.datetime "updated_at"
   end
 
+  create_table "groups", force: true do |t|
+    t.string   "group_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "leave_policies_id"
+  end
+
   create_table "insentives", force: true do |t|
     t.string   "insentive_type"
     t.float    "value",          limit: 24
@@ -188,6 +195,20 @@ ActiveRecord::Schema.define(version: 20140827123927) do
   end
 
   add_index "job_locations", ["address_id"], name: "index_job_locations_on_address_id", using: :btree
+
+  create_table "leave_policies", force: true do |t|
+    t.float    "pl_per_year",                   limit: 24
+    t.float    "sl_per_year",                   limit: 24
+    t.float    "eligible_carry_forward_leaves", limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "leave_types", force: true do |t|
+    t.string   "type_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "promotions", force: true do |t|
     t.date     "date_of_promotion"
