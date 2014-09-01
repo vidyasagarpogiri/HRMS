@@ -1,9 +1,0 @@
-<% if @form_type == "Save" %>
-  
- $(".allowance-index").html("<%=j render  'allowances/index' %>");
- $(".new-allowance").hide(); 
-
-<% else %>
-  $(".allowance-index").html("<%=j render  'allowances/index'  %>");
-  $(".new-allowance").html("<%=j render  'allowances/new' %>");
-<% end %>
