@@ -4,5 +4,4 @@ class Address < ActiveRecord::Base
   
 # validations for fields
 
-	
 end
