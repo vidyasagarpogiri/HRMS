@@ -1,9 +1,0 @@
-<%= form_for(@exit_form) do |e| %>
-
-<%= form_for @exit_form, :url =>  update_exit_form_employee_path(@employee), method: :post  do |e| %>
-	<%= e.label :date_of_exit, "Date of Exit" %>
-	<%= date_field(:employee, :date_of_exit) %> <br>
-	<%= e.label :ff_status_id, "Select Status" %>
-	<%= e.collection_select :ff_status_id, FfStatus.all, :id, :status_name, { :prompt => "Please Select" }, { :class => "department" } %><br>
-<%= e.submit "Submit"%>
-<% end %>
