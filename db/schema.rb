@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901094012) do
+ActiveRecord::Schema.define(version: 20140901123523) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 20140901094012) do
   create_table "educations", force: true do |t|
     t.string   "specilization"
     t.string   "institute"
-    t.date     "year_of_admission"
-    t.date     "year_of_pass"
+    t.string   "year_of_admission"
+    t.string   "year_of_pass"
     t.float    "cgpa_percentage",   limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20140901094012) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "employee_id"
-    t.date     "dateofsending"
+    t.string   "dateofsending"
   end
 
   add_index "email_ettiquities", ["employee_id"], name: "index_email_ettiquities_on_employee_id", using: :btree
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20140901094012) do
     t.string   "title"
     t.string   "first_name"
     t.string   "last_name"
-    t.date     "date_of_birth"
+    t.string   "date_of_birth"
     t.string   "gender"
     t.string   "marital_status"
     t.float    "total_experience",     limit: 24
@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 20140901094012) do
     t.string   "mobile_number"
     t.string   "father_name"
     t.string   "pan"
-    t.date     "date_of_confirmation"
-    t.date     "date_of_join"
+    t.string   "date_of_confirmation"
+    t.string   "date_of_join"
     t.date     "date_of_exit"
     t.text     "image_url"
     t.datetime "created_at"
@@ -132,8 +132,8 @@ ActiveRecord::Schema.define(version: 20140901094012) do
   create_table "experiences", force: true do |t|
     t.string   "previous_company"
     t.string   "last_designation"
-    t.date     "from_date"
-    t.date     "to_date"
+    t.string   "from_date"
+    t.string   "to_date"
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 20140901094012) do
   add_index "job_locations", ["address_id"], name: "index_job_locations_on_address_id", using: :btree
 
   create_table "promotions", force: true do |t|
-    t.date     "date_of_promotion"
+    t.string   "date_of_promotion"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "employee_id"
@@ -211,7 +211,7 @@ ActiveRecord::Schema.define(version: 20140901094012) do
   end
 
   create_table "salary_increments", force: true do |t|
-    t.date     "increment_date"
+    t.string   "increment_date"
     t.float    "increment_value", limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
