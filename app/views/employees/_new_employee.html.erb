@@ -11,9 +11,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Basic Form Elements
-                        </div>
+
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -32,15 +30,15 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Father Name:</label>
-                                             <%= f.text_field :father_name, :class => "form-control",  :placeholder=>"Enter Father name" %>
+                                            <label>Father First Name:</label>
+                                            <%= f.text_field :father_name, :class => "form-control",  :placeholder=>"Enter First name" %>
                                                                               
                                         </div>
-                                        
                                         <div class="form-group">
-                                            <label>Email id:</label>
-                                            <input class="form-control" placeholder="Enter Email id", name="email">                                            
-                                        </div>
+                                            <label>Father Name:</label>
+                                            <%= f.text_field :father_name, :class => "form-control",  :placeholder=>"Enter Father name" %>
+                                                                              
+                                        </div>                                     
                                         
                                         <div class="form-group">
 
@@ -60,11 +58,12 @@
                                             <label>Job Location:</label>
                                             <input class="form-control" placeholder="Enter Job Location">                                            
                                         </div>
-                                            
                                         <div class="form-group">
-                                            <label>Upload Image:</label>
-                                            <input type="file">
-                                        </div>
+                                            <label>Grade/Level:</label><br>
+                                             <%= f.collection_select :grade_id, Grade.all, :id, :value, { :prompt => "Please Select" }, { :class => "grade form-control", :id=>"disabledSelect"  } %>
+                                        </div> 
+                                            
+                                        
                                        <br>
                                        <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
                                     
@@ -80,8 +79,12 @@
                                            
                                         </div>
                                         <div class="form-group">
-                                            <label>Employee Name:</label>
-                                             <%= f.text_field :first_name, :class =>"form-control", :placeholder => "Enter Employee name" %>                                           
+                                            <label>Email id:</label>
+                                            <input class="form-control" placeholder="Enter Email id", name="email">                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Employee Last Name:</label>
+                                             <%= f.text_field :first_name, :class =>"form-control", :placeholder => "Enter Last name" %>                                           
                                         </div>
                                         <div class="form-group">
 
@@ -105,9 +108,10 @@
                                             
                                         </div>
                                         <div class="form-group">
-                                            <label>Grade/Level:</label><br>
-                                             <%= f.collection_select :grade_id, Grade.all, :id, :value, { :prompt => "Please Select" }, { :class => "grade form-control", :id=>"disabledSelect"  } %>
-                                        </div>                                           
+                                            <label>Upload Image:</label>
+                                            <input type="file">
+                                        </div>
+                                                                                  
                                         <br>
                                         
                                     <% end %>
