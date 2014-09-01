@@ -18,18 +18,11 @@ ActiveRecord::Schema.define(version: 20140901094012) do
     t.text     "line"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "city_id"
-    t.integer  "state_id"
-    t.integer  "country_id"
     t.string   "city"
     t.string   "state"
     t.string   "country"
     t.string   "zipcode"
   end
-
-  add_index "addresses", ["city_id"], name: "index_addresses_on_city_id", using: :btree
-  add_index "addresses", ["country_id"], name: "index_addresses_on_country_id", using: :btree
-  add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree
 
   create_table "allowances", force: true do |t|
     t.string   "allowance_name"
