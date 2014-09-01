@@ -1,6 +1,5 @@
 class AddressesController < ApplicationController
   
-    
   include AddressHelper
   
   def index
