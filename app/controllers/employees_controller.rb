@@ -26,7 +26,6 @@ class EmployeesController < ApplicationController
   end
   
   def update
-		#raise params.inspect
 		@employee = Employee.find(params[:id])
 		#raise @employee.inspect 
     @employee.update(params_employees)
@@ -56,6 +55,7 @@ class EmployeesController < ApplicationController
 		@employee = Employee.find(params[:id])
 			
 	end
+	
   private
    
  
