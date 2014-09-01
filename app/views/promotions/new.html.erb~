@@ -21,7 +21,9 @@
                                         <div class="form-group">
                                             <label>Date of Promotion</label>
                                               
-                                            <%= date_field(:promotion, :date_of_promotion, :class => "form-control") %>                                          
+                                            <%= p.date_field :date_of_promotion, :id => "disabledSelect", :class => "form-control" %> 
+											                     
+                                                         
                                         </div>
                                         
                                         <div class="form-group">
