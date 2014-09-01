@@ -27,7 +27,7 @@ Employee.destroy_all
 Address.create(:id=>1,:line1 => "BAY STREET",:line => "GUL END",:city => "Sydney",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
 Address.create(:id=>2,:line1 => "street 1",:line => "near KFC",:city => "Vizag",:state=>"Andhra",:country=>"India",:zipcode=>"530003")
 Address.create(:id=>3,:line1 => "BEACH ROAD",:line => "OPP:IMAX THEATRE",:city => "Avalon",:state=>"California",:country=>"Los Angels",:zipcode=>" 90704")
-Address.create(:id=>4,:line1 => "MARINE TOWERS",:line => "JURONG WEST",:city => "Hyderabad",:state=>"Telangana",:country=>"India",:zipcode=>"500001")
+Address.create(:id=>4,:line1 => "MARINE TOWERS",:line => "Kukatpally",:city => "Hyderabad",:state=>"Telangana",:country=>"India",:zipcode=>"500001")
 addresses = Address.all.pluck(:id)
 
 JobLocation.create(:id=>1,:address_id => addresses[rand(addresses.length)])
