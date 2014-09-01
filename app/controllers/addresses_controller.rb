@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   
     
-  include AddressHelper
+ # include AddressHelper
   
   def index
     @employee = Employee.find(params[:employee_id])
@@ -9,9 +9,9 @@ class AddressesController < ApplicationController
       @address1 = Address.find(@employee.present_address_id)
       @address2 = Address.find(@employee.permanent_address_id)
     else
-      redirect_to new_employee_address_path(@id)
+      #redirect_to new_employee_address_path(@id)
+      @address = Address.new
     end
-    #raise @address2.inspect
     
   end
   
@@ -21,8 +21,13 @@ class AddressesController < ApplicationController
   end
   
   def create
-  raise params.inspect
+		@employee = Employee.find(params[:employee_id])
+  #raise params.inspect
    @address = Address.create(params_present_address)
+ #raise @address.inspect
+		@address1 = Address.create(:line => params[:line3], :line1 => params[:line4], :city => params[:city1], :state => params[:state1], :country => params[:country1], :zipcode => params[:zipcode1])
+#raise @address1.inspect
+	@employee.update(:permanent_address_id => @address1.id, :present_address_id => @address.id )
    redirect_to employee_addresses_path
     end
 
@@ -45,24 +50,7 @@ class AddressesController < ApplicationController
   end
   
   
-    
-  def countries
-    respond_to do |format|
-      format.json  { render :json => getCountryList }
-    end
-  end
-  
-  def states
-    respond_to do |format|
-      format.json  { render :json => getStateList(params[:country_id]) }
-    end
-  end
-  
-  def cities
-    respond_to do |format|
-      format.json  { render :json => getCityList(params[:state_id]) }
-    end
-  end
+
   
   
   

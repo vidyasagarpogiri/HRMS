@@ -10,13 +10,11 @@ class EmployeesController < ApplicationController
   end
   
   def create
-    #raise params.inspect
+		#raise params.inspect
     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
-    @employee = Employee.create(params_employees)
-    #raise @employee.inspect 
+    @employee = Employee.create(params_employees) 
     @employee.update(:user_id => @user.id)
-    redirect_to profile_path(@employee.id)
-
+    redirect_to @employee
   end
 
   def show
@@ -28,6 +26,7 @@ class EmployeesController < ApplicationController
   end
   
   def update
+		#raise params.inspect
 		@employee = Employee.find(params[:id])
 		#raise @employee.inspect 
     @employee.update(params_employees)
@@ -57,7 +56,6 @@ class EmployeesController < ApplicationController
 		@employee = Employee.find(params[:id])
 			
 	end
-	
   private
    
  
