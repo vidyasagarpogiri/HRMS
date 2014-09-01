@@ -4,6 +4,6 @@ class AddColumnsToAddress < ActiveRecord::Migration
 		add_column :addresses, :state, :string
 		add_column :addresses, :country, :string
 		add_column :addresses, :zipcode, :string
-		
+
   end
 end

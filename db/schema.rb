@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901094012) do
+ActiveRecord::Schema.define(version: 20140901113436) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -115,6 +115,8 @@ ActiveRecord::Schema.define(version: 20140901094012) do
     t.integer  "present_address_id"
     t.integer  "user_id"
     t.integer  "salary_id"
+    t.integer  "group_id"
+    t.integer  "leave_id"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
@@ -151,6 +153,22 @@ ActiveRecord::Schema.define(version: 20140901094012) do
     t.datetime "updated_at"
   end
 
+  create_table "groups", force: true do |t|
+    t.string   "group_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "leave_policies_id"
+  end
+
+  create_table "holiday_calanders", force: true do |t|
+    t.string   "date"
+    t.string   "event"
+    t.boolean  "mandatory_or_optional"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "group_id"
+  end
+
   create_table "insentives", force: true do |t|
     t.string   "insentive_type"
     t.float    "value",          limit: 24
@@ -169,6 +187,42 @@ ActiveRecord::Schema.define(version: 20140901094012) do
 
   add_index "job_locations", ["address_id"], name: "index_job_locations_on_address_id", using: :btree
 
+  create_table "leave_histoties", force: true do |t|
+    t.string   "from_date"
+    t.string   "to_date"
+    t.float    "days",          limit: 24
+    t.text     "reason"
+    t.string   "feedback"
+    t.integer  "leave_type_id"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "leave_policies", force: true do |t|
+    t.float    "pl_per_year",                   limit: 24
+    t.float    "sl_per_year",                   limit: 24
+    t.float    "eligible_carry_forward_leaves", limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "leave_types", force: true do |t|
+    t.string   "type_name"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "leaves", force: true do |t|
+    t.float    "pl_carry_forward_preves_year", limit: 24
+    t.float    "pl_applied",                   limit: 24
+    t.float    "sl_applied",                   limit: 24
+    t.float    "lop_applied",                  limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "promotions", force: true do |t|
     t.date     "date_of_promotion"
     t.datetime "created_at"
@@ -182,6 +236,13 @@ ActiveRecord::Schema.define(version: 20140901094012) do
 
   create_table "qualifications", force: true do |t|
     t.string   "qualification_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reporting_managers", force: true do |t|
+    t.integer  "department_id"
+    t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

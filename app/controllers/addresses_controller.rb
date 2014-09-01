@@ -1,7 +1,8 @@
 class AddressesController < ApplicationController
   
-    
+
  # include AddressHelper
+
   
   def index
     @employee = Employee.find(params[:employee_id])

@@ -1,5 +1,10 @@
 class EmployeesController < ApplicationController
+
+layout "dashboard", only: :index
+
   def index
+    @employees =  Employee.all
+  
   end
 
  

@@ -15,17 +15,32 @@ class Employee < ActiveRecord::Base
   has_many :educations
   has_many :experiences
 
+  belongs_to :group
+  
+  has_many :reporting_managers
+  has_many :depatrments, :through => :reporting_managers
+ 	
+ 	
+ 	has_many :leave_history
+ 	
+ 	has_many :leave_types
+ 	
+ 	belongs_to :leave
+
 	#validations for fields
 
 	
 	validates :first_name, presence: true
 	#validates :last_name, presence: true
-	validates :date_of_birth, presence: true
+	#validates :date_of_birth, presence: true
 	validates :gender, presence: true
-	#validates :marital_status, presence: true
-	#validates :status, presence: true
+  validates :department_id, presence: true
+	validates :designation_id, presence: true
 	validates :mobile_number, presence: true
-	#validates :father_name, presence: true
+	validates :father_name, presence: true
+	validates :blood_group_id, presence: true
+	validates :grade_id, presence: true
+	validates :email, presence: true
 	#validates :date_of_confirmation, presence: true
 	#validates :date_of_join, presence: true
 
