@@ -5,7 +5,5 @@ class Address < ActiveRecord::Base
   
 # validations for fields
 	
-	validates :line, presence: true
-	validates :line1, presence: true
-	
+		
 end
