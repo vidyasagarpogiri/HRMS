@@ -21,8 +21,9 @@ class AddressesController < ApplicationController
   end
   
   def create
-  raise params.inspect
+  #raise params.inspect
    @address = Address.create(params_present_address)
+		@address1 = Address.create(params.require(:address).permit(:line3, :line4, :city1, :state1, :country1, :zipcode1))
    redirect_to employee_addresses_path
     end
 
