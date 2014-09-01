@@ -35,17 +35,22 @@
                                         
                                         <div class="form-group">
                                             <label style="font-weight:normal;">City:</label>
-                                            <label>Vsp</label>                                         
+                                            <%= @address1.city %>                                       
                                         </div>
                                         
                                         <div class="form-group">
                                             <label style="font-weight:normal;">State:</label>
-                                           <label>Ap</label>                                            
+                                           <%= @address1.state %>                                            
                                         </div>
                                         
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Country:</label>
-                                            <label>INDIA</label>
+                                           <%= @address1.country %>
+                                        </div>
+
+																				 <div class="form-group">
+                                            <label style="font-weight:normal;">Zipcode:</label>
+                                           <%= @address1.zipcode %>
                                         </div>
                                         <br>
                                         
@@ -71,19 +76,23 @@
                                         
                                         <div class="form-group">
                                             <label style="font-weight:normal;">City:</label>
-                                            <label>Vsp</label>                                         
+                                           <%= @address2.city %>                                     
                                         </div>
                                         
                                         <div class="form-group">
                                             <label style="font-weight:normal;">State:</label>
-                                           <label>Ap</label>                                            
+                                           <%= @address2.state %>                                                        
                                         </div>
                                         
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Country:</label>
-                                            <label>INDIA</label>
+                                           <%= @address2.country %>
                                         </div>
-                                          
+
+																				<div class="form-group">
+                                            <label style="font-weight:normal;">Zipcode:</label>
+                                           <%= @address2.zipcode %>
+                                        </div>                                          
                                           
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

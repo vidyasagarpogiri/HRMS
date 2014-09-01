@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   
     
-  include AddressHelper
+ # include AddressHelper
   
   def index
     @employee = Employee.find(params[:employee_id])
@@ -21,9 +21,13 @@ class AddressesController < ApplicationController
   end
   
   def create
+		@employee = Employee.find(params[:employee_id])
   #raise params.inspect
    @address = Address.create(params_present_address)
-		@address1 = Address.create(params.require(:address).permit(:line3, :line4, :city1, :state1, :country1, :zipcode1))
+ #raise @address.inspect
+		@address1 = Address.create(:line => params[:line3], :line1 => params[:line4], :city => params[:city1], :state => params[:state1], :country => params[:country1], :zipcode => params[:zipcode1])
+#raise @address1.inspect
+	@employee.update(:permanent_address_id => @address1.id, :present_address_id => @address.id )
    redirect_to employee_addresses_path
     end
 
