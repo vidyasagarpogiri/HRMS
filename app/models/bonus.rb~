@@ -1,4 +1,0 @@
-class Bonus < ActiveRecord::Base
-  has_many :employees
-  belongs_to :salary
-end
