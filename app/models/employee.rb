@@ -14,7 +14,17 @@ class Employee < ActiveRecord::Base
   has_many :promotions
   has_many :educations
   has_many :experiences
+  belongs_to :group
+  
+  has_many :reporting_managers
+  has_many :depatrments, :through => :reporting_managers
  	
+ 	
+ 	has_many :leave_history
+ 	
+ 	has_many :leave_types
+ 	
+ 	belongs_to :leave
 	#validations for fields
 
 end
