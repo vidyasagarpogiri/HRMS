@@ -1,2 +1,0 @@
-class Insentive < ActiveRecord::Base
-end

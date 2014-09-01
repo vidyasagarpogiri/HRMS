@@ -15,15 +15,4 @@ class Employee < ActiveRecord::Base
   has_many :educations
   has_many :experiences
  	
-	#validations for fields
-	
-	validates :first_name, presence: true
-	#validates :last_name, presence: true
-	validates :gender, presence: true
-	#validates :marital_status, presence: true
-	#validates :status, presence: true
-	validates :mobile_number, presence: true
-	validates :father_name, presence: true
-	
-	
 end

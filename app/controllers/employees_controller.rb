@@ -16,6 +16,7 @@ class EmployeesController < ApplicationController
     #raise @employee.inspect 
     @employee.update(:user_id => @user.id)
     redirect_to profile_path(@employee.id)
+
   end
 
   def show

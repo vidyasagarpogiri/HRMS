@@ -30,16 +30,20 @@
                                         </div>
                                         <div class="form-group">
                                             <label>City:</label>
-                                            <input class="form-control" placeholder="Enter City" name="city">                                            
+                                            <%= f.text_field :city, :class => "form-control", :placeholder=> "Enter City" %>                                            
                                         </div>
                                         <div class="form-group">
                                             <label>State:</label>
-                                            <input class="form-control" placeholder="Enter State" name="state">                                            
+                                            <%= f.text_field :state, :class => "form-control", :placeholder=> "Enter State" %>                                           
                                         </div>
                                         
                                           <div class="form-group">
                                             <label>Country:</label>
-                                            <input class="form-control" placeholder="Enter Country" name="country">                                            
+                                            <%= f.text_field :country, :class => "form-control", :placeholder=> "Enter Country" %>                                            
+                                        </div>
+																					<div class="form-group">
+                                            <label>Zipcode:</label>
+                                            <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter Zipcode" %>                                            
                                         </div>
                                         
                                         <br>
@@ -60,18 +64,21 @@
                                             <input class="form-control" placeholder="Enter Address Line 2" name="line4">                                            
                                         </div><div class="form-group">
                                             <label>City:</label>
-                                            <input class="form-control" placeholder="Enter City" name="city2">                                            
+                                            <input class="form-control" placeholder="Enter City" name="city1">                                            
                                         </div>
                                         <div class="form-group">
                                             <label>State:</label>
-                                            <input class="form-control" placeholder="Enter State" name="state2">                                            
+                                            <input class="form-control" placeholder="Enter State" name="state1">                                            
                                         </div>
                                         
                                           <div class="form-group">
                                             <label>Country:</label>
-                                            <input class="form-control" placeholder="Enter Country" name="country2">                                            
+                                            <input class="form-control" placeholder="Enter Country" name="country1">                                            
                                         </div>
-                                      
+                                      <div class="form-group">
+                                            <label>Zipcode:</label>
+                                            <input class="form-control" placeholder="Enter Zipcode" name="zipcode1">                                            
+                                        </div>
                                         
                                     <% end %>
                                 </div>

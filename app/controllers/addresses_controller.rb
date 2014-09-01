@@ -21,48 +21,9 @@ class AddressesController < ApplicationController
   end
   
   def create
-  
-    country_id1 = if params[:country].present?
-                    @country = Country.new(:country_name => params[:country])
-                    @country.save
-                    @country.id
-                  end
-      country_id2 = if params[:country2].present?
-                    @country = Country.new(:country_name => params[:country2])
-                    @country.save
-                    @country.id
-                  end
-    state_id1 = if params[:state].present?
-                    @state = State.new(:state_name => params[:state], :country_id => country_id1)
-                    @state.save
-                    @state.id
-                  end
-    state_id2 = if params[:state2].present?
-                    @state = State.new(:state_name => params[:state2], :country_id => country_id2)
-                    @state.save
-                    @state.id
-                  end
-    city_id1 = if params[:city].present?
-                    @city = City.new(:city_name => params[:city], :state_id => state_id1)
-                    @city.save
-                    @city.id
-                  end
-   city_id2 = if params[:city2].present?
-                    @city = City.new(:city_name => params[:city2], :state_id => state_id2)
-                    @city.save
-                    @city.id
-                  end
-   @address1 = Address.new(params_present_address)
-   @address1.save
-   @address1.update(city_id: city_id1)  #upadting present address id in employee
-   
-   
-   
-   @address2 = Address.create(line: params[:line3], line1: params[:line4], city_id: city_id2)
-   @employee = Employee.find(params[:employee_id])
-
-   @employee.update(:present_address_id => @address1.id, :permanent_address_id => @address2.id) #updating perminent address id in employee
-   
+  #raise params.inspect
+   @address = Address.create(params_present_address)
+		@address1 = Address.create(params.require(:address).permit(:line3, :line4, :city1, :state1, :country1, :zipcode1))
    redirect_to employee_addresses_path
     end
 
@@ -109,7 +70,7 @@ class AddressesController < ApplicationController
   private
   
   def params_present_address
-    params.require(:address).permit(:line, :line1)
+    params.require(:address).permit(:line, :line1, :city, :state, :country, :zipcode)
   end
   
  

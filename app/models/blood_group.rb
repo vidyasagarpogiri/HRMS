@@ -3,6 +3,5 @@ class BloodGroup < ActiveRecord::Base
 		
 	
 	#validations for fields
-	
-	validates :blood_group_name, presence: true
+
 end
