@@ -1,3 +1,0 @@
-class Desgination < ActiveRecord::Base
-  has_many :employees
-end
