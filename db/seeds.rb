@@ -12,9 +12,6 @@
 #seeds for country
 
 
-Country.delete_all
-State.destroy_all
-City.destroy_all
 Address.destroy_all
 JobLocation.destroy_all
 Department.destroy_all
@@ -25,28 +22,12 @@ Grade.destroy_all
 Role.destroy_all
 Employee.destroy_all
 
-Country.create(:id=>1,:country_name=>"USA")
-Country.create(:id=>2,:country_name=>"INDIA")
-Country.create(:id=>3,:country_name=>"SINGAPORE")
-Country.create(:id=>4,:country_name=>"AUSTRALIA")
-countries = Country.all.pluck(:id)
+ 
 
-State.create(:id=>1,:state_name => "Andhra",:country_id => countries[rand(countries.length)])
-State.create(:id=>2,:state_name => "Alaska",:country_id => countries[rand(countries.length)])
-State.create(:id=>3,:state_name => "Florida",:country_id => countries[rand(countries.length)])
-State.create(:id=>4,:state_name => "Queens Land",:country_id => countries[rand(countries.length)]) 
-states = State.all.pluck(:id)
-
-City.create(:id=>1,:city_name => "Vizag",:state_id => states[rand(states.length)])
-City.create(:id=>2,:city_name => "Starke",:state_id => states[rand(states.length)])
-City.create(:id=>3,:city_name => "Hyd",:state_id => states[rand(states.length)])
-City.create(:id=>4,:city_name => "Melbourne",:state_id => states[rand(states.length)])
-cities = City.all.pluck(:id)
-
-Address.create(:id=>1,:line1 => "BAY STREET",:line => "GUL END",:city_id => cities[rand(cities.length)])
-Address.create(:id=>2,:line1 => "street 1",:line => "near KFC",:city_id => cities[rand(cities.length)])
-Address.create(:id=>3,:line1 => "BEACH ROAD",:line => "OPP:IMAX THEATRE",:city_id => cities[rand(cities.length)])
-Address.create(:id=>4,:line1 => "MARINE TOWERS",:line => "JURONG WEST",:city_id => cities[rand(cities.length)])
+Address.create(:id=>1,:line1 => "BAY STREET",:line => "GUL END",:city => "Sydney",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
+Address.create(:id=>2,:line1 => "street 1",:line => "near KFC",:city => "Vizag",:state=>"Andhra",:country=>"India",:zipcode=>"530003")
+Address.create(:id=>3,:line1 => "BEACH ROAD",:line => "OPP:IMAX THEATRE",:city => "Avalon",:state=>"California",:country=>"Los Angels",:zipcode=>" 90704")
+Address.create(:id=>4,:line1 => "MARINE TOWERS",:line => "JURONG WEST",:city => "Hyderabad",:state=>"Telangana",:country=>"India",:zipcode=>"500001")
 addresses = Address.all.pluck(:id)
 
 JobLocation.create(:id=>1,:address_id => addresses[rand(addresses.length)])

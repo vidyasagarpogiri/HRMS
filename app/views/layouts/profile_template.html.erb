@@ -13,8 +13,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="wrapper">
 
-<<<<<<< HEAD
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -259,7 +259,7 @@
                             <a href="forms.html"><i class="fa fa-bar-chart-o fa-fw"></i> Profile Show Case <span class="fa glyphicon-plus"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <%= link_to "Employee Details", employee_path %>
+                                    <%= link_to "Employee Details", "#" %>
                                 </li>
                                 <% if @id.to_i!=0 %>
                                 <li>
@@ -297,9 +297,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-=======
->>>>>>> 118041c4f8f930eba681c6edbfa091beb00ff02f
 <%= yield %>
-
+</div>
 </body>
 </html>

@@ -15,6 +15,7 @@ class Employee < ActiveRecord::Base
   has_many :educations
   has_many :experiences
  	
+<<<<<<< HEAD
 	#validations for fields
 
 	
@@ -29,4 +30,6 @@ class Employee < ActiveRecord::Base
 	#validates :date_of_confirmation, presence: true
 	#validates :date_of_join, presence: true
 
+=======
+>>>>>>> 118041c4f8f930eba681c6edbfa091beb00ff02f
 end

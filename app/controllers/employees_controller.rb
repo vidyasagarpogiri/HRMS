@@ -10,12 +10,13 @@ class EmployeesController < ApplicationController
   end
   
   def create
+    #raise params.inspect
     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
     @employee = Employee.create(params_employees)
-		 
+    #raise @employee.inspect 
     @employee.update(:user_id => @user.id)
-		#raise @employee.inspect
-    redirect_to @employee
+    redirect_to profile_path(@employee.id)
+
   end
 
   def show
