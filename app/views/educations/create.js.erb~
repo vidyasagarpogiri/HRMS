@@ -1,9 +1,0 @@
-<% if @form_type == "save" %>
- $(".education-index").html("<%=j render  'educations/list', :list => @list %>");
- $(".new-edcuation").hide(); 
-<% else %>
-   $(".new-edcuation").html("<%=j render  'educations/qualification_form' %>");
-  $(".education-index").html("<%=j render  'educations/list', :list => @list %>");
- 
-<% end %>
-

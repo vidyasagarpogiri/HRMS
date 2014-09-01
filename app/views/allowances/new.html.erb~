@@ -1,6 +1,0 @@
-<h4>Add Allowences</h4>
-<%= form_for ([@employee, @salary, @allowance]) do |f| %>
-  Allowance name: <%= f.text_field :allowance_name %>&nbsp&nbsp
-  Value: <%= f.text_field :value %></br>
-  <%= f.submit "Submit" %>
- <% end %>

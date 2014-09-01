@@ -4,13 +4,30 @@ class SalariesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
   end
   
+  def index
+    @employee= Employee.find(params[:employee_id])
+    @salary =  @employee.salary
+    if @salary.present?
+       @allowance = Allowance.new
+    @insentive = Insentive.new
+    @salary_increment = SalaryIncrement.new
+    @allowances = @salary.allowances
+    @insentives =  @salary.insentives
+    @salary_increments =@salary.salary_increments
+   
+    else
+       @salary = Salary.new
+    end
+   
+  end
+  
   def create
   #raise params.inspect
   @salary = Salary.create(params_salary)
   @salary.save
   @employee = Employee.find(params[:employee_id])
   @employee.update(:salary_id => @salary.id)
-  redirect_to employee_salary_path(@employee, @salary)
+  redirect_to  employee_salaries_path(@employee)
   end
 
   def edit
