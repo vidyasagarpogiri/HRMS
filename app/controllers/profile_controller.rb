@@ -9,6 +9,7 @@ class ProfileController < ApplicationController
     else
       @employee = Employee.new 
     end 
+    @address = Address.new
   end
   
 end

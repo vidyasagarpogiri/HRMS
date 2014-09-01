@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pl_per_year: 1.5
+  sl_per_year: 1.5
+  eligible_carry_forward_leaves: 1.5
+
+two:
+  pl_per_year: 1.5
+  sl_per_year: 1.5
+  eligible_carry_forward_leaves: 1.5

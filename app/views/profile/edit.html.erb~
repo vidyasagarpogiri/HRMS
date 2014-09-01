@@ -1,1 +1,3 @@
-<%= render "employees/new_employee"%>
+<div id="detail">
+  
+</div>

@@ -260,7 +260,7 @@
                                 </li>
                                 <% if @id.to_i!=0 %>
                                 <li>
-                                    <%= link_to "Contact Details", employee_addresses_path(@id) %>
+                                    <%= link_to "Contact Details", employee_addresses_path(@id), :remote => true  %>
                                     
                                 </li>
                                 <li>

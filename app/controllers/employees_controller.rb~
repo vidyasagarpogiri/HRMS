@@ -1,10 +1,14 @@
 class EmployeesController < ApplicationController
+<<<<<<< HEAD
 
 layout "dashboard", only: :index
 
   def index
     @employees =  Employee.all
   
+=======
+  def index
+>>>>>>> ccbec41a935448f209288ea580b558b079d40c3b
   end
 
  
