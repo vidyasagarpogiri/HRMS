@@ -1,0 +1,5 @@
+<% if @employee.present_address_id.present? && @employee.permanent_address_id.present? %>
+  alert('ok');
+<% else %>
+  $("#detail").html("<%= j render "addresses/new_address"%>");
+<% end %>

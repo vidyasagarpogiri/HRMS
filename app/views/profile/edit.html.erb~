@@ -1,1 +1,5 @@
+<% if @employee.id.present? %>
+ <%= render "employees/show_employee"%> 
+<% else %>
 <%= render "employees/new_employee"%>
+<% end %>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_date: MyString
+  to_date: MyString
+  days: 1.5
+  reason: MyText
+  feedback: MyString
+  leave_type_id: 1
+  employee_id: 1
+
+two:
+  from_date: MyString
+  to_date: MyString
+  days: 1.5
+  reason: MyText
+  feedback: MyString
+  leave_type_id: 1
+  employee_id: 1

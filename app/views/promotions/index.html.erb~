@@ -10,9 +10,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <%= link_to 'Add New Promotion', new_employee_promotion_path(@employee.id), :class => "btn btn-success pull-right" %>
-                        </div>
+                     <%= link_to 'Add New Promotion', new_employee_promotion_path(@employee.id), :class => "btn btn-success pull-right" %>>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
