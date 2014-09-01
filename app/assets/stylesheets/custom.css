@@ -69,5 +69,26 @@ background-color: #f8f8f8;
 border-color: #e7e7e7;
 }
 
+.main-menu{
+width:100%;
+background-color:#D6D6F5;
+height:100px;
+}
+
+.main-menu .menu{
+width:100%;
+height:40px;
+padding-top:55px;
+font-size:18px;
+}
+
+.main-menu .menu ul {
+padding-left:250px;
+padding-top:-70px;
+}
+
+.main-menu .menu ul li{
+display:inline;
+}
 
 

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'employees#new'
+   root 'employees#index'
    
    
    
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   
 
   resources :employees do 
+    resources :leaves
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'
