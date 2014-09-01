@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20140901095800) do
+
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -21,6 +23,10 @@ ActiveRecord::Schema.define(version: 20140901095800) do
     t.integer  "city_id"
     t.integer  "state_id"
     t.integer  "country_id"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zipcode"
   end
 
   add_index "addresses", ["city_id"], name: "index_addresses_on_city_id", using: :btree
