@@ -17,4 +17,8 @@
 //= require_tree .
 
 
+$(function() {
+    $( ".datepicker" ).datepicker();
+  });
+
 

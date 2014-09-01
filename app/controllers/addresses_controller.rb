@@ -10,8 +10,8 @@ class AddressesController < ApplicationController
       @address1 = Address.find(@employee.present_address_id)
       @address2 = Address.find(@employee.permanent_address_id)
     else
-      #redirect_to new_employee_address_path(@id)
-      @address = Address.new
+      redirect_to new_employee_address_path(@id)
+      #@address = Address.new
     end
     
   end
