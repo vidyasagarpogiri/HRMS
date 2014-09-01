@@ -14,5 +14,7 @@ class Employee < ActiveRecord::Base
   has_many :promotions
   has_many :educations
   has_many :experiences
- 
+ 	
+	#validations for fields
+
 end

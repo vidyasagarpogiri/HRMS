@@ -15,10 +15,11 @@ layout "dashboard", only: :index
   end
   
   def create
-		#raise params.inspect
     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
-    @employee = Employee.create(params_employees) 
+    @employee = Employee.create(params_employees)
+		 
     @employee.update(:user_id => @user.id)
+		#raise @employee.inspect
     redirect_to @employee
   end
 
@@ -31,7 +32,6 @@ layout "dashboard", only: :index
   end
   
   def update
-		#raise params.inspect
 		@employee = Employee.find(params[:id])
 		#raise @employee.inspect 
     @employee.update(params_employees)
@@ -61,6 +61,7 @@ layout "dashboard", only: :index
 		@employee = Employee.find(params[:id])
 			
 	end
+	
   private
    
  
