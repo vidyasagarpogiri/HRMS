@@ -16,6 +16,7 @@ class Employee < ActiveRecord::Base
   has_many :experiences
  	
 	#validations for fields
+
 	
 	validates :first_name, presence: true
 	#validates :last_name, presence: true
@@ -27,4 +28,5 @@ class Employee < ActiveRecord::Base
 	#validates :father_name, presence: true
 	#validates :date_of_confirmation, presence: true
 	#validates :date_of_join, presence: true
+
 end
