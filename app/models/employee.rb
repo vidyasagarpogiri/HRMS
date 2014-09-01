@@ -34,6 +34,7 @@ class Employee < ActiveRecord::Base
 	#validates :first_name, presence: true
 	#validates :last_name, presence: true
 	#validates :date_of_birth, presence: true
+
 	#validates :gender, presence: true
   #validates :department_id, presence: true
 	#validates :designation_id, presence: true
@@ -41,9 +42,6 @@ class Employee < ActiveRecord::Base
 	#validates :father_name, presence: true
 	#validates :blood_group_id, presence: true
 	#validates :grade_id, presence: true
-	#validates :email, presence: true
-	#validates :date_of_confirmation, presence: true
-	#validates :date_of_join, presence: true
 
 
 

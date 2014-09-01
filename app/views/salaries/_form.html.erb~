@@ -29,42 +29,6 @@
                                             <label>Basic Salary:</label><br>
                                              <%= f.text_field :basic_salary, :class=>"form-control" , :placeholder=>"Enter Basic Salary" %>
                                         </div>
-                                        <div class="form-group">
-                                            <label>HRA:</label>
-                                            <input class="form-control" placeholder="Enter HRA">                                            
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label>Conv.Allowance:</label><br>
-                                            <input class="form-control" placeholder="Enter Conv.Allowance">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>LTA</label>
-                                            <input class="form-control" placeholder="Enter LTA">                                            
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label>Medical Allowance:</label><br>
-                                            <input class="form-control" placeholder="Enter Medical Allowance">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Child Allowance</label>
-                                            <input class="form-control" placeholder="Enter Child Allowance">                                            
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label>Other Allowance:</label><br>
-                                            <input class="form-control" placeholder="Enter Other Allowance">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>PT Allowance:</label><br>
-                                            <input class="form-control" placeholder="Enter PT Allowance">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Gross Earnings/Month</label>
-                                            <input class="form-control" placeholder="Enter Gross Earnings/Month">                                            
-                                        </div>                                                                                                                      
-                                        <br>
                                         <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
                                                     
                                   <% end %>
