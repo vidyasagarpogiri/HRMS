@@ -1,4 +1,5 @@
 class Employee < ActiveRecord::Base
+	mount_uploader :avatar, AvatarUploader
   belongs_to :department
   belongs_to :blood_group
   belongs_to :designation
@@ -30,17 +31,17 @@ class Employee < ActiveRecord::Base
 	#validations for fields
 
 
-	validates :first_name, presence: true
+	#validates :first_name, presence: true
 	#validates :last_name, presence: true
 	#validates :date_of_birth, presence: true
-	validates :gender, presence: true
-  validates :department_id, presence: true
-	validates :designation_id, presence: true
-	validates :mobile_number, presence: true
-	validates :father_name, presence: true
-	validates :blood_group_id, presence: true
-	validates :grade_id, presence: true
-	validates :email, presence: true
+	#validates :gender, presence: true
+  #validates :department_id, presence: true
+	#validates :designation_id, presence: true
+	#validates :mobile_number, presence: true
+	#validates :father_name, presence: true
+	#validates :blood_group_id, presence: true
+	#validates :grade_id, presence: true
+	#validates :email, presence: true
 	#validates :date_of_confirmation, presence: true
 	#validates :date_of_join, presence: true
 

@@ -55,6 +55,10 @@ gem "capybara", :group => [:development, :test]
                    gem 'factory_girl_rails'   
 										gem 'rspec-rails'
                  end
+
+#gem for avatar upload
+gem 'carrierwave'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
