@@ -16,11 +16,11 @@
                                 <div class="col-lg-6">
                                 <%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Date</label>
+                                            <label style="font-weight:normal;">Date :</label>
                                             <%= email.dateofsending %>                                            
                                         </div>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Mail Content</label>
+                                            <label style="font-weight:normal;">Mail Content:</label>
                                            <%= email.ettiquite %>                                           
                                         </div>
                                         <br>

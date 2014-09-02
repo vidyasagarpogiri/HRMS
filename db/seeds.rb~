@@ -21,7 +21,11 @@ Designation.destroy_all
 Grade.destroy_all
 Role.destroy_all
 Employee.destroy_all
-
+Education.destroy_all
+Experience.destroy_all
+Promotion.destroy_all
+EmailEttiquitie.destroy_all
+Salary.destroy_all
  
 
 Address.create(:id=>1,:line1 => "BAY STREET",:line => "GUL END",:city => "Sydney",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
@@ -82,7 +86,7 @@ Employee.create(:id => 1,:employee_id => 1, :title=> "Mr.", :first_name=>"Meher"
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
 :grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)])
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>3)
 
 Employee.create(:id => 2,:employee_id => 2, :title=> "Mr.", :first_name=>"bala",:last_name=>"nemani",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"13",
 :status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",
@@ -90,7 +94,7 @@ Employee.create(:id => 2,:employee_id => 2, :title=> "Mr.", :first_name=>"bala",
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
 :grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)])
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>3)
  
 Employee.create(:id => 3,:employee_id => 3, :title=> "Mrs.", :first_name=>"priyanka",:last_name=>"muddana",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",
 :status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",
@@ -98,7 +102,7 @@ Employee.create(:id => 3,:employee_id => 3, :title=> "Mrs.", :first_name=>"priya
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
 :grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)])
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>2)
 
 Employee.create(:id => 4,:employee_id => 4, :title=> "Mr.", :first_name=>"ravi",:last_name=>"kishore",:date_of_birth=>"2001-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"1",
 :status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-02-05",:date_of_join=>"2010-11-03",
@@ -106,4 +110,41 @@ Employee.create(:id => 4,:employee_id => 4, :title=> "Mr.", :first_name=>"ravi",
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
 :grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)])
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>1)
+
+
+Education.create(:id=>1, :specilization=>"B.Tech", :institute=> "AU",:year_of_admission=> "2006-10-09", year_of_pass: "2010-06-08",:cgpa_percentage=> "78.50", :Employee_id=>1)
+Education.create(:id=>5, :specilization=>"M.Tech", :institute=> "JNTU",:year_of_admission=> "2010-09-09", year_of_pass: "2012-05-04",:cgpa_percentage=> "81.20", :Employee_id=>1)
+
+Education.create(:id=>2, :specilization=>"MBA", :institute => "GITAM",:year_of_admission=> "2006-10-09", year_of_pass: "2010-06-08",:cgpa_percentage=> "91.50", :Employee_id=>2)
+
+Education.create(:id=>3, :specilization=>"MCA", :institute=> "AU",:year_of_admission=> "2006-10-09", year_of_pass: "2010-06-08",:cgpa_percentage=> "82.50", :Employee_id=>3)
+
+Education.create(:id=>4, :specilization=>"M.Tech", :institute=> "AU",:year_of_admission=> "2006-10-09", year_of_pass: "2010-06-08",:cgpa_percentage=> "76.50", :Employee_id=>4)
+
+
+Experience.create(:id=>1,:previous_company=>"Microsoft",:last_designation=>"Software Engineer",:from_date=>"2012-10-11",:to_date=>"2013-06-12",:employee_id=> 1)
+Experience.create(:id=>2,:previous_company=>"TCS",:last_designation=>"Sr.Software Engineer",:from_date=>"2013-08-01",:to_date=>"2014-08-28",:employee_id=> 1)
+
+Experience.create(:id=>3,:previous_company=>"Infosys",:last_designation=>"Software Engineer",:from_date=>"2012-10-11",:to_date=>"2013-06-12",:employee_id=> 2)
+
+Experience.create(:id=>4,:previous_company=>"TCS",:last_designation=>"Java Developer",:from_date=>"2013-08-01",:to_date=>"2014-08-28",:employee_id=> 3)
+
+Experience.create(:id=>5,:previous_company=>"Wipro",:last_designation=>".Net Developer",:from_date=>"2013-08-01",:to_date=>"2014-08-28",:employee_id=> 4)
+
+
+Promotion.create(:id=>1,:date_of_promotion=>"2014-06-05", :employee_id=> 1, :designation_id=>1) 
+Promotion.create(:id=>2,:date_of_promotion=>"2014-02-10", :employee_id=> 3, :designation_id=>2) 
+Promotion.create(:id=>3,:date_of_promotion=>"2014-01-08", :employee_id=> 2, :designation_id=>1) 
+Promotion.create(:id=>4,:date_of_promotion=>"2014-03-03", :employee_id=> 4, :designation_id=>3) 
+
+
+EmailEttiquitie.create(:id=>1,:ettiquite=>"Need Holidays list for year 2014",:employee_id=>1,:dateofsending=>"2014-05-06") 
+EmailEttiquitie.create(:id=>2,:ettiquite=>"Need Hand book/Scribbling pad",:employee_id=>1,:dateofsending=>"2014-08-06") 
+EmailEttiquitie.create(:id=>3,:ettiquite=>"Need Holidays list for year 2014",:employee_id=>2,:dateofsending=>"2014-05-06") 
+EmailEttiquitie.create(:id=>4,:ettiquite=>"Need Holidays list for year 2014",:employee_id=>3,:dateofsending=>"2014-05-06") 
+
+Salary.create(:id=>1,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00") 
+Salary.create(:id=>2,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00")
+Salary.create(:id=>3,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00")
+Salary.create(:id=>4,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00")
