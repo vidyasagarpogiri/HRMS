@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
 
 layout "dashboard", only: :index
+layout "profile_template", only: [:edit, :show]
 
   def index
     @employees =  Employee.all
