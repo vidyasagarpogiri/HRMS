@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">AmzurHRM</a>
+               <%= link_to 'AmzurHRM', root_path, :class => "navbar-brand" %>
             </div>
             <!-- /.navbar-header -->
 
@@ -256,10 +256,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                         <%= link_to 'Dashboard', root_path, :class => "fa fa-dashboard fa-fw" %>
                         </li>
                         <li>
-                            <a class="active" href=""><i class="glyphicon glyphicon-plus"></i> Create New Profile</a>
+
+																	<%= link_to ' Create New Profile ', new_profile_path, :class => "fa fa-plus" %>                            
+																
+
                            <!-- <ul class="nav nav-second-level">
                                 <li>
                                     <a href="forms.html">Employee Details</a>
@@ -418,18 +421,18 @@
 											 <% @employees.each do |employee| %>
 											<tbody>
 												<tr>               
-
-													<td class="center"><a href="view.html"><img src="http://www.cliptheme.com/demo/rapido/assets/images/avatar-1.jpg" alt="image"></a></td>
-													<td><%= employee.first_name %></td>
+													<td><%= image_tag(employee.avatar, :alt => "image", :height => 75, :width => 75, :class => "center") %></td>
+													
+													<td><%= link_to employee.first_name, employee_path(employee) %></td>
 													<td class="hidden-xs"><%= employee.designation.designation_name if employee.designation.present? %></td>
 													<td class="hidden-xs">
-													<a href="#" rel="nofollow" target="_blank">
-													Sample@email.com
+													
+													<%# employee.user.email %>
 	 												</a></td>
 													<td class="hidden-xs"><%= employee.mobile_number %></td>
 													<td>
 													  <div class="visible-md visible-lg hidden-sm hidden-xs">
-														<a href="#" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+														<a href="/employees/<%= employee.id %>/edit" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
 														</div>
 													</td>
 												</tr>
