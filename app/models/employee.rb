@@ -29,7 +29,7 @@ class Employee < ActiveRecord::Base
  	
  	belongs_to :leave
 
-	#validations for fields
+
 
 
 
@@ -46,7 +46,6 @@ class Employee < ActiveRecord::Base
 	#validates :email, presence: true
 	#validates :date_of_confirmation, presence: true
 	#validates :date_of_join, presence: true
-
 
 
 
