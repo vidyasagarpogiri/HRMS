@@ -13,12 +13,14 @@
                     <div class="panel panel-default">
                       <div class="panel-body">
                             <div class="row">
+															<% if @address1.present? %>
                                 <div class="col-lg-6">
                                 <div class="verticalLine">
                                     <form role="form">
                                     <br>
                                     <label><u>Present Address</u></label>
                                     <%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right"%>
+																		<%= link_to "Delete", employee_address_path(@employee, @address1), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>
                                     
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Address Line 1:</label>
@@ -54,13 +56,16 @@
                                     </form>                                  
                                     </div>
                                 </div>
+																	<% end %>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <h1></h1>
                                     <form role="form">
+																			<% if @address2.present? %>
                                     <!--    <fieldset disabled> -->
                                     <label><u>Permanent Address</u></label>
                                         <%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %>
+																				<%= link_to "Delete", employee_address_path(@employee, @address2), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Address Line 1:</label>
                                             <%= @address2.line %>                                  
@@ -94,6 +99,7 @@
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
+													<% end %>
                             <!-- /.row (nested) -->
                         </div>
                         <!-- /.panel-body -->

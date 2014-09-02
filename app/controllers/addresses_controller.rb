@@ -6,9 +6,14 @@ class AddressesController < ApplicationController
   
   def index
     @employee = Employee.find(params[:employee_id])
-    if @employee.present_address_id.present? && @employee.permanent_address_id.present?
-      @address1 = Address.find(@employee.present_address_id)
-      @address2 = Address.find(@employee.permanent_address_id)
+    if @employee.present_address_id.present? || @employee.permanent_address_id.present?
+			if @employee.present_address_id.present?
+
+	      @address1 = Address.find(@employee.present_address_id)  
+			end
+			if @employee.permanent_address_id.present?
+      	@address2 = Address.find(@employee.permanent_address_id)
+			end #if @employee.permanent_address_id.present?
     else
       redirect_to new_employee_address_path(@id)
       #@address = Address.new
@@ -51,7 +56,22 @@ class AddressesController < ApplicationController
   end
   
   
-
+	def destroy
+			
+		@employee = Employee.find(params[:employee_id])
+		@address = Address.find(params[:id])
+    if @employee.present_address_id == @address.id
+			@employee.update(:present_address_id => nil)
+			@address.destroy
+		#raise params.inspect
+		else
+			@address.destroy
+			@employee.update(:permanent_address_id => nil)
+		end
+		
+		redirect_to employee_addresses_path
+	
+	end
   
   
   
