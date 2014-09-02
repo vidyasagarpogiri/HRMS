@@ -33,7 +33,6 @@
 
                                       
 
-                                          <label> <%= promotion.designation.designation_name  if promotion.designation.present? %></label>                                           
                                         </div>
                                       
                                          
