@@ -14,7 +14,7 @@
                   <%= form_for([@employee, @salary, @salary_increment]) do |f| %>                              
                    <div class="form-group">
                      <label>Date of Increment :</label>
-                      <%= f.date_field :increment_date,  :class => "form-control"%>                      
+                      <%= f.text_field :increment_date,  :class => "form-control datepicker" %>                      
                         </div>      
                          <div class="form-group">
                           <label>Increment Value :</label><br>
@@ -36,3 +36,10 @@
            
          </div>
           <!-- /#page wrapper -->
+
+<script>
+		$(function() {
+    $( ".datepicker" ).datepicker();
+  });
+
+</script>
