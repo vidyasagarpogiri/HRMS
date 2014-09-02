@@ -15,8 +15,10 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <% @eudcations.each do |education| %>
-                                     <%= link_to 'edit', edit_employee_education_path(@employee.id, education.id), :class => "btn btn-success pull-right" %>
-                                     
+
+                                     <%= link_to 'Edit', edit_employee_education_path(@employee.id, education.id), :class => "btn btn-success pull-right" %>
+                                     <%= link_to "Delete", employee_education_path(@employee, education), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-success pull-right" %>
+
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Name Of Graduation:</label>
                                             <%= education.specilization %>                                 
