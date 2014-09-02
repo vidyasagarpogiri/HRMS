@@ -1,8 +1,5 @@
 
-<div id="page-wrapper">
-
-            <!-- /.row -->
-            <div class="row">
+             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -23,9 +20,10 @@
                                             <%= f.text_field :increment_value, :class => "form-control",  :placeholder=>"Enter increment value" %>
                                             
                                         </div>
-                                       
-                                        <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
-                                                    
+                                       <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                          <li><button type="submit" class="btn btn-success pull-left">Save & New</button></li>
+                                          <li><button type="submit" class="btn btn-success pull-left">Save</button> </li>         
+                                       </ul>            
                                     <% end %>
                          
                         </div>
@@ -37,5 +35,4 @@
             </div>
             <!-- /.row -->
            
-         </div>
-          <!-- /#page wrapper -->
+   
