@@ -14,10 +14,10 @@
                         <div class="panel-body">
                             <div class="row">
 
-                                <% @promotions.each do |p| %>
+                                  <% @promotions.each do |promotion| %>
                                         <div class="form-group col-lg-6">
                                 <div class="col-lg-12">
-                                <% @promotions.each do |promotion| %>
+                          
                                 
                            
                                         <div class="form-group">
@@ -31,8 +31,7 @@
                                           <label> <%= p.designation.designation_name  if p.designation.present? %>  <label>                                           
                                         </div>                                    
 
-                                         <%= link_to 'EDIT', edit_employee_promotion_path(@employee.id, p.id), :class => "btn btn-success pull-right" %>
-                                        <% end %>  
+                                      
 
                                           <label> <%= promotion.designation.designation_name  if promotion.designation.present? %></label>                                           
                                         </div>
@@ -56,4 +55,5 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
+        <% end %>
   
