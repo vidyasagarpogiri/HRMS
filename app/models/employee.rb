@@ -30,8 +30,7 @@ class Employee < ActiveRecord::Base
 
 
 
-<<<<<<< HEAD
-=======
+
 
 	#validates :first_name, presence: true
 	#validates :last_name, presence: true
@@ -46,8 +45,6 @@ class Employee < ActiveRecord::Base
 	#validates :email, presence: true
 	#validates :date_of_confirmation, presence: true
 	#validates :date_of_join, presence: true
-
->>>>>>> 337d890e219e367453500bb4c13cdf7a76ae8c8f
 
 
 
