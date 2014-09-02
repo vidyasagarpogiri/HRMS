@@ -20,14 +20,8 @@ layout "dashboard", only: :index
     @employee = Employee.create(params_employees)
     #raise @employee.inspect 
     @employee.update(:user_id => @user.id)
-    if @employee.save
-      flash[:success]= 'User was created successfully'
+    @employee.save
     redirect_to @employee
-    else
-       
-     render "new"
-       end
-
   end
 
   def show
