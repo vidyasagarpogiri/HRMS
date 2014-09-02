@@ -3,8 +3,9 @@ class SalariesController < ApplicationController
    layout "profile_template", only: [:index, :new, :create, :show, :edit, :update]
    
   def new
+		@employee = Employee.find(params[:employee_id])
     @salary = Salary.new
-    @employee = Employee.find(params[:employee_id])
+    
   end
   
   def index
