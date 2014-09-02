@@ -24,7 +24,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">AmzurHRM</a>
+								<%= link_to 'AmzurHRM', root_path, :class => "navbar-brand" %>
+               
             </div>
             <!-- /.navbar-header -->
 
@@ -251,7 +252,7 @@
                          </div>                      
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                           <%= link_to 'Dashboard', root_path, :class => "fa fa-dashboard fa-fw" %>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-bar-chart-o fa-fw"></i> Profile Show Case <span class="fa glyphicon-plus"></span></a>
