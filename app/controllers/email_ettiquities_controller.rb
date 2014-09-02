@@ -3,18 +3,21 @@ class EmailEttiquitiesController < ApplicationController
   layout "profile_template", only: [:index, :new, :create, :show]
 
 	def index
-    @emails = EmailEttiquitie.all
+		#raise params.inspect
+		@employee = Employee.find(params[:employee_id])
+    @emails = EmailEttiquitie.where(:employee_id => params[:employee_id])
   end
 
   def new
-    @email = EmailEttiquitie.new
 		@employee= Employee.find(params[:employee_id])
+    @email = EmailEttiquitie.new
+		
   end
   
   def create
-    @email = EmailEttiquitie.create(:ettiquite => params[:email_ettiquitie][:ettiquite], :dateofsending=>params[:email_ettiquitie][:dateofsending],:employee_id => params[:employee_id])
-		@email.save
-		redirect_to employee_email_ettiquity_path(@email.employee, @email)
+		@employee = Employee.find(params[:employee_id])
+    @email = EmailEttiquitie.create(:ettiquite => params[:email_ettiquitie][:ettiquite], :dateofsending=>params[:email_ettiquitie][:dateofsending],:employee_id => @employee.id)
+		redirect_to employee_email_ettiquities_path(@employee)
   end
 
   def show
@@ -24,6 +27,12 @@ class EmailEttiquitiesController < ApplicationController
   def edit
   end
   
+	def destroy
+		@employee = Employee.find(params[:employee_id])
+		@email= EmailEttiquitie.find(params[:id])
+		@email.destroy
+		redirect_to employee_email_ettiquities_path(@employee.id)
+	end
 end
 
 

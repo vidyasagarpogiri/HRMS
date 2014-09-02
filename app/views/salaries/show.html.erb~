@@ -9,9 +9,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Basic Form Elements
-                        </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -61,24 +58,5 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
- 
-<div class="allowance-index">
-<%= render 'salaries/allowances' %>
-</div> 
-<hr>
-<div class="new-allowance">
-</div>
-<hr><hr>
-<div class="insentive-index">
-<%= render 'salaries/insentives' %>
-</div> 
-<div class="new-insentive">
-</div>
-
-<div class="salary_increment-index">
-<%= render 'salaries/salary_increments' %>
-</div> 
-<div class="new-salary_increment">
-</div>
 
 
