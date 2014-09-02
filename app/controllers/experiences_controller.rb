@@ -1,4 +1,6 @@
 class ExperiencesController < ApplicationController
+
+  layout "profile_template", only: [:index, :new, :create, :show, :edit, :update]
   
   def index
      @employee = Employee.find(params[:employee_id])

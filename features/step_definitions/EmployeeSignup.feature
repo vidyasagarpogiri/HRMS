@@ -1,9 +1,9 @@
 Feature: Employee Signup
     In order to test the application
         
-@javascript
+
 Scenario: Adds a New Employee
-				Given there are departments seeded
+				#Given there are departments seeded
         Given I am on the new_employee page
         And I fill in "employee_employee_id" with "123"
         When I select "Mrs" from "employee_title"

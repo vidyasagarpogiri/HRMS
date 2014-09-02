@@ -1,7 +1,8 @@
 class EmployeesController < ApplicationController
 
 layout "dashboard", only: :index
-layout "profile_template", only: [:edit, :show]
+
+layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :update_exit_form, :show_exit]
 
   def index
     @employees =  Employee.all
@@ -9,7 +10,6 @@ layout "profile_template", only: [:edit, :show]
   end
 
  
-
   def new
     @employee = Employee.new
     
@@ -20,8 +20,8 @@ layout "profile_template", only: [:edit, :show]
     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
     @employee = Employee.create(params_employees)
     @employee.update(:user_id => @user.id)
-    redirect_to profile_path(@employee.id)
-
+    @employee.save
+    redirect_to @employee
   end
 
   def show
