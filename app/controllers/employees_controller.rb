@@ -33,10 +33,8 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
   end
   
   def update
-		@employee = Employee.find(params[:id])
-		#raise @employee.inspect 
-    @employee.update(params_employees)
-		#raise @employee.inspect    
+		@employee = Employee.find(params[:id]) 
+    @employee.update(params_employees)    
 		redirect_to @employee
   end  
 
