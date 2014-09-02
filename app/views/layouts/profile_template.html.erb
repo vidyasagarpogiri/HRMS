@@ -243,9 +243,10 @@
                     <ul class="nav" id="side-menu">
                         <li>
                          <div  class="profile-pic"> 
-                            <h4><center> profile name </center></h4>
+                            <h4><center> Profile Pic </center></h4>
                             <a href="changeprofilepic.html" >
-                              <img src="/assets/1.jpg" alt="Profile pic" width="250px;" height="250px;" padding-left="10px;">
+                              <%= image_tag(@emp.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
+                              
                             </a>
                          </div>                      
                         </li>
@@ -256,7 +257,7 @@
                             <a href="forms.html"><i class="fa fa-bar-chart-o fa-fw"></i> Profile Show Case <span class="fa glyphicon-plus"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <%= link_to "Employee Details", "#" %>
+                                    <%= link_to "Employee Details", employee_path(@id) %>
                                 </li>
                                 <% if @id.to_i!=0 %>
                                 <li>

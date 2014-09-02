@@ -1,4 +1,6 @@
 class PromotionsController < ApplicationController
+  
+  layout "profile_template", only: [:index, :new, :create, :edit, :update]
 
 	def index
 	  @employee = Employee.find(params[:employee_id])
