@@ -32,27 +32,20 @@ class Employee < ActiveRecord::Base
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 57fd84f8f107e47c01b10febdf3a6899ec8c2b6c
-	#validates :first_name, presence: true
-	#validates :last_name, presence: true
-	#validates :date_of_birth, presence: true
-	#validates :gender, presence: true
-  #validates :department_id, presence: true
-	#validates :designation_id, presence: true
-	#validates :mobile_number, presence: true
-	#validates :father_name, presence: true
-	#validates :blood_group_id, presence: true
-	#validates :grade_id, presence: true
-	#validates :email, presence: true
+	validates :first_name, presence: true
+	validates :last_name, presence: true
+	validates :date_of_birth, presence: true
+	validates :gender, presence: true
+  validates :department_id, presence: true
+	validates :designation_id, presence: true
+	validates :mobile_number, presence: true
+	validates :father_name, presence: true
+	validates :blood_group_id, presence: true
+	validates :grade_id, presence: true
+	validates :email, presence: true
 	#validates :date_of_confirmation, presence: true
 	#validates :date_of_join, presence: true
-<<<<<<< HEAD
-
-=======
->>>>>>> 57fd84f8f107e47c01b10febdf3a6899ec8c2b6c
 
 
 
