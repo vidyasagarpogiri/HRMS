@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
   
-
+   layout "profile_template", only: [:index, :new, :create, :show, :edit, :update]
  # include AddressHelper
 
   

@@ -1,7 +1,8 @@
 class EmployeesController < ApplicationController
 
 layout "dashboard", only: :index
-layout "profile_template", only: [:edit, :show]
+
+layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :update_exit_form, :show_exit]
 
   def index
     @employees =  Employee.all
@@ -9,7 +10,6 @@ layout "profile_template", only: [:edit, :show]
   end
 
  
-
   def new
     @employee = Employee.new
     
@@ -34,9 +34,7 @@ layout "profile_template", only: [:edit, :show]
   
   def update
 		@employee = Employee.find(params[:id])
-		#raise @employee.inspect 
-    @employee.update(params_employees)
-		#raise @employee.inspect    
+    @employee.update(params_employees)    
 		redirect_to @employee
   end  
 

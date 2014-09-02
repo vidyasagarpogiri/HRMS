@@ -1,6 +1,16 @@
 class ProfileController < ApplicationController
   
-  layout "profile_template"
+  before_filter :layout_method
+  
+  def layout_method
+    if params[:id].present?
+      self.class.layout "profile_template"
+    else
+      self.class.layout "newprofile_template"
+    end
+     
+  end
+  
   
   def edit
    # raise params[:id].inspect

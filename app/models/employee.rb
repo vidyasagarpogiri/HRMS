@@ -31,6 +31,7 @@ class Employee < ActiveRecord::Base
 	#validations for fields
 
 
+
 	#validates :first_name, presence: true
 	#validates :last_name, presence: true
 	#validates :date_of_birth, presence: true
@@ -44,6 +45,7 @@ class Employee < ActiveRecord::Base
 	#validates :email, presence: true
 	#validates :date_of_confirmation, presence: true
 	#validates :date_of_join, presence: true
+
 
 
 

@@ -1,4 +1,6 @@
 class EmailEttiquitiesController < ApplicationController
+  
+  layout "profile_template", only: [:index, :new, :create, :show]
 
 	def index
     @emails = EmailEttiquitie.all

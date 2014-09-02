@@ -2,9 +2,9 @@ class EducationsController < ApplicationController
 
  include EducationsHelper
   
+   layout "profile_template", only: [:index, :new, :create, :show, :edit, :update]
   
   
-
   def index
     @employee = Employee.find(params[:employee_id])
     @eudcations =  Education.where(:Employee_id => params[:employee_id])
