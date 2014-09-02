@@ -15,6 +15,7 @@ class Employee < ActiveRecord::Base
   has_many :promotions
   has_many :educations
   has_many :experiences
+	has_many :email_ettiquities
 
   belongs_to :group
   
@@ -31,7 +32,7 @@ class Employee < ActiveRecord::Base
 	#validations for fields
 
 
-<<<<<<< HEAD
+
 	#validates :first_name, presence: true
 	#validates :last_name, presence: true
 	#validates :date_of_birth, presence: true
@@ -45,8 +46,7 @@ class Employee < ActiveRecord::Base
 	#validates :email, presence: true
 	#validates :date_of_confirmation, presence: true
 	#validates :date_of_join, presence: true
-=======
->>>>>>> 7d788fb1156d9fbd821785a4b1681cbb5433d5f4
+
 
 
 
