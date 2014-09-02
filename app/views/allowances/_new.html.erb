@@ -1,38 +1,32 @@
- 
- <div id="page-wrapper">
-                <div class="row">
-                <div class="col-lg-12">
-                   
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+
             <!-- /.row -->
-            <div class="row">
+               
                 <div class="col-lg-12">
+                 <br><br>
                     <div class="panel panel-default">
+                    
                         <div class="panel-heading">
-                            Add More
+                            New Allowance
                         </div>
-                        <div class="panel-body">
-   
+                        <div class="panel-body">   
                                  <%= form_for ([@employee, @salary, @allowance]), :remote => true do |f| %>
                                         
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-6">
                                             <label>Allowance name:</label>
                                             <%= f.text_field :allowance_name,  :class => "form-control" %>
                                             
                                         </div>
                                         
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-6">
                                             <label>Percentage/value :</label><br>
                                             <%= f.text_field :value, :class => "form-control",  :placeholder=>"Enter Allowance value" %>
                                             
                                         </div>
-                                       
-                                        <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
-                                        <button type="submit" class="btn btn-success pull-left">Save</button>          
-                                    <% end %>
-                         
+                                       <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                        <li><button type="submit" class="btn btn-success pull-left">Save & New</button></li>
+                                        <li><button type="submit" class="btn btn-success pull-left">Save</button> </li>         
+                                       </ul>  
+                                    <% end %>                         
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -41,6 +35,9 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-           
-         </div>
-          <!-- /#page wrapper -->
+   
+          
+          
+          
+          
+      
