@@ -61,15 +61,13 @@
                                             <label>Job Location:</label>
                                             <input class="form-control" placeholder="Enter Job Location">                                            
                                         </div>
-                                        <div class="form-group">
-                                            <label>Grade/Level:</label><br>
-                                             <%= f.collection_select :grade_id, Grade.all, :id, :value, { :prompt => "Please Select" }, { :class => "grade form-control", :id=>"disabledSelect"  } %>
-                                        </div> 
-                                            
+                                        
+                                          <div class="form-group">
+                                           <%= f.file_field :avatar %><br>
+                                         </div>   
                                         
                                        <br>
-                                       <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
-                                    
+                                      
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
@@ -110,13 +108,14 @@
                                             
                                             
                                         </div>
-                                        <div class="form-group">
-       
-       <%= f.file_field :avatar %><br>
-     </div>
-                                                                                  
+                                       
+                                          
+                                         <div class="form-group">
+                                            <label>Grade/Level:</label><br>
+                                             <%= f.collection_select :grade_id, Grade.all, :id, :value, { :prompt => "Please Select" }, { :class => "grade form-control", :id=>"disabledSelect"  } %>
+                                        </div>                                         
                                         <br>
-                                        
+                                        <button type="submit" class="btn btn-success pull-right">Save & Continue</button>
                                     <% end %>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
