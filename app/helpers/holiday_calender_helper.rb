@@ -1,2 +1,0 @@
-module HolidayCalenderHelper
-end
