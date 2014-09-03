@@ -23,8 +23,7 @@
 												            </tr>
 											            </tbody>
 											            <% end %>
-										            </table> 
-										         
+									            </table> 									         
 										         <script>
 										          $(function(){
 										            $(".new_increments").hide();

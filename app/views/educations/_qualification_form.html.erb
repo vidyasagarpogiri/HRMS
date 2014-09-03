@@ -15,9 +15,8 @@
                                     <%= @education.errors.full_messages.first if @education.errors.any? %>
                                     <%= form_for ([@employee, @education]), :remote => true do |f| %>
                                         <div class="form-group">
-                                            <label>Name Of Graduation</label>
-                                          
-                                            <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation" %>                                            
+                                            <label>Name Of Graduation</label>                                          
+                                            <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation" %>                
                                         </div>
                                         
                                         <div class="form-group">
@@ -27,7 +26,7 @@
                                         
                                         <div class="form-group">
                                             <label>Year of Passing:</label>
-                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control" %>                                       
+                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control">                 
                                         </div>
                                         
                                         <div class="form-group">
@@ -36,18 +35,12 @@
                                         </div>
                                         
                                         <br>
-                                       
-                                        <%= f.submit  'save', :class => "btn btn-success pull-left" %>
-                                        <%= f.submit 'save&new', :class =>"btn btn-success pull-right" %>
+                                        <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                          <li><%= f.submit  'save', :class => "btn btn-success pull-left" %></li>
+                                          </li><%= f.submit 'save&new', :class =>"btn btn-success pull-right" %></li>
+                                        </ul>  
                                        
                                    <% end %>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
-                                    <h1></h1>
-                                    <form role="form">
-                                    <!--    <fieldset disabled> -->                                                                           
-                                    </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
