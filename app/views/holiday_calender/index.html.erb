@@ -3,7 +3,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header"> Leave Policies</h2>
+                    <h2 class="page-header"> Calender index</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -12,25 +12,25 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Leave Policies Form 
+                          Holiday Calender Form 
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <% @leave_policies.each do |leave_policy| %>
+                                    <% @holidayCalenders.each do |holiday_calender| %>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Personal leaves Per Year:</label>
-                                            <%= leave_policy.pl_per_year %>                                 
+                                            <label style="font-weight:normal;">Event Date:</label>
+                                            <%= holiday_calender.date %>                                 
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Sick Leaves per Year:</label>
-                                            <%= leave_policy.sl_per_year %>
+                                            <label style="font-weight:normal;">Event:</label>
+                                            <%= holiday_calender.event %>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Minimum Carry forword Leaves</label>
-                                            <%= leave_policy.eligible_carry_forward_leaves %>                                        
+                                            <label style="font-weight:normal;">Employee participation</label>
+                                            <%= holiday_calender.mandatory_or_optional %>                                        
                                         </div>
                                         <ul class="navigation-btns" style="list-style: none;display:inline;">                                            
                                             <li><button type="submit" class="btn btn-success pull-left">Save</button> </li>  
