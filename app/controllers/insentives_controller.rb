@@ -1,4 +1,5 @@
 class InsentivesController < ApplicationController
+  layout "profile_template", only: [:index, :new, :create, :show, :update, :edit]
 def index
   #raise params.inspect
   
