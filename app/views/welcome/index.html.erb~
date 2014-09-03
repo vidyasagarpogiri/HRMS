@@ -29,8 +29,8 @@
 
 </head>
 
-<body class="landing_page">
-
+<body>
+<div class="image">
     <div class="brand">AmzurHRM</div>
     <div class="address-bar">Admin | Leaves | Time </div>
 
