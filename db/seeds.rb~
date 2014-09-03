@@ -86,7 +86,7 @@ Employee.create(:id => 1,:employee_id => 1, :title=> "Mr.", :first_name=>"Meher"
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
 :grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>3)
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>3,:avatar=>"406929_2668579486846_928068538_n.jpg")
 
 Employee.create(:id => 2,:employee_id => 2, :title=> "Mr.", :first_name=>"bala",:last_name=>"nemani",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"13",
 :status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",
@@ -94,7 +94,8 @@ Employee.create(:id => 2,:employee_id => 2, :title=> "Mr.", :first_name=>"bala",
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
 :grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>3)
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>3,:avatar=>"best-employee-md.png")
+
  
 Employee.create(:id => 3,:employee_id => 3, :title=> "Mrs.", :first_name=>"priyanka",:last_name=>"muddana",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",
 :status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",
@@ -102,7 +103,7 @@ Employee.create(:id => 3,:employee_id => 3, :title=> "Mrs.", :first_name=>"priya
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
 :grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>2)
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>2,:avatar=>"gates_print.jpg")
 
 Employee.create(:id => 4,:employee_id => 4, :title=> "Mr.", :first_name=>"ravi",:last_name=>"kishore",:date_of_birth=>"2001-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"1",
 :status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-02-05",:date_of_join=>"2010-11-03",
@@ -110,7 +111,8 @@ Employee.create(:id => 4,:employee_id => 4, :title=> "Mr.", :first_name=>"ravi",
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
 :grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>1)
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>1,:avatar=>"406929_2668579486846_928068538_n.jpg")
+
 
 
 Education.create(:id=>1, :specilization=>"B.Tech", :institute=> "AU",:year_of_admission=> "2006-10-09", year_of_pass: "2010-06-08",:cgpa_percentage=> "78.50", :Employee_id=>1)

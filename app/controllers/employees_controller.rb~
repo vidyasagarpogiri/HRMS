@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-layout "dashboard", only: :index
+layout "dashboard", only: [:index, :profile]
 
 layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :update_exit_form, :show_exit]
 
@@ -28,6 +28,10 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
     @employee = Employee.find(params[:id])
   end
 
+  def profile
+     @employee = Employee.find(params[:id])
+  end
+  
   def edit
     @employee = Employee.find(params[:id])
   end

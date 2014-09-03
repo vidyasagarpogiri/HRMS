@@ -1,7 +1,7 @@
-<div id="page-wrapper">
+<div id="page-wrapper" style="margin-left:0px;">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header"><%= @employee.full_name %></h2>
+                    <h2 class="page-header"> <%= @employee.full_name %> Details</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -9,14 +9,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                    <%= link_to "Edit", edit_employee_path(@employee), :class=>"btn btn-success pull-right" %>
+                    <%= link_to "Back to list", edit_employee_path(@employee), :class=>"btn btn-success pull-right" %>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                   <br>
+                                   
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Employee Id:</label>
-                                            <label><%= @employee.employee_id %></label>                                  
+                                            <label style="font-weight:normal;">Full Name:</label>
+                                            <label><%= @employee.full_name %></label>                                  
                                         </div>
                                         
                                          <div class="form-group">
@@ -25,69 +25,47 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Father Name:</label>
-                                            <label><%= @employee.father_name %></label>                                         
-                                        </div>
-                                        
-                                   
-                                                                                
+                                            <label style="font-weight:normal;">Mobile Number:</label>
+                                            <label><%= @employee.mobile_number %></label>                                           
+                                        </div>                                     
                                         <div class="form-group">
-                                            
                                             <label style="font-weight:normal;">Blood Group:</label>
-
                                             <label><%= @employee.blood_group.blood_group_name if @employee.blood_group.present? %></label>
-
                                         </div>
-                                        <hr>
-                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Role:</label>
-                                            <label><%= @employee.role.role_name if @employee.role.present? %></label>
-
-                                        </div> 
                                         
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Department:</label>
                                             <label><%= @employee.department.department_name if @employee.department.present? %></label>
-
                                         </div> 
-                                         
-                                        
+
                                        <br>
-                                       
-                                      
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                     <form role="form">
-
-                                        
-                                       
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Date Of Birth:</label>
-                                            <label><%= @employee.date_of_birth %></label>
+                                    <div  class="profile-pic"> 
+                                        <h4><center> Profile Pic </center></h4>
+                                        <a href="changeprofilepic.html" >
+                                          <%= image_tag(@emp.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
+                                          
+                                        </a>
+                                     </div>  
+                                       <div class="form-group">
+                                            <label style="font-weight:normal;">Designation:</label>
+                                            <label><%= @employee.designation.designation_name if @employee.designation.present? %></label>
                                         </div>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Mobile Number:</label>
-                                            <label><%= @employee.mobile_number %></label>                                           
+                                            <label style="font-weight:normal;">Contact no:</label>
+                                            <label><%= @employee.mobile_number %></label>
                                         </div>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Gender:</label>
                                             <label><%= @employee.gender %></label>
-                                        </div>
-                                      <br>
-                                       <hr>
+                                        </div>        
                                         <div class="form-group">
-
-                                            <label style="font-weight:normal;">Designation:</label>
-                                            <label><%= @employee.designation.designation_name if @employee.designation.present? %></label>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Grade/Level:</label>
-                                            <label><%= @employee.grade.value if @employee.grade.present?  %></label>
-
-
+                                            <label style="font-weight:normal;">Experiance:</label>
+                                            <label></label>
                                         </div> 
                                       
                                     </form>
@@ -105,7 +83,3 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-
-
-
-

@@ -35,12 +35,11 @@
                                             
                                              <%= f.select(:title, options_for_select([['Mr', 'Mr'], ['Mrs', 'Mrs']]), {}, :class=> "form-control", :id=>"disabledSelect") %>
                                         </div>
-                                        
-                                        <div class="form-group">
-                                            <label>Employee First Name:</label>
-                                            <%= f.text_field :first_name, :class => "form-control",  :placeholder=>"Enter First name" %>
-                                                                              
+                                          <div class="form-group">
+                                            <label>Employee Last Name:</label>
+                                             <%= f.text_field :last_name, :class =>"form-control", :placeholder => "Enter Last name" %>                                           
                                         </div>
+                                        
                                         <div class="form-group">
                                             <label>Father Name:</label>
                                             <%= f.text_field :father_name, :class => "form-control",  :placeholder=>"Enter Father name" %>
@@ -83,9 +82,12 @@
                                             <label>Email id:</label>
                                             <input class="form-control" placeholder="Enter Email id", name="email">                                            
                                         </div>
+                                      
+                                        
                                         <div class="form-group">
-                                            <label>Employee Last Name:</label>
-                                             <%= f.text_field :last_name, :class =>"form-control", :placeholder => "Enter Last name" %>                                           
+                                            <label>Employee First Name:</label>
+                                            <%= f.text_field :first_name, :class => "form-control",  :placeholder=>"Enter First name" %>
+                                                                              
                                         </div>
                                         <div class="form-group">
 
