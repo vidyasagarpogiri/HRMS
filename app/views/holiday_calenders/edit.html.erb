@@ -16,11 +16,11 @@
                         </div>
                         <div class="panel-body">
    
-                                 <%= form_for ([@group, @holidayCalender]) do |f| %>
+                                 <%= form_for ([@group, @holiday_calender]) do |f| %>
                                         
                                         <div class="form-group">
                                             <label>Holiday on:</label>
-                                          <%= text_field(:holiday_calanders, :date, :placeholder=>"Enter holiday date", :class=>"form-control") %>
+                                          <%= f.text_field :date,  :placeholder=>"Enter holiday date", :class=>"form-control datepicker" %>
                                           
                                         </div>
                                         
@@ -30,10 +30,11 @@
                                         </div>
                                         
                                          <div class="form-group">
-                                            <label>Employee Participation</label>
-                                            <%= f.select(:mandatory_or_optional, options_for_select([['Mandatory', 'Mandatory'], ['Optional', 'Optional']]), {}, :class=> "form-control", :id=>"disabledSelect") %>                                          
-                                        </div>
+                                            <label>Employee Participation  :</label>                         
                                         
+                                        Mandatory <input type="radio" value="true" name="holiday_calender[mandatory_or_optional]">
+                                        Optional <input type="radio" value="false" name="holiday_calender[mandatory_or_optional]">
+                                        </div>
                                        <ul class="navigation-btns" style="list-style: none;display:inline;">
                                            <li> <%= f.submit  'Save', :class => "btn btn-success pull-left" %></li>
                                             
@@ -52,3 +53,11 @@
            
          </div>
           <!-- /#page wrapper -->
+          
+          
+          
+<script>
+  $(function(){
+    $(".datepicker").datepicker();
+  });
+</script>
