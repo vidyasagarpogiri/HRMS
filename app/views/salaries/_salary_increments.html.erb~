@@ -1,7 +1,4 @@
 <div>
-<%=render 'salary_increments/index' %>
+  <%=render 'salary_increments/index' %>
 </div>
 
-<div>
-<%=render 'salary_increments/new' %>
-</div>
