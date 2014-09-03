@@ -6,14 +6,12 @@ class LeavePoliciesController < ApplicationController
  end
  
  def new
-   @employee = Employee.find(params[:employee_id])
    @group = Group.find(params[:group_id])
    @leave_policy = LeavePolicy.new
    
  end
  
  def create
-   @employee = Employee.find(params[:employee_id])
    @group = Group.create(params[:group_name])
    @leave_policy = LeavePolicies.create( params_leavepolicy)
    redirect_to 

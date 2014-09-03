@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   end
   
   def new
-    @employee = Employee.find(params[:employee_id])
+    
     @group = Group.new
    # @group.leave_policy.build
    
@@ -14,9 +14,9 @@ class GroupsController < ApplicationController
   
   def create
     #raise params.inspect 
-    @employee = Employee.find(params[:employee_id])
+    
     @group = Group.create(params[:group_name])
-    redirect_to new_employee_group_leave_policy_path(@employee, @group)
+    redirect_to  new_group_leave_policy_path(@group)
   end
   
   private
