@@ -84,7 +84,8 @@
                 <div class="col-md-6" >
                   <div class="loginbutton" style="width:250px;height:90px;background-color:#4DB870;opacity:0.7;margin-left:200px;margin-top:80px;border-radius:2px; "> 
                      <div class="login" style="font-size:20px;padding-top:15px;margin-left:70px;">
-                     <h2><strong><%= link_to "Login", user_omniauth_authorize_path(:google_oauth2), :style => "text-decoration:none;color:black" %></strong></h2>
+                     <% unless current_user.present? %>
+                     <h2><strong><%= link_to "Login", user_omniauth_authorize_path(:google_oauth2), :style => "text-decoration:none;color:black" %></strong></h2><% end %>
                   </div>   
                     
                   </div>                    
