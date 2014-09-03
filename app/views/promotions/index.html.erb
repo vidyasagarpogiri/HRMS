@@ -28,11 +28,20 @@
                                         </div>                                   
 
                                         </div>
+<<<<<<< HEAD
+                                      
+                                         <% #if current_user.employee.role == "Employee" %>
+																				<% #else %>
+                                         <%= link_to 'EDIT', edit_employee_promotion_path(@employee.id, promotion.id), :class => "btn btn-success pull-right" %>
+                                         <%= link_to "Delete", employee_promotion_path(@employee, promotion), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>
+                                          <% #end %>
+=======
                                       <ul class="navigation-btns pull-left" style="list-style: none;display:inline;">
                                          
                                          <li><%= link_to 'EDIT', edit_employee_promotion_path(@employee.id, promotion.id), :class => "btn btn-success pull-right" %></li>
                                          <li><%= link_to "Delete", employee_promotion_path(@employee, promotion), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %></li>
                                        </ul>   
+>>>>>>> cfcaf9baa7ba27bec09976f91dcb696237cefb85
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
  

@@ -22,6 +22,7 @@
 													      <td class="center"><%= allowance.allowance_name %></td>
 													      <td><%= allowance.value %></td>
 													      <td><%= link_to 'edit', edit_employee_salary_allowance_path(@employee.id, @salary.id, allowance.id), :class => "btn btn-success pull-left" %></td>
+																<td><%= link_to 'delete', employee_salary_allowance_path(@employee.id, @salary.id, allowance.id), method: :delete , :class => "btn btn-success pull-left" %></td>
 												      </tr>
 											      </tbody>
 											      <% end %>

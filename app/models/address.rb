@@ -11,4 +11,5 @@ class Address < ActiveRecord::Base
   validates :country, presence: true
 	validates :zipcode, presence: true
 	
+	
 end
