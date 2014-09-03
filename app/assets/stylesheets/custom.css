@@ -93,3 +93,28 @@ display:inline;
 }
 
 
+.home{
+margin-left:1600px;
+margin-top:-20px;
+text-decoration:none;
+list-style:none;
+}
+
+.sidepanel{
+margin-left:300px;
+margin-top:-250px;
+height:250px;
+}
+
+
+.form-group .headings{
+font-size:20px;
+}
+
+.form-group .headings i{
+padding-right:25px;
+}
+
+
+
+
