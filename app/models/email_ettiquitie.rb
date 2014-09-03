@@ -1,3 +1,8 @@
 class EmailEttiquitie < ActiveRecord::Base
 	belongs_to :employee
-end
+	
+	validates :ettiquite, presence: true
+  validates :dateofsending, presence: true
+	
+end 
+

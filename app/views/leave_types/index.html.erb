@@ -1,39 +1,32 @@
-
-
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header"> Leave Policies</h2>
+                    <h2 class="page-header"> Leavetypes</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
+            
                 <div class="col-lg-12">
+               
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Leave Policies Form 
+                            Basic Form Elements
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <% @leave_policies.each do |leave_policy| %>
+                                    <% @leaves.each do |leave| %>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Personal leaves Per Year:</label>
-                                            <%= leave_policy.pl_per_year %>                                 
+                                            <label style="font-weight:normal;">Leave Type</label>
+                                            <%= leave.:type_name %>                                 
                                         </div>
                                         
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Sick Leaves per Year:</label>
-                                            <%= leave_policy.sl_per_year %>
-                                        </div>
                                         
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Minimum Carry forword Leaves</label>
-                                            <%= leave_policy.eligible_carry_forward_leaves %>                                        
-                                        </div>
-                                        <ul class="navigation-btns" style="list-style: none;display:inline;">                                            
-                                            <li><button type="submit" class="btn btn-success pull-left">Save</button> </li>  
+                                        <br>
+                                        <ul class="navigation-btns" style="list-style: none;display:inline;">
+                                          
                                         </ul>
                                   <hr>
                                    <% end %>

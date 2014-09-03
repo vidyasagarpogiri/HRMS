@@ -21,15 +21,18 @@ Rails.application.routes.draw do
 
   resources :employees do 
     resources :leaves
+
      resources :groups do
        resources :leave_policies
        resources :holiday_calander
      end
+
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'
 			post 'update_exit_form'
 			get 'show_exit'
+			get 'profile'
 		end
   
   resources :educations do
