@@ -41,8 +41,11 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
   
   def update
 		@employee = Employee.find(params[:id])
-    @employee.update(params_employees)    
+    if @employee.update(params_employees)    
 		redirect_to @employee
+		else
+		render 'edit'
+		end
   end  
 
 	def exit_edit_form
