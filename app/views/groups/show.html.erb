@@ -1,10 +1,13 @@
 <h3>Grop Details</h3>
 
-Group Name :<%= @group.group_name %>
+<label>Group Name :<%= @group.group_name %></label><br>
 
-<%= link_to 'Add leave Policy For This Group', new_group_leave_policy_path(@group) %>
+<%= link_to 'Add leave Policy For This Group', new_group_leave_policy_path(@group) %><br>
+<%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %>
 <div>
 <%=render "leave_policies/index" %>
 </div>
-
+<div>
+<%=render "holiday_calenders/index" %>
+</div>
 

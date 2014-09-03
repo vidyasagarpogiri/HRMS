@@ -1,8 +1,9 @@
 class LeavePoliciesController < ApplicationController
 
  def index
-   @leave_policies = LeavePolicies.all
-   
+   @group = Group.find(params[:group_id])
+   @leave_policy = @group.leave_policy
+   #raise @leave_policy.inspect
  end
  
  def new
@@ -14,9 +15,10 @@ class LeavePoliciesController < ApplicationController
  def create
   #raise params.inspect@group = Group.create(params[:group_name])
    @group = Group.find(params[:group_id])
-   @leave_policy = LeavePolicies.create(params_leavepolicy)
-   @leave_policy.update(:group_id => params[:group_id])
-   redirect_to group_path(@leave_policy)
+   @leave_policy = LeavePolicy.create(params_leavepolicy)
+   @leave_policy.group_id = params[:group_id]
+   @leave_policy.save
+   redirect_to group_path(@group)
    
    
  end
