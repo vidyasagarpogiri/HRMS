@@ -1,6 +1,5 @@
+<h3>Varible Pay</h3><hr>
 <div>
   <%=render 'insentives/index' %>
 </div>
-<div>
-  <%=render 'insentives/new' %>
-</div>
+
