@@ -48,6 +48,8 @@ class EducationsController < ApplicationController
     #                    end
     @new_education = Education.new(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(Employee_id: params[:employee_id]))
     @new_education.save
+     
+  
     
     #for new form 
     @employee = Employee.find(params[:employee_id])
@@ -56,7 +58,7 @@ class EducationsController < ApplicationController
     @list =  Education.where(:Employee_id => params[:employee_id])
     @form_type = params[:commit]
     #EducationQualification.create(:qualification_id => @qualification_id, :education_id => @education.id)
- 
+  
   end
   
   def show

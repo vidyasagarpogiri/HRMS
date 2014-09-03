@@ -7,7 +7,6 @@ class Education < ActiveRecord::Base
   
   validates :specilization, presence: true
 	validates :institute, presence: true
-	validates :year_of_admission, presence: true
 	validates :year_of_pass, presence: true
   validates :cgpa_percentage, presence: true
 	
