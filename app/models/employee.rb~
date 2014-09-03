@@ -34,7 +34,11 @@ class Employee < ActiveRecord::Base
 
 
 
+<<<<<<< HEAD
+	validates :employee_id, presence: true 
+=======
 	validates :employee_id, presence: true
+>>>>>>> 6c7af210857c44843c7b541e44ba1fdb202debef
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :date_of_birth, presence: true
