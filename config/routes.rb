@@ -20,13 +20,13 @@ Rails.application.routes.draw do
   
 resources :groups do
        resources :leave_policies
-       resources :holiday_calander
+       resources :holiday_calenders
      end
 
   resources :employees do 
     resources :leaves
-
-     
+    resources :leave_histories
+    
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'

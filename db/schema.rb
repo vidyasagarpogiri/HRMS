@@ -11,8 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 
 ActiveRecord::Schema.define(version: 20140903091312) do
+=======
+ActiveRecord::Schema.define(version: 20140903113156) do
+>>>>>>> 6c2ea314381d6bf5739dd505e80f641589fa6f77
 
 
   create_table "addresses", force: true do |t|
@@ -163,6 +167,15 @@ ActiveRecord::Schema.define(version: 20140903091312) do
   end
 
   create_table "holiday_calanders", force: true do |t|
+    t.string   "date"
+    t.string   "event"
+    t.boolean  "mandatory_or_optional"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "group_id"
+  end
+
+  create_table "holiday_calenders", force: true do |t|
     t.string   "date"
     t.string   "event"
     t.boolean  "mandatory_or_optional"
