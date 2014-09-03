@@ -8,7 +8,9 @@ class ApplicationController < ActionController::Base
   
     resource, id = request.path.split('/')[1,2]
     @id= id
-    @emp = Employee.find(id)  if @id.present?  
+    if resource == "employees" && id.present?
+      @emp = Employee.find(id) 
+    end
 
   end
 end
