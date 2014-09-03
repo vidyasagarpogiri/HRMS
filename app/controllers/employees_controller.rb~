@@ -17,12 +17,8 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
   
   def create
      @employee = Employee.create(params_employees)
-    if current_user.present? 
-       @user = current_user
-    else 
+  
       @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
-     
-    end
     @employee = Employee.create(params_employees)
     @employee.update(:user_id => @user.id)
     if @employee.save

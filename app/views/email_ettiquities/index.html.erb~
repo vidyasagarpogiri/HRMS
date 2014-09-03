@@ -14,7 +14,10 @@
                              <% @emails.each do |email| %>
                           <div class="row">
                                 <div class="col-lg-6">
+<% if current_user.employee.role.role_name == "Employee" %>
+																				<% else %>
                                 <%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>
+<% end %>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Date :</label>
                                             <%= email.dateofsending %>                                            
