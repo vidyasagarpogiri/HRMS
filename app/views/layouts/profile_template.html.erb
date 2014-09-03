@@ -252,10 +252,10 @@
                          </div>                      
                         </li>
                         <li>
-                           <%= link_to 'Dashboard', root_path, :class => "fa fa-dashboard fa-fw" %>
+                           <%= link_to 'Dashboard', employees_path, :class => "fa fa-dashboard fa-fw" %>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-bar-chart-o fa-fw"></i> Profile Show Case <span class="fa glyphicon-plus"></span></a>
+                            
                             <ul class="nav nav-second-level">
                                 <li>
                                     <%= link_to "Employee Details", employee_path(@id) %>
@@ -282,9 +282,11 @@
                                 <li>
                                   <%= link_to "Email Etiquette", employee_email_ettiquities_path(@id) %>
                                 </li>
+<% if current_user.employee.role.id == 2 %>
                                 <li>
                                     <%= link_to "Exit Details", exit_form_employee_path(@id) %>
                                 </li>
+<% end %>
                                 <% end %>       
                             </ul>
                          </li>
