@@ -3,3 +3,5 @@ class AddGroupIdToLeavePolicy < ActiveRecord::Migration
     add_column :leave_policies, :group_id, :integer
   end
 end
+
+

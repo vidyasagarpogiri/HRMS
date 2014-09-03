@@ -3,5 +3,7 @@
 </div>
 
 <div>
+<% if current_user.employee.role.id == 2 %>
 <%=render 'allowances/new' %>
+<% end %>
 </div>
