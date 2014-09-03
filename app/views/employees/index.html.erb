@@ -430,7 +430,7 @@
 													<td class="hidden-xs"><%= employee.designation.designation_name if employee.designation.present? %></td>
 													<td class="hidden-xs">
 													
-													<%= employee.user.email %>
+													<%= employee.user.email if employee.user.present? %>
 	 												</a></td>
 													<td class="hidden-xs"><%= employee.mobile_number %></td>
 													<td>
