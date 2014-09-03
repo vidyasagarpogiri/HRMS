@@ -1,0 +1,3 @@
+
+  $(".salary_increment-index").html("<%=j render  'salary_increments/index'  %>");
+
