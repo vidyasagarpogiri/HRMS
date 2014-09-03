@@ -4,6 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :empId
   
+  
+  def after_sign_in_path_for(resource)
+    employees_path
+  end 
+
+  def after_sign_up_path_for(resource)
+     employees_path
+  end
+  
+  
+  
+  private
   def empId
   
     resource, id = request.path.split('/')[1,2]
