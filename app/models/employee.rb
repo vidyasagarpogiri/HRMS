@@ -15,7 +15,9 @@ class Employee < ActiveRecord::Base
   has_many :promotions
   has_many :educations
   has_many :experiences
-	has_many :email_ettiquities
+	has_many :email_ettiquities, :class_name => "EmailEttiquitie"
+
+
 
   belongs_to :group
   

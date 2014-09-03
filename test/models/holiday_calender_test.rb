@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LeavePoliciesTest < ActiveSupport::TestCase
+class HolidayCalenderTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

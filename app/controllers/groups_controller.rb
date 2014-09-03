@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+    
   end
   
   def new
@@ -21,7 +22,9 @@ class GroupsController < ApplicationController
   def show
     
      @group = Group.find(params[:id])
-      
+     @leave_policy = @group.leave_policy
+     @holiday_calanders =HolidayCalender.where(:group_id => @group.id)
+     
   end
   
   private
