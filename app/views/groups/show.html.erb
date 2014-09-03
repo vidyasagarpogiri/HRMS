@@ -1,0 +1,10 @@
+<h3>Grop Details</h3>
+
+Group Name :<%= @group.group_name %>
+
+<%= link_to 'Add leave Policy For This Group', new_group_leave_policy_path(@group) %>
+<div>
+<%=render "leave_policies/index" %>
+</div>
+
+

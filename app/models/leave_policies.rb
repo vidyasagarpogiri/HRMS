@@ -1,4 +1,4 @@
 class LeavePolicies < ActiveRecord::Base
-  has_one :group
+  belongs_to :group
 
 end
