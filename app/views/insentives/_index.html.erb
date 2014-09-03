@@ -20,11 +20,10 @@
 												            <tr>               
 													            <td class="center"><%= insentive.insentive_type %></td>
 													            <td><%= insentive.value %></td>
-																			<% #if current_user.employee.role == "Employee" %>
-																				<% #else %>
+																		<% if current_user.employee.role.id == 2 %>
 													            <td><%= link_to 'edit', edit_employee_salary_insentive_path(@employee.id, @salary.id, insentive.id) , :class => "btn btn-success pull-left" %></td>
 																			<td><%= link_to 'delete', employee_salary_insentive_path(@employee.id, @salary.id, insentive.id), method: :delete , :class => "btn btn-success pull-left" %></td>
-																		<% #else %>
+																		<% end %>
 												            </tr>
 											            </tbody>
 											            <% end %>
