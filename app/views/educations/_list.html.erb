@@ -14,29 +14,9 @@
                                 <div class="col-lg-6">
                                    <% list.each do |education| %>
                                          <%= link_to 'Edit', edit_employee_education_path(@employee.id, education.id), :class => "btn btn-success pull-right" %>                                    <%= link_to 'Delete', edit_employee_education_path(@employee.id, education.id), :class => "btn btn-success pull-right" %>
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Name Of Graduation:</label>
-                                            <%= education.specilization %>                                 
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">College/University Name:</label>
-                                            <%= education.institute %>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Year of passing:</label>
-                                            <%= education.year_of_pass %>                                        
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Percentage/CGPA::</label>
-                                           <%= education.cgpa_percentage %>                                            
-                                        </div>
-                                        <br>
-                                        <ul class="navigation-btns" style="list-style: none;display:inline;">
-                                          
-                                        </ul>
+                         <h3><%= education.institute %></h3>
+                                      <h4><%= education.specilization %><% if education.specilization.present? %>-<% end %><%= education.year_of_pass %><% if education.year_of_pass.present? %>-<% end %><%= education.cgpa_percentage %><% if education.cgpa_percentage.present? %>%<% end %> </h4>
+                                       
                                   <hr>
                                    <% end %>
                                 </div>

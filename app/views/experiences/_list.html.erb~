@@ -14,24 +14,9 @@
                                 <div class="col-lg-12">
                                    <% list.each do |experience| %>
                                         
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Company Name:</label>
-                                            <label><%= experience.previous_company %></label>                                 
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Designation:</label>
-                                            <label><%= experience.last_designation %></label>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">From:</label>
-                                            <label><%= experience.from_date %> </label>                                         
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">To:</label>
-                                           <label><%= experience.to_date %></label>                                            
+                                     <h3><%= experience.last_designation %></h3>
+                                      <h4><%= experience.previous_company %></h4>
+                                      <h5><%= experience.from_date %>--<%= experience.to_date %></h5>                   
                                         </div>
                                          <ul class="navigation-btns" style="list-style: none;display:inline;">
                                         <li><%= link_to 'edit', edit_employee_experience_path(@employee.id, experience.id), :class => "btn btn-success pull-right" %></li>

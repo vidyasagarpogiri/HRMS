@@ -23,8 +23,8 @@
                                         </div>
                                        
                                        <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                           <li> <%= f.submit  'Save', :class => "btn btn-success pull-left" %></li>
-                                            <li><%= f.submit 'Save & New', :class =>"btn btn-success pull-left" %></li>
+                                           <li> <%= f.submit  'Add Bonus', :class => "btn btn-success pull-left" %></li>
+                                            <li><%= f.submit 'Reset', :class =>"btn btn-success pull-left" %></li>
                                          </ul> 
                                                     
                                     <% end %>
