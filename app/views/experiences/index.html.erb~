@@ -16,6 +16,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12"><br>
+<% if  @experinces.present? %>
                                    <% @experinces.each do |experience| %>
                                     <br>
 
@@ -38,6 +39,9 @@
                                           <hr>
                                         </ul>
                                   <% end %>
+    <% else %>
+																								<h4>No Experience Details </h4>      
+                                   <% end %>
                                
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -47,7 +51,7 @@
                                     <!--    <fieldset disabled> -->
                         
              <% else %>
-																								<h4>No Experience Details Of You</h4>      
+																								<h4>No Experience Details</h4>      
                                    <% end %>                              
               
                                     </form>

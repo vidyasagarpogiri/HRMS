@@ -19,8 +19,10 @@
                                     <form role="form">
                                     <br>
                                     <label><u>Present Address</u></label>
+<% if current_user.employee.role.id == 2 %>
                                     <%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right"%>
 																		<%= link_to "Delete", employee_address_path(@employee, @address1), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>
+<% end %>
                                     
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Address Line 1:</label>
@@ -64,8 +66,10 @@
 																			<% if @address2.present? %>
                                     <!--    <fieldset disabled> -->
                                     <label><u>Permanent Address</u></label>
+<% if current_user.employee.role.id == 2 %>
                                         <%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %>
 																				<%= link_to "Delete", employee_address_path(@employee, @address2), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>
+<% end %>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Address Line 1:</label>
                                             <%= @address2.line %>                                  

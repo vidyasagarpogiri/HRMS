@@ -5,7 +5,7 @@ class EmailEttiquitiesController < ApplicationController
 	def index
 		#raise params.inspect
 		@employee = Employee.find(params[:employee_id])
-    @emails = EmailEttiquitie.where(:employee_id => params[:employee_id])
+    @emails = @employee.email_ettiquities
   end
 
   def new
