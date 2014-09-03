@@ -30,7 +30,7 @@
 </head>
 
 <body>
-
+<div class="image">
     <div class="brand">AmzurHRM</div>
     <div class="address-bar">Admin | Leaves | Time </div>
 
@@ -81,12 +81,19 @@
                     </h2>
                     <hr>
                 </div>
+                
                 <div class="col-md-6" >
+                <% unless current_user.present? %>
                   <div class="loginbutton" style="width:250px;height:90px;background-color:#4DB870;opacity:0.7;margin-left:200px;margin-top:80px;border-radius:2px; "> 
-                     <div class="login" style="font-size:20px;padding-top:15px;margin-left:70px;"><a href="" style="text-decoration:none;color:black"><h2><strong>Login</strong></h2></a></div>
+                     <div class="login" style="font-size:20px;padding-top:15px;margin-left:70px;">
+                     
+                     <h2><strong><%= link_to "Login", user_omniauth_authorize_path(:google_oauth2), :style => "text-decoration:none;color:black" %></strong></h2>
+                  </div>   
                     
-                  </div>                    
+                  </div> 
+                   <% end %>                   
                 </div>
+               
                 <div class="col-md-6">
                     <p>AmzurHRM provides a range of features to manage the crucial organization asset - people and a perfect platform for re-engineering and aligning your HR processes along with the organizational goals.</p>
                     <p>This includes employee information management, employee Leave management, employee Time and Attendance Module  and other HR management tools.</p>
@@ -139,7 +146,7 @@
     </footer>
 
   
-
+</div>
 </body>
 
 </html>

@@ -16,8 +16,8 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
   end
   
   def create
-    #raise params.inspect
-    @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
+     @employee = Employee.create(params_employees)
+     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
     @employee = Employee.create(params_employees)
     @employee.update(:user_id => @user.id)
     if @employee.save
@@ -41,8 +41,11 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
   
   def update
 		@employee = Employee.find(params[:id])
-    @employee.update(params_employees)    
+    if @employee.update(params_employees)    
 		redirect_to @employee
+		else
+		render 'edit'
+		end
   end  
 
 	def exit_edit_form

@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901141421) do
+
+ActiveRecord::Schema.define(version: 20140903091312) do
+
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -158,7 +160,6 @@ ActiveRecord::Schema.define(version: 20140901141421) do
     t.string   "group_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "leave_policies_id"
   end
 
   create_table "holiday_calanders", force: true do |t|
@@ -206,6 +207,7 @@ ActiveRecord::Schema.define(version: 20140901141421) do
     t.float    "eligible_carry_forward_leaves", limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_id"
   end
 
   create_table "leave_types", force: true do |t|

@@ -12,9 +12,11 @@ class LeavePoliciesController < ApplicationController
  end
  
  def create
-   @group = Group.create(params[:group_name])
-   @leave_policy = LeavePolicies.create( params_leavepolicy)
-   redirect_to 
+  #raise params.inspect@group = Group.create(params[:group_name])
+   @group = Group.find(params[:group_id])
+   @leave_policy = LeavePolicies.create(params_leavepolicy)
+   @leave_policy.update(:group_id => params[:group_id])
+   redirect_to group_path(@leave_policy)
    
    
  end

@@ -215,8 +215,8 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                         <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                    
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -256,7 +256,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                         <%= link_to 'Dashboard', root_path, :class => "fa fa-dashboard fa-fw" %>
+                         <%= link_to 'Dashboard', employees_path, :class => "fa fa-dashboard fa-fw" %>
                         </li>
                         <li>
 
