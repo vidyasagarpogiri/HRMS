@@ -1,9 +1,9 @@
 
  
  <div id="page-wrapper">
-                <div class="row">
+           <div class="row">
                 <div class="col-lg-12">
-                   
+                    <h2 class="page-header">Edit Allowance</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -11,10 +11,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Add More
-                        </div>
                         <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
    
                                  <%= form_for ([@employee, @salary, @allowance]) do |f| %>
                                         
@@ -30,7 +29,8 @@
                                             
                                         </div>
                                        
-                                         <button type="submit" class="btn btn-success pull-left">Save</button>          
+                                         <!--<button type="submit" class="btn btn-success pull-left">Save</button> -->
+																					<%= f.submit 'Update', :class => "btn btn-success pull-left" %>          
                                     <% end %>
                          
                         </div>
