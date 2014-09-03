@@ -36,10 +36,11 @@
                                           <label> <%= promotion.designation.designation_name  if promotion.designation.present? %></label>                                           
                                         </div>
                                       
-                                         
+                                         <% #if current_user.employee.role == "Employee" %>
+																				<% #else %>
                                          <%= link_to 'EDIT', edit_employee_promotion_path(@employee.id, promotion.id), :class => "btn btn-success pull-right" %>
                                          <%= link_to "Delete", employee_promotion_path(@employee, promotion), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>
-                                          
+                                          <% #end %>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
  

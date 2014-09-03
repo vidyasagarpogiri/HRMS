@@ -43,7 +43,7 @@ class SalariesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @salary = Salary.find(params[:id])
     @salary.update(params_salary)
-    redirect_to employee_salary_path(@employee, @salary)
+    redirect_to employee_salaries_path(@employee)
   end
 
   def show

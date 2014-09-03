@@ -35,9 +35,13 @@
                                             <label style="font-weight:normal;">To:</label>
                                             <label><%= experience.to_date %></label>                                           
                                         </div>
-
+																				
+																					#authentication checking
+																				<% #if current_user.employee.role == "Employee" %>
+																				<% #else %>		
                                         <ul class="navigation-btns" style="list-style: none;display:inline;">
                                           <%= link_to 'Edit', edit_employee_experience_path(@employee.id, experience.id), :class => "btn btn-success pull-left" %>                                   <%= link_to "Delete", employee_experience_path(@employee, experience.id), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>
+																				<%# end %>
                                           <br>
                                           <hr>
                                         </ul>
