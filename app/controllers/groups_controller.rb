@@ -14,9 +14,14 @@ class GroupsController < ApplicationController
   
   def create
     #raise params.inspect 
+    @group = Group.create(group_params)
+    redirect_to  @group
+  end
+  
+  def show
     
-    @group = Group.create(params[:group_name])
-    redirect_to  new_group_leave_policy_path(@group)
+     @group = Group.find(params[:id])
+      
   end
   
   private
