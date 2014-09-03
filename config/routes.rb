@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   
 resources :groups do
        resources :leave_policies
-       resources :holiday_calander
+       resources :holiday_calenders
      end
 
   resources :employees do 

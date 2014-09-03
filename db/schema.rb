@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903091312) do
+ActiveRecord::Schema.define(version: 20140903113156) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 20140903091312) do
     t.datetime "updated_at"
   end
 
-  create_table "holiday_calanders", force: true do |t|
+  create_table "holiday_calenders", force: true do |t|
     t.string   "date"
     t.string   "event"
     t.boolean  "mandatory_or_optional"
