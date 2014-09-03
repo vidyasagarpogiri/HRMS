@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 			get 'exit_edit_form'
 			post 'update_exit_form'
 			get 'show_exit'
+			get 'profile'
 		end
   
   resources :educations do

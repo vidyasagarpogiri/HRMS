@@ -20,8 +20,8 @@
                           <label>Increment Value :</label><br>
                            <%= f.text_field :increment_value, :class => "form-control" %>
                             </div>
-                                      
-                               <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
+                               <%= f.submit 'Update', :class => "btn btn-success pull-left" %>       
+                              <!-- <button type="submit" class="btn btn-success pull-left">Save & Continue</button> -->
                                                     
                                     <% end %>
                          

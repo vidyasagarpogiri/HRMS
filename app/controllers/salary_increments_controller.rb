@@ -1,5 +1,5 @@
 class SalaryIncrementsController < ApplicationController
-
+  layout "profile_template", only: [:index, :new, :create, :edit, :update]
   def index
   @salary = Salary.find(params[:salary_id])
   @salary_increment = @salary.salary_increments
@@ -34,8 +34,16 @@ class SalaryIncrementsController < ApplicationController
     @salary = Salary.find(params[:salary_id])
     @salary_increment = SalaryIncrement.find(params[:id])
     @salary_increment.update(params.require(:salary_increment).permit(:increment_date, :increment_value))
-    redirect_to employee_salary_path(@employee, @salary)
+    redirect_to employee_salaries_path(@employee)
   end
+
+	def destroy	
+		@employee= Employee.find(params[:employee_id])
+    @salary = Salary.find(params[:salary_id])
+    @salary_increment = SalaryIncrement.find(params[:id])
+		@salary_increment.destroy
+		redirect_to employee_salaries_path(@employee)
+	end
   
    
  private
