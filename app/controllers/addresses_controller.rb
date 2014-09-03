@@ -34,7 +34,13 @@ class AddressesController < ApplicationController
 		@address1 = Address.create(:line => params[:line3], :line1 => params[:line4], :city => params[:city1], :state => params[:state1], :country => params[:country1], :zipcode => params[:zipcode1])
 #raise @address1.inspect
 	@employee.update(:permanent_address_id => @address1.id, :present_address_id => @address.id )
-   redirect_to employee_addresses_path
+	if @address.save
+	   @address1.save
+    redirect_to employee_addresses_path
+    else
+      render 'new'
+    end
+   
     end
 
   

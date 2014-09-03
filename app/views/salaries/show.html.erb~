@@ -31,8 +31,9 @@
                                           </div>
                                           
                                           <ul class="navigation-btns" style="list-style: none;display:inline;">
-                                            <li><button type="submit" class="btn btn-success pull-left">Edit</button></li>
-                                            <li><button type="submit" class="btn btn-success pull-left">Next</button></li>
+																						<%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left" %>
+                                        <!--    <li><button type="submit" class="btn btn-success pull-left">Edit</button></li>
+                                            <li><button type="submit" class="btn btn-success pull-left">Next</button></li> -->
                                           </ul>
                                                              
                                     </form>

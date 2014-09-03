@@ -36,12 +36,12 @@
                       <tr>               
                         <td class="center"><%= @salary.ctc_fixed %></td>
                         <td><%= @salary.basic_salary %></td>
-                        <td><button type="submit" class="btn btn-success pull-left">Edit</button></td>
+                        <td><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left" %></td>
                       </tr>
                     </tbody>
                   </table>                                           
                   <!-- /.col-lg-6 (nested) -->
-                <% else %>
+              <% else %>
                   <%= render 'salaries/form' %>
                 <% end %>
               </div> <!-- /.salaries -->
