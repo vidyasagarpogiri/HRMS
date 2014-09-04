@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904094524) do
+ActiveRecord::Schema.define(version: 20140904135745) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -116,7 +116,6 @@ ActiveRecord::Schema.define(version: 20140904094524) do
     t.integer  "user_id"
     t.integer  "salary_id"
     t.integer  "group_id"
-    t.integer  "leave_id"
     t.string   "avatar"
   end
 
@@ -158,15 +157,6 @@ ActiveRecord::Schema.define(version: 20140904094524) do
     t.string   "group_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "holiday_calanders", force: true do |t|
-    t.string   "date"
-    t.string   "event"
-    t.boolean  "mandatory_or_optional"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "group_id"
   end
 
   create_table "holiday_calenders", force: true do |t|
@@ -241,6 +231,7 @@ ActiveRecord::Schema.define(version: 20140904094524) do
     t.float    "sl_applied",                 limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "promotions", force: true do |t|

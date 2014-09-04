@@ -30,9 +30,7 @@
                                             <label style="font-weight:normal;">Father Name:</label>
                                             <label><%= @employee.father_name %></label>                                         
                                         </div>
-                                        
-                                   
-                                                                                
+                                      
                                         <div class="form-group">
                                             
                                             <label style="font-weight:normal;">Blood Group:</label>
@@ -40,20 +38,17 @@
                                             <label><%= @employee.blood_group.blood_group_name if @employee.blood_group.present? %></label>
 
                                         </div>
-                                        <hr>
+
                                          <div class="form-group">
                                             <label style="font-weight:normal;">Role:</label>
                                             <label><%= @employee.role.role_name if @employee.role.present? %></label>
 
-                                        </div> 
-                                        
+                                        </div>                                         
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Department:</label>
                                             <label><%= @employee.department.department_name if @employee.department.present? %></label>
-
                                         </div> 
-                                         
-                                        
+
                                        <br>
                                        
                                       
