@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904060528) do
+ActiveRecord::Schema.define(version: 20140904094524) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -230,7 +230,6 @@ ActiveRecord::Schema.define(version: 20140904060528) do
     t.float    "pl_carry_forward_prev_year", limit: 24
     t.float    "pl_applied",                 limit: 24
     t.float    "sl_applied",                 limit: 24
-    t.float    "lop_applied",                limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
   end
