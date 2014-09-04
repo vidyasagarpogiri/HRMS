@@ -1,0 +1,201 @@
+
+
+                <ul class="nav nav-pills">
+                   <li>
+                      <a href="#"> Employee Management</a>
+                   </li>
+                   <li>
+                      <a href="#"> Leave management</a>
+                   </li>
+                   <li>
+                      <a href="#"> Card Scanner</a>
+                   </li>
+                </ul>
+
+              <div class="home" >
+                <ul>
+                   <li>
+                      <a href="/employees"> Dashboard</a>
+                   </li>
+                </ul>
+              </div>  
+        <div id="page-wrapper" >
+            <div class="row">
+                <div class="col-lg-12">
+                <h2 class="page-header">My Profile</h2>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                       <div class="row">
+                          <div class="col-lg-12">
+                                <div  class="profile-pic"> 
+                                     <a href="changeprofilepic.html" >
+                                     <img src="http://www.cliptheme.com/demo/rapido/assets/images/avatar-1.jpg" alt="Profile pic" width="250px;" height="250px;" padding-left="10px;"></a>
+                                 </div>  
+                                     <div class="sidepanel" style="">
+                                        <div class="form-group">
+                                          <h3><label><%= @employee.full_name%></label></h3>                                  
+                                        </div>
+                                        
+
+                                        <div class="form-group">
+                                          <label class="normalfont"><%= @employee.designation.designation_name %> | <%= @employee.department.department_name %></label> 
+                                                                      
+                                        </div>
+                                        <div class="form-group">
+                                          <label>3 <label class="normalfont"> yrs Experiance</label> </label>
+                                        </div>  
+                                        
+                                      </div>                 
+                                   </div>
+                                      <!-- /.col-lg-6 (nested) -->
+                               </div>
+                                  <!-- /.row (nested) -->
+                           </div>
+                              <!--  /.panel -->
+                       </div>
+                          <!-- .col-lg-12 -->
+                                              
+                              <div class="col-lg-12">
+                                    <div class="col-lg-6">                                            
+                                        <div class="form-group">
+                                            <div class="headings" style="">
+                                              <i style="" class="fa fa-graduation-cap"></i>
+                                              <label><u>Education Details:</u></label><br>
+                                              </div>
+                                              
+                                              	<% @education_details.each do |education|%>
+																						
+                                           <label class="normalfont"><%= education.specilization %> from <%= education.institute %></label><br> 
+                                            <label class="normalfont">Releaved on&nbsp </label><label><%= education.year_of_pass%>&nbsp</label> <label class="normalfont">with &nbsp</label><%= education.cgpa_percentage %>%</label> <hr><br>
+                                            <% end %>
+                                        </div>
+
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">                                    
+                                       <div class="form-group">
+                                            <div class="headings" >
+                                              <i  class="fa fa-mobile"></i>
+                                              <label><u>Contact Details:</u></label><br>
+                                            </div>
+                                            <% if @address.present? %>
+                                            <label class="normalfont"><%= @address.line %></label> <br>
+                                            <label class="normalfont"><%= @address.line1%></label> <br>
+                                            <label class="normalfont"><%= @address.city %></label> <br>
+																						<label class="normalfont"><%= @address.state %>|<%= @address.country %></label> <br>
+                                            <i  class="fa fa-envelope"></i>
+                                            <label class="normalfont"><%= current_user.email%></label> <br>
+                                            <i  class="fa fa-mobile-phone"></i>
+                                             <label class="normalfont"><%= @employee.mobile_number %></label> 
+                                             <% end %>
+                                        </div>
+                                </div>
+                              
+                               </div>
+                                <div class="col-lg-12">
+                                <div class="col-lg-6">                                    
+                                       <div class="form-group">
+                                            <div class="headings" >
+                                              <i class="fa fa-tags"></i>
+                                              <label><u>Experiance Details:</u></label><br>
+                                            </div>
+                                            
+                                            	<% @experience_details.each do |experience| %>																											
+
+                                            <label class="normalfont"><%= experience.previous_company %></label> <br>
+                                            <label class="normalfont"><%= experience.last_designation %></label><br>
+                                            <label class="normalfont">from &nbsp </label><label> <%= experience.from_date %> &nbsp</label><label class="normalfont"> to&nbsp </label><label> <%= experience.to_date %> </label><hr><br><br>
+ 	<% end %>
+                                            
+
+                                        </div>
+                                        
+                                </div>
+                                  <div class="col-lg-4">                                    
+                                       <div class="form-group">
+                                            <div class="headings" >
+                                              <i class="fa fa-star"></i>
+                                              <label><u>Additional Info:<u></label><br>
+                                            </div>
+                                           <label class="normalfont">Blood Group: <%= @employee.blood_group.blood_group_name %> </label> <br>
+                                            <label class="normalfont">Date Of joining: <%= @employee.date_of_join %></label><br> 
+                                            <label class="normalfont">Date Of Birth: <%= @employee.date_of_birth %></label><br> 
+                                                                      
+                                        </div>
+                                </div>
+                                </div>
+                                <div class="col-lg-12">
+                                <div class="col-lg-6">                                    
+                                       <div class="form-group">
+                                            <div class="headings" >
+                                              <i class="fa fa-rupee"></i>
+                                              <label ><u>Salary Details:</u></label><br>
+                                            </div>
+                                            <div class="col-lg-3"> 
+                                              <label>Basic</label><br>
+                                              <label class="normalfont">CTC Fixed : 12,00,000</label> <br>
+                                              <label class="normalfont">Basic salary : 90,000</label><br>
+                                              <label class="normalfont">Name of Allowance : 10,000</label><br>
+                                              <label class="normalfont">Name of Allowance : 20,000</label><br><br>
+                                            </div>
+                                            <div class="col-lg-3"> 
+                                              <label>Variable pay</label><br>
+                                              <label class="normalfont">Bonus : 10%</label> <br>
+                                              <label class="normalfont">Bonus : 15%</label><br> <br>                                            
+                                            </div>
+                                            <div class="col-lg-3"> 
+                                              <label>Increments</label><br>
+                                              <label class="normalfont">Increment Date : 15%</label><br>
+                                              <label class="normalfont">Increment Date : 15%</label><br><br> 
+                                            </div>
+                                        </div>
+                                </div>
+                              <div class="col-lg-3">                                    
+                                       <div class="form-group">
+                                            <div class="headings" >
+                                           <% @promotions.each do |promotion| %>
+                                              <i class="fa fa-star"></i>
+                                              <label><u>Promotions:</u></label><br>
+                                            </div>
+
+                                            <label class="normalfont">date of Promotion : <%= promotion.date_of_promotion %> </label> <br>
+                                            <label class="normalfont">Designation : <%= promotion.designation.designation_name %></label><br> 
+                                              
+<% end %>
+                                                                           
+                                        </div>
+                                </div>
+                               </div>
+                                <div class="col-lg-12">
+                                                                   
+                                       <div class="form-group">
+                                            <div class="headings" >
+                                              <i class="fa fa-star"></i>
+                                              <label><u>Email Etiquette:</u></label><br>
+                                            </div>
+                                            <label class="normalfont">date of email : 12-3-2011 </label> <br>
+                                            <label class="normalfont">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+</label><br> 
+                                                                      
+                                        </div>
+                                </div>
+                              
+                                
+                                 </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+        <!-- /#page-wrapper -->
+
+

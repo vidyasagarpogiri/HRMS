@@ -4,7 +4,14 @@
   <%=render 'salary_increments/new' %><hr>
 </div>
 <% if current_user.employee.role.id == 2 %>
-<div class=""> <label style="font-weight:normal;padding:20px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to 'New Increment', "#", :id=>"new_increment_form"  %></label></div>
+
+                        <div class="hide-button"> 
+                          <label style="font-weight:normal;" class = "pull-right">
+                            <i class="fa fa-plus "></i>
+                              <%= link_to 'New Increment', "#", :id=>"new_increment_form"  %>
+                           </label>
+                         </div>
+
 
 <% end %>
 
@@ -24,7 +31,7 @@
 <% if current_user.employee.role.id == 2 %>
 													            <td> 
 													             <ul class="navigation-btns" style="list-style: none;display:inline;">
-													            <li><%= link_to 'Edit', edit_employee_salary_salary_increment_path(@employee.id, @salary.id, salary_increment.id), :class => "btn btn-success pull-left" %></li>
+													            <li><%= link_to 'Edit', edit_employee_salary_salary_increment_path(@employee.id, @salary.id, salary_increment.id),:class => "btn btn-success pull-left" %></li>
 																			<li><%= link_to 'Delete', employee_salary_salary_increment_path(@employee.id, @salary.id, salary_increment.id), method: :delete , :class => "btn btn-danger pull-left" %></li></ul></td>
 <% end %>
 												            </tr>
