@@ -19,6 +19,8 @@ class OmniauthCallbacksController < ApplicationController
       
         session["oauth"] = request.env["omniauth.auth"]["info"]
         flash.notice = "Signed in!"
+          
+        Employee.first.update(:user_id => @user.id, :role_id => 2) if !@user.employee.present?
         sign_in_and_redirect @user
       else
         session["devise.user_attributes"] = user.attributes

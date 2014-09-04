@@ -18,10 +18,12 @@ Rails.application.routes.draw do
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
   end
   
-resources :groups do
+   resources :groups do
        resources :leave_policies
        resources :holiday_calenders
      end
+    
+    resources :leave_types 
 
   resources :employees do 
     resources :leaves
@@ -59,7 +61,7 @@ end
   get 'profile/:id' => "profile#edit",  as: :profile
   get 'new_profile' => "profile#edit"
 
-
+  get 'myprofile' => "employees#myprofile", as: :myprofile
   
 
 
