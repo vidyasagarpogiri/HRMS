@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140904133749) do
+=======
+ActiveRecord::Schema.define(version: 20140904135745) do
+>>>>>>> a3602ba9f327d9745cf6d9de9699dbede9d9a9fa
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -116,7 +120,6 @@ ActiveRecord::Schema.define(version: 20140904133749) do
     t.integer  "user_id"
     t.integer  "salary_id"
     t.integer  "group_id"
-    t.integer  "leave_id"
     t.string   "avatar"
   end
 
@@ -232,8 +235,12 @@ ActiveRecord::Schema.define(version: 20140904133749) do
     t.float    "sl_applied",                 limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.string   "employee_id"
     t.string   "string"
+=======
+    t.integer  "employee_id"
+>>>>>>> a3602ba9f327d9745cf6d9de9699dbede9d9a9fa
   end
 
   create_table "promotions", force: true do |t|
