@@ -1,7 +1,7 @@
 class LeaveHistoriesController < ApplicationController
 
   def index
-    @leavehistories = LeaveHistoties.all
+    @leave_histories = LeaveHistoties.all
   end
   
   def new

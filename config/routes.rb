@@ -33,6 +33,7 @@ resources :groups do
 			post 'update_exit_form'
 			get 'show_exit'
 			get 'profile'
+			get 'myprofile'
 		end
   
   resources :educations do

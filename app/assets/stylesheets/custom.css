@@ -93,12 +93,19 @@ display:inline;
 }
 
 
-.home{
-margin-left:1600px;
+.home {
+
+margin-left:1500px;
 margin-top:-20px;
+}
+.home ul li a:hover{
 text-decoration:none;
+}
+.home ul{
 list-style:none;
 }
+
+
 
 .sidepanel{
 margin-left:300px;
@@ -115,6 +122,8 @@ font-size:20px;
 padding-right:25px;
 }
 
-
+.normalfont{
+font-weight:normal
+}
 
 
