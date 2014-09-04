@@ -11,12 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 
-ActiveRecord::Schema.define(version: 20140903091312) do
-=======
-ActiveRecord::Schema.define(version: 20140903113156) do
->>>>>>> 6c2ea314381d6bf5739dd505e80f641589fa6f77
+ActiveRecord::Schema.define(version: 20140904135745) do
 
 
   create_table "addresses", force: true do |t|
@@ -122,7 +118,6 @@ ActiveRecord::Schema.define(version: 20140903113156) do
     t.integer  "user_id"
     t.integer  "salary_id"
     t.integer  "group_id"
-    t.integer  "leave_id"
     t.string   "avatar"
   end
 
@@ -193,6 +188,18 @@ ActiveRecord::Schema.define(version: 20140903113156) do
 
   add_index "job_locations", ["address_id"], name: "index_job_locations_on_address_id", using: :btree
 
+  create_table "leave_histories", force: true do |t|
+    t.string   "from_date"
+    t.string   "to_date"
+    t.integer  "days"
+    t.text     "reason"
+    t.text     "feedback"
+    t.integer  "leave_type_id"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "leave_histoties", force: true do |t|
     t.string   "from_date"
     t.string   "to_date"
@@ -206,8 +213,8 @@ ActiveRecord::Schema.define(version: 20140903113156) do
   end
 
   create_table "leave_policies", force: true do |t|
-    t.float    "pl_per_year",                   limit: 24
-    t.float    "sl_per_year",                   limit: 24
+    t.float    "pl_this_year",                  limit: 24
+    t.float    "sl_this_year",                  limit: 24
     t.float    "eligible_carry_forward_leaves", limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -216,7 +223,6 @@ ActiveRecord::Schema.define(version: 20140903113156) do
 
   create_table "leave_types", force: true do |t|
     t.string   "type_name"
-    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -225,9 +231,10 @@ ActiveRecord::Schema.define(version: 20140903113156) do
     t.float    "pl_carry_forward_prev_year", limit: 24
     t.float    "pl_applied",                 limit: 24
     t.float    "sl_applied",                 limit: 24
-    t.float    "lop_applied",                limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
+
   end
 
   create_table "promotions", force: true do |t|
