@@ -230,7 +230,8 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                         <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+                        
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -238,7 +239,7 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-
+<% if current_user.employee.present? && current_user.employee.role==2  %>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -296,6 +297,7 @@
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
+            <% end %>
             <!-- /.navbar-static-side -->
         </nav>
 <%= yield %>
