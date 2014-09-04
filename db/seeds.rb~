@@ -115,14 +115,14 @@ Employee.create(:id => 4,:employee_id => 4, :title=> "Mr.", :first_name=>"ravi",
 
 
 
-Education.create(:id=>1, :specilization=>"B.Tech", :institute=> "AU",:year_of_admission=> "2006-10-09", year_of_pass: "2010-06-08",:cgpa_percentage=> "78.50", :Employee_id=>1)
-Education.create(:id=>5, :specilization=>"M.Tech", :institute=> "JNTU",:year_of_admission=> "2010-09-09", year_of_pass: "2012-05-04",:cgpa_percentage=> "81.20", :Employee_id=>1)
+Education.create(:id=>1, :specilization=>"B.Tech", :institute=> "AU", year_of_pass: "2007",:cgpa_percentage=> "78.50", :Employee_id=>1)
+Education.create(:id=>5, :specilization=>"M.Tech", :institute=> "JNTU", year_of_pass: "2012",:cgpa_percentage=> "81.20", :Employee_id=>1)
 
-Education.create(:id=>2, :specilization=>"MBA", :institute => "GITAM",:year_of_admission=> "2006-10-09", year_of_pass: "2010-06-08",:cgpa_percentage=> "91.50", :Employee_id=>2)
+Education.create(:id=>2, :specilization=>"MBA", :institute => "GITAM",year_of_pass: "2010",:cgpa_percentage=> "91.50", :Employee_id=>2)
 
-Education.create(:id=>3, :specilization=>"MCA", :institute=> "AU",:year_of_admission=> "2006-10-09", year_of_pass: "2010-06-08",:cgpa_percentage=> "82.50", :Employee_id=>3)
+Education.create(:id=>3, :specilization=>"MCA", :institute=> "AU", year_of_pass: "2010",:cgpa_percentage=> "82.50", :Employee_id=>3)
 
-Education.create(:id=>4, :specilization=>"M.Tech", :institute=> "AU",:year_of_admission=> "2006-10-09", year_of_pass: "2010-06-08",:cgpa_percentage=> "76.50", :Employee_id=>4)
+Education.create(:id=>4, :specilization=>"M.Tech", :institute=> "AU",year_of_pass: "2010",:cgpa_percentage=> "76.50", :Employee_id=>4)
 
 
 Experience.create(:id=>1,:previous_company=>"Microsoft",:last_designation=>"Software Engineer",:from_date=>"2012-10-11",:to_date=>"2013-06-12",:employee_id=> 1)
