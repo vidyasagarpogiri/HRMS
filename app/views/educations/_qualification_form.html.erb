@@ -15,17 +15,11 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                    <div class="errors">
-</div>
+                                   </div>
                                     <%= form_for ([@employee, @education]), :remote => true do |f| %>
                                         <div class="form-group">
-<<<<<<< HEAD
-                                            <label>Name Of Graduation</label>                                          
-                                            <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation" %>                
-=======
-                                            <label class="required" >Name Of Graduation</label>
-                                          
-                                            <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation" %>                                            
->>>>>>> 08c97b046a36e25666fda94dd1083dad5a58dc5b
+                                            <label class="required" >Name Of Graduation</label>                                          
+                                            <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation" %>       
                                         </div>
                                         
                                         <div class="form-group">
@@ -34,20 +28,14 @@
                                         </div>
                                         
                                         <div class="form-group">
-<<<<<<< HEAD
-                                            <label>Year of Passing:</label>
-                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control">                 
-=======
                                             <label class="required" >Year of Passing</label>
-                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control" %>                                       
->>>>>>> 08c97b046a36e25666fda94dd1083dad5a58dc5b
+                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control" %> 
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="required" >Percentage/CGPA</label>
                                             <%= f.text_field :cgpa_percentage, :id => "disabledSelect", :class => "form-control", :placeholder => "Percentage/CGPA" %>
-                                        </div>
-                                        
+                                        </div>                                        
                                         <br>
                                         <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                           <li><%= f.submit  'save', :class => "btn btn-success pull-left" %></li>
