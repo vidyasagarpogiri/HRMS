@@ -1,32 +1,48 @@
 class LeaveTypesController < ApplicationController
 
   def index
-    @leavetypes = LeaveTypes.all
+    @leave_types = LeaveType.all
   end
   
   def new
-    @leavetype = LeaveTypes.new
-    @group = Group.find(params[:group_id])
+    @leave_type = LeaveType.new
   end
   
   def create
-    @group = Group.find(params[:group_id])
-    @leavetype = LeaveTypes.create(params.require[:leave_types].permit(:type_name))
+  #raise params.inspect
+    @leave_type = LeaveType.create(parama_leave_types)
+    @leave_type.save
+    redirect_to leave_types_path
   end
   
   def edit
-    @group = Group.find(params[:group_id])
-    @leavetype = LeaveTypes.find(params[:id])
+   #raise params.inspect
+    @leave_type = LeaveType.find(params[:id])
   end
   
   def update
-    @group = Group.find(params[:group_id])
-    @leavetype = LeaveTypes.find(params[:id])
-    @leavetype.update(params.require[:leave_types].permit(:type_name))
+   #raise params.inspect
+    @leave_type = LeaveType.find(params[:id])
+    @leave_type.update(parama_leave_types)
+    redirect_to leave_types_path
   end
   
   def show
     
+  end
+  
+  def destroy
+  #raise params.inspect
+  @leave_type = LeaveType.find(params[:id])
+  @leave_type.destroy
+  redirect_to leave_types_path
+  
+  end
+  
+  private
+  
+  def parama_leave_types
+    params.require(:leave_type).permit(:type_name)
   end
   
 end

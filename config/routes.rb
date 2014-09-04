@@ -18,10 +18,12 @@ Rails.application.routes.draw do
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
   end
   
-resources :groups do
+   resources :groups do
        resources :leave_policies
        resources :holiday_calenders
      end
+    
+    resources :leave_types 
 
   resources :employees do 
     resources :leaves
