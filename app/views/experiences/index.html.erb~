@@ -22,12 +22,10 @@
                                     <br>
                                       <h3><%= experience.last_designation %></h3>
                                       <h4><%= experience.previous_company %></h4
-                                 
-                                      
-                                        
 
                                       <h5><%= format_exp_date(experience.from_date) %>--<%= format_exp_date(experience.to_date) %>( <%= difference_in_months(experience.from_date,experience.to_date )%>)</h5>																		
 <% if current_user.employee.role.id == 2 %>
+
                                         <ul class="navigation-btns" style="list-style: none;display:inline;">
                                           <li><%= link_to 'Edit', edit_employee_experience_path(@employee.id, experience.id), :class => "btn btn-success pull-left" %></li>                        
                                           <li><%= link_to "Delete", employee_experience_path(@employee, experience.id), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-danger pull-right" %></li>

@@ -215,7 +215,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                         <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                         <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
                     
                     </ul>
                     <!-- /.dropdown-user -->
@@ -238,6 +238,13 @@
                    </li>
                    
                 </ul>
+                 <div class="home" >
+                <ul>
+                   <li>
+                      <a href="/myprofile">My profile</a>
+                   </li>
+                </ul>
+              </div>  
               </div>  
            </div>
 
@@ -259,10 +266,10 @@
                          <%= link_to 'Dashboard', employees_path, :class => "fa fa-dashboard fa-fw" %>
                         </li>
                         <li>
-
+<% if current_user.employee.present? &&  current_user.employee.role_id==2 %>
 																	<%= link_to ' Create New Profile ', new_profile_path, :class => "fa fa-plus" %>                            
 																
-
+<% end %>
                            <!-- <ul class="nav nav-second-level">
                                 <li>
                                     <a href="forms.html">Employee Details</a>
