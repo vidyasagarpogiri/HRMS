@@ -2,10 +2,10 @@ class EmployeesController < ApplicationController
 
 layout "dashboard", only: [:index]
 
-layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :update_exit_form, :show_exit, :myprofile, :profile]
+layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :update_exit_form, :show_exit, :myprofile, :profile, :new, :update]
 
   def index
-    @employees =  Employee.all
+    @employees =  Employee.all 
   
   end
 
