@@ -16,9 +16,14 @@
                                  <%= form_for ([@employee,@promotion]) do |p| %>
                                         
                                         <div class="form-group col-lg-6">
+<<<<<<< HEAD
+                                            <label>Date of Promotion</label>
+                                            <%= p.text_field :date_of_promotion, :id => "disabledSelect", :class => "form-control datepicker" %>    
+=======
                                             <label class="required" >Date of Promotion</label>
                                               
                                             <%= p.text_field :date_of_promotion, :id => "disabledSelect", :class => "form-control datepicker" %>                 
+>>>>>>> 08c97b046a36e25666fda94dd1083dad5a58dc5b
                                         </div>
                                         
                                         <div class="form-group col-lg-6">
