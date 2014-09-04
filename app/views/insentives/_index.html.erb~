@@ -1,5 +1,4 @@
  <br>                             
-<h4>Increments</h4><hr>
 <div class="new_insentives">
   <%=render 'insentives/new' %><hr>
 </div>
