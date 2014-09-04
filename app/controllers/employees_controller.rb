@@ -75,6 +75,17 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
 	  @employee = current_user.employee
 	  @emp = @employee
 	  @id = @employee.id
+		@education_details = @employee.educations
+		@experience_details = @employee.experiences
+		@address = Address.find(@employee.present_address_id)
+		@promotions = @employee.promotions
+		@salary = @employee.salary
+	if @salary.present?
+		@allowances = @salary.allowances
+		@insentives = @salary.insentives
+		@increments = @salary.salary_increments
+end
+		 @emails = @employee.email_ettiquities
 	end
 	
   private
