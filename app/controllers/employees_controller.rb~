@@ -20,13 +20,13 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
   def create
      @employee = Employee.create(params_employees)
      @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
-    @employee = Employee.create(params_employees)
     @employee.update(:user_id => @user.id)
-    if @employee.save
-    redirect_to @employee
-    else
+    if @employee.errors.present?
       render 'new'
+    else
+      redirect_to @employee
     end
+    
   end
 
   def show
@@ -79,7 +79,7 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
 	  @id = @employee.id
 		@education_details = @employee.educations
 		@experience_details = @employee.experiences
-		@address = Address.find(@employee.present_address_id)
+		@address = Address.find(@employee.present_address_id) if @employee.present_address_id.present?
 		@promotions = @employee.promotions
 		@salary = @employee.salary
 	if @salary.present?
