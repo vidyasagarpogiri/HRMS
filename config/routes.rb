@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :employees do 
     resources :leaves
-
+    resources :leave_histories
      
 		member do
 			get 'exit_form'

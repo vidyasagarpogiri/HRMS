@@ -17,9 +17,13 @@ class EmailEttiquitiesController < ApplicationController
   def create
 		@employee = Employee.find(params[:employee_id])
     @email = EmailEttiquitie.create(:ettiquite => params[:email_ettiquitie][:ettiquite], :dateofsending=>params[:email_ettiquitie][:dateofsending],:employee_id => @employee.id)
+    if @email.save
 		redirect_to employee_email_ettiquities_path(@employee)
+		else 
+		render 'new'
   end
-
+  end
+  
   def show
     @email= EmailEttiquitie.find(params[:id])
   end
