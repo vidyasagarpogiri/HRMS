@@ -35,7 +35,7 @@
                                         <% if current_user.employee.role.id == 2 %>
 =======
                                       <h5><%= format_exp_date(experience.from_date) %>--<%= format_exp_date(experience.to_date) %></h5>
-                                      <%= difference_in_months(experience.from_date,experience.to_date )%>
+                                     
                              <% if current_user.employee.role.id == 2 %>
 >>>>>>> 08c97b046a36e25666fda94dd1083dad5a58dc5b
 																			

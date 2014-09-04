@@ -27,7 +27,10 @@ Promotion.destroy_all
 EmailEttiquitie.destroy_all
 Salary.destroy_all
  
+ @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
+ @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
 
+  
 Address.create(:id=>1,:line1 => "BAY STREET",:line => "GUL END",:city => "Sydney",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
 Address.create(:id=>2,:line1 => "street 1",:line => "near KFC",:city => "Vizag",:state=>"Andhra",:country=>"India",:zipcode=>"530003")
 Address.create(:id=>3,:line1 => "BEACH ROAD",:line => "OPP:IMAX THEATRE",:city => "Avalon",:state=>"California",:country=>"Los Angels",:zipcode=>" 90704")
@@ -85,16 +88,16 @@ Employee.create(:id => 1,:employee_id => 1, :title=> "Mr.", :first_name=>"Meher"
 :image_url=> "image",
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
-:grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>3,:avatar=>"406929_2668579486846_928068538_n.jpg")
+:grade_id=>Grades[rand(Grades.length)],:role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>3,:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user.id)
 
 Employee.create(:id => 2,:employee_id => 2, :title=> "Mr.", :first_name=>"bala",:last_name=>"nemani",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"13",
 :status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",
  :image_url=> "image",
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
-:grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>3,:avatar=>"best-employee-md.png")
+:grade_id=>Grades[rand(Grades.length)],:role_id=>1,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>3,:avatar=>"best-employee-md.png", :user_id => @user1.id)
 
  
 <<<<<<< HEAD
