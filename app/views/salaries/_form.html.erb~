@@ -3,12 +3,12 @@
                                   <%= form_for ([@employee, @salary]) do |f| %>
                                        <br>
                                         <div class="form-group">
-                                            <label>CTC Fixed P.A</label>
+                                            <label class="required" >CTC Fixed P.A </label>
                                             <%= f.text_field :ctc_fixed,  :class=>"form-control",  :placeholder=>"Enter CTA P.A" %>                                          
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Basic Salary:</label><br>
+                                            <label class="required" >Basic Salary</label><br>
                                              <%= f.text_field :basic_salary, :class=>"form-control" , :placeholder=>"Enter Basic Salary" %>
                                         </div>
                                         <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
