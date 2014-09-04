@@ -13,7 +13,7 @@
                         <div class="panel-body">
                         <div class="row">
                                 <div class="col-lg-6">
-   
+                                <%= @promotion.errors.full_messages.first if @promotion.errors.any? %>
                                  <%= form_for ([@employee,@promotion]) do |p| %>
                                         
                                         <div class="form-group">

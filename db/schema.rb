@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904050939) do
+ActiveRecord::Schema.define(version: 20140904060528) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -186,6 +186,18 @@ ActiveRecord::Schema.define(version: 20140904050939) do
   end
 
   add_index "job_locations", ["address_id"], name: "index_job_locations_on_address_id", using: :btree
+
+  create_table "leave_histories", force: true do |t|
+    t.string   "from_date"
+    t.string   "to_date"
+    t.integer  "days"
+    t.text     "reason"
+    t.text     "feedback"
+    t.integer  "leave_type_id"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "leave_histoties", force: true do |t|
     t.string   "from_date"
