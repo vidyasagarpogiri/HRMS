@@ -1,6 +1,6 @@
 
 
-   
+
                                  <%= form_for ([@employee, @salary, @salary_increment]), :remote => true do |f| %>
                                         
                                         <div class="form-group col-lg-6">
