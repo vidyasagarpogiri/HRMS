@@ -60,42 +60,43 @@
                           <!-- .col-lg-12 -->
                                               
                               <div class="col-lg-12">
-                                    <div class="col-lg-4">                                            
+                                    <div class="col-lg-6">                                            
                                         <div class="form-group">
                                             <div class="headings" style="">
                                               <i class="fa fa-graduation-cap"></i>
                                               <label>Education Details:</label><br><br>
                                               </div>
-                                            <label style="font-weight:normal;">Information Technology </label><br> 
-                                            <label style="font-weight:normal;">JNTUK </label> 
+																						<% @employee.educations.each do |ed| %>
+                                            <label style="font-weight:normal;"><%= ed.specilization %></label><br> 
+                                            <label style="font-weight:normal;"><%= ed.institute %> </label> 
+																						<% end %>
                                         </div>
 
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-4">                                    
+                         <!--       <div class="col-lg-4">                                    
                                        <div class="form-group">
                                             <div class="headings" >
                                               <i  class="fa fa-mobile"></i>
                                               <label>Contact Details:</label><br><br>
                                             </div>
                                             <i  class="fa fa-envelope"></i>
-                                            <label style="font-weight:normal;">mail@amzur.com</label> <br>
+                                            <label style="font-weight:normal;"></label> <br>
                                             <i  class="fa fa-mobile-phone"></i>
                                              <label style="font-weight:normal;">2223331114 </label> 
                                         </div>
-                                </div>
-                                <div class="col-lg-4">                                    
+                                </div> -->
+                                <div class="col-lg-6">                                    
                                        <div class="form-group">
                                             <div class="headings" >
                                               <i class="fa fa-tags"></i>
                                               <label>Experiance Details:</label><br><br>
                                               </div>
-                                            <label style="font-weight:normal;">TCS</label> <br>
-                                            <label style="font-weight:normal;">Associate</label><br><br>
-                                             <label style="font-weight:normal;">Wipro</label> <br>
-                                            <label style="font-weight:normal;">Software developer</label><br><br>
-                                             <label style="font-weight:normal;">Accenture</label> <br>
-                                            <label style="font-weight:normal;">Team Lead</label><br><br> 
+<% @employee.experiences.each do |e| %>
+                                            <label style="font-weight:normal;"><%= e.previous_company %></label> <br>
+                                            <label style="font-weight:normal;"><%= e.last_designation %></label><br><br>
+                                         
+<% end %>
                                         </div>
                                 </div>
                                 </div>
