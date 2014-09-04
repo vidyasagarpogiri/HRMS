@@ -17,12 +17,12 @@
 
                                     <%= form_for @employee, :url =>  update_exit_form_employee_path(@employee), method: :post  do |e| %>
                                         <div class="form-group">
-                                            <label>Date of Exit</label>
+                                            <label class="required" >Date of Exit</label>
                                             <%= date_field(:employee, :date_of_exit, :class=>"form-control") %>
                                                  
                                         </div>
                                         <div class="form-group">
-                                            <label>Status of F & F</label>
+                                            <label class="required" >Status of F & F</label>
                                             <%= e.collection_select :ff_status_id, FfStatus.all, :id, :status_name, { :prompt => "Please Select" }, { :class => "department form-control" } %>
                                                                           
                                         </div>             

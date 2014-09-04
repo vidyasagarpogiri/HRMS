@@ -27,12 +27,17 @@ class SalariesController < ApplicationController
   
   def create
   #raise params.inspect
-  @salary = Salary.create(params_salary)
-  @salary.save
+  @salary = Salary.new(params_salary)
+	
+
   @employee = Employee.find(params[:employee_id])
+	if @salary.save
   @employee.update(:salary_id => @salary.id)
   redirect_to  employee_salaries_path(@employee)
+	else
+		render 'new'
   end
+end
 
   def edit
     @employee = Employee.find(params[:employee_id])
@@ -57,6 +62,14 @@ class SalariesController < ApplicationController
     @allowances = @salary.allowances
     @insentives =  @salary.insentives
     @salary_increments =@salary.salary_increments
+  end
+
+	def destroy
+	 @salary =  Salary.find(params[:id])
+	 @employee= Employee.find(params[:employee_id])
+		@salary.destroy
+		redirect_to employee_salaries_path(@employee)
+		
   end
   
   

@@ -15,22 +15,22 @@
                                    <%= form_for ([@employee, @experience]) do |f| %>
                                         
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Company Name:</label>
+                                            <label class="required" style="font-weight:normal;">Company Name</label>
                                             <%= f.text_field :previous_company, :class => "form-control"%>                               
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Designation:</label>
+                                            <label class="required" style="font-weight:normal;">Designation</label>
                                             <%= f.text_field :last_designation, :class => "form-control"%>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">From:</label>
+                                            <label class="required" style="font-weight:normal;">From</label>
                                             <%= f.text_field :from_date, :class => "form-control datepicker"%>                                        
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">To:</label>
+                                            <label class="required" style="font-weight:normal;">To</label>
                                             <%= f.text_field :to_date, :class => "form-control datepicker"%>                                            
                                         </div>
                                         <br>

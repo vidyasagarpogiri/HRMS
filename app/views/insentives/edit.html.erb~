@@ -15,13 +15,13 @@
                                  <%= form_for([@employee, @salary, @insentive]) do |f| %>
                                         
                                         <div class="form-group">
-                                            <label>Bonus name :</label>
+                                            <label class="required" >Bonus name </label>
                                             
                                             <%= f.text_field :insentive_type,  :class => "form-control" %>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>percentage/value :</label><br>
+                                            <label class="required" >percentage/value </label><br>
                                             <%= f.text_field :value, :class => "form-control",  :placeholder=>"Enter Bonus value" %>
                                             
                                         </div>

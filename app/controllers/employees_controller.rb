@@ -2,7 +2,7 @@ class EmployeesController < ApplicationController
 
 layout "dashboard", only: [:index, :profile]
 
-layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :update_exit_form, :show_exit]
+layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :update_exit_form, :show_exit, :myprofile]
 
   def index
     @employees =  Employee.all
@@ -69,6 +69,12 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
 		
 		@employee = Employee.find(params[:id])
 			
+	end
+	
+	def myprofile
+	  @employee = current_user.employee
+	  @emp = @employee
+	  @id = @employee.id
 	end
 	
   private

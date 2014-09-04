@@ -1,7 +1,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header">Employee Details</h2>
+                    <h2 class="page-header"><%= @employee.full_name %></h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -9,17 +9,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
+<% if current_user.employee.role.id == 2 %>
                     <%= link_to "Edit", edit_employee_path(@employee), :class=>"btn btn-success pull-right" %>
-                        <div class="panel-heading">
-                            Basic Form Elements
-                        </div>
+<% end %>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                   
+                                   <br>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Employee Id:</label>
-                                            <label><%= @employee.id %></label>                                  
+                                            <label><%= @employee.employee_id %></label>                                  
                                         </div>
                                         
                                          <div class="form-group">
@@ -28,7 +27,7 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Father name:</label>
+                                            <label style="font-weight:normal;">Father Name:</label>
                                             <label><%= @employee.father_name %></label>                                         
                                         </div>
                                         
@@ -36,27 +35,25 @@
                                                                                 
                                         <div class="form-group">
                                             
-                                            <label style="font-weight:normal;">Blood Group</label>
+                                            <label style="font-weight:normal;">Blood Group:</label>
 
                                             <label><%= @employee.blood_group.blood_group_name if @employee.blood_group.present? %></label>
 
                                         </div>
+                                        <hr>
+                                         <div class="form-group">
+                                            <label style="font-weight:normal;">Role:</label>
+                                            <label><%= @employee.role.role_name if @employee.role.present? %></label>
+
+                                        </div> 
                                         
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Department</label>
+                                            <label style="font-weight:normal;">Department:</label>
                                             <label><%= @employee.department.department_name if @employee.department.present? %></label>
 
                                         </div> 
                                          
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Job Location:</label>
-                                            <label>Vishakaptnam</label>                                            
-                                        </div>
-                                            
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Upload Image:</label>
-                                            <label>sam.jpg</label>
-                                        </div>
+                                        
                                        <br>
                                        
                                       
@@ -67,22 +64,21 @@
                                     <form role="form">
 
                                         
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Employee name:</label>
-                                            <label><%= @employee.first_name %></label>                                           
-                                        </div>
+                                       
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Date Of Birth:</label>
                                             <label><%= @employee.date_of_birth %></label>
                                         </div>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Mobile No:</label>
+                                            <label style="font-weight:normal;">Mobile Number:</label>
                                             <label><%= @employee.mobile_number %></label>                                           
                                         </div>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Gender:</label>
                                             <label><%= @employee.gender %></label>
                                         </div>
+                                      <br>
+                                       <hr>
                                         <div class="form-group">
 
                                             <label style="font-weight:normal;">Designation:</label>
@@ -90,7 +86,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Grade/Level</label>
+                                            <label style="font-weight:normal;">Grade/Level:</label>
                                             <label><%= @employee.grade.value if @employee.grade.present?  %></label>
 
 
@@ -111,4 +107,7 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
+
+
+
 
