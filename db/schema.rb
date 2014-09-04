@@ -160,15 +160,6 @@ ActiveRecord::Schema.define(version: 20140904060528) do
     t.datetime "updated_at"
   end
 
-  create_table "holiday_calanders", force: true do |t|
-    t.string   "date"
-    t.string   "event"
-    t.boolean  "mandatory_or_optional"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "group_id"
-  end
-
   create_table "holiday_calenders", force: true do |t|
     t.string   "date"
     t.string   "event"
