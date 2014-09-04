@@ -28,7 +28,7 @@
                                       <h3><%= experience.last_designation %></h3>
                                       <h4><%= experience.previous_company %></h4>
                                       <h5><%= format_exp_date(experience.from_date) %>--<%= format_exp_date(experience.to_date) %></h5>
-                                      <%= difference_in_months(experience.from_date,experience.to_date )%>
+                                     
                              <% if current_user.employee.role.id == 2 %>
 																			
 
