@@ -1,4 +1,4 @@
-
+<% if current_user.employee.present? %>
   <div id="wrapper">
 
         <!-- Navigation -->
@@ -445,7 +445,7 @@
 									</div>
 									
 								</div>
-                  
+        
             </div>
             <!-- /.row -->
         </div>
@@ -453,3 +453,7 @@
 
     </div>
     <!-- /#wrapper -->
+         <% else %>
+<h4> Please Contact HR for your details</h4>
+<% end %> 
+
