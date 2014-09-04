@@ -18,23 +18,23 @@
 </div>
                                     <%= form_for ([@employee, @education]), :remote => true do |f| %>
                                         <div class="form-group">
-                                            <label>Name Of Graduation</label>
+                                            <label class="required" >Name Of Graduation</label>
                                           
                                             <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation" %>                                            
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>College/University Name:</label><br>
+                                            <label class="required" >College/University Name</label><br>
                                             <%= f.text_field :institute, :class => "form-control", :placeholder => "Enter College/University Name" %>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Year of Passing:</label>
+                                            <label class="required" >Year of Passing</label>
                                             <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control" %>                                       
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Percentage/CGPA:</label>
+                                            <label class="required" >Percentage/CGPA</label>
                                             <%= f.text_field :cgpa_percentage, :id => "disabledSelect", :class => "form-control", :placeholder => "Percentage/CGPA" %>
                                         </div>
                                         

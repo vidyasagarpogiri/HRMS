@@ -17,23 +17,23 @@
 </div>
                                    <%= form_for ([@employee, @experience]), :remote => true do |f| %>
                                         <div class="form-group">
-                                            <label>Company Name</label>
+                                            <label class="required">Company Name</label>
                                             <%= f.text_field :previous_company, :class => "form-control", :placeholder =>"Enter Company Name" %>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Designation:</label><br>
+                                            <label class="required">Designation</label><br>
                                             <%= f.text_field :last_designation, :class => "form-control", :placeholder =>"Enter Designation" %>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>From:</label>
+                                            <label class="required">From</label>
                                             <%= f.text_field :from_date, :class => "form-control datepicker" %>                    
                                         </div>
                                         
                                         
                                         <div class="form-group">
-                                            <label>To:</label>
+                                            <label class="required">To</label>
                                             <%= f.text_field :to_date, :class=>"form-control datepicker" %>
                                                                 
                                         </div>
