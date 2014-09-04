@@ -39,12 +39,12 @@
                         <td class="center"><%= @salary.ctc_fixed %></td>
                         <td><%= @salary.basic_salary %></td>
 
-                        <td><% if current_user.employee.role.id == 2 %>   <ul class="navigation-btns" style="list-style: none;display:inline;">
-                        
-                        
-<li><%= link_to 'EDIT', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left" %></li><li>
-<%= link_to 'DELETE', employee_salary_path(@employee, @salary), method: :delete, :class=>"btn btn-danger pull-right" %></li><% end %></ul></td>
-
+                        <td><% if current_user.employee.role.id == 2 %>   
+                        <ul class="navigation-btns" style="list-style: none;display:inline;">                                           
+                          <li><%= link_to 'EDIT', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left" %></li>
+                          <li><%= link_to 'DELETE', employee_salary_path(@employee, @salary), method: :delete, :class=>"btn btn-danger pull-right" %></li>
+                          <% end %>
+                          </ul></td>
                       </tr>
                     </tbody>
                   </table>                                           

@@ -19,7 +19,7 @@
                                 <div class="col-lg-6">
 
 <% if current_user.employee.role.id == 2 %>
-                                <%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>
+                                <%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-danger pull-right" %>
 
 <% end %>
                                         <div class="form-group">
