@@ -28,13 +28,14 @@ Rails.application.routes.draw do
   resources :employees do 
     resources :leaves
     resources :leave_histories
-     
+
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'
 			post 'update_exit_form'
 			get 'show_exit'
 			get 'profile'
+			get 'myprofile'
 		end
   
   resources :educations do
