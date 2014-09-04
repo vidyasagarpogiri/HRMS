@@ -12,13 +12,13 @@
                                  <%= form_for ([@employee, @salary, @allowance]), :remote => true do |f| %>
                                         
                                         <div class="form-group col-lg-6">
-                                            <label>Allowance name:</label>
+                                            <label class="required" >Allowance name</label>
                                             <%= f.text_field :allowance_name,  :class => "form-control" %>
                                             
                                         </div>
                                         
                                         <div class="form-group col-lg-6">
-                                            <label>Percentage/value :</label><br>
+                                            <label class="required" >Percentage/value </label><br>
                                             <%= f.text_field :value, :class => "form-control",  :placeholder=>"Enter Allowance value" %>
                                             
                                         </div>

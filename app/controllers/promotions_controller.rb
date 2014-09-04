@@ -14,9 +14,11 @@ class PromotionsController < ApplicationController
     
 	def create
 		#raise params.inspect
-    @promotion = Promotion.create(:date_of_promotion=> params[:promotion][:date_of_promotion], :employee_id=>params[:employee_id],
+		@employee = Employee.find(params[:employee_id])    
+		@promotion = Promotion.create(:date_of_promotion=> params[:promotion][:date_of_promotion], :employee_id=>params[:employee_id],
 		:designation_id=>params[:promotion][:designation_id])                      
     @promotion.save
+		@employee.update(:designation_id => @promotion.designation_id)
     redirect_to employee_promotions_path
   end
   
