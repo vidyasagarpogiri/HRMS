@@ -1,16 +1,16 @@
 
 
-   
+
                                  <%= form_for ([@employee, @salary, @salary_increment]), :remote => true do |f| %>
                                         
                                         <div class="form-group col-lg-6">
-                                            <label>Date of Increment :</label>
+                                            <label class="required" >Date of Increment </label>
                                             <%= f.text_field :increment_date,  :class => "form-control datepicker"%>
                                            
                                         </div>
                                         
                                         <div class="form-group col-lg-6">
-                                            <label>Increment Value :</label><br>
+                                            <label class="required" >Increment Value </label><br>
                                             <%= f.text_field :increment_value, :class => "form-control",  :placeholder=>"Enter increment value" %>
                                             
                                         </div>

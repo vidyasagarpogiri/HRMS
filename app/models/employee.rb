@@ -25,12 +25,11 @@ class Employee < ActiveRecord::Base
   has_many :departments, :through => :reporting_managers
  	
  	
- 	has_many :leave_history
- 	
- 	has_many :leave_types
- 	
+ 	 	
+ 	 	
  	belongs_to :leave
-
+  
+  has_many :leave_histories
 
 
 
@@ -46,6 +45,11 @@ class Employee < ActiveRecord::Base
 	validates :blood_group_id, presence: true
 	validates :grade_id, presence: true
 	validates :date_of_join, presence: true
+	
+	
+	
+	
+	
   
 
 

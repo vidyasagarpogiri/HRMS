@@ -17,38 +17,12 @@ class EducationsController < ApplicationController
   
   def create
   
-    #raise params[:employee_id].inspect
-    #country_id = if params[:new_country].present?
-    #                @country = Country.new(:country_name => params[:new_country])
-    #               @country.save
-    #              @country.id
-    #              else
-    #                params[:ed_country]
-    #              end
-    #state_id = if params[:new_state].present?
-    #                @state = State.new(:state_name => params[:new_state], :country_id => country_id)
-    #                @state.save
-    #                @state.id
-    #              else
-    #                params[:ed_state]
-    #              end
-    #city_id = if params[:new_city].present?
-    #                @city = City.new(:city_name => params[:new_city], :state_id => state_id)
-    #                @city.save
-    #                @city.id
-    #              else
-    #                params[:ed_city]
-    #              end
-    #@qualification_id = if params[:qualification].present?
-    #                      @qualification = Qualification.new(:qualification_name => params[:qualification])
-    #                      @qualification.save
-    #                      @qualification.id
-    #                    else
-    #                      params[:qulification_id]
-    #                    end
-    @new_education = Education.new(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(Employee_id: params[:employee_id]))
-    @new_education.save
-     
+
+               
+    @new_education = Education.create(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(Employee_id: params[:employee_id]))
+    @errors = @new_education.errors.full_messages
+    # raise @errors.inspect
+
   
     
     #for new form 

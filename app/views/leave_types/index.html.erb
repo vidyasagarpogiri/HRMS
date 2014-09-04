@@ -13,14 +13,17 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Basic Form Elements
+                            <%= link_to "Add New Leave Type",  new_leave_type_path, :class=>"btn btn-success pull-right" %>                                                                          
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <% @leaves.each do |leave| %>
+                                    <% @leave_types.each do |leave| %>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Leave Type</label>
-                                            <%= leave.:type_name %>                                 
+                                            <label style="font-weight:normal;">Leave Type :</label>
+                                            <label><%= leave.type_name %> </label>
+                                        <%= link_to "Edit",  edit_leave_type_path(leave), :class=>"btn btn-success pull-right" %> 
+                                        <%= link_to "Delete",  leave, method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success pull-right" %>                                                                                                        
                                         </div>
                                         
                                         

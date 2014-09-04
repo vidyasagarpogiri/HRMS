@@ -1,3 +1,5 @@
+
+
 <div id="page-wrapper">
                 <div class="row">
                 <div class="col-lg-12">
@@ -12,25 +14,37 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <%= @education.errors.full_messages.first if @education.errors.any? %>
+                                   <div class="errors">
+</div>
                                     <%= form_for ([@employee, @education]), :remote => true do |f| %>
                                         <div class="form-group">
+<<<<<<< HEAD
                                             <label>Name Of Graduation</label>                                          
                                             <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation" %>                
+=======
+                                            <label class="required" >Name Of Graduation</label>
+                                          
+                                            <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation" %>                                            
+>>>>>>> 08c97b046a36e25666fda94dd1083dad5a58dc5b
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>College/University Name:</label><br>
+                                            <label class="required" >College/University Name</label><br>
                                             <%= f.text_field :institute, :class => "form-control", :placeholder => "Enter College/University Name" %>
                                         </div>
                                         
                                         <div class="form-group">
+<<<<<<< HEAD
                                             <label>Year of Passing:</label>
                                             <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control">                 
+=======
+                                            <label class="required" >Year of Passing</label>
+                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control" %>                                       
+>>>>>>> 08c97b046a36e25666fda94dd1083dad5a58dc5b
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Percentage/CGPA:</label>
+                                            <label class="required" >Percentage/CGPA</label>
                                             <%= f.text_field :cgpa_percentage, :id => "disabledSelect", :class => "form-control", :placeholder => "Percentage/CGPA" %>
                                         </div>
                                         
