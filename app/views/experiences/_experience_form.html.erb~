@@ -13,6 +13,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
+<div class="errors">
+</div>
                                    <%= form_for ([@employee, @experience]), :remote => true do |f| %>
                                         <div class="form-group">
                                             <label>Company Name</label>

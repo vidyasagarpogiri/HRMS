@@ -1,5 +1,7 @@
 
 
+<%= @salary.errors.full_messages.first if @salary.errors.any? %>
+
                                   <%= form_for ([@employee, @salary]) do |f| %>
                                        <br>
                                         <div class="form-group">
@@ -15,3 +17,4 @@
                                                     
                                   <% end %>
       
+									

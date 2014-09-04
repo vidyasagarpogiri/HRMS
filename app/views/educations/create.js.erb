@@ -3,7 +3,7 @@
 		  <% @errors.each do|error| %>
 			 $(".errors").append("<%=j render('/shared/alert_error', message: error) %>");
 			<% end %>
-<% end %>
+<% else %>
 <% if @form_type == "save" %>
  $(".education-index").html("<%=j render  'educations/list', :list => @list %>");
  $(".new-edcuation").hide(); 
@@ -14,4 +14,4 @@
 <% end %>
 
 
-
+<% end %>
