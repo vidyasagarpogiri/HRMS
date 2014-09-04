@@ -77,10 +77,10 @@ Grade.create(:id=>3,:value=>"Jr.HR")
 Grade.create(:id=>4,:value=>"Sr.HR")
 Grades = Grade.all.pluck(:id)
 
-Role.create(:id=>1,:role_name=>"employee")
-Role.create(:id=>2,:role_name=>"hr")
-Role.create(:id=>3,:role_name=>"tech lead")
-Role.create(:id=>4,:role_name=>"manager")
+Role.create(:id=>1,:role_name=>"Employee")
+Role.create(:id=>2,:role_name=>"HR")
+Role.create(:id=>3,:role_name=>"Tech Lead")
+Role.create(:id=>4,:role_name=>"Manager")
 Roles = Role.all.pluck(:id)
 
 
@@ -102,7 +102,10 @@ Employee.create(:id => 2,:employee_id => 2, :title=> "Mr.", :first_name=>"bala",
 
 
 Employee.create(:id => 3,:employee_id => 3, :title=> "Mrs.", :first_name=>"priyanka",:last_name=>"muddana",:date_of_birth=>"18-12-1990", :gender=>"female", :marital_status=>"single", :total_experience=>"1",
+
 Employee.create(:id => 3,:employee_id => 3, :title=> "Miss.", :first_name=>"priyanka",:last_name=>"muddana",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",
+:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",
+
  :image_url=> "image",
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],

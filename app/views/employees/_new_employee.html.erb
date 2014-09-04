@@ -59,7 +59,10 @@
                                             <label class="required">Department</label><br>
                                             <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "department, form-control", :id => "disabledSelect" } %>
                                         </div> 
-                                         
+                                         <div class="form-group">
+                                            <label class="required">Group</label><br>
+                                            <%= f.collection_select :group_id, Group.all, :id, :group_name, { :prompt => "Please Select" }, { :class => "group, form-control", :id => "disabledSelect" } %>
+                                        </div>
                                         <div class="form-group">
                                             <label class="required">Job Location</label>
                                             <input class="form-control" placeholder="Enter Job Location">                                            
