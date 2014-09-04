@@ -26,6 +26,7 @@ Experience.destroy_all
 Promotion.destroy_all
 EmailEttiquitie.destroy_all
 Salary.destroy_all
+LeaveType.destroy_all
  
  @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
  @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
@@ -157,3 +158,10 @@ Salary.create(:id=>1,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00")
 Salary.create(:id=>2,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00")
 Salary.create(:id=>3,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00")
 Salary.create(:id=>4,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00")
+
+LeaveType.create(:id=>1,:type_name=>"Sick Leave")
+LeaveType.create(:id=>2,:type_name=>"Floating Leave")
+LeaveType.create(:id=>3,:type_name=>"Casual Leave")
+LeaveType.create(:id=>4,:type_name=>"Carry Forward Leave")
+
+
