@@ -22,12 +22,13 @@ Rails.application.routes.draw do
    
    resources :roles
    resources :departments
-   resources :designations do
-   collection do
-    match "designations/change_designation" => "designations#change_designation", via: :get
-    match "designations/update_designation" => "designations#update_designation", via: :post
-   end
-   end
+   
+  resources :designations do 
+    member do
+      get "/add_employee" => "designations#add_employee"
+    end  
+  end
+   
    resources :grades
    
    resources :groups do
