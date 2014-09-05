@@ -1,0 +1,11 @@
+<h3 class="title">Show Designation</h3><br><hr>
+<p><b>Designation Name:</b><%= @designation.designation_name %></p></br>
+<%= link_to "Edit", edit_designation_path(@designation) %>&nbsp;&nbsp;
+<%= link_to "Show All", designations_path %>&nbsp;&nbsp;
+<%= link_to "Back", designations_path %>&nbsp;&nbsp;
+<hr>
+<h3>Employees under this Designation </h3><hr>
+<% @employees.each do |employee| %>
+Employee Name: <%= link_to employee.first_name, employee_path(employee) %><br><br>
+<%# link_to 'Back', designations_path %>
+<% end %>

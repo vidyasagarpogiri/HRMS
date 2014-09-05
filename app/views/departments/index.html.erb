@@ -1,0 +1,10 @@
+<h3 class="title">All Departments </h3><br><hr>
+&nbsp;&nbsp;<%= link_to "New Department", new_department_path %><hr>
+<% @departments.each do |department| %>
+<b><%= department.department_name %></b><br>
+<%= link_to "Edit",edit_department_path(department.id) %>&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Show",department_path(department.id) %> &nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Destroy",department_path(department.id), method: :delete, data: {confirm: "Are You sure?"} %> <hr>
+<% end %>  <br>
+
+

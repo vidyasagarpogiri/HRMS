@@ -1,0 +1,12 @@
+<h3 class="title">Show Grade</h3><br><hr>
+<p><b>Grade Name:</b><%= @grade.value %></p></br>
+<%= link_to "Edit", edit_grade_path(@grade) %>&nbsp;&nbsp;
+<%= link_to "Show All", grades_path %>&nbsp;&nbsp;
+<%= link_to "Back", grades_path %>&nbsp;&nbsp;
+
+<h3>Employees under this Grade </h3><hr>
+<% @employees.each do |employee| %>
+Employee Name: <%= link_to employee.first_name, employee_path(employee) %><br><br>
+<%# link_to 'Back', grades_path %>
+<% end %>
+

@@ -1,0 +1,10 @@
+<h3 class="title">All Designations </h3><br><hr>
+&nbsp;&nbsp;<%= link_to "New Designation", new_designation_path %><hr>
+<% @designations.each do |designation| %>
+<b><%= designation.designation_name %></b><br>
+<%= link_to "Edit",edit_designation_path(designation.id) %>&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Show",designation_path(designation.id) %> &nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Destroy",designation_path(designation.id), method: :delete, data: {confirm: "Are You sure?"} %> <hr>
+<% end %>  <br>
+
+

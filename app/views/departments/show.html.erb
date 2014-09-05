@@ -1,0 +1,14 @@
+<h3 class="title">Show Department</h3><br><hr>
+<p><b>Department Name:</b><%= @department.department_name %></p></br>
+<%= link_to "Edit", edit_department_path(@department) %>&nbsp;&nbsp;
+<%= link_to "Show All", departments_path %>&nbsp;&nbsp;
+<%= link_to "Back", departments_path %>&nbsp;&nbsp;
+<hr>
+
+<h3>Employees under this Department </h3><hr>
+<% @employees.each do |employee| %>
+Employee Name: <%= link_to employee.first_name, employee_path(employee) %>
+<%# link_to 'Back', departments_path %>
+<% end %>
+
+

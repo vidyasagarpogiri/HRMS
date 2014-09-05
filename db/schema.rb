@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904135745) do
+ActiveRecord::Schema.define(version: 20140905090245) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -196,18 +196,7 @@ ActiveRecord::Schema.define(version: 20140904135745) do
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "leave_histoties", force: true do |t|
-    t.string   "from_date"
-    t.string   "to_date"
-    t.float    "days",          limit: 24
-    t.text     "reason"
-    t.string   "feedback"
-    t.integer  "leave_type_id"
-    t.integer  "employee_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "status"
   end
 
   create_table "leave_policies", force: true do |t|
@@ -256,6 +245,7 @@ ActiveRecord::Schema.define(version: 20140904135745) do
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_id"
   end
 
   create_table "role_previliges", force: true do |t|

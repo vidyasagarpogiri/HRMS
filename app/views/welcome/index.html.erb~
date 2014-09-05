@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>About - Business Casual - Start Bootstrap Theme</title>
+    <title>AmzurHRM-landing page</title>
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <%= javascript_include_tag 'application' %>
