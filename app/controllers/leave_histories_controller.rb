@@ -1,15 +1,17 @@
 class LeaveHistoriesController < ApplicationController
+ 	
 
-  def index
-    #raise params.inspect
 
-   @employee = Employee.find(params[:employee_id])
-   #raise @employee.inspect
-   @leave_history = LeaveHistory.where(:employee_id => @employee.id)
-  #raise @leave_history.inspect 
-  end
+	def index
+		
+		@employee = Employee.find(params[:employee_id])
 
-  
+		@leaves = @employee.leave_histories
+
+	end
+
+
+
   def new
 
     @employee = Employee.find(params[:employee_id])
@@ -28,7 +30,7 @@ class LeaveHistoriesController < ApplicationController
    @employee = Employee.find(params[:employee_id])
    @leave_history = LeaveHistory.create(params_leave_history)
    @leave_history.employee_id = params[:employee_id]
-   @leave_history.save
+   @leave_history.update(:status => "hold")
    redirect_to employee_leave_histories_path
   end
   
@@ -48,18 +50,20 @@ class LeaveHistoriesController < ApplicationController
   end
   
   
-  def hr_leave_index
+  def applied_leaves
 		#@employee = Employee.find(params[:employee_id])
 		@leave_histories = LeaveHistory.all
 		#raise @leave_histories.inspect
 	end
 	
-	def 
+
 	
 	def reported_leaves
+	
 		@group = current_user.employee.group
+				
+	@employees = @group.employees	
 		
-	@employees = @group.employees			
 	end
 
 

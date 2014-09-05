@@ -1,1 +1,34 @@
-hai
+
+	<table border=1>
+
+		<tr>
+				<th>From</th>
+				<th>To</th>
+				<th>Leave Type</th>
+				<th>Reason</th>
+				<th>Total Days</th>
+		</tr>
+		<tr>
+	<% @leave_histories.each do |f| %>
+
+		<td><%= f.from_date %></td>
+                                      
+    <td><%= f.to_date %></td>
+                                          
+    <td> <%= f.leave_type.type_name if f.leave_type.present? %></td>
+                                  
+                                      
+                                           
+     <td><%= f.reason %></td>
+			
+
+                                
+                                        
+                                    
+                                           
+    <td><%= f.days %></td>
+</tr>
+                                    
+   
+<% end %>
+	  </table>
