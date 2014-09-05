@@ -66,9 +66,9 @@
                                               <i class="fa fa-graduation-cap"></i>
                                               <label>Education Details:</label><br><br>
                                               </div>
-																						<% @employee.educations.each do |ed| %>
-                                            <label style="font-weight:normal;"><%= ed.specilization %></label><br> 
-                                            <label style="font-weight:normal;"><%= ed.institute %> </label> <br>
+																						<% @employee.educations.each do |education| %>
+                                            <h3><%= education.institute %></h3>
+                           <h4><%= education.specilization %>-<%= education.year_of_pass %>-<%= education.cgpa_percentage %>%</h4> <hr>
 																						<% end %>
                                         </div>
 
@@ -93,8 +93,11 @@
                                               <label>Experiance Details:</label><br><br>
                                               </div>
 <% @employee.experiences.each do |e| %>
-                                            <label style="font-weight:normal;"><%= e.previous_company %></label> <br>
-                                            <label style="font-weight:normal;"><%= e.last_designation %></label><br><br>
+
+ <h3><%= e.last_designation %></h3>
+                                      <h4><%= e.previous_company %></h4
+                                        <h5><%= format_exp_date(e.from_date) %>--<%= format_exp_date(e.to_date) %>( <%= difference_in_months(e.from_date,e.to_date )%>)</h5>		<hr>
+                                            
                                          
 <% end %>
                                         </div>
