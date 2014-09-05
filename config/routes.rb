@@ -21,14 +21,19 @@ Rails.application.routes.draw do
    resources :groups do
        resources :leave_policies
        resources :holiday_calenders
+		
      end
     
     resources :leave_types 
 
-  resources :employees do 
-    resources :leaves
-    resources :leave_histories
+ 
+get 'reported_leaves' => "leave_histories#reported_leaves"
+get 'applied_leaves' => "leave_histories#applied_leaves"
 
+ resources :employees do 
+    resources :leaves
+    resources :leave_histories 
+	
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'
@@ -77,7 +82,12 @@ end
       
     end
   end
-
+  resources :leave_histories do
+			collection do
+	
+					get 'hr_leave_index'
+					end
+			end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

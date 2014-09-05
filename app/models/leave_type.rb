@@ -1,3 +1,3 @@
 class LeaveType < ActiveRecord::Base
-    belongs_to :leave_history
+    has_many :leave_histories
 end
