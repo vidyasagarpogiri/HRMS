@@ -1,5 +1,62 @@
-<% @employees.each do |emp| %>
-	<% emp.leave_histories do |leave| %>
-		
-	<% end %>
-<% end %>
+
+ <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Apply Leave</h2>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Manager View
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <table class="table table-striped table-hover" id="sample-table-2">
+											                  <thead>											      
+												                  <tr>
+													                  <th class="center">Employee</th>
+													                  <th>Reason </th>
+													                  <th>Leave Type</th>	
+													                  <th>Number of Days </th>	
+													                  <th>Date</th>
+													                  <th>Status</th>
+													                  <th colspan=2 >Action</th>
+													                  										      		
+												                  </tr>
+											                  </thead>											                  
+											                   <% @employees.each do |emp| %>
+	                                       <% emp.leave_histories.each do |f| %>
+											                  <tbody>
+												                  <tr>               
+													                  <td class="center"><%= emp.find(f.employee_id).full_name%></td>
+													                  <td> <%= f.reason %> </td>
+													                  <td> <%= f.leave_type.type_name if f.leave_type.present? %> </td>
+													                  <td> <%= f.days %> </td>
+													                  <td> <%= f.from_date %> - <%= f.to_date %>  </td>
+													                  <td> <%= f.status %> </td>
+													                  <td> <%= link_to 'Accept', :class => "btn btn-success " %></td>
+													                  <td> <%= link_to 'Reject', :class => "btn btn-danger " %></td>
+												                  </tr>
+											                  </tbody>
+											                  <% end %>
+											                  <% end %>
+									                  </table>              
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->

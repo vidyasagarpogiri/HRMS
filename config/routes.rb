@@ -22,7 +22,12 @@ Rails.application.routes.draw do
    
    resources :roles
    resources :departments
-   resources :designations
+   resources :designations do
+   collection do
+    match "designations/change_designation" => "designations#change_designation", via: :get
+    match "designations/update_designation" => "designations#update_designation", via: :post
+   end
+   end
    resources :grades
  
    resources :groups, :except => [:update] do
@@ -40,7 +45,7 @@ Rails.application.routes.draw do
  
 get 'reported_leaves' => "leave_histories#reported_leaves"
 get 'applied_leaves' => "leave_histories#applied_leaves"
-
+#get 'leaves' => "leave_histories#index"
  resources :employees do 
     resources :leaves
     resources :leave_histories 
@@ -93,12 +98,10 @@ end
       
     end
   end
-  resources :leave_histories do
-			collection do
-	
-					get 'hr_leave_index'
-					end
-			end
+   
+  #get 'change_designation' => "designations#change_designation"
+  
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
