@@ -5,7 +5,8 @@
 <label>Reporting Manager :<%= @employee.full_name %></label><br>
 
 <%= link_to 'Add leave Policy For This Group', new_group_leave_policy_path(@group) %><br>
-<%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %>
+<%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %><br>
+<%= link_to 'Add Employees To This Group',  add_employee_group_path(@group) %>
 <div>
 <%=render "leave_policies/index" %>
 </div>

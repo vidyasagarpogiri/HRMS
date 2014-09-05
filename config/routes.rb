@@ -24,11 +24,15 @@ Rails.application.routes.draw do
    resources :departments
    resources :designations
    resources :grades
-   
-   resources :groups do
+ 
+   resources :groups, :except => [:update] do
        resources :leave_policies
        resources :holiday_calenders
-		
+       member do
+        get 'add_employee'
+        post 'update_add_employee'
+       end
+		   
      end
     
     resources :leave_types 
