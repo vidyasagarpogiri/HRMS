@@ -42,6 +42,7 @@
                                          <ul class="navigation-btns" style="list-style: none;display:inline;">
                                            <li> <%= f.submit  'Save', :class => "btn btn-success pull-left" %></li>
                                             <li><%= f.submit 'Save & New', :class =>"btn btn-success pull-left" %></li>
+                                            	<li><%= link_to 'Cancel', employee_experiences_path(@employee), :class=>"btn btn-danger btn btn-success pull-right" %></li>
                                          </ul>   
                                                     
                                     <% end %>
