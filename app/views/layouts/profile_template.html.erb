@@ -266,6 +266,7 @@
                          <div  class="profile-pic"> 
                             <h4><center> Employee Pic </center></h4>
                             <% if @emp.avatar_url.present? %>
+
                             <a href="changeprofilepic.html" >
                               <%= image_tag(@emp.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
                             </a>
@@ -274,6 +275,7 @@
                               <img src="/assets/employee-icon.jpg" alt="hii" style="width:250px;height=250px;padding-left=10px;" ></img>
                             </a>
                             <% end %>
+
                          </div>                      
                         </li>
                         <li>

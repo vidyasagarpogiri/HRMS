@@ -1,0 +1,8 @@
+<%= form_for(@grade) do |grade| %>
+
+
+  <%= grade.label :title, "Grade Name" %> 
+  <%= grade.text_field :value %><br>
+
+  <%= grade.submit "Submit"%> 
+<% end %>

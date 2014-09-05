@@ -1,0 +1,8 @@
+<%= form_for(@designation) do |des| %>
+
+
+  <%= des.label :title, "Designation Name" %> 
+  <%= des.text_field :designation_name %><br>
+
+  <%= des.submit "Submit"%> 
+<% end %>

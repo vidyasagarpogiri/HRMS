@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+
   #devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,18 +19,28 @@ Rails.application.routes.draw do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
   end
-  
+   
+   resources :roles
+   resources :departments
+   resources :designations
+   resources :grades
+   
    resources :groups do
        resources :leave_policies
        resources :holiday_calenders
+		
      end
     
     resources :leave_types 
 
-  resources :employees do 
-    resources :leaves
-    resources :leave_histories
+ 
+get 'reported_leaves' => "leave_histories#reported_leaves"
+get 'applied_leaves' => "leave_histories#applied_leaves"
 
+ resources :employees do 
+    resources :leaves
+    resources :leave_histories 
+	
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'
@@ -77,7 +89,12 @@ end
       
     end
   end
-
+  resources :leave_histories do
+			collection do
+	
+					get 'hr_leave_index'
+					end
+			end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

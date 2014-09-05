@@ -1,0 +1,10 @@
+<h3 class="title">All Roles </h3><br><hr>
+&nbsp;&nbsp;<%= link_to "New Role", new_role_path %><hr>
+<% @roles.each do |role| %>
+<b><%= role.role_name %></b><br>
+<%= link_to "Edit",edit_role_path(role.id) %>&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Show",role_path(role.id) %> &nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Destroy",role_path(role.id), method: :delete, data: {confirm: "Are You sure?"} %> <hr>
+<% end %>  <br>
+
+
