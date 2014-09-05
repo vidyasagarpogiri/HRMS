@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
     @employee = Employee.find(params[:emp_id]) 
     #raise @employee.inspect
     @group = Group.create(group_params)
-    @reporting_manager = ReportingManager.create(:employee_id => @employee.id)
+    @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :group_id => @group.id)
     #raise @reporting_manager.inspect
     redirect_to  @group
   end
@@ -28,8 +28,9 @@ class GroupsController < ApplicationController
   def show
      #raise params.inspect
      @group = Group.find(params[:id])
+     @employee = @group.reporting_manager.employee
      @leave_policy = @group.leave_policy
-     @holiday_calanders =HolidayCalender.where(:group_id => @group.id)
+     @holiday_calenders = @group.holiday_calenders
      
   end
   

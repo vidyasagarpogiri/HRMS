@@ -1,7 +1,7 @@
 class HolidayCalendersController < ApplicationController
 def index
       @group = Group.find(params[:group_id])
-      @holiday_calanders =HolidayCalender.all
+      @holiday_calenders =@group.holiday_calenders
     end
     
     def new
