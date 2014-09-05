@@ -26,11 +26,11 @@ class LeaveHistoriesController < ApplicationController
   
  
   def create
-    #raise params.inspect
+   #raise params_leave_history.inspect 
    @employee = Employee.find(params[:employee_id])
+   #raise params.inspect
    @leave_history = LeaveHistory.create(params_leave_history)
-   @leave_history.employee_id = params[:employee_id]
-   @leave_history.update(:status => "hold")
+   @leave_history.update(:employee_id => params[:employee_id])
    redirect_to employee_leave_histories_path
   end
   
@@ -70,7 +70,7 @@ class LeaveHistoriesController < ApplicationController
 
 	private
   def params_leave_history
-    params.require(:leave_history).permit(:from_date, :to_date, :days, :reason, :feedback, :leave_type_id, :employee_id)
+    params.require(:leave_history).permit(:from_date, :to_date, :days, :reason, :feedback, :leave_type_id)
   end
   
 end

@@ -32,6 +32,7 @@ Group.destroy_all
 #sekharberi@1989
  @user = User.invite!(:email =>  "sekhar.beri@amzur.com", :skip_invitation => true)
  @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
+ @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
 
   
 Address.create(:id=>1,:line1 => "BAY STREET",:line => "GUL END",:city => "Sydney",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
@@ -107,8 +108,8 @@ Employee.create(:id => 2,:employee_id => 2, :title=> "Mr.", :first_name=>"bala",
 
 
 Employee.create(:id => 3,:employee_id => 3, :title=> "Miss.", :first_name=>"priyanka",:last_name=>"muddana",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
-:grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>2,:avatar=>"gates_print.jpg",:group_id=>Groups[rand(Groups.length)])
+:grade_id=>Grades[rand(Grades.length)],:role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>2,:avatar=>"gates_print.jpg",:group_id=>Groups[rand(Groups.length)], :user_id => @user2.id)
 
 Employee.create(:id => 4,:employee_id => 4, :title=> "Mrs.", :first_name=>"pinky",:last_name=>"kishore",:date_of_birth=>"2001-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"1",
 :status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-02-05",:date_of_join=>"2010-11-03",
