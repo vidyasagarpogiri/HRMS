@@ -1,6 +1,7 @@
 class LeaveHistoriesController < ApplicationController
  	
 
+
 	def index
 		
 		@employee = Employee.find(params[:employee_id])
@@ -8,8 +9,11 @@ class LeaveHistoriesController < ApplicationController
 		@leaves = @employee.leave_histories
 
 	end
-	
+
+
+
   def new
+
     @employee = Employee.find(params[:employee_id])
     #@leave_type = LeaveTypes.find(params[:leave_type_id])
     @leave_history = LeaveHistory.new
@@ -17,11 +21,12 @@ class LeaveHistoriesController < ApplicationController
   
   
   def show
+
   end
   
  
   def create
-   # raise params.inspect
+    #raise params.inspect
    @employee = Employee.find(params[:employee_id])
    @leave_history = LeaveHistory.create(params_leave_history)
    @leave_history.employee_id = params[:employee_id]
