@@ -16,11 +16,7 @@
                                 <div class="col-lg-6">
                                   <%= @email.errors.full_messages.first if @email.errors.any? %>
                                    <%= form_for ([@employee, @email]) do |f| %>
-                                   <br>
-                                        <div class="form-group">
-                                            <label class="required" >Date Of Email Sending</label>
-                                             <%= f.text_field :dateofsending, :id => "disabledSelect", :class => "form-control datepicker" %>
-                                        </div>                                                                                
+                                   <br>                                                                       
                                         <div class="form-group">
                                             <label class="required" >Email Content</label>
                                             <%= f.text_area :ettiquite,  :class =>"form-control", :placeholder => "Enter Content" %>  

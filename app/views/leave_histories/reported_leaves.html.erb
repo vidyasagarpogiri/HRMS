@@ -1,5 +1,36 @@
+<table border=1>
+	<tr>	
+				<th>Employee</th>
+				<th>Subject</th>
+				<th>From</th>
+				<th>To</th>
+				<th>Leave Type</th>
+				<th>Reason</th>
+				<th>Total Days</th>
+		</tr>
+
 <% @employees.each do |emp| %>
-	<% emp.leave_histories do |leave| %>
-		
+
+	<% emp.leave_histories.each do |f| %>
+		<tr>	<td><%= Employee.find(f.employee_id).full_name%></td>
+		<td><%= f.subject %></td>
+		<td><%= f.from_date %></td>
+                                      
+    <td><%= f.to_date %></td>
+                                          
+    <td> <%= f.leave_type.type_name if f.leave_type.present? %></td>
+                                  
+                                      
+                                           
+     <td><%= f.reason %></td>
+                                
+                                        
+                                    
+                                           
+    <td><%= f.days %></td>
+</tr>
 	<% end %>
+
 <% end %>
+
+</table>

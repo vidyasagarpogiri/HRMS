@@ -295,17 +295,26 @@
                                             <input class="form-control" placeholder="Enter Job Location">                                            
                                         </div>
                                         <div class="form-group col-lg-6"">
+                                            <label class="required">Blood Group</label><br>
+                                             <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group, form-control", :id => "disabledSelect" } %> 
+                                        </div>
+                                        <div class="form-group col-lg-6"">
                                             <label class="required">Mobile No</label>   
                                               <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No" %>        
                                         </div>
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Email id</label>
                                             <input class="form-control" placeholder="Enter Email id", name="email">               
+                                        </div>  
+                                        <div class="form-group col-lg-6"">
+                                            <label class="required">Alternate mail id</label>
+                                            <input class="form-control" placeholder="Enter Email id", name="email">               
                                         </div>
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Department</label><br>
                                             <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "department, form-control", :id => "disabledSelect" } %>
                                         </div>
+                                        
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Designation</label><br>
                                             <%= f.collection_select :designation_id, Designation.all, :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control", :id=>"disabledSelect"  } %>  
@@ -322,10 +331,8 @@
                                            <label class="required">Date Of Birth</label>
                                             <%= text_field(:employee, :date_of_birth, :placeholder=>"Enter text Of Birth", :class=>"form-control") %>
                                         </div>
-                                        <div class="form-group col-lg-6"">
-                                            <label class="required">Blood Group</label><br>
-                                             <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group, form-control", :id => "disabledSelect" } %> 
-                                        </div>
+                                                                                                                    
+                                        
                                          <div class="form-group col-lg-6"">
                                             <label class="required">Gender</label><br>
                                              <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]), {}, :class=> "form-control", :id=>"disabledSelect") %>
@@ -337,11 +344,12 @@
                                         </div>                                     
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Grade/Level</label><br>
-                                             <%= f.collection_select :grade_id, Grade.all, :id, :value, { :prompt => "Please Select" }, { :class => "grade form-control", :id=>"disabledSelect"  } %>
+                                            <%= f.collection_select :grade_id, Grade.all, :id, :value, { :prompt => "Please Select" }, { :class => "grade form-control", :id=>"disabledSelect"  } %><br>
                                         </div>                                         
-                                         <div class="form-group col-lg-6""><br>
-                                          <label> <%= f.file_field :avatar %></label><br>
-                                         </div>   
+                                         <div class="form-group col-lg-6"">
+                                            <label class="required">Upload Image:</label><br>
+                                            <%= f.file_field :avatar %>
+                                         </div>  
                                   <button type="submit" class="btn btn-success pull-right">Save & Continue</button>
                                     <% end %>
                                 </div>
