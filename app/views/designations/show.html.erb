@@ -1,5 +1,7 @@
 <h3 class="title">Show Designation</h3><br><hr>
-<p><b>Designation Name:</b><%= @designation.designation_name %></p></br>
+<p><b>Designation Name:</b><%= @designation.designation_name %>
+<%# link_to "Change Designation",designation_change_designations_path, :class => "btn btn-success" %></p>
+</br>
 <%= link_to "Edit", edit_designation_path(@designation),:class => "btn btn-success " %>&nbsp;&nbsp;
 <%= link_to "Show All", designations_path,:class => "btn btn-info " %>&nbsp;&nbsp;
 <%= link_to "Back", designations_path,:class => "btn btn-warning " %>&nbsp;&nbsp;
