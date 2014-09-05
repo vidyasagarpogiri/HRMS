@@ -1,10 +1,23 @@
-<h3 class="title">All Roles </h3><br><hr>
-&nbsp;&nbsp;<%= link_to "New Role", new_role_path %><hr>
-<% @roles.each do |role| %>
-<b><%= role.role_name %></b><br>
-<%= link_to "Edit",edit_role_path(role.id) %>&nbsp;&nbsp;&nbsp;&nbsp;
-<%= link_to "Show",role_path(role.id) %> &nbsp;&nbsp;&nbsp;&nbsp;
-<%= link_to "Destroy",role_path(role.id), method: :delete, data: {confirm: "Are You sure?"} %> <hr>
-<% end %>  <br>
 
+                  <h3 class="title">All Roles </h3><hr>
+                  
+                  <%= link_to "Add New Role", new_role_path,:class => "btn btn-success "%><hr>
 
+                        <div class="col-lg-6">
+                          <table class="table table-striped table-hover" id="sample-table-2">
+                              <% @roles.each do |role| %>
+											            <thead>											      
+												            <tr>
+													            <th class="center"><%= role.role_name %></th>	
+													            <th class="center">
+													            <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                          <li><%= link_to "Edit",edit_role_path(role.id),:class => "btn btn-success " %></li>
+                                          <li><%= link_to "Show",role_path(role.id),:class => "btn btn-info "%></li>
+                                          <li><%= link_to "Destroy",role_path(role.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+                                        </ul>
+                                       </th>							      		
+												            </tr>
+											            </thead>
+                                     <% end %>   
+									            </table> 
+									          </div>                                  
