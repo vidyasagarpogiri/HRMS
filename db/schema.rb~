@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904135745) do
+ActiveRecord::Schema.define(version: 20140905090245) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -196,6 +196,8 @@ ActiveRecord::Schema.define(version: 20140904135745) do
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
+    t.string   "subject"
   end
 
   create_table "leave_policies", force: true do |t|
@@ -244,6 +246,7 @@ ActiveRecord::Schema.define(version: 20140904135745) do
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_id"
   end
 
   create_table "role_previliges", force: true do |t|

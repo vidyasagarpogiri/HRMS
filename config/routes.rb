@@ -22,7 +22,12 @@ Rails.application.routes.draw do
    
    resources :roles
    resources :departments
-   resources :designations
+   resources :designations do
+   collection do
+    match "designations/change_designation" => "designations#change_designation", via: :get
+    match "designations/update_designation" => "designations#update_designation", via: :post
+   end
+   end
    resources :grades
    
    resources :groups do
@@ -89,6 +94,9 @@ end
       
     end
   end
+   
+  #get 'change_designation' => "designations#change_designation"
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
