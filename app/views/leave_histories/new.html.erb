@@ -18,6 +18,10 @@
                                 <div class="col-lg-6">
                                    <%= form_for ([@employee, @leave_history]) do |f| %>
                                    <br>
+																				<div class="form-group">
+                                            <label> Subject:</label>
+                                             <%= f.text_field :subject, :class => "form-control" %>
+          															</div>
                                         <div class="form-group">
                                             <label> Leave From:</label>
                                              <%= f.text_field :from_date, :id => "idnm1", :class => "form-control datepicker" %>
@@ -45,12 +49,7 @@
                                             <label>Reason:</label>
                                   <%= f.text_area :reason,  :class =>"form-control", :placeholder => "Enter Content" %>        
                                         </div>
-                                        
-                                        <div class="form-group">
-                                            <label>Feedback:</label>
-                                  <%= f.text_area :feedback,  :class =>"form-control", :placeholder => "Enter Content" %>       
-                                        </div>
-                                         
+                                   
                                        <button type="submit" class="btn btn-success pull-left">Save </button>
                                     
                                 </div>
