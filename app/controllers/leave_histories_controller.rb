@@ -1,31 +1,7 @@
 class LeaveHistoriesController < ApplicationController
 
   def index
-<<<<<<< HEAD
-    @leave_histories = LeaveHistoties.all
-  end
-  
-  def new
-    @employee = Employee.find(params[:employee_id])
-    @leavetype = LeaveTypes.find(params[:leave_type_id])
-    @leavehistory = LeaveHistoties.new
-  end
-  
-  def create
-    @employee = Employee.find(params[:employee_id])
-    @leavetype = LeaveTypes.find(params[:leave_type_id])
-    @leavehistory = LeaveHistoties.create(params_leavehistory)  
-  end
-  
-  def show
-  end
-  
-  private
-  def params_leavehistory
-    params.require(:leave_history).permit(:from_date, :to_date, :days, :reason, :feedback, :leave_type_id, :employee_id)
-  end
-=======
-  #raise params.inspect
+   #raise params.inspect
    @employee = Employee.find(params[:employee_id])
    #raise @employee.inspect
    @leave_history = LeaveHistory.where(:employee_id => @employee.id)
@@ -33,11 +9,21 @@ class LeaveHistoriesController < ApplicationController
   end
   
   def new
-  #raise params.inspect
-  @employee = Employee.find(params[:employee_id])
-  @leave_history = LeaveHistory.new
+    @employee = Employee.find(params[:employee_id])
+    @leave_type = LeaveTypes.find(params[:leave_type_id])
+    @leave_history = LeaveHistoties.new
   end
   
+
+  
+  def show
+  end
+  
+ 
+  
+ 
+  
+ 
   def create
    # raise params.inspect
    @employee = Employee.find(params[:employee_id])
@@ -65,13 +51,10 @@ class LeaveHistoriesController < ApplicationController
   
   
   
-  private 
-  
-  def params_leave_history
-     params.require(:leave_history).permit(:from_date, :to_date, :days, :leave_type_id, :reason, :feedback)
+  private
+  def params_leavehistory
+    params.require(:leave_history).permit(:from_date, :to_date, :days, :reason, :feedback, :leave_type_id, :employee_id)
   end
   
   
-  
->>>>>>> 08c97b046a36e25666fda94dd1083dad5a58dc5b
 end
