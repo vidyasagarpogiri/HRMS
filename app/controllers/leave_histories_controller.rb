@@ -24,6 +24,7 @@ class LeaveHistoriesController < ApplicationController
     params.require(:leave_history).permit(:from_date, :to_date, :days, :reason, :feedback, :leave_type_id, :employee_id)
   end
 
+
   #raise params.inspect
    @employee = Employee.find(params[:employee_id])
    #raise @employee.inspect
@@ -70,5 +71,7 @@ class LeaveHistoriesController < ApplicationController
      params.require(:leave_history).permit(:from_date, :to_date, :days, :leave_type_id, :reason, :feedback)
   end
   
-end  
+
+  
+end
 

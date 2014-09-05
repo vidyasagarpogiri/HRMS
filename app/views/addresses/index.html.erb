@@ -20,8 +20,7 @@
                                   <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                     <% if current_user.employee.role.id == 2 %>
                                       <li><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right" %></li>
-																		 <li><%= link_to "Delete", employee_address_path(@employee, @address1), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-danger pull-right" %></li>
-<% end %>
+                                    <% end %>
                                 </ul>
                           
                                         <div class="form-group">
@@ -65,15 +64,12 @@
                                     <form role="form">
 																			<% if @address2.present? %>
                                     <!--    <fieldset disabled> -->
-                                    <label><u>Permanent Address</u></label>
+                                    <label><u>Permanent Address</u></label>                                  
                                     
-                                
-                                
                                 <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                     <% if current_user.employee.role.id == 2 %>
                                       <li><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %></li>
-																		 <li><%= link_to "Delete", employee_address_path(@employee, @address2), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-danger pull-right" %></li>
-<% end %>
+																		<% end %>
                                 </ul>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Address Line 1:</label>

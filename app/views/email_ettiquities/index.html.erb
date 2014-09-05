@@ -16,25 +16,37 @@
                         <div class="panel-body">
                            <div class="row">
                                 <div class="col-lg-12">
-<% @emails.each do |email| %>
-                                      <div class="form-group">
-                                         <label class="normalfont">Date : </label><label>&nbsp<%= email.dateofsending %></label><br>
-                                         <label class="normalfont">Mail Content: </label><label>&nbsp<%= email.ettiquite %></label><br>
-                                      </div>
+                                   <table class="table table-striped table-hover" id="sample-table-2">
+											            <thead>											      
+												            <tr>
+													            <th class="center">Date</th>
+													            <th>Mail Content </th>
+													            <th></th>									      		
+												            </tr>
+											            </thead>
+											              <% @emails.each do |email| %>
+											            <tbody>
+												            <tr>               
+													            <td class="center"><%= email.dateofsending %></td>
+													            <td> <%= email.ettiquite %> </td>
                                       <% if current_user.employee.role.id == 2 %>
-                                <%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-danger pull-right" %>
-
-<% end %>
-                                   <br><hr>                                                                 
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div><!-- /.row (nested) -->
-                             <% end %>
+													            <td> 
+													               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                         <li><%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-danger pull-right" %></li>                                                                                 
+                                       </ul>
+                                       </td>
+                                     <% end %>
+												            </tr>
+											            </tbody>
+											            <% end %>
+									            </table>       
+                             </div>
+                             <!-- /.col-lg-12 -->                                   
                             
-                   <% else %>
-<h4>No Email Etiquettes Of You </h4>  
-<% end %>
-                        </div>
+                         <% else %>
+                           <h4>No Email Etiquettes Of You </h4>  
+                        <% end %>
+                       </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
