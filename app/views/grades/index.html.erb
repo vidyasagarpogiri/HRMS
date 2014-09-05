@@ -1,0 +1,10 @@
+<h3 class="title">All Grades </h3><br><hr>
+&nbsp;&nbsp;<%= link_to " Add New Grade", new_grade_path %><hr>
+<% @grades.each do |grade| %>
+<b><%= grade.value %></b><br>
+<%= link_to "Edit",edit_grade_path(grade.id) %>&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Show",grade_path(grade.id) %> &nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Destroy",grade_path(grade.id), method: :delete, data: {confirm: "Are You sure?"} %> <hr>
+<% end %>  <br>
+
+
