@@ -246,10 +246,15 @@
                         <li>
                          <div  class="profile-pic"> 
                             <h4><center> Employee Pic </center></h4>
-                            <a href="changeprofilepic.html" >
-                              <%= image_tag(@emp.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
-                              
-                            </a>
+                            <% if @emp.avatar_url.present? %>
+                           <a href="changeprofilepic.html" >
+                             <%= image_tag(@emp.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
+                           </a>
+                           <% else %>
+                           <a href="changeprofilepic.html" >
+                             <img src="images/employee-icon.jpg" alt="Image">
+                           </a>
+                           <% end %>
                          </div>                      
                         </li>
                         <li>
