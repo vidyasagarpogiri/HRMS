@@ -1,0 +1,17 @@
+<h3 class="title">Show Role</h3><br><hr>
+<p><b>Role Name:</b><%= @role.role_name %></p></br>
+<%= link_to "Edit", edit_role_path(@role) %>&nbsp;&nbsp;
+<%= link_to "Show All", roles_path %>&nbsp;&nbsp;
+<%= link_to "Back", roles_path %>&nbsp;&nbsp;
+<br>
+
+<hr>
+<h3>Employees under this role </h3><hr>
+<% @employees.each do |employee| %>
+Employee Name: <%= link_to employee.first_name, employee_path(employee) %><br> <br>
+<%# link_to 'Back', roles_path %>
+<% end %>
+
+
+
+

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+
   #devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,7 +19,12 @@ Rails.application.routes.draw do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
   end
-  
+   
+   resources :roles
+   resources :departments
+   resources :designations
+   resources :grades
+   
    resources :groups do
        resources :leave_policies
        resources :holiday_calenders
