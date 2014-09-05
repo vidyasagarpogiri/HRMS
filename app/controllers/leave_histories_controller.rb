@@ -13,10 +13,11 @@ class LeaveHistoriesController < ApplicationController
   #raise params.inspect
   @employee = Employee.find(params[:employee_id])
   @leave_history = LeaveHistory.new
+  
   end
   
   def create
-   # raise params.inspect
+    #raise params.inspect
    @employee = Employee.find(params[:employee_id])
    @leave_history = LeaveHistory.create(params_leave_history)
    @leave_history.employee_id = params[:employee_id]
