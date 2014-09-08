@@ -34,7 +34,18 @@ class DepartmentsController < ApplicationController
 		redirect_to @department
 	end
 	
-    
+	def add_employee
+    @department = Department.find(params[:id])
+    @employee = Employee.all
+  end
+   def update_employee
+    @department = Department.find(params[:id])
+    @employee = Employee.find(params[:employee_id])
+    @employee.update(:department_id => @department.id)
+    #raise @employee.inspect
+    redirect_to @department
+   end 
+        
   private
   def department_params
     params.require(:department).permit(:department_name) 

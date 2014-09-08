@@ -15,6 +15,8 @@ class GroupsController < ApplicationController
     
   end
   
+ 
+  
   def create
     #raise params.inspect
     @employee = Employee.find(params[:emp_id]) 
@@ -32,6 +34,20 @@ class GroupsController < ApplicationController
      @leave_policy = @group.leave_policy
      @holiday_calenders = @group.holiday_calenders
      
+  end
+  
+  def add_employee
+    @group = Group.find(params[:id])
+    @employees = Employee.all    
+  end
+  
+  def update_add_employee
+      #raise params.inspect
+      @group = Group.find(params[:id])
+      @employee = Employee.find(params[:employee_id])
+      #raise @employee.inspect
+      @employee.update(:group_id => @group.id)
+      redirect_to @group
   end
   
   private

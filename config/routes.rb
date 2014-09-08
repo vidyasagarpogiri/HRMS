@@ -20,15 +20,43 @@ Rails.application.routes.draw do
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
   end
    
-   resources :roles
-   resources :departments
-   resources :designations
-   resources :grades
+   resources :roles do
+   member do
+      get "/add_employee" => "roles#add_employee"
+      post 'update_employee'
+    end  
+  end
    
-   resources :groups do
+   resources :departments do
+   member do
+      get "/add_employee" => "departments#add_employee"
+      post 'update_employee'
+    end  
+  end
+    
+   
+  resources :designations do 
+    member do
+      get "/add_employee" => "designations#add_employee"
+      post 'update_employee'
+    end  
+  end
+   
+   resources :grades do 
+    member do
+      get "/add_employee" => "grades#add_employee"
+      post 'update_employee'
+    end  
+  end
+ 
+   resources :groups, :except => [:update] do
        resources :leave_policies
        resources :holiday_calenders
-		
+       member do
+        get 'add_employee'
+        post 'update_add_employee'
+       end
+		   
      end
     
     resources :leave_types 
@@ -89,6 +117,9 @@ end
       
     end
   end
+   
+  #get 'change_designation' => "designations#change_designation"
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

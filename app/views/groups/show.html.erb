@@ -1,15 +1,61 @@
-<h3>Grop Details</h3>
 
-<label>Group Name :<%= @group.group_name %></label><br>
 
-<label>Reporting Manager :<%= @employee.full_name %></label><br>
 
-<%= link_to 'Add leave Policy For This Group', new_group_leave_policy_path(@group) %><br>
-<%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %>
-<div>
-<%=render "leave_policies/index" %>
-</div>
-<div>
-<%=render "holiday_calenders/index" %>
-</div>
 
+<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Groups</h2>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+               <div class="col-lg-12">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Holiday List Form                         
+                <label style="font-weight:normal;padding:20px;margin-top:-15px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to 'leave Policy For This Group', new_group_leave_policy_path(@group) %></label>
+                <label style="font-weight:normal;padding:20px;margin-top:-15px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to 'Holidays List For This Group', new_group_holiday_calender_path(@group) %></label>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <table class="table table-striped table-hover" id="sample-table-2">
+											                  <thead>											      
+												                  <tr>
+													                  <th class="center">Group Name </th>
+													                  <th>Reporting Manager</th>														                
+													                  <th></th>		                  										      		
+												                  </tr>
+											                  </thead>											                  
+											                  <tbody>
+												                  <tr>               
+													                  <td class="center"> <%= @group.group_name %> </td>
+													                  <td> <%= @employee.full_name %> </td>
+												                  </tr>
+											                  </tbody>
+									                  </table>              
+                                </div>
+                                <!-- /.col-lg-12 (nested) -->
+                                
+                            </div>
+                            <!-- /.row (nested) -->
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                        </div>
+                                <div>
+                                    <%=render "leave_policies/index" %>
+                                </div>
+                                <div>
+                                    <%=render "holiday_calenders/index" %>
+                                </div>
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+ </div>
+        <!-- /#page-wrapper -->

@@ -35,7 +35,19 @@ class GradesController < ApplicationController
 		redirect_to @grade
 	end
 	
-    
+   def add_employee
+    @grade = Grade.find(params[:id])
+    @employee = Employee.all
+  end
+   def update_employee
+    #raise params.inspect
+    @grade = Grade.find(params[:id])
+    @employee = Employee.find(params[:employee_id])
+    @employee.update(:grade_id => @grade.id)
+    #raise @employee.inspect
+    redirect_to @grade
+   end 
+  
   private
   def grade_params
     params.require(:grade).permit(:value) 
