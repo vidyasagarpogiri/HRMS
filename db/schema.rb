@@ -197,7 +197,6 @@ ActiveRecord::Schema.define(version: 20140905090245) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
-<<<<<<< HEAD
   end
 
   create_table "leave_histoties", force: true do |t|
@@ -210,9 +209,6 @@ ActiveRecord::Schema.define(version: 20140905090245) do
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "subject"
-
-
   end
 
   create_table "leave_policies", force: true do |t|
