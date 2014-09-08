@@ -1,4 +1,4 @@
-<h3>add Employee</h3>
+<h3>Add Employee</h3>
 
   <div id="page-wrapper">
 
@@ -20,10 +20,12 @@
                                     <div class="form-group col-lg-6"">
                                             <label class="required">Add Employee</label><br>
                                             <%= select_tag "employee_id", options_from_collection_for_select(Employee.all, :id, :first_name)  %>
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                 <%= submit_tag "Add",:class => "btn btn-success" %> 
                                         </div>                                
                                
                                         </div>
-                                       <%= submit_tag "save" %>
+                                       
                                     
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
