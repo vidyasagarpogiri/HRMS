@@ -16,11 +16,17 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                   <%= form_for ([@employee, @leave_history]) do |f| %>																			
+                                   <%= form_for ([@employee, @leave_history]) do |f| %>	
+                                   
+                                   <!--																		
                                         <div class="form-group col-lg-6">
                                             <label> Subject :</label>
-                                             <%= f.text_field :subject,  :class =>"form-control", :placeholder => "Enter Subject"%>
+                                             <% #= f.text_field :subject,  :class =>"form-control", :placeholder => "Enter Subject"%>
                                         </div>                                        
+                                     -->
+                                   
+                                     
+                                     
                                         <div class="form-group col-lg-6">
                                             <label>Reason :</label>
                                               <%= f.text_area :reason,  :class =>"form-control", :placeholder => "Enter Content" %>          

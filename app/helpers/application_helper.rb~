@@ -15,5 +15,24 @@ module ApplicationHelper
     "#{pluralize(months/12, 'year')} #{pluralize(months%12, 'month')}"
     
   end
+  
+  def weekends( end_date, start_date)
+   #raise start_date.inspect
+    weekends = [0, 6]
+    remaining_days = (start_date .. end_date).to_a - select_holidays
+   holidays = (start_date .. end_date).to_a.length-(remaining_days).length
+    result = remaining_days.select{ |k| weekends.include? (k.wday)}.count
+   result = result + holidays
+  end
+  
+  
+  def select_holidays
+    a=[]
+    HolidayCalender.all.each do |k|
+    a << k.date.to_date
+  end
+  a
+end
+ 
 
 end

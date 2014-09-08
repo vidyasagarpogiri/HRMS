@@ -197,8 +197,22 @@ ActiveRecord::Schema.define(version: 20140905090245) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
-    t.string   "subject"
+<<<<<<< HEAD
+  end
 
+  create_table "leave_histoties", force: true do |t|
+    t.string   "from_date"
+    t.string   "to_date"
+    t.float    "days",          limit: 24
+    t.text     "reason"
+    t.string   "feedback"
+    t.integer  "leave_type_id"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+=======
+    t.string   "subject"
+>>>>>>> 2da90c1b3902972f2240ddd373ff5a054fa91a0f
   end
 
   create_table "leave_policies", force: true do |t|
