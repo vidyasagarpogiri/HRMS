@@ -1,9 +1,57 @@
 
-<h3> All Groups</h3><hr>
-<%= link_to "New Group", new_group_path %><hr>
 
-<% @groups.each do |group| %>
-  <%= group.group_name %><br>
-  <%= group.employees.count if group.employees.present? %><br>
-  <%= group.reporting_manager %><hr>
-<% end %>
+
+<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Groups List </h2>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                          <label style="font-weight:normal;padding:20px;" class = "pull-right"><a><i class="fa fa-plus "></i></a>&nbsp<%= link_to "New Group", new_group_path %></label>
+                                 
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <table class="table table-striped table-hover" id="sample-table-2">
+											                  <thead>											      
+												                  <tr>
+													                  <th class="center">Group Name</th>
+													                  <th>Reporting Manager</th>	
+													                  <th>No:of Employees</th>	
+													                  <th>No:of Holidays</th>	
+													                  <th></th>
+													                 	                  										      		
+												                  </tr>
+											                  </thead>											                  
+	                                       <% @groups.each do |group| %>
+											                  <tbody>
+												                  <tr>               
+													                  <td class="center"> <%= group.group_name %>  </td>
+													                  <td> <%= group.reporting_manager_full_name %> </td>
+													                  <td> <%= group.employees.count if group.employees.present? %> </td>
+													                  <td>  </td>
+													                 </tr>
+											                  </tbody>
+											                  <% end %>
+									                  </table>              
+                             
+
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+
+
