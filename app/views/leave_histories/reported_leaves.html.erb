@@ -33,7 +33,7 @@
 	                                       <% emp.leave_histories.each do |f| %>
 											                  <tbody>
 												                  <tr>               
-													                  <td class="center"><%= emp.find(f.employee_id).full_name%></td>
+													               		<td class="center"><%= Employee.find(f.employee_id).full_name%></td>
 													                  <td> <%= f.reason %> </td>
 													                  <td> <%= f.leave_type.type_name if f.leave_type.present? %> </td>
 													                  <td> <%= f.days %> </td>
