@@ -200,18 +200,6 @@ ActiveRecord::Schema.define(version: 20140905090245) do
     t.string   "subject"
   end
 
-  create_table "leave_histoties", force: true do |t|
-    t.string   "from_date"
-    t.string   "to_date"
-    t.float    "days",          limit: 24
-    t.text     "reason"
-    t.string   "feedback"
-    t.integer  "leave_type_id"
-    t.integer  "employee_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "leave_policies", force: true do |t|
     t.float    "pl_this_year",                  limit: 24
     t.float    "sl_this_year",                  limit: 24
