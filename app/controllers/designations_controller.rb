@@ -37,10 +37,20 @@ class DesignationsController < ApplicationController
 	
   def add_employee
     @designation = Designation.find(params[:id])
+    @employee = Employee.all
   end
-  
+   def update_employee
+    @designation = Designation.find(params[:id])
+    @employee = Employee.find(params[:employee_id])
+    @employee.update(:designation_id => @designation.id)
+    #raise @employee.inspect
+    redirect_to @designation
+   end 
+    
   private
   def designation_params
     params.require(:designation).permit(:designation_name) 
   end
 end
+
+

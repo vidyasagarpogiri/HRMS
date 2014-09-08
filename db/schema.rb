@@ -197,7 +197,6 @@ ActiveRecord::Schema.define(version: 20140905090245) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
-    t.string   "subject"
   end
 
   create_table "leave_policies", force: true do |t|

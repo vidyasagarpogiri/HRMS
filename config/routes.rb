@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :designations do 
     member do
       get "/add_employee" => "designations#add_employee"
+      post 'update_employee'
     end  
   end
    
