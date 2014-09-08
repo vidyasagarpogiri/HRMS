@@ -1,6 +1,6 @@
 class LeaveHistoriesController < ApplicationController
  	
-
+ include ApplicationHelper
 
 	def index
 		
@@ -29,8 +29,17 @@ class LeaveHistoriesController < ApplicationController
    #raise params_leave_history.inspect 
    @employee = Employee.find(params[:employee_id])
    #raise params.inspect
+   
    @leave_history = LeaveHistory.create(params_leave_history)
    @leave_history.update(:employee_id => params[:employee_id])
+   total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
+    
+    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)
+  
+    applied_days = total_days - weekend_count 
+   #raise applied_days.inspect 
+   @leave_history.update(:days => applied_days)
+  
    redirect_to employee_leave_histories_path
   end
   
@@ -62,7 +71,7 @@ class LeaveHistoriesController < ApplicationController
 	
 		@group = current_user.employee.group
 				
-	@employees = @group.employees	
+	  @employees = @group.employees	
 		
 	end
 
@@ -70,7 +79,7 @@ class LeaveHistoriesController < ApplicationController
 
 	private
   def params_leave_history
-    params.require(:leave_history).permit(:from_date, :to_date, :days, :reason, :feedback, :leave_type_id)
+    params.require(:leave_history).permit(:from_date, :to_date, :reason, :feedback, :leave_type_id)
   end
   
 end
