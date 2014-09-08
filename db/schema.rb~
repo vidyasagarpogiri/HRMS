@@ -212,8 +212,7 @@ ActiveRecord::Schema.define(version: 20140905090245) do
     t.datetime "updated_at"
 =======
     t.string   "subject"
-
->>>>>>> 92eeda44ba77dd1af0c2d66deb11c0e28422529d
+>>>>>>> 2da90c1b3902972f2240ddd373ff5a054fa91a0f
   end
 
   create_table "leave_policies", force: true do |t|
