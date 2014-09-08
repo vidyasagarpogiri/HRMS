@@ -20,15 +20,34 @@ Rails.application.routes.draw do
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
   end
    
-   resources :roles
-   resources :departments
-   resources :designations do
-   collection do
-    match "designations/change_designation" => "designations#change_designation", via: :get
-    match "designations/update_designation" => "designations#update_designation", via: :post
-   end
-   end
-   resources :grades
+   resources :roles do
+   member do
+      get "/add_employee" => "roles#add_employee"
+      post 'update_employee'
+    end  
+  end
+   
+   resources :departments do
+   member do
+      get "/add_employee" => "departments#add_employee"
+      post 'update_employee'
+    end  
+  end
+    
+   
+  resources :designations do 
+    member do
+      get "/add_employee" => "designations#add_employee"
+      post 'update_employee'
+    end  
+  end
+   
+   resources :grades do 
+    member do
+      get "/add_employee" => "grades#add_employee"
+      post 'update_employee'
+    end  
+  end
  
    resources :groups, :except => [:update] do
        resources :leave_policies

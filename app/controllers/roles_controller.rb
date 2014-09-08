@@ -35,6 +35,17 @@ class RolesController < ApplicationController
 		redirect_to @role
 	end
 	
+	def add_employee
+    @role = Role.find(params[:id])
+    @employee = Employee.all
+  end
+   def update_employee
+    @role = Role.find(params[:id])
+    @employee = Employee.find(params[:employee_id])
+    @employee.update(:role_id => @role.id)
+    #raise @employee.inspect
+    redirect_to @role
+   end 
     
   private
   def role_params
