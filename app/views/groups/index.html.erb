@@ -1,1 +1,9 @@
-<h3> All Groups</h3>
+
+<h3> All Groups</h3><hr>
+<%= link_to "New Group", new_group_path %><hr>
+
+<% @groups.each do |group| %>
+  <%= group.group_name %><br>
+  <%= group.employees.count if group.employees.present? %><br>
+  <%= group.reporting_manager %><hr>
+<% end %>
