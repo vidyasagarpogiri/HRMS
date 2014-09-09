@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20140909102956) do
+
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -132,6 +134,13 @@ ActiveRecord::Schema.define(version: 20140909102956) do
   add_index "employees", ["salary_id"], name: "index_employees_on_salary_id", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
+  create_table "events", force: true do |t|
+    t.string   "event_name"
+    t.string   "event_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "experiences", force: true do |t|
     t.string   "previous_company"
     t.string   "last_designation"
@@ -161,8 +170,6 @@ ActiveRecord::Schema.define(version: 20140909102956) do
   end
 
   create_table "holiday_calenders", force: true do |t|
-    t.string   "date"
-    t.string   "event"
     t.boolean  "mandatory_or_optional"
     t.datetime "created_at"
     t.datetime "updated_at"

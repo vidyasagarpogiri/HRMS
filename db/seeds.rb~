@@ -30,7 +30,7 @@ LeaveType.destroy_all
 Group.destroy_all
 
 #sekharberi@1989
- @user = User.invite!(:email =>  "sekhar.beri@amzur.com", :skip_invitation => true)
+ @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
  @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
  @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
 
@@ -41,53 +41,44 @@ Address.create(:id=>3,:line1 => "BEACH ROAD",:line => "OPP:IMAX THEATRE",:city =
 Address.create(:id=>4,:line1 => "MARINE TOWERS",:line => "Kukatpally",:city => "Hyderabad",:state=>"Telangana",:country=>"India",:zipcode=>"500001")
 addresses = Address.all.pluck(:id)
 
-JobLocation.create(:id=>1,:address_id => addresses[rand(addresses.length)])
-JobLocation.create(:id=>2,:address_id => addresses[rand(addresses.length)])
-JobLocation.create(:id=>3,:address_id => addresses[rand(addresses.length)])
-JobLocation.create(:id=>4,:address_id => addresses[rand(addresses.length)])
+(0..3).each do 
+  JobLocation.create( :address_id => addresses[rand(addresses.length)])
+end
 JobLocations = JobLocation.all.pluck(:id)
 
-Department.create(:id=>1,:department_name=>"Development") 
-Department.create(:id=>2,:department_name=>"HR") 
-Department.create(:id=>3,:department_name=>"ACCOUNTS")
-Department.create(:id=>4,:department_name=>"BUSINESS DEVELOPMENT")  
+["Development", "HR", "ACCOUNTS", "BUSINESS DEVELOPMENT"].each do |dept|
+  Department.create(:department_name => dept ) 
+end
 Departments = Department.all.pluck(:id)
 
-BloodGroup.create(:id=>1,:blood_group_name=>"O+ve") 
-BloodGroup.create(:id=>2,:blood_group_name=>"O-ve") 
-BloodGroup.create(:id=>3,:blood_group_name=>"A+ve") 
-BloodGroup.create(:id=>4,:blood_group_name=>"A-ve")
-BloodGroup.create(:id=>5,:blood_group_name=>"B+ve") 
-BloodGroup.create(:id=>6,:blood_group_name=>"B-ve") 
-BloodGroup.create(:id=>7,:blood_group_name=>"AB+ve") 
-BloodGroup.create(:id=>8,:blood_group_name=>"AB-ve")
-BloodGroup.create(:id=>9,:blood_group_name=>"ABO (Bombay Blood Group)") 
+["O+ve", "O-ve", "A+ve", "A+ve", "B+ve", "B-ve", "AB+ve", "AB-ve", "ABO (Bombay Blood Group)"].each do |bloodgrp|
+BloodGroup.create(:blood_group_name => bloodgrp ) 
+end
 BloodGroups = BloodGroup.all.pluck(:id)
 
-FfStatus.create(:id=>1,:status_name=>"Open")
-FfStatus.create(:id=>2,:status_name=>"Hold")
-FfStatus.create(:id=>3,:status_name=>"Closed")
+["Open", "Hold", "Closed"].each do |ffstatus|
+FfStatus.create(:status_name => ffstatus ) 
+end
 FfStatuses = FfStatus.all.pluck(:id)
 
-Designation.create(:id=>1,:designation_name=>"Developer")
-Designation.create(:id=>2,:designation_name=>"HR")
-Designation.create(:id=>3,:designation_name=>"Business Developer")
+["Developer", "HR", "Business Developer"].each do |desg|
+Designation.create(:designation_name => desg ) 
+end
 Designations = Designation.all.pluck(:id)
 
-Grade.create(:id=>1,:value=>"Jr.Software Engineer")
-Grade.create(:id=>2,:value=>"Sr.Software Engineer")
-Grade.create(:id=>3,:value=>"Jr.HR")
-Grade.create(:id=>4,:value=>"Sr.HR")
+["Jr.Software Engineer", "Sr.Software Engineer", "Jr.HR", "Sr.HR"].each do |grade|
+Grade.create(:value => grade ) 
+end
 Grades = Grade.all.pluck(:id)
 
-Role.create(:id=>1,:role_name=>"Employee")
-Role.create(:id=>2,:role_name=>"HR")
-Role.create(:id=>3,:role_name=>"Tech Lead")
-Role.create(:id=>4,:role_name=>"Manager")
+["Employee", "HR", "Tech Lead", "Manager"].each do |role|
+Role.create(:role_name => role ) 
+end
 Roles = Role.all.pluck(:id)
 
-Group.create(:id=>1,:group_name=>"USA")
-Group.create(:id=>2,:group_name=>"INDIA")
+["USA", "INDIA"].each do |group|
+Group.create(:group_name => group ) 
+end
 Groups = Group.all.pluck(:id)
 
 Employee.create(:id => 1,:employee_id => 1, :title=> "Mr.", :first_name=>"Meher",:last_name=>"Goru",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",
@@ -141,25 +132,20 @@ Experience.create(:id=>4,:previous_company=>"TCS",:last_designation=>"Java Devel
 Experience.create(:id=>5,:previous_company=>"Wipro",:last_designation=>".Net Developer",:from_date=>"2013-08-01",:to_date=>"2014-08-28",:employee_id=> 4)
 
 
-Promotion.create(:id=>1,:date_of_promotion=>"2014-06-05", :employee_id=> 1, :designation_id=>1) 
-Promotion.create(:id=>2,:date_of_promotion=>"2014-02-10", :employee_id=> 3, :designation_id=>2) 
-Promotion.create(:id=>3,:date_of_promotion=>"2014-01-08", :employee_id=> 2, :designation_id=>1) 
-Promotion.create(:id=>4,:date_of_promotion=>"2014-03-03", :employee_id=> 4, :designation_id=>3) 
+["Need Holidays list for year 2014", "Need Hand book/Scribbling pad"].each do |ettiquite|
+EmailEttiquitie.create(:ettiquite => ettiquite ) 
+end
+EmailEttiquities = EmailEttiquitie.all.pluck(:id)
 
+["12000", "15000" , "20000"].each do |sal|
+Salary.create(:ctc_fixed => sal ) 
+end
+Salaries = Salary.all.pluck(:id)
 
-EmailEttiquitie.create(:id=>1,:ettiquite=>"Need Holidays list for year 2014",:employee_id=>1,:dateofsending=>"2014-05-06") 
-EmailEttiquitie.create(:id=>2,:ettiquite=>"Need Hand book/Scribbling pad",:employee_id=>1,:dateofsending=>"2014-08-06") 
-EmailEttiquitie.create(:id=>3,:ettiquite=>"Need Holidays list for year 2014",:employee_id=>2,:dateofsending=>"2014-05-06") 
-EmailEttiquitie.create(:id=>4,:ettiquite=>"Need Holidays list for year 2014",:employee_id=>3,:dateofsending=>"2014-05-06") 
+["Sick Leave", "Floating Leav" , "Casual Leave","Carry Forward Leave"].each do |leave|
+LeaveType.create(:type_name => leave ) 
+end
+LeaveTypes = LeaveType.all.pluck(:id)
 
-Salary.create(:id=>1,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00") 
-Salary.create(:id=>2,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00")
-Salary.create(:id=>3,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00")
-Salary.create(:id=>4,:ctc_fixed=>"12000.00",:basic_salary=>"3500.00")
-
-LeaveType.create(:id=>1,:type_name=>"Sick Leave")
-LeaveType.create(:id=>2,:type_name=>"Floating Leave")
-LeaveType.create(:id=>3,:type_name=>"Casual Leave")
-LeaveType.create(:id=>4,:type_name=>"Carry Forward Leave")
 
 

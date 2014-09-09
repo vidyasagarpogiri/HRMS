@@ -39,7 +39,7 @@ class LeaveHistoriesController < ApplicationController
     applied_days = total_days - weekend_count 
    #raise applied_days.inspect 
    @leave_history.update(:days => applied_days)
-  
+   Notification.applyleave(@employee, @leave_history).deliver
    redirect_to employee_leave_histories_path
   end
   
@@ -62,7 +62,7 @@ class LeaveHistoriesController < ApplicationController
     applied_days = total_days - weekend_count 
    #raise applied_days.inspect 
    @leave_history.update(:days => applied_days)
-  
+    raise applied_days.inspect 
     redirect_to employee_leave_histories_path
   end
   

@@ -47,7 +47,7 @@ class Employee < ActiveRecord::Base
 	validates :date_of_join, presence: true
 	
 	
-	#after_create :add_leaves
+	after_create :add_leaves
 	
 	
   
