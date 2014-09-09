@@ -87,7 +87,7 @@ class LeaveHistoriesController < ApplicationController
 
 	private
   def params_leave_history
-    params.require(:leave_history).permit(:from_date, :to_date, :reason, :feedback, :leave_type_id)
+    params.require(:leave_history).permit(:from_date, :to_date, :reason, :feedback, :leave_type_id, :subject)
   end
   
 end
