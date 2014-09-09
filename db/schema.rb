@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140909125834) do
+=======
+
+ActiveRecord::Schema.define(version: 20140909125834) do
+
+>>>>>>> feff217ffb0f79d96a2683f54434cc6dc6cb9516
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
