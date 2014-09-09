@@ -7,7 +7,7 @@ class LeaveHistory < ActiveRecord::Base
 	HOLD = "HOLD"
 	APPROVED = "APPROVED"
 	REJECTED = "REJECTED"
-	
+
 	private
 	def status_hold
 	  self.status = HOLD
