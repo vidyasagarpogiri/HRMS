@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140909125834) do
+=======
+ActiveRecord::Schema.define(version: 20140909102956) do
+>>>>>>> 3125a0c13a5eb928f5683856b5d85292ddaa16b5
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -117,6 +121,7 @@ ActiveRecord::Schema.define(version: 20140909125834) do
     t.integer  "salary_id"
     t.integer  "group_id"
     t.string   "avatar"
+    t.string   "alternate_email"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
