@@ -1,6 +1,8 @@
 class SalariesController < ApplicationController
 
    layout "profile_template", only: [:index, :new, :create, :show, :edit, :update]
+
+		before_filter :user_authentication, only: [:index, :new, :create, :show, :edit, :update]
    
   def new
 		@employee = Employee.find(params[:employee_id])
@@ -78,5 +80,15 @@ end
   def params_salary
     params.require(:salary).permit(:ctc_fixed, :basic_salary)
   end
+
+#	private
+	def user_authentication	
+			@employee = Employee.find(params[:employee_id])
+			#raise @employee.inspect
+		if current_user.employee.employee_id  == @employee.employee_id && @employee.role_id == 2
+		else
+			redirect_to employees_path
+		end
+	end
   
 end
