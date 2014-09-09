@@ -41,17 +41,18 @@ Address.create(:id=>3,:line1 => "BEACH ROAD",:line => "OPP:IMAX THEATRE",:city =
 Address.create(:id=>4,:line1 => "MARINE TOWERS",:line => "Kukatpally",:city => "Hyderabad",:state=>"Telangana",:country=>"India",:zipcode=>"500001")
 addresses = Address.all.pluck(:id)
 
-JobLocation.create(:id=>1,:address_id => addresses[rand(addresses.length)])
-JobLocation.create(:id=>2,:address_id => addresses[rand(addresses.length)])
-JobLocation.create(:id=>3,:address_id => addresses[rand(addresses.length)])
-JobLocation.create(:id=>4,:address_id => addresses[rand(addresses.length)])
+(0..3).each do 
+  JobLocation.create( :address_id => addresses[rand(addresses.length)])
+end
 JobLocations = JobLocation.all.pluck(:id)
 
-Department.create(:id=>1,:department_name=>"Development") 
-Department.create(:id=>2,:department_name=>"HR") 
-Department.create(:id=>3,:department_name=>"ACCOUNTS")
-Department.create(:id=>4,:department_name=>"BUSINESS DEVELOPMENT")  
+
+
+["Development", "HR", "ACCOUNTS", "BUSINESS DEVELOPMENT"].each do |dept|
+  Department.create(:department_name => dept ) 
+end
 Departments = Department.all.pluck(:id)
+
 
 BloodGroup.create(:id=>1,:blood_group_name=>"O+ve") 
 BloodGroup.create(:id=>2,:blood_group_name=>"O-ve") 
