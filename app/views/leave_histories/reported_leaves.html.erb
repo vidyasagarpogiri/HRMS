@@ -39,8 +39,10 @@
 													                  <td> <%= f.days %> </td>
 													                  <td> <%= f.from_date %> - <%= f.to_date %>  </td>
 													                  <td> <%= f.status %> </td>
-													                  <td> <%= link_to 'Accept', :class => "btn btn-success " %></td>
-													                  <td> <%= link_to 'Reject', :class => "btn btn-danger " %></td>
+																					<% if f.status == "HOLD" %>
+																						<td><%= link_to "Accept", accept_path(:employee_id=> emp.id, :leave_history_id => f.id), method: :post%></td>
+																						<td><%= link_to "Reject", reject_path(:employee_id=> emp.id, :leave_history_id => f.id), method: :post%></td>
+													              <% end %>   
 												                  </tr>
 											                  </tbody>
 											                  <% end %>

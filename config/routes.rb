@@ -66,6 +66,8 @@ Rails.application.routes.draw do
  
 get 'reported_leaves' => "leave_histories#reported_leaves"
 get 'applied_leaves' => "leave_histories#applied_leaves"
+post 'accept' => "leave_histories#accept"
+post 'reject' => "leave_histories#reject"
 #get 'leaves' => "leave_histories#index"
  resources :employees do 
     resources :leaves
