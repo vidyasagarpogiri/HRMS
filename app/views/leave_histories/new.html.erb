@@ -35,10 +35,7 @@
                                             <label class="required">Leave Type:</label><br>
                                              <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name, { :prompt => "Please Select" }, { :class => "leave_type, form-control", :id => "disabledSelect" } %> 
                                         </div>                                        
-                                        <div class="form-group col-lg-6">
-                                            <label>Total Number of Days:</label>
-                                              <%= f.text_field :days,  :class =>"form-control", :placeholder => "Enter Days" %>             
-                                        </div>
+                                        
                                         <div class="form-group col-lg-6">
                                             <label>From:</label>
                                                <%= f.text_field :from_date, :id => "idnm1", :class => "form-control datepicker" %>

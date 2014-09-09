@@ -5,10 +5,9 @@ class LeaveHistory < ActiveRecord::Base
 	before_create :status_hold
 	
 	HOLD = "HOLD"
-	ACCEPTED = "ACCEPTED"
+	APPROVED = "APPROVED"
 	REJECTED = "REJECTED"
-	
-	
+
 	private
 	def status_hold
 	  self.status = HOLD
