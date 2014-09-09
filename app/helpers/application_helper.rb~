@@ -33,6 +33,18 @@ module ApplicationHelper
   end
   a
 end
+
+  def leavesDateWise(search_date)
+  leaves_array=[]
+    LeaveHistory.all.each do |leave|
+      (leave.from_date.to_date..leave.to_date.to_date).to_a.each do |date|
+        if date == search_date
+          leaves_array << leave
+        end
+      end
+    end
+    leaves_array
+  end
  
 
 end
