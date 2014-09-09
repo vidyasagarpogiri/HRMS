@@ -4,5 +4,5 @@ class Department < ActiveRecord::Base
   #TODO since there is a problem in relation with employ and department i have commented this - vidyasagar
   #has_many :employees, :through => :reporting_managers
   
-  validates :department_name, uniqueness: { case_sensitive: false }
+  validates :department_name, uniqueness: { case_sensitive: false }, presence: true
 end
