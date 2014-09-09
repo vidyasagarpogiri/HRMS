@@ -20,7 +20,7 @@ layout "profile_template", only: [:edit, :show, :exit_edit_form, :exit_form, :up
   def create
      @employee = Employee.create(params_employees)
      @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
-    @employee.update(:user_id => @user.id)
+     @employee.update(:user_id => @user.id)
     if @employee.errors.present?
       render 'new'
     else
