@@ -55,6 +55,14 @@ class LeaveHistoriesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @leave_history = LeaveHistory.find(params[:id])
     @leave_history.update(params_leave_history)
+    total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
+    
+    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)
+  
+    applied_days = total_days - weekend_count 
+   #raise applied_days.inspect 
+   @leave_history.update(:days => applied_days)
+  
     redirect_to employee_leave_histories_path
   end
   
