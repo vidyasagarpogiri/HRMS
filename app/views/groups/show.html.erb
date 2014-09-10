@@ -1,4 +1,3 @@
-
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -12,12 +11,18 @@
                 <div class="panel panel-default">
                         <div class="panel-heading">
                             Holiday List Form                         
-                <label style="font-weight:normal;padding:20px;margin-top:-15px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to 'leave Policy For This Group', new_group_leave_policy_path(@group) %></label>
+                <label style="font-weight:normal;padding:20px;margin-top:-15px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to 'Leave Policy For This Group', new_group_leave_policy_path(@group) %></label>
                 <label style="font-weight:normal;padding:20px;margin-top:-15px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to 'Holidays List For This Group', new_group_holiday_calender_path(@group) %></label>
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
+                                <label style="font-weight:normal;padding:0px;margin-top:-15px;"> <%= link_to 'Leave Policy For This Group', new_group_leave_policy_path(@group) %></label><br>
+                <label style="font-weight:normal;padding-left:0px;margin-top:-15px;"><%= link_to 'Holidays List For This Group', new_group_holiday_calender_path(@group) %></label><br>
+                                
+                                Group Name : <%= @group.group_name %><br>
+                                Reporting Manager : <%= @employee.full_name %><br>
+                                
                                     <table class="table table-striped table-hover" id="sample-table-2">
 											                  <thead>											      
 												                  <tr>
@@ -32,8 +37,8 @@
 													                  <td> <%= @employee.full_name %> </td>
 												                  </tr>
 											                  </tbody>
-									                  </table>              
-                                </div>
+									                   </table>              
+                                 </div>
                                 <!-- /.col-lg-12 (nested) -->
                                 
                             </div>
