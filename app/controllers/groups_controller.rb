@@ -11,7 +11,6 @@ class GroupsController < ApplicationController
     @reporting_manager = ReportingManager.new
    # @group.leave_policy.build
    
-    
   end
   
  
@@ -32,6 +31,29 @@ class GroupsController < ApplicationController
      @employee = @group.reporting_manager.employee
      @leave_policy = @group.leave_policy
      @holiday_calenders = @group.holiday_calenders
+     
+  end
+  
+  def edit
+     #raise params.inspect
+     @group = Group.find(params[:id])
+     @reporting_manager = ReportingManager.find_by(@group.id)
+     @employee = Employee.find_by(@reporting_manager.id)
+     #raise @employee.inspect     
+  end
+  
+  def update
+   #raise params.inspect
+    @group = Group.find(params[:id])
+    @group.update(group_params)
+    #raise @group.inspect #update(group_params)
+    @employee = Employee.find(params[:emp_id])
+    #raise @employee.id.inspect
+    @reporting_manager = ReportingManager.find_by(@group.id)
+    #raise @reporting_manager.inspect
+    @reporting_manager.update(:employee_id => @employee.id)
+    #raise @reporting_manager.inspect
+   redirect_to  @group
      
   end
   

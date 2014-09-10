@@ -299,16 +299,17 @@
                                              <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group, form-control", :id => "disabledSelect" } %> 
                                         </div>
                                         <div class="form-group col-lg-6"">
-                                            <label class="required">Mobile No</label>   
+                                            <label class="required">Mobile Number</label>   
                                               <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No" %>        
                                         </div>
                                         <div class="form-group col-lg-6"">
-                                            <label class="required">Email id</label>
+                                            <label class="required">Email Id</label>
                                             <input class="form-control" placeholder="Enter Email id", name="email">               
                                         </div>  
                                         <div class="form-group col-lg-6"">
-                                            <label class="required">Alternate mail id</label>
-                                            <input class="form-control" placeholder="Enter Email id", name="alternate_email">               
+                                            <label class="required">Alternate E-Mail </label>
+                                             <%= f.text_field :alternate_email, :class=>"form-control", :placeholder=>"Enter Alternate Email" %>        
+                                           
                                         </div>
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Department</label><br>
