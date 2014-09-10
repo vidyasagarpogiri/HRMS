@@ -28,20 +28,10 @@ class AddressesController < ApplicationController
   
   def create
 		@employee = Employee.find(params[:employee_id])
-  #raise params.inspect
-   @address = Address.create(params_present_address)
- #raise @address.inspect
-		@address1 = Address.create(:line => params[:line3], :line1 => params[:line4], :city => params[:city1], :state => params[:state1], :country => params[:country1], :zipcode => params[:zipcode1])
-#raise @address1.inspect
-	@employee.update(:permanent_address_id => @address1.id, :present_address_id => @address.id )
-	if @address.save
-	   @address1.save
-    redirect_to employee_addresses_path
-    else
-      render 'new'
-    end
-   
-    end
+   	@address = @employee.addresses.create(params_present_address)
+		@address1 = @employee.addresses.create(:line => params[:line3], :line1 => params[:line4], :city => params[:city1], :state => params[:state1], :country => params[:country1], :zipcode => params[:zipcode1], :type => 1)
+	 redirect_to employee_addresses_path
+ 	end
 
   
   def show
