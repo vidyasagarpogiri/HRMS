@@ -33,6 +33,7 @@ Group.destroy_all
  @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
  @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
  @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
+ @user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
 
   
 Address.create(:id=>1,:line1 => "BAY STREET",:line => "GUL END",:city => "Sydney",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
@@ -72,7 +73,7 @@ end
 Grades = Grade.all.pluck(:id)
 
 ["Employee", "HR", "Tech Lead", "Manager"].each do |role|
-Role.create(:role_name => role ) 
+  Role.create(:role_name => role ) 
 end
 Roles = Role.all.pluck(:id)
 
@@ -111,6 +112,7 @@ Employee.create(:id => 4,:employee_id => 4, :title=> "Mrs.", :first_name=>"Cheth
 
 
 
+
 Education.create(:id=>1, :specilization=>"B.Tech", :institute=> "AU", year_of_pass: "2007",:cgpa_percentage=> "78.50", :Employee_id=>1)
 Education.create(:id=>5, :specilization=>"M.Tech", :institute=> "JNTU", year_of_pass: "2012",:cgpa_percentage=> "81.20", :Employee_id=>1)
 
@@ -145,6 +147,4 @@ Salaries = Salary.all.pluck(:id)
 LeaveType.create(:type_name => leave ) 
 end
 LeaveTypes = LeaveType.all.pluck(:id)
-
-
 
