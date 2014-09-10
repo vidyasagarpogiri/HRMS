@@ -18,7 +18,7 @@
                                 <%= @address.errors.full_messages.first if @address.errors.any? %>
                                     <%= form_for([@employee, @address]) do |f| %>
                                     <br>
-                                    <label><u>Edit Address</u></label> <br> 
+                                    <label><u>Present Address</u></label> <br> 
                                         <div class="form-group">
                                                   
                                            <label class="required" >Address Line 1</label>
@@ -27,25 +27,25 @@
                                          </div>
                                          <div class="form-group">
 
-                                            <label>Address Line 2:</label>
-                                            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 1" %>          
+                                            <label class="required" >Address Line 2</label>
+                                            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 2" %>          
                                         </div>
                                         <div class="form-group">
-                                            <label>City:</label>
+                                            <label class="required" >City</label>
                                             <%= f.text_field :city, :class => "form-control", :placeholder=> "Enter City" %>        
                                         </div>
                                         <div class="form-group">
-                                            <label>State:</label>
+                                            <label class="required" >State</label>
                                             <%= f.text_field :state, :class => "form-control", :placeholder=> "Enter State" %>             
                                         </div>
                                         
                                           <div class="form-group">
-                                            <label>Country:</label>
+                                            <label class="required" >Country</label>
                                             <%= f.text_field :country, :class => "form-control", :placeholder=> "Enter Country" %>              
                                         </div>
 																					<div class="form-group">
-                                            <label>Zipcode:</label>
-                                            <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter Zipcode" %>              
+                                            <label class="required" >ZipCode</label>
+                                            <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter ZipCode" %>              
                                         </div>
                                         
                                         <br>
@@ -79,8 +79,8 @@
                                             <input class="form-control" placeholder="Enter Country" name="country1">                                            
                                         </div>
                                       <div class="form-group">
-                                            <label class="required" >Zipcode</label>
-                                            <input class="form-control" placeholder="Enter Zipcode" name="zipcode1">                                            
+                                            <label class="required" >ZipCode</label>
+                                            <input class="form-control" placeholder="Enter ZipCode" name="zipcode1">                                            
                                         </div>
                                         
                                     <% end %>
