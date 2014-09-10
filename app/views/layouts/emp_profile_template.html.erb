@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EmployeeManagement</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <%= javascript_include_tag 'application' %>
+
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="wrapper">
+        
+        
+       <%= render "shared/header" %>
+
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                       <li>
+                         <div  class="profile-pic" > 
+                            <h4><center> <%= @emp.full_name %> </center></h4>
+                            <% if @emp.avatar_url.present? %>
+
+                            <a href="changeprofilepic.html" >
+                              <%= image_tag(@emp.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
+                            </a>
+                            <% else %>
+                            <a href="changeprofilepic.html" >
+                              <img src="/assets/employee-icon.jpg" alt="hii" style="width:250px;height=250px;padding-left=10px;" ></img>
+                            </a>
+                            <% end %>
+
+                         </div>                      
+                        </li>
+                        <!--<li>
+                           <%#= link_to 'Dashboard', employees_path, :class => "fa fa-dashboard fa-fw" %>
+                        </li> -->
+                        <li>
+                            </ul>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <%= link_to "Employee Details", employee_path(@id) %>
+                                </li>
+                                <% if @id.to_i!=0 %>
+                                <li>
+                                    <%= link_to "Contact Details", employee_addresses_path(@id) %>
+                                    
+                                </li>
+                                <li>
+                                  <%= link_to "Education Details",  employee_educations_path(@id) %>
+
+                                </li>
+                                <li>
+                                  <%= link_to "Experience Details", employee_experiences_path(@id) %>
+                                </li>
+                                <li>
+                                  <%= link_to "Salary Details", employee_salaries_path(@id) %>
+                                </li>
+                                <li>
+                                  <%= link_to "Promotions", employee_promotions_path(@id) %>
+
+                                </li>
+                                <li>
+                                  <%= link_to "Email Etiquette", employee_email_ettiquities_path(@id) %>
+                                </li>
+<% if current_user.employee.role.id == 2 %>
+                                <li>
+                                    <%= link_to "Exit Details", exit_form_employee_path(@id) %>
+                                </li>
+<% end %>
+                                <% end %>       
+                            </ul>
+                         </li>
+                         
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+         
+            <!-- /.navbar-static-side -->
+
+<%= yield %>
+</div>
+</body>
+</html>

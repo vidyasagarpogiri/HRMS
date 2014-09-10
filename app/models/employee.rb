@@ -46,7 +46,7 @@ class Employee < ActiveRecord::Base
 	validates :blood_group_id, presence: true
 	validates :grade_id, presence: true
 	validates :date_of_join, presence: true
-	validates :alternate_email, presence: true
+	#validates :alternate_email, presence: true
 	
 	
 	#after_create :add_leaves
