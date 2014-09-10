@@ -73,7 +73,7 @@ end
 Grades = Grade.all.pluck(:id)
 
 ["Employee", "HR", "Tech Lead", "Manager"].each do |role|
-Role.create(:role_name => role ) 
+  Role.create(:role_name => role ) 
 end
 Roles = Role.all.pluck(:id)
 
