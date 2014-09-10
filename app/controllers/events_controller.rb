@@ -29,7 +29,8 @@ class EventsController < ApplicationController
   def update
    #raise params.inspect
    @event = Event.find(params[:id])
-   @event = Event.update(event_params)
+   @event.update(event_params)
+  
    redirect_to events_path
   end
 
