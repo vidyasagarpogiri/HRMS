@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     end  
   end
  
-   resources :groups, :except => [:update] do
+   resources :groups do
        resources :leave_policies
        resources :holiday_calenders
        member do
