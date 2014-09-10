@@ -31,6 +31,10 @@ body {
     display: inline-block;
 }
 
+ul .navbar-top-links li:hover{ 
+        font-size:normal;
+}
+
 .navbar-top-links li:last-child {
     margin-right: 15px;
 }
@@ -351,7 +355,9 @@ display:none;
 
 }
 
-
+.profile-pic{
+margin-top:-50px;
+}
 
 
 .navigation-btns li{
@@ -364,3 +370,26 @@ padding-left: 5px
 ul .navigation-btns {
 margin: 0 0 10px 7px;
 }
+
+.main-menu {
+width: 100%;
+background-color:black;
+height:60px;
+font-size:18px;
+font-weight:bold;
+padding-top:18px;
+}
+
+.main-menu  ul {
+padding-left:250px;
+
+}
+
+.main-menu ul li{
+display:inline;
+}
+
+.main-menu  ul li a{
+color:#f0ad4e;
+}
+
