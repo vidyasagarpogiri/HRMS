@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140909125834) do
-=======
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140909102956) do
-=======
-
-ActiveRecord::Schema.define(version: 20140909125834) do
->>>>>>> feff217ffb0f79d96a2683f54434cc6dc6cb9516
->>>>>>> b4095be2b7ecca36a1fd3f14346b9ca784b87d33
+ActiveRecord::Schema.define(version: 20140910055128) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -31,6 +22,8 @@ ActiveRecord::Schema.define(version: 20140909125834) do
     t.string   "state"
     t.string   "country"
     t.string   "zipcode"
+    t.integer  "employee_id"
+    t.boolean  "address_type", default: false
   end
 
   create_table "allowances", force: true do |t|
