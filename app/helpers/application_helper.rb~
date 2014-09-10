@@ -28,7 +28,7 @@ module ApplicationHelper
   
   def select_holidays
     a=[]
-    HolidayCalender.all.each do |k|
+    Event.all.each do |k|
     a << k.date.to_date
   end
   a
