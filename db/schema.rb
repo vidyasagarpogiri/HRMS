@@ -113,8 +113,6 @@ ActiveRecord::Schema.define(version: 20140910055128) do
     t.integer  "grade_id"
     t.integer  "role_id"
     t.integer  "job_location_id"
-    t.integer  "permanent_address_id"
-    t.integer  "present_address_id"
     t.integer  "user_id"
     t.integer  "salary_id"
     t.integer  "group_id"
@@ -128,8 +126,6 @@ ActiveRecord::Schema.define(version: 20140910055128) do
   add_index "employees", ["ff_status_id"], name: "index_employees_on_ff_status_id", using: :btree
   add_index "employees", ["grade_id"], name: "index_employees_on_grade_id", using: :btree
   add_index "employees", ["job_location_id"], name: "index_employees_on_job_location_id", using: :btree
-  add_index "employees", ["permanent_address_id"], name: "index_employees_on_permanent_address_id", using: :btree
-  add_index "employees", ["present_address_id"], name: "index_employees_on_present_address_id", using: :btree
   add_index "employees", ["role_id"], name: "index_employees_on_role_id", using: :btree
   add_index "employees", ["salary_id"], name: "index_employees_on_salary_id", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
