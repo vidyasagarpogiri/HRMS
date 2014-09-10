@@ -1,6 +1,8 @@
 class PromotionsController < ApplicationController
   
   layout "profile_template", only: [:index, :new, :create, :edit, :update]
+		
+	before_filter :user_authentication, only: [:index, :new, :create, :show, :edit, :update]
 
 	def index
 	  @employee = Employee.find(params[:employee_id])
@@ -45,6 +47,16 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.find(params[:id])
 		@promotion.destroy
 		redirect_to employee_promotions_path(@employee)
+	end
+
+	private
+	def user_authentication	
+			@employee = Employee.find(params[:employee_id])
+			#raise @employee.inspect
+		if current_user.employee.employee_id  == @employee.employee_id || current_user.employee.role_id == 2
+		else
+			redirect_to employees_path
+		end
 	end
      
  

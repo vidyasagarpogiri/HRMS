@@ -1,5 +1,6 @@
 class HolidayCalendersController < ApplicationController
 def index
+      raise params.inspect
       @group = Group.find(params[:group_id])
       @holiday_calenders =@group.holiday_calenders
     end
@@ -41,6 +42,6 @@ def index
     
     private
     def params_calender
-      params.require(:holiday_calender).permit(:date, :event, :mandatory_or_optional)
+      params.require(:holiday_calender).permit(:event_id, :mandatory_or_optional)
     end
 end
