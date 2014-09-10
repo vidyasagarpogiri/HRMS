@@ -2,7 +2,7 @@ class EducationsController < ApplicationController
 
  include EducationsHelper
   
-   layout "profile_template", only: [:index, :new, :create, :show, :edit, :update]
+   layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]
   
   
   def index
