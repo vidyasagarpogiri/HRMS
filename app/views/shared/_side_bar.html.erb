@@ -1,0 +1,12 @@
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav navbar-collapse">
+  
+    <% if current_user.employee.role_id == 2 %>
+      <%= render "shared/hr_side_bar"%>
+    <% else %>
+      <%= render "shared/emp_side_bar"%>
+    <% end %>
+    
+  </div>            <!-- /.sidebar-collapse -->               
+</div>
+            <!-- /.navbar-static-side -->  

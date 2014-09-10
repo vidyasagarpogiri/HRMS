@@ -1,6 +1,6 @@
 class EmailEttiquitiesController < ApplicationController
   
-  layout "profile_template", only: [:index, :new, :create, :show]
+   layout "emp_profile_template", only: [:index, :new, :create, :show]
 
 	before_filter :user_authentication, only: [:index, :new, :create, :show, :edit, :update]
 
