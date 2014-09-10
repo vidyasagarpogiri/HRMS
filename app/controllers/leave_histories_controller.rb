@@ -62,7 +62,7 @@ class LeaveHistoriesController < ApplicationController
     applied_days = total_days - weekend_count 
    #raise applied_days.inspect 
    @leave_history.update(:days => applied_days)
-    raise applied_days.inspect 
+    #raise applied_days.inspect 
     redirect_to employee_leave_histories_path
   end
   
@@ -104,7 +104,7 @@ class LeaveHistoriesController < ApplicationController
 
 	private
   def params_leave_history
-    params.require(:leave_history).permit(:from_date, :to_date, :reason, :feedback, :leave_type_id)
+    params.require(:leave_history).permit(:from_date, :to_date, :reason, :feedback, :leave_type_id, :subject)
   end
   
 end

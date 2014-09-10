@@ -34,7 +34,7 @@
 													                  <td class="center"> <%= group.group_name %>  </td>
 													                  <td> <%= group.reporting_manager_full_name %> </td>
 													                  <td> <%= group.employees.count if group.employees.present? %> </td>
-													                  <td>  </td>
+													                  <td><%= link_to "Edit", edit_group_path(group.id) %>  </td>
 													                 </tr>
 											                  </tbody>
 											                  <% end %>

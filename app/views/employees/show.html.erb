@@ -18,7 +18,8 @@
                                    <br>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Employee Id:</label>
-                                            <label><%= @employee.employee_id %></label>                                  
+                                            <label><%= @employee.employee_id %></label>
+                                            <input value="sad" type="text" name="personal[txtEmpFirstName]" class="block default editable" maxlength="30" title="First Name" id="personal_txtEmpFirstName" disabled="disabled">                                  
                                         </div>
                                         
                                          <div class="form-group">
@@ -91,7 +92,7 @@
                                 				</div>
 																				 <div class="form-group">
                                             <label style="font-weight:normal;">Alternate Email:</label>
-                                            <label><%= @employee.grade.value if @employee.alternate_email  %></label>
+                                             <label><%= @employee.alternate_email %></label> 
                                 				</div>  
                                       
                                     </form>
