@@ -33,6 +33,7 @@ Group.destroy_all
  @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
  @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
  @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
+ @user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
 
   
 Address.create(:id=>1,:line1 => "BAY STREET",:line => "GUL END",:city => "Sydney",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
@@ -108,7 +109,7 @@ Employee.create(:id => 4,:employee_id => 4, :title=> "Mrs.", :first_name=>"Cheth
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
 :grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>1,:avatar=>"406929_2668579486846_928068538_n.jpg",:group_id=>Groups[rand(Groups.length)])
+:permanent_address_id=>JobLocations[rand(JobLocations.length)],:present_address_id=>JobLocations[rand(JobLocations.length)],:salary_id=>1,:avatar=>"406929_2668579486846_928068538_n.jpg",:group_id=>Groups[rand(Groups.length)], :user_id => @user3.id)
 
 
 
