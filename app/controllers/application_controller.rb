@@ -5,14 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :empId
   
   
-  def after_sign_in_path_for(resource)
-    employees_path
-  end 
-
-  def after_sign_up_path_for(resource)
-     employees_path
-  end
-  
+ 
   
   
   private
