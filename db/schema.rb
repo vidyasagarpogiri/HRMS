@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20140910055128) do
-
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -25,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140910055128) do
     t.string   "country"
     t.string   "zipcode"
     t.integer  "employee_id"
-    t.boolean  "type",        default: false
+    t.boolean  "address_type", default: false
   end
 
   create_table "allowances", force: true do |t|

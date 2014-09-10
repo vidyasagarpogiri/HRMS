@@ -1,3 +1,4 @@
+<% if @employee.addresses.present? %>
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -102,3 +103,6 @@
             </div>
             <!-- /.row -->
         </div>
+<% else %>
+<%= render 'new_address'%>
+<% end %>

@@ -6,19 +6,9 @@ class AddressesController < ApplicationController
   
   def index
     @employee = Employee.find(params[:employee_id])
-    if @employee.present_address_id.present? || @employee.permanent_address_id.present?
-			if @employee.present_address_id.present?
-
-	      @address1 = Address.find(@employee.present_address_id)  
-			end
-			if @employee.permanent_address_id.present?
-      	@address2 = Address.find(@employee.permanent_address_id)
-			end #if @employee.permanent_address_id.present?
-    else
-      redirect_to new_employee_address_path(@id)
-      #@address = Address.new
-    end
-    
+		@address1 = @employee.addresses.where(:address_type=>0).first
+		@address2 = @employee.addresses.where(:address_type=>1).first
+		@address = Address.new
   end
   
   def new
@@ -29,7 +19,7 @@ class AddressesController < ApplicationController
   def create
 		@employee = Employee.find(params[:employee_id])
    	@address = @employee.addresses.create(params_present_address)
-		@address1 = @employee.addresses.create(:line => params[:line3], :line1 => params[:line4], :city => params[:city1], :state => params[:state1], :country => params[:country1], :zipcode => params[:zipcode1], :type => 1)
+		@address1 = @employee.addresses.create(:line => params[:line3], :line1 => params[:line4], :city => params[:city1], :state => params[:state1], :country => params[:country1], :zipcode => params[:zipcode1], :address_type => 1)
 	 redirect_to employee_addresses_path
  	end
 
