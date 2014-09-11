@@ -15,7 +15,6 @@ class LeavePoliciesController < ApplicationController
  end
  
  def create
-  #raise params.inspect@group = Group.create(params[:group_name])
    @group = Group.find(params[:group_id])
    @leave_policy = LeavePolicy.create(params_leavepolicy)
    @leave_policy.group_id = params[:group_id]
