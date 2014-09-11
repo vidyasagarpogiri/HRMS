@@ -2,7 +2,7 @@
                  
                   <ul class="nav" id="side-menu"><!-- Hr sidebar -->
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> My Profile</a>
+													<%= link_to "My Profile", employee_path(current_user.employee.id) %>
                         </li>
                         <li>
                             <a href="/employees"><i class="fa fa-users fa-fw"></i> Employees</a>
@@ -11,19 +11,26 @@
                             <a href="#"><i class="fa fa-cog fa-fw"></i> Configure<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Group</a>
+                      
+                                    <%= link_to "Group", groups_path %>
+                                    </li>
+                                    <li>
+
+																		<%= link_to 'Grade', grades_path %>
+
                                 </li>
                                 <li>
-                                    <a href="#">Department</a>
+                                    <%= link_to 'Department', departments_path %>
                                 </li>
                                 <li>
-                                    <a href="#">Designation</a>
+                                    <%= link_to 'Designation', designations_path %>
                                 </li>
                                 <li>
-                                    <a href="#">Role</a>
+                                    <%= link_to 'Role', roles_path %>
                                 </li>
                                 <li>
                                     <a href="#"></a>
+
                                 </li>
                                 <li>
                                     <a href="#"></a>

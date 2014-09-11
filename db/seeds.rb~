@@ -35,15 +35,11 @@ Group.destroy_all
  @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
  @user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
 
- ["BAY STREET","BEACH ROAD","MARINE TOWERS"].each do |line1| ["GUL END","Kukatpally"].each do |line|  ["Sydney", "mumbai","Hyderabad"].each do |city| ["Andhra", "Telangana", "Avalon"].each do |sta| ["Australia","India", "Dubai"].each do |cou| ["123456", "58789", "659874"].each do |pin|  
- 
-Address.create(:line1 => line1, :line => line,:city => city,:state=>sta,:country=>cou,:zipcode=>pin)
-end
-end
-end
-end
-end
-end
+  
+Address.create(:id=>1,:line1 => "BAY STREET",:line => "GUL END",:city => "Sydney",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
+Address.create(:id=>2,:line1 => "street 1",:line => "near KFC",:city => "Vizag",:state=>"Andhra",:country=>"India",:zipcode=>"530003")
+Address.create(:id=>3,:line1 => "BEACH ROAD",:line => "OPP:IMAX THEATRE",:city => "Avalon",:state=>"California",:country=>"Los Angels",:zipcode=>" 90704")
+Address.create(:id=>4,:line1 => "MARINE TOWERS",:line => "Kukatpally",:city => "Hyderabad",:state=>"Telangana",:country=>"India",:zipcode=>"500001")
 addresses = Address.all.pluck(:id)
 
 (0..3).each do 
@@ -132,3 +128,6 @@ LeaveType.create(:type_name => leave )
 end
 LeaveTypes = LeaveType.all.pluck(:id)
 
+Group.all.each do |group|
+  ReportingManager.create(employee_id: rand(1..Employee.count), group_id: group.id)
+end
