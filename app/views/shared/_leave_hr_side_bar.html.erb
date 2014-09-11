@@ -1,29 +1,28 @@
 
                     <ul class="nav" id="side-menu">
                         
-                        <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Leaves List</a>
-                        </li>
+                       
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Configure<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Leave-types</a>
+                                    <%= link_to "Leave-Types", leave_types_path %>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Groups</a>
+                                    <%= link_to 'Groups', groups_path %>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Holidays</a>
+                                   <%= link_to 'Holidays', events_path %>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-calendar fa-fw"></i> Holiday-Calender</a>
+														<%= link_to 'Holiday Calendar',  holiday_list_groups_path, :class => "fa fa-calendar fa-fw" %>
+                            
                         </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-history fa-fw"></i> Leave-History</a>
-                        </li>
-                    </ul>
+
+                 <!--       <li>
+                            <a href="forms.html"><i class="fa fa-calendar fa-fw"></i> Leave-calender</a>
+                        </li> -->
 
