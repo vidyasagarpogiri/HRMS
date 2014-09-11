@@ -1,11 +1,8 @@
-
 <% unless @leave_policy.nil? %>
-
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Leave Policies Form 
-                            <label style="font-weight:normal;padding:20px;margin-top:-15px;" class = "pull-right"><a><i class="fa fa-plus "></i></a><%= link_to " Edit", edit_group_leave_policy_path(@group, @leave_policy) %></label>
-     
+                            <label style="font-weight:normal;padding:20px;margin-top:-15px;" class = "pull-right"><a><i class="fa fa-plus "></i></a><%= link_to " Edit", edit_group_leave_policy_path(@group, @leave_policy) %></label>     
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -16,23 +13,17 @@
 													                  <th class="center">Personal leaves Per Year </th>
 													                  <th>Sick Leaves per Year</th>
 													                  <th>Minimum Carry forword Leaves</th>
-													                  											                 	                  										      		
-												                  </tr>
+													                </tr>
 											                  </thead>											                 
 											                  <tbody>
 												                  <tr>               
 													                  <td class="center"> <%= @leave_policy.pl_this_year %>  </td>
 													                  <td>  <%= @leave_policy.sl_this_year %> </td>
 													                  <td> <%= @leave_policy.eligible_carry_forward_leaves %></td>
-
 												                  </tr>
 											                  </tbody>
-
-									                  </table>              
-                                
-                                       
-                                </div>
-                                
+									                  </table>                                                                                    
+                                </div>                                
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
