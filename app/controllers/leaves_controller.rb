@@ -1,4 +1,7 @@
 class LeavesController < ApplicationController
+
+ layout "leave_template"
+ 
  def index
   @leaves = Leave.all
   @employee = Employee.find(params[:employee_id])
