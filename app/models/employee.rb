@@ -49,8 +49,8 @@ class Employee < ActiveRecord::Base
 	#validates :alternate_email, presence: true
 	
 	
-	after_create :add_leaves
-	after_update :update_leaves
+	#after_create :add_leaves
+	#after_update :update_leaves
 	
   
 
@@ -62,15 +62,13 @@ class Employee < ActiveRecord::Base
 private
 	def add_leaves
 		@leave_policy = self.group.leave_policy
-		#raise @leave_policy.inspect
-		@leave = Leave.create(:pl_carry_forward_prev_year => @leave_policy.eligible_carry_forward_leaves, :pl_applied => @leave_policy.pl_this_year, :sl_applied=> @leave_policy.sl_this_year, :employee_id => self.id)
-
+		@leave = leave.create(:pl_carry_forward_prev_year => @leave_policy.eligible_carry_forward_leaves, :pl_applied => @leave_policy.pl_this_year, :sl_applied=> @leave_policy.sl_this_year)
 	end
 	
 	def update_leaves
-		@leave_policy = self.group.leave_policy
-		#raise @leave_policy.inspect
+		@leave_policy = group.leave_policy
 	
+		#leave.update(:pl_carry_forward_prev_year => @leave_policy.eligible_carry_forward_leaves, :pl_applied => @leave_policy.pl_this_year, :sl_applied=> @leave_policy.sl_this_year)
 	end
 	
 
