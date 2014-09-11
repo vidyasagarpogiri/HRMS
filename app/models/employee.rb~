@@ -71,5 +71,14 @@ private
 		#leave.update(:pl_carry_forward_prev_year => @leave_policy.eligible_carry_forward_leaves, :pl_applied => @leave_policy.pl_this_year, :sl_applied=> @leave_policy.sl_this_year)
 	end
 	
+<<<<<<< HEAD
+=======
+	def update_leaves
+		@leave_policy = self.group.leave_policy
+		raise @leave_policy.inspect
+	
+	end
+	
+>>>>>>> ae2d7534693a5eb32f16095fa912112ab379fe05
 
 end

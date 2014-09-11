@@ -70,8 +70,9 @@ border-color: #e7e7e7;
 margin-left:1500px;
 margin-top:-30px;
 }
-.home ul li a:hover{
+ a:hover{
 text-decoration:none;
+cursor: pointer;
 }
 .home ul{
 list-style:none;
