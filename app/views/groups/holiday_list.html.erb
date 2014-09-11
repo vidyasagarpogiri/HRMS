@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                          <label style="font-weight:normal;padding:20px;" class = "pull-right"><a><i class="fa fa-plus "></i></a>&nbsp<%= link_to "New Event", new_event_path %></label>
+    
                                  
                         <div class="panel-body">
                             <div class="row">
@@ -19,16 +19,16 @@
 												                  <tr>
 													                  
 													                
-													                  <th>Event Name</th>
-																						<th>Event Date</th>
+													                  <th>Holiday Name</th>
+																						<th>Holiday Date</th>
 												                  </tr>
 											                  </thead>											                  
 	                                       <% @holidays.each do |holiday| %>
 											                  <tbody>
 												                  <tr>               
 													                  
-													                  <td> <%= holiday.event.event_name %> > </td>
-													                <td> <%= holiday.event.event_date %> > </td>
+													                  <td> <%= holiday.event.event_name %>  </td>
+													                <td> <%= holiday.event.event_date %> </td>
 													                  
 													                 </tr>
 											                  </tbody>

@@ -57,7 +57,7 @@ end
   end
   
   def total_balance_leaves(employee)
-    (employee.group.leave_policy.pl_this_year + employee.group.leave_policy.pl_this_year)- employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days")
+    (employee.group.leave_policy.pl_this_year + employee.group.leave_policy.pl_this_year)- employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days")  if employee.group.leave_policy.present?
   end
 
   def waiting_for_approval(employee)

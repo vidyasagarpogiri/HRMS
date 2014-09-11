@@ -18,7 +18,7 @@
                                     <%= form_for @employee, :url =>  update_exit_form_employee_path(@employee), method: :post  do |e| %>
                                         <div class="form-group">
                                             <label class="required" >Date of Exit</label>
-                                            <%= date_field(:employee, :date_of_exit, :class=>"form-control") %>
+                                            <%= text_field(:employee, :date_of_exit,  :class=>"form-control datepicker") %>
               
                                         </div>
                                         <div class="form-group">
@@ -27,7 +27,8 @@
                                                                           
                                         </div>             
                                         <br>
-                                        <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
+																				
+                                        <button type="submit" class="btn btn-success pull-left">Save </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 																				<%= link_to 'Cancel', show_exit_employee_path(@id), :class => "btn btn-success pull-left" %>
                                                     
                                     <% end %>
