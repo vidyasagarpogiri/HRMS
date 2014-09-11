@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
-    
-  def index
+   
+layout "leave_template" 
+ 
+ def index
     @events = Event.all
   end
 

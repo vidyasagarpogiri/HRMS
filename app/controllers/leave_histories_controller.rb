@@ -15,7 +15,9 @@ class LeaveHistoriesController < ApplicationController
 
     @employee = current_user.employee
     @leave_history = LeaveHistory.new
-    
+    @sick_leaves= sick_leaves(@employee, @employee.leave_histories)
+    #@personal_leaves=
+    #@carry_forward_leaves=
   end
   
   
@@ -92,8 +94,22 @@ class LeaveHistoriesController < ApplicationController
 
 
 	private
+  
   def params_leave_history
     params.require(:leave_history).permit(:from_date, :to_date, :reason, :feedback, :leave_type_id, :subject)
+  end
+  
+  def sick_leaves(employee, leave_history)
+    total_sick_leaves = employee.group.leave_policy.pl_this_year - @employee.leave_histories.group("leave_type_id").sum("days")[1]
+    #raise total_sick_leaves.inspect
+  end
+  
+  def personal_leaves
+  
+  end
+  
+  def carry_forward_leaves
+  
   end
   
 end

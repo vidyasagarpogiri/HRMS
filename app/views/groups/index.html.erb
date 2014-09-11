@@ -22,8 +22,8 @@
 												                  <tr>
 													                  <th class="center">Group Name</th>
 													                  <th>Reporting Manager</th>	
-													                  <th>No:of Employees</th>	
-													                  <th>No:of Holidays</th>	
+													                  <th>No.of Employees</th>	
+													                 <!-- <th>No.of Holidays</th>	-->
 													                  <th></th>
 													                 	                  										      		
 												                  </tr>
@@ -31,7 +31,7 @@
 	                                       <% @groups.each do |group| %>
 											                  <tbody>
 												                  <tr>               
-													                  <td class="center"> <%= group.group_name %>  </td>
+													                  <td class="center"> <%= link_to group.group_name, group_path(group) %>  </td>
 													                  <td> <%= group.reporting_manager_full_name %> </td>
 													                  <td> <%= group.employees.count if group.employees.present? %> </td>
 													                  <td><%= link_to "Edit", edit_group_path(group.id) %>  </td>
