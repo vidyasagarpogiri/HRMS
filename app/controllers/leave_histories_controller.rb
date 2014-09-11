@@ -74,6 +74,9 @@ class LeaveHistoriesController < ApplicationController
 		@employee = Employee.find(params[:employee_id])
 		@leave_history = LeaveHistory.find(params[:leave_history_id])
 		@leave_history.update(:status => LeaveHistory::APPROVED)
+		@leave_type = @leave_history.leave_type
+		@leave = @employee.group.leave_policy
+		#raise @leave.inspect
 		redirect_to reported_leaves_path
 		#raise @leave_history.inspect
 	end
