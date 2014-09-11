@@ -10,13 +10,15 @@
             <div class="row">
                <div class="col-lg-12">   
                  <label style="font-weight:normal;padding:0px;margin-top:-15px;"> <%= link_to 'Add Leave Policy For This Group', new_group_leave_policy_path(@group) %></label><br>
-                <label id="new_event" style="font-weight:normal;padding-left:0px;margin-top:-15px;"><a href=""><i class="fa fa-plus"></i></a><%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %></label><br><br>                                                            
-                 <div>
+                <label id="new_event" style="font-weight:normal;padding-left:0px;margin-top:-15px;"><a href=""></a><%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %></label><br><br>                                                            
+                 <div id ="leave_policy">
                    <%=render "leave_policies/index" %>
                  </div>
+                 
                  <div id="event_form">
                    <%=render "holiday_calenders/index" %>
                   </div>
+                  
                 </div>
                     <!-- /.panel -->
              </div>
@@ -26,11 +28,4 @@
  </div>
         <!-- /#page-wrapper -->
         
- <script>
- $("#event_form").hide(); 
- $(function(){   
-	$("#new_event").click(function(){
-			$("#event_form").show();
-		});
-		});
- </script>
+ 

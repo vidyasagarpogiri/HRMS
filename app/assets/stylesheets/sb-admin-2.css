@@ -99,7 +99,7 @@ ul .navbar-top-links li:hover{
 }
 
 .sidebar ul li a.active {
-    background-color: #eee;
+    background-color: #eee !important;
 }
 
 .sidebar .arrow {

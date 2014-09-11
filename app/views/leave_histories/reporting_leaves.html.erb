@@ -1,0 +1,65 @@
+             <div id="page-wrapper"> 
+               <div class="add">
+                 <label style="font-weight:normal;padding:13px;" class = "pull-right"><a href="#" id="remaining_leaves"><i class="fa fa-plus"></i> Remaining Leaves </a></label>            
+						     <label style="font-weight:normal;padding:13px;" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path(), :class => "fa fa-plus " %> </label> <br>
+						   </div>
+                   <div id="leaves_list">
+                                <label class="normalfont">Remaining Sick Leaves: </label><br>
+                                <label class="normalfont">Remaining Personal Leaves: </label> <br>
+                                <label class="normalfont">Remaining Carry Forward Leaves: </label><br>
+                              </div>                                  
+                   <div class="panel panel-default">
+                      <div class="panel-heading">
+                         Leave to be Approve/Reject
+                      </div>
+                    <div class="panel-body">
+										<table class="table table-striped table-hover" id="sample-table-2">
+											<thead>
+												<tr>
+												  <th> Full Name</th>
+													<th> Date</th>
+													<th> No 0f Days</th>													
+													<th> Leaves Type</th>
+													<th> Reason </th>
+													<th> Leaves Balance</th>
+													<th> Leaves Used </th>
+													<th> Status</th>
+													<th></th>													
+												</tr>
+											</thead>
+										  <% @leaves.each do |f| %>
+											<% unless f.status == "HOLD" %>
+											<tbody>												
+												<tr>               
+												  <td> <%= @employee.full_name %></td>
+											    <td> <%= f.from_date %> to <%= f.to_date %>  </td>
+												  <td> <%= f.days %> </td>
+												  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
+												  <td> <%= f.reason %> </td> 
+												  <td> 10</td>
+												  <td> 4 </td>
+												  <td> <%= f.status %> </td>
+												  <td>
+												      <ul class="navigation-btns" style="list-style: none;display:inline;">  
+                                  <li><%= link_to "Accept", accept_path(:employee_id=> emp.id, :leave_history_id => f.id), method: :post, :class => "btn btn-success pull-left"%></li>
+																	<li><%= link_to "Reject", reject_path(:employee_id=> emp.id, :leave_history_id => f.id), method: :post, :class => "btn btn-danger pull-left"%></li>
+                              </ul> 
+												  </td>
+												</tr>
+											</tbody>
+								    <% end %>
+	                  <% end %>
+									</table>
+								</div>
+							</div>
+                   
+                    
+                    </div>
+                    <!-- /.panel .chat-panel -->
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
