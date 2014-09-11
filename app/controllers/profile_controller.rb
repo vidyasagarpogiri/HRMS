@@ -1,6 +1,6 @@
 class ProfileController < ApplicationController
   
-  before_filter :layout_method
+layout "emp_profile_template"
   
   def layout_method
     if params[:id].present?
