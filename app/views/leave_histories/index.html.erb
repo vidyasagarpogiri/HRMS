@@ -30,11 +30,13 @@
 												<% if f.status == "HOLD" %>
 											<tbody>
 												<tr>
-													<td class="center"><%= link_to @employee.full_name, "#" %></td>
-													<td>05</td>
-													<td>08</td>
+
+													<td class="center"><a href="view.html"> <%= @employee.full_name %></td>
+													<td><%= total_used_leaves(@employee)%></td>
+													<td><%= total_balance_leaves(@employee) %></td>
+
 													<td>2</td>
-													<td>0</td>
+													<td><%= waiting_for_approval(@employee)%></td>
 												</tr>
 											</tbody>
 									<% end %>
@@ -44,7 +46,7 @@
 								 </div>          
                    <div class="panel panel-default">
                       <div class="panel-heading">
-                          Applied Leaves List
+                          Approved Leaves List
                       </div>
                     <div class="panel-body">
 										    <table class="table table-striped table-hover" id="sample-table-2">
@@ -65,10 +67,9 @@
 											<tbody>												
 												<tr>               <td><%= @employee.full_name %></td>
 													                  <td class="center"> <%= f.from_date %>  </td>
-													                  <!--<td>  <%# f.to_date %> </td> -->
 													                  <td> <%= f.days %> </td>
 													                  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
-													                 <!-- <td> <%# f.reason %> </td> -->
+													                  <td> <%f.reason %> </td> 
 																						<td></td>
 																						<td></td>
 													                  <td> <%= f.status %> </td>

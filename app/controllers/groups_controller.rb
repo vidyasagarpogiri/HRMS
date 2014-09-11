@@ -72,6 +72,10 @@ class GroupsController < ApplicationController
       @employee.update(:group_id => @group.id)
       redirect_to @group
   end
+
+	def holiday_list
+		@holidays = current_user.employee.group.holiday_calenders
+	end
   
   private
   def group_params

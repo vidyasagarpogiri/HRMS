@@ -2,11 +2,16 @@
                     <ul class="nav" id="side-menu">
                         
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Leaves List</a>
+														<%= link_to 'Leaves List', leave_histories_path, :class => "fa fa-dashboard fa-fw" %>
                         </li>
                         <li>
+
                             <a href="tables.html"><i class="fa fa-calendar fa-fw"></i> Holiday-Calender</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-history fa-fw"></i> My Leaves</a>
                         </li>
+                        <li>
+                            <%= link_to 'Holidays',  holiday_list_groups_path, :class => "fa fa-calendar fa-fw" %>
+                        </li
+
