@@ -14,6 +14,7 @@ class DesignationsController < ApplicationController
   end
 
   def show
+    #raise params.inspect
     @designation = Designation.find(params[:id])
     @employees = @designation.employees
 
@@ -49,7 +50,7 @@ class DesignationsController < ApplicationController
     
   private
   def designation_params
-    params.require(:designation).permit(:designation_name) 
+    params.require(:designation).permit(:designation_name, :email) 
   end
 end
 
