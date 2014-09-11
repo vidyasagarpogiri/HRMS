@@ -1,4 +1,6 @@
 class LeaveHistoriesController < ApplicationController
+
+  layout "leave_template"
  	
  include ApplicationHelper
 
@@ -17,6 +19,7 @@ class LeaveHistoriesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     #@leave_type = LeaveTypes.find(params[:leave_type_id])
     @leave_history = LeaveHistory.new
+    
   end
   
   

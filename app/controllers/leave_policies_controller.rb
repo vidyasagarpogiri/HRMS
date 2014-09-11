@@ -1,5 +1,7 @@
 class LeavePoliciesController < ApplicationController
 
+  layout "leave_template"
+
  def index
    @group = Group.find(params[:group_id])
    @leave_policy = @group.leave_policy
