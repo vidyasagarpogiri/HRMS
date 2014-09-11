@@ -43,7 +43,7 @@ Address.create(:id=>4,:line1 => "MARINE TOWERS",:line => "Kukatpally",:city => "
 addresses = Address.all.pluck(:id)
 
 (0..3).each do 
-  JobLocation.create( :address_id => addresses[rand(addresses.length)])
+JobLocation.create( :address_id => addresses[rand(addresses.length)])
 end
 JobLocations = JobLocation.all.pluck(:id)
 
@@ -110,27 +110,7 @@ Employee.create(:id => 4,:employee_id => 4, :title=> "Mrs.", :first_name=>"Cheth
 :grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
 :salary_id=>1,:avatar=>"406929_2668579486846_928068538_n.jpg",:group_id=>Groups[rand(Groups.length)],:alternate_email => "email@mail.com")
 
-
-
-
-Education.create(:id=>1, :specilization=>"B.Tech", :institute=> "AU", year_of_pass: "2007",:cgpa_percentage=> "78.50", :Employee_id=>1)
-Education.create(:id=>5, :specilization=>"M.Tech", :institute=> "JNTU", year_of_pass: "2012",:cgpa_percentage=> "81.20", :Employee_id=>1)
-
-Education.create(:id=>2, :specilization=>"MBA", :institute => "GITAM",year_of_pass: "2010",:cgpa_percentage=> "91.50", :Employee_id=>2)
-
-Education.create(:id=>3, :specilization=>"MCA", :institute=> "AU", year_of_pass: "2010",:cgpa_percentage=> "82.50", :Employee_id=>3)
-
-Education.create(:id=>4, :specilization=>"M.Tech", :institute=> "AU",year_of_pass: "2010",:cgpa_percentage=> "76.50", :Employee_id=>4)
-
-
-Experience.create(:id=>1,:previous_company=>"Microsoft",:last_designation=>"Software Engineer",:from_date=>"2012-10-11",:to_date=>"2013-06-12",:employee_id=> 1)
-Experience.create(:id=>2,:previous_company=>"TCS",:last_designation=>"Sr.Software Engineer",:from_date=>"2013-08-01",:to_date=>"2014-08-28",:employee_id=> 1)
-
-Experience.create(:id=>3,:previous_company=>"Infosys",:last_designation=>"Software Engineer",:from_date=>"2012-10-11",:to_date=>"2013-06-12",:employee_id=> 2)
-
-Experience.create(:id=>4,:previous_company=>"TCS",:last_designation=>"Java Developer",:from_date=>"2013-08-01",:to_date=>"2014-08-28",:employee_id=> 3)
-
-Experience.create(:id=>5,:previous_company=>"Wipro",:last_designation=>".Net Developer",:from_date=>"2013-08-01",:to_date=>"2014-08-28",:employee_id=> 4)
+Employees = Employee.all.pluck(:id)
 
 
 ["Need Holidays list for year 2014", "Need Hand book/Scribbling pad"].each do |ettiquite|
@@ -148,3 +128,6 @@ LeaveType.create(:type_name => leave )
 end
 LeaveTypes = LeaveType.all.pluck(:id)
 
+Group.all.each do |group|
+  ReportingManager.create(employee_id: rand(1..Employee.count), group_id: group.id)
+end
