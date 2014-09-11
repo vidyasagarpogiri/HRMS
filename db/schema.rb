@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20140910055128) do
     t.string   "pan"
     t.string   "date_of_confirmation"
     t.string   "date_of_join"
-    t.date     "date_of_exit"
+    t.string   "date_of_exit"
     t.text     "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
