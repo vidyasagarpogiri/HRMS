@@ -1,4 +1,4 @@
-          
+   <% if @holiday_calenders.present? %>       
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Event List 
@@ -35,9 +35,12 @@
                             <!-- /.row (nested) -->
                         </div>
                         <!-- /.panel-body -->
+                        <% else %>
+                        <h4> Please add new Events for this Group </h4>
+           
                     </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-
+<% end %>
 
