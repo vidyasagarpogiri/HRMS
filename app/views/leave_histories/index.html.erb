@@ -1,68 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Amzur Admin</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-           <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        
-                        <li>
-                            <a href="index.html"><i class="fa fa-list fa-fw"></i> Leaves List</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-calendar fa-fw"></i> Leave-calender</a>
-                        </li>
-                        <li>
-                           
-                            <%= link_to "Holiday-Calender", group_path(@employee.group), :class => "fa fa-calendar fa-fw" %>
-                        </li>
-                        
-                    </div>
-                </div>
-            <br>
              <div id="page-wrapper">  
             
-						<label style="font-weight:normal;padding:13px;" class = "pull-right"><%= link_to 'Apply Leave',  new_employee_leave_history_path(@employee), :class => "fa fa-plus " %> </label> 
+						<label style="font-weight:normal;padding:13px;" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path(), :class => "fa fa-plus " %> </label> 
 <br><br><br>         
                <div class="panel panel-default">
                
                   <div class="panel-heading">
-                      Applied Leaves List
+                     Leaves Waiting for Approval
                   </div>
 									<div class="panel-body">
 										<table class="table table-striped table-hover" id="sample-table-2">
@@ -133,18 +77,7 @@
 									</div>
 								</div>
                    
-                        <!-- /.panel-body -->
-                        <div class="panel-footer " >
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                        Send
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- /.panel-footer -->
+                    
                     </div>
                     <!-- /.panel .chat-panel -->
                 </div>
@@ -154,26 +87,3 @@
         </div>
         <!-- /#page-wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/sb-admin-2.js"></script>
-
-</body>
-
-</html>
