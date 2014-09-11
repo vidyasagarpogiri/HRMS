@@ -1,5 +1,7 @@
 class LeaveTypesController < ApplicationController
 
+  layout "leave_template"
+
   def index
     @leave_types = LeaveType.all
   end

@@ -1,4 +1,6 @@
 class LeaveHistoriesController < ApplicationController
+
+  layout "leave_template"
  	
  include ApplicationHelper
 
@@ -13,6 +15,7 @@ class LeaveHistoriesController < ApplicationController
 
     @employee = current_user.employee
     @leave_history = LeaveHistory.new
+    
   end
   
   
