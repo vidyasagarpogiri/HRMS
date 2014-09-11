@@ -64,7 +64,7 @@ Rails.application.routes.draw do
      end
     
     resources :leave_types 
-
+ resources :leave_histories 
  
 get 'reported_leaves' => "leave_histories#reported_leaves"
 get 'applied_leaves' => "leave_histories#applied_leaves"
@@ -73,7 +73,6 @@ post 'reject' => "leave_histories#reject"
 #get 'leaves' => "leave_histories#index"
  resources :employees do 
     resources :leaves
-    resources :leave_histories 
 	
 		member do
 			get 'exit_form'
