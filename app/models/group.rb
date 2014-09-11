@@ -9,4 +9,6 @@ class Group < ActiveRecord::Base
    reporting_manager.employee.full_name if reporting_manager.present?
   end
   
+  
+  
 end

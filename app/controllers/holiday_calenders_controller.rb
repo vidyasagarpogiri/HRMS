@@ -1,4 +1,6 @@
 class HolidayCalendersController < ApplicationController
+
+  layout "leave_template"
 def index
       #raise params.inspect
       @group = Group.find(params[:group_id])
