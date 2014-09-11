@@ -2,7 +2,7 @@
                  
                   <ul class="nav" id="side-menu"><!-- Hr sidebar -->
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> My Profile</a>
+													<%= link_to "My Profile", employee_path(current_user.employee.id) %>
                         </li>
                         <li>
                             <a href="/employees"><i class="fa fa-users fa-fw"></i> Employees</a>
@@ -30,6 +30,7 @@
                                 </li>
                                 <li>
                                     <a href="#"></a>
+
                                 </li>
                                 <li>
                                     <a href="#"></a>
