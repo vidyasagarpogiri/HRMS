@@ -5,19 +5,15 @@ class LeaveHistoriesController < ApplicationController
  include ApplicationHelper
 
 	def index
-		
-		@employee = Employee.find(params[:employee_id])
-
-		@leaves = @employee.leave_histories
-
+		@leaves = current_user.employee.leave_histories
+		@employee = current_user.employee
 	end
 
 
 
   def new
 
-    @employee = Employee.find(params[:employee_id])
-    #@leave_type = LeaveTypes.find(params[:leave_type_id])
+    @employee = current_user.employee
     @leave_history = LeaveHistory.new
     
   end
@@ -29,12 +25,8 @@ class LeaveHistoriesController < ApplicationController
   
  
   def create
-   #raise params_leave_history.inspect 
-   @employee = Employee.find(params[:employee_id])
-   #raise params.inspect
+   @leave_history = current_user.employee.leave_histories.create(params_leave_history)
    
-   @leave_history = LeaveHistory.create(params_leave_history)
-   @leave_history.update(:employee_id => params[:employee_id])
    total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
     
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)
@@ -42,38 +34,29 @@ class LeaveHistoriesController < ApplicationController
     applied_days = total_days - weekend_count 
    #raise applied_days.inspect 
    @leave_history.update(:days => applied_days)
-   Notification.applyleave(@employee, @leave_history).deliver
-   redirect_to employee_leave_histories_path
+   Notification.applyleave(current_user.employee, @leave_history).deliver
+   redirect_to leave_histories_path
   end
   
   
   def edit
-  #raise params.inspect
-   @employee = Employee.find(params[:employee_id])
    @leave_history = LeaveHistory.find(params[:id])
   end
   
   def update
   
-    @employee = Employee.find(params[:employee_id])
     @leave_history = LeaveHistory.find(params[:id])
     @leave_history.update(params_leave_history)
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
-    
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)
-  
-    applied_days = total_days - weekend_count 
-   #raise applied_days.inspect 
+    applied_days = total_days - weekend_count  
    @leave_history.update(:days => applied_days)
-    #raise applied_days.inspect 
     redirect_to employee_leave_histories_path
   end
   
   
   def applied_leaves
-		#@employee = Employee.find(params[:employee_id])
 		@leave_histories = LeaveHistory.all
-		#raise @leave_histories.inspect
 	end
 	
 
@@ -91,6 +74,9 @@ class LeaveHistoriesController < ApplicationController
 		@employee = Employee.find(params[:employee_id])
 		@leave_history = LeaveHistory.find(params[:leave_history_id])
 		@leave_history.update(:status => LeaveHistory::APPROVED)
+		@leave_type = @leave_history.leave_type
+		@leave = @employee.group.leave_policy
+		#raise @leave.inspect
 		redirect_to reported_leaves_path
 		#raise @leave_history.inspect
 	end
