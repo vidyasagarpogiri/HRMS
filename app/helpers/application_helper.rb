@@ -47,5 +47,20 @@ end
     leaves_array
   end
  
+ 
+  def remaining_leaves(employee, leave_type)
+     employee.leave_histories.where(leave_type_id: leave_type).sum("days")
+  end
+  
+  def total_used_leaves(employee)
+    employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days")
+  end
+  
+  def total_balance_leaves(employee)
+    (employee.group.leave_policy.pl_this_year + employee.group.leave_policy.pl_this_year)- employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days")
+  end
 
+  def waiting_for_approval(employee)
+    employee.leave_histories.where(status: LeaveHistory::HOLD).sum("days")
+  end
 end
