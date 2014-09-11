@@ -40,46 +40,9 @@
             <div class="navbar-header">                
                 <a class="navbar-brand" href="index.html">Employee Management</a>
             </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <li style="color:	#007ACC;"> Welcome Admin </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> My Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-            
+            <!-- /.navbar-header -->            
            </nav> 
-           <div style="background-color:#f0ad4e;height:3px;"></div> 
-           <div class="main-menu">
-                <ul class="nav nav-pills">
-                   <li>
-                      <a href="#"> Employee Management</a>
-                   </li>
-                   <li>
-                      <a href="#"> Leave management</a>
-                   </li>
-                   <li>
-                      <a href="#"> Card Scanner</a>
-                   </li>
-                   
-                </ul>  
-           </div>
+        
 
            <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -90,6 +53,7 @@
                         </li>
                         <li>
                             <a href="tables.html"><i class="fa fa-calendar fa-fw"></i> Holiday-Calender</a>
+                            <%= link_to "Holiday-Calender", group_path(@employee.group) %>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-calendar fa-fw"></i> Leave-calender</a>
