@@ -89,7 +89,9 @@ class LeaveHistoriesController < ApplicationController
 		redirect_to reported_leaves_path
 	end
 
-
+   def employee_leaves
+    @leaves = LeaveHistory.all
+   end
 
 	private
   def params_leave_history

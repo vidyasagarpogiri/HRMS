@@ -8,6 +8,15 @@ $(function(){
 				$("#new_city").hide();
 			}
 		});
+		
+	<!-- ramaining Leaves -->	
+ $("#leaves_list").hide();
+ $(function(){   
+	$("#remaining_leaves").click(function(){
+			$("#leaves_list").show();
+		});
+		});
+ <!-- ramaining Leaves -->	
 
   $("#employee_date_of_birth").datepicker();
 

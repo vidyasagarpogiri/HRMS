@@ -71,6 +71,7 @@ get 'applied_leaves' => "leave_histories#applied_leaves"
 post 'accept' => "leave_histories#accept"
 post 'reject' => "leave_histories#reject"
 #get 'leaves' => "leave_histories#index"
+get 'employee_leaves' => "leave_histories#employee_leaves"
  resources :employees do 
     resources :leaves
 	
