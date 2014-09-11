@@ -25,14 +25,14 @@
                     <ul class="nav" id="side-menu">
                        <li>
                          <div  class="profile-pic" > 
-                            <h4><center> <%= @emp.full_name %> </center></h4>
-                            <% if @emp.avatar_url.present? %>
+                            <h4><center> <%= @emp.full_name if @emp.present? %> </center></h4>
+                            <% if @emp.present? && @emp.avatar_url.present? %>
 
-                            <a href="changeprofilepic.html" >
+                            <a href="#" >
                               <%= image_tag(@emp.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
                             </a>
                             <% else %>
-                            <a href="changeprofilepic.html" >
+                            <a href="#" >
                               <img src="/assets/employee-icon.jpg" alt="hii" style="width:250px;height=250px;padding-left=10px;" ></img>
                             </a>
                             <% end %>
@@ -45,10 +45,11 @@
                         <li>
                             </ul>
                             <ul class="nav nav-second-level">
-                                <li>
+                               
+                                <% if @id.to_i!=0 %>
+                                 <li>
                                     <%= link_to "Employee Details", employee_path(@id) %>
                                 </li>
-                                <% if @id.to_i!=0 %>
                                 <li>
                                     <%= link_to "Contact Details", employee_addresses_path(@id) %>
                                     
@@ -75,6 +76,10 @@
                                     <%= link_to "Exit Details", exit_form_employee_path(@id) %>
                                 </li>
 <% end %>
+                                <% else %>
+                                   <li>
+                                    <%= link_to "Employee Details", "#" %>
+                                </li>
                                 <% end %>       
                             </ul>
                          </li>

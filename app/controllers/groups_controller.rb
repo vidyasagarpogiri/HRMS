@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
 
+    layout "leave_template"
+  
   def index
     @groups = Group.all
   end
