@@ -128,3 +128,6 @@ LeaveType.create(:type_name => leave )
 end
 LeaveTypes = LeaveType.all.pluck(:id)
 
+Group.all.each do |group|
+  ReportingManager.create(employee_id: rand(1..Employee.count), group_id: group.id)
+end

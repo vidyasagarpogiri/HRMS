@@ -1,6 +1,6 @@
 class HolidayCalendersController < ApplicationController
 def index
-      raise params.inspect
+      #raise params.inspect
       @group = Group.find(params[:group_id])
       @holiday_calenders =@group.holiday_calenders
     end
