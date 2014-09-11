@@ -102,13 +102,7 @@ Employee.create(:id => 3,:employee_id => 3, :title=> "Miss.", :first_name=>"Soni
 :grade_id=>Grades[rand(Grades.length)],:role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
 :salary_id=>2,:avatar=>"gates_print.jpg",:group_id=>Groups[rand(Groups.length)], :user_id => @user2.id,:alternate_email => "email@mail.com")
 
-Employee.create(:id => 4,:employee_id => 4, :title=> "Mrs.", :first_name=>"Chethan",:last_name=>"Sharma",:date_of_birth=>"2001-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"1",
-:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-02-05",:date_of_join=>"2010-11-03",
- :image_url=> "image",
-:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
-:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:designation_id=>Designations[rand(Designations.length)],
-:grade_id=>Grades[rand(Grades.length)],:role_id=>Roles[rand(Roles.length)],:job_location_id=>JobLocations[rand(JobLocations.length)],
-:salary_id=>1,:avatar=>"406929_2668579486846_928068538_n.jpg",:group_id=>Groups[rand(Groups.length)],:alternate_email => "email@mail.com")
+
 
 Employees = Employee.all.pluck(:id)
 
