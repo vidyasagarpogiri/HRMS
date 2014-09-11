@@ -49,8 +49,8 @@ class Employee < ActiveRecord::Base
 	#validates :alternate_email, presence: true
 	
 	
-	after_create :add_leaves
-	after_update :update_leaves
+	#after_create :add_leaves
+	#after_update :update_leaves
 	
   
 
