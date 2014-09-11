@@ -5,7 +5,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :title
       t.string :first_name
       t.string :last_name
-      t.date :date_of_birth
+      t.string :date_of_birth
       t.string :gender
       t.string :marital_status
       t.float :total_experience
@@ -13,9 +13,9 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :mobile_number
       t.string :father_name
       t.string :pan
-      t.date :date_of_confirmation
-      t.date :date_of_join
-      t.date :date_of_exit
+      t.string :date_of_confirmation
+      t.string :date_of_join
+      t.string :date_of_exit
       t.text :image_url
 
       t.timestamps
