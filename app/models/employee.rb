@@ -69,7 +69,7 @@ private
 	
 	def update_leaves
 		@leave_policy = self.group.leave_policy
-		raise @leave_policy.inspect
+		#raise @leave_policy.inspect
 	
 	end
 	
