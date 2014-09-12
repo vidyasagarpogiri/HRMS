@@ -19,13 +19,13 @@
                                  <%= form_for(@leave_type) do |f| %>
                                         
                                         <div class="form-group">
-                                            <label>Create New Leaves Type:</label>
+                                            <label>Create New Leave Type:</label>
                                             <%= f.text_field :type_name, :class => "form-control",  :placeholder=>"Enter new Leave type" %>
                                         </div>
                                         
                                        <ul class="navigation-btns" style="list-style: none;display:inline;">
                                            <li> <%= f.submit  'Save', :class => "btn btn-success pull-left" %></li>
-                                            
+                                           <li><%= link_to 'Cancel', leave_types_path, :class=>"btn btn-danger btn btn-success pull-right" %></li>
                                          </ul> 
                                                     
                                     <% end %>
