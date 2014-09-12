@@ -22,7 +22,7 @@
 											                </thead>
 											                <tbody>
 												                <tr>               
-													                <td class="center"><%= @employee.date_of_exit %></td>
+													                <td class="center"><%= format_date (@employee.date_of_exit) %></td>
 													                <td><%= @employee.ff_status.status_name if @employee.ff_status.present? %> </td>
                                           <% if current_user.employee.role.id == 2 %>
 													                <td> 
