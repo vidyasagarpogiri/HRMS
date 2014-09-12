@@ -14,13 +14,17 @@ class Notification < ActionMailer::Base
 	#	@employee.user.email
 		@employee = employee
 		@leave_history = leave_history
+
 		 mail(:to => @employee.user.email, :subject => "Leave Approved")
+
 	end
   
 	def reject_leave(employee, leave_history)
 		@employee = employee
 		@leave_history = leave_history
+
 		 mail(:to => @employee.user.email, :subject => "Leave Rejected")
+
 	end
 end
 
