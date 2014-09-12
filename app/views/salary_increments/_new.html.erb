@@ -1,5 +1,13 @@
 
-
+            
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                         <div class="panel-heading">
+                            Increments pay Form
+                        </div>
+                        <div class="panel-body">
 
                                  <%= form_for ([@employee, @salary, @salary_increment]), :remote => true do |f| %>
                                         
@@ -19,6 +27,17 @@
                                            <li><button type="submit" class="btn btn-success pull-left">Reset</button></li>            
                                        </ul>            
                                     <% end %>
+                                    
+                                         <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+           
+         </div>
+          <!-- /#page wrapper -->
                   <script>
   $(function() {
     $( ".datepicker" ).datepicker();
