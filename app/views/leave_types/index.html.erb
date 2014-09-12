@@ -12,13 +12,14 @@
                
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Basic Form Elements
+                            Types of Leaves
                             <label style="font-weight:normal;padding:-20px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to "Add New Leave Type",  new_leave_type_path  %></label>
                                                 
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
+                                <% if @leave_types.present? %>
                                     <% @leave_types.each do |leave| %>
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Leave Type :</label>
@@ -28,7 +29,13 @@
                                               <li><%= link_to "Delete",  leave, method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-danger" %></li>
                                             </ul><hr>
                                         </div>
-                                   <% end %>
+                                        <% end %>
+                                   <% else %>
+                                   <div class="alert alert-info alert-dismissable">
+                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                      Please define Leaves types 
+                                   </div>
+                                   <% end %> 
                                 </div>
                                 
                                 <!-- /.col-lg-6 (nested) -->
