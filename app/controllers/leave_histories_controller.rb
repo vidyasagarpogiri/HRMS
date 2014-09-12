@@ -66,12 +66,13 @@ class LeaveHistoriesController < ApplicationController
 	end
 		
 	def accept
-		
+		#raise params.inspect
 		@employee = Employee.find(params[:employee_id])
 		@leave_history = LeaveHistory.find(params[:leave_history_id])
 		@leave_history.update(:status => LeaveHistory::APPROVED)
 		@leave_type = @leave_history.leave_type
 		@leave = @employee.group.leave_policy
+		 Notification.accept_leave(@employee, @leave_history).deliver
 		redirect_to reported_leaves_path
 
 	end
@@ -81,6 +82,7 @@ class LeaveHistoriesController < ApplicationController
 		#raise params.inspect
 		@leave_history = LeaveHistory.find(params[:leave_history_id])
 		@leave_history.update(:status => LeaveHistory::REJECTED)
+		 Notification.reject_leave(current_user.employee, @leave_history).deliver
 		redirect_to reported_leaves_path
 	end
 
@@ -93,7 +95,6 @@ class LeaveHistoriesController < ApplicationController
   def params_leave_history
     params.require(:leave_history).permit(:from_date, :to_date, :reason, :feedback, :leave_type_id, :subject)
   end
-  
 
 end
 
