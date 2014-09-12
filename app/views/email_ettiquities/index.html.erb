@@ -27,7 +27,7 @@
 											              <% @emails.each do |email| %>
 											            <tbody>
 												            <tr>               
-													            <td class="center"><%= email.dateofsending %></td>
+													            <td class="center"><%= format_date (email.dateofsending) %></td>
 													            <td> <%= email.ettiquite %> </td>
                                       <% if current_user.employee.role.id == 2 %>
 													            <td> 

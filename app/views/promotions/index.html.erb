@@ -27,7 +27,7 @@
 											              <% @promotions.each do |promotion| %>
 											            <tbody>
 												            <tr>               
-													            <td class="center"><%= promotion.date_of_promotion %></td>
+													            <td class="center"><%= format_date (promotion.date_of_promotion) %></td>
 													            <td> <%= promotion.designation.designation_name  if promotion.designation.present? %> </td>
                                       <% if current_user.employee.role.id == 2 %>
 													            <td> 
