@@ -19,7 +19,7 @@
 												                  <tr>
 													                  
 													                
-													                  <th>Holiday Name</th>
+													                  <th>Event Name</th>
 																						<th>Holiday Date</th>
 												                  </tr>
 											                  </thead>											                  
@@ -28,7 +28,7 @@
 												                  <tr>               
 													                  
 													                  <td> <%= holiday.event.event_name %>  </td>
-													                <td> <%= holiday.event.event_date %> </td>
+													                <td> <%= format_date(holiday.event.event_date) %> </td>
 													                  
 													                 </tr>
 											                  </tbody>
