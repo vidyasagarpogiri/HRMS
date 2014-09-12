@@ -1,4 +1,10 @@
-<h3>Varible Pay</h3><hr>
+
+                    
+                       
+<div class="page-header">Varible Pay</div>
+ <% if current_user.employee.role.id == 2 %>
+ <label style="font-weight:normal;margin-top:-50px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to ' New Bonus',  "#", :id=>"new_bonus_form"  %></label>
+  <% end %>
 <div>
   <%=render 'insentives/index' %>
 </div>

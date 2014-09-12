@@ -50,10 +50,21 @@
 									</div>
 
 								 </div> 
+
+
+
+    
+								 <h4> Approved Leaves List</h4> <hr>  
+
+								 	 <% @leaves.each do |f| %>
+												<% unless f.status == "HOLD" %> 
+
 								 
 								 
+
 								 <div class="page-header"> Approved Leaves List</div> 
 								 	 <% unless employee_has_hold_leaves? %>
+
                    <div class="panel panel-default">
                       <div class="panel-heading">
                           Approved Leaves List
