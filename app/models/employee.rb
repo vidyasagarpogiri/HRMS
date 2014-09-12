@@ -46,7 +46,7 @@ class Employee < ActiveRecord::Base
 	validates :blood_group_id, presence: true
 	validates :grade_id, presence: true
 	validates :date_of_join, presence: true
-	#validates :alternate_email, presence: true
+	# validates :alternate_email, presence: true
 	
 	
 	#after_create :add_leaves
@@ -66,17 +66,7 @@ class Employee < ActiveRecord::Base
      "#{first_name} #{last_name}"
   end
 
-private
-	def add_leaves
-		@leave_policy = self.group.leave_policy
-		@leave = leave.create(:pl_carry_forward_prev_year => @leave_policy.eligible_carry_forward_leaves, :pl_applied => @leave_policy.pl_this_year, :sl_applied=> @leave_policy.sl_this_year)
-	end
-	
-	def update_leaves
-		@leave_policy = group.leave_policy
-	
-		#leave.update(:pl_carry_forward_prev_year => @leave_policy.eligible_carry_forward_leaves, :pl_applied => @leave_policy.pl_this_year, :sl_applied=> @leave_policy.sl_this_year)
-	end
+
 	
 
 end

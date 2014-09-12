@@ -17,8 +17,16 @@ def index
       #raise params.inspect
        @group = Group.find(params[:group_id])
        params_with_group = params_calender.merge(group_id: params[:group_id])
-       @holiday_calender = HolidayCalender.create(params_with_group)
-       redirect_to group_path(@group)
+       
+       @holiday_calender = HolidayCalender.new(params_with_group)
+        if @holiday_calender.save
+      
+          redirect_to group_path(@group)
+       
+        else
+          flash.now[:error] 
+          render "new"
+        end
            
     end
     

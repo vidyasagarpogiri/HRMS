@@ -11,24 +11,20 @@ class GroupsController < ApplicationController
     @group = Group.new
     @employee = Employee.new
     @reporting_manager = ReportingManager.new
-   # @group.leave_policy.build
-   
+     
   end
   
  
   
   def create
-    #raise params.inspect
+    
     @employee = Employee.find(params[:emp_id]) 
-    #raise @employee.inspect
     @group = Group.create(group_params)
     @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :group_id => @group.id)
-    #raise @reporting_manager.inspect
     redirect_to  @group
   end
   
   def show
-     #raise params.inspect
      @group = Group.find(params[:id])
      @employee = @group.reporting_manager.employee
      @leave_policy = @group.leave_policy
@@ -37,25 +33,21 @@ class GroupsController < ApplicationController
   end
   
   def edit
-     #raise params.inspect
+     
      @group = Group.find(params[:id])
      @reporting_manager = ReportingManager.find_by(@group.id)
      @employee = Employee.find_by(@reporting_manager.id)
-     #raise @employee.inspect     
+     
   end
   
   def update
-   #raise params.inspect
+   
     @group = Group.find(params[:id])
     @group.update(group_params)
-    #raise @group.inspect #update(group_params)
     @employee = Employee.find(params[:emp_id])
-    #raise @employee.id.inspect
     @reporting_manager = ReportingManager.find_by(@group.id)
-    #raise @reporting_manager.inspect
     @reporting_manager.update(:employee_id => @employee.id)
-    #raise @reporting_manager.inspect
-   redirect_to  @group
+    redirect_to  @group
      
   end
   
@@ -65,10 +57,9 @@ class GroupsController < ApplicationController
   end
   
   def update_add_employee
-      #raise params.inspect
+      
       @group = Group.find(params[:id])
-      @employee = Employee.find(params[:employee_id])
-      #raise @employee.inspect
+      @employee = Employee.find(params[:employee_id])      
       @employee.update(:group_id => @group.id)
       redirect_to @group
   end
@@ -81,8 +72,7 @@ class GroupsController < ApplicationController
   
   private
   def group_params
-     params.require(:group).permit(:group_name)
-     #params.require(:leave_policy).permit( :pl_per_year, :sl_per_year, :eligible_carry_forward_leaves)
+     params.require(:group).permit(:group_name)     
   end
   
   
