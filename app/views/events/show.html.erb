@@ -1,17 +1,4 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Event name:</strong>
-  <%= @event.event_name %>
-</p>
-
-<p>
-  <strong>Event date:</strong>
-  <%= @event.event_date %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
 
 <div id="page-wrapper">
             <div class="row">
@@ -43,7 +30,7 @@
 											                  <tbody>
 												                  <tr>               
 													                  <td class="center"><%= @event.event_name %></td>
-													                  <td> <%= @event.event_date %> </td>
+													                  <td> <%= format_date(@event.event_date) %> </td>
 													                  <td></td>
 												                  </tr>
 											                  </tbody>
@@ -57,12 +44,7 @@
                         </div>
                         <!-- /.panel-body -->
                         </div>
-                                <div>
-                                    <%=render "leave_policies/index" %>
-                                </div>
-                                <div>
-                                    <%=render "holiday_calenders/index" %>
-                                </div>
+                               
                     </div>
                     <!-- /.panel -->
                 </div>

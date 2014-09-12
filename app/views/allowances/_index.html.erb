@@ -25,8 +25,8 @@
 
 													      <td>
 													       <ul class="navigation-btns" style="list-style: none;display:inline;">
-													     <li> <%= link_to 'EDIT', edit_employee_salary_allowance_path(@employee.id, @salary.id, allowance.id), :class => "btn btn-success pull-left" %></li><li>
-																<%= link_to 'DELETE', employee_salary_allowance_path(@employee.id, @salary.id, allowance.id), method: :delete , :class => "btn btn-danger pull-left" %></li></ul> </td>
+													     <li> <%= link_to 'Edit', edit_employee_salary_allowance_path(@employee.id, @salary.id, allowance.id), :class => "btn btn-success pull-left" %></li><li>
+																<%= link_to 'Delete', employee_salary_allowance_path(@employee.id, @salary.id, allowance.id), method: :delete , :class => "btn btn-danger pull-left" %></li></ul> </td>
 												      </tr>
 <% end %>
 											      </tbody>

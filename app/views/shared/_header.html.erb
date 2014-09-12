@@ -6,7 +6,11 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                 <li style="color:	#007ACC;"> Welcome Admin </li>
+                <% if current_user.employee.present? %>
+								 			<li style="color:	#007ACC;"><%= current_user.employee.full_name %> </li>
+								<% else %>
+								 <li style="color:	#007ACC;"><%= current_user.email %></li>
+								<% end %>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>

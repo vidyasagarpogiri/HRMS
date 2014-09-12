@@ -32,7 +32,7 @@
 											<tbody>												
 												<tr>               
 												  <td> <%= @employee.full_name %></td>
-											    <td> <%= f.from_date %> to <%= f.to_date %>  </td>
+											    <td> <%= format_date (f.from_date) %> to <%= format_date (f.to_date) %>  </td>
 												  <td> <%= f.days %> </td>
 												  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
 												  <td> <%= f.reason %> </td> 
