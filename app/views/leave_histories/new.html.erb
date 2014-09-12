@@ -19,7 +19,7 @@
                             </div><!-- /.col-lg-12 (nested) -->  
                         </div><!-- /.panel -->  
                    </div><!-- /.panel panel-default -->
-   
+   <%= @leave_history.errors.full_messages.first if @leave_history.errors.any? %>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Leave Form 
