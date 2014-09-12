@@ -6,7 +6,7 @@
 						   </div>
 						  
                 <br><br>     
-                <h4>Leaves Waiting for Approval</h4><hr>
+                <div class="page-header">Leaves Waiting for Approval</div><hr>
                
                <div class="panel panel-default">
                
@@ -54,11 +54,19 @@
 								 </div> 
 
 
+
     
 								 <h4> Approved Leaves List</h4> <hr>  
 
 								 	 <% @leaves.each do |f| %>
 												<% unless f.status == "HOLD" %> 
+
+								 
+								 
+								     
+								 <div class="page-header"> Approved Leaves List</div> <hr> 
+								 	 <% @leaves.each do |f| %>
+											<% unless f.status == "HOLD" %> 
 
                    <div class="panel panel-default">
                       <div class="panel-heading">
