@@ -1,9 +1,9 @@
 
 
 <div id="page-wrapper">
-                <div class="row">
+           <div class="row">
                 <div class="col-lg-12">
-                   
+                    <h2 class="page-header"> Add Leave Type </h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -11,10 +11,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                             Leave Types Details 
-                        </div>
                         <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
    
                                  <%= form_for(@leave_type) do |f| %>
                                         
@@ -41,3 +40,12 @@
            
          </div>
           <!-- /#page wrapper -->
+          
+           <script>
+          $(function(){
+  
+    $("#active").toggleClass("active").children("ul").collapse("toggle");
+
+          });
+        </script>
+
