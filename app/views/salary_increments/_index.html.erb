@@ -1,8 +1,8 @@
                         
                   <div class="page-header">Increments</div>
                    <% if current_user.employee.role.id == 2 %>
-                        <div class="hide-button"> 
-                          <label style="font-weight:normal;margin-top:-50px;" class = "pull-right">
+                        <div class=" add" id="add_new"> 
+                          <label  class = " pull-right">
                             <i class="fa fa-plus "></i>
                               <%= link_to 'New Increment', "#", :id=>"new_increment_form"  %>
                            </label>
@@ -36,7 +36,7 @@
 											            <% end %>
 									            </table>
 									            <% else %> 
-									            <div class="alert alert-info alert-dismissable">
+									            <div class="alert alert-info alert-dismissable" id="new_form">
                                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                     You have No Increment Details to display.
                              </div>
@@ -51,3 +51,11 @@
 										            $(".hide-button").hide();
 										         });
 										         </script>
+										         
+										         <script>
+										            $("#add_new").click(function(){
+										            $("#new_form").hide();
+										         });
+										         </script>
+										         
+										         
