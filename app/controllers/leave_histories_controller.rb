@@ -23,7 +23,8 @@ class LeaveHistoriesController < ApplicationController
   
  
   def create
-   @leave_history = current_user.employee.leave_histories.create(params_leave_history)
+		@employee = current_user.employee
+   @leave_history = current_user.employee.leave_histories.new(params_leave_history)
    
    total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
     
@@ -31,9 +32,15 @@ class LeaveHistoriesController < ApplicationController
   
     applied_days = total_days - weekend_count 
    #raise applied_days.inspect 
+	#if @employee.group.leave_policy.present?
+		@leave_history.save
    @leave_history.update(:days => applied_days)
    Notification.applyleave(current_user.employee, @leave_history).deliver
-   redirect_to leave_histories_path
+		redirect_to leave_histories_path
+	#else
+		#flash[:notice]= "no leave policy for you"
+   #render 'new'
+#	end
   end
   
   
