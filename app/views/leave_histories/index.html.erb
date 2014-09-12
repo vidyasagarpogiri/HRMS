@@ -54,18 +54,8 @@
 								 <h4> Approved Leaves List</h4> <hr>  
 
 
-<<<<<<< HEAD
-
-
-    
-				
-								 
-								 
-
-=======
->>>>>>> 1a381d04af8b3f0d09f7f83a5c6743c7a0af9f5d
 								 <div class="page-header"> Approved Leaves List</div> 
-								 	 <% unless employee_has_hold_leaves? %>
+							
 
                    <div class="panel panel-default">
                       <div class="panel-heading">
@@ -80,10 +70,10 @@
 													<th class="center">Date</th>
 													<th class="hidden-xs">No 0f Days</th>													
 													<th class="hidden-xs">Leaves Type</th>
-													<th class="hidden-xs">Leaves Balance</th>
-													<th> Leaves Used </th>
+												<th class="hidden-xs">Reason</th>
+													<!-- <th> Leaves Used </th> -->
 													<th class="hidden-xs">Status</th>
-													<th class="hidden-xs">Feedback</th>
+												<!--	<th class="hidden-xs">Feedback</th> -->
 												</tr>
 											</thead>
 										 <% @leaves.each do |f| %>
@@ -94,25 +84,19 @@
 												  <td class="center"> <%= format_date(f.from_date) %>  </td>
 												  <td> <%= f.days %> </td>
 												  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
-												  <td> <%f.reason %> </td> 
-												  <td></td>
-												  <td></td>
+												  <td> <%= f.reason %> </td> 
+												<!--  <td></td> -->
 												  <td> <%= f.status %> </td>
+												<!--	<td></td> -->
 												</tr>												
 											</tbody>
 								      <% end %>
 	                    <% end %>
 										</table>
 										<% else %>
-										 <div class="alert alert-info alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                           You have No Approved Leaves Requests
-                     </div>
 									
-									</div>
-								</div>
-                  	<% end %>
-                    
+									
+									
                     </div>
                     <!-- /.panel .chat-panel -->
                 </div>
