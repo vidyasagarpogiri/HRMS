@@ -72,6 +72,7 @@ class LeaveHistoriesController < ApplicationController
 		@leave_history.update(:status => LeaveHistory::APPROVED)
 		@leave_type = @leave_history.leave_type
 		@leave = @employee.group.leave_policy
+		 Notification.accept_leave(current_user.employee, @leave_history).deliver
 		redirect_to reported_leaves_path
 
 	end
@@ -81,6 +82,7 @@ class LeaveHistoriesController < ApplicationController
 		#raise params.inspect
 		@leave_history = LeaveHistory.find(params[:leave_history_id])
 		@leave_history.update(:status => LeaveHistory::REJECTED)
+		 Notification.reject_leave(current_user.employee, @leave_history).deliver
 		redirect_to reported_leaves_path
 	end
 
