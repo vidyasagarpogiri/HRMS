@@ -1,7 +1,8 @@
    <% if @holiday_calenders.present? %>       
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Event List 
+                            Event List
+                              <label style="font-weight:normal;padding:20px;margin-top:-15px;" class = "pull-right"><a><i class="fa fa-plus "></i></a><%= link_to "Add Event",  new_group_holiday_calender_path(@group) %></label>    
                         </div>
                         <div class="panel-body">
                             <div class="row">
