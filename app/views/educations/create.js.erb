@@ -4,7 +4,7 @@
 			 $(".errors").append("<%=j render('/shared/alert_error', message: error) %>");
 			<% end %>
 <% else %>
-<% if @form_type == "save" %>
+<% if @form_type == "Save" %>
  $(".education-index").html("<%=j render  'educations/list', :list => @list %>");
  $(".new-edcuation").hide(); 
 <% else %>
