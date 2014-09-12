@@ -2,9 +2,11 @@
              <div id="page-wrapper"><br>
               
                <div class="add">      
-						      <label style="" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path(), :class => "fa fa-plus " %> </label> </div>
+						      <label style="" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path(), :class => "fa fa-plus " %> </label> 
+						   </div>
 						  
-<br><br>     <h4>Leaves Waiting for Approval</h4><hr>
+                <br><br>     
+                <h4>Leaves Waiting for Approval</h4><hr>
                
                <div class="panel panel-default">
                
@@ -12,7 +14,7 @@
                      Leaves Waiting for Approval
                   </div>
 									<div class="panel-body"> 
-<% @leaves.each do |f| %>
+                       <% @leaves.each do |f| %>
 											 <% if f.status == "HOLD" %>
 										<table class="table table-striped table-hover" id="sample-table-2">
 											<thead>
@@ -29,7 +31,7 @@
 											<tbody>
 												<tr>
 
-													<td class="center"><a href="view.html"> <%= @employee.full_name %></td>
+													<td class="center"><a href="#"> <%= @employee.full_name %></td>
 													<td><%= total_used_leaves(@employee)%></td>
 													<td><%= total_balance_leaves(@employee) %></td>
 
@@ -41,7 +43,10 @@
 									<% end %>
 										</table>
 										<% else %>
-										  <h3>There is no leaves </h3>
+										  <div class="alert alert-info alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                           You have No Leaves Requests
+                     </div>
 										<% end%>
 										<% end %>
 									</div>
@@ -51,13 +56,16 @@
 
     
 								 <h4> Approved Leaves List</h4> <hr>  
+
+								 	 <% @leaves.each do |f| %>
+												<% unless f.status == "HOLD" %> 
+
                    <div class="panel panel-default">
                       <div class="panel-heading">
                           Approved Leaves List
                       </div>
                     <div class="panel-body">
-										   		 <% @leaves.each do |f| %>
-												<% unless f.status == "HOLD" %>
+										   	
 										    <table class="table table-striped table-hover" id="sample-table-2">
 											<thead>
 												<tr>
@@ -74,30 +82,30 @@
 										 <% @leaves.each do |f| %>
 												<% unless f.status == "HOLD" %>
 											<tbody>												
-												<tr>               <td><%= @employee.full_name %></td>
-													                  <td class="center"> <%= format_date(f.from_date) %>  </td>
-													                  <td> <%= f.days %> </td>
-													                  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
-													                  <td> <%f.reason %> </td> 
-																						<td></td>
-																						<td></td>
-													                  <td> <%= f.status %> </td>
-													               
-												                  </tr>
-											
-												
-												
+												<tr>               
+												  <td><%= @employee.full_name %></td>
+												  <td class="center"> <%= format_date(f.from_date) %>  </td>
+												  <td> <%= f.days %> </td>
+												  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
+												  <td> <%f.reason %> </td> 
+												  <td></td>
+												  <td></td>
+												  <td> <%= f.status %> </td>
+												</tr>												
 											</tbody>
-								<% end %>
-	<% end %>
+								      <% end %>
+	                    <% end %>
 										</table>
 										<% else %>
-										  <h4>There is no leaves</h4>
-										<% end %>
-										<% end %>
+										 <div class="alert alert-info alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                           You have No Approved Leaves Requests
+                     </div>
+									
 									</div>
 								</div>
-                   
+                   	<% end %>
+										<% end %>
                     
                     </div>
                     <!-- /.panel .chat-panel -->
