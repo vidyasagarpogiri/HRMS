@@ -35,6 +35,12 @@ module ApplicationHelper
   a
 end
 
+
+  def format_date(time)
+    time = time.to_date if time
+  	time.strftime("%d %b, %Y") if time
+	end
+	
   def leavesDateWise(search_date)
   leaves_array=[]
     LeaveHistory.all.each do |leave|

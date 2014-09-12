@@ -2,16 +2,20 @@
                     <ul class="nav" id="side-menu">
                         
                         <li>
-														<%= link_to 'Leaves List', leave_histories_path, :class => "fa fa-dashboard fa-fw" %>
+													  <a href="/leave_histories"><i class="fa fa-history fa-fw"></i> My Leaves</a>
                         </li>
                         <li>
 
-                            <a href="tables.html"><i class="fa fa-calendar fa-fw"></i> Holiday-Calender</a>
+                            <a href="/groups/holiday_list"><i class="fa fa-calendar fa-fw"></i> Holiday-Calender</a>
                         </li>
+                         <% if current_user.employee.reporting_manager? %>
+                          <li>
+                              <a href="/reported_leaves"><i class="fa fa-dashboard fa-fw"></i> Reporting Leaves</a>
+                          </li>
+                        <% end %>
+                      
                         <li>
-                            <a href="forms.html"><i class="fa fa-history fa-fw"></i> My Leaves</a>
+                            <%= link_to 'Holiday Calender',  holiday_list_groups_path, :class => "fa fa-calendar fa-fw" %>
                         </li>
-                        <li>
-                            <%= link_to 'Holidays',  holiday_list_groups_path, :class => "fa fa-calendar fa-fw" %>
-                        </li
+                        </ul>
 

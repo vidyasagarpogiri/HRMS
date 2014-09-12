@@ -53,7 +53,14 @@ class Employee < ActiveRecord::Base
 	#after_update :update_leaves
 	
   
-
+  def reporting_manager?
+    
+    if reporting_managers.present?
+      return true
+    else
+      return false
+    end
+  end
 
   def full_name
      "#{first_name} #{last_name}"

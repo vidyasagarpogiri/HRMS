@@ -2,15 +2,16 @@
                     <ul class="nav" id="side-menu">
                         
                         <li>
-                             <a href="forms.html"><i class="fa fa-history fa-fw"></i> My Leaves</a>
+                             <a href="/leave_histories"><i class="fa fa-history fa-fw"></i> My Leaves</a>
                         </li>
                         <li>
                             <a href="/employee_leaves"><i class="fa fa-dashboard fa-fw"></i> Employee Leaves</a>
                         </li>
-
+                      <% if current_user.employee.reporting_manager? %>
                         <li>
                             <a href="/reported_leaves"><i class="fa fa-dashboard fa-fw"></i> Reporting Leaves</a>
                         </li>
+                      <% end %>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Configure<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

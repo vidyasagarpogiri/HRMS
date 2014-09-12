@@ -60,11 +60,9 @@ class LeaveHistoriesController < ApplicationController
 
 	
 	def reported_leaves
-	
-		@group = current_user.employee.group
-				
+		@reporting_manager = current_user.employee.reporting_managers.first
+		@group = @reporting_manager.group
 	  @employees = @group.employees	
-		
 	end
 		
 	def accept

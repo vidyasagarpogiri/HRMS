@@ -1,7 +1,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header"> Leavetypes</h2>
+                    <h2 class="page-header"> Leave Types</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -25,7 +25,7 @@
                                             <label><%= leave.type_name %> </label>
                                             <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                               <li><%= link_to "Edit",  edit_leave_type_path(leave), :class=>" btn btn-success " %> </li>
-                                              <li><%= link_to "Delete",  leave, method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-success" %></li>
+                                              <li><%= link_to "Delete",  leave, method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-danger" %></li>
                                             </ul><hr>
                                         </div>
                                    <% end %>
