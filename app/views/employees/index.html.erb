@@ -136,9 +136,11 @@
 	 												</a></td>
 													<td class="hidden-xs"><%= employee.mobile_number %></td>
 													<td>
+<% if current_user.employee.role_id == 2 %>
 													  <div class="visible-md visible-lg hidden-sm hidden-xs">
 														<a href="/employees/<%= employee.id %>/edit" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
 														</div>
+<% end %>
 													</td>
 												</tr>
 											</tbody>
