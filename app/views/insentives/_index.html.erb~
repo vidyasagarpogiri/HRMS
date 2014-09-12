@@ -1,4 +1,9 @@
-                             
+                     <div class="page-header">Varible Pay</div>
+                       <% if current_user.employee.role.id == 2 %>
+                         <div class="add" id="add_new">
+                           <label class = "pull-right"><i class="fa fa-plus "></i> <%= link_to ' New Bonus',  "#", :id=>"new_bonus_form"  %></label>
+                         </div>  
+                      <% end %>        
                     <div class="new_insentives">
                       <%=render 'insentives/new' %>
                     </div>
@@ -30,7 +35,7 @@
 											            <% end %>
 										            </table> 
 										            <% else %>
-										            <div class="alert alert-info alert-dismissable">
+										            <div class="alert alert-info alert-dismissable" id="new_form">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                      You have No Insentive Details to display.
                                </div>
@@ -44,5 +49,11 @@
 										         $("#new_bonus_form").click(function(){
 										            $(".new_insentives").show();
 										            $(".hide-button").hide();
+										         });
+										         </script>
+										         
+										         <script>
+										            $("#add_new").click(function(){
+										            $("#new_form").hide();
 										         });
 										         </script>
