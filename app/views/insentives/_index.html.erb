@@ -24,7 +24,7 @@
           							            <td>
 													            <ul class="navigation-btns" style="list-style: none;display:inline;">
 													              <li><%= link_to 'Edit', edit_employee_salary_insentive_path(@employee.id, @salary.id, insentive.id) , :class => "btn btn-success pull-left" %></li>
-													              <li><%= link_to 'Delete', employee_salary_insentive_path(@employee.id, @salary.id, insentive.id), method: :delete , :class => "btn btn-danger pull-left" %></li>
+													              <li><%= link_to 'Delete', employee_salary_insentive_path(@employee.id, @salary.id, insentive.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger pull-left" %></li>
 													            </ul>
 													          </td>
 
