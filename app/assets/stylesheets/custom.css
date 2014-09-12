@@ -115,4 +115,14 @@ ul .navigation-btns {
 margin: 0 0 10px 7px;
 }
 
+.page-header{
+font-size:16px;
+font-weight:bold;
+color:	#527A7A;
+}
 
+
+
+.nav .nav-pills ul li:hover{
+background-color:black !important;
+}
