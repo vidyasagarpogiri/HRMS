@@ -1,15 +1,13 @@
-                        
-                  <div class="page-header">Increments</div>
+                 <div class="page-header">Increments</div>
                    <% if current_user.employee.role.id == 2 %>
-                        <div class=" add" id="add_new"> 
-                          <label  class = " pull-right">
-                            <i class="fa fa-plus "></i>
+                        <div class=" add" id="add_increment"> 
+                          <label  class = " pull-right"><i class="fa fa-plus "></i>
                               <%= link_to 'New Increment', "#", :id=>"new_increment_form"  %>
                            </label>
                          </div>
                       <% end %>
                         <div class="new_increments">
-                          <%=render 'salary_increments/new' %><hr>
+                          <%=render 'salary_increments/new' %>
                         </div>
                          <% if @salary_increments.present? %> 
                               <table class="table table-striped table-hover" id="sample-table-2">
@@ -25,22 +23,24 @@
 												            <tr>               
 													            <td class="center"><%= format_date (salary_increment.increment_date) %></td>
 													            <td> <%= salary_increment.increment_value %></td>
-<% if current_user.employee.role.id == 2 %>
+                                      <% if current_user.employee.role.id == 2 %>
 													            <td> 
-													             <ul class="navigation-btns" style="list-style: none;display:inline;">
-													            <li><%= link_to 'Edit', edit_employee_salary_salary_increment_path(@employee.id, @salary.id, salary_increment.id),:class => "btn btn-success pull-left" %></li>
-																			<li><%= link_to 'Delete', employee_salary_salary_increment_path(@employee.id, @salary.id, salary_increment.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger pull-left" %></li></ul></td>
-<% end %>
+													               <ul class="navigation-btns" style="list-style: none;display:inline;">
+													                  <li><%= link_to 'Edit', edit_employee_salary_salary_increment_path(@employee.id, @salary.id, salary_increment.id),:class => "btn btn-success pull-left" %></li>
+																			      <li><%= link_to 'Delete', employee_salary_salary_increment_path(@employee.id, @salary.id, salary_increment.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger pull-left" %></li>
+																			  </ul>
+																		 </td>
+                                      <% end %>
 												            </tr>
 											            </tbody>
 											            <% end %>
-									            </table>
-									            <% else %> 
-									            <div class="alert alert-info alert-dismissable" id="new_form">
-                                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                    You have No Increment Details to display.
-                             </div>
-                            <% end %>
+									             </table> 
+										            <% else %>
+										            <div class="alert alert-info alert-dismissable" id="new_form">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                     You have No Increment Details to display.
+                               </div>
+										          <% end%>
 									                    									         
 										         <script>
 										          $(function(){
@@ -53,8 +53,8 @@
 										         </script>
 										         
 										         <script>
-										            $("#add_new").click(function(){
-										            $("#new_form").hide();
+										            $("#add_increment").click(function(){
+										            $(".alert-dismissable").hide();
 										         });
 										         </script>
 										         
