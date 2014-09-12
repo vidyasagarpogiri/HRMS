@@ -1,5 +1,5 @@
 class SalaryIncrementsController < ApplicationController
-  layout "profile_template", only: [:index, :new, :create, :edit, :update]
+
   def index
   @salary = Salary.find(params[:salary_id])
   @salary_increment = @salary.salary_increments

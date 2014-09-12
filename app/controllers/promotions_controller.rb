@@ -1,6 +1,6 @@
 class PromotionsController < ApplicationController
   
-  layout "emp_profile_template", only: [:index, :new, :create, :edit, :update]
+
 		
 	before_filter :user_authentication, only: [:index, :new, :create, :show, :edit, :update]
 
