@@ -69,4 +69,12 @@ end
   def waiting_for_approval(employee)
     employee.leave_histories.where(status: LeaveHistory::HOLD).sum("days")
   end
+  
+  def employee_has_hold_leaves?
+    if current_user.employee.leave_histories.where(:status => "HOLD").present?
+      return true 
+    else
+      return false
+    end
+  end
 end
