@@ -4,7 +4,6 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
 
   def index
     @employees =  Employee.all 
-  
   end
 
  
