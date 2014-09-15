@@ -25,17 +25,12 @@ class LeaveHistoriesController < ApplicationController
   
  
   def create
-		@employee = current_user.employee
-   @leave_history = current_user.employee.leave_histories.new(params_leave_history)
-   
-   total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
-    
-    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)
-  
+    @employee = current_user.employee
+    @leave_history = current_user.employee.leave_histories.new(params_leave_history)
+    total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
+    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)  
     applied_days = total_days - weekend_count 
-   #raise applied_days.inspect 
-	#if @employee.group.leave_policy.present?
-		@leave_history.save
+    @leave_history.save
    @leave_history.update(:days => applied_days)
    Notification.applyleave(current_user.employee, @leave_history).deliver
 		redirect_to leave_histories_path
@@ -70,8 +65,7 @@ class LeaveHistoriesController < ApplicationController
 	
 	def reported_leaves
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
-		#@group = @reporting_manager.group
-	 # @employees = @group.employees	
+		
 	end
 		
 	def accept
