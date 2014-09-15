@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
+layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new ]
 
   def index
     @employees =  Employee.all.page(params[:page]).per(2)
@@ -26,7 +26,9 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
 
   def show
     @employee = Employee.find(params[:id])
-    @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name if @employee.reporting_managers.present?
+    if @employee.reporting_managers.first.present? &&  @employee.reporting_managers.first.manager_id.present?
+      @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name 
+    end
   end
 
   def profile
@@ -39,10 +41,11 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
   
   def update
     @employee = Employee.find(params[:id])
-    params["employee_attachments"]["attachment"].each_with_index do |a, i|
-      @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
-    end
-   
+    if params["employee_attachments"].present?
+      params["employee_attachments"]["attachment"].each_with_index do |a, i|
+        @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
+      end
+   end
     if params[:employee].present? 
       if @employee.update(params_employees) 
         @report = @employee.reporting_managers.first
@@ -55,9 +58,9 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
 		  else
 		    render 'edit'
       end
-     redirect_to @employee
+     
     end
-
+redirect_to @employee
   end  
 
 	def exit_edit_form
@@ -87,25 +90,7 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
     #redirect_to @attachment
    
   end
-  def attachment_form
-  raise params.inspect
-    @employee = Employee.find(params[:id])
-    #raise params.inspect
-    #
-  end
-  
-  def update_attachment
-			raise params.inspect
-			#redirect_to show_exit_employee_path(@employee.id)
-	end
-  
-  
-   def attachment_index
-   
-   index
-   @attachments = Attachment.all
-   
-   end
+
    
 	def show_exit
 		
@@ -140,6 +125,7 @@ end
   def attachment_employees
     params.require(:employee_attachements).permit(employee_attachments_attributes: [:id, :employee_id, :attachment, :attachment_name])
   end
+	
 	
 
 end
