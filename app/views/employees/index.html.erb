@@ -128,6 +128,7 @@
                         <td><%= link_to employee.first_name+employee.last_name, profile_employee_path(employee) %></td>
             <% end %>
 													<td class="hidden-xs"><%= employee.designation.designation_name if employee.designation.present? %></td>
+
 													<td class="hidden-xs">
 													
 													<%= employee.user.email if employee.user.present? %>

@@ -69,9 +69,9 @@ class LeaveHistoriesController < ApplicationController
 
 	
 	def reported_leaves
-		@reporting_manager = current_user.employee.reporting_managers.first
-		@group = @reporting_manager.group
-	  @employees = @group.employees	
+		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
+		#@group = @reporting_manager.group
+	 # @employees = @group.employees	
 	end
 		
 	def accept
