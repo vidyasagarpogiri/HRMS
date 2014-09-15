@@ -90,6 +90,8 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
 			get 'attachment_form_new'
 			post 'update_attachment'
 			get 'attachment_index'
+			delete 'attachment_destroy'
+			get 'attachment_show'
 		end
   
   resources :educations do
