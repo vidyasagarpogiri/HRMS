@@ -1,0 +1,6 @@
+<% @post_attachments.each do |p| %>
+  <%= image_tag p.aattachment_url %>
+<% end %>
+
+<%# link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', attachment_index_employee_path %>
