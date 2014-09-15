@@ -32,9 +32,9 @@
 												<tr>
 													<td class="center"><a href="#"> <%= @employee.full_name %> </td>
 													<td><%= total_used_leaves(@employee)%> day(s)</td>
-													<td><%= total_balance_leaves(@employee) %> day(s)</td>
+													<td><%# total_balance_leaves(@employee) %> day(s)</td>
 													<td>2</td>
-													<td><%= waiting_for_approval(@employee)%> day(s)</td>
+													<td><%# waiting_for_approval(@employee)%> day(s)</td>
 												</tr>
 											</tbody>
 									<% end %>

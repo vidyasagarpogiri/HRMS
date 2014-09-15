@@ -24,6 +24,7 @@
 											                  </thead>											                  
 	                                    <% @reported_leaves.each do |report| %>
 	                                      	<% report.employee.leave_histories.each do |f| %>
+	                                      	<% emp = report.employee %>
 																				<% unless f.status == "HOLD" %>
 											                  <tbody>
 												                  <tr>               
