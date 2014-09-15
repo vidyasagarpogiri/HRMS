@@ -42,10 +42,12 @@ class Employee < ActiveRecord::Base
   validates :department_id, presence: true
 	validates :designation_id, presence: true
 	validates :mobile_number, presence: true
+	#validates_format_of :mobile_number, with: /\d{3}-\d{3}-\d{4}/, :message => "Please enter Valid Mobile Number"
 	validates :father_name, presence: true
 	validates :blood_group_id, presence: true
 	validates :grade_id, presence: true
 	validates :date_of_join, presence: true
+	#validates_format_of :alternate_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message=>"Valid maill id please"
 	#validates :alternate_email, presence: true
 	
 	

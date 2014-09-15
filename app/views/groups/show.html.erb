@@ -10,7 +10,7 @@
             <div class="row">
                <div class="col-lg-12">
                  <% if @group.leave_policy.nil? %> 
-                 <label style="font-weight:normal;padding:0px;margin-top:-15px;"> <a><i class="fa fa-plus "></i></a><%= link_to 'Add Leave Policy For This Group', new_group_leave_policy_path(@group)  %></label><br>
+                 <label style="font-weight:normal;margin-top:-15px;" class="pull-right"> <a><i class="fa fa-plus "></i></a><%= link_to 'Add Leave Policy For This Group', new_group_leave_policy_path(@group)  %></label><br>
                    <% end %>                                                       
                  <div id ="leave_policy">
                    <%=render "leave_policies/index" %>
@@ -18,10 +18,11 @@
                  
                  <div id="event_form">
                  <% unless @group.holiday_calenders.present? %>
-                  <label id="new_event" style="font-weight:normal;padding-left:0px;margin-top:-15px;"><a><i class="fa fa-plus "></i></a><%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %></label> 
-                 <% end %>
+                  <label id="new_event" style="font-weight:normal;margin-top:px;" class="pull-right"><a><i class="fa fa-plus "></i></a><%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %></label> 
+                 <% end %><br>
+                 <div id ="holiday_calenders">
                    <%=render "holiday_calenders/index" %>
-                  
+                  </div>
                   </div>
                   
                 </div>
