@@ -1,27 +1,61 @@
-<%= form_for(@employee, :html => {:multipart => true}) do |f| %> 
 
-<center><%= fields_for :employee_attachments do |f| %>
-     <div class="form-group col-lg-6"">
-     <br>
-     <div class="row" style="clear:both;margin-left: 300px;" > 
-     <div class="form-group col-lg-6"">
-    <label class="required">Attachment Name</label>
-     <%= f.text_field :attachment_name, name: "employee_attachments[attachment_name][]" %>               
-                                        </div> 
-       <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]" %>
+<div id="page-wrapper">
+                <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">Attachment Details</div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                   <div class="errors">
+                                   </div>
+                                   <%# @education.errors.full_messages.first if @education.errors.any? %>
+                                    <%= form_for(@employee, :html => {:multipart => true}) do |f| %> 
+                                        <div class="form-group">
+                                        <%= fields_for :employee_attachments do |f| %>
+                                           <div class="form-group">
+                                            
+                                            <label class="required" >Attachment Name</label>
+                                          
+                                  <%= f.text_field :attachment_name, name: "employee_attachments[attachment_name][]" %>  
+                                   </div>                          
+
+                                <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]" %>
       
       <span id="add_attachment_field"></span>
       <span id='add_field'><i class="fa fa-icon fa-plus"></i> Add More</span>
 
          <center> 
        <% end %>
-              
-       
-       <button type="submit" class="btn btn-success pull-right">Save </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       
-       <% end %>
-     </div></center>
-     <div class="row" style="clear:both;margin-left: 300px;" >     
+
+                                        </div>
+                                        
+                                        <br>
+                                        <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                          <li><%= f.submit  'Save', :class => "btn btn-success pull-left" %></li>
+                                          <li><%# f.submit 'Save & New', :class =>"btn btn-success pull-right" %></li>
+																					<li><%# link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger btn btn-success pull-right" %></li>
+                                        </ul>  
+                                       
+                                   <% end %>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                        
+                        
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <div class="row" style="clear:both;margin-left: 100px;" >     
        <table class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -40,12 +74,22 @@
         </tbody>
       </table>
    </div>
-
-     
-<script>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+           
+         </div>
+          <!-- /#page wrapper -->
+          
+          
+          <script>
 $(function(){
    $("#add_field").click(function(){
     $("#add_attachment_field").append("<span><label class='required'>Attachment Name</label><input id='employee_attachments_attachment_name' name='employee_attachments[attachment_name][]' type='text'><a onclick='$(this).parent().hide();' class='fa fa-icon fa-minus' style='float: right;'></a><input id='employee_attachments_attachment' multiple='multiple' name='employee_attachments[attachment][]' type='file'></span>");
   });  
 });
 </script>
+
+
+
+
