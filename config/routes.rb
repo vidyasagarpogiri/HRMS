@@ -75,7 +75,8 @@ post 'accept' => "leave_histories#accept"
 post 'reject' => "leave_histories#reject"
 #get 'leaves' => "leave_histories#index"
 get 'employee_leaves' => "leave_histories#employee_leaves"
- resources :employees do 
+ resources :employees do
+		resources :ff_statuses 
     resources :leaves
 	
 		member do

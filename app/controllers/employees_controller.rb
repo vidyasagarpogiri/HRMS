@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
 layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
 
   def index
-    @employees =  Employee.all 
+    @employees =  Employee.all.page(params[:page]).per(2)
   end
 
  

@@ -73,7 +73,7 @@
                                 </li>
 <% if current_user.employee.role.id == 2 %>
                                 <li>
-                                    <%= link_to "Exit Details", exit_form_employee_path(@id) %>
+                                    <%= link_to "Exit Details", new_employee_ff_status_path(@id) %>
                                 </li>
 <% end %>
                                 <% else %>

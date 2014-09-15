@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910055128) do
+ActiveRecord::Schema.define(version: 20140915055633) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -102,7 +102,6 @@ ActiveRecord::Schema.define(version: 20140910055128) do
     t.string   "pan"
     t.string   "date_of_confirmation"
     t.string   "date_of_join"
-    t.string   "date_of_exit"
     t.text     "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -151,6 +150,9 @@ ActiveRecord::Schema.define(version: 20140910055128) do
     t.string   "status_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "date_of_exit"
+    t.string   "interview_status"
+    t.text     "summary"
   end
 
   create_table "grades", force: true do |t|

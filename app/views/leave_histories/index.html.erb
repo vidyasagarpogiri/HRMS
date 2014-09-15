@@ -41,6 +41,7 @@
 									<% end %>
 									<% end %>
 										</table>
+									<%= paginate @leaves %>
 										<% else %>
 										  <div class="alert alert-info alert-dismissable">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -75,8 +76,8 @@
 												<!--	<th class="hidden-xs">Feedback</th> -->
 												</tr>
 											</thead>
-										 <% @leaves.each do |f| %>
-												<% unless f.status == "HOLD" %>
+										 <% @leave_histories.each do |f| %>
+											
 											<tbody>												
 												<tr>               
 												  <td><%= @employee.full_name %></td>
@@ -90,10 +91,10 @@
 												</tr>												
 											</tbody>
 								      <% end %>
-	                    <% end %>
+	                   
 										</table>
-										<% else %>
 									
+									<%= paginate @leave_histories %>
 									
 									
                     </div>
