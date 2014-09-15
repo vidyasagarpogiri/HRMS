@@ -59,6 +59,10 @@ gem "capybara", :group => [:development, :test]
 #gem for avatar upload
 gem 'carrierwave'
 
+#gem for pagination
+gem 'kaminari'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

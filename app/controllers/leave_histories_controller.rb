@@ -5,7 +5,9 @@ class LeaveHistoriesController < ApplicationController
  include ApplicationHelper
 
 	def index
-		@leaves = current_user.employee.leave_histories
+		 
+		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD').page(params[:page]).per(2)
+		@leave_histories = current_user.employee.leave_histories.where(:status => 'APPROVED' || 'REJECTED').page(params[:page]).per(2)
 		@employee = current_user.employee
 	end
 
@@ -61,7 +63,7 @@ class LeaveHistoriesController < ApplicationController
   
   
   def applied_leaves
-		@leave_histories = LeaveHistory.all
+		@leave_histories = LeaveHistory.all.page(params[:page]).per(2)
 	end
 	
 
@@ -94,7 +96,7 @@ class LeaveHistoriesController < ApplicationController
 	end
 
    def employee_leaves
-    @leaves = LeaveHistory.all
+    @leaves = LeaveHistory.order('created_at DESC').page(params[:page]).per(2)
    end
 
 	private
