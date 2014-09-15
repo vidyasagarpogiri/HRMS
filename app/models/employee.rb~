@@ -40,7 +40,7 @@ class Employee < ActiveRecord::Base
 	validates :date_of_birth, presence: true
 	validates :gender, presence: true
   validates :department_id, presence: true
-	validates :designation_id, presence: true
+	#validates :designation_id, presence: true
 	validates :mobile_number, presence: true, numericality: true , length: { is: 10 }
 
 	#validates :designation_id, presence: true
