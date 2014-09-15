@@ -25,13 +25,13 @@ class Employee < ActiveRecord::Base
   has_many :reporting_managers
   has_many :departments, :through => :reporting_managers
  	
- 	
- 	 	
+ 	# for file attachments
+  has_many :employee_attachments
+  accepts_nested_attributes_for :employee_attachments
  	 	
  	has_one :leave
   
   has_many :leave_histories
-
 
 
 	validates :employee_id, presence: true 
@@ -41,7 +41,7 @@ class Employee < ActiveRecord::Base
 	validates :gender, presence: true
   validates :department_id, presence: true
 	validates :designation_id, presence: true
-	validates :mobile_number, presence: true
+	validates :mobile_number, presence: true, numericality: true , length: { is: 10 }
 	validates :father_name, presence: true
 	validates :blood_group_id, presence: true
 	validates :grade_id, presence: true

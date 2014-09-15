@@ -19,11 +19,11 @@
                                       <% end %>                                      
                                    </div>                                   
                                 </div>
-                                   <%= form_for(@employee) do |f| %>
+                                   <%= form_for(@employee, :html => {:novalidate => 'novalidate', :multipart => true}) do |f| %>  
                                    <div class="col-lg-12">
                                         <div class="form-group col-lg-6">                                        
                                             <label class="required" >Employee Id</label>
-                                              <%= f.text_field :employee_id, :class => "form-control", :placeholder =>"Enter Emp Id", :required => true %>                 
+                                              <%= f.text_field :employee_id, :class => "form-control", :placeholder =>"Enter Emp Id" %>                 
                                         </div>
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Title</label><br>                                           
@@ -110,6 +110,15 @@
                                             <label class="required">Upload Image</label><br>
                                             <%= f.file_field :avatar %>
                                          </div>  
+                                          <%= f.fields_for :post_attachments do |p| %>
+     <div class="form-group col-lg-6"">
+       <%= f.label :attachment %><br>
+       <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]" %>
+        <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]" %>
+         <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]" %>
+          <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]" %>
+       <% end %>
+     </div>
                                   <button type="submit" class="btn btn-success pull-right">Save & Continue</button>
                                     <% end %>
                                 </div>
@@ -129,3 +138,33 @@
           <!-- /#page wrapper -->
           
         
+        
+        
+ <script>
+  
+  // When the browser is ready...
+  $(function() {
+  
+    // Setup form validation on the #register-form element
+    $("#new_employee").validate({
+    
+        // Specify the validation rules
+        rules: {
+            employee_first_name: "required",
+            agree: "required"
+        },
+        
+        // Specify the validation error messages
+        messages: {
+            employee_first_name: "Please enter your first name",
+            agree: "Please accept our policy"
+        },
+        
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+
+  });
+  
+  </script>
