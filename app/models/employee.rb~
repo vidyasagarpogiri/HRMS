@@ -23,7 +23,7 @@ class Employee < ActiveRecord::Base
   belongs_to :group
   
   has_many :reporting_managers
-  has_many :departments, :through => :reporting_managers
+
  	
  	
  	 	
