@@ -43,7 +43,11 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
     @employee = Employee.find(params[:id])
     if @employee.update(params_employees) 
       @report = @employee.reporting_managers.first
-      @report.update(:manager_id => params[:reporting_id])   
+      if @report.present?
+        @report.update(:manager_id => params[:reporting_id]) 
+      else
+        @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
+      end  
 		  redirect_to @employee
 		else
 		  render 'edit'

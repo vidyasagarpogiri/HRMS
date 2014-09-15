@@ -22,8 +22,8 @@
 													                 	                  										      		
 												                  </tr>
 											                  </thead>											                  
-	                                      <% @employees.each do |emp| %>
-	                                      <% emp.leave_histories.each do |f| %>
+	                                    <% @reported_leaves.each do |report| %>
+	                                      	<% report.employee.leave_histories.each do |f| %>
 																				<% unless f.status == "HOLD" %>
 											                  <tbody>
 												                  <tr>               
