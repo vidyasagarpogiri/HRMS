@@ -15,7 +15,11 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                   <%= form_for(@event) do |f| %>
-                                   <div class="col-lg-12">
+                                  <% @event.errors.full_messages.each do |msg| %>
+                                     <label><p><%= msg %></p>
+                                   <% end %>
+
+                                    <div class="col-lg-12">
                                         <div class="form-group col-lg-6">                                        
                                             <label class="required" >Enter Event</label><br>
                                                <%=  f.text_field :event_name, :class => "form-control", :placeholder =>"Enter Event" %><br>   

@@ -23,7 +23,7 @@ class Employee < ActiveRecord::Base
   belongs_to :group
   
   has_many :reporting_managers
-  has_many :departments, :through => :reporting_managers
+
  	
  	
  	 	
@@ -49,6 +49,7 @@ class Employee < ActiveRecord::Base
 	validates :date_of_join, presence: true
 	#validates_format_of :alternate_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message=>"Valid maill id please"
 	#validates :alternate_email, presence: true
+
 	
 	
 	#after_create :add_leaves
@@ -68,17 +69,7 @@ class Employee < ActiveRecord::Base
      "#{first_name} #{last_name}"
   end
 
-private
-	def add_leaves
-		@leave_policy = self.group.leave_policy
-		@leave = leave.create(:pl_carry_forward_prev_year => @leave_policy.eligible_carry_forward_leaves, :pl_applied => @leave_policy.pl_this_year, :sl_applied=> @leave_policy.sl_this_year)
-	end
-	
-	def update_leaves
-		@leave_policy = group.leave_policy
-	
-		#leave.update(:pl_carry_forward_prev_year => @leave_policy.eligible_carry_forward_leaves, :pl_applied => @leave_policy.pl_this_year, :sl_applied=> @leave_policy.sl_this_year)
-	end
+
 	
 
 end

@@ -1,6 +1,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
+                
                     <div class="page-header" >
                       <h4><%= @group.group_name %></h4>
                        <div class="pull-right" style="margin-top:-25px;margin-right:110px;">
@@ -17,13 +18,16 @@
                  </div>
                  
                  <div id="event_form">
+                 
+<label class="col-lg-3">
                  <% unless @group.holiday_calenders.present? %>
+
                   <label id="new_event" style="font-weight:normal;margin-top:px;" class="pull-right"><a><i class="fa fa-plus "></i></a><%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %></label> 
                  <% end %><br>
                  <div id ="holiday_calenders">
                    <%=render "holiday_calenders/index" %>
                   </div>
-                  </div>
+                </div>
                   
                 </div>
                     <!-- /.panel -->
