@@ -36,6 +36,7 @@ Rails.application.routes.draw do
    member do
       get "/add_employee" => "departments#add_employee"
       post 'update_employee'
+      get '/employee_leaves' => "departments#employee_leaves"
     end  
   end
     

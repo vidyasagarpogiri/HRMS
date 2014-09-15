@@ -45,7 +45,11 @@ class DepartmentsController < ApplicationController
     #raise @employee.inspect
     redirect_to @department
    end 
-        
+   
+  def employee_leaves
+    raise params.inspect  
+  end
+   
   private
   def department_params
     params.require(:department).permit(:department_name) 
