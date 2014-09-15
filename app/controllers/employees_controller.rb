@@ -26,7 +26,9 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
 
   def show
     @employee = Employee.find(params[:id])
-    @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name if @employee.reporting_managers.present?
+    if @employee.reporting_managers.first.manager_id.present?
+      @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name 
+    end
   end
 
   def profile
