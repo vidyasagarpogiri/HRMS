@@ -20,7 +20,10 @@
 													<th> Day(s) </th>
 													<th> Remaining Leaves </th>
 													<th class="hidden-xs">Leaves Balance</th>
-													<th class="hidden-xs">Waiting For Approval</th>
+													<th colspan="2">Waiting For Approval
+													    <th> one </th>
+													    <th> two </th>
+													</th>
 												</tr>
 											</thead>
 											 <% @leaves.each do |f| %>
@@ -41,7 +44,7 @@
 										<% else %>
 										  <div class="alert alert-info alert-dismissable">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                           You have No Leaves Requests
+                           You have No Leaves Requests 
                       </div>
 										<% end %>
 									</div>
@@ -78,18 +81,12 @@
 												  <td> <%= f.days %> </td>
 												  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
 												  <td> <%= f.reason %> </td> 
-												<!--  <td></td> -->
 												  <td> <%= f.status %> </td>
-												<!--	<td></td> -->
 												</tr>												
 											</tbody>
-								      <% end %>
-	                   
-										</table>
-									
-									<%= paginate @leave_histories %>
-									
-									
+								      <% end %>	                   
+										</table>									
+									<%= paginate @leave_histories %>																	
                     </div>
                     <!-- /.panel .chat-panel -->
                 </div>
