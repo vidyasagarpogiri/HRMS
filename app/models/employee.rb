@@ -42,11 +42,14 @@ class Employee < ActiveRecord::Base
   validates :department_id, presence: true
 	validates :designation_id, presence: true
 	validates :mobile_number, presence: true
+	#validates_format_of :mobile_number, with: /\d{3}-\d{3}-\d{4}/, :message => "Please enter Valid Mobile Number"
 	validates :father_name, presence: true
 	validates :blood_group_id, presence: true
 	validates :grade_id, presence: true
 	validates :date_of_join, presence: true
+	#validates_format_of :alternate_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message=>"Valid maill id please"
 	#validates :alternate_email, presence: true
+
 	
 	
 	#after_create :add_leaves
@@ -66,17 +69,7 @@ class Employee < ActiveRecord::Base
      "#{first_name} #{last_name}"
   end
 
-private
-	def add_leaves
-		@leave_policy = self.group.leave_policy
-		@leave = leave.create(:pl_carry_forward_prev_year => @leave_policy.eligible_carry_forward_leaves, :pl_applied => @leave_policy.pl_this_year, :sl_applied=> @leave_policy.sl_this_year)
-	end
-	
-	def update_leaves
-		@leave_policy = group.leave_policy
-	
-		#leave.update(:pl_carry_forward_prev_year => @leave_policy.eligible_carry_forward_leaves, :pl_applied => @leave_policy.pl_this_year, :sl_applied=> @leave_policy.sl_this_year)
-	end
+
 	
 
 end

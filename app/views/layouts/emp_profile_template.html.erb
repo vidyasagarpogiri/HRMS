@@ -48,21 +48,21 @@
                                
                                 <% if @id.to_i!=0 %>
                                  <li>
-                                    <%= link_to "Employee Details", employee_path(@id) %>
+                                    <%= link_to "Employee Info", employee_path(@id) %>
                                 </li>
                                 <li>
-                                    <%= link_to "Contact Details", employee_addresses_path(@id) %>
+                                    <%= link_to "Contact Info", employee_addresses_path(@id) %>
                                     
                                 </li>
                                 <li>
-                                  <%= link_to "Education Details",  employee_educations_path(@id) %>
+                                  <%= link_to "Education Info",  employee_educations_path(@id) %>
 
                                 </li>
                                 <li>
-                                  <%= link_to "Experience Details", employee_experiences_path(@id) %>
+                                  <%= link_to "Experience Info", employee_experiences_path(@id) %>
                                 </li>
                                 <li>
-                                  <%= link_to "Salary Details", employee_salaries_path(@id) %>
+                                  <%= link_to "Salary Info", employee_salaries_path(@id) %>
                                 </li>
                                 <li>
                                   <%= link_to "Promotions", employee_promotions_path(@id) %>
@@ -73,12 +73,15 @@
                                 </li>
 <% if current_user.employee.role.id == 2 %>
                                 <li>
-                                    <%= link_to "Exit Details", exit_form_employee_path(@id) %>
+                                    <%= link_to "Exit Info", exit_form_employee_path(@id) %>
+                                </li>
+                                <li>
+                                    <%= link_to "Attachments" %>
                                 </li>
 <% end %>
                                 <% else %>
                                    <li>
-                                    <%= link_to "Employee Details", "#" %>
+                                    <%= link_to "Employee Info", "#" %>
                                 </li>
                                 <% end %>       
                             </ul>

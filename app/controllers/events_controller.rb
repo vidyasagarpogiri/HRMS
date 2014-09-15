@@ -23,8 +23,13 @@ layout "leave_template"
  
   def create
     #raise params.inspect
-    @event = Event.create(event_params)
+    @event = Event.new(event_params)
+    if @event.save
     redirect_to events_path
+    else
+     flash.now[:error]
+     render "new"
+    end
   end
 
   

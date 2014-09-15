@@ -5,23 +5,37 @@
                              <a  href="/leave_histories"><i class="fa fa-history fa-fw"></i> My Leaves</a>
                         </li>
                         <li>
-                            <a href="/employee_leaves"><i class="fa fa-dashboard fa-fw"></i> Employee Leaves</a>
+                            <a href="/employee_leaves"><i class="fa fa-list fa-fw"></i> Employee Leaves <span class="fa arrow"></span></a>
+                             <ul class="nav nav-second-level">
+                                <li>
+                                   <%= link_to 'Accounts' %>
+                                </li>
+                                <li>
+                                   <%= link_to 'Business Development' %>
+                                </li>
+                                <li>
+                                    <%= link_to 'Development' %>
+                                </li>
+                                <li>
+                                    <%= link_to 'HR' %>
+                                </li>                                                                
+                            </ul>
                         </li>
                       <% if  ReportingManager.where(:manager_id =>  current_user.employee.id) %>
                         <li>
-                            <a href="/reported_leaves"><i class="fa fa-dashboard fa-fw"></i> Reporting Leaves</a>
+                            <a href="/reported_leaves"><i class="fa fa-list fa-fw"></i> Reporting Leaves</a>
                         </li>
                       <% end %>
                         <li id="active">
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Configure<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li id="active1">
+                                <li>
                                     <%= link_to "Leave-Types", leave_types_path %>
                                 </li>
-                                <li id="active2">
+                                <li>
                                     <%= link_to 'Groups', groups_path %>
                                 </li>
-                                <li id="active3">
+                                <li>
                                    <%= link_to 'Holidays', events_path %>
                                 </li>
                             </ul>

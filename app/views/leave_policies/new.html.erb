@@ -13,8 +13,8 @@
                         <div class="panel-heading">
                             New Leave Policy For :<label> <%= @group.group_name %></label>
                         </div>
-                        <div class="panel-body">
-   
+                        <div class="panel-body ">
+                             <div class=" col-lg-6 ">
                                  <%= form_for ([@group, @leave_policy]) do |f| %>
                                         
                                         <div class="form-group">
@@ -34,6 +34,7 @@
                                         </ul> 
                                                     
                                     <% end %>
+                              </div>      
                         </div>
                         <!-- /.panel-body -->
                     </div>
