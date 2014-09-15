@@ -38,7 +38,7 @@
                         <td><%= @salary.basic_salary %></td>
 
                         <td><% if current_user.employee.role.id == 2 %>   
-                        <ul class="navigation-btns" style="list-style: none;display:inline;">                                           
+                        <ul class="navigation-btns" style="list-style: none;display:inline;">                                          
                           <li><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left" %></li>
                           <li><%= link_to 'Delete', employee_salary_path(@employee, @salary), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right" %></li>
                           <% end %>

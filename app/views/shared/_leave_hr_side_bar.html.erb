@@ -2,7 +2,7 @@
                     <ul class="nav" id="side-menu">
                         
                         <li>
-                             <a href="/leave_histories"><i class="fa fa-history fa-fw"></i> My Leaves</a>
+                             <a  href="/leave_histories"><i class="fa fa-history fa-fw"></i> My Leaves</a>
                         </li>
                         <li>
                             <a href="/employee_leaves"><i class="fa fa-dashboard fa-fw"></i> Employee Leaves</a>
@@ -12,16 +12,16 @@
                             <a href="/reported_leaves"><i class="fa fa-dashboard fa-fw"></i> Reporting Leaves</a>
                         </li>
                       <% end %>
-                        <li>
+                        <li id="active">
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Configure<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
+                                <li id="active1">
                                     <%= link_to "Leave-Types", leave_types_path %>
                                 </li>
-                                <li>
+                                <li id="active2">
                                     <%= link_to 'Groups', groups_path %>
                                 </li>
-                                <li>
+                                <li id="active3">
                                    <%= link_to 'Holidays', events_path %>
                                 </li>
                             </ul>
@@ -37,4 +37,3 @@
                     </ul>
 
 
-                
