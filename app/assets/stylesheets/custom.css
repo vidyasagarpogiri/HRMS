@@ -130,3 +130,9 @@ background-color:black !important;
 .nav-second-level li.active {
 background-color:#eee;
 }
+
+
+nav.pagination {
+  border:1px solid #DDD;
+}
+

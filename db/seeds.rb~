@@ -102,9 +102,17 @@ Employee.create(:id => 2,:employee_id => 2, :title=> "Mr.", :first_name=>"bala",
 Employee.create(:id => 3,:employee_id => 3, :title=> "Miss.", :first_name=>"Sonia",:last_name=>"Kumar",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
 :salary_id=>2,:avatar=>"gates_print.jpg", :user_id => @user2.id,:alternate_email => "email@mail.com")
 
+<<<<<<< HEAD
 Employee.create(:id => 4,:employee_id => 4, :title=> "Mr.", :first_name=>"pattabhi",:last_name=>"ramarao",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
 :salary_id=>2,:avatar=>"gates_print.jpg", :user_id => @user3.id, :alternate_email => "email@mail.com")
 
+=======
+Employee.create(:id => 4,:employee_id => 4, :title=> "Miss.", :first_name=>"Priyanka",:last_name=>"Muddana",:date_of_birth=>"1990-12-18", :gender=>"Female", :marital_status=>"single", :total_experience=>"1.5",
+:status=>"Active", :mobile_number=>"8888899999",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-02-24",
+:image_url=> "image",
+:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
+:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)],:role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)], :salary_id=>3,:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user3.id, :alternate_email => "email@mail.com")
+>>>>>>> ccca38a836baa85255b0c243fdc5d74b9b3e6a39
 
 
 Employees = Employee.all.pluck(:id)
