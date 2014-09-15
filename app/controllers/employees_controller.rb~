@@ -13,13 +13,14 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
   end
   
   def create
-  
      @employee = Employee.create(params_employees)
-     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
-     @employee.update(:user_id => @user.id)
+   
     if @employee.errors.present?
       render 'new'
     else
+     @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
+     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
+     @employee.update(:user_id => @user.id)
       redirect_to @employee
     end
     
@@ -27,6 +28,7 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
 
   def show
     @employee = Employee.find(params[:id])
+    @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name 
   end
 
   def profile
@@ -38,11 +40,13 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
   end
   
   def update
-		@employee = Employee.find(params[:id])
-    if @employee.update(params_employees)    
-		redirect_to @employee
+    @employee = Employee.find(params[:id])
+    if @employee.update(params_employees) 
+      @report = @employee.reporting_managers.first
+      @report.update(:manager_id => params[:reporting_id])   
+		  redirect_to @employee
 		else
-		render 'edit'
+		  render 'edit'
 		end
   end  
 

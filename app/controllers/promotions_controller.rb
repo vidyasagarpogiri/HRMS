@@ -2,7 +2,7 @@ class PromotionsController < ApplicationController
   
 
 		
-	before_filter :user_authentication, only: [:index, :new, :create, :show, :edit, :update]
+
 
 	def index
 	  @employee = Employee.find(params[:employee_id])

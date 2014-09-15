@@ -7,7 +7,7 @@
                         <li>
                             <a href="/employee_leaves"><i class="fa fa-dashboard fa-fw"></i> Employee Leaves</a>
                         </li>
-                      <% if current_user.employee.reporting_manager? %>
+                      <% if  ReportingManager.where(:manager_id =>  current_user.employee.id) %>
                         <li>
                             <a href="/reported_leaves"><i class="fa fa-dashboard fa-fw"></i> Reporting Leaves</a>
                         </li>
