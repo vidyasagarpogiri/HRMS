@@ -12,7 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 20140915111529) do
+ActiveRecord::Schema.define(version: 20140915120346) do
 
 
 
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 20140915111529) do
     t.integer  "group_id"
     t.string   "avatar"
     t.string   "alternate_email"
+    t.integer  "designation_id"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree

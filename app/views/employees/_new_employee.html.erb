@@ -70,12 +70,12 @@
                                              <%= f.text_field :alternate_email, :class=>"form-control", :placeholder=>"Enter Alternate Email" %>        
                                            
                                         </div>
-                                        <div class="form-group col-lg-6"">
+                                        <div class="form-group col-lg-6">
                                             <label class="required">Department</label><br>
                                             <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "department, form-control", :id => "disabledSelect" } %>
                                         </div>
                                         
-                                        <div class="form-group col-lg-6"">
+                                        <div class="form-group col-lg-6" id="category">
                                             <label class="required">Designation</label><br>
                                             <%= f.collection_select :designation_id, Designation.all, :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control", :id=>"disabledSelect"  } %>  
                                         </div> 
@@ -130,6 +130,15 @@
 
          </div>
           <!-- /#page wrapper -->
+    <script>
+    $("#department']").click(function(){
+  var url = '/get_drop_down_options?department_id=' + $(this).val()
+  $("#designation").removeOption(/./)
+  $.get(url, function(data) {
+    $('#designation').addOption(data, false);
+  });
+});
+    </script>
           
         
         
