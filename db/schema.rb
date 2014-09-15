@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915070908) do
+
+ActiveRecord::Schema.define(version: 20140915110435) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140915070908) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "designation_name"
+    t.integer  "department_id"
   end
 
   create_table "education_qualifications", force: true do |t|
@@ -102,27 +104,23 @@ ActiveRecord::Schema.define(version: 20140915070908) do
     t.string   "pan"
     t.string   "date_of_confirmation"
     t.string   "date_of_join"
-    t.string   "date_of_exit"
     t.text     "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "department_id"
     t.integer  "blood_group_id"
     t.integer  "ff_status_id"
-    t.integer  "designation_id"
     t.integer  "grade_id"
     t.integer  "role_id"
     t.integer  "job_location_id"
     t.integer  "user_id"
     t.integer  "salary_id"
-    t.integer  "group_id"
     t.string   "avatar"
     t.string   "alternate_email"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
   add_index "employees", ["department_id"], name: "index_employees_on_department_id", using: :btree
-  add_index "employees", ["designation_id"], name: "index_employees_on_designation_id", using: :btree
   add_index "employees", ["ff_status_id"], name: "index_employees_on_ff_status_id", using: :btree
   add_index "employees", ["grade_id"], name: "index_employees_on_grade_id", using: :btree
   add_index "employees", ["job_location_id"], name: "index_employees_on_job_location_id", using: :btree
@@ -151,6 +149,9 @@ ActiveRecord::Schema.define(version: 20140915070908) do
     t.string   "status_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "date_of_exit"
+    t.string   "interview_status"
+    t.text     "summary"
   end
 
   create_table "grades", force: true do |t|

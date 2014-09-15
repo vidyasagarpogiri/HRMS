@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
 layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
 
   def index
-    @employees =  Employee.all 
+    @employees =  Employee.all.page(params[:page]).per(2)
   end
 
  
@@ -28,7 +28,7 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
 
   def show
     @employee = Employee.find(params[:id])
-    @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name 
+    @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name if @employee.reporting_managers.present?
   end
 
   def profile
