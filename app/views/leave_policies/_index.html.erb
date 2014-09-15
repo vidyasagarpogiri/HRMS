@@ -1,7 +1,15 @@
  <% unless @leave_policy.nil? %>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Policies for this group </h2>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+             <div class="row">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Leave Policies Form 
+                            Leave Policies
                             <% if current_user.employee.role_id==2%>
                             <label style="font-weight:normal;padding:20px;margin-top:-15px;" class = "pull-right"><a><i class="fa fa-plus "></i></a><%= link_to " Edit", edit_group_leave_policy_path(@group, @leave_policy) %></label>   
                             <% end %>  
@@ -36,4 +44,7 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
+                  </div>
+                        <!-- /.col-lg-12 -->
+               </div><!-- /.row -->
 <% end %>
