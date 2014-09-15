@@ -65,7 +65,7 @@ end
 FfStatuses = FfStatus.all.pluck(:id)
 
 ["Developer", "HR", "Business Developer"].each do |desg|
-Designation.create(:designation_name => desg ) 
+Designation.create(:designation_name => desg, :department_id => Departments[rand(Departments.length)] ) 
 end
 Designations = Designation.all.pluck(:id)
 

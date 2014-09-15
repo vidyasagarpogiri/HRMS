@@ -141,6 +141,7 @@ end
     params.require(:employee_attachements).permit(employee_attachments_attributes: [:id, :employee_id, :attachment, :attachment_name])
   end
 	
+	
 
 end
 
