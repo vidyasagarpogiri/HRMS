@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20140915151011) do
+=======
 ActiveRecord::Schema.define(version: 20140915131114) do
+>>>>>>> ccca38a836baa85255b0c243fdc5d74b9b3e6a39
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -46,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140915131114) do
     t.string   "department_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "holiday_calender_id"
   end
 
   create_table "designations", force: true do |t|
@@ -180,6 +185,7 @@ ActiveRecord::Schema.define(version: 20140915131114) do
     t.datetime "updated_at"
     t.integer  "group_id"
     t.integer  "event_id"
+    t.integer  "department_id"
   end
 
   create_table "insentives", force: true do |t|
