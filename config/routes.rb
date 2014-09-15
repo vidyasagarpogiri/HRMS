@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
   resources :events
+  
 
   #devise_for :users
 
@@ -75,7 +76,8 @@ post 'accept' => "leave_histories#accept"
 post 'reject' => "leave_histories#reject"
 #get 'leaves' => "leave_histories#index"
 get 'employee_leaves' => "leave_histories#employee_leaves"
- resources :employees do 
+ resources :employees do
+		resources :ff_statuses 
     resources :leaves
 	
 		member do
@@ -85,6 +87,9 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
 			get 'show_exit'
 			get 'profile'
 			get 'myprofile'
+			get 'attachment_form_new'
+			post 'update_attachment'
+			get 'attachment_index'
 		end
   
   resources :educations do

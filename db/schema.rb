@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140915120346) do
+=======
+ActiveRecord::Schema.define(version: 20140915111529) do
+
+>>>>>>> 07d7f8ee799ea528eb325da0f7ea50d98470dd3d
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -88,6 +93,14 @@ ActiveRecord::Schema.define(version: 20140915120346) do
 
   add_index "email_ettiquities", ["employee_id"], name: "index_email_ettiquities_on_employee_id", using: :btree
 
+  create_table "employee_attachments", force: true do |t|
+    t.integer  "employee_id"
+    t.string   "attachment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attachment_name"
+  end
+
   create_table "employees", force: true do |t|
     t.string   "employee_id"
     t.string   "title"
@@ -103,7 +116,6 @@ ActiveRecord::Schema.define(version: 20140915120346) do
     t.string   "pan"
     t.string   "date_of_confirmation"
     t.string   "date_of_join"
-    t.string   "date_of_exit"
     t.text     "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -150,6 +162,9 @@ ActiveRecord::Schema.define(version: 20140915120346) do
     t.string   "status_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "date_of_exit"
+    t.string   "interview_status"
+    t.text     "summary"
   end
 
   create_table "grades", force: true do |t|
