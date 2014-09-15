@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
 layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
 
   def index
-    @employees =  Employee.all 
+    @employees =  Employee.all.page(params[:page]).per(2)
   end
 
  
@@ -12,15 +12,22 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
   end
   
   def create
+
      #raise params.inspect
      @employee = Employee.create(params_employees)
       
      @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
      @employee.update(:user_id => @user.id)
      
+
+     @employee = Employee.create(params_employees)
+
     if @employee.errors.present?
       render 'new'
     else
+     @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
+     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
+     @employee.update(:user_id => @user.id)
       redirect_to @employee
     end
     
@@ -28,6 +35,7 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
 
   def show
     @employee = Employee.find(params[:id])
+    @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name if @employee.reporting_managers.present?
   end
 
   def profile
@@ -41,8 +49,7 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
   def update
 		@employee = Employee.find(params[:id])
 		params["employee_attachments"]["attachment"].each_with_index do |a, i|
-		  raise params["employee_attachments"]["attachment_name"][1].inspect
-      @employee_attachment = @employee.employee_attachments.create!(:attachment => a[0], :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
+      @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
     end
    
     if params[:employee].present? 

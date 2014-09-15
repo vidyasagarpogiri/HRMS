@@ -7,10 +7,10 @@
                 </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
+
 
                
-								<% unless f.status == "HOLD" %>
+
 
                    <div class="panel panel-default">                  
                       <div class="panel-heading">
@@ -32,7 +32,7 @@
 												</tr>
 											</thead>
 										  <% @leaves.each do |f| %>
-											<% unless f.status == "HOLD" %>
+											
 											<tbody>												
 												<tr>               
 												  <td> <%= f.employee.full_name %></td>
@@ -47,19 +47,12 @@
 												</tr>
                      </tbody>
 								<% end %>
-	              <% end %>
+	           
 										</table>
 
-								<% else %>
-                 <div class="alert alert-info alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                           No Leaves Applied by you
-                     </div>
-									
-									</div>
-								</div>
-                   	<% end %>
+									<%= paginate @leaves %>
 							 
+
 
                     
                     </div>

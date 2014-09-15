@@ -2,13 +2,11 @@
              <div id="page-wrapper"><br>
               
                <div class="add">      
-						      <label style="" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path(), :class => "fa fa-plus " %> </label> 
+						      <label style="margin-top:-5px;" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path(), :class => "fa fa-plus " %> </label> 
 						   </div>
-						  
-                <br><br>     
-                <div class="page-header">Leaves Waiting for Approval</div>
-               
-               <div class="panel panel-default">
+    
+                <div class="page-header">Leaves Waiting for Approval</div>               
+                 <div class="panel panel-default">
                
                   <div class="panel-heading">
                      Leaves Waiting for Approval
@@ -19,9 +17,9 @@
 											<thead>
 												<tr>
 													<th class="center">Full Name</th>
-													<th> Leaves Used </th>
+													<th> Day(s) </th>
+													<th> Remaining Leaves </th>
 													<th class="hidden-xs">Leaves Balance</th>
-													<th class="hidden-xs">Remaining Carry Forward Leaves</th>
 													<th class="hidden-xs">Waiting For Approval</th>
 												</tr>
 											</thead>
@@ -29,33 +27,29 @@
 											 <% if f.status == "HOLD" %>
 											<tbody>
 												<tr>
-
-													<td class="center"><a href="#"> <%= @employee.full_name %></td>
-													<td><%= total_used_leaves(@employee)%></td>
-													<td><%= total_balance_leaves(@employee) %></td>
-
+													<td class="center"><a href="#"> <%= @employee.full_name %> </td>
+													<td><%= total_used_leaves(@employee)%> day(s)</td>
+													<td><%= total_balance_leaves(@employee) %> day(s)</td>
 													<td>2</td>
-													<td><%= waiting_for_approval(@employee)%></td>
+													<td><%= waiting_for_approval(@employee)%> day(s)</td>
 												</tr>
 											</tbody>
 									<% end %>
 									<% end %>
 										</table>
+									<%= paginate @leaves %>
 										<% else %>
 										  <div class="alert alert-info alert-dismissable">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                            You have No Leaves Requests
-                     </div>
+                      </div>
 										<% end %>
 									</div>
-
 								 </div> 
     
 								
 
-								 <div class="page-header"> Approved Leaves List</div> 
-							
-
+								 <div class="page-header"> Approved Leaves List</div> 							
                    <div class="panel panel-default">
                       <div class="panel-heading">
                           Approved Leaves List
@@ -67,7 +61,7 @@
 												<tr>
 												  <th> Full Name</th>
 													<th class="center">Date</th>
-													<th class="hidden-xs">No 0f Days</th>													
+													<th class="hidden-xs">No of Days</th>													
 													<th class="hidden-xs">Leaves Type</th>
 												<th class="hidden-xs">Reason</th>
 													<!-- <th> Leaves Used </th> -->
@@ -75,8 +69,8 @@
 												<!--	<th class="hidden-xs">Feedback</th> -->
 												</tr>
 											</thead>
-										 <% @leaves.each do |f| %>
-												<% unless f.status == "HOLD" %>
+										 <% @leave_histories.each do |f| %>
+											
 											<tbody>												
 												<tr>               
 												  <td><%= @employee.full_name %></td>
@@ -90,10 +84,10 @@
 												</tr>												
 											</tbody>
 								      <% end %>
-	                    <% end %>
+	                   
 										</table>
-										<% else %>
 									
+									<%= paginate @leave_histories %>
 									
 									
                     </div>

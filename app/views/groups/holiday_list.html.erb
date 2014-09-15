@@ -22,12 +22,10 @@
 											                  </thead>											                  
 	                                       <% @holidays.each do |holiday| %>
 											                  <tbody>
-												                  <tr>               
-													                  
-													                  <td> <%= holiday.event.event_name %>  </td>
-													                <td> <%= format_date(holiday.event.event_date) %> </td>
-													                  
-													                 </tr>
+											                  <tr>													                 
+													                <td> <%= holiday.event.event_name %>  </td>
+													                <td> <%= format_date(holiday.event.event_date) %> </td>													                  
+													              </tr>
 											                  </tbody>
 											                  <% end %>
 									                  </table>              
@@ -35,17 +33,17 @@
                               <div class="alert alert-info alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                  You Have no holidays list to display
-                           </div>
+                              </div>
 									
 									        </div>
 								          </div>
                            	<% end %>
-
+                           
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
                         </div>
-                        <!-- /.panel-body -->
+                        <!-- /.panel-body -->                                                
                     </div>
                     <!-- /.panel -->
                 </div>
@@ -53,8 +51,8 @@
             </div>
             <!-- /.row -->
         </div>
-        
-        <%= render "leave_policies/index"%>
+         <%= render "leave_policies/index"%>
+       
 
  <script>
           $(function(){
