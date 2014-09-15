@@ -2,7 +2,7 @@ class Employee < ActiveRecord::Base
 	mount_uploader :avatar, AvatarUploader
   belongs_to :department
   belongs_to :blood_group
-  belongs_to :designation
+  #belongs_to :designation
   belongs_to :job_location
  # belongs_to :present_address, :class_name=>"Address", foreign_key: :id
  # belongs_to :permanent_address, :class_name=>"Address", foreign_key: :id
@@ -40,7 +40,7 @@ class Employee < ActiveRecord::Base
 	validates :date_of_birth, presence: true
 	validates :gender, presence: true
   validates :department_id, presence: true
-	validates :designation_id, presence: true
+	#validates :designation_id, presence: true
 	validates :mobile_number, presence: true
 	#validates_format_of :mobile_number, with: /\d{3}-\d{3}-\d{4}/, :message => "Please enter Valid Mobile Number"
 	validates :father_name, presence: true
