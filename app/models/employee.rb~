@@ -40,7 +40,7 @@ class Employee < ActiveRecord::Base
 	validates :date_of_birth, presence: true
 	validates :gender, presence: true
   validates :department_id, presence: true
-	validates :designation_id, presence: true
+	#validates :designation_id, presence: true
 	validates :mobile_number, presence: true, numericality: true , length: { is: 10 }
 	#validates_format_of :mobile_number, with: /\d{3}-\d{3}-\d{4}/, :message => "Please enter Valid Mobile Number"
 	validates :father_name, presence: true
