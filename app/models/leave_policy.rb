@@ -4,6 +4,5 @@ class LeavePolicy < ActiveRecord::Base
   validates :pl_this_year, presence: true 
 	validates :sl_this_year, presence: true
 	validates :eligible_carry_forward_leaves, presence: true
-
-
+	belongs_to :department
 end
