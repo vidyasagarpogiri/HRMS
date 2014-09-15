@@ -117,20 +117,17 @@ ActiveRecord::Schema.define(version: 20140915111529) do
     t.integer  "department_id"
     t.integer  "blood_group_id"
     t.integer  "ff_status_id"
-    t.integer  "designation_id"
     t.integer  "grade_id"
     t.integer  "role_id"
     t.integer  "job_location_id"
     t.integer  "user_id"
     t.integer  "salary_id"
-    t.integer  "group_id"
     t.string   "avatar"
     t.string   "alternate_email"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
   add_index "employees", ["department_id"], name: "index_employees_on_department_id", using: :btree
-  add_index "employees", ["designation_id"], name: "index_employees_on_designation_id", using: :btree
   add_index "employees", ["ff_status_id"], name: "index_employees_on_ff_status_id", using: :btree
   add_index "employees", ["grade_id"], name: "index_employees_on_grade_id", using: :btree
   add_index "employees", ["job_location_id"], name: "index_employees_on_job_location_id", using: :btree
