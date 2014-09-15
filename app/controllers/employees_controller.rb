@@ -26,7 +26,7 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form,
 
   def show
     @employee = Employee.find(params[:id])
-    if @employee.reporting_managers.first.manager_id.present?
+    if @employee.reporting_managers.first.present? &&  @employee.reporting_managers.first.manager_id.present?
       @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name 
     end
   end
@@ -41,10 +41,11 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form,
   
   def update
     @employee = Employee.find(params[:id])
-    params["employee_attachments"]["attachment"].each_with_index do |a, i|
-      @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
-    end
-   
+    if params["employee_attachments"].present?
+      params["employee_attachments"]["attachment"].each_with_index do |a, i|
+        @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
+      end
+   end
     if params[:employee].present? 
       if @employee.update(params_employees) 
         @report = @employee.reporting_managers.first
