@@ -126,3 +126,7 @@ color:	#527A7A;
 .nav .nav-pills ul li:hover{
 background-color:black !important;
 }
+
+.nav-second-level li.active {
+background-color:#eee;
+}
