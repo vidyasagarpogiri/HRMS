@@ -57,9 +57,9 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form,
 		  else
 		    render 'edit'
       end
-     redirect_to @employee
+     
     end
-
+redirect_to @employee
   end  
 
 	def exit_edit_form
