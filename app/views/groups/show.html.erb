@@ -17,11 +17,8 @@
                    <%=render "leave_policies/index" %>
                  </div>
                  
-                 <div id="event_form">
-                 
-<label class="col-lg-3">
+                 <div id="event_form">                 
                  <% unless @group.holiday_calenders.present? %>
-
                   <label id="new_event" style="font-weight:normal;margin-top:px;" class="pull-right"><a><i class="fa fa-plus "></i></a><%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %></label> 
                  <% end %><br>
                  <div id ="holiday_calenders">

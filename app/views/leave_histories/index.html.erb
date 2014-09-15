@@ -81,18 +81,12 @@
 												  <td> <%= f.days %> </td>
 												  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
 												  <td> <%= f.reason %> </td> 
-												<!--  <td></td> -->
 												  <td> <%= f.status %> </td>
-												<!--	<td></td> -->
 												</tr>												
 											</tbody>
-								      <% end %>
-	                   
-										</table>
-									
-									<%= paginate @leave_histories %>
-									
-									
+								      <% end %>	                   
+										</table>									
+									<%= paginate @leave_histories %>																	
                     </div>
                     <!-- /.panel .chat-panel -->
                 </div>
