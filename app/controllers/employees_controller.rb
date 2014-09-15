@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
+layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new ]
 
   def index
     @employees =  Employee.all.page(params[:page]).per(2)
@@ -89,25 +89,7 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form]
     #redirect_to @attachment
    
   end
-  def attachment_form
-  raise params.inspect
-    @employee = Employee.find(params[:id])
-    #raise params.inspect
-    #
-  end
-  
-  def update_attachment
-			raise params.inspect
-			#redirect_to show_exit_employee_path(@employee.id)
-	end
-  
-  
-   def attachment_index
-   
-   index
-   @attachments = Attachment.all
-   
-   end
+
    
 	def show_exit
 		
