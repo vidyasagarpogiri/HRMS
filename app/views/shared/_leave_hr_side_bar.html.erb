@@ -4,12 +4,12 @@
                         <li>
                              <a  href="/leave_histories"><i class="fa fa-history fa-fw"></i> My Leaves</a>
                         </li>
-                        <li>
+                        <li  id="active1">
                             <a href="/employee_leaves"><i class="fa fa-list fa-fw"></i> Employee Leaves <span class="fa arrow"></span></a>
                              <ul class="nav nav-second-level">
                                 <% Department.all.each do |dept| %>
                                    <li>
-                                   <%= link_to dept.department_name %>
+                                   <%= link_to dept.department_name, employee_leaves_department_path(dept) %>
                                 </li>
                                 <% end %>
                                                                                       

@@ -7,7 +7,7 @@ class Notification < ActionMailer::Base
    @leave_history = leave_history
    #raise @employee.user.email.inspect
    #raise @leave_history.leave_type.type_name.inspect
-   mail(:to => @employee.group.reporting_manager.employee.user.email, :subject => "#{@leave_history.subject}")
+   mail(:to => @employee.reporting_manager.user.email, :subject => "#{@leave_history.subject}")
   end
 
 	def accept_leave(employee, leave_history)
