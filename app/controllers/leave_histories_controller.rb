@@ -66,8 +66,10 @@ class LeaveHistoriesController < ApplicationController
 
 	
 	def reported_leaves
+	  #raise params.inspect
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
-		
+    #raise @reported_leaves.inspect
+  
 	end
 		
 	def accept
