@@ -33,11 +33,15 @@ Rails.application.routes.draw do
   end
    
    resources :departments do
+   resources :holiday_calenders
 	 resources :leave_policies
    member do
       get "/add_employee" => "departments#add_employee"
       post 'update_employee'
-    end  
+    end 
+    collection do
+				get 'holiday_list'
+			end 
   end
     
    
