@@ -16,6 +16,7 @@ class DepartmentsController < ApplicationController
   def show
     @department = Department.find(params[:id])
     @employees = @department.employees
+		@leave_policy = @department.leave_policy 
   end
 
   def update
