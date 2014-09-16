@@ -13,17 +13,18 @@ class SalariesController < ApplicationController
   def index
     @employee= Employee.find(params[:employee_id])
     @salary =  @employee.salary
-    if @salary.present?
-       @allowance = Allowance.new
+    #if @salary.present?
+    @allowances = @salary.allowances
+		raise @allowances.inspect
     @insentive = Insentive.new
     @salary_increment = SalaryIncrement.new
     @allowances = @salary.allowances
     @insentives =  @salary.insentives
     @salary_increments =@salary.salary_increments
    
-    else
+    #else
        @salary = Salary.new
-    end
+    #end
    
   end
   
@@ -81,6 +82,27 @@ end
 		
   end
   
+	def configure_allowance
+			#raise params.inspect
+			@employee= Employee.find(params[:employee_id])
+			@salary =  Salary.find(params[:salary_id])
+	 		
+			@static_allowance = StaticAllowance.all
+	end
+	
+	def create_allowance
+		#raise params.inspect
+		@employee= Employee.find(params[:employee_id])
+		@salary =  Salary.find(params[:salary_id])
+		params[:allowances].each do |a|
+#raise a[1][:applicable].inspect
+			if a[1][:applicable] == "1" 
+#raise params.inspect
+		 		Allowance.create(:allowance_name => a[1][:allowance_name], :value => a[1][:percentage], :applicable => a[1][:applicable], :salary_id => @salary.id)
+			end
+		end
+		redirect_to employee_salary_path(@employee,@salary)
+	end
   
   private
   

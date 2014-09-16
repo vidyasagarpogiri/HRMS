@@ -99,7 +99,7 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
 			delete 'attachment_destroy/:attachment_id' => 'employees#attachment_destroy', as: :attachment_destory
 			get  'attachment_edit/:attachment_id' => 'employees#attachment_edit', as: :attachment_edit
 			patch 'attachment_update/:attachment_id'=> 'employees#attachment_update', as: :attachment_update
-			get 'attachment_show'
+			post 'attachment_show'
 		end
   
   resources :educations do
@@ -112,6 +112,8 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
     resources :email_ettiquities
 		resources :promotions
 		resources :salaries do 
+					get 'configure_allowance'
+					post 'create_allowance'
           resources :allowances
           resources :insentives
           resources :salary_increments

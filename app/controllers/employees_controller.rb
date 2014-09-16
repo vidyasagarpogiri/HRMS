@@ -120,6 +120,11 @@ redirect_to @employee
 		@employee = Employee.find(params[:id])
 			
 	end
+
+def attachment_show
+	#raise params.inspect
+	
+end
 	
 	def myprofile
 	  @employee = current_user.employee

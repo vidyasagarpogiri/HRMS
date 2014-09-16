@@ -27,7 +27,8 @@ Promotion.destroy_all
 EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
-Group.destroy_all
+Group.destroy_all;
+StaticAllowance.destroy_all
 
 #sekharberi@1989
  @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
@@ -128,4 +129,12 @@ LeaveTypes = LeaveType.all.pluck(:id)
 
 Group.all.each do |group|
   ReportingManager.create(employee_id: rand(1..Employee.count), group_id: group.id)
+
+#static allowance
+StaticAllowance.create(:allowance_name => 'HRA', :percentage => 25.0)
+StaticAllowance.create(:allowance_name => 'Car Allowance', :percentage => 15.0)
+StaticAllowance.create(:allowance_name => 'DA', :percentage => 5.0)
+
+
+
 end
