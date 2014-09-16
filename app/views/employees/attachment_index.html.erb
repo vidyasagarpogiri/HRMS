@@ -27,22 +27,22 @@
 													            <th colspan=2>Actions</th>									      		
 												            </tr>
 											            </thead>
-											             <% @employeeattachments.each do |attach| %>
+											            <% @employeeattachments.each do |attach| %>
 											            <tbody>
-                                <% @emp_get_attachements.each do |attachment| %>
+                                  <% @emp_get_attachements.each do |attachment| %>
                                   <tr>
-                                <td><%= attachment.attachment_name %></td> 
-                                <td><%= link_to "Download", attachment.attachment_url %></td>
+                                    <td><%= attachment.attachment_name %></td> 
+                                    <td><%= link_to "Download", attachment.attachment_url %></td>
                                   </tr>
-                                <% end %>
+                                  <% end %>
                                   </tbody>
-                                      <% if current_user.employee.role.id == 2 %>
-													            <td> 
-													               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                           <li><%= link_to 'Edit', edit_employee_education_path(@employee.id, education.id), :class => "btn btn-success " %></li>
-                                           <li><%= link_to "Delete", employee_education_path(@employee, education), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-                                         </ul>
-                                       </td>
+                                     <% if current_user.employee.role.id == 2 %>
+													           <td> 
+													             <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                         <li><%= link_to 'Edit', edit_employee_education_path(@employee.id, education.id), :class => "btn btn-success " %></li>
+                                         <li><%= link_to "Delete", employee_education_path(@employee, education), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+                                       </ul>
+                                     </td>
                                      <% end %>
 												            </tr>`
 											            </tbody>
