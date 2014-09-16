@@ -90,7 +90,9 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
 			get 'attachment_form_new'
 			post 'update_attachment'
 			get 'attachment_index'
-			delete 'attachment_destroy'
+			delete 'attachment_destroy/:attachment_id' => 'employees#attachment_destroy', as: :attachment_destory
+			get  'attachment_edit/:attachment_id' => 'employees#attachment_edit', as: :attachment_edit
+			patch 'attachment_update/:attachment_id'=> 'employees#attachment_update', as: :attachment_update
 			get 'attachment_show'
 		end
   
