@@ -8,7 +8,7 @@
   <!-- /.row -->
   <div class="row"> 
     <div class=" col-lg-8 ">
-      <div class="page-header">Leave Policiy</div>
+      <div class="page-header">Leave Policy</div>
         <table class="table table-striped table-hover">
           <thead>
 						<tr>
@@ -53,15 +53,15 @@
 												<th> Email  </th>
 											</tr>
 									</thead>
-											<% @employees.each do |employee| %>
-											  <tbody>
-												  <tr>
-													  <th class="center"><%= link_to employee.first_name, employee_path(employee) %></th>	
-													    <th class="center"><%= employee.user.email %></th>	
-												    </tr>
-											   </tbody>
-									     <% end %>
-									</table>                       
+							<% @employees.each do |employee| %>
+									<tbody>
+										<tr>
+										<th class="center"><%= link_to employee.first_name, employee_path(employee) %></th>	
+										<th class="center"><%= employee.user.email %></th>	
+										</tr>
+									</tbody>
+							<% end %>
+								</table>                       
 
            </div><!-- /.2nd panel-body -->   
 					</div>                                  

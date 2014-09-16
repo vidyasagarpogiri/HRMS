@@ -28,14 +28,14 @@ class LeavePoliciesController < ApplicationController
  def edit
   #raise params.inspect
  @department = Department.find(params[:department_id])
-  @leave_policy = @group.leave_policy
+  @leave_policy = @department.leave_policy
  end
  
  def update
   @department = Department.find(params[:department_id])
-   @leave_policy = @group.leave_policy
+   @leave_policy = @department.leave_policy
    @leave_policy.update(params_leavepolicy)
-   redirect_to group_path(@group)
+   redirect_to department_path(@department)
  
  end
  
