@@ -21,11 +21,9 @@
 													      <td><%= f.text_field :value, :class => "form-control",  :placeholder=>"Enter Allowance value" %></td>
 													      <td class="form-group"> 
                                    <label class="checkbox-inline">
-                                      <input type="checkbox"> Check
+                                      <input type="checkbox"> Apply
                                    </label>
-                                   <label class="checkbox-inline">
-                                       <input type="checkbox"> Uncheck
-                                   </label>                                           
+                                                                             
                                  </td>
 													    </tr>
 													    <tr>               													     
@@ -33,11 +31,8 @@
 													      <td><%= f.text_field :value, :class => "form-control",  :placeholder=>"Enter Allowance value" %></td>
 													      <td class="form-group"> 
                                    <label class="checkbox-inline">
-                                      <input type="checkbox"> Check
-                                   </label>
-                                   <label class="checkbox-inline">
-                                       <input type="checkbox"> Uncheck
-                                   </label>                                           
+                                      <input type="checkbox"> Apply
+                                   </label>                                                                              
                                  </td>
 													    </tr>
 													    <tr>               													     
@@ -45,11 +40,8 @@
 													      <td><%= f.text_field :value, :class => "form-control",  :placeholder=>"Enter Allowance value" %></td>
 													      <td class="form-group"> 
                                    <label class="checkbox-inline">
-                                      <input type="checkbox"> Check
-                                   </label>
-                                   <label class="checkbox-inline">
-                                       <input type="checkbox"> Uncheck
-                                   </label>                                           
+                                      <input type="checkbox"> Apply
+                                   </label>                                                                          
                                  </td>
 													    </tr>
 													    <tr>               													     
@@ -57,23 +49,17 @@
 													      <td><%= f.text_field :value, :class => "form-control",  :placeholder=>"Enter Allowance value" %></td>
 													      <td class="form-group"> 
                                    <label class="checkbox-inline">
-                                      <input type="checkbox"> Check
-                                   </label>
-                                   <label class="checkbox-inline">
-                                       <input type="checkbox"> Uncheck
-                                   </label>                                           
+                                      <input type="checkbox"> Apply
+                                   </label>                                                                            
                                  </td>
 													    </tr>
-													    <tr>               													     
-													      <td><%= f.text_field :allowance_name,  :class => "form-control ", :placeholder=>"Enter Allowance Name" %></td> 
-													      <td><%= f.text_field :value, :class => "form-control",  :placeholder=>"Enter Allowance value" %></td>
+													    <tr id="newrow">               													     
+													      <td><%= f.text_field :allowance_name,  :class => "form-control ", :placeholder=>"new Allowance Name" %></td> 
+													      <td><%= f.text_field :value, :class => "form-control",  :placeholder=>"new Allowance value" %></td>
 													      <td class="form-group"> 
                                    <label class="checkbox-inline">
-                                      <input type="checkbox"> Check
-                                   </label>
-                                   <label class="checkbox-inline">
-                                       <input type="checkbox"> Uncheck
-                                   </label>                                           
+                                      <input type="checkbox"> Apply
+                                   </label>                                                                          
                                  </td>
 													    </tr>
 													   
@@ -88,7 +74,12 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-          
+          <script>
+              $("#newrow").hide();
+              $("#add_more").click(function(){
+                $("#newrow").show();
+              });
+          </script>
           
           
           
