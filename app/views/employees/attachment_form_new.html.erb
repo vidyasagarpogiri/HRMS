@@ -49,7 +49,7 @@
                 
                 
                 
-                
+                <% if @emp_get_attachements.present? %>
                 <div class="row" style="clear:both;margin-left: 20px;" >     
                    <table class="table table-bordered table-striped"  id="sample-table-2">
                     <thead>
@@ -73,6 +73,13 @@
                       <% end %>
                     </tbody>
                   </table>
+                  <% else %>
+
+                      <div class="alert alert-info alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            You have No Attachments to display.
+                     </div>
+                     <% end %>
                </div>
                 <!-- /.col-lg-12 -->
             </div>
