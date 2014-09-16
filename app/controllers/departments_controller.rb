@@ -55,9 +55,17 @@ class DepartmentsController < ApplicationController
 
    
   def employee_leaves
+  
     @dept = Department.find(params[:id])
+    #raise @dept.inspect
     @employees = @dept.employees
-    @leaves = @employees.map(&:leave_histories).first if @employees.present?
+    #raise @employees.inspect
+    @leaves = @employees.map(&:leave_histories).flatten if @employees.present?
+   
+    #raise @leaves.flatten.inspect
+    #-------TODO--------#
+    #Here @leaves object is depatrment all Employee leaves of array tpye pasrse it in employee_leaves view page..BY:GPR###
+    #raise @leaves[1][1]['employee_id'].inspect
   end
   
 
