@@ -3,25 +3,26 @@ class HolidayCalendersController < ApplicationController
   layout "leave_template"
 def index
       #raise params.inspect
-      @group = Group.find(params[:group_id])
-      @holiday_calenders =@group.holiday_calenders
+      @department = Group.find(params[:department_id])
+      @holiday_calenders =@department.holiday_calenders
     end
     
     def new
     #raise params.inspect
       @holiday_calender = HolidayCalender.new
-      @group = Group.find(params[:group_id])
+      @department = Department.find(params[:department_id])
+
     end
     
     def create
-      #raise params.inspect
-       @group = Group.find(params[:group_id])
-       params_with_group = params_calender.merge(group_id: params[:group_id])
+     # raise params.inspect
+       @department = Department.find(params[:department_id])
+       params_with_department = params_calender.merge(department_id: params[:department_id])
        
-       @holiday_calender = HolidayCalender.new(params_with_group)
+       @holiday_calender = HolidayCalender.new(params_with_department)
         if @holiday_calender.save
       
-          redirect_to group_path(@group)
+          redirect_to department_path(@department)
        
         else
           flash.now[:error] 
