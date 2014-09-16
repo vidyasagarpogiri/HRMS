@@ -45,6 +45,7 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form,
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
         @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
       end
+      redirect_to @employee
    end
     if params[:employee].present? 
       if @employee.update(params_employees) 
@@ -54,13 +55,13 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form,
         else
           @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
         end  
-		 
+		 redirect_to @employee
 		  else
 		    render 'edit'
       end
      
     end
-redirect_to @employee
+
   end  
 
 	def exit_edit_form
@@ -120,6 +121,11 @@ redirect_to @employee
 		@employee = Employee.find(params[:id])
 			
 	end
+
+def attachment_show
+	#raise params.inspect
+	
+end
 	
 	def myprofile
 	  @employee = current_user.employee

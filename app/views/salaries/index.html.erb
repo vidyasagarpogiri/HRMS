@@ -55,6 +55,7 @@
                         <ul class="navigation-btns" style="list-style: none;display:inline;">                                          
                           <li><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left" %></li>
                           <li><%= link_to 'Delete', employee_salary_path(@employee, @salary), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right" %></li>
+													<li><%= link_to 'Configure', employee_salary_configure_allowance_path(@employee, @salary), :class => "btn btn-info pull-right" %></li>
                           <% end %>
                           </ul></td>
                       </tr>
@@ -77,18 +78,23 @@
                 
             <!-------Allowance ---------------->
                <% unless @salary.new_record? %> 
-              <div id="allownaces">
-                <div class="allowance-index">
-                  <%= render 'salaries/allowances' %>
-                </div> 
-
-                <div class="new-allowance">
-
-                </div>
-              </div>
-            
-              
-              </div>
+						<table class="table"> 
+            <%= @alllowances.each do |allowance| %>
+								
+										<thead>
+											<tr>
+													<th><%= allowance.allowamce_name %></th>
+											
+											</tr>
+										</thead>
+										<tbody>
+												<tr>
+													<td><%= allowance. %></td>
+												</tr>
+										</tbody>
+								
+						<% end %>
+					</table>
           <!-------Insentives-------------------->
               <div id="insentives">
                 <div class="insentive-index">
