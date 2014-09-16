@@ -4,7 +4,13 @@ class Salary < ActiveRecord::Base
   has_many :insentives
   has_many :salary_increments
    
-  validates :ctc_fixed, presence: true
-	validates :basic_salary, presence: true
+  #validates :ctc_fixed, presence: true
+	#validates :basic_salary, presence: true
   
+  
+
+  
+  #def ctc_sum
+   # self.ctc_fixed = 
+ # end
 end
