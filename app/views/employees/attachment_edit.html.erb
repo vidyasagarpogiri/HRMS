@@ -1,4 +1,4 @@
-            <div id="page-wrapper">
+          <div id="page-wrapper">
               <div class="row">
                     <div class="page-header">
                       Edit Attachment 
@@ -13,27 +13,27 @@
                                 <div class="col-lg-6">
                                    <div class="errors">
                                    </div>
-                                            <%= form_for(@emp_attachement, url: attachment_update_employee_path(@employee, @emp_attachement)) do |f| %>
-                                              <div class="form-group">
-                                                <label class="required" >Attachment Title</label>
-                                                <%= f.text_field :attachment_name, name: "employee_attachments[attachment_name]"%>  
-                                              
-                                             <%= f.submit 'Update', :class =>"btn btn-success pull-right" %>
-                                             </div> 
-                                            <% end %>
+                                   <%= form_for(@emp_attachement, url: attachment_update_employee_path(@employee, @emp_attachement)) do |f| %>
+                                   <div class="form-group" >
+                                      <label class="required" >Attachment Title:</label><br>                                          
+                                      <%= f.text_field :attachment_name, name: "employee_attachments[attachment_name]", :class => "form-control" %>   
+                                    </div>                                                                                              
+                                      <%= f.submit 'Update', :class =>"btn btn-success pull-left" %>                                             
+                                   <% end %>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
                         </div>
-                        <!-- /.panel-body -->
-                        
-                        
+                        <!-- /.panel-body -->            
                     </div>
                     <!-- /.panel -->
                 </div>
-                
-
+                   <!-- /.col-lg-12 -->
+              </div>
+                <!-- /.row -->
+           </div>
+               <!-- /page-wrapper -->
 
 
 

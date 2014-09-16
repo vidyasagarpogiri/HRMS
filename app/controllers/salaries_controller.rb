@@ -35,6 +35,9 @@ class SalariesController < ApplicationController
   @employee = Employee.find(params[:employee_id])
 	if @salary.save
   @employee.update(:salary_id => @salary.id)
+	@ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
+	#raise @ctc_fixed.inspect
+	@salary.update(:ctc_fixed => @ctc_fixed)
   redirect_to  employee_salaries_path(@employee)
 	else
 		render 'new'
@@ -50,6 +53,10 @@ end
     @employee = Employee.find(params[:employee_id])
     @salary = Salary.find(params[:id])
     @salary.update(params_salary)
+		@ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
+	#raise @ctc_fixed.inspect
+	@salary.update(:ctc_fixed => @ctc_fixed)
+		#raise @salary.inspect
     redirect_to employee_salaries_path(@employee)
   end
 
@@ -78,7 +85,7 @@ end
   private
   
   def params_salary
-    params.require(:salary).permit(:ctc_fixed, :basic_salary)
+    params.require(:salary).permit(:gross_salary, :bonus, :gratuity, :medical_insurance)
   end
 
 #	private

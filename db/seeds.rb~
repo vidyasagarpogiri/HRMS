@@ -28,6 +28,8 @@ EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
 Group.destroy_all
+Allowance.destroy_all
+ 
 
 #sekharberi@1989
  @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
@@ -129,3 +131,9 @@ LeaveTypes = LeaveType.all.pluck(:id)
 Group.all.each do |group|
   ReportingManager.create(employee_id: rand(1..Employee.count), group_id: group.id)
 end
+
+
+Allowance.create(:allowance_name =>"travel allawance",:value=>"1500.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"true") 
+Allowance.create(:allowance_name =>"travel allawance",:value=>"2500.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"false") 
+Allowance.create(:allowance_name =>"travel allawance",:value=>"500.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"true") 
+Allowance.create(:allowance_name =>"travel allawance",:value=>"1000.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"false") 
