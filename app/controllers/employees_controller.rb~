@@ -91,7 +91,30 @@ redirect_to @employee
    
   end
 
-   
+   def attachment_destroy
+    @employee = Employee.find(params[:id])
+		@emp_get_attachements = EmployeeAttachment.find(params[:attachment_id])
+ 		@emp_get_attachements.destroy
+		redirect_to attachment_form_new_employee_path(@employee)
+	end
+	
+	def attachment_edit
+	  #raise params.inspect
+	  @employee = Employee.find(params[:id])
+	  #raise params.inspect
+	  @emp_attachement = EmployeeAttachment.find(params[:attachment_id])
+	  #raise @emp_attachement.inspect
+		#@emp_attachement.update(:attachment=>params[:attachment],:attachment_name=> params[:attachment_name])
+	end
+	
+	 def attachment_update
+	    @employee = Employee.find(params[:id])
+	    @emp_attachement = EmployeeAttachment.find(params[:attachment_id])
+	    @emp_attachement.update(:attachment_name=> params[:employee_attachments][:attachment_name])
+	    #raise @emp_attachement.inspect
+	    redirect_to attachment_form_new_employee_path(@employee)
+	 end
+	
 	def show_exit
 		
 		@employee = Employee.find(params[:id])
