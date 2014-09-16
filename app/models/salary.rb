@@ -10,7 +10,7 @@ class Salary < ActiveRecord::Base
   
   after_save :ctc_sum
   
-  def ctc_sum
-    self.ctc_fixed = 
-  end
+  #def ctc_sum
+   # self.ctc_fixed = 
+ # end
 end
