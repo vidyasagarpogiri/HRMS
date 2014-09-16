@@ -1,5 +1,6 @@
 class DepartmentsController < ApplicationController
-
+ layout "leave_template"
+ 
   def index
     @departments = Department.all
   end
@@ -17,6 +18,8 @@ class DepartmentsController < ApplicationController
     @department = Department.find(params[:id])
     @employees = @department.employees
 		@leave_policy = @department.leave_policy 
+		@holiday_calender = @department.events
+		#raise @holiday_calender.inspect
   end
 
   def update
@@ -45,9 +48,19 @@ class DepartmentsController < ApplicationController
     @employee.update(:department_id => @department.id)
     #raise @employee.inspect
     redirect_to @department
+
    end
     
        
+
+   
+  def employee_leaves
+    @dept = Department.find(params[:id])
+    @employees = @dept.employees
+    @leaves = @employees.map(&:leave_histories).first if @employees.present?
+  end
+  
+
   private
   def department_params
     params.require(:department).permit(:department_name) 
