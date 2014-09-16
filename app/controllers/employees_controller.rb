@@ -121,6 +121,11 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form,
 		@employee = Employee.find(params[:id])
 			
 	end
+
+def attachment_show
+	#raise params.inspect
+	
+end
 	
 	def myprofile
 	  @employee = current_user.employee
