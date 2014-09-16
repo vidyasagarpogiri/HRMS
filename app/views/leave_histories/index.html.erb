@@ -15,8 +15,9 @@
 										<table class="table table-striped table-hover" id="sample-table-2">
 											<thead>
 												<tr>
-													<th> Date </th>												
+																									
 													<th> Full Name </th>
+													<th> Date </th>
 													<th> Day(s) </th>
 													<th> Reason </th>
 													<th> Leave Type </th>
@@ -25,31 +26,24 @@
 													<th colspan="2"><center>Action </center></th>												
 												</tr>
 											</thead>
-											 <% @leaves.each do |f| %>
-											 <% if f.status == "HOLD" %>
-											<tbody>
-												<tr>
-
-													<td>From - to dates  </td>
-													<td><%= @employee.full_name %> </td>													
-													<td><!-- <%No of Days %> --> day(s)</td>
-													<td><!--<% Reason For Leave %> --> </td>
-													<td><!--<% Leave Type %> --> </td>													
-													<td><%= total_balance_leaves(@employee) %> day(s)</td>
-													<td><%= total_used_leaves(@employee)%> day(s)</td>
-													<!-- <td><%= waiting_for_approval(@employee)%></td> -->
-													<td>
-													     <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                   <li><%= link_to "Approve" %></li>
-                                   <li><%= link_to "Reject" %></li>                                  
-                               </ul>
-													</td>
-
-												</tr>
+											 <%  @leaves.each do |f| %>											
+											<tbody>												
+												<tr>               
+												 	<td><%= f.employee.full_name %>  </td>
+													<td><%= f.from_date %> - <%= f.to_date%> </td>													
+													<td> <%=f.days %></td>
+													<td> <%= f.reason %>  </td>
+													<td><%=f.leave_type.type_name %></td>													
+													<td>3</td><!-- TODO-->
+													<td>3</td><!-- TODO-->
+													<td><%=f.status %></td>
+													<td></td>								 
+												</tr>																						
 											</tbody>
-									<% end %>
-									<% end %>
+								      <% end %>
+									
 										</table>
+										
 									<%= paginate @leaves %>
 										<% else %>
 										  <div class="alert alert-info alert-dismissable">
@@ -62,7 +56,8 @@
     
 								
 
-								 <div class="page-header"> Approved Leaves List</div> 							
+								
+									 <div class="page-header"> Approved Leaves List</div> 							
                    <div class="panel panel-default">
                       <div class="panel-heading">
                           Approved Leaves List
@@ -83,18 +78,18 @@
 												  <th> Comments</th>
 												</tr>
 											</thead>
-										 <% @leave_histories.each do |f| %>											
+										 <%  @leave_histories.each do |f| %>											
 											<tbody>												
 												<tr>               
-												 	<td><%= @employee.full_name %>  </td>
-													<td>From - to dates </td>													
-													<td><!-- <%No of Days %> --> day(s)</td>
-													<td><!--<% Reason For Leave %> --> </td>
-													<td><!--<% Leave Type %> --> </td>													
-													<td><%= total_balance_leaves(@employee) %> day(s)</td>
-													<td><%= total_used_leaves(@employee)%> day(s)</td>
-													<td></td>
-													<td></td>								 
+												 	<td><%= f.employee.full_name %>  </td>
+													<td><%= f.from_date %> - <%= f.to_date%> </td>													
+													<td> <%=f.days %> </td>
+													<td> <%= f.reason %>  </td>
+													<td><%=f.leave_type.type_name %> </td>													
+													<td>4</td><!--TODO-->
+													<td>4</td><!--TODO-->
+													<td><%=f.status %></td>
+													<td>Test Comment</td>								 
 												</tr>																						
 											</tbody>
 								      <% end %>	                   
@@ -111,6 +106,8 @@
 										<% end %>																					
                     </div>
                     <!-- /.panel .body -->
+                </div>
+								
                 </div>
                 <!-- /..panel-default  -->           
         </div>
