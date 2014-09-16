@@ -48,7 +48,11 @@ class DepartmentsController < ApplicationController
     @employee.update(:department_id => @department.id)
     #raise @employee.inspect
     redirect_to @department
-   end 
+
+   end
+    
+       
+
    
   def employee_leaves
     @dept = Department.find(params[:id])
@@ -56,7 +60,7 @@ class DepartmentsController < ApplicationController
     @leaves = @employees.map(&:leave_histories).first if @employees.present?
   end
   
-   
+
   private
   def department_params
     params.require(:department).permit(:department_name) 
