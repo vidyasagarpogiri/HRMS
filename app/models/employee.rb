@@ -59,7 +59,9 @@ class Employee < ActiveRecord::Base
 	#after_create :add_leaves
 	#after_update :update_leaves
 
-
+  def reporting_manager
+    Employee.find(reporting_managers.first.manager_id)
+  end
 	
   
   def reporting_manager?

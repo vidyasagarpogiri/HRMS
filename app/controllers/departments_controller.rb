@@ -1,5 +1,6 @@
 class DepartmentsController < ApplicationController
-
+ layout "leave_template"
+ 
   def index
     @departments = Department.all
   end
@@ -50,6 +51,7 @@ class DepartmentsController < ApplicationController
   def employee_leaves
     @dept = Department.find(params[:id])
     @employees = @dept.employees
+    @leaves = @employees.map(&:leave_histories).first if @employees.present?
   end
   
    
