@@ -20,6 +20,7 @@
                                            <%= f.text_field :attachment_name, name: "employee_attachments[attachment_name][]" %>  
                                        </div>                    
                                        <div class="form-group">
+                                       <label class="required" >Choose the File</label>
                                           <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]" %>
                                        </div>      
                                         <span id="add_attachment_field"></span>

@@ -70,7 +70,7 @@ end
 Designations = Designation.all.pluck(:id)
 
 ["Jr.Software Engineer", "Sr.Software Engineer", "Jr.HR", "Sr.HR"].each do |grade|
-Grade.create(:value => grade ) 
+Grade.create(:value => grade,:department_id => Departments[rand(Departments.length)]) 
 end
 Grades = Grade.all.pluck(:id)
 
