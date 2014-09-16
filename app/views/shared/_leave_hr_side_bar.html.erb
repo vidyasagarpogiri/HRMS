@@ -9,7 +9,7 @@
                              <ul class="nav nav-second-level">
                                 <% Department.all.each do |dept| %>
                                    <li>
-                                   <%= link_to dept.department_name %>
+                                   <%= link_to dept.department_name, employee_leaves_department_path(dept) %>
                                 </li>
                                 <% end %>
                                                                                       
