@@ -8,7 +8,7 @@ class Salary < ActiveRecord::Base
 	#validates :basic_salary, presence: true
   
   
-  after_save :ctc_sum
+
   
   #def ctc_sum
    # self.ctc_fixed = 
