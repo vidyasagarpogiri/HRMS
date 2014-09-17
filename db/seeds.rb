@@ -122,12 +122,12 @@ Employees = Employee.all.pluck(:id)
 EmailEttiquitie.create(:ettiquite => ettiquite ) 
 end
 EmailEttiquities = EmailEttiquitie.all.pluck(:id)
-
+=begin
 ["12000", "15000" , "20000"].each do |sal|
 Salary.create(:ctc_fixed => sal ) 
 end
 Salaries = Salary.all.pluck(:id)
-
+=end
 ["Sick Leave", "Floating Leave" , "Casual Leave","Carry Forward Leave"].each do |leave|
 LeaveType.create(:type_name => leave ) 
 end

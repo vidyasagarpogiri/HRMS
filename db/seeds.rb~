@@ -27,14 +27,14 @@ Promotion.destroy_all
 EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
-<<<<<<< HEAD
+
 Group.destroy_all;
 StaticAllowance.destroy_all
-=======
-Group.destroy_all
+
+
 Allowance.destroy_all
  
->>>>>>> feaf121c2796f7240fc99f2e77cdf478d7ee778d
+
 
 #sekharberi@1989
  @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
@@ -122,12 +122,12 @@ Employees = Employee.all.pluck(:id)
 EmailEttiquitie.create(:ettiquite => ettiquite ) 
 end
 EmailEttiquities = EmailEttiquitie.all.pluck(:id)
-
+=begin
 ["12000", "15000" , "20000"].each do |sal|
 Salary.create(:ctc_fixed => sal ) 
 end
 Salaries = Salary.all.pluck(:id)
-
+=end
 ["Sick Leave", "Floating Leave" , "Casual Leave","Carry Forward Leave"].each do |leave|
 LeaveType.create(:type_name => leave ) 
 end
