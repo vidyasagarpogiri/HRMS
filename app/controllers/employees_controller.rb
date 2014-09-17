@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new ]
+layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show]
 
   def index
     @employees =  Employee.all.page(params[:page]).per(2)

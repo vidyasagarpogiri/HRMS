@@ -32,7 +32,7 @@
                             <% @emp_get_attachements.each do |attachment| %>
                               <tr>
                                 <td><%= attachment.attachment_name %></td> 
-                                <td><%= link_to "Download", attachment.attachment_url %></td>
+                                <td><%= link_to "Download", attachment.attachment_url,:action => :download,:target =>"_blank" %></td>
                                 <td><%= link_to "Edit",  attachment_edit_employee_path(@employee.id, attachment.id), :class=>"btn btn-success " %>
                                 <%= link_to "Delete",  attachment_destory_employee_path(@employee.id, attachment.id), :method => :delete, data: {confirm: "Are You sure?"},:class=>"btn btn-danger " %> </td>
                                  
