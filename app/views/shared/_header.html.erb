@@ -35,7 +35,7 @@
             <div class="main-menu" style="padding: 0px;height: 40px;">
               
                  <ul class="nav nav-pills">
-                  <% if current_user.employee.department.department_name = "HR" %>
+                  <% if current_user.department == Department::HR %>
                        <li>                   
                           <%= link_to "Employee Management", employees_path %>
                        </li>
@@ -57,4 +57,5 @@
                        </li>
                   <% end %>
                 </ul>    
+               
            </div>
