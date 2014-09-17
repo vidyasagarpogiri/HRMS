@@ -1,9 +1,9 @@
 class SalariesController < ApplicationController
-
+	include ApplicationHelper
    layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]
 
 		before_filter :user_authentication, only: [:index, :new, :create, :show, :edit, :update]
-   
+
   def new
 		@employee = Employee.find(params[:employee_id])
     @salary = Salary.new
@@ -13,18 +13,18 @@ class SalariesController < ApplicationController
   def index
     @employee= Employee.find(params[:employee_id])
     @salary =  @employee.salary
-    #if @salary.present?
+    if @salary.present?
     @allowances = @salary.allowances
-		raise @allowances.inspect
-    @insentive = Insentive.new
-    @salary_increment = SalaryIncrement.new
-    @allowances = @salary.allowances
-    @insentives =  @salary.insentives
-    @salary_increments =@salary.salary_increments
+		#raise @allowances.inspect
+    #@insentive = Insentive.new
+    #@salary_increment = SalaryIncrement.new
+    #@allowances = @salary.allowances
+    #@insentives =  @salary.insentives
+    #@salary_increments =@salary.salary_increments
    
-    #else
+    else
        @salary = Salary.new
-    #end
+    end
    
   end
   
@@ -34,15 +34,13 @@ class SalariesController < ApplicationController
 	
 
   @employee = Employee.find(params[:employee_id])
-	if @salary.save
+	@salary.save
   @employee.update(:salary_id => @salary.id)
 	@ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
 	#raise @ctc_fixed.inspect
 	@salary.update(:ctc_fixed => @ctc_fixed)
   redirect_to  employee_salaries_path(@employee)
-	else
-		render 'new'
-  end
+	
 end
 
   def edit

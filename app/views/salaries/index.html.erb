@@ -78,27 +78,24 @@
                 
             <!-------Allowance ---------------->
                <% unless @salary.new_record? %> 
-						<table class="table"> 
-            <%= @alllowances.each do |allowance| %>
+						<table class="table">
+						
+           
 								
-										<thead>
-											<tr>
-													<th><%= allowance.allowamce_name %></th>
-											
-											</tr>
-										</thead>
-										<tbody>
-												<tr>
-													<td><%= allowance. %></td>
-												</tr>
-										</tbody>
+										
+								<tr>		 <% @allowances.each do |allowance| %>
+													<th><%= allowance.allowance_name %></th> <% end %></tr>
+								<tr> <% @allowances.each do |allowance| %>
+													<td><%= allowance_value(allowance.value, @salary.gross_salary) %></td> <% end %></tr>
+									
 								
-						<% end %>
+				
+
 					</table>
           <!-------Insentives-------------------->
               <div id="insentives">
                 <div class="insentive-index">
-                  <%= render 'salaries/insentives' %>
+                  <%#render 'salaries/insentives' %>
                 </div> 
 
                 <div class="new-insentive"></div>
@@ -107,7 +104,7 @@
            
               <div class="increments">
                 <div class="salary_increment-index">
-                  <%= render 'salaries/salary_increments' %>
+                  <%#render 'salaries/salary_increments' %>
                 </div> 
                 <div class="new-salary_increment"></div>
               </div>

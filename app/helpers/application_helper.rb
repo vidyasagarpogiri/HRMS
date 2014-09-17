@@ -77,6 +77,11 @@ end
       return false
     end
   end
+
+		def allowance_value(value, salary)
+			 (salary)*value/100
+
+		end
   
   def reporting_manager_leaves?
     @reporting_manager = Employee.find(2).reporting_managers.first
