@@ -122,6 +122,7 @@
 											<tbody>
 												<tr>               
 													<td><%= image_tag(employee.avatar, :alt => "image", :height => 75, :width => 75, :class => "center") %></td>
+
 	                    <% if current_user.department == Department::HR %>									
 												   <td><%= link_to employee.full_name, employee_path(employee) %></td>
 	                      <% else %>
@@ -135,7 +136,7 @@
 	 												</a></td>
 													<td class="hidden-xs"><%= number_to_phone(employee.mobile_number) if employee.mobile_number.present? %></td>
 													<td>
-<% if current_user.employee.role_id == 2 %>
+<% if current_user.department == Department::HR %>
 													  <div class="visible-md visible-lg hidden-sm hidden-xs">
 														<a href="/employees/<%= employee.id %>/edit" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
 														</div>

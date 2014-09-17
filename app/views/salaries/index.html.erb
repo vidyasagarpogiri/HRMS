@@ -47,7 +47,7 @@
 												<td><%= @salary.gratuity %></td>
 												<td><%= @salary.medical_insurance %></td>
 
-                        <td><% if current_user.employee.role.id == 2 %>   
+                        <td><% if current_user.department == Department::HR %>  
                         <ul class="navigation-btns" style="list-style: none;display:inline;">                                          
                           <li><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left" %></li>
                           <li><%= link_to 'Delete', employee_salary_path(@employee, @salary), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right" %></li>
@@ -64,7 +64,7 @@
                   </div></div>                                           
                   <!-- /.col-lg-6 (nested) -->
               <% else %>              
-              <% if current_user.employee.role.id == 2 %>
+              <% if current_user.department == Department::HR %>
                   <%= render 'salaries/form' %>
                <% else %>
 	              <div class="alert alert-info alert-dismissable">
