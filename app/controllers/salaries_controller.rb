@@ -1,9 +1,9 @@
 class SalariesController < ApplicationController
-
+	include ApplicationHelper
    layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]
 
 		before_filter :user_authentication, only: [:index, :new, :create, :show, :edit, :update]
-   
+
   def new
 		@employee = Employee.find(params[:employee_id])
     @salary = Salary.new
@@ -14,16 +14,27 @@ class SalariesController < ApplicationController
     @employee= Employee.find(params[:employee_id])
     @salary =  @employee.salary
     if @salary.present?
+<<<<<<< HEAD
+=======
     @allowances = @salary.allowances
 		#raise @allowances.inspect
     @insentive = Insentive.new
     @salary_increment = SalaryIncrement.new
+>>>>>>> e7b0d4a747334f93108754c790fe10de36dc057b
     @allowances = @salary.allowances
-    @insentives =  @salary.insentives
-    @salary_increments =@salary.salary_increments
+		#raise @allowances.inspect
+    #@insentive = Insentive.new
+    #@salary_increment = SalaryIncrement.new
+    #@allowances = @salary.allowances
+    #@insentives =  @salary.insentives
+    #@salary_increments =@salary.salary_increments
    
     else
+<<<<<<< HEAD
+       @salary = Salary.new
+=======
        #@salary = Salary.new
+>>>>>>> e7b0d4a747334f93108754c790fe10de36dc057b
     end
    
   end

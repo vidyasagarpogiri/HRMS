@@ -63,7 +63,11 @@ end
   end
   
   def total_balance_leaves(employee)
+<<<<<<< HEAD
     (employee.department.leave_policy.pl_this_year + employee.department.leave_policy.pl_this_year)- employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days")  if employee.department.leave_policy.present?
+=======
+    (employee.department.leave_policy.pl_this_year + employee.department.leave_policy.pl_this_year)- employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days")  if employee.group.leave_policy.present?
+>>>>>>> aa901606a76a21bbbaf214320cc18a7488d58041
   end
 
   def waiting_for_approval(employee)
@@ -77,6 +81,11 @@ end
       return false
     end
   end
+
+		def allowance_value(value, salary)
+			 (salary)*value/100
+
+		end
   
   def reporting_manager_leaves?
     @reporting_manager = Employee.find(2).reporting_managers.first
