@@ -2,7 +2,8 @@ class SalariesController < ApplicationController
 	include ApplicationHelper
    layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]
 
-		before_filter :user_authentication, only: [:index, :new, :create, :show, :edit, :update]
+	 before_filter :hr_view,  only: ["new", "edit"]
+  before_filter :other_emp_view
 
   def new
 		@employee = Employee.find(params[:employee_id])
@@ -156,14 +157,6 @@ end
     params.require(:salary).permit(:gross_salary, :bonus, :gratuity, :medical_insurance)
   end
 
-#	private
-	def user_authentication	
-			@employee = Employee.find(params[:employee_id])
-			#raise @employee.inspect
-		if current_user.employee.employee_id  == @employee.employee_id || current_user.employee.role_id == 2
-		else
-			redirect_to employees_path
-		end
-	end
+
   
 end

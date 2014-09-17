@@ -89,13 +89,24 @@
 								
 										
 								<tr>		 <% @allowances.each do |allowance| %>
-													<th><%= allowance.allowance_name %></th> <% end %></tr>
+													<th><%= allowance.allowance_name %></th> 
+													<% end %>
+								</tr>
 								<tr> <% @allowances.each do |allowance| %>
+
 <% if allowance.value.present? %>													
 <td><%= allowance_value(allowance.value, @salary.gross_salary)  %></td> <% end %></tr>
 <% end %>
 
 					</table></div>
+
+		
+									
+
+								
+
+
+
           <!-------Insentives-------------------->
               <div id="insentives">
                 <div class="insentive-index">
