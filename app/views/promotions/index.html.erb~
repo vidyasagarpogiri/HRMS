@@ -38,7 +38,7 @@
 													            <td> 
 													               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                          <li><%= link_to 'Edit', edit_employee_promotion_path(@employee.id, promotion.id), :class => "btn btn-success pull-left" %></li>
-                                         <li><%= link_to "Delete", employee_promotion_path(@employee, promotion), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-danger pull-right" %></li>                                                                                 
+                                         <li><%= link_to "Delete", employee_promotion_path(@employee, promotion), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right" %></li>                                                                                 
                                        </ul>
                                        </td>
                                      <% end %>
