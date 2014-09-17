@@ -35,8 +35,8 @@
 												  <td> <%= f.days %> </td>
 												  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
 												  <td> <%= f.reason %> </td> 
-												  <td> 10</td>
-												  <td> 4 </td>
+												  <td> <%=total_balance_leaves(f.employee) %></td>
+												  <td> <%=total_used_leaves(employee)%> </td>
 												  <td> <%= f.feedback %> </td>
 												  <td> <%= f.status %> </td>
 												</tr>

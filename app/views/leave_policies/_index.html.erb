@@ -10,9 +10,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Leave Policies
-                            <% if current_user.employee.role_id==2%>
-                            <label style="font-weight:normal;padding:20px;margin-top:-15px;" class = "pull-right"><a><i class="fa fa-plus "></i></a><%= link_to " Edit", edit_group_leave_policy_path(@group, @leave_policy) %></label>   
-                            <% end %>  
+                            
                         </div>
                         <% unless @leave_policy.nil? %>
                         <div class="panel-body">

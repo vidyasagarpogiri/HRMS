@@ -13,7 +13,6 @@
 													                  <th class="center">Employee Id </th>
 													                  <th>Employee Name</th>
 													                  <th>Date</th>
-													                  <th>Leave Balance(days)</th>
 													                  <th>Total Days</th>		
 													                  <th>Leave Type </th>	
 													                  <th>Reason for leave</th>
@@ -31,7 +30,6 @@
 													                  <td class="center"><a href="#"> <%= emp.employee_id %> </a></td>
 													                  <td><a href="#"><%= emp.full_name%></a></td>
 													                  <td><a href="#"><%= f.from_date %> - <%= f.to_date %>  </td>
-													                  <td> 3 </td>
 													                  <td><%= f.days %> </td>
 													                  <td><%= f.leave_type.type_name if f.leave_type.present? %> </td>
 													                  <td>  <%= f.reason %>  </td>
