@@ -15,6 +15,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6" >
+                                <% if current_user.department == Department::HR %>
                                 <%= @address.errors.full_messages.first if @address.errors.any? %>
                                     <%= form_for([@employee, @address]) do |f| %>
                                     <br>
@@ -84,6 +85,13 @@
                                         </div>
                                         
                                     <% end %>
+                                    
+                       <% else %>
+																	<div class="alert alert-info alert-dismissable">
+                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                       You have No Experiance Details to show.
+                                 </div> 
+                                 <% end %>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
