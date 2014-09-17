@@ -8,11 +8,20 @@
 
                             <a href="/departments/holiday_list"><i class="fa fa-calendar fa-fw"></i> Holiday-Calender</a>
                         </li>
-                         <% if current_user.employee.reporting_manager? %>
-                          <li>
-                              <a href="/reported_leaves"><i class="fa fa-dashboard fa-fw"></i> Reporting Leaves</a>
-                          </li>
-                        <% end %>
+                         <% if  ReportingManager.where(:manager_id =>  current_user.employee.id) %>
+                            <li id = "active2">
+                                <a href="/reported_leaves"><i class="fa fa-list fa-fw"></i> Reporting Info<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                         <a href="/reported_leaves">Reporting Leaves</a>
+                                    </li>
+                                   
+                                    <li>
+                                         <a href="/reported_employees">Reported Employees</a>
+                                    </li>
+                                </ul>
+                            </li>
+                      <% end %>
                       
                       	
                         <li>

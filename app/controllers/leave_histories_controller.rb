@@ -94,12 +94,14 @@ class LeaveHistoriesController < ApplicationController
 		redirect_to reported_leaves_path
 	end
 
-   def employee_leaves
-   raise params.inspect
+  def employee_leaves
     @employee = current_user.employee.department
-    
     @leaves = LeaveHistory.order('created_at DESC').page(params[:page]).per(2)
    end
+   
+  def reported_employees
+    #ReportingManager.where(:manager_id => current_user.employee.id).employees 
+  end
 
 	private
   
