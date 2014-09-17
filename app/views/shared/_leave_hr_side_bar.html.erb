@@ -17,7 +17,7 @@
                         </li>
                       <% if  ReportingManager.where(:manager_id =>  current_user.employee.id) %>
                         <li>
-                            <a href="/reported_leaves"><i class="fa fa-list fa-fw"></i> Reporting Info</a>
+                            <a href="/reported_leaves"><i class="fa fa-list fa-fw"></i> Reporting Info<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <%= link_to "Reporting Leaves", leave_types_path %>
