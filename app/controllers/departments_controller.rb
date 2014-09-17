@@ -50,8 +50,15 @@ class DepartmentsController < ApplicationController
     redirect_to @department
 
    end
-    
-       
+   
+   def leaves
+    #raise params.inspect
+    @department = Department.find(params[:id])
+    @employees = @department.employees
+   end 
+   def department_index
+       @departments = Department.all
+   end
 
    
   def employee_leaves
