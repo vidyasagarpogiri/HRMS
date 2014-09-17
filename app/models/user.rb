@@ -29,5 +29,8 @@ class User < ActiveRecord::Base
     super && provider.blank?
   end 
  
+	def department
+	  employee.department.department_name	
+	end
 
 end

@@ -22,13 +22,9 @@
               <div class="display">
               <div class="salaries">
              
-                <% unless @salary.new_record? %><br> 
-                 <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">                                          
-                              <li><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left" %></li> 
-                          </ul>
-                  <br>
-                   
-                   <h4 class="page-header">Allowance Info</h4>
+                <% unless @salary.new_record? %><br>                                              
+                   <div class="page-header">Allowance Info</div>
+                    <label style="font-weight:normal;margin-top:-50px;" class = "pull-right"><a><i class="fa fa-plus "></i></a><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary)  %></label>
                    <div class="col-lg-12">
                     <div class="panel panel-default">
                     <div class="panel-heading">
@@ -51,11 +47,15 @@
 												<td><%= @salary.gratuity %></td>
 												<td><%= @salary.medical_insurance %></td>
 
-                        <td><% if current_user.employee.role.id == 2 %>   
+                        <td><% if current_user.department == Department::HR %>  
                         <ul class="navigation-btns" style="list-style: none;display:inline;">                                          
                           <li><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left" %></li>
                           <li><%= link_to 'Delete', employee_salary_path(@employee, @salary), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right" %></li>
+													<% if @salary.allowances.present?%>													
+													<li><%= link_to 'Configure', employee_salary_edit_allowance_path(@employee, @salary), :class => "btn btn-info pull-right" %></li>
+													<% else %>
 													<li><%= link_to 'Configure', employee_salary_configure_allowance_path(@employee, @salary), :class => "btn btn-info pull-right" %></li>
+													<% end %>
                           <% end %>
                           </ul></td>
                       </tr>
@@ -64,7 +64,7 @@
                   </div></div>                                           
                   <!-- /.col-lg-6 (nested) -->
               <% else %>              
-              <% if current_user.employee.role.id == 2 %>
+              <% if current_user.department == Department::HR %>
                   <%= render 'salaries/form' %>
                <% else %>
 	              <div class="alert alert-info alert-dismissable">
@@ -78,7 +78,7 @@
                 
             <!-------Allowance ---------------->
                <% unless @salary.new_record? %> 
-
+						<div id="allownaces">
 						<table class="table">
 						
            
@@ -89,20 +89,24 @@
 													<% end %>
 								</tr>
 								<tr> <% @allowances.each do |allowance| %>
-													<td><%= allowance_value(allowance.value, @salary.gross_salary) %></td>
-										 <% end %>
-								</tr>
+
+<% if allowance.value.present? %>													
+<td><%= allowance_value(allowance.value, @salary.gross_salary)  %></td> <% end %></tr>
+<% end %>
+
+					</table></div>
+
+		
 									
 
 								
-				
 
-					</table>
+
 
           <!-------Insentives-------------------->
               <div id="insentives">
                 <div class="insentive-index">
-                  <%#render 'salaries/insentives' %>
+                  <%= render 'salaries/insentives' %>
                 </div> 
 
                 <div class="new-insentive"></div>
@@ -111,7 +115,7 @@
            
               <div class="increments">
                 <div class="salary_increment-index">
-                  <%#render 'salaries/salary_increments' %>
+                  <%= render 'salaries/salary_increments' %>
                 </div> 
                 <div class="new-salary_increment"></div>
               </div>

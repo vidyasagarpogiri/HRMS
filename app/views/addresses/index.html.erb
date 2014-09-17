@@ -15,7 +15,7 @@
                                 <div class="col-lg-5" style="box-shadow: 0 0 10px #000000;border-radius:3px;padding:10px;">
                                     <label><u>Present Address</u></label>
                                     <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                        <% if current_user.employee.role.id == 2 %>
+                                        <% if current_user.department == Department::HR %>
                                         <li><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right" %></li>
                                         <% end %>
                                     </ul>
@@ -58,7 +58,7 @@
 																			<% if @address2.present? %>
                                     <label><u>Permanent Address</u></label>                                                                      
                                     <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                        <% if current_user.employee.role.id == 2 %>
+                                       <% if current_user.department == Department::HR %>
                                         <li><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %></li>
 																		    <% end %>
                                     </ul>
@@ -90,10 +90,11 @@
 																				<div class="form-group">
                                             <label style="font-weight:normal;">Zipcode:</label>
                                            <%= @address2.zipcode %>
-                                        </div>                                                                                    
+                                        </div>
+                                        <% end %>                                                                                    
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
-                              <% end %>
+                         
                             </div>													
                             <!-- /.row (nested) -->
                         </div>

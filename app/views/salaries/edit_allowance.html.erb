@@ -14,7 +14,7 @@
                             Allowance
                      </div>
                      <div class="panel-body">
-                     <%= form_tag employee_salary_create_allowance_path(@employee, @salary) do %>
+                     <%= form_tag  employee_salary_update_allowance_path(@employee, @salary), :id => "first-form" do %>
 												<table class="table table-striped table-hover" id="sample-table-2"">
 												  <thead>
 													  <tr>
@@ -25,11 +25,11 @@
 											   </thead>	
 											   </tbody>				
 										     
-                         <% @static_allowance.each do |allowance, i| %>
+                         <% @allownces.each do |allowance, i| %>
 											   <%= fields_for "allowances[]", allowance do |f| %>   
 												   <tr>
                               <td><%= f.text_field :allowance_name, :value => allowance.allowance_name %></td>
-														  <td><%= f.text_field :percentage,  :value => allowance.percentage %></td>
+														  <td><%= f.text_field :value,  :value => allowance.value %></td>
                               <td><%= f.check_box :applicable %></td>
 												   </tr>
                           <% end %>
@@ -38,11 +38,14 @@
                           <% end %>           
                       </tbody>          
 										</table>
-										 <%= submit_tag "Submit", :class => "btn btn-success pull-right" %>
+										 <%= submit_tag "Submit", :class => "btn btn-success pull-right", :id=>"btn" %>
+										
                     				</div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
-		
+<%= link_to 'Add More Allowances', employee_salary_add_allowance_path(@employee, @salary), :class => "btn btn-success pull-right", :remote => true %>
+		<div class="more_allowances">
+		</div>
                             <!-- /.row (nested) -->
                         </div>
                         <!-- /.panel-body -->
@@ -52,6 +55,5 @@
                 <!-- /.col-lg-12 -->
             </div>
 
-
-         </div>
-          <!-- /#page wrapper -->
+<input type="hidden" value="<%= params[:employee_id] %>" id="emp_id">
+<input type="hidden" value="<%= params[:salary_id] %>" id="sal_id">
