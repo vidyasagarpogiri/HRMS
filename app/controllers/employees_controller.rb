@@ -45,7 +45,7 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form,
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
         @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
       end
-      redirect_to @employee
+      redirect_to attachment_show_employee_path(@employee)
    end
     if params[:employee].present? 
       if @employee.update(params_employees) 
@@ -113,7 +113,7 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form,
 	    @emp_attachement = EmployeeAttachment.find(params[:attachment_id])
 	    @emp_attachement.update(:attachment_name=> params[:employee_attachments][:attachment_name])
 	    #raise @emp_attachement.inspect
-	    redirect_to attachment_form_new_employee_path(@employee)
+	    redirect_to attachment_form_new_employee_path(@employee_attachement)
 	 end
 	
 	def show_exit
@@ -124,7 +124,10 @@ layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form,
 
 def attachment_show
 	#raise params.inspect
-	
+	 @employee = Employee.find(params[:id])
+	 #raise @employee.inspect
+	 @emp_get_attachements = Employee.find(params[:id]).employee_attachments
+	 #raise @emp_get_attachements.inspect
 end
 	
 	def myprofile

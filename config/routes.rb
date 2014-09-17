@@ -99,7 +99,7 @@ post 'reject' => "leave_histories#reject"
 			delete 'attachment_destroy/:attachment_id' => 'employees#attachment_destroy', as: :attachment_destory
 			get  'attachment_edit/:attachment_id' => 'employees#attachment_edit', as: :attachment_edit
 			patch 'attachment_update/:attachment_id'=> 'employees#attachment_update', as: :attachment_update
-			post 'attachment_show'
+			get 'attachment_show'
 		end
   
   resources :educations do
