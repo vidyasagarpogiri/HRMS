@@ -129,6 +129,8 @@ Salary.create(:ctc_fixed =>"16000",:basic_salary => "2000",:gross_salary=>"13500
 Salary.create(:ctc_fixed =>"22000",:basic_salary => "3500",:gross_salary=>"16500",:gratuity =>"2000",:bonus=>"1700",:medical_insurance=>"2500")
 Salary.create(:ctc_fixed =>"10000",:basic_salary => "4500",:gross_salary=>"18000",:gratuity =>"2200",:bonus=>"1000",:medical_insurance=>"2500")
 
+Salaries = Salary.all.pluck(:id)
+
 ["Sick Leave", "Floating Leave" , "Casual Leave","Carry Forward Leave"].each do |leave|
 LeaveType.create(:type_name => leave ) 
 end
