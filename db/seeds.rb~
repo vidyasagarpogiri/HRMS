@@ -122,12 +122,15 @@ Employees = Employee.all.pluck(:id)
 EmailEttiquitie.create(:ettiquite => ettiquite ) 
 end
 EmailEttiquities = EmailEttiquitie.all.pluck(:id)
-=begin
-["12000", "15000" , "20000"].each do |sal|
-Salary.create(:ctc_fixed => sal ) 
-end
+
+
+Salary.create(:ctc_fixed =>"12000",:basic_salary => "4000",:gross_salary=>"16000",:gratuity =>"2500",:bonus=>"1500",:medical_insurance=>"2500") 
+Salary.create(:ctc_fixed =>"16000",:basic_salary => "2000",:gross_salary=>"13500",:gratuity =>"1500",:bonus=>"1600",:medical_insurance=>"2500")
+Salary.create(:ctc_fixed =>"22000",:basic_salary => "3500",:gross_salary=>"16500",:gratuity =>"2000",:bonus=>"1700",:medical_insurance=>"2500")
+Salary.create(:ctc_fixed =>"10000",:basic_salary => "4500",:gross_salary=>"18000",:gratuity =>"2200",:bonus=>"1000",:medical_insurance=>"2500")
+
 Salaries = Salary.all.pluck(:id)
-=end
+
 ["Sick Leave", "Floating Leave" , "Casual Leave","Carry Forward Leave"].each do |leave|
 LeaveType.create(:type_name => leave ) 
 end
