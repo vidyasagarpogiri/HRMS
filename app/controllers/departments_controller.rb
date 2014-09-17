@@ -69,6 +69,12 @@ class DepartmentsController < ApplicationController
     #raise @leaves[1][1]['employee_id'].inspect
   end
   
+  def holiday_list
+		@holidays = current_user.employee.department.holiday_calenders
+		@leave_policy = current_user.employee.department.leave_policy
+		@department = current_user.employee.department
+	end
+  
 
   private
   def department_params

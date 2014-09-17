@@ -1,6 +1,17 @@
                  
                  
                   <ul class="nav" id="side-menu"><!-- Hr sidebar -->
+                        <% if !@employee.nil? %>
+                        <li>
+                         <div class="profile-pic"> 
+                            <h4><center><%= @employee.first_name %></center></h4>
+                            <a href="#">
+                              <img src="/assets/employee-icon.jpg" alt="hii" style="width:250px;height=250px;padding-left=10px;">
+                            </a>
+
+                         </div>                      
+                        </li>
+                        <% end %>
                         <li>
 													<%= link_to "My Profile", employee_path(current_user.employee.id) %>
                         </li>

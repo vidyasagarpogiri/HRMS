@@ -67,9 +67,9 @@ Rails.application.routes.draw do
         get 'add_employee'
         post 'update_add_employee'
        end
-			collection do
-				get 'holiday_list'
-			end
+			#collection do
+				#get 'holiday_list'
+			#end
 		   
      end
     
@@ -99,7 +99,7 @@ post 'reject' => "leave_histories#reject"
 			delete 'attachment_destroy/:attachment_id' => 'employees#attachment_destroy', as: :attachment_destory
 			get  'attachment_edit/:attachment_id' => 'employees#attachment_edit', as: :attachment_edit
 			patch 'attachment_update/:attachment_id'=> 'employees#attachment_update', as: :attachment_update
-			post 'attachment_show'
+			get 'attachment_show'
 		end
   
   resources :educations do
@@ -114,6 +114,9 @@ post 'reject' => "leave_histories#reject"
 		resources :salaries do 
 					get 'configure_allowance'
 					post 'create_allowance'
+					get 'edit_allowance'
+					post 'update_allowance'
+					get 'add_allowance'
           resources :allowances
           resources :insentives
           resources :salary_increments

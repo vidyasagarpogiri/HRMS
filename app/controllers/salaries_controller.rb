@@ -1,9 +1,10 @@
 class SalariesController < ApplicationController
+	include ApplicationHelper
+   layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update, :configure_allowance]
 
-   layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]
+	 before_filter :hr_view,  only: ["new", "edit"]
+  before_filter :other_emp_view
 
-		before_filter :user_authentication, only: [:index, :new, :create, :show, :edit, :update]
-   
   def new
 		@employee = Employee.find(params[:employee_id])
     @salary = Salary.new
@@ -14,16 +15,24 @@ class SalariesController < ApplicationController
     @employee= Employee.find(params[:employee_id])
     @salary =  @employee.salary
     if @salary.present?
+
     @allowances = @salary.allowances
 		#raise @allowances.inspect
     @insentive = Insentive.new
     @salary_increment = SalaryIncrement.new
+
     @allowances = @salary.allowances
-    @insentives =  @salary.insentives
-    @salary_increments =@salary.salary_increments
+		#raise @allowances.inspect
+    @insentive = Insentive.new
+    #@salary_increment = SalaryIncrement.new
+    #@allowances = @salary.allowances
+    #@insentives =  @salary.insentives
+    #@salary_increments =@salary.salary_increments
    
     else
-       #@salary = Salary.new
+
+       @salary = Salary.new
+
     end
    
   end
@@ -84,7 +93,6 @@ end
 			#raise params.inspect
 			@employee= Employee.find(params[:employee_id])
 			@salary =  Salary.find(params[:salary_id])
-	 		
 			@static_allowance = StaticAllowance.all
 	end
 	
@@ -101,6 +109,47 @@ end
 		end
 		redirect_to employee_salary_path(@employee,@salary)
 	end
+
+	def edit_allowance
+			@employee= Employee.find(params[:employee_id])
+			@salary =  Salary.find(params[:salary_id])
+			@allownces = @salary.allowances
+			#raise @allownces.inspect
+	end
+	
+	def update_allowance
+		#raise params.inspect
+		@employee= Employee.find(params[:employee_id])
+		@salary =  Salary.find(params[:salary_id])
+		params[:allowances].each do |a|
+		#raise a[1][:applicable].inspect
+		@allowance = Allowance.find(a[0])
+		if a[1][:applicable] == "1"
+				@allowance.update(:allowance_name => a[1][:allowance_name], :value => a[1][:value])
+		else
+				@allowance.destroy
+		end
+			
+		end
+		redirect_to employee_salaries_path(@employee)
+	end
+	def add_allowance
+		@employee= Employee.find(params[:employee_id])
+		@salary =  Salary.find(params[:salary_id])
+		
+
+		salary_allowance= @salary.allowances.map(&:allowance_name)
+		static_allowance = StaticAllowance.all.map(&:allowance_name)
+		remaining_allowance = static_allowance - salary_allowance
+		@static_allowances = []
+		remaining_allowance.each do |allowance|
+			@static_allowances << StaticAllowance.find_by_allowance_name(allowance)
+		end
+	
+		respond_to do |format|
+			format.js
+		end
+	end
   
   private
   
@@ -108,14 +157,6 @@ end
     params.require(:salary).permit(:gross_salary, :bonus, :gratuity, :medical_insurance)
   end
 
-#	private
-	def user_authentication	
-			@employee = Employee.find(params[:employee_id])
-			#raise @employee.inspect
-		if current_user.employee.employee_id  == @employee.employee_id || current_user.employee.role_id == 2
-		else
-			redirect_to employees_path
-		end
-	end
+
   
 end
