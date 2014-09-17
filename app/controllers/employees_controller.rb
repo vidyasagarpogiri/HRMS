@@ -1,8 +1,14 @@
 class EmployeesController < ApplicationController
 
-layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show]
+
+layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new ]
+	
+	  before_filter :hr_view, :only => [:create, :new, :edit, :update]	
+	# before_filter :other_emp_view
+	
 
   def index
+
     @employees =  Employee.all.page(params[:page]).per(2)
   end
 

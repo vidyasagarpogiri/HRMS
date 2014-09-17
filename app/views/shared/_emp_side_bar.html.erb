@@ -2,41 +2,7 @@
                         <li>
                             <%= link_to 'MyProfile', employee_path(current_user.employee.id), :class => "fa fa-user fa-fw" %>
                         </li>
-                        <li>
-<% if current_user.employee.role_id == 2 %>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Edit Profile<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Employee Info</a>
-                                </li>
-                                <li>
-                                    <a href="#">Contact Info</a>
-                                </li>
-                                <li>
-                                    <a href="#">Education Info</a>
-                                </li>
-                                <li>
-                                    <a href="#">Experiance Info</a>
-                                </li>
-                                <li>
-                                    <a href="#">Salary Info</a>
-                                </li>
-                                <li>
-                                    <a href="#">Promotion Info</a>
-                                </li>
-                                <li>
-                                    <a href="#">Email Info</a>
-                                </li>
-                                <li>
-                                    <a href="#">Exit Info</a>
-                                </li>
-                                <li>
-                                    <a href="#">Attachments</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-<% end %>
+                      
                         <li>
                             <%= link_to 'Employees', employees_path, :class => "fa fa-users fa-fw"%>
                         </li>
