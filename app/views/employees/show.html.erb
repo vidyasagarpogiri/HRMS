@@ -1,94 +1,121 @@
-<div id="page-wrapper">
-            <br/>
+        <div id="page-wrapper">
+                <div class="row">
+                     <div class="col-lg-12">
+                        <div class="page-header">
+                             Basic Info
+                             <% if current_user.employee.role.id == 2 %>
+                                <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><i class="fa fa-pencil-square-o "></i> <%= link_to "Edit", edit_employee_path(@employee) %></label>
+                              <% end %>
+                        </div>
+                     </div>
+                </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-            <% if current_user.employee.role.id == 2 %>
-                    <label style="font-weight:normal;padding:20px;" class = "pull-right"><i class="fa fa-pencil-square-o "></i> <%= link_to "Edit", edit_employee_path(@employee) %></label>
-            <% end %>
+                    <div class="panel panel-default">                                                                    
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
-                                   <br><br>
-                                        <div class="form-group">
+                                    <div class="col-lg-12"> 
+                                        <div class="form-group col-lg-1">                                                                                    
+                                        </div>                                  
+                                        <div class="form-group col-lg-4">
                                             <label style="font-weight:normal;">Employee Id:</label>
-                                            <label><%= @employee.employee_id %></label>
-                                                                          
-                                        </div>
-                                        
-                                         <div class="form-group">
+                                            <label><%= @employee.employee_id %></label>                                             
+                                        </div>                                        
+                                         <div class="form-group col-lg-6">
                                             <label style="font-weight:normal;">Date Of Joining:</label>
                                             <label><%= format_date (@employee.date_of_join) %></label>
                                         </div>
-                                        
-                                        <div class="form-group">
+                                     </div>
+                                     <div class="col-lg-12">
+                                        <div class="form-group col-lg-1">                                                                                    
+                                        </div>                                           
+                                        <div class="form-group col-lg-4">
                                             <label style="font-weight:normal;">Father Name:</label>
                                             <label><%= @employee.father_name %></label>                                         
-                                        </div>
-                                      
-                                        <div class="form-group">
-                                            
+                                        </div>                                      
+                                        <div class="form-group col-lg-6">                                            
                                             <label style="font-weight:normal;">Blood Group:</label>
-
                                             <label><%= @employee.blood_group.blood_group_name if @employee.blood_group.present? %></label>
-
                                         </div>
-                                        <hr> 
-
-                                         <div class="form-group">
+                                     </div>
+                                     <div class="col-lg-12">
+                                          <div class="form-group col-lg-1">                                                                                    
+                                          </div>
+                                          <div class="form-group col-lg-4">
+                                            <label style="font-weight:normal;">Gender:</label>
+                                            <label><%= @employee.gender %></label>
+                                          </div>                                                                                                              
+                                          <div class="form-group col-lg-6">
+                                              <label style="font-weight:normal;">Date Of Birth:</label>
+                                              <label><%= format_date (@employee.date_of_birth) %></label>
+                                          </div> 
+                                          <br><hr>                                        
+                                     </div>
+                                     
+                                      
+                                     
+                                    
+                                    
+                                     <div class="col-lg-12">
+                                        <div class="form-group col-lg-1">                                                                                    
+                                        </div>        
+                                         <div class="form-group col-lg-4">
                                             <label style="font-weight:normal;">Role:</label>
                                             <label><%= @employee.role.role_name if @employee.role.present? %></label>
 
                                         </div>                                         
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-6">
                                             <label style="font-weight:normal;">Department:</label>
                                             <label><%= @employee.department.department_name if @employee.department.present? %></label>
                                         </div> 
-                                        <div class="form-group">
-
-                                            <label style="font-weight:normal;">Designation:</label>
-                                            <label><%# @employee.designation.designation_name if @employee.designation.present? %></label>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Date Of Birth:</label>
-                                            <label><%= format_date (@employee.date_of_birth) %></label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Mobile Number:</label>
-                                            <label><%= @employee.mobile_number %></label>                                           
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Gender:</label>
-                                            <label><%= @employee.gender %></label>
-                                        </div>
-                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Alternate Email:</label>
-                                             <label><%= @employee.alternate_email %></label> 
-                                				</div>                                     
-                                       <hr>                                        
-                                        <div class="form-group">
+                                     </div>
+                                     <div class="col-lg-12">
+                                         <div class="form-group col-lg-1">                                                                                    
+                                         </div>                                         
+                                         <div class="form-group col-lg-4">
+                                              <label style="font-weight:normal;">Designation:</label>
+                                              <label><%# @employee.designation.designation_name if @employee.designation.present? %></label>
+                                         </div>                                                                                                     
+                                         <div class="form-group col-lg-6">
                                             <label style="font-weight:normal;">Group:</label>
                                             <label><%= @employee.group.group_name if @employee.group.present? %></label>
-                                        </div>
-                                        <div class="form-group">
-
+                                         </div>
+                                     </div>                                                                                                               
+                                      <div class="col-lg-12">
+                                         <div class="form-group col-lg-1">                                                                                    
+                                         </div>
+                                        <div class="form-group col-lg-4">
                                             <label style="font-weight:normal;">Job Location:</label>
                                             <label><%= @employee.job_location.address.city if @employee.job_location.address.present? %></label>
                                         </div>
-
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-6">
                                             <label style="font-weight:normal;">Grade/Level:</label>
                                             <label><%= @employee.grade.value if @employee.grade.present?  %></label>
                                 				</div>
-                                				<div class="form-group">
+                                		  </div>
+                                		  <div class="col-lg-12">
+                                         <div class="form-group col-lg-1">                                                                                    
+                                         </div>
+                                				 <div class="form-group col-lg-4">
                                             <label style="font-weight:normal;">Reporting Manger:</label>
                                             <label><%=  @reporting_manager %></label>
-                                				</div>
+                                				 </div>
+                                				  <br><hr> 
+                                		  </div>
+                                		   <div class="col-lg-12">
+                                        <div class="form-group col-lg-1">                                                                                    
+                                        </div>
+                                        <div class="form-group col-lg-4">
+                                            <label style="font-weight:normal;">Mobile Number:</label>
+                                            <label><%= @employee.mobile_number %></label>                                           
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label style="font-weight:normal;">Alternate Email:</label>
+                                             <label><%= @employee.alternate_email %></label> 
+                                				</div> 
+                                       
+                                     </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
