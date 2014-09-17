@@ -11,30 +11,25 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <div class="row">
 																	<%= form_for ([@employee, @status]) do |f| %>
-																				<div class="form-group">
+																				<div class="form-group col-lg-6">
 																			<label class="required" >Date of Exit</label>
 																			<%= f.text_field :date_of_exit, :class =>"form-control datepicker" %>
 																			</div>
-																			<div class="form-group">
+																			<div class="form-group col-lg-6">
                                         <label class="required" >Status of F & F</label>
-                                         <%= f.select :status_name, options_for_select(FfStatus::STATUS), { :prompt => "Please Select" }, { :class => "department form-control" } %>
-               										    </div>
-																			
-																			<div class="form-group">
-																			<label class="required" >InterView Status</label>
+                                        <%= f.select :status_name, options_for_select(FfStatus::STATUS), { :prompt => "Please Select" }, { :class => "department form-control" } %>
+               										    </div>																			
+																			<div class="form-group col-lg-6">
+																			  <label class="required" >InterView Status</label>
 																		<%= f.select(:interview_status, options_for_select([['Yes', 'Yes'], ['No', 'No']]), {:prompt => "Please Select"}, :class=> "form-control", :id=>"disabledSelect") %>
 																			</div>	
-   
-
-
-
-																			
-																			
-																			<label class="required">Summary Of F&F</label>
-																			<%= f.text_area :summary, :class =>"form-control" %>	<br>
-																			<%= f.submit 'Save', :class => "btn btn-success pull-left" %>
+	                                    <div class="form-group col-lg-6">																																						
+																			  <label class="required">Summary Of F&F</label>
+																			  <%= f.text_area :summary, :class =>"form-control" %>	<br>
+																			 
+																			</div>
+																			 <%= f.submit 'Save', :class => "btn btn-success pull-left" %>
 																	<% end %>
                                
                                 <!-- /.col-lg-6 (nested) -->
