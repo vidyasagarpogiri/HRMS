@@ -17,7 +17,7 @@
 												      <tr>               
 													      <td><%= allowance.allowance_name %></td>
 													      <td><%= allowance.value %></td>
-                                <% if current_user.employee.role.id == 2 %>
+                               <% if current_user.department == Department::HR %>
 
 													      <td>
 													       <ul class="navigation-btns" style="list-style: none;display:inline;">

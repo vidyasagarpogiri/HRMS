@@ -1,5 +1,5 @@
                      <div class="page-header">Insentives</div>
-                   <% if current_user.employee.role.id == 2 %>
+                  <% if current_user.department == Department::HR %>
                         <div class=" add" id="add_new"> 
                           <label  class = " pull-right"><i class="fa fa-plus "></i>
                               <%= link_to 'New Bonus', "#", :id=>"new_bonus_form"  %>
@@ -24,7 +24,7 @@
 												            <tr>               
 													            <td class="center"><%= insentive.insentive_type %></td>
 													            <td><%= insentive.value %></td>
-																		<% if current_user.employee.role.id == 2 %>
+																		<% if current_user.department == Department::HR %>
           							            <td>
 													            <ul class="navigation-btns" style="list-style: none;display:inline;">
 													              <li><%= link_to 'Edit', edit_employee_salary_insentive_path(@employee.id, @salary.id, insentive.id) , :class => "btn btn-success pull-left" %></li>

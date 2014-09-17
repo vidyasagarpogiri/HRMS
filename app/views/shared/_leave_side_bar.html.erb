@@ -1,7 +1,7 @@
 <div class="navbar-default sidebar" role="navigation">
   <div class="sidebar-nav navbar-collapse">
   
-    <% if current_user.employee.role_id == 2 %>
+   <% if current_user.department == Department::HR %>
       <%= render "shared/leave_hr_side_bar"%>
     <% else %>
       <%= render "shared/leave_emp_side_bar"%>
