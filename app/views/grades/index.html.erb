@@ -22,11 +22,11 @@
 												      <tr>
 													       <th><%= grade.value %></th>	
 													       <th>
-													       <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                    <li><%= link_to "Edit",edit_grade_path(grade.id),:class => "btn btn-success " %></li>
-                                    <li><%= link_to "Show",grade_path(grade.id),:class => "btn btn-info "%></li>
-                                    <li><%= link_to "Delete",grade_path(grade.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-                                 </ul>
+													         <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                      <li><%= link_to "Edit",edit_grade_path(grade.id),:class => "btn btn-success " %></li>
+                                      <li><%= link_to "Show",grade_path(grade.id),:class => "btn btn-info "%></li>
+                                      <li><%= link_to "Delete",grade_path(grade.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+                                   </ul>
                                  </th>							      		
 												      </tr>
 											      </thead>

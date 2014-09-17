@@ -1,4 +1,6 @@
 class FfStatusesController < ApplicationController
+
+layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]
 	def new
 		@employee = Employee.find(params[:employee_id])
 		@status = FfStatus.new
