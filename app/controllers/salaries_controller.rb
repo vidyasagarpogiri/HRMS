@@ -14,27 +14,24 @@ class SalariesController < ApplicationController
     @employee= Employee.find(params[:employee_id])
     @salary =  @employee.salary
     if @salary.present?
-<<<<<<< HEAD
-=======
+
     @allowances = @salary.allowances
 		#raise @allowances.inspect
     @insentive = Insentive.new
     @salary_increment = SalaryIncrement.new
->>>>>>> e7b0d4a747334f93108754c790fe10de36dc057b
+
     @allowances = @salary.allowances
 		#raise @allowances.inspect
-    #@insentive = Insentive.new
+    @insentive = Insentive.new
     #@salary_increment = SalaryIncrement.new
     #@allowances = @salary.allowances
     #@insentives =  @salary.insentives
     #@salary_increments =@salary.salary_increments
    
     else
-<<<<<<< HEAD
+
        @salary = Salary.new
-=======
-       #@salary = Salary.new
->>>>>>> e7b0d4a747334f93108754c790fe10de36dc057b
+
     end
    
   end
@@ -95,7 +92,6 @@ end
 			#raise params.inspect
 			@employee= Employee.find(params[:employee_id])
 			@salary =  Salary.find(params[:salary_id])
-	 		
 			@static_allowance = StaticAllowance.all
 	end
 	
@@ -111,6 +107,47 @@ end
 			end
 		end
 		redirect_to employee_salary_path(@employee,@salary)
+	end
+
+	def edit_allowance
+			@employee= Employee.find(params[:employee_id])
+			@salary =  Salary.find(params[:salary_id])
+			@allownces = @salary.allowances
+			#raise @allownces.inspect
+	end
+	
+	def update_allowance
+		#raise params.inspect
+		@employee= Employee.find(params[:employee_id])
+		@salary =  Salary.find(params[:salary_id])
+		params[:allowances].each do |a|
+		#raise a[1][:applicable].inspect
+		@allowance = Allowance.find(a[0])
+		if a[1][:applicable] == "1"
+				@allowance.update(:allowance_name => a[1][:allowance_name], :value => a[1][:value])
+		else
+				@allowance.destroy
+		end
+			
+		end
+		redirect_to employee_salaries_path(@employee)
+	end
+	def add_allowance
+		@employee= Employee.find(params[:employee_id])
+		@salary =  Salary.find(params[:salary_id])
+		
+
+		salary_allowance= @salary.allowances.map(&:allowance_name)
+		static_allowance = StaticAllowance.all.map(&:allowance_name)
+		remaining_allowance = static_allowance - salary_allowance
+		@static_allowances = []
+		remaining_allowance.each do |allowance|
+			@static_allowances << StaticAllowance.find_by_allowance_name(allowance)
+		end
+	
+		respond_to do |format|
+			format.js
+		end
 	end
   
   private

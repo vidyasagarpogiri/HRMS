@@ -114,6 +114,9 @@ post 'reject' => "leave_histories#reject"
 		resources :salaries do 
 					get 'configure_allowance'
 					post 'create_allowance'
+					get 'edit_allowance'
+					post 'update_allowance'
+					get 'add_allowance'
           resources :allowances
           resources :insentives
           resources :salary_increments

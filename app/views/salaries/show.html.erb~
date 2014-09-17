@@ -26,8 +26,8 @@
                                           </div>
                                           
                                           <div class="form-group">
-                                              <label style="font-weight:normal;">Basic Salary:</label>
-                                              <label><%= @salary.basic_salary %></label>
+                                              <!--<label style="font-weight:normal;">Basic Salary:</label> -->
+                                              <label><%#@salary.basic_salary %></label>
                                           </div>
                                           
                                           <ul class="navigation-btns" style="list-style: none;display:inline;">
@@ -38,15 +38,7 @@
                                                              
                                     </form>
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
-                                    <h1></h1>
-                                    <form role="form">
-                                  
-                                        
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
+                                <!-- /.col-lg-6 (nested) -->                                
                             </div>
                             <!-- /.row (nested) -->
                         </div>
@@ -60,4 +52,5 @@
         </div>
         <!-- /#page-wrapper -->
 
-
+<input type="hidden" value="<%= params[:employee_id] %>" id="emp_id">
+<input type="hidden" value="<%= params[:id] %>" id="sal_id">
