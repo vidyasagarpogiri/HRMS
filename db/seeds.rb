@@ -56,10 +56,26 @@ JobLocation.create( :address_id => addresses[rand(addresses.length)])
 end
 JobLocations = JobLocation.all.pluck(:id)
 
-["Development", "HR", "ACCOUNTS", "BUSINESS DEVELOPMENT"].each do |dept|
+#-------------------------------------------------------------------------------------#
+["DEVELOPMENT", "HR", "ACCOUNTS", "BUSINESS DEVELOPMENT"].each do |dept|
   Department.create(:department_name => dept ) 
 end
 Departments = Department.all.pluck(:id)
+
+Department.all.each do |dept|
+  
+  ["Level1", "Level2", "Level3"].each do |level|
+    Grade.create(:value => level,:department_id => dept.id) 
+  end
+  
+  ["Junior #{dept.department_name}", "Senior #{dept.department_name}"].each do |desg|
+    Designation.create(:designation_name => desg, :department_id => dept.id ) 
+  end
+  
+end
+Grades = Grade.all.pluck(:id)
+Designations = Designation.all.pluck(:id)
+#-----------------------------------------------------------------------------------------------------#
 
 ["O+ve", "O-ve", "A+ve", "A+ve", "B+ve", "B-ve", "AB+ve", "AB-ve", "ABO (Bombay Blood Group)"].each do |bloodgrp|
 BloodGroup.create(:blood_group_name => bloodgrp ) 
@@ -71,25 +87,15 @@ FfStatus.create(:status_name => ffstatus )
 end
 FfStatuses = FfStatus.all.pluck(:id)
 
-["Developer", "HR", "Business Developer"].each do |desg|
-Designation.create(:designation_name => desg, :department_id => Departments[rand(Departments.length)] ) 
-end
-Designations = Designation.all.pluck(:id)
 
-["Jr.Software Engineer", "Sr.Software Engineer", "Jr.HR", "Sr.HR"].each do |grade|
-Grade.create(:value => grade,:department_id => Departments[rand(Departments.length)]) 
-end
-Grades = Grade.all.pluck(:id)
+
 
 ["Employee", "HR", "Tech Lead", "Manager"].each do |role|
   Role.create(:role_name => role ) 
 end
 Roles = Role.all.pluck(:id)
 
-["USA", "INDIA"].each do |group|
-Group.create(:group_name => group ) 
-end
-Groups = Group.all.pluck(:id)
+
 
 Employee.create(:id => 1,:employee_id => 1, :title=> "Mr.", :first_name=>"Meher",:last_name=>"Goru",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",
 :status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",
