@@ -34,7 +34,7 @@
                                       <% if current_user.employee.role.id == 2 %>
 													            <td> 
 													               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                         <li><%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "You sure?"}, :class=>"btn btn-danger pull-right" %></li>                                                                                 
+                                         <li><%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right" %></li>                                                                                 
                                        </ul>
                                        </td>
                                      <% end %>
