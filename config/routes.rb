@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       post 'update_employee'
     end  
   end
-   
+   get '/departments_list' => "departments#department_index"
    resources :departments do
    resources :holiday_calenders
 	 resources :leave_policies
@@ -39,13 +39,19 @@ Rails.application.routes.draw do
       get "/add_employee" => "departments#add_employee"
       post 'update_employee'
       get '/employee_leaves' => "departments#employee_leaves"
+      get '/leaves' => "departments#leaves"
+      
+      
     end 
     collection do
 				get 'holiday_list'
 			end 
 
   end
-    
+
+      resources :departments,  path: '/leaves/departments'
+ resources :departments,  path: '/employee/departments'
+
    
   resources :designations do 
     member do
