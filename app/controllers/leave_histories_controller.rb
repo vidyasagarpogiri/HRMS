@@ -6,7 +6,8 @@ class LeaveHistoriesController < ApplicationController
  include ApplicationHelper
 
 	def index
-		 
+		@leave =current_user.employee.department.leave_policy
+		#raise @leave.inspect
 		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD').page(params[:page]).per(2)
 		#raise @leaves.inspect
 		@leave_histories = current_user.employee.leave_histories.where(:status => 'APPROVED' || 'REJECTED').page(params[:page]).per(2)
@@ -34,8 +35,8 @@ class LeaveHistoriesController < ApplicationController
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)  
     applied_days = total_days - weekend_count 
     @leave_history.save
-   @leave_history.update(:days => applied_days)
-   Notification.applyleave(current_user.employee, @leave_history).deliver
+    @leave_history.update(:days => applied_days)
+    Notification.applyleave(current_user.employee, @leave_history).deliver
 		redirect_to leave_histories_path
 	#else
 		#flash[:notice]= "no leave policy for you"
@@ -45,7 +46,9 @@ class LeaveHistoriesController < ApplicationController
   
   
   def edit
+  #raise params.inspect
    @leave_history = LeaveHistory.find(params[:id])
+   
   end
   
   def update
@@ -55,8 +58,9 @@ class LeaveHistoriesController < ApplicationController
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)
     applied_days = total_days - weekend_count  
-   @leave_history.update(:days => applied_days)
-    redirect_to employee_leave_histories_path
+    @leave_history.update(:days => applied_days)
+    Notification.applyleave(current_user.employee, @leave_history).deliver
+    redirect_to leave_histories_path
   end
   
   
@@ -80,7 +84,7 @@ class LeaveHistoriesController < ApplicationController
 		@leave_history.update(:status => LeaveHistory::APPROVED)
 		@leave_type = @leave_history.leave_type
 		#@leave = @employee.group.leave_policy
-		 Notification.accept_leave(@employee, @leave_history).deliver
+		Notification.accept_leave(@employee, @leave_history).deliver
 		redirect_to reported_leaves_path
 
 	end

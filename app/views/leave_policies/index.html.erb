@@ -20,8 +20,7 @@
 											                  <thead>											      
 												                  <tr>
 													                  <th class="center">Personal leaves Per Year </th>
-													                  <th>Sick Leaves per Year</th>
-													                  <th>Minimum Carry forword Leaves</th>
+													                   <th>Minimum Carry forword Leaves</th>
 													                  <th></th>													                 	                  										      		
 												                  </tr>
 											                  </thead>											                  
@@ -29,7 +28,6 @@
 											                  <tbody>
 												                  <tr>               
 													                  <td class="center"> <%= leave_policy.pl_this_year %>  </td>
-													                  <td>  <%= leave_policy.sl_this_year %> </td>
 													                  <td> <%= leave_policy.eligible_carry_forward_leaves %></td>
 													                  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
 													                  <td>
