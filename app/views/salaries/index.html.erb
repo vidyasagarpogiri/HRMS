@@ -78,6 +78,7 @@
                 
             <!-------Allowance ---------------->
                <% unless @salary.new_record? %> 
+
 						<table class="table">
 						
            
@@ -88,6 +89,7 @@
 								<tr> <% @allowances.each do |allowance| %>
 													<td><%= allowance_value(allowance.value, @salary.gross_salary) %></td> <% end %></tr>
 									
+
 								
 				
 
