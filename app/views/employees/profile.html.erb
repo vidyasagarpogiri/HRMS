@@ -50,7 +50,11 @@
                                <div class="col-lg-4">   
                                   <div class="form-group ">
                                       <label style="font-weight:normal;"> </label>
-                                      <label><img src="/assets/employee-icon.jpg" alt="hii" style="width:200px;height:200px;margin-top:-10px;"></label>                                                                          
+                                       <% if @employee.avatar_url.present? %>
+                                         <label><%= image_tag(@employee.avatar_url,  style:"width:200px;height:200px;margin-top:-10px;")  %></label>
+                                        <% else %>
+                                          <label><img src="/assets/employee-icon.jpg" alt="hii" style="width:200px;height:200px;margin-top:-10px;"></label>   
+                                      <% end %>                                      
                                   </div>
                                </div>   
                            </div>
