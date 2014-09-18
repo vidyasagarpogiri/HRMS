@@ -38,7 +38,7 @@
                                         </div>
 																				<div class="form-group col-lg-6"">
                                             <label class="required">Date Of Joining</label>
-                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter text Of Joining", :class=>"form-control datepicker") %>                                           
+                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control datepicker") %>                                           
                                         </div>
                                         <% a = []%>
                                          <%  JobLocation.all.each do |j| 
@@ -86,7 +86,7 @@
                                         </div>
                                         <div class="form-group col-lg-6"">
                                            <label class="required">Date Of Birth</label>
-                                            <%= text_field(:employee, :date_of_birth, :placeholder=>"Enter text Of Birth", :class=>"form-control") %>
+                                            <%= text_field(:employee, :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"form-control datepicker") %>
                                         </div>
                                                                                                                     
                                         
