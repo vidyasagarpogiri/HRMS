@@ -55,8 +55,8 @@ class Employee < ActiveRecord::Base
 	validates :date_of_join, presence: true
 	#validates_format_of :alternate_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message=>"Valid maill id please"
 	#validates :alternate_email, presence: true
-
 	
+
 	
 	#after_create :add_leaves
 	#after_update :update_leaves

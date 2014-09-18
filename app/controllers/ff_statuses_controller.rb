@@ -15,10 +15,14 @@ layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :upda
 	def create
 		#raise params.inspect
 		@employee = Employee.find(params[:employee_id])
-		@status = FfStatus.create(status_params)
+		@status = FfStatus.new(status_params)
+		if @status.save
 		@employee.update(:ff_status_id => @status.id)
 		#raise @status.inspect
 		redirect_to employee_ff_status_path(@employee, @status)
+		else
+		render 'new'
+	end
 	end
 	
 	def show
@@ -39,9 +43,12 @@ layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :upda
 		@employee = Employee.find(params[:employee_id])
 		@status = FfStatus.find(params[:id])
 #raise @status.inspect
-		@status.update(status_params)
+		if @status.update(status_params)
 		redirect_to employee_ff_status_path(@employee, @status)
+		else
+		render 'edit'
 	end 
+	end
 	
 	
 	private
