@@ -101,7 +101,8 @@
 												  <th> Comments</th>
 												</tr>
 											</thead>
-										 <%  @leave_histories.each do |f| %>											
+										 <%  @leave_histories.each do |f| %>	
+										 <% unless(f.from_date.to_date == Date.today) %>									
 											<tbody>												
 												<tr>               
 												 	<td><%= f.employee.full_name %>  </td>
@@ -116,6 +117,7 @@
 													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>								 
 												</tr>																						
 											</tbody>
+								      <% end %>
 								      <% end %>	                   
 										</table>									
 									    <div class="pagination ">                      
@@ -162,7 +164,8 @@
 												  <th> Comments</th>
 												</tr>
 											</thead>
-										 <%  @leave_histories.each do |f| %>											
+										 <%  @leave_histories.each do |f| %>
+										 		 <% if(f.from_date.to_date == Date.today) %>									
 											<tbody>												
 												<tr>               
 												 	<td><%= f.employee.full_name %>  </td>
@@ -177,7 +180,8 @@
 													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>								 
 												</tr>																						
 											</tbody>
-								      <% end %>	                   
+								      <% end %>	
+								      <% end %>                   
 										</table>									
 									    <div class="pagination ">                      
                           <%= paginate @leave_histories %>                       

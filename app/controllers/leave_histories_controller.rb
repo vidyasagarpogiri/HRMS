@@ -10,7 +10,7 @@ class LeaveHistoriesController < ApplicationController
 		#raise @leave.inspect
 		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD').page(params[:page]).per(2)
 		#raise @leaves.inspect
-		@leave_histories = current_user.employee.leave_histories.where(:status => 'APPROVED' || 'REJECTED').page(params[:page]).per(2)
+		@leave_histories = current_user.employee.leave_histories.where("status != ?", "HOLD" ).page(params[:page]).per(3)
 		#raise @leave_histories.inspect
 		@employee = current_user.employee
 	end
