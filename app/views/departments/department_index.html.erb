@@ -23,11 +23,11 @@
                               <% @departments.each do |department| %>
 											        <tbody>											      
 												       <tr>
-													        <td class="center"><%= department.department_name %></td>	
+													        <td class="center"><%= link_to department.department_name, department_path(department.id) %></td>	
 													        <td class="center">
 													          <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                         <li><%= link_to "Edit",edit_department_path(department.id),:class => "btn btn-success " %></li>
-                                        <li><%= link_to "Show",department_path(department.id),:class => "btn btn-info "%></li>
+                                        
                                         <li><%= link_to "Delete",department_path(department.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
                                     </ul>
                                    </td>							      		
