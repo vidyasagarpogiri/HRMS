@@ -14,8 +14,16 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                  <%= @email.errors.full_messages.first if @email.errors.any? %>
-                                   <%= form_for ([@employee, @email]) do |f| %>
+                                <% @email.errors.full_messages.each do |error| %>
+                                        <!--<label class="col-lg-3"></label>-->
+                                        <div class="alert alert-danger alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                         <%= error %>
+                                         </div>
+                                      <% end %>                                      
+                                     </div>                                   
+                                  </div>
+                                  <%= form_for ([@employee, @email]) do |f| %>
                                    <br>                                                                       
                                         <div class="form-group">
                                             <label class="required" >Email Content</label>
