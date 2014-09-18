@@ -57,7 +57,9 @@ class DepartmentsController < ApplicationController
     @department = Department.find(params[:id])
     @employees = @department.employees
     @leave_policy = @department.leave_policy
+    @holiday_calender = @department.events
    end 
+   
    def department_index
        @departments = Department.all
    end

@@ -80,8 +80,8 @@
 									<% @holiday_calender.each do |holiday| %>
 									<tbody>
 										<tr>
-										  <th class="center"><%= holiday.event_name %></th>	
-										  <th class="center"><%=holiday.event_date %></th>	
+										  <td class="center"><%= holiday.event_name %></td>	
+										  <td class="center"><%=format_date(holiday.event_date) %></td>	
 									  </tr>
 								 </tbody>
 								 <% end %>
