@@ -27,11 +27,8 @@ Promotion.destroy_all
 EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
-
 Group.destroy_all;
 StaticAllowance.destroy_all
-
-
 Allowance.destroy_all
  
 
@@ -77,7 +74,7 @@ Designations = Designation.all.pluck(:id)
 
 Designation.all.each do |desg|
    ["Level1", "Level2", "Level3"].each do |level|
-    Grade.create(:value => level, :designation_id =>  designation.id) 
+    Grade.create(:value => level, :designation_id =>  desg.id) 
   end
 end
 #-----------------------------------------------------------------------------------------------------#
@@ -95,10 +92,6 @@ FfStatuses = FfStatus.all.pluck(:id)
 
 
 
-["Employee", "HR", "Tech Lead", "Manager"].each do |role|
-  Role.create(:role_name => role ) 
-end
-Roles = Role.all.pluck(:id)
 
 
 

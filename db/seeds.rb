@@ -27,11 +27,8 @@ Promotion.destroy_all
 EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
-
 Group.destroy_all;
 StaticAllowance.destroy_all
-
-
 Allowance.destroy_all
  
 
@@ -72,7 +69,7 @@ Department.all.each do |dept|
   end
   
 end
-Grades = Grade.all.pluck(:id)
+
 Designations = Designation.all.pluck(:id)
 
 Designation.all.each do |desg|
@@ -81,7 +78,7 @@ Designation.all.each do |desg|
   end
 end
 #-----------------------------------------------------------------------------------------------------#
-
+Grades = Grade.all.pluck(:id)
 ["O+ve", "O-ve", "A+ve", "A+ve", "B+ve", "B-ve", "AB+ve", "AB-ve", "ABO (Bombay Blood Group)"].each do |bloodgrp|
 BloodGroup.create(:blood_group_name => bloodgrp ) 
 end
@@ -95,10 +92,6 @@ FfStatuses = FfStatus.all.pluck(:id)
 
 
 
-["Employee", "HR", "Tech Lead", "Manager"].each do |role|
-  Role.create(:role_name => role ) 
-end
-Roles = Role.all.pluck(:id)
 
 
 
