@@ -21,7 +21,11 @@ class AddressesController < ApplicationController
 		@employee = Employee.find(params[:employee_id])
    	@address = @employee.addresses.create(params_present_address)
 		@address1 = @employee.addresses.create(:line => params[:line3], :line1 => params[:line4], :city => params[:city1], :state => params[:state1], :country => params[:country1], :zipcode => params[:zipcode1], :address_type => 1)
-	 redirect_to employee_addresses_path
+		if @address.present?
+		redirect_to employee_addresses_path
+		else
+	 render 'new'
+ 	end
  	end
 
   
@@ -37,12 +41,13 @@ class AddressesController < ApplicationController
   end
   
   def update
+    @employee = Employee.find(params[:employee_id])
     @address = Address.find(params[:id])
     @address.update(params_present_address)
     if @address.errors.present?
       render :edit
     else
-      redirect_to employee_addresses_path
+      redirect_to employee_addresses_path(@employee)
     end
     
   end
