@@ -3,14 +3,7 @@ class ProfileController < ApplicationController
 layout "emp_profile_template"
   before_filter :hr_view, :only => [ :edit]
   
-  def layout_method
-    if params[:id].present?
-      self.class.layout "profile_template"
-    else
-      self.class.layout "newprofile_template"
-    end
-     
-  end
+  
   
   
   def edit
