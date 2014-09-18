@@ -142,3 +142,42 @@ border-radius:3px;
 margin-bottom:20px;
 }
 
+
+---------------------------
+#nav {
+float: right;
+display: inline-block;
+
+}
+
+div #nav {
+margin: 0 auto;
+padding: 0;
+margin-left:240px;
+}
+
+
+
+#nav a.on {
+color: #fff;
+}
+
+
+#nav a {
+color: #666;
+text-transform: uppercase;
+letter-spacing: 1px;
+display: inline-block;
+font-size: 16px;
+font-weight: 400;
+line-height: 120px;
+text-decoration: none;
+font-family: proxima-nova, arial, sans-serif;
+margin-top:-20px;
+margin-left:50px;
+
+}
+
+#nav a:hover {
+color:#fff;
+}
