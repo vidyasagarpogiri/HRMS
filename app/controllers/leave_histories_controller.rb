@@ -56,6 +56,7 @@ class LeaveHistoriesController < ApplicationController
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)
     applied_days = total_days - weekend_count  
     @leave_history.update(:days => applied_days)
+    @leave_history.update(:status => LeaveHistory::HOLD)
     Notification.applyleave(current_user.employee, @leave_history).deliver
     redirect_to leave_histories_path
   end

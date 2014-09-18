@@ -18,8 +18,7 @@
                     
 	<div class="row">
     <div class="col-lg-12">
-  	
-        <div class="panel panel-default">
+
           <div class="panel-heading">
              List Of Employees
              <label style="font-weight:normal;padding:-20px;" class = "pull-right"><a><i class="fa fa-plus "></i></a>&nbsp<%= link_to "Add New Employee ", add_employee_department_path(@department) %></label>
@@ -31,13 +30,15 @@
 										<tr>
 											<th class="center">Employee Name</th>
 											<th> Email  </th>
+											<th>Designation</th>
 										</tr>
 									</thead>
 							<% @employees.each do |employee| %>
 									<tbody>
 										<tr>
 										<th class="center"><%= link_to employee.first_name, employee_path(employee) %></th>	
-										<th class="center"><%= employee.user.email %></th>	
+										<th class="center"><%= employee.user.email %></th>
+										<th class="center"><%= employee.designation.designation_name %></th>	
 										</tr>
 									</tbody>
 							<% end %>
@@ -51,10 +52,10 @@
 </div>
     <!-- /.1st panel-body -->
 
-</div>
+
 <!-- /.panel -->
 
-
+</div>
 
 
  </div>
@@ -66,6 +67,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
              List Of Designations
+              <label style="font-weight:normal;padding:-20px;" class = "pull-right"><a><i class="fa fa-plus "></i></a>&nbsp<%= link_to "Add New Designation", new_designation_path %></label>
 
            </div>
            <div class="panel-body">                               
