@@ -4,10 +4,10 @@
                         <li>
                            <div  class="profile-pic" > 
                               <h4><center> <%= @emp.full_name if @emp.present? %> </center></h4>
-                              <% if @emp.present? && @emp.avatar_url.present? %>
+                               <% if current_user.employee.avatar_url.present? %>
 
                               <a href="#" >
-                                <%= image_tag(@emp.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
+                                <%= image_tag(current_user.employee.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
                               </a>
                               <% else %>
                               <a href="#" >
