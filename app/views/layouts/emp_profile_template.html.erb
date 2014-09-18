@@ -72,7 +72,7 @@
                                   <%= link_to "Email Etiquette", employee_email_ettiquities_path(@id) %>
                                 </li>
                                 <li>
-                                  <%= link_to "Attachments",attachment_form_new_employee_path(@id) %>  
+                                  <%= link_to "Attachments",attachment_index_employee_path(@id) %>  
                                 </li>
 <% if current_user.department == Department::HR %>
                                 <li>

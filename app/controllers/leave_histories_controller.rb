@@ -111,7 +111,7 @@ class LeaveHistoriesController < ApplicationController
   #raise params.inspect
   @leave_history = LeaveHistory.find(params[:id])
   @leave_history.destroy
-  #redirect_to leave_types_path
+  redirect_to leave_histories_path
   
   end
 
