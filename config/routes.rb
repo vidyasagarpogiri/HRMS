@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       post 'update_employee'
     end  
   end
-   
+   get '/departments_list' => "departments#department_index"
    resources :departments do
    resources :holiday_calenders
 	 resources :leave_policies
@@ -39,13 +39,17 @@ Rails.application.routes.draw do
       get "/add_employee" => "departments#add_employee"
       post 'update_employee'
       get '/employee_leaves' => "departments#employee_leaves"
+      get '/leaves' => "departments#leaves"
+      
+      
     end 
     collection do
 				get 'holiday_list'
 			end 
 
   end
-    
+
+
    
   resources :designations do 
     member do
@@ -77,6 +81,7 @@ Rails.application.routes.draw do
  resources :leave_histories 
  
 get 'reported_leaves' => "leave_histories#reported_leaves"
+get 'reported_employees' => "leave_histories#reported_employees"
 get 'applied_leaves' => "leave_histories#applied_leaves"
 post 'accept' => "leave_histories#accept"
 post 'reject' => "leave_histories#reject"

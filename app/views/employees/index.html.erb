@@ -111,7 +111,7 @@
 
 													<th class="center">Photo</th>
 													<th>Full Name</th>
-													<th class="hidden-xs">Designation</th>
+													<th class="hidden-xs">Department</th>
 													<th class="hidden-xs">Email</th>
 													<th class="hidden-xs">Phone</th>
                           <th> </th>
@@ -122,20 +122,21 @@
 											<tbody>
 												<tr>               
 													<td><%= image_tag(employee.avatar, :alt => "image", :height => 75, :width => 75, :class => "center") %></td>
-	                    <% if current_user.employee.role.id == 2 %>									
+
+	                    <% if current_user.department == Department::HR %>									
 												   <td><%= link_to employee.full_name, employee_path(employee) %></td>
 	                      <% else %>
                         <td><%= link_to employee.full_name, profile_employee_path(employee) %></td>
             <% end %>
-													<td class="hidden-xs"><%# employee.designation.designation_name if employee.designation.present? %></td>
+													<td class="hidden-xs"><%= current_user.department %></td>
 
 													<td class="hidden-xs">
 													
 													<%= employee.user.email if employee.user.present? %>
 	 												</a></td>
-													<td class="hidden-xs"><%= employee.mobile_number %></td>
+													<td class="hidden-xs"><%= number_to_phone(employee.mobile_number) if employee.mobile_number.present? %></td>
 													<td>
-<% if current_user.employee.role_id == 2 %>
+<% if current_user.department == Department::HR %>
 													  <div class="visible-md visible-lg hidden-sm hidden-xs">
 														<a href="/employees/<%= employee.id %>/edit" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>
 														</div>
