@@ -57,7 +57,7 @@ end
 JobLocations = JobLocation.all.pluck(:id)
 
 #-------------------------------------------------------------------------------------#
-["DEVELOPMENT", "HR", "ACCOUNTS", "BUSINESS DEVELOPMENT"].each do |dept|
+["Development", "HR", "Accounts", "Business Development"].each do |dept|
   Department.create(:department_name => dept ) 
 end
 Departments = Department.all.pluck(:id)
