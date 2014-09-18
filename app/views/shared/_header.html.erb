@@ -35,13 +35,13 @@
             <div class="main-menu" >            
                <div id="nav">
                   <% if current_user.department == Department::HR %>
-                  <a id="employee" href="/employees" >employee managment</a>
-                  <a id="leave" href="/leave_histories" >leave managment</a>
-                  <a id="time" href="#" >time</a>               
+                    <a id="employee" href="/employees" >employee managment</a>
+                    <a id="leave" href="/leave_histories" >leave managment</a>
+                    <a id="time" href="#" >time</a>               
                   <% else %>
-                  <a id="employee" href="/employees" >employee info</a>
-                  <a id="leave" href="/leave_histories" >leave info</a>
-                  <a id="time" href="#" >time</a>           
+                    <a id="employee" href="/employees" >employee info</a>
+                    <a id="leave" href="/leave_histories" >leave info</a>
+                    <a id="time" href="#" >time</a>           
                   <% end %>
               </div> 
            </div>

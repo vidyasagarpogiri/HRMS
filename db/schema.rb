@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 20140916113418) do
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "designation_id"
+    t.integer  "department_id"
   end
 
   create_table "groups", force: true do |t|
