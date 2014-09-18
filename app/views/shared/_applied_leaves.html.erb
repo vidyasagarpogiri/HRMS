@@ -7,12 +7,8 @@
                                        Leaves Requests
                                   </div>
                                 <div class="panel-body">                    
-
-
                                   
-
-
-                                  <table class="table table-striped table-hover" id="sample-table-2">
+                                   <table class="table table-striped table-hover" id="sample-table-2">
 											                  <thead>											      
 												                  <tr>
 													                  <th class="center">Employee Id </th>
@@ -23,40 +19,33 @@
 													                  <th>Leave Type </th>	
 													                  <th>Reason for leave</th>
 													                  <th colspan="2">Action</th>
-													                  <th></th>
-													                 	                  										      		
+													                  <th></th>													                 	                  										      		
 												                  </tr>
-											                  </thead>											                  
-	                                   
- 																				<% @reported_leaves.each do |report| %>
- 																				
- 																				
- 																			  
-	                                      	<% report.employee.leave_histories.each do |f| %>
-																						<% if f.status == "HOLD" %>
+											                  </thead>											                  	                                   
+ 																				<% @reported_leaves.each do |report| %>										 																			  
+	                                      <% report.employee.leave_histories.each do |f| %>
+																			  <% if f.status == "HOLD" %>
 											                  <tbody>
-												                    <tr>               
-													                  <td class="center"><a href="#"> <%= report.employee.employee_id %> </a></td>
-													                  <td><a href="#"><%= report.employee.full_name%></a></td>
-													                  <td><a href="#"><%= f.from_date %> - <%= f.to_date %>  </td>
-													                  <td><%=total_balance_leaves(f.employee) %> </td>
-													                  <td><%= f.days %> </td>
-													                  <td><%= f.leave_type.type_name if f.leave_type.present? %> </td>
-													                  <td>  <%= f.reason %>  </td>
-													                  <td>
-													                  <ul class="navigation-btns" style="list-style: none;display:inline;">  
-                                               
-																								<li><%= link_to "Accept", accept_path(:employee_id=> report.employee.id, :leave_history_id => f.id), method: :post, :class => "btn btn-success pull-left"%></li>
-																						<li><%= link_to "Reject", reject_path(:employee_id=> report.employee.id, :leave_history_id => f.id), method: :post, :class => "btn btn-danger pull-left"%></li>
-                                            </ul>
-                                            </td>
+												                   <tr>               
+													                    <td class="center"><a href="#"> <%= report.employee.employee_id %> </a></td>
+													                    <td><a href="#"><%= report.employee.full_name%></a></td>
+													                    <td><a href="#"><%= f.from_date %> - <%= f.to_date %>  </td>
+													                    <td><%=total_balance_leaves(f.employee) %> </td>
+													                    <td><%= f.days %> </td>
+													                    <td><%= f.leave_type.type_name if f.leave_type.present? %> </td>
+													                    <td>  <%= f.reason %>  </td>
+													                    <td>
+													                      <ul class="navigation-btns" style="list-style: none;display:inline;">              
+																								  <li><%= link_to "Accept", accept_path(:employee_id=> report.employee.id, :leave_history_id => f.id), method: :post, :class => "btn btn-success pull-left"%></li>
+																						      <li><%= link_to "Reject", reject_path(:employee_id=> report.employee.id, :leave_history_id => f.id), method: :post, :class => "btn btn-danger pull-left"%></li>
+                                              </ul>
+                                              </td>
 												                  </tr>												                   
-											                  </tbody>
-																			<% end %>
-																		<% end %>
-																	<% end %>
-											                 
-									                  </table>
+											                 </tbody>
+																			 <% end %>
+																		    <% end %>
+																	      <% end %>											                 
+									                 </table>
 									                
 
 									                </div>

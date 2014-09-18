@@ -356,6 +356,7 @@ display:none;
 
 .profile-pic{
 margin-top:-50px;
+padding-left:10px;
 }
 
 
@@ -376,12 +377,11 @@ background-color:black;
 height:60px;
 font-size:18px;
 font-weight:bold;
-padding-top:18px;
 }
 
 .main-menu  ul {
 padding-left:250px;
-
+padding-top:20px;
 }
 
 .main-menu ul li{
