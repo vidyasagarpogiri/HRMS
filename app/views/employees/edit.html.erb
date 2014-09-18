@@ -139,6 +139,10 @@
           
           <script>
              
+$(function() {
+    $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
+  });
+
             var designations = $('.designation').html();
             var grades = $('.grades').html();
             $('#disabledSelect1').change(function() {

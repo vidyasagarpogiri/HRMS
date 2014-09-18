@@ -136,6 +136,11 @@
           <!-- /#page wrapper -->
 
 <script>
+
+$(function() {
+    $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
+  });
+
    $('.designation').parent().hide();
   var designations = $('.designation').html();
   var grades = $('.grades').html();
