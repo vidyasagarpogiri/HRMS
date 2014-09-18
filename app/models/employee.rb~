@@ -2,7 +2,7 @@ class Employee < ActiveRecord::Base
 	mount_uploader :avatar, AvatarUploader
   belongs_to :department
   belongs_to :blood_group
-  #belongs_to :designation
+  belongs_to :designation
   belongs_to :job_location
  # belongs_to :present_address, :class_name=>"Address", foreign_key: :id
  # belongs_to :permanent_address, :class_name=>"Address", foreign_key: :id
@@ -33,7 +33,7 @@ class Employee < ActiveRecord::Base
   
   has_many :leave_histories
   
-  has_many :education
+  has_many :educations
 
 
 	validates :employee_id, presence: true 
