@@ -19,6 +19,7 @@ class DepartmentsController < ApplicationController
     @employees = @department.employees
 		@leave_policy = @department.leave_policy 
 		@holiday_calender = @department.events
+		@designations = @department.designations
 		#raise @holiday_calender.inspect
   end
 

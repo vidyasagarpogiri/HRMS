@@ -100,8 +100,11 @@
                                                                               
                                         </div>                                     
                                         <div class="form-group col-lg-6"">
+
+
                                            <label class="required">Grade/Level</label><br>
                                             <%= f.grouped_collection_select :grade_id, Designation.all, :grades, :designation_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades form-control", :id=>"disabledSelect"  } %>
+
                                         </div>                                         
                                          <div class="form-group col-lg-6"">
                                             <label class="required">Upload Image:</label><br>

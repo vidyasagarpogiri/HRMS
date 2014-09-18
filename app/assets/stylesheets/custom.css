@@ -127,8 +127,8 @@ color:	#527A7A;
 background-color:black !important;
 }
 
-.nav-second-level li.active {
-background-color:#eee;
+.nav-second-level ul li.active {
+background-color:black;
 }
 
 
