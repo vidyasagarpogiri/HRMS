@@ -12,7 +12,7 @@
                       <div class="panel-body">
                             <div class="row" style="padding-left:50px;">
 															<% if @address1.present? %>
-                                <div class="col-lg-5" style="box-shadow: 0 0 10px #000000;border-radius:3px;padding:10px;">
+                                <div class="col-lg-5" style="box-shadow: 0 0 1px #000000;border-radius:3px;padding:10px;">
                                     <label><u>Present Address</u></label>
                                     <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                         <% if current_user.department == Department::HR %>
@@ -54,8 +54,8 @@
                                 <!-- /.col-lg-6 (nested) --> 
                                 <div class="col-lg-1">
                                 </div>
-                                <div class="col-lg-5" style="box-shadow: 0 0 10px #000000;border-radius:3px;padding:10px;">
-																			<% if @address2.present? %>
+                              	<% if @address2.present? %>
+                                <div class="col-lg-5" style="box-shadow: 0 0 1px #000000;border-radius:3px;padding:10px;">
                                     <label><u>Permanent Address</u></label>                                                                      
                                     <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                        <% if current_user.department == Department::HR %>
@@ -91,8 +91,8 @@
                                             <label style="font-weight:normal;">Zipcode:</label>
                                            <%= @address2.zipcode %>
                                         </div>
-                                        <% end %>                                                                                    
                                 </div>
+                                <% end %>                                                                                    
                                 <!-- /.col-lg-6 (nested) -->
                          
                             </div>													

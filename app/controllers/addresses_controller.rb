@@ -39,7 +39,12 @@ class AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     @address.update(params_present_address)
-    redirect_to employee_addresses_path
+    if @address.errors.present?
+      render :edit
+    else
+      redirect_to employee_addresses_path
+    end
+    
   end
   
   

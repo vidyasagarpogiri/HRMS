@@ -15,7 +15,11 @@
                                 <div class="col-lg-12" >
                                     <div class="form-group " style="color:#FF4D4D;">
                                       <% @employee.errors.full_messages.each do |error| %>
-                                        <label class="col-lg-3"><%= error %></label>
+                                        <!--<label class="col-lg-3"></label>-->
+                                        <div class="alert alert-danger alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                         <%= error %>
+                                         </div>
                                       <% end %>                                      
                                      </div>                                   
                                   </div>
