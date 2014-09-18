@@ -9,8 +9,9 @@ class DesignationsController < ApplicationController
   end
 
   def create
-    @designation = Designation.create(designation_params)
-    redirect_to @designation
+    @department = Department.find(params[:designation][:department_id])
+    @designation = @department.designations.create(designation_params)
+    redirect_to @department
   end
 
   def show
