@@ -64,17 +64,22 @@ Departments = Department.all.pluck(:id)
 
 Department.all.each do |dept|
   
-  ["Level1", "Level2", "Level3"].each do |level|
-    Grade.create(:value => level,:department_id => dept.id) 
-  end
-  
+ 
   ["Junior #{dept.department_name}", "Senior #{dept.department_name}"].each do |desg|
-    Designation.create(:designation_name => desg, :department_id => dept.id ) 
+    designation = Designation.create(:designation_name => desg, :department_id => dept.id ) 
+    
+  
   end
   
 end
 Grades = Grade.all.pluck(:id)
 Designations = Designation.all.pluck(:id)
+
+Designation.all.each do |desg|
+   ["Level1", "Level2", "Level3"].each do |level|
+    Grade.create(:value => level, :designation_id =>  desg.id) 
+  end
+end
 #-----------------------------------------------------------------------------------------------------#
 
 ["O+ve", "O-ve", "A+ve", "A+ve", "B+ve", "B-ve", "AB+ve", "AB-ve", "ABO (Bombay Blood Group)"].each do |bloodgrp|
