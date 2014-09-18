@@ -23,7 +23,7 @@ def index
        @holiday_calender = HolidayCalender.new(params_with_department)
         if @holiday_calender.save
       
-          redirect_to department_path(@department)
+          redirect_to leaves_department_path(@department)
        
         else
           flash.now[:error] 
