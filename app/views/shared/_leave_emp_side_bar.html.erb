@@ -6,11 +6,11 @@
                              <% if current_user.employee.avatar_url.present? %>
 
                               <a href="#" >
-                                <%= image_tag(current_user.employee.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
+                                <%= image_tag(current_user.employee.avatar_url,  style:"width:240px;height=250px;", class: "img-polaroid")  %>
                               </a>
                               <% else %>
                               <a href="#" >
-                                <img src="/assets/employee-icon.jpg" alt="hii" style="width:250px;height=250px;padding-left=10px;" ></img>
+                                <img src="/assets/employee-icon.jpg" alt="hii" style="width:240px;height=250px;padding-left=10px;" ></img>
                               </a>
                               <% end %>
                            </div>                      
