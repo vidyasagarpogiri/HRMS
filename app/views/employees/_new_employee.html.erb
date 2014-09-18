@@ -136,37 +136,45 @@
           <!-- /#page wrapper -->
 
 <script>
-
+//Date Picker
 $(function() {
     $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
   });
 
-   $('.designation').parent().hide();
+//Department and designation dynamic select buttons
+ 
+  $('.designation').parent().hide();
   var designations = $('.designation').html();
-  var grades = $('.grades').html();
   $('#disabledSelect1').change(function() {
    var department = $('#disabledSelect1 :selected').text();
    var  options = $(designations).filter("optgroup[label='"+department+"']").html();
-   var gradeoptions = $(grades).filter("optgroup[label='"+department+"']").html();
-   
     if (options) {
       $('.designation').html(options);
       $('.designation').parent().show();
+       
       }
     else {
       $('.designation').empty();
       $('.designation').parent().hide();
       }
    
-   if (gradeoptions) {
+  
+  });
+   
+  //Designation and grades dynamic select buttons
+  
+    var grades =  $('.grades').html();
+    $('.designation').change(function() {
+     var designation = $('.designation :selected').text();
+     var gradeoptions = $(grades).filter("optgroup[label='"+designation+"']").html();
+      if (gradeoptions) {
       $('.grades').html(gradeoptions);
       $('.grades').parent().show();
       }
     else {
       $('.grades').empty();
-      $('.grades').parent().hide();
+      //$('.grades').parent().hide();
       }
-  });
-    
+    });
  </script>
  
