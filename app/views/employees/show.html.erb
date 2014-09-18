@@ -108,7 +108,7 @@
                                         </div>
                                         <div class="form-group col-lg-4">
                                             <label style="font-weight:normal;">Mobile Number:</label>
-                                            <label><%= @employee.mobile_number %></label>                                           
+                                            <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label style="font-weight:normal;">Alternate Email:</label>

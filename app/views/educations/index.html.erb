@@ -1,7 +1,7 @@
              <div id="page-wrapper">
                 <div class="row">       
                    <div class="col-lg-12">
-                      <div class="page-header">Education Info</div> 
+                      <div class="page-header">Education Details</div> 
                      <% if current_user.department == Department::HR %>                                
                         <label style="font-weight:normal;margin-top:-50px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to ' Add Education', new_employee_education_path(@employee.id)  %></label>
                       <% end %>
@@ -49,7 +49,7 @@
 
                       <div class="alert alert-info alert-dismissable">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            You have No Experiance Details to display.
+                            You have No Education Details to display.
                      </div>
                     <% end %>
                               
