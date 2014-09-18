@@ -107,7 +107,7 @@
                                         </div>                                     
                                         <div class="form-group col-lg-6">
                                             <label class="required">Grade/Level</label><br>
-                                            <%= f.grouped_collection_select :grade_id, Department.all, :grades, :department_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades form-control", :id=>"disabledSelect"  } %>
+                                            <%= f.grouped_collection_select :grade_id, Designation.all, :grades, :designation_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades form-control", :id=>"disabledSelect"  } %>
                                         </div>                                         
                                            <div class="form-group col-lg-6">
                                             <label class="required">Upload Image</label><br>
@@ -136,37 +136,45 @@
           <!-- /#page wrapper -->
 
 <script>
-
+//Date Picker
 $(function() {
     $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
   });
 
-   $('.designation').parent().hide();
+//Department and designation dynamic select buttons
+ 
+  $('.designation').parent().hide();
   var designations = $('.designation').html();
-  var grades = $('.grades').html();
   $('#disabledSelect1').change(function() {
    var department = $('#disabledSelect1 :selected').text();
    var  options = $(designations).filter("optgroup[label='"+department+"']").html();
-   var gradeoptions = $(grades).filter("optgroup[label='"+department+"']").html();
-   
     if (options) {
       $('.designation').html(options);
       $('.designation').parent().show();
+       
       }
     else {
       $('.designation').empty();
       $('.designation').parent().hide();
       }
    
-   if (gradeoptions) {
+  
+  });
+   
+  //Designation and grades dynamic select buttons
+  
+    var grades =  $('.grades').html();
+    $('.designation').change(function() {
+     var designation = $('.designation :selected').text();
+     var gradeoptions = $(grades).filter("optgroup[label='"+designation+"']").html();
+      if (gradeoptions) {
       $('.grades').html(gradeoptions);
       $('.grades').parent().show();
       }
     else {
       $('.grades').empty();
-      $('.grades').parent().hide();
+      //$('.grades').parent().hide();
       }
-  });
-    
+    });
  </script>
  

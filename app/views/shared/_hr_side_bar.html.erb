@@ -18,7 +18,7 @@
                         </li>
                         
                         <li>
-													<%= link_to "My Profile", employee_path(current_user.employee.id) %>
+													 <%= link_to 'MyProfile', employee_path(current_user.employee.id), :class => "fa fa-user fa-fw" %>
                         </li>
                         <li>
                             <a href="/employees"><i class="fa fa-users fa-fw"></i> Employees</a>
