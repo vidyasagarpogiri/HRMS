@@ -106,6 +106,14 @@ class LeaveHistoriesController < ApplicationController
   def reported_employees
     #ReportingManager.where(:manager_id => current_user.employee.id).employees 
   end
+  
+  def destroy
+  #raise params.inspect
+  @leave_history = LeaveHistory.find(params[:id])
+  @leave_history.destroy
+  redirect_to leave_histories_path
+  
+  end
 
 	private
   
