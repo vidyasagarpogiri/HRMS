@@ -1,6 +1,21 @@
                  
                  
                   <ul class="nav" id="side-menu"><!-- Hr sidebar -->
+                        <li>
+                           <div  class="profile-pic" > 
+                              <h4><center> <%= @emp.full_name if @emp.present? %> </center></h4>
+                              <% if @emp.present? && @emp.avatar_url.present? %>
+
+                              <a href="#" >
+                                <%= image_tag(@emp.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
+                              </a>
+                              <% else %>
+                              <a href="#" >
+                                <img src="/assets/employee-icon.jpg" alt="hii" style="width:250px;height=250px;padding-left=10px;" ></img>
+                              </a>
+                              <% end %>
+                           </div>                      
+                        </li>
                         
                         <li>
 													<%= link_to "My Profile", employee_path(current_user.employee.id) %>

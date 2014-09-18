@@ -1,5 +1,5 @@
 class LeaveHistoriesController < ApplicationController
- before_filter :hr_view,  only: ["new", "edit"]
+ #before_filter :hr_view,  only: ["new", "edit"]
   #before_filter :other_emp_view
   layout "leave_template"
  	
@@ -10,7 +10,7 @@ class LeaveHistoriesController < ApplicationController
 		#raise @leave.inspect
 		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD').page(params[:page]).per(2)
 		#raise @leaves.inspect
-		@leave_histories = current_user.employee.leave_histories.where(:status => 'APPROVED' || 'REJECTED').page(params[:page]).per(2)
+		@leave_histories = current_user.employee.leave_histories.where("status != ?", "HOLD" ).page(params[:page]).per(3)
 		#raise @leave_histories.inspect
 		@employee = current_user.employee
 	end
@@ -98,12 +98,22 @@ class LeaveHistoriesController < ApplicationController
 		redirect_to reported_leaves_path
 	end
 
-   def employee_leaves
-   raise params.inspect
+  def employee_leaves
     @employee = current_user.employee.department
-    
     @leaves = LeaveHistory.order('created_at DESC').page(params[:page]).per(2)
    end
+   
+  def reported_employees
+    #ReportingManager.where(:manager_id => current_user.employee.id).employees 
+  end
+  
+  def destroy
+  #raise params.inspect
+  @leave_history = LeaveHistory.find(params[:id])
+  @leave_history.destroy
+  #redirect_to leave_types_path
+  
+  end
 
 	private
   

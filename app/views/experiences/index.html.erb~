@@ -1,7 +1,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="page-header">Experience Details</div>
+                    <div class="page-header">Experience Info</div>
                    <% if current_user.department == Department::HR %>
                         <label style="font-weight:normal;margin-top:-50px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to 'Add Experience',  new_employee_experience_path(@employee.id) %></label>
                         <% end %>
@@ -49,7 +49,7 @@
                                <% else %>
 																	<div class="alert alert-info alert-dismissable">
                                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                       You have No Experiance Details to show.
+                                       You have No Experience Details to show.
                                  </div>     
                                   
                                

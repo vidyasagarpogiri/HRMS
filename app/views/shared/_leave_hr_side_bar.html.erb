@@ -1,5 +1,20 @@
 
                     <ul class="nav" id="side-menu">
+                        <li>
+                           <div  class="profile-pic" > 
+                              <h4><center> <%= @emp.full_name if @emp.present? %> </center></h4>
+                              <% if @emp.present? && @emp.avatar_url.present? %>
+
+                              <a href="#" >
+                                <%= image_tag(@emp.avatar_url,  style:"width:250px;height=250px;padding-left=10px;", class: "img-polaroid")  %>
+                              </a>
+                              <% else %>
+                              <a href="#" >
+                                <img src="/assets/employee-icon.jpg" alt="hii" style="width:250px;height=250px;padding-left=10px;" ></img>
+                              </a>
+                              <% end %>
+                           </div>                      
+                        </li>
                         
                         <li>
                              <a  href="/leave_histories"><i class="fa fa-history fa-fw"></i> My Leaves</a>
@@ -10,21 +25,21 @@
                                 <% Department.all.each do |dept| %>
                                    <li>
                                    <%= link_to dept.department_name, employee_leaves_department_path(dept) %>
-                                </li>
+                                   </li>
                                 <% end %>
                                                                                       
                             </ul>
                         </li>
                       <% if  ReportingManager.where(:manager_id =>  current_user.employee.id) %>
-                        <li>
+                        <li id = "active2">
                             <a href="/reported_leaves"><i class="fa fa-list fa-fw"></i> Reporting Info<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <%= link_to "Reporting Leaves", leave_types_path %>
+                                     <a href="/reported_leaves">Reporting Leaves</a>
                                 </li>
                                
                                 <li>
-                                   <%= link_to 'Reporting Manager', events_path %>
+                                     <a href="/reported_employees">Reported Employees</a>
                                 </li>
                             </ul>
                         </li>

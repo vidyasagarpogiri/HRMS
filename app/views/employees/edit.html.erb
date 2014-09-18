@@ -38,7 +38,7 @@
                                         </div>
 																				<div class="form-group col-lg-6"">
                                             <label class="required">Date Of Joining</label>
-                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter text Of Joining", :class=>"form-control datepicker") %>                                           
+                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control datepicker") %>                                           
                                         </div>
                                         <% a = []%>
                                          <%  JobLocation.all.each do |j| 
@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Email Id</label>
-                                            <input class="form-control" placeholder="Enter Email id", name="email">               
+                                            <input class="form-control" placeholder="Enter Email id", name="email", value=<%= current_user.email %> disabled >
                                         </div>  
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Alternate E-Mail </label>
@@ -71,13 +71,14 @@
                                         </div>
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Department</label><br>
-                                            <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "department, form-control", :id => "disabledSelect" } %>
+                                            <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "department, form-control", :id => "disabledSelect1" } %>
                                         </div>
                                         
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Designation</label><br>
-                                            <%# f.collection_select :designation_id, Designation.all, :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control", :id=>"disabledSelect"  } %>  
-                                        </div> 
+                                             <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control", :id=>"disabledSelect"  } %>    
+                                        </div>
+                                        
                                        
 																				<div class="form-group col-lg-6"">
 																				<label class="required" >Role</label><br>
@@ -85,7 +86,7 @@
                                         </div>
                                         <div class="form-group col-lg-6"">
                                            <label class="required">Date Of Birth</label>
-                                            <%= text_field(:employee, :date_of_birth, :placeholder=>"Enter text Of Birth", :class=>"form-control") %>
+                                            <%= text_field(:employee, :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"form-control datepicker") %>
                                         </div>
                                                                                                                     
                                         
@@ -100,7 +101,7 @@
                                         </div>                                     
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Grade/Level</label><br>
-                                            <%= f.collection_select :grade_id, Grade.all, :id, :value, { :prompt => "Please Select" }, { :class => "grade form-control", :id=>"disabledSelect"  } %><br>
+                                           <%= f.grouped_collection_select :grade_id, Department.all, :grades, :department_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades form-control", :id=>"disabledSelect"  } %>
                                         </div>                                         
                                          <div class="form-group col-lg-6"">
                                             <label class="required">Upload Image:</label><br>
@@ -135,3 +136,34 @@
               $("#employee_id").val('<%= ReportingManager.find_by_employee_id(@employee.id).manager_id if ReportingManager.find_by_employee_id(@employee.id).present? %>');
                   });
           </script>
+          
+          <script>
+             
+            var designations = $('.designation').html();
+            var grades = $('.grades').html();
+            $('#disabledSelect1').change(function() {
+             var department = $('#disabledSelect1 :selected').text();
+             var  options = $(designations).filter("optgroup[label='"+department+"']").html();
+             var gradeoptions = $(grades).filter("optgroup[label='"+department+"']").html();
+             
+              if (options) {
+                $('.designation').html(options);
+                $('.designation').parent().show();
+                }
+              else {
+                $('.designation').empty();
+                $('.designation').parent().hide();
+                }
+             
+             if (gradeoptions) {
+                $('.grades').html(gradeoptions);
+                $('.grades').parent().show();
+                }
+              else {
+                $('.grades').empty();
+                $('.grades').parent().hide();
+                }
+            });
+    
+ </script>
+          

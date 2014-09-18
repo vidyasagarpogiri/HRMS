@@ -26,9 +26,9 @@
                                                                       
                                         </div>
                                         <div class="form-group">
-                                          <label>3 <label class="normalfont"> yrs Experiance</label> </label><br>
-                                          <label class="normalfont">joining: <%= @employee.date_of_join %></label><br> 
-                                          <i class="fa fa-birthday-cake fa-3x"></i> <label class="normalfont">&nbsp <%= @employee.date_of_birth %></label><br>
+                                          <label>3 <label class="normalfont"> yrs Experience</label> </label><br>
+                                          <label class="normalfont">joining: <%= format_date(@employee.date_of_join) %></label><br> 
+                                          <i class="fa fa-birthday-cake fa-3x"></i> <label class="normalfont">&nbsp <%= format_date (@employee.date_of_birth) %></label><br>
                                           <i class="fa fa-tint"></i> <label class="normalfont">&nbsp <%= @employee.blood_group.blood_group_name %></label><br>
                                         </div>  
                                         
@@ -73,7 +73,7 @@
                                             <i  class="fa fa-envelope"></i>
                                             <label class="normalfont"><%= current_user.email%></label> <br>
                                             <i  class="fa fa-mobile-phone"></i>
-                                             <label class="normalfont"><%= @employee.mobile_number %></label> 
+                                             <label class="normalfont"><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present %></label> 
                                              <% end %>
                                         </div>
                                 </div>
@@ -84,14 +84,14 @@
                                        <div class="form-group">
                                             <div class="headings" >
                                               <i class="fa fa-tags"></i>
-                                              <label><u>Experiance Details:</u></label><br>
+                                              <label><u>Experience Details:</u></label><br>
                                             </div>
                                             
                                             	<% @experience_details.each do |experience| %>																											
 
                                             <label class="normalfont"><%= experience.previous_company %></label> <br>
                                             <label class="normalfont"><%= experience.last_designation %></label><br>
-                                            <label class="normalfont">from &nbsp </label><label> <%= experience.from_date %> &nbsp</label><label class="normalfont"> to&nbsp </label><label> <%= experience.to_date %> </label><hr><br><br>
+                                            <label class="normalfont">from &nbsp </label><label> <%= format_date (experience.from_date) %> &nbsp</label><label class="normalfont"> to&nbsp </label><label> <%= format_date (experience.to_date) %> </label><hr><br><br> 
  	<% end %>
                                             
 
@@ -134,7 +134,7 @@
                                               <label><u>Promotions:</u></label><br>
                                             </div>
 
-                                            <label class="normalfont">date of Promotion : <%= promotion.date_of_promotion %> </label> <br>
+                                            <label class="normalfont">date of Promotion : <%= format_date (promotion.date_of_promotion) %> </label> <br>
                                             <label class="normalfont">Designation : <%= promotion.designation.designation_name %></label><br> 
                                               
 <% end %>

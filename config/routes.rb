@@ -49,8 +49,6 @@ Rails.application.routes.draw do
 
   end
 
-      resources :departments,  path: '/leaves/departments'
- resources :departments,  path: '/employee/departments'
 
    
   resources :designations do 
@@ -83,6 +81,7 @@ Rails.application.routes.draw do
  resources :leave_histories 
  
 get 'reported_leaves' => "leave_histories#reported_leaves"
+get 'reported_employees' => "leave_histories#reported_employees"
 get 'applied_leaves' => "leave_histories#applied_leaves"
 post 'accept' => "leave_histories#accept"
 post 'reject' => "leave_histories#reject"

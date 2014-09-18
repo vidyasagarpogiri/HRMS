@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-  layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show ]
+  layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index]
 	
 	
 	  before_filter :other_emp_view, :except => [:index, :profile]
@@ -89,9 +89,10 @@ class EmployeesController < ApplicationController
 			redirect_to show_exit_employee_path(@employee.id)
 	end
   
+
   
   def attachment_form_new
-    @emp_get_attachements = Employee.find(params[:id]).employee_attachments
+   @emp_get_attachements = Employee.find(params[:id]).employee_attachments
     @emp_get_attachements = [] if Employee.find(params[:id]).employee_attachments.nil?
     @employee = Employee.find(params[:id])
     @employee_attachments = @employee.employee_attachments.build
