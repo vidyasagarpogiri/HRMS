@@ -1,5 +1,5 @@
 class DepartmentsController < ApplicationController
- layout "leave_template"
+ layout "leave_template", only: [:leaves, :index, :employee_leaves, :holiday_list]
  
   def index
     @departments = Department.all
@@ -55,6 +55,7 @@ class DepartmentsController < ApplicationController
     #raise params.inspect
     @department = Department.find(params[:id])
     @employees = @department.employees
+    @leave_policy = @department.leave_policy
    end 
    def department_index
        @departments = Department.all

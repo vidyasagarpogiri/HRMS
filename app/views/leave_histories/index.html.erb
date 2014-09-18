@@ -46,13 +46,10 @@
 													<td> <%=f.days %></td>
 													<td> <%= f.reason %>  </td>
 													<td><%=f.leave_type.type_name %></td>													
-<<<<<<< HEAD
-													<td><%=total_balance_leaves(f.employee) %></td><!-- TODO-->
-													<td><%=total_used_leaves(f.employee)%></td><!-- TODO-->
-=======
+
 												<!--<td><%#total_balance_leaves(f.employee) %></td>--><!-- TODO-->
 													<!--<td><%#total_used_leaves(employee)%></td>--><!-- TODO-->
->>>>>>> 186ef3535148e6b9f5945dcd770eeac24e93feaa
+
 													<td><%=f.status %></td>
 													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>								 
 												</tr>																						

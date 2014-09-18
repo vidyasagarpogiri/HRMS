@@ -18,7 +18,7 @@
           <thead>
 						<tr>
               <th>Personal leaves Per Year</th>
-              <th>Sick Leaves per Year</th>
+             
               <th>Minimum Carry forword Leaves</th>
               <th></th>
             </tr>
@@ -26,8 +26,7 @@
            <tbody>          
              <tr>
               <% unless @leave_policy.nil? %>
-								<td><%= @leave_policy.sl_this_year%></td>
-                <td><%= @leave_policy.pl_this_year %></td>
+								<td><%= @leave_policy.pl_this_year %></td>
                 <td> <%= @leave_policy.eligible_carry_forward_leaves %></td>
                 <td><%= link_to 'Edit', edit_department_leave_policy_path(@department, @leave_policy), :class => "btn btn-success pull-right" %><td> 
               <% end %>
