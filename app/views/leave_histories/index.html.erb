@@ -3,22 +3,20 @@
 
          <div id="page-wrapper">
 
-            <div class="page-header">My Leaves History</div>
-
-              <label style="margin-top:-50px;" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path(), :class => "fa fa-plus" %></label>
+            <div class="page-header">My Leaves</div>
+              <label style="margin-top:-50px;" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %></label>
                       <div class="panel-body">                       
                         <div class="form-group col-lg-4">
-                          <div class="page-header">Balence Leaves :
-                          <%  @leaves.each do |f| %>
-                          <%= total_balance_leaves(f.employee) %>
-                          <% end %>
-                          </div>
+                          <label> Balance Leaves : </label>
+                         
+                          <%= pluralize(total_balance_leaves(@employee), 'day') %>
+                         
                         </div>                                            
                         <div class="form-group col-lg-4">
-                         <div class="page-header">Used Leaves :
-                          <%  @leaves.each do |f| %>
-                          <%= total_used_leaves(f.employee)%> 
-                          <% end %>         
+                          <label>Used Leaves : </label>
+                         
+                          <%= pluralize(total_used_leaves(@employee), 'day') %> 
+                         
                         </div>      	                																                          
                       </div>
                       </div>
@@ -144,7 +142,7 @@
 								
 								
 								
-									 <div class="page-header"> Curret Leave History</div> 							
+									 <div class="page-header"> Leave History</div> 							
                    <div class="panel panel-default">
                       <div class="panel-heading">
                           Current Status 

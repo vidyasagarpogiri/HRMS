@@ -7,11 +7,8 @@ class LeaveHistoriesController < ApplicationController
 
 	def index
 		@leave =current_user.employee.department.leave_policy
-		#raise @leave.inspect
 		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD').page(params[:page]).per(2)
-		#raise @leaves.inspect
 		@leave_histories = current_user.employee.leave_histories.where("status != ?", "HOLD" ).page(params[:page]).per(3)
-		#raise @leave_histories.inspect
 		@employee = current_user.employee
 	end
 
