@@ -1,55 +1,25 @@
-<!-- <<<<<<< HEAD
-   <div id="page-wrapper"><br>
-   <div class="page-header">
-   Total Leaves Per Year : <%#@leave.pl_this_year.to_i %> <br>
-   Available Leaves For You: <%# total_balance_leaves(current_user.employee) %>
-   </div>
-              
-              
-         
-              
-               <div class="add">      
-						      <label style="margin-top:-5px;" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path(), :class => "fa fa-plus " %> </label> 
-						   </div>
-						   
-						   
-						   
-    
-                <div class="page-header">Leaves Waiting for Approval</div>               
-                 <div class="panel panel-default"> -->
+
                
 
          <div id="page-wrapper">
             <div class="page-header">Leaves Waiting for Approval</div>
-              <label style="margin-top:-50px;" class = "pull-right"> <%= link_to 'Remaining Leaves', :class => "fa fa-plus", :id =>"remaining_leaves" %> &nbsp 
-              <%= link_to 'Apply Leave',  new_leave_history_path(), :class => "fa fa-plus" %></label>
-             
-                <div class="row" id="leaves_list">
-                  <div class="col-lg-12">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                           Reamianing Leaves 
-                      </div>
+              <label style="margin-top:-50px;" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path(), :class => "fa fa-plus" %></label>
                       <div class="panel-body">                       
-                        <div class="form-group">
+                        <div class="form-group col-lg-4">
                           <label> Balance Leaves : </label>
                           <%  @leaves.each do |f| %>
                           <%= total_balance_leaves(f.employee) %>
                           <% end %>
                         </div>                                            
-                        <div class="form-group">
+                        <div class="form-group col-lg-4">
                           <label>Used Leaves : </label>
                           <%  @leaves.each do |f| %>
                           <%= total_used_leaves(employee)%> 
                           <% end %>         
                         </div>      	                																      
                       <br>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      </div>                                                 
                <div class="panel panel-default"> 
-                       
                   <div class="panel-heading">
                      Leaves Waiting for Approval
                   </div>
@@ -77,8 +47,12 @@
 													<td> <%=f.days %></td>
 													<td> <%= f.reason %>  </td>
 													<td><%=f.leave_type.type_name %></td>													
+
+												
+
 												<!--<td><%#total_balance_leaves(f.employee) %></td>--><!-- TODO-->
 													<!--<td><%#total_used_leaves(employee)%></td>--><!-- TODO-->
+
 													<td><%=f.status %></td>
 													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>								 
 												</tr>																						
@@ -223,13 +197,5 @@
         </div>
         <!-- /#page-wrapper -->
         
-        <script>
-        $(function(){ 
-        $("#leaves_list").hide(); 
-	        $("#remaining_leaves").click(function(){
-			        $("#leaves_list").toggle();
-	        });
-	        });
-	     </script>
-
+      
 

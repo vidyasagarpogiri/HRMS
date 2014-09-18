@@ -1,5 +1,5 @@
 class LeaveHistoriesController < ApplicationController
- before_filter :hr_view,  only: ["new", "edit"]
+ #before_filter :hr_view,  only: ["new", "edit"]
   #before_filter :other_emp_view
   layout "leave_template"
  	
@@ -98,12 +98,14 @@ class LeaveHistoriesController < ApplicationController
 		redirect_to reported_leaves_path
 	end
 
-   def employee_leaves
-   raise params.inspect
+  def employee_leaves
     @employee = current_user.employee.department
-    
     @leaves = LeaveHistory.order('created_at DESC').page(params[:page]).per(2)
    end
+   
+  def reported_employees
+    #ReportingManager.where(:manager_id => current_user.employee.id).employees 
+  end
 
 	private
   
