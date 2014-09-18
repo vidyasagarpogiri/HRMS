@@ -15,7 +15,7 @@
                                 <div class="col-lg-6">
                                    <div class="errors">
                                    </div>
-                                   <%= @education.errors.full_messages.first if @education.errors.any? %>
+                                   
                                     <%= form_for ([@employee, @education]), :remote => true do |f| %>
                                         <div class="form-group">
                                             <label class="required" >Name Of Graduation</label>

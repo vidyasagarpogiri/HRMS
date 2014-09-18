@@ -21,7 +21,7 @@
                                 <% if @leave_types.present? %>
                                     <% @leave_types.each do |leave| %>
                                         <div class="form-group">
-                                            <label style="font-weight:normal;">Leave Type :</label>
+                                            <label style="font-weight:normal;"></label>
                                             <label><%= leave.type_name %> </label>
                                             <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                               <li><%= link_to "Edit",  edit_leave_type_path(leave), :class=>" btn btn-success " %> </li>

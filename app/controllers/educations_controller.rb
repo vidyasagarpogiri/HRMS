@@ -22,7 +22,7 @@ class EducationsController < ApplicationController
                
     @new_education = Education.create(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(Employee_id: params[:employee_id]))
     @errors = @new_education.errors.full_messages
-    # raise @errors.inspect
+    #raise @errors.inspect
 
   
     
