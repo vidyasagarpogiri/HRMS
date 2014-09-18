@@ -37,7 +37,8 @@
                  <ul class="nav nav-pills">
                   <% if current_user.department == Department::HR %>
                        <li>                   
-                          <%= link_to "Employee Management", employees_path %>
+                          <a href="/employees" >Employee Management</a>
+                          <%# link_to "Employee Management", employees_path %>
                        </li>
                        <li>
                           <%= link_to "Leave management", leave_histories_path %>
