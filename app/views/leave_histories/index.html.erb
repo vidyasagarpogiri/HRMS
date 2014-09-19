@@ -18,10 +18,7 @@
                           <%= pluralize(total_used_leaves(@employee), 'day') %>                          
                         </div>      	                																                          
                       </div>
-                      
-                      
-                      
-                      
+                                                                                        
 
             <div class="page-header">Leaves Waiting for Approval</div>                                                 
                <div class="panel panel-default"> 
@@ -37,13 +34,16 @@
 													<th> Date </th>
 													<th> No.of Days </th>
 													<th> Reason </th>
+
 													<th> Leave Type </th>				
 													<th>Status </th>
 													<th colspan=2>Action</th>												
+
 												</tr>
 											</thead>
 											 <%  @leaves.each do |f| %>											
 											<tbody>												
+
 												<tr>               
 												 	
 													<td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													

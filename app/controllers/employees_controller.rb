@@ -51,7 +51,6 @@ class EmployeesController < ApplicationController
   end
   
   def update
-   #raise params.inspect
     @employee = Employee.find(params[:id])
    
     if params["employee_attachments"].present?
@@ -64,20 +63,22 @@ class EmployeesController < ApplicationController
      
          #redirect_to attachment_show_employee_path(@employee)
     end
-    else
-     render 'attachment_form_new'
-     
     end
+    
     if params[:employee].present? 
+    
       if @employee.update(params_employees) 
+      
         @report = @employee.reporting_managers.first
         if @report.present?
           @report.update(:manager_id => params[:reporting_id]) 
+          
         else
           @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
         end  
-		 redirect_to @employee
+      redirect_to @employee
 		  else
+		
 		    render 'edit'
       end
      

@@ -1,7 +1,7 @@
 class DesignationsController < ApplicationController
 
   def index
-    @designations = Designation.all
+    @designations = Designation.all.page(params[:page]).per(4)
   end
 
   def new
