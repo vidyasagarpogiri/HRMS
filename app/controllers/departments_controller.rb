@@ -71,7 +71,7 @@ class DepartmentsController < ApplicationController
     #raise @dept.inspect
     @employees = @dept.employees
     #raise @employees.inspect
-    @leaves = @employees.map(&:leave_histories).flatten if @employees.present?
+    @leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?
    
     #raise @leaves.flatten.inspect
               #flatten makes array of arrys into a single array
