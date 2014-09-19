@@ -18,10 +18,7 @@
                           <%= pluralize(total_used_leaves(@employee), 'day') %>                          
                         </div>      	                																                          
                       </div>
-                      
-                      
-                      
-                      
+                                                                                        
 
             <div class="page-header">Leaves Waiting for Approval</div>                                                 
                <div class="panel panel-default"> 
@@ -38,16 +35,14 @@
 													<th> Day(s) </th>
 													<th> Reason </th>
 													<th> Leave Type </th>
-
 													<!--<th> Remaining Leaves </th>-->
-												<!--	<th> Used Leaves </th>				-->										
+												  <!--	<th> Used Leaves </th>				-->										
 													<th>Status </th>												
 												</tr>
 											</thead>
 											 <%  @leaves.each do |f| %>											
 											<tbody>												
-												<tr>               
-												 	
+												<tr>               												 	
 													<td><%= f.from_date %> - <%= f.to_date%> </td>													
 													<td> <%=f.days%></td>
 													<td> <%= f.reason %>  </td>
