@@ -48,7 +48,7 @@ class EmployeesController < ApplicationController
   end
   
   def update
-   
+   #raise params.inspect
     @employee = Employee.find(params[:id])
    
     if params["employee_attachments"].present?
