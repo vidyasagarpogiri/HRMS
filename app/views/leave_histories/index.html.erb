@@ -1,25 +1,29 @@
         <div id="page-wrapper">
 
             <div class="page-header">My Leaves</div>
-              <label style="margin-top:-50px;" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %></label>
-
-                      <div class="panel-body">                       
+              <label style="margin-top:-50px;" class = "remaining_leaves pull-right">
+                  <div id="show">
+                  <a href="#" ><i class="fa fa-dot-circle-o"></i> Remaining Leaves</a>
+                  <%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %></div>
+                  
+                  </label>
+               
+                      <div class="panel-body" id="list">                       
                         <div class="form-group col-lg-4">
-                          <label> Balance Leaves : </label>
-                         
-                          <%= pluralize(total_balance_leaves(@employee), 'day') %>
-                         
+                          <label> Balance Leaves : </label>                         
+                          <%= pluralize(total_balance_leaves(@employee), 'day') %>                         
                         </div>                                            
                         <div class="form-group col-lg-4">
-                          <label>Used Leaves : </label>
-                         
-                          <%= pluralize(total_used_leaves(@employee), 'day') %> 
-                         
+                          <label>Used Leaves : </label>                         
+                          <%= pluralize(total_used_leaves(@employee), 'day') %>                          
                         </div>      	                																                          
                       </div>
+                      
+                      
+                      
+                      
 
-                      <div class="page-header">Leaves Waiting for Approval</div>                                                 
-
+            <div class="page-header">Leaves Waiting for Approval</div>                                                 
                <div class="panel panel-default"> 
                   <div class="panel-heading">
                      Leaves Waiting for Approval
@@ -194,6 +198,17 @@
                 <!-- /..panel-default  -->           
         </div>
         <!-- /#page-wrapper -->
-        
+                          <script>
+                         
+                       
+                             $("#list").hide();
+                            $("#show").click(function(){
+                              $("#list").toggle();
+                            }); 
+                         
+                            
+                     
+                       </script>        
+                      
       
 
