@@ -42,7 +42,7 @@ class EmployeesController < ApplicationController
   def profile
      @employee = Employee.find(params[:id])
      if @employee.educations.present?
-     @specialization = Education.find_by_year_of_pass( @employee.educations.map(&:year_of_pass).max.to_i).specilization
+     @specialization = @employee.educations.order('year_of_pass').first
      end
   end
   
