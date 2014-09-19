@@ -15,11 +15,10 @@
                              <% @designations.each do |designation| %>
 											       <thead>											      
 												        <tr>
-													         <th><%= designation.designation_name %></th>	
+													         <th><%= link_to designation.designation_name, designation_path(designation)%></th>	
 													         <th>
 													            <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                         <li><%= link_to "Edit",edit_designation_path(designation.id),:class => "btn btn-success " %></li>
-                                        <li><%= link_to "Show",designation_path(designation.id),:class => "btn btn-info "%></li>
                                         <li><%= link_to "Delete",designation_path(designation.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
                                       </ul>
                                    </th>							      		
