@@ -12,12 +12,15 @@
                         <div class="panel-body">
                             <div class="row">
                             <div class="col-lg-12" >
-                                    <div class="form-group " style="color:#FF4D4D;">
-                                      <% @employee.errors.full_messages.each do |error| %>
-                                        <label class="col-lg-3"><%= error %></label>
+                                    <% @employee.errors.full_messages.each do |error| %>
+                                        <!--<label class="col-lg-3"></label>-->
+                                        <div class="alert alert-danger alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                         <%= error %>
+                                         </div>
                                       <% end %>                                      
-                                   </div>                                   
-                                </div>
+                                     </div>                                   
+                                  </div>
                             <%= form_for(@employee) do |f| %>
                                    <div class="col-lg-12">
                                         <div class="form-group col-lg-6">                                        

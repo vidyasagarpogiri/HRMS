@@ -32,7 +32,7 @@
 											<tbody>
 												<tr>               
 													<td>
-													    <% if current_user.employee.avatar_url.present? %>
+													    <% if  employee.avatar.present? %>
 												      <%= image_tag(employee.avatar, :alt => "image", :height => 75, :width => 75, :class => "center") %>
 												      <% else %>
 												      <img src="/assets/employee-icon.jpg" alt="hii" style="width:75px;height:75px;padding-left=10px;" ></img>
