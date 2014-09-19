@@ -22,17 +22,22 @@
                                 <div class="form-group">
                                     <label class="required" >Reason</label>
                                     <%= f.text_area :reason,  :class =>"form-control", :placeholder => "Enter Content" %>          
-                                </div>                                                                                                 
+
+                                </div>
+                                       
+                                                                 
+                                <div class="col-lg-6" style="padding:0px;">  
                                  <% unless (@leave_history.from_date.to_date < Date.today) %>                                      
-                                  <div class="form-group col-lg-6">
+                                  <div class="form-group col-lg-4" style="padding:0px;">
+
                                  
                                       <label class="required" >From</label>
-                                      <%= f.text_field :from_date, :id => "idnm1", :class => "form-control datepicker" %>
+                                      <%= f.text_field :from_date, :id => "idnm1", :class => "form-control datepicker3" %>
                                   </div>  
                                  <% end %>                                      
                                   <div class="form-group col-lg-6">
                                       <label class="required" >To</label>
-                                      <%= f.text_field :to_date, :id => "idnm2", :class => "form-control datepicker" %>
+                                      <%= f.text_field :to_date, :id => "idnm2", :class => "form-control datepicker3" %>
                                   </div><br><br>
                                     <button type="submit" class="btn btn-success pull-right" style="margin-left:px;"> Apply </button>
                                  </div> <!-- /.col-lg-6(nested) -->                                         
@@ -59,12 +64,12 @@
           <!-- /#page wrapper -->
 
 
-
-
 <script>
 $(function() {
-  $( "#idnm1" ).datepicker();
-  $( "#idnm2" ).datepicker();
+  $( ".datepicker3").datepicker({
+     minDate: '0', 
+     dateFormat: 'dd/mm/yy'
+  });
 });
 </script>
 

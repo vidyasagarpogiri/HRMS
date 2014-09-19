@@ -32,28 +32,27 @@
 
 												<tr>																																						
 													<th> Date </th>
-													<th> Day(s) </th>
+													<th> No.of Days </th>
 													<th> Reason </th>
-													<th> Leave Type </th>
-													<!--<th> Remaining Leaves </th>-->
-												  <!--	<th> Used Leaves </th>				-->										
-													<th>Status </th>												
+
+													<th> Leave Type </th>				
+													<th>Status </th>
+													<th colspan=2>Action</th>												
+
 												</tr>
 											</thead>
 											 <%  @leaves.each do |f| %>											
 											<tbody>												
-												<tr>               												 	
-													<td><%= f.from_date %> - <%= f.to_date%> </td>													
-													<td> <%=f.days%></td>
+
+												<tr>               
+												 	
+													<td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
+													<td>  <%= pluralize(f.days, 'day') %>  </td>
 													<td> <%= f.reason %>  </td>
 													<td><%=f.leave_type.type_name %></td>													
-
-												<!--<td><%#total_balance_leaves(f.employee) %></td>--><!-- TODO-->
-													<!--<td><%#total_used_leaves(employee)%></td>--><!-- TODO-->
-
 													<td><%=f.status %></td>
-													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>
-													<td><%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"}%></td>								 
+													<td><%= link_to "Edit", edit_leave_history_path(f), :class => "btn btn-info" %>
+													<%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"}, :class => "btn btn-danger"%></td>								 
 												</tr>																						
 											</tbody>
 								      <% end %>
@@ -90,27 +89,24 @@
 											<thead>
 												<tr>
 												  <th>Date</th>
-													<th>Day(s)</th>
+													<th>No.of Days</th>
 													<th>Reason</th>
 													<th>Leave Type</th>																							
 													<th>Status</th>
-												  <!--<th> Remaining Leaves </th>-->
-													<!--<th> Used Leaves </th>-->
+													<th colspan=2>Action</th>								
 												</tr>
 											</thead>
 										 <%  @leave_histories.each do |f| %>	
 										 <% unless(f.from_date.to_date < Date.today) %>									
 											<tbody>												
 												<tr>               
-												 	<td><%= f.from_date %> - <%= f.to_date%> </td>													
-													<td> <%=f.days %> </td>
+												 	<td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
+													<td>  <%= pluralize(f.days, 'day') %>  </td>
 													<td> <%= f.reason %>  </td>
 													<td><%=f.leave_type.type_name %> </td>													
 													<td><%=f.status %></td>
-													<!--<td><%#total_balance_leaves(f.employee) %></td>--><!-- TODO-->
-													<!--<td><%#total_used_leaves(employee)%></td>--><!-- TODO-->
-													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>
-													<td><%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"} %></td>								 
+													<td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info" %>
+													<%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"} , :class => "btn btn-danger"%></td>		 
 												</tr>																						
 											</tbody>
 								      <% end %>
@@ -151,27 +147,24 @@
 												<tr>
 												  
 													<th> Date </th>
-													<th> Day(s) </th>
+													<th>No.of Days</th>
 													<th> Reason </th>
-													<th> Leave Type </th>
-													<!--<th> Remaining Leaves </th>-->
-													<!--<th> Used Leaves </th>-->														
+													<th> Leave Type </th>											
 													<th> Status</th>
+													<th colspan=2>Action</th>							
 												 </tr>
 											</thead>
 										 <%  @leave_histories.each do |f| %>
 										 		 <% if((f.from_date.to_date <= Date.today && f.to_date.to_date >= Date.today) || (f.to_date.to_date < Date.today)) %>									
 											<tbody>												
 												<tr>               
-												 	<td><%= f.from_date %> - <%= f.to_date%> </td>													
-													<td> <%=f.days %> </td>
+												  <td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
+													<td>  <%= pluralize(f.days, 'day') %>  </td>
 													<td> <%= f.reason %>  </td>
 													<td><%=f.leave_type.type_name %> </td>													
-													<!--<td><%#total_balance_leaves(f.employee) %></td>--><!-- TODO-->
-													<!--<td><%#total_used_leaves(employee)%></td>--><!-- TODO-->
 													<td><%=f.status %></td>
 													<% unless f.to_date.to_date <= Date.today %>
-													  <td><%= link_to "Edit", edit_leave_history_path(f) %></td>								 
+													  <td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info"  %></td>								 
 													<% end %>
 												</tr>																						
 											</tbody>
