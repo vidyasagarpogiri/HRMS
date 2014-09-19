@@ -2,12 +2,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header">Contact Info</div>
-                    <% if @address1.nil? %>
-                      <a href="/employees/<%=params[:employee_id] %>/addresses/new?address_type=0" style="margin:20px;">Add Present Address</a>
-                    <% end %>
-                    <% if @address2.nil? %>
-                      <a href="/employees/<%=params[:employee_id] %>/addresses/new?address_type=1">Add Permanent Address</a>
-                    <% end %>
+                      <div class="pull-right"> 
+                        <% if @address1.nil? %>
+                          <a href="/employees/<%=params[:employee_id] %>/addresses/new?address_type=0" style="margin:20px;">Add Present Address</a>
+                        <% end %>
+                        <% if @address2.nil? %>
+                          <a href="/employees/<%=params[:employee_id] %>/addresses/new?address_type=1">Add Permanent Address</a>
+                        <% end %>
+                      </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -24,7 +26,7 @@
                                         <li><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right" %></li>
                                         <% end %>
                                     </ul>
-                          
+                                    
                                         <div class="form-group">
                                             <label style="font-weight:normal;">Address Line 1:</label>
                                             <%= @address1.line %>                                  
@@ -53,9 +55,16 @@
 																				 <div class="form-group">
                                             <label style="font-weight:normal;">Zipcode:</label>
                                            <%= @address1.zipcode %>
-                                        </div>                                
+                                        </div> 
+                                                                      
                                 </div>
+                                  <% else %>
+                                    <div class="alert alert-success alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                         You have No Present Address to display. 
+                                    </div>
 																	<% end %>
+																	
                                 <!-- /.col-lg-6 (nested) --> 
                                 <div class="col-lg-1">
                                 </div>
@@ -97,7 +106,12 @@
                                            <%= @address2.zipcode %>
                                         </div>
                                 </div>
-                                <% end %>                                                                                    
+                                <% else %>
+                                    <div class="alert alert-success alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                         You have No Permanent Address to display. 
+                                    </div>
+																	<% end %>                                                                                   
                                 <!-- /.col-lg-6 (nested) -->
                          
                             </div>													
