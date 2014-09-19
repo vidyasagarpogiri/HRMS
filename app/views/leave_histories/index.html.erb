@@ -58,7 +58,7 @@
 
 													<td><%=f.status %></td>
 													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>
-													<td><%= link_to "Delete",  f, method: :delete, data: {confirm: "You sure?"}%></td>								 
+													<td><%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"}%></td>								 
 												</tr>																						
 											</tbody>
 								      <% end %>
@@ -104,7 +104,7 @@
 												</tr>
 											</thead>
 										 <%  @leave_histories.each do |f| %>	
-										 <% unless(f.from_date.to_date == Date.today) %>									
+										 <% unless(f.from_date.to_date < Date.today) %>									
 											<tbody>												
 												<tr>               
 												 	<td><%= f.from_date %> - <%= f.to_date%> </td>													
@@ -115,7 +115,7 @@
 													<!--<td><%#total_balance_leaves(f.employee) %></td>--><!-- TODO-->
 													<!--<td><%#total_used_leaves(employee)%></td>--><!-- TODO-->
 													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>
-													<td><%= link_to "Delete",  f, method: :delete, data: {confirm: "You sure?"} %></td>								 
+													<td><%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"} %></td>								 
 												</tr>																						
 											</tbody>
 								      <% end %>
