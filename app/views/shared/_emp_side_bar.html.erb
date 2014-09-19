@@ -1,7 +1,7 @@
                 <ul class="nav" id="side-menu"><!-- emp sidebar -->
                         <li>
                            <div  class="profile-pic" > 
-                              <h4><center> <%= @emp.full_name if @emp.present? %> </center></h4>
+                              <h4><center> <%= current_user.employee.full_name if current_user.employee.present? %> </center></h4>
                                <% if current_user.employee.avatar_url.present? %>
 
                               <a href="#" >
@@ -13,7 +13,7 @@
                               </a>
                               <% end %>
                            </div>                      
-                        </li>
+                        </li><br>
                         <li>
                             <%= link_to 'MyProfile', employee_path(current_user.employee.id), :class => "fa fa-user fa-fw" %>
                         </li>
