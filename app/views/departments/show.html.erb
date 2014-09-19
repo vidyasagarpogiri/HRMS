@@ -7,18 +7,7 @@
   
   <div class="row"> 
     <div class=" col-lg-12 ">
-     <div class="panel panel-default">
-
-    
-
-
-                    
-                    
-                    
-                    
-	<div class="row">
-    <div class="col-lg-12">
-
+      <div class="panel panel-default">
           <div class="panel-heading">
              List Of Employees
              <label style="font-weight:normal;padding:-20px;" class = "pull-right"><a><i class="fa fa-plus "></i></a>&nbsp<%= link_to "Add New Employee ", add_employee_department_path(@department) %></label>
@@ -36,11 +25,13 @@
 							<% @employees.each do |employee| %>
 									<tbody>
 										<tr>
-										<th class="center"><%= link_to employee.first_name, employee_path(employee) %></th>	
-										<th class="center"><%= employee.user.email %></th>
-										<% if employee.designation.present? %>
-										<th class="center"><%= employee.designation.designation_name %></th>	
-										<% end %>
+										  <th><%= link_to employee.first_name, employee_path(employee) %></th>	
+										  <th ><%= employee.user.email %></th>										
+										  <th >
+										    <% if employee.designation.present? %>
+										      <%= employee.designation.designation_name %>	
+										    <% end %>
+										  </th>
 										</tr>
 									</tbody>
 							<% end %>
