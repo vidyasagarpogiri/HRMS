@@ -11,8 +11,10 @@ class GradesController < ApplicationController
   end
 
   def create
-    @grade = Grade.create(grade_params)
-    redirect_to @grade
+    
+    @designation = Designation.find(params[:grade][:designation_id])
+    @grade = @designation.grades.create(grade_params)
+    redirect_to @designation 
   end
 
   def show
