@@ -3,10 +3,10 @@
                 <div class="col-lg-12">
                     <div class="page-header">Contact Info</div>
                     <% if @address1.nil? %>
-                      <a href="/employees/<%=params[:employee_id] %>/addresses/new?address_type=1" style="margin:20px;">Add Present Address</a>
+                      <a href="/employees/<%=params[:employee_id] %>/addresses/new?address_type=0" style="margin:20px;">Add Present Address</a>
                     <% end %>
                     <% if @address2.nil? %>
-                      <a href="/employees/<%=params[:employee_id] %>/addresses/new?address_type=0">Add Permanent Address</a>
+                      <a href="/employees/<%=params[:employee_id] %>/addresses/new?address_type=1">Add Permanent Address</a>
                     <% end %>
                 </div>
                 <!-- /.col-lg-12 -->

@@ -14,8 +14,8 @@ class AddressesController < ApplicationController
   def new
     @employee = Employee.find(params[:employee_id])
     @address = Address.new
-   	@address_type_value, @address_type = false, "Permanent" if params[:address_type]=="0"
- 		@address_type_value, @address_type = true, "Present" if params[:address_type]=="1"
+   	@address_type_value, @address_type = false, "Present" if params[:address_type]=="0"
+ 		@address_type_value, @address_type = true, "Permanent" if params[:address_type]=="1"
   end
   
   def create
