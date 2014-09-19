@@ -9,20 +9,22 @@ class AddressesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
 		@address1 = @employee.addresses.where(:address_type=>0).first
 		@address2 = @employee.addresses.where(:address_type=>1).first
-		@address = Address.new
   end
   
   def new
-    @address = Address.new
     @employee = Employee.find(params[:employee_id])
+    @address = Address.new
+   	@address_type_value, @address_type = false, "Present" if params[:address_type]=="0"
+ 		@address_type_value, @address_type = true, "Permanent" if params[:address_type]=="1"
   end
   
   def create
 		@employee = Employee.find(params[:employee_id])
+   	
    	@address = @employee.addresses.create(params_present_address)
-		@address1 = @employee.addresses.create(:line => params[:line3], :line1 => params[:line4], :city => params[:city1], :state => params[:state1], :country => params[:country1], :zipcode => params[:zipcode1], :address_type => 1)
-		if @address.present?
-		redirect_to employee_addresses_path
+		
+		if @address.present? &&  !@address.errors.present?
+		  redirect_to employee_addresses_path
 		else
 	 render 'new'
  	end
@@ -75,9 +77,8 @@ class AddressesController < ApplicationController
   private
   
   def params_present_address
-    params.require(:address).permit(:line, :line1, :city, :state, :country, :zipcode)
+    params.require(:address).permit(:line, :line1, :city, :state, :country, :zipcode, :address_type)
   end
-  
- 
+   
   
 end  

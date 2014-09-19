@@ -23,7 +23,7 @@
 
                             <a href="/departments/holiday_list"><i class="fa fa-calendar fa-fw"></i> Holiday-Calender</a>
                         </li>
-                          <% if  ReportingManager.where(:manager_id =>  current_user.employee.id) %>
+                          <% if  ReportingManager.where(:manager_id =>  current_user.employee.id).present?  %>
                             <li id = "active2">
                                 <a href="/reported_leaves"><i class="fa fa-list fa-fw"></i> Reporting Info<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">

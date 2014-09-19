@@ -15,9 +15,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                <div class="verticalLine">
-                                    <form role="form">
-                                    <br>
+                                
                                     <label><u>Present Address</u></label>
 																	<% if current_user.department == Department::HR %>
                                     <%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right"%>
