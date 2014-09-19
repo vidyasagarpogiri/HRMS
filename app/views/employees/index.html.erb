@@ -44,7 +44,7 @@
 	                         <% else %>
                         <td><%= link_to employee.full_name, profile_employee_path(employee) %></td>
                            <% end %>
-													<td class="hidden-xs"><%= current_user.department %></td>
+													<td class="hidden-xs"><%= employee.department.department_name if employee.department.present? %></td>
 
 													<td class="hidden-xs">
 													
