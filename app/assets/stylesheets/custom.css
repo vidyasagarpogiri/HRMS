@@ -186,3 +186,9 @@ color:#fff;
   font-family: proxima-nova, arial, sans-serif!important;
   color:black;
 }
+
+.remaining_leaves a{
+font-weight:normal;
+font-size:15px; 
+padding-right:15px;
+}

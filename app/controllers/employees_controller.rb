@@ -11,7 +11,7 @@ class EmployeesController < ApplicationController
 
   def index
 
-    @employees =  Employee.all.page(params[:page]).per(2)
+    @employees =  Employee.all.page(params[:page]).per(6)
   end
 
  
@@ -48,7 +48,7 @@ class EmployeesController < ApplicationController
   end
   
   def update
-   
+   #raise params.inspect
     @employee = Employee.find(params[:id])
    
     if params["employee_attachments"].present?
@@ -56,12 +56,15 @@ class EmployeesController < ApplicationController
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
       #raise a.inspect
         @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
+        redirect_to attachment_show_employee_path(@employee)  
       end
-      render 'attachment_form_new'
+     
          #redirect_to attachment_show_employee_path(@employee)
     end
-    redirect_to attachment_show_employee_path(@employee)  
-   end
+    else
+     render 'attachment_form_new'
+     
+    end
     if params[:employee].present? 
       if @employee.update(params_employees) 
         @report = @employee.reporting_managers.first
