@@ -181,3 +181,8 @@ margin-left:50px;
 #nav a:hover {
 color:#fff;
 }
+
+#font a{
+  font-family: proxima-nova, arial, sans-serif!important;
+  color:black;
+}
