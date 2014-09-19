@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    authenticated :user do
-    root 'welcome#dashboard', :as => "authenticated_root"
+    root 'employees#index', :as => "authenticated_root"
    end
     root 'welcome#index'
    
