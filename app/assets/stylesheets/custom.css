@@ -137,7 +137,7 @@ nav.pagination {
 }
 
 .border{
-box-shadow: 0 0 10px #000000;
+box-shadow: 0 0 5px #000000;
 border-radius:3px; 
 margin-bottom:20px;
 }
