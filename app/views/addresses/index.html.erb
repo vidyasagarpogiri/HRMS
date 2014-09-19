@@ -67,14 +67,23 @@
                                         </div> 
                                                                       
                                 </div>
+
 																	<% end %>
 																	
-                                <!-- /.col-lg-6 (nested) --> 
+													</div><!-- panel-body -->                                  
+                      </div><!-- panel-panel-default -->
+									 </div><!-- /.col-lg-5 (nested) --> 
                                 <div class="col-lg-1">
                                 </div>
-                              	<% if @address2.present? %>
-                                <div class="col-lg-5" style="box-shadow: 0 0 1px #000000;border-radius:3px;padding:10px;">
-                                    <label><u>Permanent Address</u></label>                                                                      
+                                
+                   <div class="  col-lg-5">
+
+                              	<% if @address2.present? %>    
+              	                       <div class="border panel panel-default">
+                                    <div class="panel-heading" style="font-weight:bold;">
+                                        Permanent Address
+                                      </div>
+                                      <div class="panel-body">                                                                 
                                     <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                        <% if current_user.department == Department::HR %>
                                         <li><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %></li>
@@ -109,11 +118,16 @@
                                             <label style="font-weight:normal;">Zipcode:</label>
                                            <%= @address2.zipcode %>
                                         </div>
+
                                 </div>
+                                  </div><!-- /.col-lg-5 (nested) -->
+                                                  </div>													
+                                    
 																	<% end %>                                                                                   
                                 <!-- /.col-lg-6 (nested) -->
-                         
-                            </div>													
+
+                                </div><!-- panel-body --> 
+                            </div><!-- panel-default --> 
                             <!-- /.row (nested) -->
                         </div>
                         <!-- /.panel-body -->
@@ -122,4 +136,5 @@
             </div>
             </div><!--Bala-->
             <!-- /.row -->
+
         </div>
