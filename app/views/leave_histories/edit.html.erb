@@ -15,7 +15,7 @@
                                 <div class="col-lg-6 ">
                                    <%= form_for ([@employe, @leave_history]) do |f| %>
                                    
-                                  <div class="form-group">
+                                  <div class="form-group ">
                                     <label class="required">Leave Type</label><br>
                                     <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name, { :prompt => "Please Select" }, { :class => "leave_type, form-control", :id => "disabledSelect" } %> 
                                 </div> 
@@ -39,6 +39,7 @@
                                
                                       
                             </div>  
+
                                         
                                     <% end %>
                                 </div>
