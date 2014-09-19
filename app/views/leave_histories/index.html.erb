@@ -1,25 +1,29 @@
         <div id="page-wrapper">
 
             <div class="page-header">My Leaves</div>
-              <label style="margin-top:-50px;" class = "pull-right"><%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %></label>
-
-                      <div class="panel-body">                       
+              <label style="margin-top:-50px;" class = "remaining_leaves pull-right">
+                  <div id="show">
+                  <a href="#" ><i class="fa fa-dot-circle-o"></i> Remaining Leaves</a>
+                  <%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %></div>
+                  
+                  </label>
+               
+                      <div class="panel-body" id="list">                       
                         <div class="form-group col-lg-4">
-                          <label> Balance Leaves : </label>
-                         
-                          <%= pluralize(total_balance_leaves(@employee), 'day') %>
-                         
+                          <label> Balance Leaves : </label>                         
+                          <%= pluralize(total_balance_leaves(@employee), 'day') %>                         
                         </div>                                            
                         <div class="form-group col-lg-4">
-                          <label>Used Leaves : </label>
-                         
-                          <%= pluralize(total_used_leaves(@employee), 'day') %> 
-                         
+                          <label>Used Leaves : </label>                         
+                          <%= pluralize(total_used_leaves(@employee), 'day') %>                          
                         </div>      	                																                          
                       </div>
+                      
+                      
+                      
+                      
 
-                      <div class="page-header">Leaves Waiting for Approval</div>                                                 
-
+            <div class="page-header">Leaves Waiting for Approval</div>                                                 
                <div class="panel panel-default"> 
                   <div class="panel-heading">
                      Leaves Waiting for Approval
@@ -54,7 +58,7 @@
 
 													<td><%=f.status %></td>
 													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>
-													<td><%= link_to "Delete",  f, method: :delete, data: {confirm: "You sure?"}%></td>								 
+													<td><%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"}%></td>								 
 												</tr>																						
 											</tbody>
 								      <% end %>
@@ -100,7 +104,7 @@
 												</tr>
 											</thead>
 										 <%  @leave_histories.each do |f| %>	
-										 <% unless(f.from_date.to_date == Date.today) %>									
+										 <% unless(f.from_date.to_date < Date.today) %>									
 											<tbody>												
 												<tr>               
 												 	<td><%= f.from_date %> - <%= f.to_date%> </td>													
@@ -111,7 +115,7 @@
 													<!--<td><%#total_balance_leaves(f.employee) %></td>--><!-- TODO-->
 													<!--<td><%#total_used_leaves(employee)%></td>--><!-- TODO-->
 													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>
-													<td><%= link_to "Delete",  f, method: :delete, data: {confirm: "You sure?"} %></td>								 
+													<td><%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"} %></td>								 
 												</tr>																						
 											</tbody>
 								      <% end %>
@@ -161,7 +165,7 @@
 												 </tr>
 											</thead>
 										 <%  @leave_histories.each do |f| %>
-										 		 <% if(f.from_date.to_date == Date.today) %>									
+										 		 <% if((f.from_date.to_date <= Date.today && f.to_date.to_date >= Date.today) || (f.to_date.to_date < Date.today)) %>									
 											<tbody>												
 												<tr>               
 												 	<td><%= f.from_date %> - <%= f.to_date%> </td>													
@@ -171,7 +175,9 @@
 													<!--<td><%#total_balance_leaves(f.employee) %></td>--><!-- TODO-->
 													<!--<td><%#total_used_leaves(employee)%></td>--><!-- TODO-->
 													<td><%=f.status %></td>
-													<td><%= link_to "Edit", edit_leave_history_path(f) %></td>								 
+													<% unless f.to_date.to_date <= Date.today %>
+													  <td><%= link_to "Edit", edit_leave_history_path(f) %></td>								 
+													<% end %>
 												</tr>																						
 											</tbody>
 								      <% end %>	
@@ -194,6 +200,17 @@
                 <!-- /..panel-default  -->           
         </div>
         <!-- /#page-wrapper -->
-        
+                          <script>
+                         
+                       
+                             $("#list").hide();
+                            $("#show").click(function(){
+                              $("#list").toggle();
+                            }); 
+                         
+                            
+                     
+                       </script>        
+                      
       
 

@@ -38,7 +38,9 @@
 										<tr>
 										<th class="center"><%= link_to employee.first_name, employee_path(employee) %></th>	
 										<th class="center"><%= employee.user.email %></th>
+										<% if employee.designation.present? %>
 										<th class="center"><%= employee.designation.designation_name %></th>	
+										<% end %>
 										</tr>
 									</tbody>
 							<% end %>
