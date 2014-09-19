@@ -54,7 +54,7 @@
                                   </div> 
                             
                                   <% else %>
-                                    <div class="alert alert-success alert-dismissable">
+                                      <div class="alert alert-info alert-dismissable">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                          You have No Present Address to display. 
                                     </div>
@@ -107,8 +107,10 @@
                                             <label style="font-weight:normal;">Zipcode:</label>
                                            <%= @address2.zipcode %>
                                         </div>
-                                    <% else %>                                 
-                                    <div class="alert alert-success alert-dismissable">
+
+                                </div>
+                                <% else %>
+                                     <div class="alert alert-info alert-dismissable">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                          You have No Permanent Address to display. 
                                     </div>
