@@ -10,12 +10,14 @@
                      </div>
                 </div>
             <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">                                                                    
-                        <div class="panel-body">
-                            <div class="row">
-                                    <div class="col-lg-12"> 
+             <div class="row">                           
+                    <div class="panel panel-default">                  
+                      <div class="panel-body">
+                           <div class="border col-lg-12" >
+                              <div class="page-header">
+                                  Basic Info
+                              </div>
+                             <div class="col-lg-12"> 
                                         <div class="form-group col-lg-1">                                                                                    
                                         </div>                                  
                                         <div class="form-group col-lg-4">
@@ -52,12 +54,14 @@
                                           </div> 
                                           <br><hr>                                        
                                      </div>
-                                     
-                                      
-                                     
-                                    
-                                    
-                                     <div class="col-lg-12">
+                                   </div>
+                                   
+                                   
+                              <div class="border col-lg-12" >
+                              <div class="page-header">
+                                  Professional Info
+                              </div>
+                              <div class=" col-lg-12">
                                         <div class="form-group col-lg-1">                                                                                    
                                         </div>        
                                                                                 
@@ -74,41 +78,28 @@
                                               <label><%= @employee.designation.designation_name if @employee.designation.present? %></label>
                                          </div>                                                                                                     
                                          
-                                     </div>                                                                                                               
-                                      <div class="col-lg-12">
-                                         <div class="form-group col-lg-1">                                                                                    
-                                         </div>
-                                        <div class="form-group col-lg-4">
-                                            <label style="font-weight:normal;">Job Location:</label>
-                                            <label><%= @employee.job_location.address.city if @employee.job_location.address.present? %></label>
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label style="font-weight:normal;">Grade/Level:</label>
-                                            <label><%= @employee.grade.value if @employee.grade.present?  %></label>
-                                				</div>
-                                		  </div>
-                                		  <div class="col-lg-12">
-                                         <div class="form-group col-lg-1">                                                                                    
-                                         </div>
-                                				 <div class="form-group col-lg-4">
-                                            <label style="font-weight:normal;">Reporting Manager:</label>
-                                            <label><%=  @reporting_manager %></label>
-                                				 </div>
-                                				  <br><hr> 
-                                		  </div>
-                                		   <div class="col-lg-12">
-                                        <div class="form-group col-lg-1">                                                                                    
+                                     </div>      
+                                   </div>
+                                                                                                         
+                              <div class="border col-lg-12" >
+                              <div class="page-header">
+                                  Contact Info
+                              </div>
+                              <div class=" col-lg-12">
+                              <div class="form-group col-lg-1">                                                                                    
                                         </div>
                                         <div class="form-group col-lg-4">
                                             <label style="font-weight:normal;">Mobile Number:</label>
-                                            <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
+                                            <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label style="font-weight:normal;">Alternate Email:</label>
                                              <label><%= @employee.alternate_email %></label> 
-                                				</div> 
-                                       
-                                     </div>
+                                				</div>                                                                                                    
+                                         
+                                     </div>      
+                                   </div>
+
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

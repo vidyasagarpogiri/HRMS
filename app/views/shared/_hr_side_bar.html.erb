@@ -3,7 +3,7 @@
                   <ul class="nav" id="side-menu"><!-- Hr sidebar -->
                         <li>
                            <div  class="profile-pic" > 
-                              <h4><center> <%= @emp.full_name if @emp.present? %> </center></h4>
+                              <h4><center> <%= current_user.employee.full_name if current_user.employee.present? %> </center></h4>
                                <% if current_user.employee.avatar_url.present? %>
 
                               <a href="#" >
