@@ -26,3 +26,6 @@ $(function() {
     $( ".datepicker1" ).datepicker({ dateFormat: 'yy-mm-dd' })
   });
 
+$(function() {
+    //$(".alert.alert-danger.alert-dismissable").delay(6000).hide(500);
+});
