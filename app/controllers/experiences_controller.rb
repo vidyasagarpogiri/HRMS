@@ -43,8 +43,11 @@ class ExperiencesController < ApplicationController
     #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @experience = Experience.find(params[:id])
-    @experience.update(params.require(:experience).permit(:previous_company, :last_designation, :from_date, :to_date))
+    if @experience.update(params.require(:experience).permit(:previous_company, :last_designation, :from_date, :to_date))
     redirect_to employee_experiences_path(@employee.id)
+    else 
+    render 'edit'
+  end
   end
 		
 	def destroy

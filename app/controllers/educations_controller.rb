@@ -52,8 +52,11 @@ class EducationsController < ApplicationController
     #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @education = Education.find(params[:id])
-    @education.update(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage))
+    if @education.update(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage))
     redirect_to employee_educations_path(@employee.id)
+    else
+    render 'edit'
+  end
   end
 
   def qualifications
