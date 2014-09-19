@@ -13,7 +13,6 @@
 												                  <tr>
 													                  <th>Employee Name</th>
 													                  <th>Date</th>
-													                  <th>Leave Balance(days)</th>
 													                  <th>Total Days</th>		
 													                  <th>Leave Type </th>	
 													                  <th>Reason for leave</th>
@@ -28,7 +27,6 @@
 												                   <tr>               
 													                    <td><a href="#"><%= report.employee.full_name%></a></td>
 													                    <td><a href="#"><%= f.from_date %> - <%= f.to_date %>  </td>
-													                    <td><%=total_balance_leaves(f.employee) %> </td>
 													                    <td><%= f.days %> </td>
 													                    <td><%= f.leave_type.type_name if f.leave_type.present? %> </td>
 													                    <td>  <%= f.reason %>  </td>

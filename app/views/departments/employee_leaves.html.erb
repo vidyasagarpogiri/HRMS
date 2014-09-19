@@ -24,8 +24,7 @@
 													<th class="hidden-xs">Leaves Type</th>
 													<th> Reason </th>
 													<th class="hidden-xs">Leaves Balance</th>
-													<th> Leaves Used </th>
-													<th class="hidden-xs">Feedback</th>
+													
 													<th class="hidden-xs">Status</th>													
 												</tr>
 											</thead>
@@ -40,9 +39,8 @@
 												  <td> <%= f.days %> </td>
 												  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
 												  <td> <%= f.reason %> </td> 
-												  <td> 10</td>
-												  <td> 4 </td>
-												  <td> <%= f.feedback %> </td>
+												  <td> <%=total_balance_leaves(f.employee) %></td>
+												  
 												  <td> <%= f.status %> </td>
 												</tr>
                      </tbody>

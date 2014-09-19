@@ -102,7 +102,8 @@ class LeaveHistoriesController < ApplicationController
    end
    
   def reported_employees
-    #ReportingManager.where(:manager_id => current_user.employee.id).employees 
+    @employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
+
   end
   
   def destroy
