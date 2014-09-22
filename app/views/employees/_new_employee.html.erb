@@ -44,6 +44,7 @@
 
                                               <%= f.text_field :employee_id, :class => "form-control", :placeholder =>"Enter Emp Id",:data => {:error => " Please Enter Employee Id"},:required =>true %> <span class="help-block with-errors"></span>       
                                         </div>
+                                        
                                         <div class="form-group col-lg-6">
                                             <label class="required">Title</label><br>                                           
                                              <%= f.select(:title, options_for_select([['Mr', 'Mr'], ['Mrs', 'Mrs'], ['Miss', 'Miss']]), {}, :class=> "form-control", :id=>"disabledSelect") %><span class="help-block with-errors"></span>     
@@ -89,18 +90,18 @@
                                         </div>
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Mobile Number</label>   
-                                              <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number"},:required =>true %> 
+                                              <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number"},:required =>true, :type => "number" %> 
                                                <span class="help-block with-errors"></span>       
                                         </div>
                                       </div>
                                        <div class="col-lg-12">
                                         <div class="form-group col-lg-6">
                                             <label class="required">Email Id</label>
-                                            <input class="form-control" placeholder="Enter Email id" name="email" data-error =" Please Enter Employee Email Id" required >                         <span class="help-block with-errors"></span> 
+                                            <input class="form-control" placeholder="Enter Email id" name="email" data-error =" Please Enter Employee Email Id" required  type = "email">                         <span class="help-block with-errors"></span> 
                                         </div>  
                                         <div class="form-group col-lg-6">
                                             <label class="required">Alternate E-Mail </label>
-                                             <%= f.text_field :alternate_email, :class=>"form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter Employee Alternate Email"},:required =>true %> 
+                                             <%= f.text_field :alternate_email, :class=>"form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter Employee Alternate Email"},:required =>true, :type => "email" %> 
                                                <span class="help-block with-errors"></span> 
                                         </div>
              
@@ -113,46 +114,57 @@
                                       <input type="hidden" id="reporting_id"  name= "reporting_id">
                                         </div>
                                         
-                                        <div class="form-group col-lg-6">
-                                            <label class="required">Department</label><br>
-                                            <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, form-control", :id => "disabledSelect1" } %>
-                                        </div>
-                                        </div>
-                                        
-                                        <div class="col-lg-12">
-                                        <div class="form-group col-lg-6">
-                                            <label class="required">Gender</label><br>
-                                             <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]), {}, :class=> "form-control", :id=>"disabledSelect") %>
-                                        </div>       
-                                       
-																				
-                                        <div class="form-group col-lg-6">
-                                           <label class="required">Date Of Birth</label>
-                                            <%= text_field(:employee, :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"form-control datepicker_with_year") %>
-                                        </div>    
-                                        </div>
-                                        <div class="col-lg-12">                                                                                                     
-                                                                          
-                                        <div class="form-group col-lg-6">
+                                         <div class="form-group col-lg-6">
                                             <label class="required">Father Name</label>
                                             <%= f.text_field :father_name, :class => "form-control",  :placeholder=>"Enter Father name",:data => {:error => " Please Enter Employee Father Number"},:required =>true %> 
                                                <span class="help-block with-errors"></span>  
-                                        </div> 
-                                        <div class="form-group col-lg-6">
+                                        </div>
+                                      
+                                        </div>
+                                        
+                                        <div class="col-lg-12">
+                                          <div class="form-group col-lg-6">
+                                              <label class="required">Gender</label><br>
+                                               <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]), {}, :class=> "form-control", :id=>"disabledSelect") %>
+                                          </div>       
+                                         
+																				
+                                          <div class="form-group col-lg-6">
+                                             <label class="required">Date Of Birth</label>
+                                              <%= text_field(:employee, :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"form-control datepicker_with_year") %>
+                                          </div>    
+                                        </div>
+                                        <div class="col-lg-12">               
+                                                                          
+                                       
+                                         
+                                            <div class="form-group col-lg-6">
+                                              <label class="required">Department</label><br>
+                                              <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, form-control", :id => "disabledSelect1" } %>
+                                          </div>
+                                          
+                                         
+                                             <div class="form-group col-lg-6">
+                                            <label class="required">Upload Image</label><br>
+                                            <%= f.file_field :avatar %>
+                                         </div>  
+                                       </div>
+                                       
+                                       
+
+                                         
+                                       <div class="col-lg-12">  
+                                         <div class="form-group col-lg-6">
+                                              <label class="required">Designation</label><br>
+                                              <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control", :id=>"disabledSelect"  } %>  
+                                          </div>                                        
+                                          <div class="form-group col-lg-6">
                                             <label class="required">Grade/Level</label><br>
                                             <%= f.grouped_collection_select :grade_id, Designation.all, :grades, :designation_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades form-control", :id=>"disabledSelect"  } %>
                                         </div>    
-                                        </div> 
+                                                                         
+                                        
                                          
-                                        <div class="form-group col-lg-6">
-                                            <label class="required">Designation</label><br>
-                                            <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control", :id=>"disabledSelect"  } %>  
-                                        </div>                                 
-                                                                             
-                                           <div class="form-group col-lg-6">
-                                            <label class="required">Upload Image</label><br>
-                                            <%= f.file_field :avatar %>
-                                         </div>
                                   <button type="submit" class="btn btn-success pull-right">Save & Continue</button>
                                     <% end %>
                                 </div>
@@ -170,10 +182,6 @@
         </div>
          <!-- /#page wrapper -->
 
-
-
-         </div>
-          <!-- /#page wrapper -->
 
 <script>
 //Date Picker
@@ -202,7 +210,7 @@ $(function() {
   });
    
   //Designation and grades dynamic select buttons
-  
+  $('.grades').parent().hide();
     var grades =  $('.grades').html();
     $('.designation').change(function() {
      var designation = $('.designation :selected').text();
