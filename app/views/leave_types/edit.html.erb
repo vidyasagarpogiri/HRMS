@@ -16,11 +16,12 @@
                         </div>
                         <div class="panel-body">
    
-                                 <%= form_for(@leave_type) do |f| %>
+                                 <%= form_for (@leave_type), :data => {:toggle => "validator"} do |f| %>
                                         
                                         <div class="form-group">
                                             <label>Create New Leaves Type:</label>
-                                            <%= f.text_field :type_name, :class => "form-control",  :placeholder=>"Enter new Leave type" %>
+                                            <%= f.text_field :type_name, :class => "form-control",  :placeholder=>"Enter new Leave type",  :data => {:error => "Please Enter leave Type"}, :required =>true %>  
+                                    <div class="help-block with-errors"></div> 
                                         </div>
                                         
                                        <ul class="navigation-btns" style="list-style: none;display:inline;">
