@@ -22,11 +22,9 @@
                                     <%= form_for([@employee, @address], :remote=>true) do |f| %>
                                     <br>
                                     <label><u><%= @address_type %> Address</u></label> 
-                                        <div class="form-group ">
-                                                  
+                                         <div class="form-group ">                                                  
                                            <label class="required" >Address Line 1</label>
-                                           <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1" %>                  
-                                          
+                                           <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1" %>               
                                          </div>
                                          <div class="form-group ">
                                             <label class="required" >Address Line 2</label>
@@ -46,15 +44,19 @@
                                         </div>
 																				<div class="form-group">
                                             <label class="required" >Zipcode</label>
-                          <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter Zipcode" %>                                            
-                                        </div>
+                                            <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter Zipcode" %>
+                                        </div>                                        
               													<div class="form-group">
-                          <%= f.hidden_field :address_type, :class => "form-control", :value=>"#{@address_type_value}"%>
-                         
-                          
+                                           <%= f.hidden_field :address_type, :class => "form-control", :value=>"#{@address_type_value}"%>
                                         </div>
-                                                        
-                                        <br>
+                                        
+                                        <!--<% if @is_permanent == false %>                                        
+                                        <div class="form-group">                                           
+                                          <%# f.check_box :is_permanent %>
+                                           <label class="required" > Save as Permanent address</label>              
+                                        </div> 
+                                        <% end %>             
+                                        <br> -->
                                         <button type="submit" class="btn btn-success pull-left">Save & Continue</button>      
                                 </div>
                                     <% end %>
