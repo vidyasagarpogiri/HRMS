@@ -30,12 +30,12 @@
                                         </div>                                       
                                         <div class="form-group">
                                             <label class="required" >Year of Passing</label>
-                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control", :placeholder => "Enter Year Of Passing", :data => {:error => "Please Enter year"}, :required => true %> 
+                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control", :placeholder => "Enter Year Of Passing", :data => {:error => "Please Enter year"}, :type => "number", :required => true %> 
                                             <div class="help-block with-errors"></div>
                                         </div>                                        
                                         <div class="form-group">
                                             <label class="required" >Percentage/CGPA</label>
-                                            <%= f.text_field :cgpa_percentage, :id => "disabledSelect", :class => "form-control", :placeholder => "Percentage/CGPA",  :data => {:error => "Please Enter Percentage/CGPA"}, :required => true %>                                           
+                                            <%= f.text_field :cgpa_percentage, :id => "disabledSelect", :class => "form-control", :placeholder => "Percentage/CGPA",  :data => {:error => "Please Enter Percentage/CGPA"}, :type => "number", :required => true %>                                           
                                             <div class="help-block with-errors"></div>
                                         </div>                                        
                                         
