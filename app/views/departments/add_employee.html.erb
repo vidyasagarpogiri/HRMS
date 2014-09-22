@@ -14,7 +14,8 @@
                                <%= form_tag ("/departments/#{@department.id}/update_employee") do  %>                                      
                                <div class="form-group">
                                    <label class="required">Add Employee: </label>&nbsp
-                                       <%= select_tag "employee_id", options_from_collection_for_select(Employee.all, :id, :first_name), :class =>"form-control" %><br> 
+                                       <input type="text" id="emp" class="form-control" name="emp" place_holder="Enter Employee Name">
+                                      <input type="hidden" id="employee_id"  name= "employee_id"><br/>
                                        <%= submit_tag "Add",:class => "btn btn-success" %>  
                                 </div>                                                            
                                 <% end %> 
@@ -33,7 +34,31 @@
 
 
 
-
+<script>
+  $(function() {
+  var availableTags = [];
+  $.get( "/getAllEmployees.json", function( data ) {
+      $.each( data, function( key, val ) {
+       availableTags.push(val);
+       //alert(val["id"]+" - "+val["value"]);
+      });
+  });
+  
+       $( "#emp" ).autocomplete({
+        minLength: 0,
+        source: availableTags,
+        focus: function( event, ui ) {
+        $( "#emp" ).val( ui.item.value );
+        return false;
+        },
+        select: function( event, ui ) {
+        $( "#emp" ).val( ui.item.value );
+        $( "#employee_id" ).val( ui.item.id );
+        return false;
+        }
+        })
+  });
+  </script>
 
 
 

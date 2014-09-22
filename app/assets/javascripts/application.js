@@ -29,3 +29,16 @@ $(function() {
 $(function() {
     //$(".alert.alert-danger.alert-dismissable").delay(6000).hide(500);
 });
+
+
+
+  $(function() {
+    $( ".datepicker_with_year" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "-100:+0",
+      dateFormat: 'dd/mm/yy',
+       maxDate: -0
+    });
+  });
+

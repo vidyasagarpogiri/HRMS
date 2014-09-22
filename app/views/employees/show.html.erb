@@ -2,7 +2,7 @@
                 <div class="row">
                      <div class="col-lg-12">
                         <div class="page-header">
-                            <%= @emp.full_name if @emp.present? %> 's Info
+                            <%= @employee.full_name if @employee.present? %> 's Info
                              <% if current_user.department == Department::HR %>
                                 <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><i class="fa fa-pencil-square-o "></i> <%= link_to "Edit", edit_employee_path(@employee) %></label>
                               <% end %>
