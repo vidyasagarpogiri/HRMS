@@ -13,13 +13,14 @@
                         <div class="panel-body">
                             <div class="row">
 
-                                   <%= form_for(@grade) do |grade| %>
+                                   <%= form_for (@grade), :data => {:toggle => "validator"} do |grade| %>
                                    <div class="col-lg-12">
                                         <div class="form-group col-lg-6">             
                                          <label class="required">Designation</label><br>
                                             <%= grade.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control", :id=>"disabledSelect"  } %>                             
                                             <label class="required" >Grade</label><br>
-                                               <%= grade.text_field :value, :class => "form-control", :placeholder =>"Enter Grade" %><br>   
+                                               <%= grade.text_field :value, :class => "form-control", :placeholder =>"Enter Grade" ,  :placeholder=>"Enter new Leave type", :data => {:error => "Please Enter Grade Name"}, :required =>true %>  
+                                    <div class="help-block with-errors"></div>    
                                                     <button type="submit" class="btn btn-success pull-left">Save </button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                                       
                                                     
