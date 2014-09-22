@@ -25,7 +25,7 @@
                                             <%= des.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, form-control", :id => "disabledSelect1" } %>
                                      
                                          <label class="required" >Designation</label><br>
-                                               <%= des.text_field :designation_name, :class => "form-control", :placeholder =>"Enter Designation" %><br>   
+                                               <%= des.text_field :designation_name, :class => "form-control", :placeholder =>"Enter Designation",:required =>true %><br>   
                                                     <button type="submit" class="btn btn-success pull-left">Save </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <%= link_to "Back", designations_path,:class => "btn btn-info "%> 
                                                     

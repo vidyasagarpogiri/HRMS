@@ -26,17 +26,17 @@
                                         
                                         <div class="form-group">
                                             <label class="required" style="font-weight:normal;">Company Name</label>
-                                            <%= f.text_field :previous_company, :class => "form-control"%>                               
+                                            <%= f.text_field :previous_company, :class => "form-control",:required =>true%>                               
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="required" style="font-weight:normal;">Designation</label>
-                                            <%= f.text_field :last_designation, :class => "form-control"%>
+                                            <%= f.text_field :last_designation, :class => "form-control",:required =>true%>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="required" style="font-weight:normal;">From</label>
-                                            <%= f.text_field :from_date, :class => "form-control datepicker"%>                                        
+                                            <%= f.text_field :from_date, :class => "form-control datepicker",:required =>true%>                                        
                                         </div>
                                         
                                         <div class="form-group">
