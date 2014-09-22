@@ -86,11 +86,23 @@
                                             <label class="required">Alternate E-Mail </label>
                                              <%= f.text_field :alternate_email, :class=>"form-control", :placeholder=>"Enter Alternate Email" %>    
                                         </div>
+                                       <!-- <div class="form-group col-lg-6">
+
+                                            <label class="required"> Reporting Manager</label><br>
+                                               <%# f.text_field , Employee.all, :id, :first_name, { :prompt => "Please Select" }, { :class => "employee, form-control", :id => "", :name=> "reporting_id" } %>
+                                        </div> -->  
+                                        
+                                        
                                         <div class="form-group col-lg-6">
 
                                             <label class="required"> Reporting Manager</label><br>
-                                               <%= f.collection_select :id, Employee.all, :id, :first_name, { :prompt => "Please Select" }, { :class => "employee, form-control", :id => "disabledSelect", :name=> "reporting_id" } %>
-                                        </div>  
+                                      <input type="text" id="reporting" class = "form-control", name= "reporting" , place_holder = "Enter Reporting Manager Name" >
+                                      <input type="hidden" id="reporting_id"  name= "reporting_id">
+                                        </div>
+                                        
+                                        
+                                        
+                                        
                                         <div class="form-group col-lg-6">
                                             <label class="required">Department</label><br>
                                             <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, form-control", :id => "disabledSelect1" } %>
@@ -187,4 +199,28 @@ $(function() {
       }
     });
  </script>
- 
+  <script>
+  $(function() {
+  var availableTags = [];
+  $.get( "/getAllEmployees.json", function( data ) {
+      $.each( data, function( key, val ) {
+       availableTags.push(val);
+       //alert(val["id"]+" - "+val["value"]);
+      });
+  });
+  
+       $( "#reporting" ).autocomplete({
+        minLength: 0,
+        source: availableTags,
+        focus: function( event, ui ) {
+        $( "#reporting" ).val( ui.item.value );
+        return false;
+        },
+        select: function( event, ui ) {
+        $( "#reporting" ).val( ui.item.value );
+        $( "#reporting_id" ).val( ui.item.id );
+        return false;
+        }
+        })
+  });
+  </script>
