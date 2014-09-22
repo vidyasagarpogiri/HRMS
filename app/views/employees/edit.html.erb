@@ -128,15 +128,15 @@
                                         <div class="col-lg-12">
                                           <div class="form-group col-lg-6">
 
-                                              <label class="required"> Reporting Manager</label><br>
-                                        <input type="text" id="reporting" class = "form-control", name= "reporting" , place_holder = "Enter Reporting Manager Name" >
-                                        <input type="hidden" id="reporting_id"  name= "reporting_id">
-                                          </div>                                        
-                                           <div class="form-group col-lg-6"">
-                                              <label class="required">Upload Image:</label><br>
-                                              <%= f.file_field :avatar %>
-                                           </div> 
-                                         </div> 
+                                            <label class="required"> Reporting Manager</label><br>
+                                            <input type="text" id="reporting" class = "form-control", name= "reporting" , place_holder = "Enter Reporting Manager Name" >
+                                            <input type="hidden" name="employee[reporting_id]"  id= "reporting_id">
+                                        </div>                                        
+                                         <div class="form-group col-lg-6"">
+                                            <label class="required">Upload Image:</label><br>
+                                            <%= f.file_field :avatar %>
+                                         </div>  
+
                                            
                                         
                                   <button type="submit" class="btn btn-success pull-right">Save & Continue</button>

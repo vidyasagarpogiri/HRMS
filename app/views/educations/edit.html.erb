@@ -22,25 +22,28 @@
                                       <% end %>                                      
                                      </div> 
                                      </div>
-                                    <%= form_for ([@employee, @education]) do |f| %>
+                                    <%= form_for ([@employee, @education]), :data => {:toggle => "validator"} do |f| %>
                                         <div class="form-group">
                                             <label class="required" >Name Of Graduation</label>                                          
-                                            <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation",:required =>true %>   
-                                        </div>
-                                        
+                                            <%= f.text_field :specilization, :class => "form-control", :placeholder => "Enter Graduation Name", :data => {:error => "Please Enter Degree "}, :required => true %>   
+                                        <div class="help-block with-errors"></div>   
+                                        </div>                                      
                                         <div class="form-group">
                                             <label class="required" >College/University Name</label><br>
-                                            <%= f.text_field :institute, :class => "form-control", :placeholder => "Enter College/University Name",:required =>true %>
+                                            <%= f.text_field :institute, :class => "form-control", :placeholder => "Enter College/University Name", :data => {:error => "Please Enter College/University Name "}, :required => true %>   
+                                        <div class="help-block with-errors"></div>   
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="required" >Year of Passing</label>
-                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control",:required =>true %>  
+                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control", :placeholder => "EnterYear of Passing", :data => {:error => "Please Enter Year of Passing "}, :required => true %>   
+                                        <div class="help-block with-errors"></div>     
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="required" >Percentage/CGPA</label>
-                                            <%= f.text_field :cgpa_percentage, :id => "disabledSelect", :class => "form-control", :placeholder => "Percentage/CGPA",:required =>true %>
+                                            <%= f.text_field :cgpa_percentage, :id => "disabledSelect", :class => "form-control", :placeholder => "Enter Percentage/CGPA", :data => {:error => "Please Enter Percentage/CGPA "}, :required => true %>   
+                                        <div class="help-block with-errors"></div>     
                                         </div>
                                         
                                         <br>

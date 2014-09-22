@@ -11,11 +11,11 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="col-lg-6">
-                               <%= form_tag ("/departments/#{@department.id}/update_employee") do  %>                                      
+                               <%= form_tag ("/departments/#{@department.id}/update_employee"), :data => {:toggle => "validator"} do  %> 
                                <div class="form-group">
-                                   <label class="required">Add Employee: </label>&nbsp
-                                       <input type="text" id="emp" class="form-control" name="emp" place_holder="Enter Employee Name">
-                                      <input type="hidden" id="employee_id"  name= "employee_id"><br/>
+                                   <label class="required">Add Employee: </label>
+                                       <input type="text" id="emp" class="form-control" name="emp" place_holder="Enter Employee Name"  data-error="Please Enter Employee name" required>
+                                      <input type="hidden" id="employee_id"  name= "employee_id" ><br/>
                                        <%= submit_tag "Add",:class => "btn btn-success" %>  
                                 </div>                                                            
                                 <% end %> 
