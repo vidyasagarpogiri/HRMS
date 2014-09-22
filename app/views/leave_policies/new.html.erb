@@ -19,12 +19,12 @@
                                         
                                         <div class="form-group">
                                             <label class="required" >Personal leaves Per Year</label>
-                                            <%= f.text_field :pl_this_year,  :class => "form-control" %>
+                                            <%= f.text_field :pl_this_year,  :class => "form-control",:required =>true %>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="required" >Minimum Carry forword Leaves</label>
-                                            <%= f.text_field :eligible_carry_forward_leaves,  :class => "form-control" %>
+                                            <%= f.text_field :eligible_carry_forward_leaves,  :class => "form-control",:required =>true %>
                                         </div>
                                         <ul class="navigation-btns" style="list-style: none;display:inline;">
                                            <li> <%= f.submit  'Save', :class => "btn btn-success pull-left" %></li> 
