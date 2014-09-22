@@ -3,14 +3,13 @@ class EmployeesController < ApplicationController
   layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index]
 	
 	
-	  before_filter :other_emp_view, :except => [:index, :profile]
+	  #before_filter :other_emp_view, :except => [:index, :profile]
 
-	  before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]	
+	  #before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]	
 
 	
 
   def index
-
     @employees =  Employee.all.page(params[:page]).per(6)
   end
 
@@ -71,19 +70,15 @@ class EmployeesController < ApplicationController
       
         @report = @employee.reporting_managers.first
         if @report.present?
-          @report.update(:manager_id => params[:reporting_id]) 
-          
+          @report.update(:manager_id => params[:reporting_id])          
         else
           @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
         end  
       redirect_to @employee
-		  else
-		
+		  else		
 		    render 'edit'
-      end
-     
+      end     
     end
-
   end  
 
 	def exit_edit_form
@@ -168,6 +163,20 @@ end
 		@increments = @salary.salary_increments
 end
 		 @emails = @employee.email_ettiquities
+	end
+	
+	
+	def getAllEmployees  
+	  data = Employee.all.pluck(:id,:first_name, :last_name)
+	  json_data = []
+	  
+	  data.each do|val|
+	    json_data << {"id"=>val[0], "value" => "#{val[1]} #{val[2]}" }
+	  end
+	  
+	  respond_to do |format|
+      format.json { render json: json_data }
+    end
 	end
 	
   private

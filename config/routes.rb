@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
   resources :events
-  
+  get 'getAllEmployees' => 'employees#getAllEmployees'  
 
   #devise_for :users
 
@@ -137,8 +137,6 @@ end
   get 'new_profile' => "profile#edit"
 
   get 'myprofile' => "employees#myprofile", as: :myprofile
-  
-
 
   
   #resources :educations

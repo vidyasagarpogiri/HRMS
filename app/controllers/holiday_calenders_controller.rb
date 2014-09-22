@@ -12,24 +12,16 @@ def index
     #raise params.inspect
       @holiday_calender = HolidayCalender.new
       @department = Department.find(params[:department_id])
-
+      @event = Event.all
     end
     
     def create
-     # raise params.inspect
-       @department = Department.find(params[:department_id])
-       params_with_department = params_calender.merge(department_id: params[:department_id])
-       
-       @holiday_calender = HolidayCalender.new(params_with_department)
-        if @holiday_calender.save
-      
-          redirect_to leaves_department_path(@department)
-       
-        else
-          flash.now[:error] 
-          render "new"
-        end
-           
+      @department = Department.find(params[:department_id])
+      params[:event_ids].each do |event|
+        #params_with_department = params_calender.merge(department_id: params[:department_id, event_id: event])
+        @holiday_calender = HolidayCalender.create(department_id: params[:department_id], event_id: event)
+      end 
+      redirect_to leaves_department_path(@department)  
     end
     
     def edit
@@ -54,6 +46,6 @@ def index
     
     private
     def params_calender
-      params.require(:holiday_calender).permit(:event_id, :mandatory_or_optional)
+      #params.require(:holiday_calender).permit(:mandatory_or_optional)
     end
 end

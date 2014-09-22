@@ -40,10 +40,12 @@ class DepartmentsController < ApplicationController
 	end
 	
 	def add_employee
+	 
     @department = Department.find(params[:id])
     @employee = Employee.all
   end
    def update_employee
+    
     @department = Department.find(params[:id])
     @employee = Employee.find(params[:employee_id])
     @employee.update(:department_id => @department.id)
