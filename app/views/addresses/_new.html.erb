@@ -19,7 +19,7 @@
                                      </div>                                   
                                   </div>
                                   <div class="col-lg-6"> 
-                                    <%= form_for([@employee, @address], :remote=>true) do |f| %>
+                                    <%= form_for([@employee, @address]), :remote=>true do |f| %>
                                     <br>
                                   
                                     <label><u><%= @address_type %> Address</u></label> 
