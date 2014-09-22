@@ -36,7 +36,7 @@ class Employee < ActiveRecord::Base
   has_many :educations
 
 
-	validates :employee_id, presence: true, :with => /^[-\w\._@]+$/i
+	#validates :employee_id, presence: true, :with => /^[-\w\._@0-9]+$/i
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :date_of_birth, presence: true
@@ -62,7 +62,7 @@ class Employee < ActiveRecord::Base
 	#after_update :update_leaves
 
   def reporting_manager
-    Employee.find(reporting_managers.first.manager_id)
+    Employee.find(ReportingManager.first.manager_id)
   end
 	
   
@@ -78,8 +78,6 @@ class Employee < ActiveRecord::Base
   def full_name
      "#{first_name} #{last_name}"
   end
-
-
 	
 
 end
