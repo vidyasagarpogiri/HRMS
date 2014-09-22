@@ -28,13 +28,13 @@
                                         
                                         <div class="form-group">
                                             <label class="required">From</label>
-                                            <%= f.text_field :from_date, :class => "form-control datepicker" %>                    
+                                            <%= f.text_field :from_date, :class => "form-control datepicker_with_year" %>                    
                                         </div>
                                         
                                         
                                         <div class="form-group">
                                             <label class="required">To</label>
-                                            <%= f.text_field :to_date, :class=>"form-control datepicker" %>
+                                            <%= f.text_field :to_date, :class=>"form-control datepicker_with_year" %>
                                                                 
                                         </div>
                                         
