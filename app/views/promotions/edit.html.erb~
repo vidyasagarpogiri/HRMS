@@ -14,28 +14,27 @@
                         <div class="row">
                                 <div class="col-lg-6">
                                 <% @promotion.errors.full_messages.each do |error| %>
-                                        <!--<label class="col-lg-3"></label>-->
-                                        <div class="alert alert-danger alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                         <%= error %>
-                                         </div>
+                                  <!--<label class="col-lg-3"></label>-->
+                                  <div class="alert alert-danger alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                     <%= error %>
+                                     </div>
                                       <% end %>                                      
                                      </div> 
-                                     </div>
-                                <%= form_for ([@employee,@promotion]) do |p| %>
-                                        
-                                        <div class="form-group">
-                                            <label class="required" >Date of Promotion</label>                                              
-                                            <%= text_field(:promotion, :date_of_promotion, :class => "form-control datepicker") %>    
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="required" >Designation</label><br>
-                                            <%= p.collection_select :designation_id, Designation.all, :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control" } %>
-                                        </div>
-                                       
-                                        <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
-                                                    
+                                   </div>
+                                <%= form_for ([@employee,@promotion]), :data => {:toggle => "validator"} do |p| %>                                        
+                                <div class="form-group">
+                                    <label class="required" >Date of Promotion</label>                                              
+                                    <%= text_field(:promotion, :date_of_promotion, :class => "form-control datepicker"),:placeholder => "Enter Date of Promotion", :data => {:error => "Please Enter Date of Promotion"}, :required =>true %>  
+                                    <div class="help-block with-errors"></div>  %>    
+                                </div>                                
+                                <div class="form-group">
+                                    <label class="required" >Designation</label><br>
+                                    <%= p.collection_select :designation_id, Designation.all, :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control" } %>
+                                </div>
+                               
+                                <button type="submit" class="btn btn-success pull-left">Save & Continue</button>
+                                            
                                     <% end %>
                                   </div>
                                 <!-- /.col-lg-6 (nested) -->
