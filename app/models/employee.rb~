@@ -63,8 +63,10 @@ class Employee < ActiveRecord::Base
 	#after_create :add_leaves
 	#after_update :update_leaves
 
+
+
   def reporting_manager
-    Employee.find(reporting_managers.first.manager_id)
+    Employee.find(reporting_managers.first.manager_id).full_name if reporting_managers.present?
   end
 	
   
@@ -80,8 +82,6 @@ class Employee < ActiveRecord::Base
   def full_name
      "#{first_name} #{last_name}"
   end
-
-
 	
 
 end
