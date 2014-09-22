@@ -15,16 +15,21 @@
                         </div>
                         <div class="panel-body ">
                              <div class=" col-lg-6 ">
-                                 <%= form_for ([@department, @leave_policy]) do |f| %>
+                                 <%= form_for ([@department, @leave_policy]),  :data => {:toggle => "validator"} do |f| %>
                                         
                                         <div class="form-group">
                                             <label class="required" >Personal leaves Per Year</label>
-                                            <%= f.text_field :pl_this_year,  :class => "form-control",:required =>true %>
+
+                                            <%= f.text_field :pl_this_year,  :class => "form-control", :data => {:error => "Please Enter number of leaves per year"}, :required =>true %>  
+                                    <div class="help-block with-errors"></div> 
+
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="required" >Minimum Carry forword Leaves</label>
-                                            <%= f.text_field :eligible_carry_forward_leaves,  :class => "form-control",:required =>true %>
+                                  <%= f.text_field :eligible_carry_forward_leaves,  :class => "form-control", :data => {:error => "Please Enter maximum carryforward leaves per year"}, :required =>true %>  
+                                    <div class="help-block with-errors"></div> 
+
                                         </div>
                                         <ul class="navigation-btns" style="list-style: none;display:inline;">
                                            <li> <%= f.submit  'Save', :class => "btn btn-success pull-left" %></li> 
