@@ -1,3 +1,4 @@
+
                   <div id="page-wrapper">
                      <div class="row">
                           <div class="col-lg-12">
@@ -11,36 +12,37 @@
                               <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-lg-12" >
+                                        <div class="col-lg-12">                                       
                                            <div class="accordion" id="accordion2">
                                                 <div class="accordion-group">
                                                   <div class="accordion-heading">
                                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
                                                       <% errCount = @employee.errors.full_messages.count%>
                                                       <% err = "Error".pluralize(errCount) %>
-                                                      <%= "Errors: #{errCount} #{err}" if errCount>0 %> 
-                                                      
+                                                      <%= "Errors: #{errCount} #{err}" if errCount>0 %>                                                       
                                                     </a>                                                   
                                                   </div>
                                                   <div id="collapseOne" class="accordion-body collapse">
                                                     <div class="accordion-inner">
-                                                <% @employee.errors.full_messages.each do |error| %>
-                                                <!--<label class="col-lg-3"></label>-->
-                                                <div class="alert alert-danger alert-dismissable">
-                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                 <%= error %>
-                                                 </div>
-                                              <% end %>                                      
-                                             </div>                                   
-                                          </div> 
-                                        </div>
-                                      </div>
-                                    </div>
-                                      <%= form_for @employee  do |f| %>
+
+                                                      <% @employee.errors.full_messages.each do |error| %>
+                                                      <!--<label class="col-lg-3"></label>-->
+                                                      <div class="alert alert-danger alert-dismissable">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                         <%= error %>
+                                                       </div>
+                                                      <% end %>                                      
+                                                    </div>                                   
+                                                </div> 
+                                              </div>
+                                            </div>
+                                         </div>                                     
+                                      <%= form_for(@employee) do |f| %>
                                      <div class="col-lg-12">
                                         <div class="form-group col-lg-6">                                        
                                             <label class="required" >Employee Id</label>
-                                              <%= f.text_field :employee_id, :class => "form-control", :placeholder =>"Enter Emp Id", :required => true  %>                 
+
+                                              <%= f.text_field :employee_id, :class => "form-control", :placeholder =>"Enter Emp Id",:required =>true %>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="required">Title</label><br>                                           
@@ -48,16 +50,17 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="required">Employee First Name</label>
-                                            <%= f.text_field :first_name, :class => "form-control",  :placeholder=>"Enter First name", :required => true  %>        
+
+                                            <%= f.text_field :first_name, :class => "form-control",  :placeholder=>"Enter First name",:required =>true %>
+
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="required" >Employee Last Name</label>
-                                             <%= f.text_field :last_name, :class =>"form-control", :placeholder => "Enter Last name" %>      
+                                             <%= f.text_field :last_name, :class =>"form-control", :placeholder => "Enter Last name",:required =>true %>      
                                         </div>
 																				<div class="form-group col-lg-6">
                                             <label class="required">Date Of Joining</label>
-                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control datepicker") %>                                           
-                                        </div>
+                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control datepicker") %>                                      </div>
                                           <% a = []%>
                                          <%  JobLocation.all.each do |j| 
                                           b=[]
@@ -76,15 +79,15 @@
                                         </div>
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Mobile Number</label>   
-                                              <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No" %>        
+                                              <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No",:required =>true %>        
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="required">Email Id</label>
-                                            <input class="form-control" placeholder="Enter Email id", name="email">               
+                                            <input class="form-control" placeholder="Enter Email id", name="email" required >               
                                         </div>  
                                         <div class="form-group col-lg-6">
                                             <label class="required">Alternate E-Mail </label>
-                                             <%= f.text_field :alternate_email, :class=>"form-control", :placeholder=>"Enter Alternate Email" %>    
+                                             <%= f.text_field :alternate_email, :class=>"form-control", :placeholder=>"Enter Alternate Email",:required =>true %>    
                                         </div>
              
                                                  
@@ -120,7 +123,7 @@
                                         </div>                                        
                                         <div class="form-group col-lg-6">
                                             <label class="required">Father Name</label>
-                                            <%= f.text_field :father_name, :class => "form-control",  :placeholder=>"Enter Father name" %>
+                                            <%= f.text_field :father_name, :class => "form-control",  :placeholder=>"Enter Father name",:required =>true %>
                                         </div>                                     
                                         <div class="form-group col-lg-6">
                                             <label class="required">Grade/Level</label><br>

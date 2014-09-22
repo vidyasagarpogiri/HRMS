@@ -7,7 +7,7 @@
                   <a href="#" ><i class="fa fa-dot-circle-o"></i> Remaining Leaves</a>
                   <%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %></div>
                   
-                  </label>
+              </label>
                
                       <div class="panel-body" id="list">                       
                         <div class="form-group col-lg-4">
@@ -54,7 +54,7 @@
 													<td><%=f.leave_type.type_name %></td>													
 													<td><%=f.status %></td>
 													<td><%= link_to "Edit", edit_leave_history_path(f), :class => "btn btn-info" %>
-													<%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"}, :class => "btn btn-danger"%></td>								 
+													<%= link_to "Cancel",  f, method: :delete, data: {confirm: "Are You sure?"}, :class => "btn btn-danger"%></td>								 
 												</tr>																						
 											</tbody>
 								      <% end %>

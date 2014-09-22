@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916113418) do
+ActiveRecord::Schema.define(version: 20140922090409) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140916113418) do
     t.string   "zipcode"
     t.integer  "employee_id"
     t.boolean  "address_type", default: false
+    t.boolean  "is_permanent"
   end
 
   create_table "allowances", force: true do |t|

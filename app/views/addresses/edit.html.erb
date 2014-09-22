@@ -25,28 +25,28 @@
                                         <div class="form-group">
                                                   
                                            <label class="required" >Address Line 1</label>
-                                           <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1" %>                  
+                                           <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1",:required =>true %>                  
                                           
                                          </div>
                                          <div class="form-group">
-                                            <label>Address Line 2:</label>
-                                            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 2" %>       
+                                            <label class="required">Address Line 2</label>
+                                            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 2",:required =>true %>       
                                         </div>
                                         <div class="form-group">
-                                            <label>City:</label>
-                                            <%= f.text_field :city, :class => "form-control", :placeholder=> "Enter City" %>                          
+                                            <label class="required">City</label>
+                                            <%= f.text_field :city, :class => "form-control", :placeholder=> "Enter City",:required =>true %>                          
                                         </div>
                                         <div class="form-group">
-                                            <label>State:</label>
-                                            <%= f.text_field :state, :class => "form-control", :placeholder=> "Enter State" %>   
+                                            <label class="required">State</label>
+                                            <%= f.text_field :state, :class => "form-control", :placeholder=> "Enter State",:required =>true %>   
                                         </div>                                        
                                         <div class="form-group">
-                                            <label>Country:</label>
-                                            <%= f.text_field :country, :class => "form-control", :placeholder=> "Enter Country" %>        
+                                            <label class="required">Country</label>
+                                            <%= f.text_field :country, :class => "form-control", :placeholder=> "Enter Country",:required =>true %>        
                                         </div>
 																					<div class="form-group">
-                                            <label>ZipCode:</label>
-                                            <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter ZipCode" %> 
+                                            <label class="required">ZipCode</label>
+                                            <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter ZipCode",:required =>true %> 
 
                                         </div>
                                         

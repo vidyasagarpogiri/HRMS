@@ -7,7 +7,7 @@
                                     <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info" %>
                                   <% end %>
                                   <% if @address2.nil? %>
-                                    <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info" %>
+                                    <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info" %><br>
                                   <% end %>
                                 </div>
                           </div>
@@ -83,11 +83,11 @@
                                        Permanent Address
                                    </div>
                                     <div class="panel-body">                                                                 
-                                      <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                         <% if current_user.department == Department::HR %>
-                                          <li><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %></li>
-																		      <% end %>
-                                      </ul>
+                                     <!-- <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                         <% #if current_user.department == Department::HR %>
+                                          <li><%# link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %></li>
+																		      <% #end %>
+                                      </ul> -->
                                           <div class="form-group">
                                               <label style="font-weight:normal;">Address Line 1:</label>
                                               <%= @address2.line %>                                  
