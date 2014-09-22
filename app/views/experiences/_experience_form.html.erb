@@ -28,13 +28,13 @@
                                         
                                         <div class="form-group">
                                             <label class="required">From</label>
-                                            <%= f.text_field :from_date, :class => "form-control datepicker" %>                    
+                                            <%= f.text_field :from_date, :class => "form-control from" %>                    
                                         </div>
                                         
                                         
                                         <div class="form-group">
                                             <label class="required">To</label>
-                                            <%= f.text_field :to_date, :class=>"form-control datepicker" %>
+                                            <%= f.text_field :to_date, :class=>"form-control to " %>
                                                                 
                                         </div>
                                         
@@ -74,3 +74,28 @@ $(function() {
     $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
   });
 </script>
+
+        <script>
+           $(function () {
+               $(".from").datepicker({
+                   dateFormat: 'dd/mm/yy',
+                   changeMonth: true,
+                   changeYear: true,
+                    maxDate: -0,
+                   yearRange: "-100:+0",
+                   onClose: function (selectedDate) {
+                       var date2 = $('.from').datepicker('getDate');
+                       date2.setDate(date2.getDate() + 1);
+                       $(".to").datepicker("option", "minDate", date2);
+                   }
+               });
+
+               $(".to").datepicker({
+                   dateFormat: 'dd/mm/yy',
+                    maxDate: -0,
+                    yearRange: "-100:+0",
+                     changeMonth: true,
+                   changeYear: true
+               });
+           });
+        </script>

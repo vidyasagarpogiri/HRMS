@@ -193,4 +193,12 @@ font-size:15px;
 padding-right:15px;
 }
 
+.accordion-heading{
+padding:20px;
+}
+.accordion-heading a{
+font-size:16px !important;
+color:red;
+letter-spacing:1px;
 
+}
