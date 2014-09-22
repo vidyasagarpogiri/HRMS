@@ -106,10 +106,12 @@
                                             <%= f.grouped_collection_select :grade_id, Designation.all, :grades, :designation_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades form-control", :id=>"disabledSelect"  } %>
 
                                         </div> 
-                                        <div class="form-group col-lg-6"">
+                                        <div class="form-group col-lg-6">
+
                                             <label class="required"> Reporting Manager</label><br>
-                                               <%= f.collection_select :id, Employee.all, :id, :first_name, { :prompt => "Please Select" }, { :class => "employee, form-control", :name=> "reporting_id" } %>
-                                        </div>                                         
+                                      <input type="text" id="reporting" class = "form-control", name= "reporting" , place_holder = "Enter Reporting Manager Name" >
+                                      <input type="hidden" id="reporting_id"  name= "reporting_id">
+                                        </div>                                        
                                          <div class="form-group col-lg-6"">
                                             <label class="required">Upload Image:</label><br>
                                             <%= f.file_field :avatar %>
@@ -181,4 +183,30 @@ $(function() {
     });
     
  </script>
+ 
+   <script>
+  $(function() {
+  var availableTags = [];
+  $.get( "/getAllEmployees.json", function( data ) {
+      $.each( data, function( key, val ) {
+       availableTags.push(val);
+       //alert(val["id"]+" - "+val["value"]);
+      });
+  });
+  
+       $( "#reporting" ).autocomplete({
+        minLength: 0,
+        source: availableTags,
+        focus: function( event, ui ) {
+        $( "#reporting" ).val( ui.item.value );
+        return false;
+        },
+        select: function( event, ui ) {
+        $( "#reporting" ).val( ui.item.value );
+        $( "#reporting_id" ).val( ui.item.id );
+        return false;
+        }
+        })
+  });
+  </script>
           

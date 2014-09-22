@@ -21,9 +21,14 @@
                                   <div class="col-lg-6"> 
                                     <%= form_for([@employee, @address], :remote=>true) do |f| %>
                                     <br>
+                                  
                                     <label><u><%= @address_type %> Address</u></label> 
+                                        <% if @employee.addresses.present? %>
+                                        <br>
+                                          <a href="#" id="address-check-box-hyper-link"><input type="checkbox", id="address-check-box"></a>Same as old address
+                                        <% end %>
                                         <div class="form-group ">
-                                                  
+                                                 
                                            <label class="required" >Address Line 1</label>
                                            <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1" %>                  
                                           
@@ -73,6 +78,33 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            
+            
+            <script>
+              $(function(){
+                $("#address-check-box-hyper-link").click(function(){
+                   if($("#address-check-box").is(':checked')){
+                   <% if @employee.addresses.present?  %>
+                    $("#address_line").val('<%= @employee.addresses.first.line1 %>');
+                    $("#address_line1").val('<%= @employee.addresses.first.line %>');
+                    $("#address_city").val('<%= @employee.addresses.first.city %>');
+                    $("#address_state").val('<%= @employee.addresses.first.state %>');
+                    $("#address_country").val('<%= @employee.addresses.first.country %>');
+                    $("#address_zipcode").val('<%= @employee.addresses.first.zipcode %>');
+                   <% end %>
+                   }
+                   else{
+                     $("#address_line").val("");
+                    $("#address_line1").val("");
+                    $("#address_city").val("");
+                    $("#address_state").val("");
+                    $("#address_country").val("");
+                    $("#address_zipcode").val("");
+                   }
+                });
+               
+              });
+            </script>
       
 
 
