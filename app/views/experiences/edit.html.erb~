@@ -22,28 +22,28 @@
                                       <% end %>                                      
                                      </div> 
                                      </div>
-                                   <%= form_for ([@employee, @experience]) do |f| %>
+                                   <%= form_for ([@employee, @experience]), :data => {:toggle => "validator"} do |f| %>
                                         
                                         <div class="form-group">
                                             <label class="required" style="font-weight:normal;">Company Name</label>
-                                            <%= f.text_field :previous_company, :class => "form-control",:required =>true%>                               
-                                        </div>
-                                        
+                                            <%= f.text_field :previous_company, :class => "form-control", :data => {:error => "Please enter Company Name"}, :required => true %>
+                                            <div class="help-block with-errors"></div>                               
+                                        </div>                                        
                                         <div class="form-group">
                                             <label class="required" style="font-weight:normal;">Designation</label>
-                                            <%= f.text_field :last_designation, :class => "form-control",:required =>true%>
-                                        </div>
-                                        
+                                            <%= f.text_field :last_designation, :class => "form-control", :data => {:error => "Please Enter Designation"}, :required => true %>
+                                            <div class="help-block with-errors"></div>
+                                        </div>                                        
                                         <div class="form-group">
                                             <label class="required" style="font-weight:normal;">From</label>
-
-                                            <%= f.text_field :from_date, :class => "form-control from",:required =>true%>                                        
-
+                                            <%= f.text_field :from_date, :class => "form-control from",:data => {:error => "Please Enter Joining Date"}, :required => true %>                
+                                            <div class="help-block with-errors"></div>   
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="required" style="font-weight:normal;">To</label>
-                                            <%= f.text_field :to_date, :class => "form-control to"%>                                            
+                                            <%= f.text_field :to_date, :class => "form-control to", :data => {:error => "Please Enter Releaving Date"}, :required => true %>
+                                            <div class="help-block with-errors"></div>                                                      
                                         </div>
                                         <br>
                                         <ul class="navigation-btns" style="list-style: none;display:inline;">
