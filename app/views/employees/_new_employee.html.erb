@@ -18,8 +18,7 @@
                                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
                                                       <% errCount = @employee.errors.full_messages.count%>
                                                       <% err = "Error".pluralize(errCount) %>
-                                                      <%= "Errors: #{errCount} #{err}" if errCount>0 %> 
-                                                      
+                                                      <%= "Errors: #{errCount} #{err}" if errCount>0 %>                                                       
                                                     </a>                                                   
                                                   </div>
                                                   <div id="collapseOne" class="accordion-body collapse">

@@ -7,7 +7,7 @@
                                     <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info" %>
                                   <% end %>
                                   <% if @address2.nil? %>
-                                    <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info" %>
+                                    <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info" %><br>
                                   <% end %>
                                 </div>
                           </div>
