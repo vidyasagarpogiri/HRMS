@@ -14,26 +14,28 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">   
-                                 <%= form_for ([@employee, @salary, @allowance]) do |f| %>                                        
-                                        <div class="form-group">
-                                            <label class="required" >Allowance name </label>
-                                            <%= f.text_field :allowance_name,  :class => "form-control" %>                                        
-                                        </div>                                        
-                                        <div class="form-group">
-                                            <label class="required" >Percentage/value :</label><br>
-                                            <%= f.text_field :value, :class => "form-control",  :placeholder=>"Enter Allowance value" %>               
-                                        </div>                                       
-                                          <!--<button type="submit" class="btn btn-success pull-left">Save</button> -->
-																					<%= f.submit 'Update', :class => "btn btn-success pull-left" %>          
-                                    <% end %>                         
+                                 <%= form_for ([@employee, @salary, @allowance]), :data => {:toggle => "validator"} do |f| %>           
+                                    <div class="form-group">
+                                        <label class="required" >Allowance name </label>
+                                        <%= f.text_field :allowance_name,  :class => "form-control" , :placeholder =>"Enter Allowance name", :data => {:error => "Please Enter name of Allowance"}, :type="text", :required =>true %>
+                                        <div class="help-block with-errors"></div>                                       
+                                    </div>                                        
+                                    <div class="form-group">
+                                        <label class="required" >Percentage/value :</label><br>
+                                        <%= f.text_field :value, :class => "form-control",  :placeholder=>"Enter Allowance value", :data => {:error => "Please Enter Value for  Allowance"},:type="number", :required =>true %>
+                                        <div class="help-block with-errors"></div>  %>               
+                                    </div>                                       
+                                      <!--<button type="submit" class="btn btn-success pull-left">Save</button> -->
+																			<%= f.submit 'Update', :class => "btn btn-success pull-left" %>          
+                                 <% end %>                         
+                            </div>
+                            <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel-body -->
+                        <!-- /.panel -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-           
-         </div>
-          <!-- /#page wrapper -->
+                <!-- /.row -->
+               
+             </div>
+              <!-- /#page wrapper -->
