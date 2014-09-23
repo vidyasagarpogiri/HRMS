@@ -68,7 +68,8 @@
                                       <div class="col-lg-12">
 																				<div class="form-group col-lg-6">
                                             <label class="required">Date Of Joining</label>
-                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control datepicker") %>                                      </div>
+                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control datepicker") %>                                      
+                                        </div>
                                           <% a = []%>
                                          <%  JobLocation.all.each do |j| 
                                           b=[]
@@ -90,7 +91,7 @@
                                         </div>
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Mobile Number</label>   
-                                              <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number"},:required =>true, :type => "number" %> 
+                                              <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number", :minlength => "10", :maxlenght => "10"}, :required =>true, :type => "number" %> 
                                                <span class="help-block with-errors"></span>       
                                         </div>
                                       </div>
@@ -110,15 +111,10 @@
                                         <div class="form-group col-lg-6">
 
                                             <label class="required"> Reporting Manager</label><br>
-                                            <input type="text" id="reporting" class = "form-control", name= "reporting" , place_holder = "Enter Reporting Manager Name" >
+                                            <input type="text" id="reporting" class ="form-control required", name= "reporting" , place_holder = "Enter Reporting Manager Name" >
                                             <input type="hidden" id="reporting_id"  name= "reporting_id">
                                         </div>
 
-
-                                        
-                                        <div class="form-group col-lg-6">
-                                            <label class="required">Department</label><br>
-                                            <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, form-control", :id => "disabledSelect1" } %>
 
                                         
                                          <div class="form-group col-lg-6">
@@ -153,7 +149,7 @@
                                           
                                          
                                              <div class="form-group col-lg-6">
-                                            <label class="required">Upload Image</label><br>
+                                            <label class="">Upload Image</label><br>
                                             <%= f.file_field :avatar %>
                                          </div>  
                                        </div>
@@ -220,7 +216,7 @@ $(function() {
   //Designation and grades dynamic select buttons
   $('.grades').parent().hide();
     var grades =  $('.grades').html();
-    $('.designation').change(function() {
+    $('.designation').click(function() {
      var designation = $('.designation :selected').text();
      var gradeoptions = $(grades).filter("optgroup[label='"+designation+"']").html();
       if (gradeoptions) {

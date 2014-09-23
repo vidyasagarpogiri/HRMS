@@ -23,11 +23,11 @@
                                       <% end %>                                      
                                      </div>                                   
                                   </div>
-                                  <%= form_for ([@employee, @email]) do |f| %>
+                                  <%= form_for ([@employee, @email]), :data => {:toggle => "validator"} do |f| %>
                                    <br>                                                                       
                                         <div class="form-group">
                                             <label class="required" >Email Content</label>
-                                            <%= f.text_area :ettiquite,  :class =>"form-control", :placeholder => "Enter Content",:required =>true %>  
+                                            <%= f.text_area :ettiquite,  :class =>"form-control", :placeholder => "Enter Content",:data => {:error => " Please Enter Email Content"},:required =>true %> <span class="help-block with-errors"></span>        
                                         </div>
                                          
                                        <button type="submit" class="btn btn-success pull-left">Save </button>

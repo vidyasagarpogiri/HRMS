@@ -20,7 +20,7 @@
                                       <% end %>                                      
                                      </div>                                   
                                   </div>
-																	<%= form_for ([@employee, @status]) do |f| %>
+																	<%= form_for ([@employee, @status]),:data => {:toggle => "validator"} do |f| %>
 																				<div class="form-group col-lg-6">
 																			<label class="required" >Date of Exit</label>
 																			<%= f.text_field :date_of_exit, :class =>"form-control datepicker" %>
@@ -35,7 +35,7 @@
 																			</div>	
 	                                    <div class="form-group col-lg-6">																																						
 																			  <label class="required">Summary Of F&F</label>
-																			  <%= f.text_area :summary, :class =>"form-control",:required =>true %>	<br>
+																			  <%= f.text_area :summary, :class =>"form-control",:required =>true,:data => {:error => " Please Enter Summary"},:required =>true %> <span class="help-block with-errors"></span %>	<br>
 																			 
 																			</div>
 																			 <%= f.submit 'Save', :class => "btn btn-success pull-left" %>
