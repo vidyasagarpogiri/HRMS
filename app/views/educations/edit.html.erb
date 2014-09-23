@@ -48,8 +48,10 @@
                                         
                                         <br>
                                        
-                                        <%= f.submit :class => "btn btn-success pull-left" %>
-                                        <%= link_to 'Cancel', employee_educations_path(@employee), :class => "btn btn-danger pull-left"%>                                       
+                                        <ul class="navigation-btns" style="list-style: none;display:inline;">
+                                          <li><button type="submit" class="btn btn-success pull-left">Update</button></li>
+                                          <li><%= link_to 'Cancel', employee_experiences_path(@employee), :class => "btn btn-danger pull-left"%></li>
+                                        </ul>                                       
                                    <% end %>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

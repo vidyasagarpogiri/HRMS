@@ -24,7 +24,7 @@ layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :upda
 		if @status.save
 		@employee.update(:ff_status_id => @status.id)
 		#raise @status.inspect
-		redirect_to employee_ff_status_path(@employee, @status)
+		redirect_to employee_ff_statuses_path(@employee)
 		else
 		render 'new'
 	end
@@ -49,7 +49,7 @@ layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :upda
 		@status = FfStatus.find(params[:id])
 #raise @status.inspect
 		if @status.update(status_params)
-		redirect_to employee_ff_status_path(@employee, @status)
+		redirect_to employee_ff_statuses_path(@employee)
 		else
 		render 'edit'
 	end 
