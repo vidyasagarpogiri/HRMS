@@ -10,7 +10,7 @@ padding:10px;
 
  
 .nav-second-level ul li a,label a {
-font-size: 13px !important;
+font-size: 14px !important;
 }
 
 .span8{
@@ -204,7 +204,7 @@ letter-spacing:1px;
 }
 
 .alert-success, .table > tbody > tr > td, .table > thead > tr > th{
-font-size:12px;
+font-size:14px;
 }
 
 .table > thead > tr > th{
@@ -213,7 +213,7 @@ font-weight:bold;
 
 .btn-info, .btn-danger, .btn-success{
 padding: 3px 9px;
-font-size:12px;
+font-size:14px;
 }
 
  ul li {
