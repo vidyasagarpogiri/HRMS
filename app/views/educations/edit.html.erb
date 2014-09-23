@@ -35,7 +35,7 @@
                                         
                                         <div class="form-group">
                                             <label class="required" >Year of Passing</label>
-                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control", :placeholder => "EnterYear of Passing", :data => {:error => "Please Enter Year of Passing "}, :type => "number", :required => true %>   
+                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control", :placeholder => "EnterYear of Passing", :data => {:error => "Please Enter Year of Passing " , :maxlength => "4", :minlength => "4"}, :type => "number", :required => true, :pattern => "^\d{4}$" %>   
                                         <div class="help-block with-errors"></div>     
                                         </div>
                                         
