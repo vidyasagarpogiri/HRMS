@@ -2,11 +2,9 @@
 
             <div class="page-header">My Leaves</div>
             <% if @employee.department.leave_policy.present? %>
-              <label style="margin-top:-50px;" class = "remaining_leaves pull-right">
-                  <div id="show">
-                  <a href="#" ><i class="fa fa-dot-circle-o"></i> Remaining Leaves</a>
-                  <%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %></div>
-                  
+              <label style="margin-top:-50px;" class = "remaining_leaves pull-right">                 
+                  <a href="#" id="show" ><i class="fa fa-dot-circle-o"></i> Remaining Leaves</a>
+                  <%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %>                  
               </label>
                
                       <div class="panel-body" id="list">                       

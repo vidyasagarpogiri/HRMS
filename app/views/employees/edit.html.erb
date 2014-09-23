@@ -49,7 +49,7 @@
                                         <div class="col-lg-12">
 																				<div class="form-group col-lg-6"">
                                             <label class="required">Date Of Joining</label>
-                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control datepicker"), :data => {:error => " Please Enter Employee Date Of Joining"}, :required =>true %>
+                                            <%= text_field :employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control datepicker", :data => {:error => " Please Enter Employee Date Of Joining"}, :required =>true %>
                                             <span class="help-block with-errors"></span>                                           
                                         </div>
                                         <% a = []%>
@@ -62,7 +62,7 @@
                                    
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Job Location</label>
-                                            <%= f.select :job_location_id, a,  { :prompt => "Please Select" }, { :class => "job_location, form-control", :id => "disabledSelect" }, :required =>true %>                                           
+                                            <%= f.select :job_location_id, a,  { :prompt => "Please Select" }, { :class => "job_location, form-control", :id => "disabledSelect" } %>                                           
                                         </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -100,7 +100,7 @@
 			                                 <div class="col-lg-12">
                                           <div class="form-group col-lg-6"">
                                              <label class="required">Date Of Birth</label>
-                                              <%= text_field(:employee, :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"form-control datepicker_with_year"),:data => {:error => " Please Enter Employee Date Of Birth"},:required =>true %> <span class="help-block with-errors"></span> %>
+                                              <%= text_field :employee, :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"form-control datepicker_with_year",:data => {:error => " Please Enter Employee Date Of Birth"},:required =>true %> <span class="help-block with-errors"></span>
                                           </div>
                                                                                                                       
                                           
