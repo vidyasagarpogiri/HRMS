@@ -12,13 +12,14 @@ def index
     #raise params.inspect
       @holiday_calender = HolidayCalender.new
       @department = Department.find(params[:department_id])
-      @event = Event.all
+      @events = Event.all
     end
     
     def create
       @department = Department.find(params[:department_id])
+      #TODO - BalaRaju - Have to modify this condition 
+      @department.holiday_calenders.destroy_all
       params[:event_ids].each do |event|
-        #params_with_department = params_calender.merge(department_id: params[:department_id, event_id: event])
         @holiday_calender = HolidayCalender.create(department_id: params[:department_id], event_id: event)
       end 
       redirect_to leaves_department_path(@department)  
