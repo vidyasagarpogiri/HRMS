@@ -7,23 +7,23 @@
 
                                         <div class="form-group">
                                             <label class="required" >Gross Salary </label>
-                                            <%= f.text_field :gross_salary,  :class=>"form-control", :data => {:error => "Please Enter Gross Salary"}, :required => true %>   
+                                            <%= f.text_field :gross_salary,  :class=>"form-control", :placeholder => "Enter Gross Salary", :data => {:error => "Please Enter valid Gross Salary value"}, :type => "number", :required => true %>   
                                         <div class="help-block with-errors"></div> 
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="required" >Bonus</label><br>
-                                             <%= f.text_field :bonus, :class=>"form-control", :data => {:error => "Please Enter Bonus"}, :required => true %>   
+                                             <%= f.text_field :bonus, :class=>"form-control",:placeholder => "Enter Bonus ", :data => {:error => "Please Enter valid Bonus value"}, :type => "number", :required => true %>   
                                         <div class="help-block with-errors"></div>
                                         </div>
 																				<div class="form-group">
                                             <label class="required" >Gratuity</label><br>
-                                             <%= f.text_field :gratuity, :class=>"form-control" , :data => {:error => "Please Enter Gratuity"}, :required => true %>   
+                                             <%= f.text_field :gratuity, :class=>"form-control",:placeholder => "Enter Gratuity", :data => {:error => "Please Enter valid Gratuity value"}, :type => "number", :required => true %>   
                                         <div class="help-block with-errors"></div>
                                         </div>
 																				<div class="form-group">
                                             <label class="required" >Medical Insurance</label><br>
-                                             <%= f.text_field :medical_insurance, :class=>"form-control" , :data => {:error => "Please Enter Medical Insurance"}, :required => true %>   
+                                             <%= f.text_field :medical_insurance, :class=>"form-control",:placeholder => "Enter Medical Insurance", :data => {:error => "Please Enter valid Medical Insurance value"}, :type => "number", :required => true %>   
                                         <div class="help-block with-errors"></div>
                                         </div>
                                         <button type="submit" class="btn btn-success pull-right">Submit</button>           

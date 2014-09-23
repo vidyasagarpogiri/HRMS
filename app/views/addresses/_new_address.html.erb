@@ -13,8 +13,7 @@
                         
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6" >                          
-                                <%# @address.errors.full_messages.first if @address.errors.any? %>
+                                <div class="col-lg-6" >                                                          
                                     <%= form_for([@employee, @address]) do |f| %>
                                    
                                     <label><u><%= @address_type%> Address</u></label> 
