@@ -34,7 +34,7 @@ Event.destroy_all
 
 
 #sekharberi@1989
- @user = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
+ @user = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
 
 
 
@@ -85,8 +85,8 @@ end
 FfStatuses = FfStatus.all.pluck(:id)
 
 
-Employee.create(:employee_id => 1, :title=> "Mr.", :first_name=>"Priyanka Rao",:last_name=>"muddana",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
-:ff_status_id=>FfStatuses[rand(FfStatuses.length)], :job_location_id=>JobLocations[rand(JobLocations.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user.id, :alternate_email => "priyanka@gmail.com")
+Employee.create(:employee_id => 1, :title=> "Mr.", :first_name=>"BalaRaju",:last_name=>"Vankala",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
+:ff_status_id=>FfStatuses[rand(FfStatuses.length)], :job_location_id=>JobLocations[rand(JobLocations.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user.id, :alternate_email => "vankalabalaraju@gmail.com")
 
 Employees = Employee.all.pluck(:id)
 
@@ -118,6 +118,4 @@ Event.create(:event_name =>"Diwali", :event_date => "14/11/2014")
 Event.create(:event_name =>"Naga Panchami", :event_date => "21/11/2014")
 Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")
 Event.create(:event_name =>"Christmas", :event_date => "25/12/2014")
-
-
 
