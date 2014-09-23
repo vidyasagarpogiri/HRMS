@@ -66,7 +66,9 @@ class Employee < ActiveRecord::Base
 
 
   def reporting_manager
-    Employee.find(reporting_managers.first.manager_id).full_name if reporting_managers.present?
+     if reporting_managers.first.present? && reporting_managers.first.manager_id.present? 
+      Employee.find(reporting_managers.first.manager_id).full_name  unless reporting_managers.first.manager_id == 0 
+    end
   end
 	
   
@@ -84,7 +86,10 @@ class Employee < ActiveRecord::Base
   end
 	
 	def reporting_managerId
+	  
 	   ReportingManager.find_by_employee_id(id).manager_id
+	 
+	   
 	end
 
 end
