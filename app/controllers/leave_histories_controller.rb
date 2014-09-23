@@ -95,9 +95,10 @@ class LeaveHistoriesController < ApplicationController
 	
 	def reject
 		#raise params.inspect
+		@employee = Employee.find(params[:employee_id])
 		@leave_history = LeaveHistory.find(params[:leave_history_id])
 		@leave_history.update(:status => LeaveHistory::REJECTED)
-		 Notification.reject_leave(current_user.employee, @leave_history).deliver
+		 Notification.reject_leave(@employee, @leave_history).deliver
 		redirect_to reported_leaves_path
 	end
 
