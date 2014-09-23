@@ -72,12 +72,12 @@
                                   <%= link_to "Email Etiquette", employee_email_ettiquities_path(@id) %>
                                 </li>
                                 <li>
-                                  <%= link_to "Attachments",attachment_index_employee_path(@id) %>  
+                                  <%= link_to "Attachments",attachment_show_employee_path(@id) %>  
                                 </li>
 <% if current_user.department == Department::HR %>
                                 <li>
 
-                                    <%= link_to "Exit Info", new_employee_ff_status_path(@id) %>
+                                    <%= link_to "Exit Info", employee_ff_statuses_path(@id) %>
 
                                   
                                 </li>

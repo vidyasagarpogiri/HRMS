@@ -19,6 +19,7 @@ class EmployeesController < ApplicationController
   end
   
   def create
+ 
      @employee = Employee.create(params_employees)
     if @employee.errors.present?
       render 'new'
@@ -127,11 +128,12 @@ class EmployeesController < ApplicationController
 	end
 	
 	 def attachment_update
+	 #raise params.inspect
 	    @employee = Employee.find(params[:id])
 	    @emp_attachement = EmployeeAttachment.find(params[:attachment_id])
 	    @emp_attachement.update(:attachment_name=> params[:employee_attachments][:attachment_name])
 	    #raise @emp_attachement.inspect
-	    redirect_to attachment_form_new_employee_path(@employee_attachement)
+	    redirect_to attachment_show_employee_path(@employee,@employee_attachement)
 	 end
 	
 	def show_exit
