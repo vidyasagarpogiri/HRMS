@@ -49,7 +49,8 @@
                                         <div class="col-lg-12">
 																				<div class="form-group col-lg-6"">
                                             <label class="required">Date Of Joining</label>
-                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control datepicker") %>                                           
+                                            <%= text_field(:employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class=>"form-control datepicker"), :data => {:error => " Please Enter Employee Date Of Joining"}, :required =>true %>
+                                            <span class="help-block with-errors"></span>                                           
                                         </div>
                                         <% a = []%>
                                          <%  JobLocation.all.each do |j| 
@@ -61,7 +62,7 @@
                                    
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Job Location</label>
-                                            <%= f.select :job_location_id, a,  { :prompt => "Please Select" }, { :class => "job_location, form-control", :id => "disabledSelect" } %>                                           
+                                            <%= f.select :job_location_id, a,  { :prompt => "Please Select" }, { :class => "job_location, form-control", :id => "disabledSelect" }, :required =>true %>                                           
                                         </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -71,7 +72,7 @@
                                         </div>
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Mobile Number</label>   
-                                              <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No",:required =>true,:required =>true,:data => {:error => " Please Enter Employee Mobile Number"},:required =>true %> <span class="help-block with-errors"></span>                       
+                                              <%= f.text_field :mobile_number, :class=>"form-control", :placeholder=>"Enter Mobile No", :data => {:error => " Please Enter Employee Mobile Number", :minlenght => "10", :maxlenght =>"10"}, :type =>"number", :required =>true %> <span class="help-block with-errors"></span>                       
                                         </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -81,7 +82,7 @@
                                         </div>  
                                         <div class="form-group col-lg-6"">
                                             <label class="required">Alternate E-Mail </label>
-                                             <%= f.text_field :alternate_email, :class=>"form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter Employee Alternate Email Id"},:required =>true %> <span class="help-block with-errors"></span>
+                                             <%= f.text_field :alternate_email, :class=>"form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter Employee Alternate Email Id"}, :required =>true %> <span class="help-block with-errors"></span>
                                            
                                         </div>
                                         </div>
@@ -99,7 +100,7 @@
 			                                 <div class="col-lg-12">
                                           <div class="form-group col-lg-6"">
                                              <label class="required">Date Of Birth</label>
-                                              <%= text_field(:employee, :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"form-control datepicker_with_year") %>
+                                              <%= text_field(:employee, :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"form-control datepicker_with_year"),:data => {:error => " Please Enter Employee Date Of Birth"},:required =>true %> <span class="help-block with-errors"></span> %>
                                           </div>
                                                                                                                       
                                           
@@ -133,7 +134,7 @@
                                             <input type="hidden" name="employee[reporting_id]"  id= "reporting_id">
                                         </div>                                        
                                          <div class="form-group col-lg-6"">
-                                            <label class="required">Upload Image:</label><br>
+                                            <label class="">Upload Image:</label><br>
                                             <%= f.file_field :avatar %>
                                          </div>  
 
