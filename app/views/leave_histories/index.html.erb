@@ -52,7 +52,7 @@
 												 	
 													<td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
 													<td>  <%= pluralize(f.days, 'day') %>  </td>
-													<td> <%= f.reason %>  </td>
+													<td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
 													<td><%=f.leave_type.type_name if f.leave_type.present? %></td>													
 													<td><%=f.status %></td>
 													<td><%= link_to "Edit", edit_leave_history_path(f), :class => "btn btn-info" %>
@@ -106,7 +106,7 @@
 												<tr>               
 												 	<td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
 													<td>  <%= pluralize(f.days, 'day') %>  </td>
-													<td> <%= f.reason %>  </td>
+													<td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
 													<td><%=f.leave_type.type_name %> </td>													
 													<td><%=f.status %></td>
 													<td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info" %>
@@ -164,7 +164,7 @@
 												<tr>               
 												  <td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
 													<td>  <%= pluralize(f.days, 'day') %>  </td>
-													<td> <%= f.reason %>  </td>
+													<td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
 													<td><%=f.leave_type.type_name %> </td>													
 													<td><%=f.status %></td>
 													<% unless f.to_date.to_date <= Date.today %>
@@ -224,4 +224,31 @@
                        </script>        
                       
       
+      
+      <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Reason for leave</h4>
+      </div>
+      <div class="modal-body">
+        <span id="modal_body"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(function(){
+  $("td a[id='modal-text']").click(function(){
+    var content=$(this).prev().text();
+    $("#modal_body").text(content);
+  });
+});
+</script>
 
