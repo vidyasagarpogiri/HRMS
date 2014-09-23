@@ -13,10 +13,10 @@
                                 <div class="col-lg-6">
                                    <div class="errors">
                                    </div>
-                                   <%= form_for(@emp_attachement, url: attachment_update_employee_path(@employee, @emp_attachement,:data => {:toggle => "validator" })) do |f| %>
+                                   <%= form_for(@emp_attachement, url: attachment_update_employee_path(@employee, @emp_attachement),:data => {:toggle => "validator" }) do |f| %>
                                    <div class="form-group" >
                                       <label class="required" >Attachment Title:</label><br>                                          
-                                     <%= f.text_field :attachment_name,:class => "form-control", name: "employee_attachments[attachment_name][]",:data => {:error => " Please Enter Attachment Title"},:required =>true %> <span class="help-block with-errors"></span>     
+                                     <%= f.text_field :attachment_name,:class => "form-control", name: "employee_attachments[attachment_name]",:data => {:error => " Please Enter Attachment Title"},:required =>true %> <span class="help-block with-errors"></span>     
                                     </div>                                                                                              
                                       <%= f.submit 'Update', :class =>"btn btn-success pull-left" %>                                             
                                    <% end %>
