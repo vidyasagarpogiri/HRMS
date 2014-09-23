@@ -9,11 +9,11 @@
                                   <div class="col-lg-6"> 
                                     <%= form_for [@employee, @address],  :remote => true  do |f| %>
                                     <br>                                  
-                                    <label><u><%= @address_type %> Address</u></label> 
+                                    <label><u><%= @address_type %> Address</u></label><br><br> 
 
                                         <% if @employee.addresses.present? %>                                        
-                                          <a href="#" id="address-check-box-hyper-link"><input type="checkbox", id="address-check-box"></a>Same as old address
-                                          <br>
+                                          <a href="#" id="address-check-box-hyper-link"><input type="checkbox", id="address-check-box"></a> &nbsp Same as old address
+                                          
                                         <% end %>
                                         <div class="form-group ">
                                            <label class="required" >Address Line 1</label>

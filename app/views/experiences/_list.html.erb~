@@ -2,6 +2,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header">Experience Details</div>
+                    <label style="font-weight:normal;margin-top:-50px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to ' Add Experience', new_employee_experience_path(@employee.id)  %></label>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
