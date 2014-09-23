@@ -19,28 +19,28 @@
                                         <div class="form-group">
                                                   
                                            <label class="required" >Address Line 1</label>
-                                           <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter Address Line 1"}, :required =>true %>
+                                           <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter Address Line 1"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
                                             <div class="help-block with-errors"></div>
                                           
                                          </div>
                                          <div class="form-group">
                                             <label class="required">Address Line 2</label>
-                                            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 2",:data => {:error => "Please Enter Address Line 2"}, :required =>true %>
+                                            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 2",:data => {:error => "Please Enter Address Line 2"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
                                             <div class="help-block with-errors"></div>      
                                         </div>
                                         <div class="form-group">
                                             <label class="required">City</label>
-                                            <%= f.text_field :city, :class => "form-control", :placeholder=> "Enter City",:data => {:error => "Please Enter City Name "}, :required =>true, :pattern => '[a-zA-Z]*' %>
+                                            <%= f.text_field :city, :class => "form-control", :placeholder=> "Enter City",:data => {:error => "Please Enter City Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
                                             <div class="help-block with-errors"></div>   
                                         </div>
                                         <div class="form-group">
                                             <label class="required">State</label>
-                                            <%= f.text_field :state, :class => "form-control", :placeholder=> "Enter State",:data => {:error => "Please Enter State Name "}, :required =>true, :pattern => '[a-zA-Z]*' %>  
+                                            <%= f.text_field :state, :class => "form-control", :placeholder=> "Enter State",:data => {:error => "Please Enter State Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>  
                                             <div class="help-block with-errors"></div>   
                                         </div>                                        
                                         <div class="form-group">
                                             <label class="required">Country</label>
-                                            <%= f.text_field :country, :class => "form-control", :placeholder=> "Enter Country",:data => {:error => "Please Enter Country Name "}, :required =>true, :pattern => '[a-zA-Z]*' %>     
+                                            <%= f.text_field :country, :class => "form-control", :placeholder=> "Enter Country",:data => {:error => "Please Enter Country Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>     
                                             <div class="help-block with-errors"></div>     
                                         </div>
 																					<div class="form-group">
