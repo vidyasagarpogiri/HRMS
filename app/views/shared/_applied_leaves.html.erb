@@ -31,10 +31,12 @@
 													                    <td><%= f.leave_type.type_name if f.leave_type.present? %> </td>
 													                    <td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
 													                    <td>
-													                      <ul class="navigation-btns" style="list-style: none;display:inline;">              
-																								  <li><%= link_to "Accept", accept_path(:employee_id=> report.employee.id, :leave_history_id => f.id), method: :post, :class => "btn btn-success pull-left"%></li>
-																						      <li><%= link_to "Reject", reject_path(:employee_id=> report.employee.id, :leave_history_id => f.id), method: :post, :class => "btn btn-danger pull-left"%></li>
-                                              </ul>
+													                    <%= link_to "Accept", accept_path(:employee_id=> report.employee.id, :leave_history_id => f.id), method: :post, :class => "btn btn-success pull-left"%>
+																						   </td>
+																						   <td>   
+																						      <%= link_to "Reject", "#cancelLeaveModal", :class => "cancel-leave btn btn-danger", :url => getLeaveForm_leave_history_path(f.id), "data-toggle" => "modal" %>
+
+                                              
                                               </td>
 												                  </tr>												                   
 											                 </tbody>
@@ -54,7 +56,55 @@
                              <!-- Button trigger modal -->
 
 
-                    
+
+                  
+
+
+  <script type="text/javascript">
+    $('.cancel-leave').click(function(){ 
+        var url = $(this).attr("url");
+        $.ajax({
+          type: "GET",
+          url: url,
+          dataType: "script"
+          });
+        });
+      </script>
+
+
+<script>
+$(function(){
+  $("td a[id='modal-text']").click(function(){
+    var content=$(this).prev().text();
+    $("#modal_body").text(content);
+  });
+  
+
+});
+</script>
+
+
+<div class="modal fade" id="cancelLeaveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Cancel reason for leave</h4>
+      </div>
+      <div class="cancel-Leave-modal-body modal-body">
+        
+         
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+                     
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -73,11 +123,3 @@
   </div>
 </div>
 
-<script>
-$(function(){
-  $("td a[id='modal-text']").click(function(){
-    var content=$(this).prev().text();
-    $("#modal_body").text(content);
-  });
-});
-</script>

@@ -78,13 +78,18 @@ Rails.application.routes.draw do
      end
     
     resources :leave_types 
- resources :leave_histories 
+ resources :leave_histories do 
+  member do 
+    get 'getLeaveForm'
+    post 'reject'
+  end
+ end
  
 get 'reported_leaves' => "leave_histories#reported_leaves"
 get 'reported_employees' => "leave_histories#reported_employees"
 get 'applied_leaves' => "leave_histories#applied_leaves"
 post 'accept' => "leave_histories#accept"
-post 'reject' => "leave_histories#reject"
+#post 'reject' => "leave_histories#reject"
 #get 'leaves' => "leave_histories#index"
 #get 'employee_leaves' => "departments#employee_leaves"
  resources :employees do
