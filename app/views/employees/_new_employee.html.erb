@@ -29,13 +29,13 @@
                                         <div class="form-group col-lg-6">
                                             <label class="required">Employee First Name</label>
 
-                                            <%= f.text_field :first_name, :class => "form-control",  :placeholder=>"Enter First name",:data => {:error => " Please Enter Employee First Name"}, :required =>true %>
+                                            <%= f.text_field :first_name, :class => "form-control",  :placeholder=>"Enter First name",:data => {:error => " Please Enter Employee First Name"}, :required =>true, :pattern => '[a-zA-Z]*' %>
                                             <span class="help-block with-errors"></span>   
 
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="required" >Employee Last Name</label>
-                                             <%= f.text_field :last_name, :class =>"form-control", :placeholder => "Enter Last name",:data => {:error => " Please Enter Employee Last Name"},:required =>true %> 
+                                             <%= f.text_field :last_name, :class =>"form-control", :placeholder => "Enter Last name",:data => {:error => " Please Enter Employee Last Name"},:required =>true, :pattern => '[a-zA-Z]*'  %> 
                                              <span class="help-block with-errors"></span>        
                                         </div>
                                        </div>
@@ -91,7 +91,7 @@
                                         </div>                                        
                                          <div class="form-group col-lg-6">
                                             <label class="required">Father Name</label>
-                                            <%= f.text_field :father_name, :class => "form-control",  :placeholder=>"Enter Father name",:data => {:error => " Please Enter Employee Father Number"}, :required =>true %> 
+                                            <%= f.text_field :father_name, :class => "form-control",  :placeholder=>"Enter Father name",:data => {:error => " Please Enter Employee Father Number"}, :required =>true, :pattern => '[a-zA-Z]*'  %> 
                                                <span class="help-block with-errors"></span>  
                                         </div>
                                       
