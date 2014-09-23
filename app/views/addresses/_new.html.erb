@@ -12,7 +12,8 @@
                                     <label><u><%= @address_type %> Address</u></label><br><br> 
 
                                         <% if @employee.addresses.present? %>                                        
-                                          <a href="#" id="address-check-box-hyper-link"><input type="checkbox", id="address-check-box"></a> &nbsp Same as old address
+                                          <a href="#" id="address-check-box-hyper-link"><input type="checkbox", id="address-check-box"></a> 
+                                          Same As &nbsp<%= @copy_address_type %> Address
                                           
                                         <% end %>
                                         <div class="form-group ">
