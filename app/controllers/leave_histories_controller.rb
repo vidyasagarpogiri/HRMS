@@ -26,6 +26,7 @@ class LeaveHistoriesController < ApplicationController
   
  
   def create
+    #raise params.inspect
     @employee = current_user.employee
     @leave_history = current_user.employee.leave_histories.new(params_leave_history)
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
@@ -121,7 +122,7 @@ class LeaveHistoriesController < ApplicationController
 	private
   
   def params_leave_history
-    params.require(:leave_history).permit(:from_date, :to_date, :reason, :feedback, :leave_type_id, :subject)
+    params.require(:leave_history).permit(:from_date, :to_date, :reason, :feedback, :leave_type_id)
   end
 
 end
