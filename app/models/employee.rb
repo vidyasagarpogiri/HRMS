@@ -42,10 +42,9 @@ class Employee < ActiveRecord::Base
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :date_of_birth, presence: true
-	#validates :gender, presence: true
   validates :department_id, presence: true
 
-	#validates :designation_id, presence: true
+
 	validates :mobile_number, presence: true, numericality: true , length: { is: 10 }
 
 
@@ -53,10 +52,8 @@ class Employee < ActiveRecord::Base
 
 	validates :father_name, presence: true
 	validates :blood_group_id, presence: true
-#	validates :grade_id, presence: true
 	validates :date_of_join, presence: true
-	#validates_format_of :alternate_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message=>"Valid maill id please"
-	#validates :alternate_email, presence: true
+
 	
 
 	
@@ -86,10 +83,7 @@ class Employee < ActiveRecord::Base
   end
 	
 	def reporting_managerId
-	  
-	   ReportingManager.find_by_employee_id(id).manager_id
-	 
-	   
+    ReportingManager.find_by_employee_id(id).manager_id
 	end
 
 end
