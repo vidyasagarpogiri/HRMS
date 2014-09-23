@@ -124,6 +124,7 @@
 
                                           </div> 
                                         </div>
+                                        
                                         <div class="col-lg-12">
                                           <div class="form-group col-lg-6">
 
@@ -159,7 +160,8 @@
           
           <script>
             $(document).ready(function() {
-              $("#employee_id").val('<%= ReportingManager.find_by_employee_id(@employee.id).manager_id if ReportingManager.find_by_employee_id(@employee.id).present? %>');
+              $("#reporting_id").val('<%= ReportingManager.find_by_employee_id(@employee.id).manager_id if ReportingManager.find_by_employee_id(@employee.id).present? %>');
+              $("#reporting").val("<%= @employee.reporting_manager %>");
                   });
           </script>
           

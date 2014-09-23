@@ -5,23 +5,10 @@
                     <div class="panel panel-default">
                    <% if current_user.department == Department::HR %>
                         <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6"> 
-                                <% if !@address.nil? %>
-                                <% @address.errors.full_messages.each do |error| %>
-                                        <!--<label class="col-lg-3"></label>-->
-                                        <div class="alert alert-danger alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                         <%= "#{@address_type} Address: #{error}" %>
-                                         </div>
-                                <% end %>                                      
-                                <% end %>
-                                     </div>                                   
-                                  </div>
+                            <div class="row">                               
                                   <div class="col-lg-6"> 
-                                    <%= form_for([@employee, @address]), :remote=>true do |f| %>
-                                    <br>
-                                  
+                                    <%= form_for [@employee, @address],  :remote => true  do |f| %>
+                                    <br>                                  
                                     <label><u><%= @address_type %> Address</u></label> 
 
                                         <% if @employee.addresses.present? %>                                        
@@ -31,28 +18,33 @@
                                         <div class="form-group ">
                                            <label class="required" >Address Line 1</label>
 
-                                           <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1",:required =>true%>
+                                           <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1", :data => {:error => "Please Enter Address Line 1"}, :required =>true %>
+                                            <div class="help-block with-errors"></div>
                                          </div>
                                          <div class="form-group ">
                                             <label class="required" >Address Line 2</label>
-                                            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 1",:required =>true %>
+                                            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 1", :data => {:error => "Please Enter Address Line 2"}, :required =>true %>
+                                            <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group ">
                                             <label class="required" >City</label>
-                                            <%= f.text_field :city, :class => "form-control", :placeholder=> "Enter City",:required =>true %>    
+                                            <%= f.text_field :city, :class => "form-control", :placeholder=> "Enter City", :data => {:error => "Please Enter City"}, :required =>true %>
+                                            <div class="help-block with-errors"></div>   
                                         </div>
                                         <div class="form-group ">
-                                            <label class="required" >State</label>
-                                            <%= f.text_field :state, :class => "form-control", :placeholder=> "Enter State",:required =>true %>
+                                            <label class="required">State</label>
+                                            <%= f.text_field :state, :class => "form-control", :placeholder=> "Enter State", :data => {:error => "Please Enter State"}, :required =>true %>
+                                            <div class="help-block with-errors"></div>   
                                         </div>                                        
                                         <div class="form-group">
                                             <label class="required" >Country</label>
-                                            <%= f.text_field :country, :class => "form-control", :placeholder=> "Enter Country",:required =>true %>
+                                            <%= f.text_field :country, :class => "form-control", :placeholder=> "Enter Country", :data => {:error => "Please Enter Country"}, :required =>true %>
+                                            <div class="help-block with-errors"></div>   
                                         </div>
 																				<div class="form-group">
                                             <label class="required" >Zipcode</label>
-
-                          <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter Zipcode",:required =>true %>
+                          <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter Zipcode", :type => "number", :data => {:error => "Please Enter Zipcode"}, :required =>true %>
+                                            <div class="help-block with-errors"></div>   
                                         </div>
 
               													<div class="form-group">
@@ -113,7 +105,11 @@
             </script>
       
 
-
+<script>
+  $(function(){
+   $("#new_address").validator();
+  });
+</script>
 
 
 
