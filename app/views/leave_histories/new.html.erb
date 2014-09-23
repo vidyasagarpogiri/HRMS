@@ -1,14 +1,14 @@
             <div id="page-wrapper">
-
+ <% if @employee.reporting_manager.present? %> 
                <div class="row">
                 <div class="col-lg-12">
                     <h4 class="page-header">Apply leave</h4>
-                                  </div>
-              <% if @employee.reporting_manager.present? %>                    
+                </div>
+                                
                 <!-- /.col-lg-12 -->
                 </div>
                     <div class="row">
-   <%= @leave_history.errors.full_messages.first if @leave_history.errors.any? %>
+              <%= @leave_history.errors.full_messages.first if @leave_history.errors.any? %>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Leave Form 
@@ -58,11 +58,12 @@
                 </div>
                 <!-- /.col-lg-12 -->
                 <% else %>
+                <br>
                       <div class="alert alert-success alert-dismissable">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                            You have no reporting manager. Please contact your Administrator
                       </div>
-                <%end%>
+                <% end %>
             </div>
               <!-- /.row -->
          </div>

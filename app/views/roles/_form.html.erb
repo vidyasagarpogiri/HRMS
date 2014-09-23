@@ -17,15 +17,18 @@
                                    <div class="col-lg-12">
                                         <div class="form-group col-lg-6">                                        
                                             <label class="required" >Role</label><br>
-                                               <%= r.text_field :role_name, :class => "form-control", :placeholder =>"Enter Role" %><br>   
-                                                    <button type="submit" class="btn btn-success pull-left">Save </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <%= link_to "Back", roles_path,:class => "btn btn-info "%>
+                                               <%= r.text_field :role_name, :class => "form-control", :placeholder =>"Enter Role" %><br>
+                                                   <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                                     <li> <%= r.submit  'Save', :class => "btn btn-success pull-left" %></li>    
+                                                     <li><%= link_to "Back", roles_path,:class => "btn btn-info "%> </li>
+                                                  </ul>                                                   
                                         </div>
                                         
                                   
                                     <% end %>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
+                                
                             </div>
                             <!-- /.row (nested) -->
                         </div>
