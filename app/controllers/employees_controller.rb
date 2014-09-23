@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-  layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index]
+  layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index, :attachment_edit]
 	
 	
 	  #before_filter :other_emp_view, :except => [:index, :profile]
@@ -19,6 +19,7 @@ class EmployeesController < ApplicationController
   end
   
   def create
+ 
      @employee = Employee.create(params_employees)
     if @employee.errors.present?
       render 'new'
@@ -128,11 +129,12 @@ class EmployeesController < ApplicationController
 	end
 	
 	 def attachment_update
+	 #raise params.inspect
 	    @employee = Employee.find(params[:id])
 	    @emp_attachement = EmployeeAttachment.find(params[:attachment_id])
 	    @emp_attachement.update(:attachment_name=> params[:employee_attachments][:attachment_name])
 	    #raise @emp_attachement.inspect
-	    redirect_to attachment_form_new_employee_path(@employee_attachement)
+	    redirect_to attachment_show_employee_path(@employee,@employee_attachement)
 	 end
 	
 	def show_exit

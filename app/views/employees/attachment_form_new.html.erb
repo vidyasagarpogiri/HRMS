@@ -19,7 +19,7 @@
                                       <% end %>                                      
                                      </div>                                   
                                   </div>                                                                      
-                          <%= form_for(@employee, :html => {:multipart => true}) do |f| %> 
+                          <%= form_for(@employee, :html => {:multipart => true}, :data => {:toggle => "validator"}) do |f| %> 
                           <div class="col-lg-6">
                             <div class="form-group">
                              <%= fields_for :employee_attachments do |f| %>
@@ -27,7 +27,7 @@
                                   <label class="required" >
                                      Attachment Title:
                                   </label><br>                                          
-                                  <%= f.text_field :attachment_name, :class => "form-control", name: "employee_attachments[attachment_name][]" %>  
+                                  <%= f.text_field :attachment_name, :class => "form-control", name: "employee_attachments[attachment_name][]",:data => {:error => " Please Enter Attachment Title"},:required =>true %> <span class="help-block with-errors"></span>  
                                </div>
                                <div class="form-group">
                                    <label class="required">
