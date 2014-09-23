@@ -12,13 +12,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                 <% @address.errors.full_messages.each do |error| %>
-                                   <div class="alert alert-danger alert-dismissable">
-                                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <%= error %>
-</div>
-                                      <% end %> 
-              
+                                 
                                     <%= form_for([@employee, @address]) do |f| %>
                                     <br>
                                     <label><u>Edit Address</u></label> <br> 
