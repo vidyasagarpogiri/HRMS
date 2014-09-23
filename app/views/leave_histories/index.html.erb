@@ -101,7 +101,7 @@
 												</tr>
 											</thead>
 										 <%  @leave_histories.each do |f| %>	
-										 <% unless(f.from_date.to_date < Date.today) %>									
+										 <% unless(f.from_date.to_date <= Date.today) %>									
 											<tbody>												
 												<tr>               
 												 	<td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
