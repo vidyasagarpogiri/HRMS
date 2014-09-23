@@ -94,11 +94,11 @@ class LeaveHistoriesController < ApplicationController
 
 	
 	def reject
-		#raise params.inspect
-		@employee = Employee.find(params[:employee_id])
-		@leave_history = LeaveHistory.find(params[:leave_history_id])
-		@leave_history.update(:status => LeaveHistory::REJECTED)
-		 Notification.reject_leave(@employee, @leave_history).deliver
+
+		@leave_history = LeaveHistory.find(params[:id])
+		@leave_history.update(:status => LeaveHistory::REJECTED, :feedback => params[:leave_history][:feedback])
+		 Notification.reject_leave(current_user.employee, @leave_history).deliver
+
 		redirect_to reported_leaves_path
 	end
 
@@ -118,6 +118,12 @@ class LeaveHistoriesController < ApplicationController
   @leave_history.destroy
   redirect_to leave_histories_path
   
+  end
+
+  def getLeaveForm
+    #raise params.inspect
+    @leave = LeaveHistory.find(params[:id])
+	 
   end
 
 	private
