@@ -20,13 +20,13 @@
                                         
                                         <div class="form-group">
                                             <label class="required" >Personal leaves Per Year</label>
-                                            <%= f.text_field :pl_this_year,  :class => "form-control",:data => {:error => "Please Enter number of leaves per year"}, :required =>true %>  
+                                            <%= f.text_field :pl_this_year,  :class => "form-control",:data => {:error => "Please Enter number of leaves per year"}, :type => "number", :required =>true %>  
                                     <div class="help-block with-errors"></div> 
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="required" >Minimum Carry forword Leaves</label>
-                                            <%= f.text_field :eligible_carry_forward_leaves,  :class => "form-control",:data => {:error => "Please Enter number of minimum carry forward leaves"}, :required =>true %>  
+                                            <%= f.text_field :eligible_carry_forward_leaves,  :class => "form-control",:data => {:error => "Please Enter number of minimum carry forward leaves"}, :type => "number", :required =>true %>  
                                     <div class="help-block with-errors"></div>  
                                         </div>
                                         <ul class="navigation-btns" style="list-style: none;display:inline;">
