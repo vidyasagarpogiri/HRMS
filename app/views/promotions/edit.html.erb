@@ -25,8 +25,8 @@
                                 <%= form_for ([@employee,@promotion]), :data => {:toggle => "validator"} do |p| %>                                        
                                 <div class="form-group">
                                     <label class="required" >Date of Promotion</label>                                              
-                                    <%= text_field(:promotion, :date_of_promotion, :class => "form-control datepicker"),:placeholder => "Enter Date of Promotion", :data => {:error => "Please Enter Date of Promotion"}, :required =>true %>  
-                                    <div class="help-block with-errors"></div>  %>    
+                                    <%= p.text_field :date_of_promotion, :class => "form-control datepicker", :placeholder => "Enter Date of Promotion", :data => {:error => "Please Enter Date of Promotion"}, :required =>true %>  
+                                    <div class="help-block with-errors"></div>     
                                 </div>                                
                                 <div class="form-group">
                                     <label class="required" >Designation</label><br>
