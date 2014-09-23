@@ -58,11 +58,12 @@ class EmployeesController < ApplicationController
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
       #raise a.inspect
         @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
-        redirect_to attachment_show_employee_path(@employee)  
+        
       end
      
-         #redirect_to attachment_show_employee_path(@employee)
+        
     end
+       redirect_to attachment_show_employee_path(@employee)
     end
     
     if params[:employee].present? 
