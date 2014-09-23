@@ -1,78 +1,82 @@
-
-
 <div id="page-wrapper">
-                <div class="row">
-                <div class="col-lg-12">
+  <div class="row">
+    <div class="col-lg-12">
                    
-                </div>
+     </div>
                 <!-- /.col-lg-12 -->
-            </div>
+   </div>
             <!-- /.row --><br>
-            <div class="row">
-               <div class="col-lg-12">
-                  <% @holiday_calender.errors.full_messages.each do |error| %>
-                  <label class="col-lg-3"><%= error %></label>
-                  <% end %>
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        Holiday calender
-                     </div>   
-                      <label class="required">Add Event</label><br>    
-                     <div class="panel-body ">                                                                                             
-                               <table class="table table-striped table-hover" id="sample-table-2">
-											            <thead>											      
-												            <tr>
-													            <th class="center">Event name</th>
-													            <th> Event Date </th>									            									      		
-												            </tr>
-											            </thead> 
-											            
-                       <%= form_for ([@department, @holiday_calender]) do |f| %> 
-                       <tbody>
-												   <tr>                                       
-                                                   
-                            <% @event.each do |event| %>
-                           
-                            <td><%= event.event_name %>
-                            <td><%= event.event_date %>
-                            <td><%= check_box_tag 'event_ids[]', event.id %>
-                         
-                            <!--
-                            <label>Employee Participation  : &nbsp</label>                        
-                            Mandatory <input type="radio" value="true" name="holiday_calender[mandatory_or_optional]">&nbsp&nbsp&nbsp&nbsp
-                            Optional <input type="radio" value="false" name="holiday_calender[mandatory_or_optional]">
-                            -->
-                             </tr>
-                           <% end %>
-												           
-											            </tbody>
-											            </table> 
-											            <ul class="navigation-btns  pull-right" style="list-style: none;display:inline;">
-                               <li> <%= f.submit  'Save', :class => "btn btn-success" %></li>
-                            </ul>
-											            <% end %>
-											            
-											            
-									                
-                           
-                           
-                           
-                            
-                            
-                                                
-                   </div>
-                      <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+  <div class="row">
+     <div class="col-lg-12">
+        <% @holiday_calender.errors.full_messages.each do |error| %>
+        <label class="col-lg-3"><%= error %></label>
+        <% end %>
+        <div class="panel panel-default">
+           <div class="panel-heading">
+             Add  Holiday calender For : <label><%= @department.department_name %> Departmant</label>
+           </div>   
            
+           <div class="panel-body ">                                                                                             
+                     <table class="table table-striped table-hover" id="sample-table-2">
+						            <thead>											      
+							            <tr>
+								            <th class="center">Event name</th>
+								            <th> Event Date </th>	
+								            <th> Select Events </th>								            									      		
+							            </tr>
+						            </thead> 
+						            
+             <%= form_for ([@department, @holiday_calender]) do |f| %> 
+             <tbody>
+							   <tr>                                       
+                                         
+                  <% @events.each do |event| %>
+                 
+                  <td><%= event.event_name %></td>
+                  <td><%= event.event_date %></td>
+                  <% if @department.events.include?(event) %>
+                  <td><%= check_box_tag 'event_ids[]', event.id, checked = true %></td>
+                  <% else %>
+                    <td><%= check_box_tag 'event_ids[]', event.id %></td>
+                  <% end %>
+                 
+                 
+                  <!--
+                  <label>Employee Participation  : &nbsp</label>                        
+                  Mandatory <input type="radio" value="true" name="holiday_calender[mandatory_or_optional]">&nbsp&nbsp&nbsp&nbsp
+                  Optional <input type="radio" value="false" name="holiday_calender[mandatory_or_optional]">
+                  -->
+                   </tr>
+                 <% end %>
+							           
+						            </tbody>
+						            </table> 
+						            <ul class="navigation-btns  pull-right" style="list-style: none;display:inline;">
+                     <li> <%= f.submit  'Save', :class => "btn btn-success" %></li>
+                  </ul>
+						            <% end %>
+						            
+						            
+				                
+                 
+                 
+                 
+                  
+                  
+                                      
          </div>
-          <!-- /#page wrapper -->
-          
-          
+            <!-- /.panel-body -->
+          </div>
+          <!-- /.panel -->
+      </div>
+      <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+ 
+</div>
+<!-- /#page wrapper -->
+
+
           
 <script>
   $(function(){

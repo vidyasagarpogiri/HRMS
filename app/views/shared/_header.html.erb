@@ -16,13 +16,14 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li>
+                         <%= link_to ' My Profile', employee_path(current_user.employee.id), :class => "fa fa-user fa-fw" %>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                        <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-sign-out fa-fw") %>   
+                        <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-sign-out fa-fw"  %>   
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
