@@ -83,5 +83,8 @@ class Employee < ActiveRecord::Base
      "#{first_name} #{last_name}"
   end
 	
+	def reporting_managerId
+	   ReportingManager.find_by_employee_id(id).manager_id
+	end
 
 end

@@ -160,7 +160,7 @@
           
           <script>
             $(document).ready(function() {
-              $("#reporting_id").val('<%= ReportingManager.find_by_employee_id(@employee.id).manager_id if ReportingManager.find_by_employee_id(@employee.id).present? %>');
+              $("#reporting_id").val('<%= @employee.reporting_managerId if ReportingManager.find_by_employee_id(@employee.id).present? %>');
               $("#reporting").val("<%= @employee.reporting_manager %>");
                   });
           </script>
