@@ -30,7 +30,7 @@ LeaveType.destroy_all
 Group.destroy_all;
 StaticAllowance.destroy_all
 Allowance.destroy_all
- 
+Event.destroy_all 
 
 
 #sekharberi@1989
@@ -107,6 +107,16 @@ StaticAllowance.create(:allowance_name => 'HRA', :percentage => 25.0)
 StaticAllowance.create(:allowance_name => 'Car Allowance', :percentage => 15.0)
 StaticAllowance.create(:allowance_name => 'DA', :percentage => 5.0)
 
+Event.create(:event_name =>"Pongal", :event_date => "14/01/2014")
+Event.create(:event_name =>"Ugadi", :event_date => "11/04/2014")
+Event.create(:event_name=>"Independence Day", :event_date => "15/08/2014")
+Event.create(:event_name =>"Raksha Bhandan", :event_date => "23/08/2014")
+Event.create(:event_name =>"Vinayaka Chaturthi", :event_date => "29/08/2014")
+Event.create(:event_name =>"Dussehra", :event_date => "04/10/2014")
+Event.create(:event_name =>"Diwali", :event_date => "14/11/2014")
+Event.create(:event_name =>"Naga Panchami", :event_date => "21/11/2014")
+Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")
+Event.create(:event_name =>"Christmas", :event_date => "25/12/2014")
 
 
 
