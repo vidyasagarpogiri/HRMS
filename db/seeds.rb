@@ -28,7 +28,7 @@ EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
 Group.destroy_all;
-StaticAllowance.destroy_all
+
 Allowance.destroy_all
  
 
@@ -140,17 +140,6 @@ LeaveType.create(:type_name => leave )
 end
 LeaveTypes = LeaveType.all.pluck(:id)
 
-Group.all.each do |group|
-  ReportingManager.create(employee_id: rand(1..Employee.count), group_id: group.id)
-
-#static allowance
-StaticAllowance.create(:allowance_name => 'HRA', :percentage => 25.0)
-StaticAllowance.create(:allowance_name => 'Car Allowance', :percentage => 15.0)
-StaticAllowance.create(:allowance_name => 'DA', :percentage => 5.0)
-
-
-
-end
 
 
 Allowance.create(:allowance_name =>"travel allawance",:value=>"1500.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"true") 
