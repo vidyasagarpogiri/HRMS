@@ -33,7 +33,7 @@
                                    <label class="required">
                                       Upload File
                                    </label><br>
-                                   <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes, :error => " Please Enter Attachment Title"}, :required =>true  %>
+                                   <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes, :error => " Please Choose a file to attach"}, :required =>true  %>
                                     <span class="help-block with-errors"></span>  
                                    
                                </div>                    
