@@ -1,9 +1,9 @@
         <div id="page-wrapper">
            <div class="row">
              <div class="col-lg-12">
-            <div class="page-header">My Leaves</div>
-                <% if @employee.department.leave_policy.present? %>
-                <% if @employee.reporting_manager? %>  
+                <div class="page-header">My Leaves</div>
+                  <% if @employee.department.leave_policy.present? %>
+                   <% if @employee.reporting_manager? %>  
                   <label style="margin-top:-50px;" class = "remaining_leaves pull-right">                 
                       <a href="#" id="show" ><i class="fa fa-dot-circle-o"></i> Remaining Leaves</a>
 
@@ -11,9 +11,11 @@
                       <%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %> 
                                                
                                              
-                       <% if @employee.reporting_manager? %>             
+
+                                
 
                   </label> 
+
                     <div class="panel-body" id="list">                       
                       <div class="form-group col-lg-4">
                         <label> Balance Leaves : </label>                         
@@ -70,6 +72,11 @@
 									 
 								 </div> <!--panel default-- >
 								   																									
+							
+							
+							
+							
+							
 								<!-- APPROVED LEAVES VIEW --->
 																															
 									 <div class="page-header"> Upcoming Leaves List</div> 							
@@ -181,16 +188,16 @@
                  
                   
                   <!--if condition for reporting manager -->
-                  <% else %>
-                      <div class="alert alert-success alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                           You have no reporting manager. Please contact your Administrator
-                      </div>
-                       </div>																																																
-                </div>
-                <!-- /..panel-default  -->   
-                   <%end%> 
-                   
+                            <% else %>
+                                <div class="alert alert-success alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                     You have no reporting manager. Please contact your Administrator
+                                </div>
+                                 </div>																																																
+                          </div>
+                          <!-- /..panel-default  -->   
+                             <%end%> 
+                             
                    
                    <!-- if condition for leave policy-->
                 <% else %>

@@ -73,7 +73,7 @@ class LeaveHistoriesController < ApplicationController
 	def reported_leaves
 	  #raise params.inspect
 	  if current_user.employee.reporting_manager.present?
-		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).page(params[:page]).per(5)
+		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).page(params[:page]).per(2)
 		else
 		redirect_to leave_histories_path
 		end
