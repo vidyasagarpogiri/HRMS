@@ -22,7 +22,7 @@
                                         
                                         <div class="form-group">
                                             <label class="required">Designation</label><br>
-                                            <%= f.text_field :last_designation, :class => "form-control", :placeholder =>"Enter Designation", :data => {:error => "Please Enter Designation"}, :required => true %>
+                                            <%= f.text_field :last_designation, :class => "form-control", :placeholder =>"Enter Designation", :data => {:error => "Please Enter Designation"}, :required => true, :pattern => '[a-zA-Z/s ]*' %>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         

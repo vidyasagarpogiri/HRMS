@@ -3,6 +3,12 @@
                <div class="row">
                 <div class="col-lg-12">
                     <h4 class="page-header">Apply leave</h4>
+                    <% if total_balance_leaves(@employee) <= 0 %>
+                              <div class="alert alert-danger alert-dismissable">
+                                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                 Your Have No remaining leaves Please confirm before apply
+                               </div>
+                            <% end %>
                 </div>
                                 
                 <!-- /.col-lg-12 -->
@@ -16,6 +22,10 @@
                           </div>
                           <div class="panel-body">                    
                             <div class="col-lg-6">
+                            
+                            
+                            
+                            
                                <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %>       	
                                <div class="form-group">
                                   <label class="required">Leave Type</label><br>
@@ -36,6 +46,9 @@
                                   <%= f.text_field :to_date, :id => "idnm2", :class => "form-control leave-to-date", :data => {:error => "Please Enter Valid Date"}, :required => true %>
                                   <div class="help-block with-errors"></div>
                               </div><br><br>
+                              
+                              
+                              
                                 <button type="submit" class="btn btn-success pull-right" style="margin-left:px;"> Apply </button>
                                 <% end %>
                              </div> <!-- /.col-lg-6(nested) -->                                                                

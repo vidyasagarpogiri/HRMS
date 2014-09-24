@@ -8,50 +8,40 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
-                    
-                        <div class="panel-body">
-                         <% @status.errors.full_messages.each do |error| %>
-                                        <!--<label class="col-lg-3"></label>-->
-                                        <div class="alert alert-danger alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                         <%= error %>
-                                         </div>
-                                      <% end %>                                      
-                                     </div>                                   
-                                  </div>
-																	<%= form_for ([@employee, @status]),:data => {:toggle => "validator"} do |f| %>
-																				<div class="form-group col-lg-6">
-																			<label class="required" >Date of Exit</label>
-																			<%= f.text_field :date_of_exit, :class =>"form-control datepicker", :data => {:error => " Please Enter Summary"},:required =>true %> <span class="help-block with-errors"></span %> %>
-																			</div>
-																			<div class="form-group col-lg-6">
-                                        <label class="required" >Status of F & F</label>
-                                        <%= f.select :status_name, options_for_select(FfStatus::STATUS), { :prompt => "Please Select" }, { :class => "department form-control" } %>
-               										    </div>																			
-																			<div class="form-group col-lg-6">
-																			  <label class="required" >InterView Status</label>
-																		<%= f.select(:interview_status, options_for_select([['Yes', 'Yes'], ['No', 'No']]), {:prompt => "Please Select"}, :class=> "form-control", :id=>"disabledSelect") %>
-																			</div>	
-	                                    <div class="form-group col-lg-6">																																						
-																			  <label class="required">Summary Of F&F</label>
-																			  <%= f.text_area :summary, :class =>"form-control",:required =>true, :data => {:error => " Please Enter Summary"},:required =>true %> <span class="help-block with-errors"></span %>	<br>
-																			 
-																			</div>
-																			 <%= f.submit 'Save', :class => "btn btn-success pull-left" %>
-																	<% end %>
-                               
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
+                <div class="col-lg-12">                    
+                   <div class="panel-body">
+                      <div class="col-lg-6">                                                                          
+											 <%= form_for ([@employee, @status]),:data => {:toggle => "validator"} do |f| %>
+											 <div class="form-group">
+												  <label class="required" >Date of Exit</label>
+												  <%= f.text_field :date_of_exit, :class =>"form-control datepicker", :data => {:error => " Please Enter Exit Date"},:required =>true %>
+												  <div class="help-block with-errors"></div>   
+												  </div>
+												<div class="form-group">
+                          <label class="required" >Status of F & F</label>
+                          <%= f.select :status_name, options_for_select(FfStatus::STATUS), { :prompt => "Please Select" }, :class => "department form-control", :data => {:error => " Please Enter Status"},:required =>true %>
+												  <div class="help-block with-errors"></div>   
+ 										    </div>																			
+												<div class="form-group">
+												  <label class="required" >InterView Status</label>
+											<%= f.select :interview_status, options_for_select([['Yes', 'Yes'], ['No', 'No']]), {:prompt => "Please Select"}, :class=> "form-control", :id=>"disabledSelect",:data => {:error => " Please Enter InterView Status"}, :required =>true %>
+											  <div class="help-block with-errors"></div>  
+												</div>	
+                        <div class="form-group">																																						
+												  <label class="required">Summary Of F&F</label>
+												  <%= f.text_area :summary, :class =>"form-control",:required =>true, :data => {:error => " Please Enter Summary"} %>	
+												   <div class="help-block with-errors"></div>							 
+												</div>
+												
+												 <%= f.submit 'Save', :class => "btn btn-success pull-left" %>
+											<% end %>
+									</div>
+                 <!-- /.col-lg-6 -->
+               </div>
+                 <!-- /.panel -->                   
             </div>
-
-
-         </div>
-          <!-- /#page wrapper -->
+            <!-- col-lg-12 -->
+        </div>
+           <!-- /.row -->                          
+     </div>
+      <!-- /#page wrapper -->
