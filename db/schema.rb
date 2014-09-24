@@ -32,11 +32,8 @@ ActiveRecord::Schema.define(version: 20140924062852) do
     t.float    "value",          limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "salary_id"
     t.boolean  "applicable"
   end
-
-  add_index "allowances", ["salary_id"], name: "index_allowances_on_salary_id", using: :btree
 
   create_table "blood_groups", force: true do |t|
     t.string   "blood_group_name"
