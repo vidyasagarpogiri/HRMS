@@ -123,7 +123,6 @@
                                          <div class="form-group col-lg-6" >
                                             <label class="">Upload Image</label><br>
                                            <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
-                                           <%# f.file_field :avatar %>
                                          </div>  
                                        </div>                                                                                       
                                        <div class="col-lg-12">  
@@ -224,31 +223,9 @@ $(function() {
         })
   });
   </script>
-  <script>
-  
-  $('#addfile').click(function () {
-        var avatar = $("#employee_avatar").val();
-        var extension = avatar.split('.').pop().toUpperCase();
-        if(avatar.length < 1) {
-            avatarok = 0;
-        }
-        else if (extension!="PNG" && extension!="JPG" && extension!="GIF" && extension!="JPEG"){
-            avatarok = 0;
-            alert("invalid extension "+extension);
-        }
-        else {
-            avatarok = 1;
-        }
-        if(avatarok == 1) {
-            $('.formValidation').addClass("sending");
-            $("#form").submit();
-        }
-        else {
-            $('.formValidation').addClass("validationError");
-        }
-        return false;
-    });
-    </script>
+    
+    <!-- script for image uploading-->
+    
       <script>
 function validateFiles(inputFile) {
   var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
