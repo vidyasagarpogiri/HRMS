@@ -27,28 +27,22 @@ Promotion.destroy_all
 EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
-Group.destroy_all;
-
+Group.destroy_all
 Allowance.destroy_all
- 
+Event.destroy_all 
 
 
 #sekharberi@1989
- @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
- @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
- @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
- @user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
+ @user = User.invite!(:email =>  "sekhar.beri@amzur.com", :skip_invitation => true)
 
 
-Address.create(:line1 => "BAY STREET",:line => "GUL END",:city => "Sydney",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
+
+
+Address.create(:line1 => "BAY STREET",:line => "GUL END",:city => "Tampa",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
 Address.create(:line1 => "street 1",:line => "near KFC",:city => "Vizag",:state=>"Andhra",:country=>"India",:zipcode=>"530003")
-Address.create(:line1 => "BEACH ROAD",:line => "OPP:IMAX THEATRE",:city => "Avalon",:state=>"California",:country=>"Los Angels",:zipcode=>" 90704")
-Address.create(:line1 => "MARINE TOWERS",:line => "Kukatpally",:city => "Hyderabad",:state=>"Telangana",:country=>"India",:zipcode=>"500001")
-Address.create(:line1 => "400 N",:line => "Ashley Drive #2200",:city => "Tampa",:state=>"Florida",:country=>"USA",:zipcode=>"33602")
-Address.create(:line1 => "9-29-22,2nd Floor,Pioneer Sankar Shantiniketan,",:line => "Balaji Nagar,Siripuram,",:city => "Visakhapatnam",:state=>"Andhra Pradesh",:country=>"India",:zipcode=>" 530003")
 addresses = Address.all.pluck(:id)
 
-(3..5).each do 
+(addresses).each do 
 JobLocation.create( :address_id => addresses[rand(addresses.length)])
 end
 JobLocations = JobLocation.all.pluck(:id)
@@ -78,7 +72,7 @@ Designation.all.each do |desg|
   end
 end
 #-----------------------------------------------------------------------------------------------------#
-Grades = Grade.all.pluck(:id)
+
 ["O+ve", "O-ve", "A+ve", "A+ve", "B+ve", "B-ve", "AB+ve", "AB-ve", "ABO (Bombay Blood Group)"].each do |bloodgrp|
 BloodGroup.create(:blood_group_name => bloodgrp ) 
 end
@@ -91,6 +85,12 @@ FfStatuses = FfStatus.all.pluck(:id)
 
 
 
+Salary.create(:ctc_fixed =>"12000",:basic_salary => "4000",:gross_salary=>"16000",:gratuity =>"2500",:bonus=>"1500",:medical_insurance=>"2500") 
+Salary.create(:ctc_fixed =>"16000",:basic_salary => "2000",:gross_salary=>"13500",:gratuity =>"1500",:bonus=>"1600",:medical_insurance=>"2500")
+Salary.create(:ctc_fixed =>"22000",:basic_salary => "3500",:gross_salary=>"16500",:gratuity =>"2000",:bonus=>"1700",:medical_insurance=>"2500")
+Salary.create(:ctc_fixed =>"10000",:basic_salary => "4500",:gross_salary=>"18000",:gratuity =>"2200",:bonus=>"1000",:medical_insurance=>"2500")
+
+Salaries = Salary.all.pluck(:id)
 
 
 
@@ -128,21 +128,29 @@ end
 EmailEttiquities = EmailEttiquitie.all.pluck(:id)
 
 
-Salary.create(:ctc_fixed =>"12000",:basic_salary => "4000",:gross_salary=>"16000",:gratuity =>"2500",:bonus=>"1500",:medical_insurance=>"2500") 
-Salary.create(:ctc_fixed =>"16000",:basic_salary => "2000",:gross_salary=>"13500",:gratuity =>"1500",:bonus=>"1600",:medical_insurance=>"2500")
-Salary.create(:ctc_fixed =>"22000",:basic_salary => "3500",:gross_salary=>"16500",:gratuity =>"2000",:bonus=>"1700",:medical_insurance=>"2500")
-Salary.create(:ctc_fixed =>"10000",:basic_salary => "4500",:gross_salary=>"18000",:gratuity =>"2200",:bonus=>"1000",:medical_insurance=>"2500")
-
-Salaries = Salary.all.pluck(:id)
 
 ["Sick Leave", "Floating Leave" , "Casual Leave","Carry Forward Leave"].each do |leave|
+
 LeaveType.create(:type_name => leave ) 
 end
 LeaveTypes = LeaveType.all.pluck(:id)
 
 
+Event.create(:event_name =>"Pongal", :event_date => "14/01/2014")
+Event.create(:event_name =>"Ugadi", :event_date => "11/04/2014")
+Event.create(:event_name=>"Independence Day", :event_date => "15/08/2014")
+Event.create(:event_name =>"Raksha Bhandan", :event_date => "23/08/2014")
+Event.create(:event_name =>"Vinayaka Chaturthi", :event_date => "29/08/2014")
+Event.create(:event_name =>"Dussehra", :event_date => "04/10/2014")
+Event.create(:event_name =>"Diwali", :event_date => "14/11/2014")
+Event.create(:event_name =>"Naga Panchami", :event_date => "21/11/2014")
+Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")
+Event.create(:event_name =>"Christmas", :event_date => "25/12/2014")
 
-Allowance.create(:allowance_name =>"travel allawance",:value=>"1500.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"true") 
-Allowance.create(:allowance_name =>"travel allawance",:value=>"2500.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"false") 
-Allowance.create(:allowance_name =>"travel allawance",:value=>"500.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"true") 
-Allowance.create(:allowance_name =>"travel allawance",:value=>"1000.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"false") 
+
+Allowance.create(:allowance_name =>"travel allawance",:value=>"1500.00") 
+Allowance.create(:allowance_name =>"travel allawance",:value=>"2500.00") 
+Allowance.create(:allowance_name =>"travel allawance",:value=>"500.00") 
+Allowance.create(:allowance_name =>"travel allawance",:value=>"1000.00")
+
+

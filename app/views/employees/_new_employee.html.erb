@@ -178,8 +178,17 @@ $(function() {
       $('.designation').empty();
       $('.designation').parent().hide();
       }
-   
-  
+    var grades =  $('.grades').html();
+   var designation = $('.designation :selected').text();
+     var gradeoptions = $(grades).filter("optgroup[label='"+designation+"']").html();
+      if (gradeoptions) {
+      $('.grades').html(gradeoptions);
+      $('.grades').parent().show();
+      }
+    else {
+      $('.grades').empty();
+      $('.grades').parent().hide();
+      }
   });
    
   //Designation and grades dynamic select buttons

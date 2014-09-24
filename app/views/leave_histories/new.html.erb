@@ -44,7 +44,7 @@
                               <div class="form-group col-lg-6">
                                   <label class="required" >To</label>
                                   <%= f.text_field :to_date, :id => "idnm2", :class => "form-control leave-to-date", :data => {:error => "Please Enter Valid Date"}, :required => true %>
-                                  <div class="help-block with-errors"></div>
+                                  <div class="help-block with-errors error1"></div>
                               </div><br><br>
                               
                               
@@ -81,6 +81,7 @@
                        var date2 = $('.leave-form-date').datepicker('getDate');
                        date2.setDate(date2.getDate());
                        $(".leave-to-date").datepicker("option", "minDate", date2);
+                       $(".error1").html('');
                    }
                });
 
@@ -89,7 +90,16 @@
                     minDate: -0,
                     yearRange: "0:+1",
                      changeMonth: true,
-                   changeYear: true
+                   changeYear: true, 
+                     onClose: function (selectedDate) {
+                      var date1 = $('.leave-form-date').datepicker('getDate');
+                      if (date1){
+                        
+                      }else{
+                        $("#idnm2").val('');
+                        $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
+                      }
+                     }
                });
            });
         </script>
