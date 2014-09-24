@@ -64,9 +64,10 @@ class SalariesController < ApplicationController
 	def destroy
 	 @salary =  Salary.find(params[:id])
 	 @employee= Employee.find(params[:employee_id])
-		@salary.destroy
-		redirect_to employee_salaries_path(@employee)
-		
+	 @allowances = SalariesAllowance.where(:salary_id => @salary.id)
+	 @allowances.destroy_all
+	 @salary.destroy
+	 redirect_to employee_salaries_path(@employee)
   end
   
 	def configure_allowance
@@ -81,7 +82,7 @@ class SalariesController < ApplicationController
 		params[:allowance_ids].each do |a|
 		  SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)
 		end
-		redirect_to employee_salary_path(@employee,@salary)
+		redirect_to employee_salaries_path(@employee)
 	end
 
 	def edit_allowance

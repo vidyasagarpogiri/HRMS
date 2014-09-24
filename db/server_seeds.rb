@@ -28,7 +28,6 @@ EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
 Group.destroy_all;
-StaticAllowance.destroy_all
 Allowance.destroy_all
 Event.destroy_all 
 
@@ -102,11 +101,6 @@ LeaveType.create(:type_name => leave )
 end
 LeaveTypes = LeaveType.all.pluck(:id)
 
-
-#static allowance
-StaticAllowance.create(:allowance_name => 'HRA', :percentage => 25.0)
-StaticAllowance.create(:allowance_name => 'Car Allowance', :percentage => 15.0)
-StaticAllowance.create(:allowance_name => 'DA', :percentage => 5.0)
 
 Event.create(:event_name =>"Pongal", :event_date => "14/01/2014")
 Event.create(:event_name =>"Ugadi", :event_date => "11/04/2014")
