@@ -44,10 +44,14 @@
                     
                   <% end %>
                   
-                  <% if @department.holiday_calenders.find_by_event_id(event.id).mandatory_or_optional? %>
-                  <td><%= check_box_tag 'mandatory[]', event.id, checked = true %></td>
-                  <% else %> 
-                  <td><%= check_box_tag 'mandatory[]', event.id %></td>
+                  <% if @department.holiday_calenders.present? && @department.holiday_calenders.find_by_event_id(event.id) %>
+                    <% if @department.holiday_calenders.find_by_event_id(event.id).mandatory_or_optional? %>
+                      <td><%= check_box_tag 'mandatory[]', event.id, checked = true %></td>
+                    <% else %> 
+                      <td><%= check_box_tag 'mandatory[]', event.id %></td>
+                    <% end %>
+                  <% else %>
+                     <td><%= check_box_tag 'mandatory[]', event.id %></td>
                   <% end %>
                   
                   
