@@ -1,3 +1,4 @@
 class Allowance < ActiveRecord::Base
-  belongs_to :salary
+  has_many :salaries_allowances
+  has_many :salaries, :through => :salaries_allowances
 end
