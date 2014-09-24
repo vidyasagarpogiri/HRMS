@@ -33,7 +33,9 @@
                                    <label class="required">
                                       Upload File
                                    </label><br>
-                                   <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]" %>
+                                   <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes}, :required =>true  %>
+                                   
+                                   
                                </div>                    
                                <span id="add_attachment_field" ></span><br>
                                <span id='add_field'><a href="#"><i class="fa fa-icon fa-plus">Add More</i></a> </span>                                          
@@ -68,6 +70,37 @@ $(function(){
   });  
 });
 </script>
+
+
+ <script>
+function validateFiles(inputFile) {
+  var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
+  var extErrorMessage = "Only file with extension: .jpg, .jpeg, .gif, .png, .pdf, .ppt, .pptx, .doc, .docx, .zip, .rar, .txt, .xls is allowed";
+  var allowedExtension = ["jpg", "jpeg", "gif", "png", "doc", "docx", "ppt", "pptx", "xls", "xlsx", "txt", "rar", "pdf", "psd"];
+  
+  var extName;
+  var maxFileSize = $(inputFile).data('max-file-size');
+  var sizeExceeded = false;
+  var extError = false;
+  
+  $.each(inputFile.files, function() {
+    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+    extName = this.name.split('.').pop();
+    if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+  });
+  if (sizeExceeded) {
+    window.alert(maxExceededMessage);
+    $(inputFile).val('');
+  };
+  
+  if (extError) {
+    window.alert(extErrorMessage);
+    $(inputFile).val('');
+  };
+}
+</script>
+
+
 
 
 
