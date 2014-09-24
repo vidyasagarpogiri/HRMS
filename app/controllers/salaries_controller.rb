@@ -93,19 +93,21 @@ end
 			#raise params.inspect
 			@employee= Employee.find(params[:employee_id])
 			@salary =  Salary.find(params[:salary_id])
-			@static_allowance = StaticAllowance.all
+			@allowances = Allowance.all
 	end
 	
 	def create_allowance
-		#raise params.inspect
+	  #raise params.inspect
+		#raise params[:allowance_ids].inspect
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
-		params[:allowances].each do |a|
-#raise a[1][:applicable].inspect
-			if a[1][:applicable] == "1" 
+		params[:allowance_ids].each do |a|
+		#raise a.inspect
+    #raise a[1][:applicable].inspect
+			#if a[1][:applicable] == "1" 
 #raise params.inspect
-		 		Allowance.create(:allowance_name => a[1][:allowance_name], :value => a[1][:percentage], :applicable => a[1][:applicable], :salary_id => @salary.id)
-			end
+		 		SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)
+			#end
 		end
 		redirect_to employee_salary_path(@employee,@salary)
 	end
@@ -118,10 +120,10 @@ end
 	end
 	
 	def update_allowance
-		#raise params.inspect
+		raise params.inspect
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
-		params[:allowances].each do |a|
+		params[:allowance_ids].each do |a|
 		#raise a[1][:applicable].inspect
 		@allowance = Allowance.find(a[0])
 		if a[1][:applicable] == "1"
@@ -139,12 +141,12 @@ end
 		
 
 		salary_allowance= @salary.allowances.map(&:allowance_name)
-		static_allowance = StaticAllowance.all.map(&:allowance_name)
-		remaining_allowance = static_allowance - salary_allowance
-		@static_allowances = []
-		remaining_allowance.each do |allowance|
-			@static_allowances << StaticAllowance.find_by_allowance_name(allowance)
-		end
+		#static_allowance = StaticAllowance.all.map(&:allowance_name)
+		#remaining_allowance = static_allowance - salary_allowance
+		#@static_allowances = []
+		#remaining_allowance.each do |allowance|
+		#	@static_allowances << StaticAllowance.find_by_allowance_name(allowance)
+		#end
 	
 		respond_to do |format|
 			format.js

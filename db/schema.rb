@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922090409) do
+ActiveRecord::Schema.define(version: 20140924062852) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -295,6 +295,14 @@ ActiveRecord::Schema.define(version: 20140922090409) do
     t.float    "gratuity",          limit: 24
     t.float    "bonus",             limit: 24
     t.float    "medical_insurance", limit: 24
+  end
+
+  create_table "salaries_allowances", force: true do |t|
+    t.integer  "salary_id"
+    t.integer  "allowance_id"
+    t.string   "apply_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "salary_increments", force: true do |t|

@@ -15,7 +15,7 @@
                                    </div>
                                    <%= form_for(@emp_attachement, url: attachment_update_employee_path(@employee, @emp_attachement),:data => {:toggle => "validator" }) do |f| %>
                                    <div class="form-group" >
-                                      <label class="required" >Attachment Title:</label><br>                                          
+                                      <label class="required" > Title:</label><br>                                          
                                       <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes}, :required =>true  %>
                                     </div>                                                                                              
                                       <%= f.submit 'Update', :class =>"btn btn-success pull-left" %>                                             
@@ -38,7 +38,7 @@
 function validateFiles(inputFile) {
   var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
   var extErrorMessage = "Only file with extension: .jpg, .jpeg, .gif, .png, .pdf, .ppt, .pptx, .doc, .docx, .zip, .rar, .txt, .xls is allowed";
-  var allowedExtension = ["jpg", "jpeg", "gif", "png", "doc", "docx", "ppt", "pptx", "xls", "xlsx", "txt", "rar", "pdf", "psd"];
+  var allowedExtension = ["jpg", "LPG", "JPEG", "jpeg", "gif", "GIF",  "png", "PNG",  "doc", "DOC", "docx", "DOCX", "ppt", "PPT", "pptx", "PPTX", "xls", "XLS", "xlsx", "XLSX", "txt", "TXT", "rar", "RAR", "pdf", "PDf", "psd", "PSD"];
   
   var extName;
   var maxFileSize = $(inputFile).data('max-file-size');
