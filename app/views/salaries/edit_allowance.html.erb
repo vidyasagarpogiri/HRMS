@@ -30,7 +30,11 @@
 												   <tr>
                               <td><%= f.text_field :allowance_name, :value => allowance.allowance_name %></td>
 														  <td><%= f.text_field :value,  :value => allowance.value %></td>
-                              <td><%= f.check_box :applicable %></td>
+                              <% if @salary.allowances.include?(allowance) %>
+                                <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = true %></td>
+                              <% else %>
+                                <td><%= check_box_tag 'allowance_ids[]', allowance.id %></td>
+                              <% end %>
 												   </tr>
                           <% end %>
 											    <% end %> 

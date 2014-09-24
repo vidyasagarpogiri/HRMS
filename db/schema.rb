@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922090409) do
+ActiveRecord::Schema.define(version: 20140924062852) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -32,11 +32,8 @@ ActiveRecord::Schema.define(version: 20140922090409) do
     t.float    "value",          limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "salary_id"
     t.boolean  "applicable"
   end
-
-  add_index "allowances", ["salary_id"], name: "index_allowances_on_salary_id", using: :btree
 
   create_table "blood_groups", force: true do |t|
     t.string   "blood_group_name"
@@ -297,6 +294,14 @@ ActiveRecord::Schema.define(version: 20140922090409) do
     t.float    "medical_insurance", limit: 24
   end
 
+  create_table "salaries_allowances", force: true do |t|
+    t.integer  "salary_id"
+    t.integer  "allowance_id"
+    t.string   "apply_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "salary_increments", force: true do |t|
     t.string   "increment_date"
     t.float    "increment_value", limit: 24
@@ -306,14 +311,6 @@ ActiveRecord::Schema.define(version: 20140922090409) do
   end
 
   add_index "salary_increments", ["salary_id"], name: "index_salary_increments_on_salary_id", using: :btree
-
-  create_table "static_allowances", force: true do |t|
-    t.string   "allowance_name"
-    t.float    "percentage",     limit: 24
-    t.boolean  "applicable"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
