@@ -72,7 +72,7 @@ $(function() {
                    yearRange: "-100:+0",
                    onClose: function (selectedDate) {
                        var date2 = $('.from').datepicker('getDate');
-                       date2.setDate(date2.getDate() + 1);
+                       date2.setDate(date2.getDate());
                        $(".to").datepicker("option", "minDate", date2);
                    }
                });
