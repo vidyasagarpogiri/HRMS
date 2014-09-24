@@ -9,10 +9,11 @@
 
                      
                       <%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %> 
-              
+                                               
                                              
                        <% if @employee.reporting_manager? %>             
 
+                  </label> 
                     <div class="panel-body" id="list">                       
                       <div class="form-group col-lg-4">
                         <label> Balance Leaves : </label>                         
