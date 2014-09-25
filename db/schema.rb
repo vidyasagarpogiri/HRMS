@@ -34,7 +34,9 @@ ActiveRecord::Schema.define(version: 20140925054132) do
     t.float    "value",           limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "allowance_value", limit: 24
+
+    t.boolean  "applicable"
+
   end
 
   create_table "blood_groups", force: true do |t|

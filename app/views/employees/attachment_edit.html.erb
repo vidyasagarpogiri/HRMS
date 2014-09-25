@@ -1,39 +1,32 @@
-          <div id="page-wrapper">
-              <div class="row">
-                    <div class="page-header">
-                      Edit Attachment 
-                    </div>
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                   <div class="errors">
-                                   </div>
-                                   <%= form_for(@emp_attachement, url: attachment_update_employee_path(@employee, @emp_attachement),:data => {:toggle => "validator" }) do |f| %>
-                                   <div class="form-group" >
-                                      <label class="required" > Title:</label><br>                                          
-                                      <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes}, :required =>true  %>
-                                    </div>                                                                                              
-                                      <%= f.submit 'Update', :class =>"btn btn-success pull-left" %>                                             
-                                   <% end %>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->            
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                   <!-- /.col-lg-12 -->
-              </div>
-                <!-- /.row -->
-           </div>
-               <!-- /page-wrapper -->
+   <div class="wrapper">
+		<div class="container">
+			<div class="row">	
+				<div class="span12">
+					<div class="content">
+						<div class="module">
+							<div class="module-head">
+								<h3> Edit Attachment </h3>
+							</div>
+							<div class="module-body">	
+							  <%= form_for(@emp_attachement, url: attachment_update_employee_path(@employee, @emp_attachement),:data => {:toggle => "validator" }) do |f| %>
+                 <div class="control-group">
+										<label class="control-label" for="basicinput">Title</label>
+										<div class="controls">
+											 <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes}, :required =>true  %>
+											 <span class="help-block with-errors"></span>  
+										</div>
+									</div>									
+									<%= f.submit 'Update', :class =>"btn btn-success pull-left" %> <br> 																			
+										<% end %>
+							</div><!--/.module-body-->
+						</div><!--/.module-->
+					</div><!--/.content-->
+				</div><!--/.span12-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+	</div><!--/.wrapper-->
+
+                                                                        
  <script>
 function validateFiles(inputFile) {
   var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
