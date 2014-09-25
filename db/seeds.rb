@@ -121,5 +121,3 @@ Event.create(:event_name =>"Naga Panchami", :event_date => "21/11/2014")
 Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")
 Event.create(:event_name =>"Christmas", :event_date => "25/12/2014")
 
-
-
