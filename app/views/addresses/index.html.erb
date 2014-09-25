@@ -1,8 +1,12 @@
-                <div id="page-wrapper">
-                      <div class="row">
-                          <div class="col-lg-12">
-                              <div class="page-header">Contact Info</div>
-                                <div class="pull-right"> 
+                <div class="wrapper">
+                     <div class="wrapper">
+		                    <div class="container"> 
+			                    <div class="row">	
+				                    <div class="span12">
+					                    <div class="content">
+						                    <div class="module">
+                             <div class="module-head">Contact Info</div>
+                                <div class="pull-right" style="margin-top:-30px;"> 
                                   <% if @address1.nil? %>
                                     <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info" %>
                                   <% end %>

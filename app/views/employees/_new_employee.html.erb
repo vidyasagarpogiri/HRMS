@@ -73,7 +73,8 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Mobile Number</label>
 										<div class="controls">
-                      <%= f.text_field :mobile_number, :class => "span8 datepicker", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
+                      <%= f.text_field :mobile_number, :class => "span8", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
+                      <span class="help-block with-errors"></span>
 										</div>
 									</div>
 									
@@ -88,7 +89,8 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Alternate E-Mail</label>
 										<div class="controls">
-                     <%= f.text_field :alternate_email, :class=>"span8", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter Employee Alternate Email"}, :required =>true, :pattern => '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$' %> 
+                     <%= f.text_field :alternate_email, :class=>"span8", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter Employee Alternate Email"}, :required =>true, :pattern => '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$' %>
+                     <span class="help-block with-errors"></span> 
 										</div>
 									</div>
 									
