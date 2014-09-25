@@ -27,7 +27,7 @@ class EmployeesController < ApplicationController
      @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
      @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
      @employee.update(:user_id => @user.id)
-      redirect_to @employee
+      redirect_to profile_path(@employee)
     end
     
   end
@@ -53,9 +53,11 @@ class EmployeesController < ApplicationController
   end
   
   def update
-   
+   #raise params.inspect
     @employee = Employee.find(params[:id])
-   
+
+#TODO BalaRaju -#REDO attachements 
+=begin   
     if params["employee_attachments"].present?
       if params["employee_attachments"]["attachment"].present? 
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
@@ -68,7 +70,7 @@ class EmployeesController < ApplicationController
     end
        redirect_to attachment_show_employee_path(@employee)
     end
-    
+=end   
     if params[:employee].present? 
     
       if @employee.update(params_employees)  
@@ -78,11 +80,12 @@ class EmployeesController < ApplicationController
         else
           @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params["employee"][:reporting_id])
         end  
-      redirect_to @employee
+     
 		  else		
 		    render 'edit'
       end     
     end
+    
   end  
 
 	def exit_edit_form
