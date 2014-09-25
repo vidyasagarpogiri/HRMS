@@ -20,6 +20,7 @@
 													  <tr>
 															  <th>Allowance</th>
 															  <th>percentage</th>
+															  <th>value</th>
 															  <th>Applicable</th>
 													  <tr/>
 											   </thead>	
@@ -28,21 +29,26 @@
                          <% @allowances.each do |allowance, i| %>
 											   <%= fields_for "allowances[]", allowance do |f| %>   
 												   <tr>
-                              <td><%= f.text_field :allowance_name, :value => allowance.allowance_name %></td>
-														  <td><%= f.text_field :value,  :value => allowance.value %></td>
-                              <% if @salary.allowances.include?(allowance) %>
-                                <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = true %></td>
-                              <% else %>
-                                <td><%= check_box_tag 'allowance_ids[]', allowance.id %></td>
-                              <% end %>
+                              <td><%=  allowance.allowance_name %></td>
+													       <% if allowance.value.present? %>
+													        <td><%= allowance.value %></td>
+													       <td><%= allowance_value(allowance.value, @salary.basic_salary) %></td>
+													      <% else %>
+													          <td>---</td>
+													         <td> <%=  allowance.allowance_value %></td>
+													      <% end %>
+                                 <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = false , :class => "check" %></td> 
 												   </tr>
+												  
                           <% end %>
 											    <% end %> 
 											   
                           <% end %>           
+                          <%= hidden_field_tag('gross',@salary.gross_salary) %>
+                          <%= hidden_field_tag('basic',@salary.basic_salary) %>
                       </tbody>          
 										</table>
-										 <%= submit_tag "Submit", :class => "btn btn-success pull-right" %>
+										 <%= submit_tag "Submit", :class => "btn btn-success pull-right", :id=> "save" %>
                     				</div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
@@ -55,4 +61,40 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+            
+            
+ <!-- Script for gross calculation -->
+<script>
+$(function(){
+
+    var gross_salary = 0;
+    var gross = $("#gross").val();
+    var basic = $("#basic").val();
+  $(".check").click(function(){
+    var count = 0;
+    for(var i=0;i<$("input:checkbox:checked").parent().parent().length;i++){
+     count += parseInt($($($("input:checkbox:checked")[i]).parent().parent().find("td")[2]).text());
+    }
+    gross_salary = parseInt(basic)+count;
+   
+    if(gross_salary>gross)
+    {
+      $("#save").prop("disabled",true)
+    } else {
+      $("#save").prop("disabled",false)
+    }
+  }); 
+
+});
+</script> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
 

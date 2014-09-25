@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   end
 
-
+  
    
   resources :designations do 
     member do
@@ -95,7 +95,7 @@ post 'accept' => "leave_histories#accept"
  resources :employees do
 		resources :ff_statuses 
     resources :leaves
-	
+	post "/configure" => "salaries#configure_pf"
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'
@@ -127,6 +127,7 @@ post 'accept' => "leave_histories#accept"
 					get 'edit_allowance'
 					post 'update_allowance'
 					get 'add_allowance'
+					
           resources :allowances
           resources :insentives
           resources :salary_increments
