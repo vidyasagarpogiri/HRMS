@@ -12,7 +12,7 @@
                  <div class="control-group">
 										<label class="control-label" for="basicinput">Employee Id</label>
 										<div class="controls">
-											 <%= f.text_field :employee_id, :class => "span8", :id => "basicinput", :placeholder =>"Enter Emp Id", :data => {:error => " Please Enter Employee Id"},:required =>true %>
+											 <%= f.text_field :employee_id, :class => "span8 form-control ", :id => "basicinput", :placeholder =>"Enter Emp Id", :data => {:error => " Please Enter Employee Id"},:required =>true %>
 											 <span class="help-block with-errors"></span>  
 										</div>
 									</div>
@@ -43,7 +43,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Date Of Joining</label>
 										<div class="controls">
-                     <%= text_field :employee, :date_of_join, :placeholder=>"Enter Date Of Joining",:class => "span8 datepicker", :id => "basicinput",:placeholder => "Enter Joing date",:data => {:error => " Please Enter Employee Joing date"},:required =>true %> 
+                     <%= text_field :employee, :date_of_join, :placeholder=>"Enter Date Of Joining",:class => "span8 date-picker", :id => "basicinput_id",:placeholder => "Enter Joing date",:data => {:error => " Please Enter Employee Joing date"},:required =>true %> 
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
@@ -73,7 +73,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Mobile Number</label>
 										<div class="controls">
-                      <%= f.text_field :mobile_number, :class => "span8 datepicker", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
+                      <%= f.text_field :mobile_number, :class => "span8", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
 										</div>
 									</div>
 									
@@ -175,9 +175,7 @@
 
 <script>
 //Date Picker
-$(function() {
-    $(".datepicker").datepicker();
-  });
+
 
 //Department and designation dynamic select buttons
  
