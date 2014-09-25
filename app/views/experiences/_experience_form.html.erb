@@ -1,9 +1,4 @@
-<div class="wrapper">
- <div class="container">
-	<div class="row">
 
-  <div class="span12">
-		<div class="content">
 
 			<div class="module">
 				<div class="module-head">
@@ -49,19 +44,17 @@
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
-			
+			   <%= f.submit  'Save', :class => "btn btn-success pull-left" %>
+                                     
+                                            	<%= link_to 'Cancel', employee_experiences_path(@employee), :class=>"btn btn-danger btn btn-success pull-right" %>
 								
 							
-												 <button type="submit" class="btn btn-success">Save </button><br>
-											 <button type="submit" class="btn btn-success">cancel</button><br>
+												
+											
 										<% end %>
 							</div><!--/.module-body-->
 						</div><!--/.module-->
-					</div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
+					
      <script>    
 $(function() {
     $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })

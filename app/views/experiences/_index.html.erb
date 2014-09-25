@@ -1,16 +1,12 @@
 <% if current_user.employee.present? %>                                              
-   <div class="wrapper">
-		<div class="container">
-			<div class="row">
-        <div class="span12">
-					<div class="content">
+   
 						<div class="module">
 							<div class="module-head">
 							
 							
 								<h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> Experience Info</h3>
 								<% if current_user.department == Department::HR %>
-                <label style="font-weight:normal;margin-top:-50px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to 'Add Experience',  new_employee_experience_path(@employee.id) %></label>
+                <label style="font-weight:normal;margin-top:-30px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to 'Add Experience',  new_employee_experience_path(@employee.id), :remote => true %></label>
                         <% end %>
 							</div>
 							<div class="module-body">
@@ -31,7 +27,7 @@
 								  </thead>
 								  <tbody>
 									<tr>
-								    <% @experinces.each do |experience| %>
+								    <% @experiences.each do |experience| %>
 								    <td><%= experience.previous_company %></td>
 										 <td> <%= experience.last_designation %> </td>
 									  <td> <%= format_exp_date(experience.from_date) %> </td>
@@ -42,7 +38,7 @@
                                      <% if current_user.department == Department::HR %>
 													            <td> 
 													              
-                                          <%= link_to 'Edit', edit_employee_experience_path(@employee.id, experience.id), :class => "btn btn-success" %>                      
+                                          <%= link_to 'Edit', edit_employee_experience_path(@employee.id, experience.id), :remote => true, :class => "btn btn-success" %>                      
                                           <%= link_to "Delete", employee_experience_path(@employee, experience.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>                                        
                                         
                                        </td>
@@ -56,11 +52,6 @@
                                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                        You have No Experience Details to display.
                                  </div>
-              <% end %> 
+            
 						</div><!--/.module -->
-					</div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
-			 						
+				  <% end %> 

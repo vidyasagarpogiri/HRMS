@@ -5,7 +5,7 @@ class ProfileController < ApplicationController
   
   
   
-  
+
   def edit
    # raise params[:id].inspect
     if params[:id].present?
@@ -17,7 +17,8 @@ class ProfileController < ApplicationController
   end
   
   def show
-    
+    @employee = Employee.find(params[:id])
+    @experiences = @employee.experiences
   end
   
 end

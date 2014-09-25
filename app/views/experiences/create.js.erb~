@@ -1,17 +1,6 @@
-<% if @errors.present? %>
-	 $(".errors").html(" ");
-		  <% @errors.each do|error| %>
-			 $(".errors").append("<%=j render('/shared/alert_error', message: error) %>");
-			<% end %>
-<% else %>
-<% if @form_type == "Save" %>
- $(".experience-index").html("<%=j render  'experiences/list', :list => @list %>");
- $(".new-experience").hide(); 
-<% else %>
 
-  $(".experience-index").html("<%=j render  'experiences/list', :list => @list %>");
- $(".new-experience").html("<%=j render  'experiences/experience_form' %>");
-<% end %>
 
-<% end %>
+$("#experience").html('<%= j render "experiences/list" %>');
+
+
 

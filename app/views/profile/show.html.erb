@@ -1,9 +1,4 @@
-
-			
-									
-									
-								 
-    <!-- /navbar -->
+<!-- /navbar -->
     <div class="wrapper">
         <div class="container">
             <div class="row">                
@@ -13,11 +8,16 @@
                             <div class="module-body">
                                 <div class="profile-head media">
                                     <a href="#" class="media-avatar pull-left">
-                                        <img src="images/user.png">
+                                      <% if @employee.present? && @employee.avatar_url.present? %>
+                                        <%= image_tag(@employee.avatar_url) %> 
+                                       <% else %>
+                                          <img src="/assets/user.png"> 
+                                    <% end %>
+                                     
                                     </a>
                                     <div class="media-body">
                                         <h4>
-                                            John Donga <small>Offline</small>
+                                           <%= @employee.full_name %> <small>Offline</small>
                                         </h4>
                                         <p class="profile-brief">
                                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
@@ -42,6 +42,7 @@
                                 </ul>
                                 
                                
+<<<<<<< HEAD
                                    
                                  <div class="profile-tab-content tab-content">
                                    <div class="tab-pane fade active in" id="basic">
@@ -213,14 +214,35 @@
                                          <div class="span12 pull_right">                                         
                                               <button type="submit" class="btn btn-success ">Save & Continue</button><br> <br>  
                                          </div><!--/.span 12-->  
+
+                                 <!--BASIC PANEL--> 
+                                 
+                                  
+                                <div class="profile-tab-content tab-content">
+                                
+                                
+                                    <div class="tab-pane fade active in" id="basic">
+                                         <%= render "employees/show" %>                             
+                                      </div><!--/.tab-pane-list--> 
+
                                     
                                     
-                                <!--end of  basic-->    
-                                    
-                                 <!-- Contact-->     
-                                    <div class="tab-pane fade" id="contact"> 
-                                    serytdrty                                          
-                                    </div> 
+                              
+                          <!--EDUCATION PANEL--> 
+                                   
+                                    <div class="tab-pane fade" id="contact">
+                                      <h2>Contact Info</h2>  
+                                    </div><!--/.tab-pane-list--> 
+                          <!--experience PANEL-->         
+                                      <div class="tab-pane fade " id="experience">
+                                         <%= render "experiences/index" %>                             
+                                      </div><!--/.t-->
+                                
+                                
+                                </div><!--/.tab-pane-list--> 
+                                                                          
+
+
                                     
                                     
                                     
@@ -251,7 +273,7 @@
 									
 										   
            
-                      
+                   
 
 
 

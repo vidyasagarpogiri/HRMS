@@ -144,7 +144,7 @@ end
 
   get 'myprofile' => "employees#myprofile", as: :myprofile
 
-  get 'profile' => "profile#show"
+  get 'profile/:id' => "profile#show", as: :profile
   
   #resources :educations
   
