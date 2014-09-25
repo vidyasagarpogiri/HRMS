@@ -1,0 +1,57 @@
+<% if current_user.employee.present? %>                                              
+   
+						<div class="module">
+							<div class="module-head">
+							
+							
+								<h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> Experience Info</h3>
+								<% if current_user.department == Department::HR %>
+                <label style="font-weight:normal;margin-top:-30px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to 'Add Experience',  new_employee_experience_path(@employee.id), :remote => true %></label>
+                        <% end %>
+							</div>
+							<div class="module-body">
+							 
+                </div>
+                
+                
+								<table class="table table-striped table-bordered table-condensed">
+								  <thead>
+									<tr>
+									<th>Company </th>
+                  <th>Designation </th>	
+									 <th>Joining Date</th>
+									 <th>Relieving Date</th>
+									 <th>working Period</th>		
+									 <th></th>
+									 </tr>
+								  </thead>
+								  <tbody>
+									<tr>
+								    <% @experiences.each do |experience| %>
+								    <td><%= experience.previous_company %></td>
+										 <td> <%= experience.last_designation %> </td>
+									  <td> <%= format_exp_date(experience.from_date) %> </td>
+										<td> <%= format_exp_date(experience.to_date) %> </td>
+                    <td> <%= difference_in_months(experience.from_date,experience.to_date )%> </td>	
+                    
+                     
+                                     <% if current_user.department == Department::HR %>
+													            <td> 
+													              
+                                          <%= link_to 'Edit', edit_employee_experience_path(@employee.id, experience.id), :remote => true, :class => "btn btn-success" %>                      
+                                          <%= link_to "Delete", employee_experience_path(@employee, experience.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>                                        
+                                        
+                                       </td>
+                                     <% end %>
+												            </tr>
+											            </tbody>
+											            <% end %>
+									            </table>                                 
+                               <% else %>
+             <div class="alert alert-success alert-dismissable">
+                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                       You have No Experience Details to display.
+                                 </div>
+            
+						</div><!--/.module -->
+				  <% end %> 

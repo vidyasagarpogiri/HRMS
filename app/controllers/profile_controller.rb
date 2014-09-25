@@ -18,6 +18,7 @@ class ProfileController < ApplicationController
   
   def show
     @employee = Employee.find(params[:id])
+    @experiences = @employee.experiences
   end
   
 end
