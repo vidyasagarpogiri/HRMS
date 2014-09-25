@@ -34,6 +34,9 @@ Event.destroy_all
 
 #sekharberi@1989
  @user = User.invite!(:email =>  "sekhar.beri@amzur.com", :skip_invitation => true)
+ @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
+ @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
+ @user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
 
 
 
@@ -71,6 +74,8 @@ Designation.all.each do |desg|
     Grade.create(:value => level, :designation_id =>  desg.id) 
   end
 end
+Grades = Grade.all.pluck(:id)
+
 #-----------------------------------------------------------------------------------------------------#
 
 ["O+ve", "O-ve", "A+ve", "A+ve", "B+ve", "B-ve", "AB+ve", "AB-ve", "ABO (Bombay Blood Group)"].each do |bloodgrp|

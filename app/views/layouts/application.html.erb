@@ -32,25 +32,16 @@
 
 <body>
 
-    <div id="wrapper">
-      <%= render "shared/header"%>
-      <%= render "shared/side_bar" %>
+      <%= render "shared/ui_header"%>
+     
       <%= yield %>
      <%# debug(params)%>
-     </div>
-    <!-- /#wrapper -->
+   
 
   
 
 </body>
 
-<script>
-            $(function(){
-             
-                $("#employee").addClass('on');
-            
-            });
-           </script>
            
     
 
