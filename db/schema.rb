@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20140925054132) do
-
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -34,9 +32,7 @@ ActiveRecord::Schema.define(version: 20140925054132) do
     t.float    "value",           limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
-
-    t.boolean  "applicable"
-
+    t.float    "allowance_value", limit: 24
   end
 
   create_table "blood_groups", force: true do |t|
