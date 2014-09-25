@@ -51,3 +51,45 @@
             <!-- /.row -->
            
          </div>
+         
+         
+         
+         
+      <!--/.new code 
+         
+   <div class="wrapper">
+		<div class="container">
+			<div class="row">	
+				<div class="span12">
+					<div class="content">
+						<div class="module">
+							<div class="module-head">
+								<h3> Exit Info </h3>
+							</div>
+							<div class="module-body">	
+							 <%= form_for @employee, :url =>  update_exit_form_employee_path(@employee), method: :post  do |e| %> 
+                 <div class="control-group">
+										<label class="control-label" for="basicinput">Date of Exit</label>
+										<div class="controls">
+											 <%= date_field(:employee, :date_of_exit, :class=>"span8") %>
+											 <span class="help-block with-errors"></span>  
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label" for="basicinput">Status of F & F</label>
+										<div class="controls">
+											<%= e.collection_select :ff_status_id, FfStatus.all, :id, :status_name, { :prompt => "Please Select" }, { :class => "department span8" } %>
+											<span class="help-block with-errors"></span>  
+										</div>
+									</div><br>
+									 <button type="submit" class="btn btn-success pull-left">Save & Continue<a></button><br>							
+													
+										<% end %>
+							</div><!--/.module-body
+						</div><!--/.module 
+					</div><!--/.content
+				</div><!--/.span12
+			</div><!--/.row
+		</div><!--/.container
+	</div><!--/.wrapper-->
