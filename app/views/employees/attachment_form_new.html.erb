@@ -58,15 +58,15 @@
                 </div>
 
                    <!-- /.row (nested) -->                 
-                       
-
+<!-- data-error='Please  Attachment file' required><div class='help-block with-errors'></div>                      
+data-error='Please Enter Attachment Title' required><div class='help-block with-errors'></div> -->
                   
           
           <script>
 $(function(){
    $("#add_field").click(function(){
     $("#add_attachment_field").append(
-    "<span><label class='required'>Attachment Name</label><input class='form-control' id='employee_attachments_attachment_name' name='employee_attachments[attachment_name][]' type='text'><a onclick='$(this).parent().hide();' class='fa fa-icon fa-minus' style='float: right;'></a><br><label class='required'>Upload File</label><br><input id='employee_attachments_attachment' multiple='multiple' name='employee_attachments[attachment][]' type='file'></span>");
+    "<span><label class='required'>Attachment Name</label><input class='form-control' id='employee_attachments_attachment_name' name='employee_attachments[attachment_name][]' type='text' ><a onclick='$(this).parent().hide();' class='fa fa-icon fa-minus' style='float: right;'></a><br><label class='required'>Upload File</label><input id='employee_attachments_attachment' multiple='multiple' name='employee_attachments[attachment][]' type='file' </span>");
   });  
 });
 </script>

@@ -32,9 +32,8 @@
 													                    <td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
 													                    <td>
 													                    <%= link_to "Accept", accept_path(:employee_id=> report.employee.id, :leave_history_id => f.id), method: :post, :class => "btn btn-success pull-left"%>
-																						   </td>
-																						   <td>   
-																						      <%= link_to "Reject", "#cancelLeaveModal", :class => "cancel-leave btn btn-danger", :url => getLeaveForm_leave_history_path(f.id), "data-toggle" => "modal" %>
+																					 &nbsp;&nbsp;&nbsp;&nbsp;
+																						   <%= link_to "Reject", "#cancelLeaveModal", :class => "cancel-leave btn btn-danger", :url => getLeaveForm_leave_history_path(f.id), "data-toggle" => "modal" %>
 
                                               
                                               </td>

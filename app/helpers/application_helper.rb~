@@ -63,10 +63,32 @@ end
     a.to_i
   end
   
+  #leaves for current year according to leave policy
+  
+  
+  
+  
   def total_balance_leaves(employee)
-   a =  employee.department.leave_policy.pl_this_year - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days")  if employee.department.leave_policy.present?
-   a.to_i
+  
+  employee_join = employee.date_of_join.to_date
+  
+  if(employee_join.year == Date.current.cwyear)
+  
+   a =  ((12-employee_join.month)*employee.department.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.department.leave_policy.present?
+   else
+   
+   a =  (12 * employee.department.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.department.leave_policy.present?
+   end
+    
+  
+   a
+   
+   
   end
+
+
+
+
 
   def waiting_for_approval(employee)
     employee.leave_histories.where(status: LeaveHistory::HOLD).sum("days")

@@ -12,7 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 20140916113418) do
+ActiveRecord::Schema.define(version: 20140925054132) do
 
 
   create_table "addresses", force: true do |t|
@@ -26,18 +26,16 @@ ActiveRecord::Schema.define(version: 20140916113418) do
     t.string   "zipcode"
     t.integer  "employee_id"
     t.boolean  "address_type", default: false
+    t.boolean  "is_permanent"
   end
 
   create_table "allowances", force: true do |t|
     t.string   "allowance_name"
-    t.float    "value",          limit: 24
+    t.float    "value",           limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "salary_id"
-    t.boolean  "applicable"
+    t.float    "allowance_value", limit: 24
   end
-
-  add_index "allowances", ["salary_id"], name: "index_allowances_on_salary_id", using: :btree
 
   create_table "blood_groups", force: true do |t|
     t.string   "blood_group_name"
@@ -169,7 +167,7 @@ ActiveRecord::Schema.define(version: 20140916113418) do
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "department_id"
+    t.integer  "designation_id"
   end
 
   create_table "groups", force: true do |t|
@@ -221,11 +219,9 @@ ActiveRecord::Schema.define(version: 20140916113418) do
 
   create_table "leave_policies", force: true do |t|
     t.float    "pl_this_year",                  limit: 24
-    t.float    "sl_this_year",                  limit: 24
     t.float    "eligible_carry_forward_leaves", limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "group_id"
     t.integer  "department_id"
   end
 
@@ -296,6 +292,21 @@ ActiveRecord::Schema.define(version: 20140916113418) do
     t.float    "gratuity",          limit: 24
     t.float    "bonus",             limit: 24
     t.float    "medical_insurance", limit: 24
+    t.float    "pf",                limit: 24
+    t.float    "esic",              limit: 24
+    t.float    "special_allowance", limit: 24
+    t.string   "pf_apply"
+    t.string   "esic_apply"
+    t.float    "pf_contribution",   limit: 24
+    t.float    "esic_contribution", limit: 24
+  end
+
+  create_table "salaries_allowances", force: true do |t|
+    t.integer  "salary_id"
+    t.integer  "allowance_id"
+    t.string   "apply_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "salary_increments", force: true do |t|
@@ -308,21 +319,13 @@ ActiveRecord::Schema.define(version: 20140916113418) do
 
   add_index "salary_increments", ["salary_id"], name: "index_salary_increments_on_salary_id", using: :btree
 
-  create_table "static_allowances", force: true do |t|
-    t.string   "allowance_name"
-    t.float    "percentage",     limit: 24
-    t.boolean  "applicable"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "email",                  default: "",   null: false
     t.string   "encrypted_password",     default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -340,6 +343,7 @@ ActiveRecord::Schema.define(version: 20140916113418) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.boolean  "is_active",              default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

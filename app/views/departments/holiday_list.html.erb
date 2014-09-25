@@ -19,13 +19,15 @@
 												                  <tr>												                  													                
 													                  <th>Event Name</th>
 																						<th>Holiday Date</th>
+																						<th> Mandatory/Optional  </th>
 												                  </tr>
 											                  </thead>											                  
 	                                       <% @holidays.each do |holiday| %>
 											                  <tbody>
 											                  <tr>													                 
 													                <td> <%= holiday.event.event_name %>  </td>
-													                <td> <%= format_date(holiday.event.event_date) %> </td>													                  
+													                <td> <%= format_date(holiday.event.event_date) %> </td>	
+													                <td class="center"><% if holiday.mandatory_or_optional? %>Mandatory<%else%>Optional<%end%></td>													                  
 													              </tr>
 											                  </tbody>
 											                  <% end %>

@@ -23,7 +23,8 @@
 							            <tr>
 								            <th class="center">Event name</th>
 								            <th> Event Date </th>	
-								            <th> Select Events </th>								            									      		
+								            <th> Select Events </th> 
+								            <th>Mandatory </th>  									      		
 							            </tr>
 						            </thead> 
 						            
@@ -31,25 +32,32 @@
              <tbody>
 							   <tr>                                       
                                          
-                  <% @events.each do |event| %>
-                 
+                  <% @events.each do |event, i| %>
+                <%= fields_for "events[]", event do |f| %> 
                   <td><%= event.event_name %></td>
                   <td><%= event.event_date %></td>
+                  
                   <% if @department.events.include?(event) %>
                   <td><%= check_box_tag 'event_ids[]', event.id, checked = true %></td>
                   <% else %>
                     <td><%= check_box_tag 'event_ids[]', event.id %></td>
+                    
                   <% end %>
-                 
-                 
-                  <!--
-                  <label>Employee Participation  : &nbsp</label>                        
-                  Mandatory <input type="radio" value="true" name="holiday_calender[mandatory_or_optional]">&nbsp&nbsp&nbsp&nbsp
-                  Optional <input type="radio" value="false" name="holiday_calender[mandatory_or_optional]">
-                  -->
-                   </tr>
+                  
+                  <% if @department.holiday_calenders.present? && @department.holiday_calenders.find_by_event_id(event.id) %>
+                    <% if @department.holiday_calenders.find_by_event_id(event.id).mandatory_or_optional? %>
+                      <td><%= check_box_tag 'mandatory[]', event.id, checked = true %></td>
+                    <% else %> 
+                      <td><%= check_box_tag 'mandatory[]', event.id %></td>
+                    <% end %>
+                  <% else %>
+                     <td><%= check_box_tag 'mandatory[]', event.id %></td>
+                  <% end %>
+                  
+                  
+                  </tr>
                  <% end %>
-							           
+							    <% end %>       
 						            </tbody>
 						            </table> 
 						            <ul class="navigation-btns  pull-right" style="list-style: none;display:inline;">
