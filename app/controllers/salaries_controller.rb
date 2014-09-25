@@ -31,8 +31,8 @@ class SalariesController < ApplicationController
 	  @salary.save
     @employee.update(:salary_id => @salary.id)
 	  @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
-	  @salary.update(:ctc_fixed => @ctc_fixed)
-    redirect_to  employee_salaries_path(@employee)
+	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => @salary.basic)
+    redirect_to  employee_salary_path(@employee, @salary)
     end
 
   def edit
@@ -45,12 +45,11 @@ class SalariesController < ApplicationController
     @salary = Salary.find(params[:id])
     @salary.update(params_salary)
 		@ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
-	  @salary.update(:ctc_fixed => @ctc_fixed)
+	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => @salary.basic)
     redirect_to employee_salaries_path(@employee)
   end
 
   def show
-    
     @salary =  Salary.find(params[:id])   
     @employee= Employee.find(params[:employee_id])
     @allowance = Allowance.new
@@ -71,6 +70,7 @@ class SalariesController < ApplicationController
   end
   
 	def configure_allowance
+	    
 			@employee= Employee.find(params[:employee_id])
 			@salary =  Salary.find(params[:salary_id])
 			@allowances = Allowance.all
@@ -108,6 +108,20 @@ class SalariesController < ApplicationController
 		respond_to do |format|
 			format.js
 		end
+	end
+	
+	def configure_pf
+	  #raise params.inspect
+	  @employee = Employee.find(params[:employee_id])
+	  @salary = @employee.salary
+	  if params[:Pf] == "on" && params[:Esci] == "on"
+       @salary.update(:pf_apply => "true", :esic_apply => "true", :pf => @salary.pf, :esic => @salary.esic, :pf_contribution => 1200, :esic_contribution => 1000)
+	  elsif params[:Pf] == "on"
+	    @salary.update(:pf_apply => "true", :pf => @salary.pf, :pf_contribution => @salary.pf_contribution)
+	  else
+	     @salary.update(:esic_apply => "true", :esic => @salary.esic, :esic_contribution => @salary.esic_contribution )
+	  end
+    redirect_to employee_salaries_path(@employee)
 	end
   
   private

@@ -27,18 +27,18 @@
                                         </div>                                       
                                         <div class="form-group">
                                             <label class="required" >Year of Passing</label>
-                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control", :placeholder => "Enter Year Of Passing", :data => {:error => "Please Enter year"}, :type => "number", :required => true, :pattern => '[0-9]{4}'  %> 
+                                            <%= f.text_field :year_of_pass, :id => "disabledSelect", :class => "form-control", :placeholder => "Enter Year Of Passing", :data => {:error => "Please Enter Passing Year"}, :type => "number", :required => true, :pattern => '[0-9]{4}'  %> 
                                             <div class="help-block with-errors"></div>
                                         </div>                                        
                                         <div class="form-group">
                                             <label class="required" >Percentage/CGPA</label>
-                                            <%= f.text_field :cgpa_percentage, :id => "disabledSelect", :class => "form-control", :placeholder => "Percentage/CGPA",  :data => {:error => "Please Enter Percentage/CGPA"}, :type => "number", :required => true %>                                           
+                                            <%= f.text_field :cgpa_percentage, :id => "disabledSelect", :class => "form-control", :placeholder => "Percentage/CGPA",  :data => {:error => "Please Enter Percentage/CGPA"},:required => true, :pattern => "[0-9]*\.[0-9]+|[0-9]+"  %>                                           
                                             <div class="help-block with-errors"></div>
-                                        </div>                                                                                
-                                        <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                        </div> <br>                                                                               
+                                        <ul class="navigation-btns pull-left" style="list-style: none;display:inline;">
                                           <li><%= f.submit  'Save', :class => "btn btn-success pull-left" %></li>
                                           <!--<li><%# f.submit 'Save & New', :class =>"btn btn-success pull-right" %></li>-->
-																					<li><%= link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger btn btn-success pull-right" %></li>
+																					<li><%= link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger btn btn-success pull-left" %></li>
                                         </ul>  
                                        </div>
                                    <% end %>

@@ -18,16 +18,16 @@
                                  <%= form_for ([@department, @leave_policy]),  :data => {:toggle => "validator"} do |f| %>
                                         
                                         <div class="form-group">
-                                            <label class="required" >Personal leaves Per Year</label>
+                                            <label class="required" >Leaves per Month</label>
 
-                                            <%= f.text_field :pl_this_year,  :class => "form-control", :data => {:error => "Please Enter number of leaves per year"}, :required =>true, :pattern => "^[0-9]*" %>  
+                                            <%= f.text_field :pl_this_year,  :class => "form-control", :data => {:error => "Please Enter Number Of Leaves Per Month"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>  
                                     <div class="help-block with-errors"></div> 
 
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label class="required" >Minimum Carry forword Leaves</label>
-                                  <%= f.text_field :eligible_carry_forward_leaves,  :class => "form-control", :data => {:error => "Please Enter maximum carryforward leaves per year"}, :required =>true, :pattern => "^[0-9]*" %>  
+                                            <label class="required" >Maximum Carry forword Leaves per Year</label>
+                                  <%= f.text_field :eligible_carry_forward_leaves,  :class => "form-control", :data => {:error => "Please Enter Maximum Carryforward Leaves Per Year"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>  
                                     <div class="help-block with-errors"></div> 
 
                                         </div>

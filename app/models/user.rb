@@ -32,5 +32,7 @@ class User < ActiveRecord::Base
 	def department
 	  employee.department.department_name	
 	end
+	
+
 
 end

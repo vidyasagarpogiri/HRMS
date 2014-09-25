@@ -21,7 +21,7 @@
                         <%= p.collection_select :designation_id, Designation.all, :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control",:data => {:error => "Please Enter Date of Promotion"},:required => true } %>
                         <div class="help-block with-errors"></div>
                     </div>               
-                    <button type="submit" class="btn btn-success pull-right">Save & Continue</button>                              
+                    <button type="submit" class="btn btn-success pull-left">Save</button>                              
               <% end %>
                 </div>
                    <!-- /.col-lg-6 -->

@@ -37,7 +37,16 @@
                         <th class="center">Gross Salary:</th>
                         <th>Bonus:</th>	
                         <th>Gratuity:</th>
-												<th>Medical Insurance</th>										      		
+												<th>Medical Insurance</th>
+												<% if @salary.pf_apply == "true"%>
+												  <th>PF</th>
+												  <th>PF Contribution</th>
+												<% end %>
+												<% if @salary.esic_apply == "true"%>
+												    <th>ESIC</th>
+												    <th>ESIC Contribution</th>
+												<% end %>
+												<th>CTC</th>									      		
                       </tr>
                     </thead> 
                     <tbody>
@@ -46,7 +55,15 @@
                         <td><%= @salary.bonus %></td>
 												<td><%= @salary.gratuity %></td>
 												<td><%= @salary.medical_insurance %></td>
-
+                         <% if @salary.pf_apply == "true"%>
+												  <td><%= @salary.pf%></td>
+												  <td><%= @salary.pf_contribution %></td>
+												<% end %>
+												<% if @salary.esic_apply == "true"%>
+												    <td><%= @salary.esic %></td>
+												    <td><%= @salary.esic_contribution %></td>
+												<% end %>
+												<td><%= @salary.ctc_fixed %></td>
                         <td><% if current_user.department == Department::HR %>  
                         <ul class="navigation-btns" style="list-style: none;display:inline;">                                          
                           <li><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left" %></li>
@@ -77,9 +94,11 @@
            </div> <!-- /.salaries -->
            <div class="configure_allowance">     
            </div>
-                
-            <!-------Allowance ---------------->
-               <% unless @salary.new_record? %> 
+           <!-- Code for extra features in salaries -->
+
+
+    <!-------Allowance ---------------->
+            <% unless @salary.new_record? %> 
 						<div id="allownaces">
 						<div class="row">
               <div class="col-lg-12">
@@ -100,8 +119,11 @@
 								          <tr>		 								             
 												      <td><%= allowance.allowance_name %></td> 													   								          								              
                               <% if allowance.value.present? %>													
-                              <td><%= allowance_value(allowance.value, @salary.gross_salary)  %>
-                              </td> 
+                              <td><%= allowance_value(allowance.value, @salary.basic_salary)  %>
+                              </td>
+                              <% else %>
+                               <td><%= allowance.allowance_value %>
+                              </td>
                               <% end %>
                                                             
                          </tr>
