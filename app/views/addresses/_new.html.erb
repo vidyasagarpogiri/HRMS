@@ -20,7 +20,7 @@
                   <div class="control-group">
 										<label class="control-label" for="basicinput">Address Line 1</label>
 										<div class="controls">
-											 <%= f.text_field :line, :class => "span8", :id => "basicinput", :placeholder=> "Enter Address Line 1", :data => {:error => "Please Enter Address Line 1"}, :required =>true %>
+											 <%= f.text_field :line, :class => "span8 form-control", :id => "basicinput", :placeholder=> "Enter Address Line 1", :data => {:error => "Please Enter Address Line 1"}, :required =>true %>
                        <div class="help-block with-errors"></div>  
 										</div>
 									</div>
@@ -28,7 +28,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Address Line 2</label>
 										<div class="controls">									
-                      <%= f.text_field :line1, :class => "span8", :id => "basicinput", :placeholder=> "Enter Address Line 1", :data => {:error => "Please Enter Address Line 2"}, :required =>true %>
+                      <%= f.text_field :line1, :class => "span8 form-control", :id => "basicinput", :placeholder=> "Enter Address Line 1", :data => {:error => "Please Enter Address Line 2"}, :required =>true %>
                        <div class="help-block with-errors"></div>											 
 										</div>
 									</div>
@@ -36,7 +36,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">City</label>
 										<div class="controls">									
-                      <%= f.text_field :city, :class => "span8", :id => "basicinput", :placeholder=> "Enter City", :data => {:error => "Please Enter City"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
+                      <%= f.text_field :city, :class => "span8 form-control", :id => "basicinput", :placeholder=> "Enter City", :data => {:error => "Please Enter City"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
                        <div class="help-block with-errors"></div>											 
 										</div>
 									</div>
@@ -44,7 +44,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">State</label>
 										<div class="controls">									
-                      <%= f.text_field :state,:class => "span8", :id => "basicinput", :placeholder=> "Enter State", :data => {:error => "Please Enter State"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
+                      <%= f.text_field :state,:class => "span8 form-control", :id => "basicinput", :placeholder=> "Enter State", :data => {:error => "Please Enter State"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
                        <div class="help-block with-errors"></div>											 
 										</div>
 									</div>
@@ -60,13 +60,13 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Zipcode</label>
 										<div class="controls">									
-                       <%= f.text_field :zipcode, :class => "span8", :id => "basicinput", :placeholder=> "Enter Zipcode", :type => "number", :data => {:error => "Please Enter Zipcode",  :minlength => "6", :maxlenght => "6"}, :required =>true %>
+                       <%= f.text_field :zipcode, :class => "span8 form-control", :id => "basicinput", :placeholder=> "Enter Zipcode", :type => "number", :data => {:error => "Please Enter Zipcode",  :minlength => "6", :maxlenght => "6"}, :required =>true %>
                        <div class="help-block with-errors"></div>											 
 										</div>
 									</div>
 									
 									<div class="control-group">
-                     <%= f.hidden_field :address_type,:class => "span8", :id => "basicinput", :value=>"#{@address_type_value}" %>
+                     <%= f.hidden_field :address_type,:class => "span8 form-control", :id => "basicinput", :value=>"#{@address_type_value}" %>
                   </div>
 									<% end %>
 									<button type="submit" class="btn btn-success">Save & Continue</button>   
