@@ -1,47 +1,138 @@
-<div id="page-wrapper">
+<div class="wrapper">
+ <div class="container">
+	<div class="row">
 
-           <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="page-header">F&F Status Info</h2>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">                    
-                   <div class="panel-body">
-                      <div class="col-lg-6">                                                                          
-											 <%= form_for ([@employee, @status]),:data => {:toggle => "validator"} do |f| %>
-											 <div class="form-group">
-												  <label class="required" >Date of Exit</label>
-												  <%= f.text_field :date_of_exit, :class =>"form-control datepicker", :data => {:error => " Please Enter Exit Date"},:required =>true %>
-												  <div class="help-block with-errors"></div>   
-												  </div>
-												<div class="form-group">
-                          <label class="required" >Status of F & F</label>
-                          <%= f.select :status_name, options_for_select(FfStatus::STATUS), { :prompt => "Please Select" }, :class => "department form-control", :data => {:error => " Please Enter Status"},:required =>true %>
-												  <div class="help-block with-errors"></div>   
- 										    </div>																			
-												<div class="form-group">
-												  <label class="required" >InterView Status</label>
-											<%= f.select :interview_status, options_for_select([['Yes', 'Yes'], ['No', 'No']]), {:prompt => "Please Select"}, :class=> "form-control", :id=>"disabledSelect",:data => {:error => " Please Enter InterView Status"}, :required =>true %>
-											  <div class="help-block with-errors"></div>  
-												</div>	
-                        <div class="form-group">																																						
-												  <label class="required">Summary Of F&F</label>
-												  <%= f.text_area :summary, :class =>"form-control",:required =>true, :data => {:error => " Please Enter Summary"} %>	
-												   <div class="help-block with-errors"></div>							 
-												</div>
-												
-												 <%= f.submit 'Save', :class => "btn btn-success pull-left" %>
-											<% end %>
+  <div class="span12">
+		<div class="content">
+		
+		
+					<div class="module">
+				<div class="module-head">
+					<h3>F&F Status Info</h3>
+						</div>
+							<div class="module-body">
+							
+							<%= form_for ([@employee, @status]),:data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+	           
+							
+			         <div class="control-group">
+                  <label class="control-label" for="basicinput">Date of Exit</label>
+                  <div class="controls">
+                <%= f.text_field :date_of_exit, :class => "span8 from form-control", :data => {:error => " Please Enter Exit Date"},:required =>true %>
+                <span class="help-block with-errors"></span>
+                      </div>
+								</div>
+									        
+									        
+                <div class="control-group">
+                  <label class="control-label" for="basicinput">Status of F & F</label>
+                      <div class="controls">
+                      <%= f.select :status_name, options_for_select(FfStatus::STATUS), { :prompt => "Please Select" }, :class => "span8 form-control", :data => {:error => " Please Enter Status"},:required =>true %>
+                      
+                      <span class="help-block with-errors"></span>
+                     </div>
+								</div>
+	
+	
+		<div class="control-group">
+										<label class="control-label" for="basicinput">InterView Status</label>
+										<div class="controls">
+										<%= f.select :interview_status, options_for_select([['Yes', 'Yes'], ['No', 'No']]), {:prompt => "Please Select"}, :class=> "span8 form-control", :id=>"disabledSelect",:data => {:error => " Please Enter InterView Status"}, :required =>true %>
+										
+                     <span class="help-block with-errors"></span>   
+										</div>
 									</div>
-                 <!-- /.col-lg-6 -->
-               </div>
-                 <!-- /.panel -->                   
-            </div>
-            <!-- col-lg-12 -->
-        </div>
-           <!-- /.row -->                          
-     </div>
-      <!-- /#page wrapper -->
+	
+	
+	
+	
+		<div class="control-group">
+										<label class="control-label" for="basicinput">Summary Of F&F </label>
+										<div class="controls">
+										<%= f.text_area :summary, :class =>"span8 form-control",:required =>true, :data => {:error => " Please Enter Summary"} %>	
+                    
+											 <span class="help-block with-errors"></span>   
+										</div>
+									</div>
+			   <%= f.submit 'Save', :class => "btn btn-success pull-left" %>
+                                     
+                                            
+								
+							
+												
+											
+										<% end %>
+							</div><!--/.module-body-->
+						</div><!--/.module-->
+		
+		
+		
+		
+		
+	      </div><!--/.content-->
+				</div><!--/.span12-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+	</div><!--/.wrapper-->
+
+
+
+
+</script>
+
+        <script>
+           $(function () {
+               $(".from").datepicker({
+                   dateFormat: 'dd/mm/yy',
+                   changeMonth: true,
+                   changeYear: true,
+                    maxDate: -0,
+                   yearRange: "-100:+0",
+                   onClose: function (selectedDate) {
+                       var date2 = $('.from').datepicker('getDate');
+                       date2.setDate(date2.getDate());
+                       $(".to").datepicker("option", "minDate", date2);
+                   }
+               });
+
+               $(".to").datepicker({
+                   dateFormat: 'dd/mm/yy',
+                    maxDate: -0,
+                    yearRange: "-100:+0",
+                     changeMonth: true,
+                   changeYear: true
+               });
+           });
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

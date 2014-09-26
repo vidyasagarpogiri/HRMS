@@ -45,7 +45,7 @@
 	
 			<%= f.submit "Update", :class => "btn btn-success pull-left" %>				
 		
- <%= link_to 'Cancel', employee_experiences_path(@employee), :class => "btn btn-danger pull-left"%>
+ <%= link_to 'Cancel', employee_experiences_path(@employee), :class => "btn btn-danger pull-left", :remote => true %>
                    
 <% end %>
 							</div><!--/.module-body-->

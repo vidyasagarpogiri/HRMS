@@ -32,15 +32,22 @@
 						
 						<li class="nav-user dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<img src="/assets/user.png" class="nav-avatar" />
+
+							
+							  <% if @employee.present? && @employee.avatar_url.present? %>
+                                        <%= image_tag(@employee.avatar_url),  :class=> "nav-avatar" %> 
+                                       <% else %>
+                                            <img src="/assets/user.png", class= "nav-avatar"> 
+                                    <% end %>
+						
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">My Profile</a></li>
+								<li><%= link_to "My Profile", profile_path(current_user.employee) %></a></li>
 								<li><a href="#">Edit Profile</a></li>
 								<li><a href="#">Account Settings</a></li>
 								<li class="divider"></li>
-								<li><a href="#">Logout</a></li>
+								<li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-sign-out fa-fw" %></li>   
 							</ul>
 						</li>
 					</ul>

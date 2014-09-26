@@ -5,7 +5,7 @@ class FfStatusesController < ApplicationController
 	
 
 
-layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]
+#layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]
   def index
      
      @employee = Employee.find(params[:employee_id])
