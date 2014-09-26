@@ -23,6 +23,9 @@ class ProfileController < ApplicationController
     @promotions = @employee.promotions
     @emails = @employee.email_ettiquities
     @status = @employee.ff_status
+    @address1 = @employee.addresses.where(:address_type=>0).first
+		@address2 = @employee.addresses.where(:address_type=>1).first
+
   end
   
 end
