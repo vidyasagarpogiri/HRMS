@@ -18,7 +18,7 @@ class DepartmentsController < ApplicationController
     @department = Department.find(params[:id])
     @employees = @department.employees
 		@leave_policy = @department.leave_policy 
-		@holiday_calender = @department.events
+		@holiday_calenders = @department.holiday_calenders
 		@designations = @department.designations
     @leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?
 		#raise @holiday_calender.inspect

@@ -31,6 +31,7 @@ class EmailEttiquitiesController < ApplicationController
 	def destroy
 		@employee = Employee.find(params[:employee_id])
 		@email= EmailEttiquitie.find(params[:id])
+		@email.destroy
 		@emails = @employee.email_ettiquities
 	end
 	

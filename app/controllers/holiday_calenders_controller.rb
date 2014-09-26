@@ -16,7 +16,7 @@ def index
     end
     
     def create
-      
+      #raise params.inspect
       @department = Department.find(params[:department_id])
       #TODO - BalaRaju - Have to modify this condition 
       @department.holiday_calenders.destroy_all
@@ -25,17 +25,18 @@ def index
           if  params[:mandatory].present?
             if params[:mandatory].include?(event)
             #raise params[:mandatory].inspect
-              @holiday_calender = HolidayCalender.create(department_id: @department.id, event_id: event, mandatory_or_optional: true)
+              @holiday_calender =  @department.holiday_calenders.create( event_id: event, mandatory_or_optional: true)
        
             else
-              @holiday_calender = HolidayCalender.create(department_id: @department.id, event_id: event, mandatory_or_optional: false)
+              @holiday_calender = @department.holiday_calenders.create( event_id: event, mandatory_or_optional: false)
             end 
          else
-            @holiday_calender = HolidayCalender.create(department_id: @department.id, event_id: event, mandatory_or_optional: false)
+            @holiday_calender = @department.holiday_calenders.create( event_id: event, mandatory_or_optional: false)
          end
         end
     end
-       redirect_to leaves_department_path(@department)  
+       @holiday_calenders = @department.holiday_calenders
+      # raise @holiday_calenders.inspect
     end
     
     def edit

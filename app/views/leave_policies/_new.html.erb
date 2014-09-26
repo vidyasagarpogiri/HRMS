@@ -1,9 +1,4 @@
-<div class="wrapper">
- <div class="container">
-	<div class="row">
 
-  <div class="span12">
-		<div class="content">
 
 			<div class="module">
 				<div class="module-head">
@@ -12,7 +7,7 @@
        </div>
                       
           <div class="module-body">
-         <%= form_for ([@department, @leave_policy]),  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+         <%= form_for ([@department, @leave_policy]),  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"}, :remote => true do |f| %>
                                         
             <div class="control-group">   
 							 <label class="control-label" for="basicinput">Leaves per Month</label>
@@ -39,9 +34,5 @@
              <% end %>
                </div><!--/.module-body-->
 						</div><!--/.module-->
-					</div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
+
 	
