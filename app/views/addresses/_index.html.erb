@@ -8,13 +8,7 @@
                                   <% if @address2.nil? %>
                                     <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info" %><br>
                                   <% end %> 
-                                <!-- <% if !@address.present? %>
--                                    <% #link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-i
--                                    <%# link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-
--                                  <% elsif @address.present? %>
--                                    <% unless @address.count>1 || @address.first.is_permanent == true %>
--                                    <%# link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-
--                                  <% end %> -->
+
                                                         
                                 </div>
                           </div>
