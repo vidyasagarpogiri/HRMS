@@ -1,5 +1,5 @@
 class DepartmentsController < ApplicationController
- layout "leave_template", only: [:leaves, :index, :employee_leaves, :holiday_list]
+ #layout "leave_template", only: [:leaves, :index, :employee_leaves, :holiday_list]
  
   def index
     @departments = Department.all
