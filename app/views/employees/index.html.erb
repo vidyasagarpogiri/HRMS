@@ -1,67 +1,90 @@
-<% if current_user.employee.present? %>                                              
-   <div class="wrapper">
-		<div class="container">
-			<div class="row">
-        <div class="span12">
-					<div class="content">
-						<div class="module">
-							<div class="module-head">
-								<h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard</h3>
-							</div>
-							<div class="module-body">
-								<table class="table table-striped table-bordered table-condensed">
-								  <thead>
-									<tr>
-									  <th class="center">Photo</th>
-										<th>Full Name</th>
-										<th class="hidden-xs">Department</th>
-										<th class="hidden-xs">Email</th>
-										<th class="hidden-xs">Phone</th>
-                    <th> </th>
-									</tr>
-								  </thead>
-								  <% @employees.each do |employee| %>
-								  <tbody>
-									<tr>
-									 <td>
-									    <% if  employee.avatar.present? %>
-								      <%= image_tag(employee.avatar, :alt => "image", :height => 50, :width => 50, :class => "center") %>
-								      <% else %>
-								      <img src="/assets/employee-icon.jpg" alt="hii" style="width:50px;height:50px;padding-left=10px;" ></img>
-								      <% end %>
-								  </td>
-                   <% if current_user.department == Department::HR %>									
-								  <td><%= link_to employee.full_name, employee_path(employee) %></td>
-                   <% else %>
-                  <td><%= link_to employee.full_name, profile_employee_path(employee) %></td>
-                   <% end %>
-									<td class="hidden-xs"><%= employee.department.department_name if employee.department.present? %></td>
-									<td class="hidden-xs"><%= employee.user.email if employee.user.present? %></td>
-									<td class="hidden-xs"><%= number_to_phone(employee.mobile_number) if employee.mobile_number.present? %></td>
-									<td>
-                    <% if current_user.department == Department::HR %>
-									  <div class="visible-md visible-lg hidden-sm hidden-xs">
-										  <a href="/employees/<%= employee.id %>/edit" class="btn btn-info" data-placement="top" data-original-title="Edit"><i class="icon icon-edit"></i></a>
-										</div>
-                    <% end %>
-									</td>
-									</tr>
-								  </tbody>
-								  <% end %>
-								</table>
-								<div class="pagination ">
-                    <%= paginate @employees %>                       
-                </div>
-							</div>
-              <% else %>
-              <div class="alert alert-success alert-dismissable">
-                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    Please Contact HR for your details
-              </div>  
-              <% end %> 
-						</div><!--/.module -->
-					</div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
+
+          <div class="wrapper">
+		        <div class="container">
+			        <div class="row">                                             
+                <div class="span12">
+                    <div class="content">
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>All Members
+                                <%= current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard
+                                </h3>
+                            </div>
+                              <div class="module-body " style="background-color:#eee">
+                     <% divscount = 0 %>
+                     <% @employees.each do |employee| %>
+                          <%divscount = divscount+1 %>
+                          <% if divscount%2 == 1 %>
+                                <div class="row-fluid">
+                           <% end %>
+                                    <div class="span6" style="border-radius:4px; background-color:#fff">
+                                      <div class="style">
+                                       <div class=" module-head">
+                                          <h3><%= employee.full_name %>'s Profile
+                                          <!--<%# current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard -->
+                                          <hr>
+                                          </h3>                                                                                  
+                                      </div>
+                                       </div>
+                                        <div class="media user">
+                                            <a class="media-avatar pull-left" href="#">                                               
+                                                <!--<img src="/assets/1.jpg" > -->                                    
+							                                  <% if employee.present? && employee.avatar_url.present? %>
+                                                  <%= image_tag employee.avatar_url %> 
+                                                 <% else %>
+                                                  <% if employee.gender == "male" %>
+                                                      <img src="/assets/user.png"> 
+                                                  <% else %>
+                                                    <img src="/assets/1.jpg" >
+                                                  <% end %>
+                                                <% end %>                                               
+                                            </a>
+                                            <div class="media-body">
+                                                <div class="style">
+                                                <h5 class="media-title">
+                                                    <%= link_to employee.full_name, profile_path(employee) %>
+                                                </h5>
+                                                 <br>                                                                                              
+                                                <ul style="list-style-type: none;">
+                                                  <li><i class="icon-suitcase"></i> Designataion</li>
+                                                  <li><i class="icon-envelope"></i> <%= employee.user.email %></li>
+                                                  <li><i class="icon-phone"></i> <%= employee.mobile_number %></li>
+                                                  <li><i class="icon-map-marker"></i> <%= employee.job_location.address.city %></li>
+                                                </ul> 
+                                              </div>                                         
+                                            </div><!--/.media-body-->     
+                                        </div>
+                                    </div>
+                                   
+                             <% if divscount%2 == 0 %>
+                                </div><br>
+                           <% end %>
+                          <% end %>        
+                                                             
+                                <% if divscount%2 == 1 %>
+                                </div><br>
+                           <% end %>
+                               
+                                <div class="pagination pagination-centered">
+                                    <ul>
+                                        <li><a href="#"><i class="icon-double-angle-left"></i></a></li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#"><i class="icon-double-angle-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/.content-->                    
+                </div><!--/.span9-->                
+             </div><!--/.row-->
+		      </div><!--/.container-->
+	      </div><!--/.wrapper-->
+  
+  
+  
+  
+  
+  
+   

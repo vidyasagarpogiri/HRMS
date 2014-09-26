@@ -1,8 +1,1 @@
-<% if @errors.present? %>
-	 $(".errors").html(" ");
-		  <% @errors.each do|error| %>
-			 $(".errors").append("<%=j render('/shared/alert_error', message: error) %>");
-			<% end %>
-<% else %>
-      window.location = "/employees/<%= @employee.id %>/addresses"
-<% end %>
+$("#contact").html('<%= j render "addresses/index"%>');

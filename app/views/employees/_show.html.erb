@@ -1,11 +1,12 @@
-<div class="module-head">
+                                     
+                                      <div class="module-head">
 							                            <%= @employee.full_name if @employee.present? %> 's  Basic Info
                                             <% if current_user.department == Department::HR %>
                                               <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><i class="fa fa-pencil-square-o "></i> <%= link_to "Edit", edit_employee_path(@employee), :remote => true %></label>
                                            <% end %>
 						                            </div>
 						                       
-                                       <div class="module-body ">								                          
+                                       <div class="module-body " style="margin-left:100px;">								                          
                                            <div class="control-group span4">
 										                          <label class="control-label" for="basicinput">Employee Id:</label>
 										                          <div class="controls">
