@@ -1,7 +1,4 @@
-				<div class="module">
-							<div class="module-head">
-								<h3>Employee Details</h3>
-							</div>
+	
 							<% if current_user.department == Department::HR %>
 							<div class="module-body">	
 							 <%= form_for [@employee, @address],  :remote => true  do |f| %>

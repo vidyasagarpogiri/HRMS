@@ -1,16 +1,16 @@
 .media .media-avatar {
 /* border: 1px solid rgba(204, 204, 204, 0.5); */
 border: none !important;
-height: 170px !important;
-width: 170px !important;
+height: 130px !important;
+width: 130px !important;
 margin-right: 110px!important;
 overflow:hidden !important;
 border-radius :100% !important;
 }
 
 .media .media-avatar img {
-height: 170px!important;
-width: 170px !important;
+height: 130px!important;
+width: 130px !important;
 margin-left:20px;
 border-radius :100% !important;
 }
@@ -33,5 +33,8 @@ font-size: 16px!important;
  letter-spacing: 1px;
 }
 
+.media-body h4{
+ text-transform: capitalize;
+}
 
 
