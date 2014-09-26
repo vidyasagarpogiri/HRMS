@@ -1,10 +1,4 @@
-<div class="wrapper">
- <div class="container">
-	<div class="row">
 
-  <div class="span12">
-		<div class="content">
-		
 		
 					<div class="module">
 				<div class="module-head">
@@ -12,7 +6,7 @@
 						</div>
 							<div class="module-body">
 							
-							<%= form_for ([@employee, @status]),:data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+							<%= form_for ([@employee, @status]),:data => {:toggle => "validator", :remote => true }, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
 	           
 							
 			         <div class="control-group">
@@ -57,7 +51,7 @@
 			   <%= f.submit 'Save', :class => "btn btn-success pull-left" %>
                                      
                                             
-								
+					<%= link_to 'Cancel', employee_ff_statuses_path(@employee), :class=>"btn btn-danger  pull-right", :remote => true %>			
 							
 												
 											
@@ -66,14 +60,6 @@
 						</div><!--/.module-->
 		
 		
-		
-		
-		
-	      </div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
 
 
 

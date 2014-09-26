@@ -23,10 +23,7 @@ class FfStatusesController < ApplicationController
 		@status = FfStatus.new(status_params)
 		if @status.save
 		@employee.update(:ff_status_id => @status.id)
-		#raise @status.inspect
-		redirect_to employee_ff_statuses_path(@employee)
-		else
-		render 'new'
+		@status = @employee.ff_status
 	end
 	end
 	
@@ -49,9 +46,7 @@ class FfStatusesController < ApplicationController
 		@status = FfStatus.find(params[:id])
 #raise @status.inspect
 		if @status.update(status_params)
-		redirect_to employee_ff_statuses_path(@employee)
-		else
-		render 'edit'
+	@status = @employee.ff_status
 	end 
 	end
 	
