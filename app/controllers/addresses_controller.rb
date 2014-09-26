@@ -25,6 +25,8 @@ class AddressesController < ApplicationController
 		@employee = Employee.find(params[:employee_id])
    	@address = @employee.addresses.create(params_present_address)
 		@errors = @address.errors.full_messages
+		@address1 = @employee.addresses.where(:address_type=>0).first
+		@address2 = @employee.addresses.where(:address_type=>1).first
  	end
 
   
