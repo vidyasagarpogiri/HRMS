@@ -1,0 +1,67 @@
+
+  
+  			<div class="module">
+				  <div class="module-head">
+				  	<h3>Email Etiquette</h3>
+						  </div>
+						  	<div class="module-body">
+							
+							  <%= form_for ([@employee, @email]), :data => {:toggle => "validator", :remote => true }, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+							
+	            
+							
+			            <div class="control-group">
+                    <label class="control-label" for="basicinput">Email Content</label>
+                      <div class="controls">
+                       <%= f.text_area :ettiquite,  :class =>"span8 form-control", :placeholder => "Enter Content",:data => {:error => " Please Enter Email Content"},:required =>true %>
+                      
+                       <span class="help-block with-errors"></span>
+                      </div>
+								</div>
+	
+			   <%= f.submit  'Save', :class => "btn btn-success pull-left" %>
+			    <%= link_to 'Cancel', employee_email_ettiquities_path(@employee), :class=>"btn btn-danger  pull-right", :remote => true %>
+ 									
+										<% end %>
+							</div><!--/.module-body-->
+						</div><!--/.module-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

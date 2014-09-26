@@ -1,0 +1,82 @@
+<% if current_user.employee.present? %>                                              
+
+						<div class="module">
+						
+						
+							<div class="module-head">
+													
+								<h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> F&F Status Info</h3>
+								 
+								 
+								 <% unless @status.present? %>
+               
+                  <label style="font-weight:normal;margin-top:-30px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to 'Add FFStatus', new_employee_ff_status_path(@employee), :remote => true %></label>
+                <% else %>
+                  <label style="font-weight:normal;margin-top:-45px;" class = "pull-right"><a><i class="fa fa-pencil-square-o "></i></a><%= link_to 'Edit', edit_employee_ff_status_path(@employee, @status), :remote => true %></label>
+                   
+           
+              </div>
+		
+			<div class="module-body">
+			
+                
+								<table class="table table-striped table-bordered table-condensed">
+								  <tbody>
+											        <tr>
+											          <td>Date of Exit:</td>
+											          <td><%= format_date (@status.date_of_exit) %></td>
+											        </tr>
+											        <tr>
+											          <td>Interview Status:</td>
+											          <td><%= @status.interview_status %></td>
+											        </tr>
+											        <tr>
+											          <td>Status Of F&F:</td>
+											          <td><%= @status.status_name %></td>
+											        </tr>
+											        <tr>
+											          <td>Summary Of F&F:</td>
+											          <td><%= @status.summary %></td>
+											        </tr>
+											          </tbody>
+									            </table>                                 
+             </div><!--nodule body-->
+                          
+						</div><!--/.module -->
+
+			 	<% end %>					
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
