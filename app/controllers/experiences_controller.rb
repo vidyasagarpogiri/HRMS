@@ -5,8 +5,8 @@ class ExperiencesController < ApplicationController
   before_filter :other_emp_view
   
   def index
-     @employee = Employee.find(params[:employee_id])
-     @experinces = @employee.experiences
+    @employee = Employee.find(params[:employee_id])
+    @experiences = @employee.experiences
   end
   
   def new 
@@ -22,8 +22,7 @@ class ExperiencesController < ApplicationController
     #for new form 
     @employee = Employee.find(params[:employee_id])
     @experience = Experience.new
-    
-    @list =  @employee.experiences
+    @experiences = @employee.experiences
     @form_type = params[:commit]
   end
   
@@ -32,7 +31,6 @@ class ExperiencesController < ApplicationController
   end
   
   def edit
-    #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @experience = Experience.find(params[:id])
   end
@@ -40,18 +38,17 @@ class ExperiencesController < ApplicationController
 
   
   def update
-    #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @experience = Experience.find(params[:id])
     @experience.update(params.require(:experience).permit(:previous_company, :last_designation, :from_date, :to_date))
-    @list =  @employee.experiences
+   @experiences = @employee.experiences
   end
 		
 	def destroy
 		@employee = Employee.find(params[:employee_id])
     @experience = Experience.find(params[:id])
 		@experience.destroy
-		redirect_to employee_experiences_path(@employee.id)
+		@experiences = @employee.experiences
 	end
   
 end
