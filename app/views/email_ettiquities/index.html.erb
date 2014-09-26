@@ -1,63 +1,81 @@
-<div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-header">Etiquette Info</div>
-                    <% if current_user.department == Department::HR %>
-	                    <label style="font-weight:normal;margin-top:-50px;" class = "pull-right"><i class="fa fa-plus "></i> 
-	                    <%= link_to 'Add Etiquette',  new_employee_email_ettiquity_path(@id)  %>
-	                    </label>
-                    <% end %>
+<% if current_user.employee.present? %>                                              
+   <div class="wrapper">
+		<div class="container">
+			<div class="row">
+        <div class="span12">
+					<div class="content">
+						<div class="module">
+							<div class="module-head">
+							
+							
+								<h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> Etiquette Info</h3>
+								<% if current_user.department == Department::HR %>
+                <label style="font-weight:normal;margin-top:-30px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to 'Add Etiquette',  new_employee_email_ettiquity_path(@id)  %></label>
+                        <% end %>
+							</div>
+							
+							<% if @emails.present? %>
+							<div class="module-body">
+							 
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                 <% if @emails.present? %>
-                    <div class="panel panel-default">	                   
-                        <div class="panel-body">
-                           <div class="row">
-                                <div class="col-lg-12">
-                                   <table class="table table-striped table-hover" id="sample-table-2">
-											            <thead>											      
-												            <tr>
-													            <th class="center">Date</th>
-													            <th>Mail Content </th>
-													            <th></th>									      		
-												            </tr>
-											            </thead>
-											              <% @emails.each do |email| %>
-											            <tbody>
-												            <tr>               
-													            <td class="center"><%= format_date (email.dateofsending) %></td>
-													            <td> <%= email.ettiquite %> </td>
+                
+                
+								<table class="table table-striped table-bordered table-condensed">
+								  <thead>
+									<tr>
+				            <th class="center">Date</th>
+				            <th>Mail Content </th>
+				            <th></th>									      		
+			            </tr>
+								  </thead>
+								  <tbody>
+									<tr>
+								    <% @emails.each do |email| %>
+								    <td class="center"><%= format_date (email.dateofsending) %></td>
+				            <td> <%= email.ettiquite %> </td>
+                    
+                     
                                      <% if current_user.department == Department::HR %>
 													            <td> 
-													               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                         <li><%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right" %></li>                                                                                 
-                                       </ul>
+													              
+                                          <%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right" %>
+                                          
                                        </td>
                                      <% end %>
 												            </tr>
 											            </tbody>
 											            <% end %>
-									            </table> 									            
-									             <% else %>
-                                 <div class="alert alert-success alert-dismissable">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                     You have No Email Ettiquites to display.
-                               </div>
-                               </div>
-                             <!-- /.col-lg-12 -->                                   
-                             </div>
-                              <!-- /.panel-body --> 
-                   <% end %>                                   
-                </div>
-                    <!-- /.panel -->
-              </div>
-                <!-- /.col-lg-12 -->
-         </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+									            </table>                                 
+                               <% else %>
+             <div class="alert alert-success alert-dismissable">
+                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                       You have No Email Etiquetties to display.
+                                 </div>
+              <% end %> 
+						</div><!--/.module -->
+					</div><!--/.content-->
+				</div><!--/.span12-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+	</div><!--/.wrapper-->
+			 						
+
+<%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
