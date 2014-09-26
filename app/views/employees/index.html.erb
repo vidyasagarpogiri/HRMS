@@ -23,16 +23,12 @@
                                           <h3><%= employee.full_name %>'s Profile
                                           <!--<%# current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard -->
                                           <hr>
-                                          </h3> 
-                                                                                 
+                                          </h3>                                                                                  
                                       </div>
                                        </div>
                                         <div class="media user">
-                                            <a class="media-avatar pull-left" href="#">
-                                               
-                                                <!--<img src="/assets/1.jpg" > -->
-                                               
-                                                
+                                            <a class="media-avatar pull-left" href="#">                                               
+                                                <!--<img src="/assets/1.jpg" > -->                                    
 							                                  <% if employee.present? && employee.avatar_url.present? %>
                                                   <%= image_tag employee.avatar_url %> 
                                                  <% else %>
@@ -41,8 +37,7 @@
                                                   <% else %>
                                                     <img src="/assets/1.jpg" >
                                                   <% end %>
-                                                <% end %>
-                                               
+                                                <% end %>                                               
                                             </a>
                                             <div class="media-body">
                                                 <div class="style">
