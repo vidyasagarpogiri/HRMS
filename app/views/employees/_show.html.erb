@@ -1,11 +1,163 @@
+<div class="wrapper">
+        <div class="container">
+            <div class="row">                
+                <div class="span12">
+                    <div class="content">
+                        <div class="module">
+                        <div class="module-head">
+                         <%= @employee.full_name if @employee.present? %> 's Info
+                         <% if current_user.department == Department::HR %>
+                            <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><i class="fa fa-pencil-square-o "></i> <%= link_to "Edit", edit_employee_path(@employee), :remote => true %></label>
+                         <% end %>
+                        </div>
+                            <div class="module-body">
+                             <div class="control-group">
+				                          <label class="control-label" for="basicinput">Employee Id:</label>
+				                          <div class="controls">
+                                    <label><%= @employee.employee_id %></label>  
+				                          </div>
+			                          </div>
+			                          
+			                           <div class="control-group">
+				                          <label class="control-label" for="basicinput">Mobile Number</label>
+				                          <div class="controls">
+                                    <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
+				                          </div>
+			                          </div>
+			                          
+			                           <div class="control-group">
+				                          <label class="control-label" for="basicinput">Mobile Number</label>
+				                          <div class="controls">
+                                    <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
+				                          </div>
+			                          </div>
+			                          
+			                           <div class="control-group">
+				                          <label class="control-label" for="basicinput">Mobile Number</label>
+				                          <div class="controls">
+                                    <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
+				                          </div>
+			                          </div>
+			                          
+			                           <div class="control-group">
+				                          <label class="control-label" for="basicinput">Mobile Number</label>
+				                          <div class="controls">
+                                    <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
+				                          </div>
+			                          </div>
+			                          
+			                           <div class="control-group">
+				                          <label class="control-label" for="basicinput">Mobile Number</label>
+				                          <div class="controls">
+                                    <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
+				                          </div>
+			                          </div>
+			                         
+			
+			                          <div class="control-group">
+				                          <label class="control-label" for="basicinput">Email Id</label>
+				                          <div class="controls">
+                                   <input class="span8 form-control" id ="basicinput" placeholder="Enter Email id" name="email" data-error =" Please Enter Valid Amzur Email Id" required  type = "email" pattern="[\w\.-]+@(amzur.com)"> 
+                                   <span class="help-block with-errors"></span> 
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group">
+				                          <label class="control-label" for="basicinput">Alternate E-Mail</label>
+				                          <div class="controls">
+                                  <label><%= @employee.alternate_email %></label>  
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group">
+				                          <label class="control-label" for="basicinput"> Reporting Manager</label>
+				                          <div class="controls">
+                                   <%=  @employee.reporting_manager %>
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group">
+				                          <label class="control-label" for="basicinput">Father Name</label>
+				                          <div class="controls">
+                                   <%= @employee.father_name %>
+                                   <span class="help-block with-errors"></span>
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group">
+				                          <label class="control-label" for="basicinput">Gender</label>
+				                          <div class="controls">
+                                  <%= @employee.gender %>
+                                   <span class="help-block with-errors"></span>
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group">
+				                          <label class="control-label" for="basicinput">Date Of Birth</label>                                             
+				                          <div class="controls">
+                                   <%= format_date (@employee.date_of_birth) %>
+                                   <span class="help-block with-errors"></span>
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group">
+				                          <label class="control-label" for="basicinput">Department</label>                                              
+				                          <div class="controls">
+                                   <%= @employee.department.department_name if @employee.department.present? %> 
+                                   <span class="help-block with-errors"></span>
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group">
+				                          <label class="control-label" for="basicinput">Designation</label>                                              
+				                          <div class="controls">
+                                   <%= @employee.designation.designation_name if @employee.designation.present? %>
+                                   <span class="help-block with-errors"></span>
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group">
+				                          <label class="control-label" for="basicinput">Grade/Level</label>                                           
+				                          <div class="controls">
+                                   <label><%= @employee.grade.value if @employee.grade.present?  %></label>
+                                   <span class="help-block with-errors"></span>
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group">
+				                          <label class="control-label" for="basicinput">Upload Image</label>                                         
+				                          <div class="controls">
+                                    <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+                                   <span class="help-block with-errors"></span>
+				                          </div>
+			                          </div>
+                             </div>
+                            <!--/.module-body-->
+                        </div>
+                        <!--/.module-->
+                    </div>
+                    <!--/.content-->
+                </div>
+                <!--/.span9-->
+            </div>
+        </div>
+        <!--/.container-->
+    </div>	
+				   
+           
+                      
+
+
+       
+       
+       
+       
+       
         <div id="page-wrapper">
                 <div class="row">
                      <div class="col-lg-12">
                         <div class="page-header" style="text-transform:;">
-                            <%= @employee.full_name if @employee.present? %> 's Info
-                             <% if current_user.department == Department::HR %>
-                                <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><i class="fa fa-pencil-square-o "></i> <%= link_to "Edit", edit_employee_path(@employee), :remote => true %></label>
-                              <% end %>
+                           
                         </div>
                      </div>
                 </div>
