@@ -113,7 +113,7 @@
 									                          <div class="control-group span4">
 										                          <label class="control-label" for="basicinput">Designation:</label>     
 										                          <div class="controls">
-										                         <label><%= @employee.designation.designation_name %></label>		
+										                         <label><%= @employee.designation.designation_name if @employee.designation.present? %></label>		
 										                          </div>
 									                          </div>
 									
