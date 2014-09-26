@@ -8,7 +8,7 @@ class EducationsController < ApplicationController
   
   def index
     @employee = Employee.find(params[:employee_id])
-    @eudcations =  Education.where(:Employee_id => params[:employee_id])
+    @educations =  @employee.educations
   end
   
   def new
@@ -17,9 +17,7 @@ class EducationsController < ApplicationController
   end
   
   def create
-  
-
-               
+     
     @new_education = Education.create(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(Employee_id: params[:employee_id]))
     @errors = @new_education.errors.full_messages
     #raise @errors.inspect
@@ -30,7 +28,7 @@ class EducationsController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @education = Education.new
     
-    @list =  Education.where(:Employee_id => params[:employee_id])
+     @educations =  @employee.educations
     @form_type = params[:commit]
     #EducationQualification.create(:qualification_id => @qualification_id, :education_id => @education.id)
   
@@ -52,11 +50,8 @@ class EducationsController < ApplicationController
     #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @education = Education.find(params[:id])
-    if @education.update(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage))
-    redirect_to employee_educations_path(@employee.id)
-    else
-    render 'edit'
-  end
+    @education.update(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage))
+     @educations =  @employee.educations
   end
 
   def qualifications
@@ -69,8 +64,8 @@ class EducationsController < ApplicationController
 		@employee = Employee.find(params[:employee_id])
     @education = Education.find(params[:id])
 		@education.destroy
-		redirect_to employee_educations_path(@employee)
-	end
+		 @educations =  @employee.educations
+  end
   
 
 end

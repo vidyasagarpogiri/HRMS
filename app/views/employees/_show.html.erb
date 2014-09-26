@@ -1,276 +1,163 @@
-<div class="wrapper">
-        <div class="container">
-            <div class="row">                
-                <div class="span12">
-                    <div class="content">
-                        <div class="module">
-                        <div class="module-head">
-                         <%= @employee.full_name if @employee.present? %> 's Info
-                         <% if current_user.department == Department::HR %>
-                            <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><i class="fa fa-pencil-square-o "></i> <%= link_to "Edit", edit_employee_path(@employee), :remote => true %></label>
-                         <% end %>
-                        </div>
-                            <div class="module-body">
-                             <div class="control-group">
-				                          <label class="control-label" for="basicinput">Employee Id:</label>
-				                          <div class="controls">
-                                    <label><%= @employee.employee_id %></label>  
-				                          </div>
-			                          </div>
-			                          
-			                           <div class="control-group">
-				                          <label class="control-label" for="basicinput">Mobile Number</label>
-				                          <div class="controls">
-                                    <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
-				                          </div>
-			                          </div>
-			                          
-			                           <div class="control-group">
-				                          <label class="control-label" for="basicinput">Mobile Number</label>
-				                          <div class="controls">
-                                    <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
-				                          </div>
-			                          </div>
-			                          
-			                           <div class="control-group">
-				                          <label class="control-label" for="basicinput">Mobile Number</label>
-				                          <div class="controls">
-                                    <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
-				                          </div>
-			                          </div>
-			                          
-			                           <div class="control-group">
-				                          <label class="control-label" for="basicinput">Mobile Number</label>
-				                          <div class="controls">
-                                    <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
-				                          </div>
-			                          </div>
-			                          
-			                           <div class="control-group">
-				                          <label class="control-label" for="basicinput">Mobile Number</label>
-				                          <div class="controls">
-                                    <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
-				                          </div>
-			                          </div>
-			                         
-			
-			                          <div class="control-group">
-				                          <label class="control-label" for="basicinput">Email Id</label>
-				                          <div class="controls">
-                                   <input class="span8 form-control" id ="basicinput" placeholder="Enter Email id" name="email" data-error =" Please Enter Valid Amzur Email Id" required  type = "email" pattern="[\w\.-]+@(amzur.com)"> 
-                                   <span class="help-block with-errors"></span> 
-				                          </div>
-			                          </div>
-			
-			                          <div class="control-group">
-				                          <label class="control-label" for="basicinput">Alternate E-Mail</label>
-				                          <div class="controls">
-                                  <label><%= @employee.alternate_email %></label>  
-				                          </div>
-			                          </div>
-			
-			                          <div class="control-group">
-				                          <label class="control-label" for="basicinput"> Reporting Manager</label>
-				                          <div class="controls">
-                                   <%=  @employee.reporting_manager %>
-				                          </div>
-			                          </div>
-			
-			                          <div class="control-group">
-				                          <label class="control-label" for="basicinput">Father Name</label>
-				                          <div class="controls">
-                                   <%= @employee.father_name %>
-                                   <span class="help-block with-errors"></span>
-				                          </div>
-			                          </div>
-			
-			                          <div class="control-group">
-				                          <label class="control-label" for="basicinput">Gender</label>
-				                          <div class="controls">
-                                  <%= @employee.gender %>
-                                   <span class="help-block with-errors"></span>
-				                          </div>
-			                          </div>
-			
-			                          <div class="control-group">
-				                          <label class="control-label" for="basicinput">Date Of Birth</label>                                             
-				                          <div class="controls">
-                                   <%= format_date (@employee.date_of_birth) %>
-                                   <span class="help-block with-errors"></span>
-				                          </div>
-			                          </div>
-			
-			                          <div class="control-group">
-				                          <label class="control-label" for="basicinput">Department</label>                                              
-				                          <div class="controls">
-                                   <%= @employee.department.department_name if @employee.department.present? %> 
-                                   <span class="help-block with-errors"></span>
-				                          </div>
-			                          </div>
-			
-			                          <div class="control-group">
-				                          <label class="control-label" for="basicinput">Designation</label>                                              
-				                          <div class="controls">
-                                   <%= @employee.designation.designation_name if @employee.designation.present? %>
-                                   <span class="help-block with-errors"></span>
-				                          </div>
-			                          </div>
-			
-			                          <div class="control-group">
-				                          <label class="control-label" for="basicinput">Grade/Level</label>                                           
-				                          <div class="controls">
-                                   <label><%= @employee.grade.value if @employee.grade.present?  %></label>
-                                   <span class="help-block with-errors"></span>
-				                          </div>
-			                          </div>
-			
-			                          <div class="control-group">
-				                          <label class="control-label" for="basicinput">Upload Image</label>                                         
-				                          <div class="controls">
-                                    <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
-                                   <span class="help-block with-errors"></span>
-				                          </div>
-			                          </div>
-                             </div>
-                            <!--/.module-body-->
-                        </div>
-                        <!--/.module-->
-                    </div>
-                    <!--/.content-->
-                </div>
-                <!--/.span9-->
-            </div>
-        </div>
-        <!--/.container-->
-    </div>	
-				   
-           
-                      
-
-
-       
-       
-       
-       
-       
-        <div id="page-wrapper">
-                <div class="row">
-                     <div class="col-lg-12">
-                        <div class="page-header" style="text-transform:;">
-                           
-                        </div>
-                     </div>
-                </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                                                                                    
-                        <div class="panel-body">
-                            <div class="row">
-                             <div class="border col-lg-12" >
-                              <div class="page-header">
-                                <i class="fa fa-info"></i>  Basic 
-                              </div>
-                                    <div class="col-lg-12"> 
-                                                                        
-                                        <div class="form-group col-lg-4">
-                                            <label style="font-weight:normal;">Employee Id:</label>
-                                            <label><%= @employee.employee_id %></label>                                             
-                                        </div>                                        
-                                         <div class="form-group col-lg-6">
-                                            <label style="font-weight:normal;">Date Of Joining:</label>
-                                            <label><%= format_date (@employee.date_of_join) %></label>
-                                        </div>
-                                     </div>
-                                     <div class="col-lg-12">
-                                                                                
-                                        <div class="form-group col-lg-4">
-                                            <label style="font-weight:normal;">Father Name:</label>
-                                            <label><%= @employee.father_name %></label>                                         
-                                        </div>                                      
-                                        <div class="form-group col-lg-6">                                            
-                                            <label style="font-weight:normal;">Blood Group:</label>
-                                            <label><%= @employee.blood_group.blood_group_name if @employee.blood_group.present? %></label>
-                                        </div>
-                                     </div>
-                                     <div class="col-lg-12">
-                                          
-                                          <div class="form-group col-lg-4">
-                                            <label style="font-weight:normal;">Gender:</label>
-                                            <label><%= @employee.gender %></label>
-                                          </div>                                                                                                              
-                                          <div class="form-group col-lg-6">
-                                              <label style="font-weight:normal;">Date Of Birth:</label>
-                                              <label><%= format_date (@employee.date_of_birth) %></label>
-                                          </div> 
-                                          <br>                                
-                                     </div>                                                                                                               
-                                    
-                                     <div class="col-lg-12">
-                                      
-                                      <div class="page-header">
-                                         <i class="fa fa-briefcase"></i> Professional 
-                                      </div>
-                                               
-                                                                                
-                                        <div class="form-group col-lg-4">
-                                            <label style="font-weight:normal;">Department:</label>
-                                            <label><%= @employee.department.department_name if @employee.department.present? %></label>
-                                        </div>
-                                         <div class="form-group col-lg-6">
-                                              <label style="font-weight:normal;">Designation:</label>
-                                              <label><%= @employee.designation.designation_name if @employee.designation.present? %></label>
-                                         </div>  
-                                     </div>
-                                                                                                                                              
-                                      <div class="col-lg-12">
-                                        
-                                        <div class="form-group col-lg-4">
-                                            <label style="font-weight:normal;">Job Location:</label>
-                                            <label><%= @employee.job_location.address.city if @employee.job_location.address.present? %></label>
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label style="font-weight:normal;">Grade/Level:</label>
-                                            <label><%= @employee.grade.value if @employee.grade.present?  %></label>
-                                				</div>
-                                		  </div>
-                                		  <div class="col-lg-12">
-                                         
-                                				 <div class="form-group col-lg-4">
-                                            <label style="font-weight:normal;">Reporting Manager:</label>
-                                            <label><%=  @employee.reporting_manager %></label>
-                                				 </div>
-                                				  <br>
-                                		  </div>
-                                		   <div class="col-lg-12">
-                                		   <div class="page-header">
-                                         <i class="fa fa-envelope"></i> Contact 
-                                      </div>
-                                       
-                                        <div class="form-group col-lg-4">
-                                            <label style="font-weight:normal;">Mobile Number:</label>
-                                            <label><%= number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>                                           
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label style="font-weight:normal;">Alternate Email:</label>
-                                             <label><%= @employee.alternate_email %></label> 
-                                				</div> 
-                                       
-                                     </div>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
-                 
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
-
-
+                                         <div class="module-head">Contact Info</div>                                  
+                                       <div class="module-body " style="margin-left:100px;">								                          
+                                           <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Employee Id:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>
+											                          <!-- <%# @employee.employee_id %> -->
+											                           <span class="help-block with-errors"></span>  
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Title:</label>
+										                          <div class="controls">	
+										                          <label>hhfhfd</label>								
+                                               <!--<%# f.select :title, options_for_select([['Mr', 'Mr'], ['Mrs', 'Mrs'], ['Miss', 'Miss']]),{}, :class=> "span8 form-control",:data => {:error => " Please Select Title"}, :required =>true %> -->
+                                               									 
+										                          </div>
+									                          </div>
+									                           <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Employee First Name:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                              <!--  <%# f.text_field :first_name,:class => "span8 form-control",  :placeholder=>"Enter First name",:data => {:error => " Please Enter Employee First Name"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>-->
+											                           
+										                          </div>
+									                          </div>
+									
+										                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Employee Last Name:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                                <!--<%# f.text_field :last_name,:class => "span8", :id => "basicinput", :placeholder => "Enter Last name",:data => {:error => " Please Enter Employee Last Name"},:required =>true, :pattern => '[a-zA-Z/s ]*'  %> -->
+											                          
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Date Of Joining:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                              <!-- <%# format_date (@employee.date_of_join) %> -->
+											                            
+										                          </div>
+									                          </div>
+									                                     
+                                             
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Job Location:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                               <!-- <%# @employee.job_location.address.city if @employee.job_location.address.present? %> -->
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Blood Group:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                                 <!--<%# @employee.blood_group.blood_group_name if @employee.blood_group.present? %> -->
+										                          </div>
+									                          </div>
+									                          
+									                           <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Mobile Number:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                              <!--  <label><%# number_to_phone(@employee.mobile_number) if @employee.mobile_number.present? %></label>-->
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Email Id:</label>
+										                          <div class="controls">
+                                               <!--<input class="span8 form-control" id ="basicinput" placeholder="Enter Email id" name="email" data-error =" Please Enter Valid Amzur Email Id" required  type = "email" pattern="[\w\.-]+@(amzur.com)"> 
+                                               <span class="help-block with-errors"></span>  -->
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Alternate E-Mail:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                              <!--<label><%# @employee.alternate_email %></label>  -->
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput"> Reporting Manager:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                               <!--<%#  @employee.reporting_manager %>-->
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Father Name:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                               <!--<%# @employee.father_name %> -->
+                                               <span class="help-block with-errors"></span>
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Gender:</label>
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                              <!--<%# @employee.gender %>-->
+                                               <span class="help-block with-errors"></span>
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Date Of Birth:</label>                                             
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                              <!-- <%# format_date (@employee.date_of_birth) %>-->
+                                               <span class="help-block with-errors"></span>
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Department:</label>                                              
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                               <!--<%# @employee.department.department_name if @employee.department.present? %> -->
+                                               <span class="help-block with-errors"></span>
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Designation:</label>                                              
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                              <!-- <%# @employee.designation.designation_name if @employee.designation.present? %>-->
+                                               <span class="help-block with-errors"></span>
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Grade/Level:</label>                                           
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                               <!--<label><%# @employee.grade.value if @employee.grade.present?  %></label>-->
+                                               <span class="help-block with-errors"></span>
+										                          </div>
+									                          </div>
+									
+									                          <div class="control-group span4">
+										                          <label class="control-label" for="basicinput">Upload Image:</label>                                         
+										                          <div class="controls">
+										                          <label>hhfhfd</label>		
+                                              <!--<%# f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>-->
+                                               <span class="help-block with-errors"></span>
+										                          </div>
+									                          </div>									                    
+									                       </div><!--/.module-body-->                               
+                                         <div class="span12 pull_right">                                         
+                                              <button type="submit" class="btn btn-success ">Save & Continue</button><br> <br>  
+                                         </div><!--/.span 12-->  
 

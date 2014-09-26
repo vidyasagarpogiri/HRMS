@@ -1,9 +1,7 @@
 <% if current_user.employee.present? %>                                              
    
 						<div class="module">
-							<div class="module-head">
-							
-							
+							<div class="module-head">														
 								<h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> Experience Info</h3>
 								<% if current_user.department == Department::HR %>
                 <label style="font-weight:normal;margin-top:-30px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to 'Add Experience',  new_employee_experience_path(@employee.id), :remote => true %></label>
@@ -39,7 +37,7 @@
 													            <td> 
 													              
                                           <%= link_to 'Edit', edit_employee_experience_path(@employee.id, experience.id), :remote => true, :class => "btn btn-success" %>                      
-                                          <%= link_to "Delete", employee_experience_path(@employee, experience.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>                                        
+                                          <%= link_to "Delete", employee_experience_path(@employee, experience.id), method: :delete, data: {confirm: "Are You sure?" }, :class=>"btn btn-danger", :remote => true %>                                        
                                         
                                        </td>
                                      <% end %>
