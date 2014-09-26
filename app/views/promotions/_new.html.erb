@@ -11,7 +11,7 @@
 			         <div class="control-group">
                   <label class="control-label" for="basicinput">Date of Promotion</label>
                       <div class="controls">
-                        <%= f.text_field :date_of_promotion, :class => " span8  form-control hasdate-picker", :placeholder => "Enter Date of Promotion", :data => {:error => "Please Enter Date of Promotion"},  :required => true %>   
+                        <%= f.text_field :date_of_promotion, :class => " span8  form-control date-picker", :placeholder => "Enter Date of Promotion", :data => {:error => "Please Enter Date of Promotion"},  :required => true %>   
                         <div class="help-block with-errors"></div>    
                        
                       </div>
@@ -34,5 +34,10 @@
 	
        
     
-    
+    <script>
+      $(function() {
+    $( ".date-picker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+  });
+  
+    </script>
     
