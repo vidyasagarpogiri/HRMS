@@ -1,4 +1,4 @@
-<% if current_user.employee.present? %>                                              
+                                             
 
 						<div class="module">
 						
@@ -14,7 +14,7 @@
                 <% else %>
                   <label style="font-weight:normal;margin-top:-45px;" class = "pull-right"><a><i class="fa fa-pencil-square-o "></i></a><%= link_to 'Edit', edit_employee_ff_status_path(@employee, @status), :remote => true %></label>
                    
-           
+          
               </div>
 		
 			<div class="module-body">
@@ -43,10 +43,9 @@
              </div><!--nodule body-->
                           
 						</div><!--/.module -->
+ <% end %>
+			
 
-			 	<% end %>					
-
-<% end %>
 
 
 
