@@ -28,7 +28,7 @@
 													            <td>
 													               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                            <li><%= link_to 'Edit', edit_employee_promotion_path(@employee.id, promotion.id), :class => "btn btn-success ", :remote => true %></li>
-                                           <li><%= link_to "Delete", employee_promotion_path(@employee, promotion), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+                                           <li><%= link_to "Delete", employee_promotion_path(@employee, promotion), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger ", :remote => true %></li>
                                          </ul>
                                        </td>
                                      <% end %>

@@ -34,7 +34,7 @@
                                      <% if current_user.department == Department::HR %>
 													            <td> 
 													              
-                                          <%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right" %>
+                                          <%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right", :remote => true %>
                                           
                                        </td>
                                      <% end %>
