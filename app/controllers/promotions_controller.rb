@@ -42,7 +42,7 @@ class PromotionsController < ApplicationController
 		@employee = Employee.find(params[:employee_id])
     @promotion = Promotion.find(params[:id])
 		@promotion.destroy
-		redirect_to employee_promotions_path(@employee)
+		@promotions = @employee.promotions
 	end
 
 	private
