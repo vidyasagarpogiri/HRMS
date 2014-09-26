@@ -72,13 +72,14 @@ class EmployeesController < ApplicationController
     end
 =end   
     if params[:employee].present? 
-    
-      if @employee.update(params_employees)  
-        @report = @employee.reporting_managers
+   
+      if @employee.update(params_employees) 
+     
+        @report = @employee.reporting_managers 
         if @report.present?
-          @report.update_all(:manager_id => params["employee"][:reporting_id])          
+          @report.update_all(:manager_id => params[:employee][:reporting_id])          
         else
-          @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params["employee"][:reporting_id])
+          @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:employee][:reporting_id])
         end  
      
 		  else		
