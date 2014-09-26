@@ -6,7 +6,7 @@
 						  </div>
 						  	<div class="module-body">
 							
-							  <%= form_for ([@employee, @email]), :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+							  <%= form_for ([@employee, @email]), :data => {:toggle => "validator", :remote => true }, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
 							
 	            
 							
@@ -20,6 +20,7 @@
 								</div>
 	
 			   <%= f.submit  'Save', :class => "btn btn-success pull-left" %>
+			    <%= link_to 'Cancel', employee_email_ettiquities_path(@employee), :class=>"btn btn-danger  pull-right", :remote => true %>
  									
 										<% end %>
 							</div><!--/.module-body-->
