@@ -22,13 +22,11 @@ class LeavePoliciesController < ApplicationController
    @leave_policy = LeavePolicy.create(params_leavepolicy)
    @leave_policy.department_id = params[:department_id]
    @leave_policy.save
-		#raise @leave_policy.inspect
-   redirect_to leaves_department_path(@department)
+
  end
 	
 
  def edit
-  #raise params.inspect
  @department = Department.find(params[:department_id])
   @leave_policy = @department.leave_policy
  end
@@ -37,7 +35,6 @@ class LeavePoliciesController < ApplicationController
   @department = Department.find(params[:department_id])
    @leave_policy = @department.leave_policy
    @leave_policy.update(params_leavepolicy)
-   redirect_to leaves_department_path(@department)
  
  end
  

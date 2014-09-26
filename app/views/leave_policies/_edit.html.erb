@@ -1,0 +1,35 @@
+
+<div class="module">
+  <div class="module-head">
+
+   <h3> New Leave Policy For : <%= @department.department_name %></h3>
+ </div>
+<div class="module-body">
+   <%= form_for ([@department, @leave_policy]),  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"}, :remote => true do |f| %>
+
+<div class="control-group">   
+				 <label class="control-label" for="basicinput">Leaves per Month</label>
+             <div class="controls">
+                 <%= f.text_field :pl_this_year,  :class => "span8 form-control", :data => {:error => "Please Enter Number Of Leaves Per Month"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>
+              <span class="help-block with-errors"></span>
+				      </div>
+		 </div>
+
+
+                      
+      <div class="control-group">   
+				 <label class="control-label" for="basicinput">Maximum Carry forword Leaves per Year</label>
+             <div class="controls">
+                 <%= f.text_field :eligible_carry_forward_leaves,  :class => "span8 form-control", :data => {:error => "Please Enter Maximum Carryforward Leaves Per Year"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>
+              <span class="help-block with-errors"></span>
+				      </div>
+		 </div>                           
+              
+                                  
+                            <%= f.submit  'Save', :class => "btn btn-success pull-left" %>
+                                  
+                                              
+       <% end %>
+         </div><!--/.module-body-->
+			</div><!--/.module-->
+
