@@ -1,52 +1,47 @@
-<div id="page-wrapper">
+           
+<div class="wrapper">
+ <div class="container">
+	<div class="row">
 
-           <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="page-header">Add New Grade</h2>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
+  <div class="span12">
+		<div class="content">
 
-                                   <%= form_for (@grade), :data => {:toggle => "validator"} do |grade| %>
-                                   <div class="col-lg-12">
-                                        <div class="form-group col-lg-6">             
-                                         <label class="required">Designation</label><br>
-                                            <%= grade.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control", :id=>"disabledSelect"  } %>                             
-                                            <label class="required" >Grade</label><br>
-                                               <%= grade.text_field :value, :class => "form-control", :placeholder =>"Enter Grade" ,  :placeholder=>"Enter new Leave type", :data => {:error => "Please Enter Grade Name"}, :required =>true %>  
-                                    <div class="help-block with-errors"></div>    
-                                                    <button type="submit" class="btn btn-success pull-left">Save </button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                                      
-                                                    
-                                        </div>
-                                        
-                                  
-                                    <% end %>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-
-
-         </div>
-          <!-- /#page wrapper -->
-          <script>
+			<div class="module">
+				<div class="module-head">
+					<h3>Add New Grade</h3>
+						</div>
+							<div class="module-body">
+							
+							<%= form_for @grade, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+							
+					
+			         <div class="control-group">
+                  <label class="control-label" for="basicinput">Designation</label>
+                      <div class="controls">
+                      
+                      <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "span8  form-control", :id=>"disabledSelect"  } %>                             
+                      <span class="help-block with-errors"></span>
+                      </div>
+								</div>
+											
+								  <%= f.submit  'Save', :class => "btn btn-success pull-left" %>
+                							
+												 
+										<% end %>
+							</div><!--/.module-body-->
+						</div><!--/.module-->
+					</div><!--/.content-->
+				</div><!--/.span12-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+	</div><!--/.wrapper-->
+	
+	    <script>
             $(function(){
   
     $("#active").toggleClass("active").children("ul").collapse("toggle");
 
           });
         </script>
+        
+     

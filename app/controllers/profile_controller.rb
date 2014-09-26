@@ -22,6 +22,7 @@ class ProfileController < ApplicationController
     @educations =  @employee.educations
     @promotions = @employee.promotions
     @emails = @employee.email_ettiquities
+    @status = @employee.ff_status
   end
   
 end

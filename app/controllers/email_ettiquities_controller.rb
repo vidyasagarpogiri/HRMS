@@ -21,19 +21,17 @@ class EmailEttiquitiesController < ApplicationController
     @email = EmailEttiquitie.create(:ettiquite => params[:email_ettiquitie][:ettiquite], :dateofsending => Date.today,:employee_id => @employee.id)
     @emails = @employee.email_ettiquities
   end
-  end
+
   
   def show
     @email= EmailEttiquitie.find(params[:id])
   end
-  
-  def edit
-  end
+
   
 	def destroy
 		@employee = Employee.find(params[:employee_id])
 		@email= EmailEttiquitie.find(params[:id])
-		@emails = @employee.email_ettiquitiesd)
+		@emails = @employee.email_ettiquities
 	end
 	
 
