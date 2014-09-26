@@ -30,7 +30,7 @@
                    <% if current_user.department == Department::HR %>
 	                  <td> 
 	                    <ul class="navigation-btns" style="list-style: none;display:inline;">
-                        <li><%= link_to 'Edit', edit_employee_experience_path(@employee.id, experience.id), :class => "btn btn-success pull-left" %></li>                        
+                        <li><%= link_to 'Edit', edit_employee_experience_path(@employee.id, experience.id), :remote => true, :class => "btn btn-success pull-left" %></li>                        
                         <li><%= link_to "Delete", employee_experience_path(@employee, experience.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right" %></li>                                         
                       </ul>
                      </td>

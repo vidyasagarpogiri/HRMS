@@ -23,7 +23,7 @@ class ExperiencesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @experience = Experience.new
     
-    @list =  Experience.where(:Employee_id => params[:employee_id])
+    @list =  @employee.experiences
     @form_type = params[:commit]
   end
   
@@ -43,11 +43,8 @@ class ExperiencesController < ApplicationController
     #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @experience = Experience.find(params[:id])
-    if @experience.update(params.require(:experience).permit(:previous_company, :last_designation, :from_date, :to_date))
-    redirect_to employee_experiences_path(@employee.id)
-    else 
-    render 'edit'
-  end
+    @experience.update(params.require(:experience).permit(:previous_company, :last_designation, :from_date, :to_date))
+    @list =  @employee.experiences
   end
 		
 	def destroy
