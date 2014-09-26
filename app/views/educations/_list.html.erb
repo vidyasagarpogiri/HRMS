@@ -13,21 +13,21 @@
 								  <thead>
 									<tr>
 									  <tr>
-				                <th class="center">Degree</th>
-													           <th>Specilization </th>	
-													           <th>Releaved On </th>
-													           <th>Aggregate/CGPA</th>	
-													           <th></th>
+				               <th>Degree</th>
+						           <th>Specilization </th>	
+						           <th>Releaved On </th>
+						           <th>Aggregate/CGPA</th>	
+						           <th></th>
 									</tr>
 								  </thead>
 								   <% list.each do |education| %>
 								  <tbody>
 									<tr>
-									<td class="center"><%= education.institute %></td>
-													            <td> <%= education.specilization %> </td>
-													            <td> <%= education.year_of_pass %> </td>
-													            <td> <%= education.cgpa_percentage %> </td>
-	                  
+									<td><%= education.institute %></td>
+		              <td> <%= education.specilization %> </td>
+		              <td> <%= education.year_of_pass %> </td>
+		              <td> <%= education.cgpa_percentage %> </td>
+
                    <% if current_user.department == Department::HR %>
 	                  <td> 
 	                    <ul class="navigation-btns" style="list-style: none;display:inline;">
