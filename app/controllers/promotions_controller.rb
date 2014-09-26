@@ -20,12 +20,8 @@ class PromotionsController < ApplicationController
 		@employee = Employee.find(params[:employee_id])    
 		@promotion = Promotion.create(:date_of_promotion=> params[:promotion][:date_of_promotion], :employee_id=>params[:employee_id],
 		:designation_id=>params[:promotion][:designation_id])                      
-    if @promotion.save
 		@employee.update(:designation_id => @promotion.designation_id)
-		redirect_to employee_promotions_path
-		else 
-		render 'new'
-		end
+    @promotions = @employee.promotions
   end
   
   def edit
@@ -37,12 +33,11 @@ class PromotionsController < ApplicationController
     #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @promotion = Promotion.find(params[:id])
-    if @promotion.update(:date_of_promotion=> params[:promotion][:date_of_promotion], :designation_id=>params[:promotion][:designation_id] )
-    redirect_to employee_promotions_path
-    else
-    render 'edit' 
-    end
+    @promotion.update(:date_of_promotion=> params[:promotion][:date_of_promotion], :designation_id=>params[:promotion][:designation_id] )
+    @promotions = @employee.promotions
   end
+  
+  
   def destroy
 		@employee = Employee.find(params[:employee_id])
     @promotion = Promotion.find(params[:id])

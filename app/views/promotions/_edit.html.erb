@@ -1,0 +1,39 @@
+
+			<div class="module">
+				<div class="module-head">
+					<h3>Edit Promotion</h3>
+			  </div>
+							<div class="module-body">
+							
+					        
+							    <%= form_for ([@employee,@promotion]), :data => {:toggle => "validator", :remote => true }, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+			         <div class="control-group">
+                  <label class="control-label" for="basicinput">Date of Promotion</label>
+                      <div class="controls">
+                  
+                        <%= f.text_field :date_of_promotion, :class => " span8 form-control date-picker", :placeholder => "Enter Date of Promotion", :data => {:error => "Please Enter Date of Promotion"},  :required => true %>   
+                        <div class="help-block with-errors"></div>    
+                       
+                      </div>
+								</div>
+									        
+			
+    <div class="control-group">
+                  <label class="control-label" for="basicinput">Designation</label>
+                      <div class="controls">
+                    <%= f.collection_select :designation_id, Designation.all, :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control span8",:data => {:error => "Please Enter Date of Promotion"},:required => true } %>
+                        <span class="help-block with-errors"></span>
+                      
+                      </div>
+								</div>
+							
+												 <button type="submit" class="btn btn-success">Save </button><br>
+											
+										<% end %>
+							</div><!--/.module-body-->
+						</div><!--/.module-->
+
+       
+    
+    
+    
