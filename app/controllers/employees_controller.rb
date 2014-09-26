@@ -19,12 +19,14 @@ class EmployeesController < ApplicationController
   end
   
   def create
- 
+    
      @employee = Employee.create(params_employees)
+      
     if @employee.errors.present?
       render 'new'
     else
      @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
+     
      @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
      @employee.update(:user_id => @user.id)
       redirect_to profile_path(@employee)
@@ -53,7 +55,7 @@ class EmployeesController < ApplicationController
   end
   
   def update
-   #raise params.inspect
+   
     @employee = Employee.find(params[:id])
 
 #TODO BalaRaju -#REDO attachements 
@@ -72,20 +74,16 @@ class EmployeesController < ApplicationController
     end
 =end   
     if params[:employee].present? 
-    
-      if @employee.update(params_employees)  
-        @report = @employee.reporting_managers
-        if @report.present?
-          @report.update_all(:manager_id => params["employee"][:reporting_id])          
-        else
-          @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params["employee"][:reporting_id])
-        end  
+   
+      @employee.update(params_employees) 
      
-		  else		
-		    render 'edit'
-      end     
-    end
-    
+        @report = @employee.reporting_managers 
+        if @report.present?
+          @report.update_all(:manager_id => params[:reporting_id])          
+        else
+          @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
+        end  
+       end     
   end  
 
 	def exit_edit_form

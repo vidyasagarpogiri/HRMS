@@ -28,7 +28,6 @@
                                   </div>
                                   <div class="media user">
                                       <a class="media-avatar pull-left" href="#">                                               
-                                        <!--<img src="/assets/1.jpg" > -->                                    
 	                                      <% if employee.present? && employee.avatar_url.present? %>
                                           <%= image_tag employee.avatar_url %> 
                                          <% else %>
@@ -47,7 +46,7 @@
                                            <br>                                                                                              
                                           <ul style="list-style-type: none;">
                                             <li><i class="icon-suitcase"></i> Designataion</li>
-                                            <li><i class="icon-envelope"></i> <%= employee.user.email %></li>
+                                            <li><i class="icon-envelope"></i> <%= employee.user.email if employee.user.present? %></li>
                                             <li><i class="icon-phone"></i> <%= employee.mobile_number %></li>
                                             <li><i class="icon-map-marker"></i> <%= employee.job_location.address.city %></li>
                                           </ul> 
