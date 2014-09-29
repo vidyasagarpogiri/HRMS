@@ -31,6 +31,8 @@ class ProfileController < ApplicationController
     else
        @salary = Salary.new
     end
+    @report = @employee.reporting_managers.first
+
   end
   
 end

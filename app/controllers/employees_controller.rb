@@ -1,8 +1,8 @@
 class EmployeesController < ApplicationController
 
   layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index, :attachment_edit]
-	
-	
+    
+	 
 	  before_filter :other_emp_view, :except => [:index, :profile]
 
 	  before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]	
@@ -41,6 +41,7 @@ class EmployeesController < ApplicationController
         @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name 
       end
     end
+ 
   end
 
   def profile
@@ -79,7 +80,8 @@ class EmployeesController < ApplicationController
      
         @report = @employee.reporting_managers 
         if @report.present?
-          @report.update_all(:manager_id => params[:reporting_id])          
+          @report = @report.first
+          @report.update(:manager_id => params[:reporting_id])          
         else
           @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
         end  
@@ -132,11 +134,9 @@ class EmployeesController < ApplicationController
 	end
 	
 	 def attachment_update
-	 #raise params.inspect
 	    @employee = Employee.find(params[:id])
 	    @emp_attachement = EmployeeAttachment.find(params[:attachment_id])
 	    @emp_attachement.update(:attachment_name=> params[:employee_attachments][:attachment_name])
-	    #raise @emp_attachement.inspect
 	    redirect_to attachment_show_employee_path(@employee,@employee_attachement)
 	 end
 	

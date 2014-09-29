@@ -35,7 +35,7 @@ class LeaveHistoriesController < ApplicationController
     #--TODO----- leave balance alert before save
     @leave_history.save
     @leave_history.update(:days => applied_days)
-    Notification.applyleave(current_user.employee, @leave_history).deliver
+    Notification.delay.applyleave(current_user.employee, @leave_history)
 		redirect_to leave_histories_path
 	#else
 		#flash[:notice]= "no leave policy for you"
@@ -59,7 +59,7 @@ class LeaveHistoriesController < ApplicationController
     applied_days = total_days - weekend_count  
     @leave_history.update(:days => applied_days)
     @leave_history.update(:status => LeaveHistory::HOLD)
-    Notification.applyleave(current_user.employee, @leave_history).deliver
+    Notification.delay.applyleave(current_user.employee, @leave_history)
     redirect_to leave_histories_path
   end
   
@@ -88,7 +88,7 @@ class LeaveHistoriesController < ApplicationController
 		@leave_history.update(:status => LeaveHistory::APPROVED)
 		@leave_type = @leave_history.leave_type
 		#@leave = @employee.group.leave_policy
-		Notification.accept_leave(@employee, @leave_history).deliver
+		Notification.delay.accept_leave(@employee, @leave_history)
 		redirect_to reported_leaves_path
 
 	end
@@ -98,7 +98,7 @@ class LeaveHistoriesController < ApplicationController
 
 		@leave_history = LeaveHistory.find(params[:id])
 		@leave_history.update(:status => LeaveHistory::REJECTED, :feedback => params[:leave_history][:feedback])
-		 Notification.reject_leave(current_user.employee, @leave_history).deliver
+		 Notification.delay.reject_leave(current_user.employee, @leave_history)
 
 		redirect_to reported_leaves_path
 	end
