@@ -1,8 +1,4 @@
 
-         
-         
-
-         
 						                  <% if current_user.department == Department::HR %>
                                   <% if @address1.nil? %>
                                     <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info" %>
