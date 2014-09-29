@@ -63,6 +63,9 @@ end
     a.to_i
   end
   
+ 
+ 
+ 
   #leaves for current year according to leave policy
   
   
@@ -81,12 +84,37 @@ end
    end
     
   
-   a
+   a 
    
-   
+  
   end
 
+# caluculate carry forward leaves from previous year
 
+def carry_forward_leaves(employee)
+  
+   employee_join = employee.date_of_join.to_date
+ 
+  if(employee_join.year == (Date.current.cwyear-1))
+  
+   c =  ((12-employee_join.month)*employee.department.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.department.leave_policy.present?
+   
+     if  c < employee.department.leave_policy.eligible_carry_forward_leaves && c <= 0
+      return c
+     elsif c >= employee.department.leave_policy.eligible_carry_forward_leaves
+      return employee.department.leave_policy.eligible_carry_forward_leaves
+     end
+   else
+   
+   c =  (12 * employee.department.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.department.leave_policy.present?
+    if  c < employee.department.leave_policy.eligible_carry_forward_leaves && c <= 0
+      return c
+     elsif c >= employee.department.leave_policy.eligible_carry_forward_leaves
+      return employee.department.leave_policy.eligible_carry_forward_leaves
+     end
+   end
+         
+end
 
 
 
