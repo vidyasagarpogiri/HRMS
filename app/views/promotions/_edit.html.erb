@@ -6,7 +6,7 @@
 							<div class="module-body">
 							
 					        
-							    <%= form_for ([@employee,@promotion]), :data => {:toggle => "validator", :remote => true }, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+							    <%= form_for ([@employee,@promotion]), :remote => true , :html => {:class=>"form-horizontal row-fluid edit-promotion-form"} do |f| %>
 			         <div class="control-group">
                   <label class="control-label" for="basicinput">Date of Promotion</label>
                       <div class="controls">
@@ -27,14 +27,18 @@
                       </div>
 								</div>
 							
-												 <button type="submit" class="btn btn-success">Save </button><br>
-												  <%= link_to 'Cancel', employee_promotions_path(@employee), :class=>"btn btn-danger  pull-right", :remote => true %>
+												 <%= f.submit "Update", :class => "btn btn-success pull-left" %>		
+												  <%= link_to 'Cancel', employee_promotions_path(@employee), :class=>"btn btn-danger  pull-left", :remote => true %>
 											
 										<% end %>
 							</div><!--/.module-body-->
 						</div><!--/.module-->
 
        
-    
+     <script>
+			  $(function(){
+          $(".edit-promotion-form").validator();
+         });  
+			</script>
     
     

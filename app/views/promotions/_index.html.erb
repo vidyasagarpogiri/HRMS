@@ -5,7 +5,7 @@
 												
 							       	<h3>Promotion Info</h3>
                      <% if current_user.department == Department::HR %>                                
-                        <label style="font-weight:normal;margin-top:-50px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to ' Add Promotion', new_employee_promotion_path(@employee.id), :remote => true %></label>  
+                        <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add Promotion', new_employee_promotion_path(@employee.id), :remote => true %></label>  
                       <% end %>
                </div>
 	<div class="module-body">

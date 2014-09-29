@@ -27,12 +27,8 @@
 															<% if @address1.present? %>
                               <div class="row-fluid">
                           
-                          <div class="module-head" > Present Address</div>                                                                           
-                              <ul class="navigation-btns pull-right" style="list-style: none;display:inline;margin-top:-40px;">
-                                  <% if current_user.department == Department::HR %>
-                                  <li><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right" %></li>
-                                  <% end %>
-                              </ul>               
+                          <div class="module-head" > Present Address</div> 
+                             <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class=" icon-edit"></i></a><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"pull-right" %></label> 
                              <div class="module-body " style="margin-left:100px;">
                                 <div class ="row-fluid">
                                   <div class="span5">		
@@ -80,11 +76,10 @@
                              <% if @address2.present? %>    
                            
                           <div class="row-fluid">  
-                           <div class="module-head"  > Permanent Address</div>                                                                           
-                             <ul class="navigation-btns pull-right" style="list-style: none;display:inline;margin-top:-40px;">
-                                <% if current_user.department == Department::HR %>
-                                <li><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %></li>
-													      <% end %>
+                           <div class="module-head"> Permanent Address</div>                                                   
+                              <% if current_user.department == Department::HR %>                             
+                              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class=" icon-edit"></i></a><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"pull-right" %></label>
+												      <% end %>
                             </ul> 	              
                              <div class="module-body " style="margin-left:100px;">								                          
                                <div class ="row-fluid">

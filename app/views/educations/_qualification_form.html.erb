@@ -17,7 +17,7 @@
               <div class="control-group">
                   <label class="control-label" for="basicinput">College/University Name</label>
                       <div class="controls">
-                        <%= f.text_field :institute, :class => "span8 form-control", :placeholder =>"Enter College/University Name", :data => {:error => "Please Enter University"}, :required => true, :pattern => '[a-zA-Z/./,/s ]*'%>
+                        <%= f.text_field :institute, :class => "span8 form-control", :placeholder =>"Enter College/University Name", :data => {:error => "Please Enter University"}, :required => true, :pattern => '[a-zA-Z\.\,\s ]*'%>
                         <span class="help-block with-errors"></span>
                       </div>
 								</div>
@@ -26,13 +26,10 @@
 		<div class="control-group">
 										<label class="control-label" for="basicinput">Year of Passing</label>
 										<div class="controls">
-                     <%= f.text_field :year_of_pass, :class => "span8 from form-control", :placeholder => "Enter Year Of Passing", :data => {:error => "Please Enter Passing Year"}, :type => "number", :required => true, :pattern => '[0-9]{4}' %> 
+                     <%= f.text_field :year_of_pass, :class => "span8 from form-control", :placeholder => "Enter Year Of Passing", :data => {:error => "Please Enter Passing Year"}, :required => true, :pattern => '[0-9]{4}' %> 
 											 <span class="help-block with-errors"></span>   
 										</div>
-									</div>
-	
-	 	
-	
+									</div>		 		
 	
 		<div class="control-group">
 										<label class="control-label" for="basicinput">Percentage/CGPA </label>

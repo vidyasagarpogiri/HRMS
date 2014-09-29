@@ -4,7 +4,7 @@
 								<h3>Employee Details</h3>
 							</div>
 							<div class="module-body">	
-							  <%= form_for @employee, :data => {:toggle => "validator"}, :remote => true  do |f| %>
+							  <%= form_for @employee, :html => {:class=> "edit-employee-form"}, :remote => true  do |f| %>
 							  <div class ="row-fluid">
 							    <div class="span5">														
                     <div class="control-group">
@@ -200,11 +200,12 @@
 							</div>
 						</div>
 
-						
-						
-
-                 
-          
+					<script>
+			      $(function(){
+              $(".edit-employee-form").validator();
+             });  
+			    </script>    							
+                           
           <script>
             $(document).ready(function() {
               $("#reporting_id").val('<%= @employee.reporting_managerId if ReportingManager.find_by_employee_id(@employee.id).present? %>');

@@ -4,7 +4,7 @@
 
                       <h3>Education Info</h3> 
                      <% if current_user.department == Department::HR %>                                
-                        <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to ' Add Education', new_employee_education_path(@employee.id), :remote => true  %></label>
+                        <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add Education', new_employee_education_path(@employee.id), :remote => true  %></label>
                       <% end %>
                           </div>
 	<div class="module-body">
