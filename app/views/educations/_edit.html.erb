@@ -7,7 +7,7 @@
 					<h3>Education Details</h3>
 						</div>
 							<div class="module-body"> 
-       <%= form_for ([@employee, @education]),  :data => {:toggle => "validator", :remote => true}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>	
+       <%= form_for ([@employee, @education]),   :remote => true , :html => {:class=>"form-horizontal row-fluid edit-education-form"} do |f| %>	
        	
 			   <div class="control-group">
                   <label class="control-label" for="basicinput">Name Of Graduation</label>
@@ -57,4 +57,10 @@
 					</div><!--/.content-->
 				</div><!--/.span12-->
 			
+			
+			<script>
+			  $(function(){
+          $(".edit-education-form").validator();
+         });  
+			</script>
     
