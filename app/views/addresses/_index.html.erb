@@ -1,7 +1,5 @@
          
-						                    <div class="module">
-                             <div class="module-head">Contact Info</div>
-                                <div class="pull-right" style="margin-top:-30px;"> 
+						                  
                                   <% if @address1.nil? %>
                                     <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info" %>
                                   <% end %>
@@ -9,10 +7,7 @@
                                     <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info" %><br>
                                   <% end %> 
 
-                                                        
-                                </div>
-                          </div>
-                          <!-- /.col-lg-12 -->
+                         
                      
                       
                       <div class ="new_address_form">
@@ -24,15 +19,11 @@
                          </div>
                       <% end %>
                       <!-- /.row -->
-                      <div class="row ">
-                          <div class="col-lg-12">                    
+                                     
 															<% if @address1.present? %>
-                                <div class=" col-lg-5" >
-                                <div class="border panel panel-default"> 
-                                   <div class="panel-heading" style="font-weight:bold;">
+                              
                                        Present Address
-                                   </div>
-                                   <div class="panel-body">
+                                 
                                     <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                         <% if current_user.department == Department::HR %>
                                         <li><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right" %></li>
@@ -67,23 +58,14 @@
 																				 <div class="form-group">
                                             <label style="font-weight:normal;">Zipcode:</label>
                                            <%= @address1.zipcode %>
-                                        </div>																		
-									          </div><!-- panel -->
-									          
-									          </div><!-- /.default -->
-									        </div><!-- /.col-lg-5 (nested) -->
+                                         </div>
 									          	<% end %>	 
-                                <div class="col-lg-1">
-                                </div>
-                                
+                               
                                 
                              <% if @address2.present? %>    
-                              <div class="col-lg-5"> 
-                                <div class="border panel panel-default">                                                                 	 
-                                   <div class="panel-heading" style="font-weight:bold;">
+                           
                                        Permanent Address
-                                   </div>
-                                    <div class="panel-body">                                                                 
+                                                                                               
                                          <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                                           <% if current_user.department == Department::HR %>
                                           <li><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %></li>
@@ -118,10 +100,6 @@
                                               <label style="font-weight:normal;">Zipcode:</label>
                                              <%= @address2.zipcode %>
                                           </div>
-                                        </div><!-- panel-body -->                                         
-                                     </div><!-- panel-default -->   
-                                  </div><!-- /.col-lg-5 (nested) -->                     												                                    
-																	<% end %>                                                                                                                 
-                                </div>  <!-- /form(nested) -->                                     
-                       </div>  <!-- /.wrapper -->
- </div>
+                                                         												                                    
+																	<% end %>   
+																	</div>                         
