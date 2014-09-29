@@ -1,60 +1,54 @@
 class AllowancesController < ApplicationController
-  layout "profile_template", only: [:index, :new, :create, :show, :update]
- def index
-  #raise params.inspect
+  #layout "profile_template", only: [:index, :new, :create, :show, :update]
   
-  @salary = Salary.find(params[:salary_id])
-  @allowance = @salary.allowances
+  before_action :find_allowance, only: [:show, :edit, :update, :destroy]
+ 
+ 
+ def index
+  @allowances = Allowance.all
  end
  
  def new
- #raise params.inspect
-   @employee= Employee.find(params[:employee_id])
-   @salary = Salary.find(params[:salary_id])
    @allowance = Allowance.new
  end
  
  def create
-  
-  @form_type = params[:commit]
-  @allowance1 = Allowance.create(params_allowance)
-  @allowance1.save
-  @employee= Employee.find(params[:employee_id])
-  @salary = Salary.find(params[:salary_id])
-  @allowances = @salary.allowances
-   @allowance = Allowance.new
-  #redirect_to employee_salary_path(@employee, @salary)
+  value = params[:value].to_f
+  if params[:allowance_type].to_i == 1
+    @allowance = Allowance.create(:allowance_name => params[:allowance][:allowance_name], :value => value)
+  else
+    @allowance = Allowance.create(:allowance_name => params[:allowance][:allowance_name], :allowance_value => value)  
+  end
+  redirect_to allowances_path
  end
  
  def show
+    
  end
  
  def edit
-  @employee= Employee.find(params[:employee_id])
-  @salary = Salary.find(params[:salary_id])
-  @allowance = Allowance.find(params[:id])
+
  end
  
  def update
-  @employee= Employee.find(params[:employee_id])
-  @salary = Salary.find(params[:salary_id])
-  @allowance = Allowance.find(params[:id])
-  @allowance.update(params.require(:allowance).permit(:allowance_name, :value))
-  redirect_to employee_salaries_path(@employee)
+   value = params[:value].to_f
+  if params[:allowance_type].to_i == 1
+    @allowance.update(:allowance_name => params[:allowance][:allowance_name], :value => value)
+  else
+    @allowance.update(:allowance_name => params[:allowance][:allowance_name], :allowance_value => value)  
+  end
+  redirect_to allowances_path
  end
 	
 	def destroy
-	@employee= Employee.find(params[:employee_id])
-  @salary = Salary.find(params[:salary_id])
-  @allowance = Allowance.find(params[:id])
 	@allowance.destroy
-	redirect_to employee_salaries_path(@employee)
+	redirect_to allowances_path
 	end
+ 
  private
-   
-  def params_allowance
-    params.require(:allowance).permit(:allowance_name, :value).merge(:salary_id => params[:salary_id])
+ 
+  def find_allowance
+    @allowance = Allowance.find(params[:id])
   end
-  
   
 end
