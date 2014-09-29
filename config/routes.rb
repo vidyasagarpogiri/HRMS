@@ -157,6 +157,10 @@ end
       
     end
   end
+  
+  # routes for indivisual allowances
+  
+  resources :allowances
    
   #get 'change_designation' => "designations#change_designation"
   

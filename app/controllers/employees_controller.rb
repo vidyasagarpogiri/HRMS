@@ -75,17 +75,20 @@ class EmployeesController < ApplicationController
     end
 =end   
     if params[:employee].present? 
-   
       @employee.update(params_employees) 
-     
-        @report = @employee.reporting_managers 
+      @report = @employee.reporting_managers 
         if @report.present?
           @report = @report.first
           @report.update(:manager_id => params[:reporting_id])          
         else
           @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
         end  
-       end     
+      @errors = @employee.errors.full_messages
+      if @errors.present?
+        render 'edit'
+      end
+    end
+         
   end  
 
 	def exit_edit_form

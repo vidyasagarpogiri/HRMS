@@ -1,0 +1,23 @@
+ <a href="#" class="media-avatar pull-left">
+  <% if @employee.present? && @employee.avatar_url.present? %>
+    <%= image_tag(@employee.avatar_url) %> 
+   <% else %>
+      <img src="/assets/user.png"> 
+<% end %>
+ 
+</a>
+<div class="media-body">
+    <h4>
+       <%= @employee.title %><%= @employee.full_name %> 
+    </h4>
+    <p class="profile-brief">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+        Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+        unknown printer took a galley of type.
+    </p>
+     <div class="profile-details muted">
+        <i class="icon-suitcase"></i> <%= @employee.designation.designation_name if @employee.designation.present? %><br>
+        <i class="icon-phone"></i> <%= @employee.mobile_number %><br>
+        <i class="icon-envelope-alt shaded"></i> <%= @employee.user.email %><br>
+    </div>        
+</div>
