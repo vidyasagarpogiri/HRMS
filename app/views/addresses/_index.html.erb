@@ -1,127 +1,133 @@
-         
-						                    <div class="module">
-                             <div class="module-head">Contact Info</div>
-                                <div class="pull-right" style="margin-top:-30px;"> 
-                                  <% if @address1.nil? %>
-                                    <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info" %>
-                                  <% end %>
-                                  <% if @address2.nil? %>
-                                    <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info" %><br>
-                                  <% end %> 
+   
+			                <div class="module">
+                       <div class="module-head">Contact Info</div>
+                          <div class="pull-right" style="margin-top:-30px;"> 
+                            <% if @address1.nil? %>
+                              <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info" %>
+                            <% end %>
+                            <% if @address2.nil? %>
+                              <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info" %><br>
+                            <% end %> 
 
-                                                        
-                                </div>
+                                                  
                           </div>
-                          <!-- /.col-lg-12 -->
-                     
-                      
-                      <div class ="new_address_form">
-                      <% if !@address1.present? && !@address2.present? %>
-                        <br/>
-                         <div class="alert alert-success alert-dismissable">
+                       </div>
+                       <div class ="new_address_form">
+                          <% if !@address1.present? && !@address2.present? %>
+                          <br/>
+                          <div class="alert alert-success alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                              You have No Addresses to display. 
-                         </div>
-                      <% end %>
-                      <!-- /.row -->
-                      <div class="row ">
-                          <div class="col-lg-12">                    
-															<% if @address1.present? %>
-                                <div class=" col-lg-5" >
-                                <div class="border panel panel-default"> 
-                                   <div class="panel-heading" style="font-weight:bold;">
-                                       Present Address
-                                   </div>
-                                   <div class="panel-body">
-                                    <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                        <% if current_user.department == Department::HR %>
-                                        <li><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right" %></li>
-                                        <% end %>
-                                    </ul>
-                                    
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Address Line 1:</label>
-                                            <%= @address1.line %>                                  
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Address Line 2:</label>
-                                            <%= @address1.line1 %>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">City:</label>
-                                            <%= @address1.city %>                                       
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">State:</label>
-                                           <%= @address1.state %>                                            
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label style="font-weight:normal;">Country:</label>
-                                           <%= @address1.country %>
-                                        </div>
-
-																				 <div class="form-group">
-                                            <label style="font-weight:normal;">Zipcode:</label>
-                                           <%= @address1.zipcode %>
-                                        </div>																		
-									          </div><!-- panel -->
-									          
-									          </div><!-- /.default -->
-									        </div><!-- /.col-lg-5 (nested) -->
-									          	<% end %>	 
-                                <div class="col-lg-1">
-                                </div>
-                                
-                                
-                             <% if @address2.present? %>    
-                              <div class="col-lg-5"> 
-                                <div class="border panel panel-default">                                                                 	 
-                                   <div class="panel-heading" style="font-weight:bold;">
-                                       Permanent Address
-                                   </div>
-                                    <div class="panel-body">                                                                 
-                                         <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                          <% if current_user.department == Department::HR %>
-                                          <li><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %></li>
-																		      <% end %>
-                                      </ul> 
-                                          <div class="form-group">
-                                              <label style="font-weight:normal;">Address Line 1:</label>
-                                              <%= @address2.line %>                                  
-                                          </div>
-                                          
-                                          <div class="form-group">
-                                              <label style="font-weight:normal;">Address Line 2:</label>
-                                              <%= @address2.line1 %> 
-                                          </div>
-                                          
-                                          <div class="form-group">
-                                              <label style="font-weight:normal;">City:</label>
-                                             <%= @address2.city %>                                     
-                                          </div>
-                                          
-                                          <div class="form-group">
-                                              <label style="font-weight:normal;">State:</label>
-                                             <%= @address2.state %>                                                        
-                                          </div>
-                                          
-                                          <div class="form-group">
-                                              <label style="font-weight:normal;">Country:</label>
-                                             <%= @address2.country %>
-                                          </div>
-
-																				  <div class="form-group">
-                                              <label style="font-weight:normal;">Zipcode:</label>
-                                             <%= @address2.zipcode %>
-                                          </div>
-                                        </div><!-- panel-body -->                                         
-                                     </div><!-- panel-default -->   
-                                  </div><!-- /.col-lg-5 (nested) -->                     												                                    
-																	<% end %>                                                                                                                 
-                                </div>  <!-- /form(nested) -->                                     
-                       </div>  <!-- /.wrapper -->
- </div>
+                          </div>
+                          <% end %>
+                      
+                          <% if @address1.present? %>
+                          <div class="module-head" style="width:500px;"> Present Address</div>                                                                           
+                              <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                  <% if current_user.department == Department::HR %>
+                                  <li><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"btn btn-success pull-right" %></li>
+                                  <% end %>
+                              </ul>               
+                             <div class="module-body " style="margin-left:100px;">								                          
+                               <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">Address Line 1:</label>
+				                          <div class="controls">
+				                          <label><%= @address1.line %></label>
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">Address Line 2:</label>
+				                          <div class="controls">	
+				                          <label> <%= @address1.line1 %></label>							                                              
+			                          </div>
+			                          </div>
+			                           <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">City:</label>
+				                          <div class="controls">
+				                          <label><%= @address1.city %></label>											                           
+				                          </div>
+			                          </div>
+			
+				                          <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">State:</label>
+				                          <div class="controls">
+				                          <label> <%= @address1.state %></label>	    
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">Country:</label>
+				                          <div class="controls">
+				                          <label><%= @address1.country %></label>		
+				                          </div>
+			                          </div>			                                                                      
+			
+			                          <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">Zipcode:</label>
+				                          <div class="controls">
+				                          <label><%= @address1.zipcode %></label>		
+				                          </div>
+			                          </div>              									          
+									           </div><!-- /.module-body -->
+									         </div><!-- /.module-head(nested) -->
+									         <% end %>
+									         
+									         
+									         <% if @address2.present? %>
+                           <div class="module-head"  style="width:590px;margin-top:-70px;margin-left:520px;"> Permanent Address</div>                                                                           
+                             <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                                <% if current_user.department == Department::HR %>
+                                <li><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"btn btn-success pull-right" %></li>
+													      <% end %>
+                            </ul> 	              
+                             <div class="module-body " style="margin-left:100px;">								                          
+                               <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">Address Line 1:</label>
+				                          <div class="controls">
+				                          <label><%= @address2.line %></label>
+				                          </div>
+			                          </div>
+			                          
+			                           <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">Address Line 2:</label>
+				                          <div class="controls">	
+				                          <label> <%= @address2.line1 %></label>							                                              
+			                          </div>
+			                          </div>
+			                           <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">City:</label>
+				                          <div class="controls">
+				                          <label><%= @address2.city %></label>											                           
+				                          </div>
+			                          </div>
+			
+				                          <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">State:</label>
+				                          <div class="controls">
+				                          <label> <%= @address2.state %></label>	    
+				                          </div>
+			                          </div>
+			
+			                          <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">Country:</label>
+				                          <div class="controls">
+				                          <label><%= @address2.country %></label>		
+				                          </div>
+			                          </div>			                                                                      
+			
+			                          <div class="control-group span4">
+				                          <label class="control-label" for="basicinput">Zipcode:</label>
+				                          <div class="controls">
+				                          <label><%= @address2.zipcode %></label>		
+				                          </div>
+			                          </div>
+			                        </div><!-- /.module-body -->
+									         </div><!-- /.module-head(nested) -->
+									         <% end %> 									                                          
+                         </div><!-- /.form -->
+                       </div><!-- /.module -->       
+         
+         
+         
+						
