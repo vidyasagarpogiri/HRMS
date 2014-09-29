@@ -1,3 +1,4 @@
-$("#basic").html('<%= j render "employees/show" %>');
-
-$(".profile-head").html('<%= j render "profile/employee_header"%>');
+<% unless @errors.present? %>
+  $("#basic").html('<%= j render "employees/show" %>');
+  $(".profile-head").html('<%= j render "profile/employee_header"%>');
+<% end %>
