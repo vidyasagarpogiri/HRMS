@@ -1,12 +1,11 @@
-                                         
+           <% if @emails.present? %>	                              
 						<div class="module">
 							<div class="module-head">														
 								<h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> Etiquette Info</h3>
 								<% if current_user.department == Department::HR %>
-                <label style="font-weight:normal;margin-top:-30px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to 'Add Etiquette',  new_employee_email_ettiquity_path(@id), :remote => true  %></label>
+                <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to 'Add Etiquette',  new_employee_email_ettiquity_path(@id), :remote => true  %></label>
                 <% end %>
-							</div>							
-							<% if @emails.present? %>				
+							</div>																	
 							<table class="table table-striped table-bordered table-condensed">
 							  <thead>
 								  <tr>
@@ -27,13 +26,20 @@
 			            </tr>
 		            </tbody>
 		            <% end %>
-            </table> 
+            </table>
+          </div><!--/.module --> 
              <% else %>
+               <div class="module-head">														
+								  <h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> Etiquette Info</h3>
+								  <% if current_user.department == Department::HR %>
+                  <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to 'Add Etiquette',  new_employee_email_ettiquity_path(@id), :remote => true  %></label>
+                  <% end %>
+							</div><br>
                <div class="alert alert-success alert-dismissable">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                    You have No Email Ettiquites to display.
              </div>                                
             <% end %>
-						</div><!--/.module -->
+						
 
 			 
