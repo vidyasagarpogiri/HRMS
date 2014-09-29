@@ -17,7 +17,7 @@
                                     </a>
                                     <div class="media-body">
                                         <h4>
-                                           <%= @employee.full_name %> 
+                                           <%= @employee.title %><%= @employee.full_name %> 
                                         </h4>
                                         <p class="profile-brief">
                                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
@@ -25,7 +25,7 @@
                                             unknown printer took a galley of type.
                                         </p>
                                          <div class="profile-details muted">
-                                            <i class="icon-suitcase"></i><%= @employee.designation.designation_name if @employee.designation.present? %><br>
+                                            <i class="icon-suitcase"></i> <%= @employee.designation.designation_name if @employee.designation.present? %><br>
                                             <i class="icon-phone"></i> <%= @employee.mobile_number %><br>
                                             <i class="icon-envelope-alt shaded"></i> <%= @employee.user.email %><br>
                                         </div>        

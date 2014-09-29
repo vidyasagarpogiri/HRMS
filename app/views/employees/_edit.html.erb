@@ -4,22 +4,29 @@
 								<h3>Employee Details</h3>
 							</div>
 							<div class="module-body">	
-							  <%= form_for @employee, :data => {:toggle => "validator"}, :remote => true  do |f| %>															
-                 <div class="control-group">
-										<label class="control-label" for="basicinput">Employee Id</label>
-										<div class="controls">
+							  <%= form_for @employee, :data => {:toggle => "validator"}, :remote => true  do |f| %>
+							  <div class ="row-fluid">
+							    <div class="span5">														
+                    <div class="control-group">
+										  <label class="control-label" for="basicinput">Employee Id</label>
+										  <div class="controls">
 											 <%= f.text_field :employee_id, :class => "span8 form-control ", :placeholder =>"Enter Emp Id", :data => {:error => " Please Enter Employee Id"},:required =>true %>
 											 <span class="help-block with-errors"></span>  
-										</div>
+										  </div>
+									  </div>
 									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Title</label>
-										<div class="controls">									
-                     <%= f.select( :title, options_for_select([['Mr', 'Mr'], ['Mrs', 'Mrs'], ['Miss', 'Miss']]),{}, :class=> "span8  ") %>											 
-										</div>
-									</div>
-									
+									<div class="span5">	
+									  <div class="control-group">
+										  <label class="control-label" for="basicinput">Title</label>
+										  <div class="controls">									
+                       <%= f.select( :title, options_for_select([['Mr', 'Mr'], ['Mrs', 'Mrs'], ['Miss', 'Miss']]),{}, :class=> "span8  ") %>
+										  </div>
+									 </div>
+								</div>
+							</div>
+							
+							<div class ="row-fluid">
+							  <div class="span5">		
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Employee First Name</label>
 										<div class="controls">
@@ -27,15 +34,20 @@
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
-									
-										<div class="control-group">
+								</div> 
+								<div class="span5">		
+									<div class="control-group">
 										<label class="control-label" for="basicinput">Employee Last Name</label>
 										<div class="controls">
                       <%= f.text_field :last_name,:class => "span8 form-control ", :id => "basicinput", :placeholder => "Enter Last name",:data => {:error => " Please Enter Employee Last Name"},:required =>true, :pattern => '[a-zA-Z/s ]*'  %> 
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
-									
+							 </div>
+						 </div>
+						 
+						 <div class ="row-fluid">
+							  <div class="span5">						 									
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Date Of Joining</label>
 										<div class="controls">
@@ -43,6 +55,7 @@
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
+							 </div>		
 									 <% a = []%>
                    <%  JobLocation.all.each do |j| 
                     b=[]
@@ -50,44 +63,56 @@
                     b << j.id
                     a << b
                    end  %>                  
-                   
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Job Location</label>
-										<div class="controls">
-                      <%= f.select :job_location_id, a,  { :prompt => "Please Select" }, { :class => "job_location, span8 form-control ", :id => "disabledSelect" } %>
-										</div>
+              <div class="span5">   									
+								<div class="control-group">
+									<label class="control-label" for="basicinput">Job Location</label>
+									<div class="controls">
+                    <%= f.select :job_location_id, a,  { :prompt => "Please Select" }, { :class => "job_location, span8 form-control ", :id => "disabledSelect" } %>
 									</div>
-									
+								</div>
+						 </div>
+					 </div>
+					 
+					  <div class ="row-fluid">
+							 <div class="span5">																		
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Blood Group</label>
 										<div class="controls">
                        <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group, span8 form-control ", :id => "disabledSelect" } %> 
 										</div>
 									</div>
-									
+								</div>	
+						   <div class="span5">
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Mobile Number</label>
 										<div class="controls">
                       <%= f.text_field :mobile_number, :class => "span8 datepicker form-control ", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
 										</div>
 									</div>
-									
-									<div class="control-group">
+							  </div>
+							</div>
+							
+						  <div class ="row-fluid">
+							  <div class="span5">		
+								  <div class="control-group">
 										<label class="control-label" for="basicinput">Email Id</label>
 										<div class="controls">
                      <input class=" span8 form-control" placeholder="Enter Email id", name="email", value=<%= @employee.user.email %> disabled >
-                     
 										</div>
 									</div>
-									
+								</div>
+								<div class="span5">		
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Alternate E-Mail</label>
 										<div class="controls">
                      <%= f.text_field :alternate_email, :class=>"span8 form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter Employee Alternate Email"}, :required =>true, :pattern => '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$' %> 
 										</div>
 									</div>
-									
+							  </div>
+							</div>
+							
+							<div class ="row-fluid">
+							  <div class="span5">									
 									<div class="control-group">
 										<label class="control-label" for="basicinput"> Reporting Manager</label>
 										<div class="controls">
@@ -96,7 +121,8 @@
                      <span class="help-block with-errors"></span> 
 										</div>
 									</div>
-									
+							  </div>		
+								<div class="span5">	
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Father Name</label>
 										<div class="controls">
@@ -104,54 +130,71 @@
                      <span class="help-block with-errors"></span>
 										</div>
 									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Gender</label>
-										<div class="controls">
-                     <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]), {}, :class=> "span8 form-control", :id=>"disabledSelect") %> 
-                     <span class="help-block with-errors"></span>
-										</div>
+								</div>
+							</div>	
+							
+							<div class ="row-fluid">
+							  <div class="span5">										
+									 <div class="control-group">
+										  <label class="control-label" for="basicinput">Gender</label>
+										  <div class="controls">
+                       <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]), {}, :class=> "span8 form-control", :id=>"disabledSelect") %> 
+                       <span class="help-block with-errors"></span>
+										  </div>
+									  </div>
+								  </div>	
+								  <div class="span5">									  
+									  <div class="control-group">
+										  <label class="control-label" for="basicinput">Date Of Birth</label>                                             
+										  <div class="controls">
+                       <%= f.text_field :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"span8 datepicker_with_year form-control", :data => {:error => " Please Enter Employee Date Of Birth"}, :required =>true %> 
+                       <span class="help-block with-errors"></span>
+										  </div>
+									  </div>
 									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Date Of Birth</label>                                             
-										<div class="controls">
-                     <%= f.text_field :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"span8 datepicker_with_year form-control", :data => {:error => " Please Enter Employee Date Of Birth"}, :required =>true %> 
-                     <span class="help-block with-errors"></span>
-										</div>
+								</div>
+								
+								<div class ="row-fluid">
+							    <div class="span5">									
+									  <div class="control-group">
+										  <label class="control-label" for="basicinput">Department</label>                                              
+										  <div class="controls">
+                       <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, span8 form-control", :id => "disabledSelect1" } %> 
+                       <span class="help-block with-errors"></span>
+										  </div>
+									  </div>
 									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Department</label>                                              
-										<div class="controls">
-                     <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, span8 form-control", :id => "disabledSelect1" } %> 
-                     <span class="help-block with-errors"></span>
-										</div>
+									<div class="span5">	
+									  <div class="control-group">
+										  <label class="control-label" for="basicinput">Designation</label>                                              
+										  <div class="controls">
+                       <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation span8 form-control", :id=>"disabledSelect"  } %>  
+                       <span class="help-block with-errors"></span>
+										  </div>
+									  </div>
 									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Designation</label>                                              
-										<div class="controls">
-                     <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation span8 form-control", :id=>"disabledSelect"  } %>  
-                     <span class="help-block with-errors"></span>
-										</div>
+							  </div> 
+							  
+							  <div class ="row-fluid">
+							    <div class="span5">	 									
+								    <div class="control-group">
+									    <label class="control-label" for="basicinput">Grade/Level</label>                                           
+									    <div class="controls">
+                        <%= f.grouped_collection_select :grade_id, Designation.all, :grades, :designation_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades span8 form-control", :id=>"disabledSelect"  } %>
+                       <span class="help-block with-errors"></span>
+									    </div>
+								    </div>
 									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Grade/Level</label>                                           
-										<div class="controls">
-                      <%= f.grouped_collection_select :grade_id, Designation.all, :grades, :designation_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades span8 form-control", :id=>"disabledSelect"  } %>
-                     <span class="help-block with-errors"></span>
-										</div>
-									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Upload Image</label>                                         
-										<div class="controls">
-                      <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
-                     <span class="help-block with-errors"></span>
-										</div>
-									</div>							
+									<div class="span5">	
+									  <div class="control-group">
+										  <label class="control-label" for="basicinput">Upload Image</label>                                         
+										  <div class="controls">
+                        <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+                       <span class="help-block with-errors"></span>
+										  </div>
+									  </div>	
+								 </div>
+						   </div>						
 									 <button type="submit" class="btn btn-success">Save & Continue</button><br>											
 							  <% end %> 
 							</div>
