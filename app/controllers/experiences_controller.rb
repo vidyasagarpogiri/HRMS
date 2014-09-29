@@ -18,7 +18,9 @@ class ExperiencesController < ApplicationController
     #raise params.inspect
     @new_experience = Experience.create(params.require(:experience).permit(:previous_company, :last_designation, :from_date, :to_date).merge(employee_id: params[:employee_id]))
    @errors = @new_experience.errors.full_messages
-    
+    if @errors.present?
+      render 'new'
+    end
     #for new form 
     @employee = Employee.find(params[:employee_id])
     @experience = Experience.new
@@ -42,6 +44,10 @@ class ExperiencesController < ApplicationController
     @experience = Experience.find(params[:id])
     @experience.update(params.require(:experience).permit(:previous_company, :last_designation, :from_date, :to_date))
    @experiences = @employee.experiences
+   @errors =  @experience.errors.full_messages
+    if @errors.present?
+      render 'edit'
+    end
   end
 		
 	def destroy

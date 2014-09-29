@@ -25,7 +25,7 @@ class ProfileController < ApplicationController
     @status = @employee.ff_status
     @address1 = @employee.addresses.where(:address_type=>0).first
 		@address2 = @employee.addresses.where(:address_type=>1).first
-
+    @report = @employee.reporting_managers.first
   end
   
 end
