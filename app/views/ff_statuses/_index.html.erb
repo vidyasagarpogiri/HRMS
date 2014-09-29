@@ -9,8 +9,9 @@
 								 
 								 
 								 <% unless @status.present? %>
-               
+                <% if current_user.department == Department::HR %>
                   <label style="font-weight:normal;margin-top:-30px;" class = "pull-right"><i class="fa fa-plus "></i> <%= link_to 'Add FFStatus', new_employee_ff_status_path(@employee), :remote => true %></label>
+                  <% end %>
                 <% else %>
                   <label style="font-weight:normal;margin-top:-45px;" class = "pull-right"><a><i class="fa fa-pencil-square-o "></i></a><%= link_to 'Edit', edit_employee_ff_status_path(@employee, @status), :remote => true %></label>
                    

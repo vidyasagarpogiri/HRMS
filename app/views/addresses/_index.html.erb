@@ -1,5 +1,5 @@
          
-						                  
+						                  <% if current_user.department == Department::HR %>
                                   <% if @address1.nil? %>
                                     <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info" %>
                                   <% end %>
@@ -7,7 +7,7 @@
                                     <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info" %><br>
                                   <% end %> 
 
-                         
+                          <% end %>
                      
                       
                       <div class ="new_address_form">
