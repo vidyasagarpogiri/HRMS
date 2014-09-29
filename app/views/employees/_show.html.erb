@@ -1,5 +1,5 @@
 
-                                         <div class="module-head">Basic Info</div>                                                                           
+                                         <div class="module-head"><h3>Basic Info</h3></div>                                                                           
                                          <% if current_user.department == Department::HR %>
                                          <label style="font-weight:normal;margin-top:-30px;" class="pull-right"><a><i class="icon-edit"></i></a> <%= link_to "Edit", edit_employee_path(@employee), :remote => true %></label>
                                         <% end %>
