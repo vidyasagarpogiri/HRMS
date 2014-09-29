@@ -86,7 +86,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Mobile Number</label>
 										<div class="controls">
-                      <%= f.text_field :mobile_number, :class => "span8 datepicker form-control ", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
+                      <%= f.text_field :mobile_number, :class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
 										</div>
 									</div>
 							  </div>
@@ -216,6 +216,16 @@
              
 $(function() {
     $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
+  });
+  
+    $(function() {
+    $( ".datepicker_with_year" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "-100:+0",
+      dateFormat: 'dd/mm/yy',
+       maxDate: -0
+    });
   });
 
             var designations = $('.designation').html();
