@@ -166,6 +166,7 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     ref (1.0.5)
+    remotipart (1.2.1)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
@@ -257,6 +258,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   rails (= 4.1.5)
+  remotipart (~> 1.2)
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

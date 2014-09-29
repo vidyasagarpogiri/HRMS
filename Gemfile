@@ -67,6 +67,8 @@ gem 'kaminari'
 gem 'delayed_job_active_record'
 gem 'daemon-spawn'
 
+
+gem 'remotipart', '~> 1.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
