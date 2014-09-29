@@ -1,31 +1,42 @@
 
 
                               <%= @salary.errors.full_messages.first if @salary.errors.any? %>
-                                    <div class="col-lg-12">
-                                  <%= form_for ([@employee, @salary]),  :data => {:toggle => "validator"} do |f| %>
+                            
+                                  <%= form_for ([@employee, @salary]),  :data => {:toggle => "validator", :remote => true} do |f| %>
                                        <br>
 
-                                        <div class="form-group">
-                                            <label class="required" >Gross Salary </label>
-                                            <%= f.text_field :gross_salary,  :class=>"form-control", :placeholder => "Enter Gross Salary", :data => {:error => "Please Enter valid Gross Salary value"}, :type => "number", :required => true %>   
+                                        <div class="control-group">
+                                             <label class="control-label" for="basicinput">Gross Salary </label>
+                                             <div class="controls">
+                                            <%= f.text_field :gross_salary,  :class=>"span8 form-control", :placeholder => "Enter Gross Salary", :data => {:error => "Please Enter valid Gross Salary value"}, :type => "number", :required => true %>   
                                         <div class="help-block with-errors"></div> 
+                                            </div>
                                         </div>
                                         
-                                        <div class="form-group">
-                                            <label class="required" >Bonus</label><br>
-                                             <%= f.text_field :bonus, :class=>"form-control",:placeholder => "Enter Bonus ", :data => {:error => "Please Enter valid Bonus value"}, :type => "number", :required => true %>   
-                                        <div class="help-block with-errors"></div>
+                                        <div class="control-group">
+                                             <label class="control-label" for="basicinput">Bonus</label>
+                                             <div class="controls">
+                                             <%= f.text_field :bonus, :class=>"span8 form-control",:placeholder => "Enter Bonus ", :data => {:error => "Please Enter valid Bonus value"}, :type => "number", :required => true %>   
+                                             <div class="help-block with-errors"></div>
+                                             </div>
                                         </div>
-																				<div class="form-group">
-                                            <label class="required" >Gratuity</label><br>
-                                             <%= f.text_field :gratuity, :class=>"form-control",:placeholder => "Enter Gratuity", :data => {:error => "Please Enter valid Gratuity value"}, :type => "number", :required => true %>   
-                                        <div class="help-block with-errors"></div>
+																				<div class="control-group">
+                                             <label class="control-label" for="basicinput">Gratuity</label>
+                                             <div class="controls">
+                                             <%= f.text_field :gratuity, :class=>"span8 form-control",:placeholder => "Enter Gratuity", :data => {:error => "Please Enter valid Gratuity value"}, :type => "number", :required => true %>   
+                                              <div class="help-block with-errors"></div>
+                                              </div>
                                         </div>
-																				<div class="form-group">
-                                            <label class="required" >Medical Insurance</label><br>
-                                             <%= f.text_field :medical_insurance, :class=>"form-control",:placeholder => "Enter Medical Insurance", :data => {:error => "Please Enter valid Medical Insurance value"}, :type => "number", :required => true %>   
-                                        <div class="help-block with-errors"></div>
+																				<div class="control-group">
+                                             <label class="control-label" for="basicinput">Medical Insurance</label>
+                                             <div class="controls">
+                                             <%= f.text_field :medical_insurance, :class=>"span8 form-control",:placeholder => "Enter Medical Insurance", :data => {:error => "Please Enter valid Medical Insurance value"}, :type => "number", :required => true %>   
+                                             <div class="help-block with-errors"></div>
+                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-success pull-right">Next</button>           
+                                        <ul class="navigation-btns" style="list-style:none;">
+									                          <li><button type="submit" class="btn btn-success">Save </button></li>
+										                        <!--<li><%#link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger ", :remote => true %></li>		-->							
+								  </ul>
                                   <% end %>    
-									</div>
+								

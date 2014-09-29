@@ -38,7 +38,7 @@
 				                                   </div>
 				                                   <div class="span5">	
 					                                   <div class="control-group">
-						                                   <label class="control-label" for="basicinput"> Reporting Manager: <%= @employee.reporting_manager %> </label>
+						                                   <label class="control-label" for="basicinput"> Reporting Manager: <%= Employee.find(@report.manager_id).full_name if @report.present? && @report.manager_id? %> </label>
 						                                </div>
 					                                 </div>
 				                                 </div><hr>		

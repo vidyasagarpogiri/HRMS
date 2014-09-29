@@ -7,7 +7,7 @@
 							<div class="module-body">
 							
 							
-	            <%= form_for ([@employee, @experience]),  :data => {:toggle => "validator", :remote => true}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+	            <%= form_for ([@employee, @experience]), :remote => true, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
 							
 			         <div class="control-group">
                   <label class="control-label" for="basicinput">Company Name</label>
@@ -85,3 +85,10 @@ $(function() {
                });
            });
         </script>
+        
+    <script>
+      $(function(){
+        $("#new_experience").validator();
+      });
+   
+    </script>
