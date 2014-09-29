@@ -63,6 +63,10 @@ gem 'carrierwave'
 gem 'kaminari'
 
 
+#gem for delayed-job
+gem 'delayed_job_active_record'
+gem 'daemon-spawn'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
