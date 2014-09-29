@@ -1,131 +1,81 @@
 
-                                         <div class="module-head">Basic Info</div>                                  
-                                         
+                                         <div class="module-head">Basic Info</div>                                                                           
                                          <% if current_user.department == Department::HR %>
-                                <label style="font-weight:normal;margin-top:-40px;" class = "btn btn-success pull-right"> <%= link_to "Edit", edit_employee_path(@employee), :remote => true %></label>
-                              <% end %>
-                                       <div class="module-body " style="margin-left:100px;">								                          
-                                           <div class="row-fluid">
-                                           <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Employee Id:</label>
-										                          <div class="controls">
-										                          <label><%= @employee.employee_id %></label>
-										                          </div>
-									                          </div>
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Title:</label>
-										                          <div class="controls">	
-										                          <label><%= @employee.title %></label>							                                              
-									                          </div>
-									                          </div>
-									                           <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Employee First Name:</label>
-										                          <div class="controls">
-										                          <label><%= @employee.first_name %></label>											                           
-										                          </div>
-									                          </div>
-									
-										                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Employee Last Name:</label>
-										                          <div class="controls">
-										                          <label><%= @employee.last_name %></label>	    
-										                          </div>
-									                          </div>
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Date Of Joining:</label>
-										                          <div class="controls">
-										                          <label><%= @employee.date_of_join %></label>		
-										                          </div>
-									                          </div>
-									                                     
-                                             
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Job Location:</label>
-										                          <div class="controls">
-										                          <label><%= @employee.job_location.address.city if @employee.job_location.address.present? %></label>		
-										                          </div>
-									                          </div>
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Blood Group:</label>
-										                          <div class="controls">
-										                          <label><%= @employee.blood_group.blood_group_name %></label>		
-										                          </div>
-									                          </div>
-									                          
-									                         <!-- <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Mobile Number:</label>
-										                          <div class="controls">
-										                          <label><%# @employee.mobile_number %></label>		
-										                          </div>
-									                          </div>
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Email Id:</label>
-										                          <div class="controls">
-                                               <label><%# @employee.user.email %></label>
-										                          </div>
-									                          </div> -->
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Alternate E-Mail:</label>
-										                          <div class="controls">
-										                          <label><%= @employee.alternate_email %></label>		
-										                          </div>
-									                          </div>
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput"> Reporting Manager:</label>
-										                          <div class="controls">
-										                         <label><%= @employee.reporting_manager %></label>		
-										                          </div>
-									                          </div>
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Father Name:</label>
-										                          <div class="controls">
-										                          <label><%= @employee.father_name %></label>		
-										                          </div>
-									                          </div>
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Gender:</label>
-										                          <div class="controls">
-										                          <label><%= @employee.gender %></label>	
-										                          </div>
-									                          </div>
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Date Of Birth:</label> 
-										                          <div class="controls">
-										                          <label><%= @employee.date_of_birth %></label>	
-										                          </div>
-									                          </div>
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Department:</label> 
-										                          <div class="controls">
-										                         <label><%= @employee.department.department_name %></label>		
-										                          </div>
-									                          </div>
-									
-									                          <!--<div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Designation:</label>     
-										                          <div class="controls">
-										                         <label><%# @employee.designation.designation_name if @employee.designation.present? %></label>		
-										                          </div>
-									                          </div>-->
-									
-									                          <div class="control-group span4">
-										                          <label class="control-label" for="basicinput">Grade/Level:</label> 
-										                          <div class="controls">
-										                          <label><%= @employee.grade.value %></label>	                                               
-										                          </div>
-									                          </div>
-																	              </div>      
-									                       </div><!--/.module-body-->                               
+                                         <label style="font-weight:normal;margin-top:-40px;" class = "btn btn-success pull-right"> <%= link_to "Edit", edit_employee_path(@employee), :remote => true %></label>
+                                        <% end %>
+                                       <div class="module-body " style="margin-left:100px;">	                                       
+                                        <div class ="row-fluid">
+				                                  <div class="span5">		
+						                                <div class="control-group">
+							                                <label class="control-label" for="basicinput">Employee Id: <%= @employee.employee_id %> </label>
+						                                </div>
+					                                </div>
+					                                <div class="span5">	
+						                                <div class="control-group">
+							                                <label class="control-label" for="basicinput">Date Of Joining: <%= @employee.date_of_join %></label>  
+							                              </div>
+						                               </div>
+					                                </div><hr>	
+				                                
+			                                    <div class ="row-fluid">
+			                                      <div class="span5">		
+					                                    <div class="control-group">
+						                                    <label class="control-label" for="basicinput">Job Location: <%= @employee.job_location.address.city if @employee.job_location.address.present? %> </label>
+					                                   </div>
+				                                   </div>
+				                                   <div class="span5">	
+					                                   <div class="control-group">
+						                                   <label class="control-label" for="basicinput">Blood Group: <%= @employee.blood_group.blood_group_name %></label>
+						                                </div>
+					                                 </div>
+				                                 </div><hr>
+				                                 
+				                                 <div class ="row-fluid">
+			                                      <div class="span5">		
+					                                    <div class="control-group">
+						                                    <label class="control-label" for="basicinput">Alternate E-Mail: <%= @employee.alternate_email %> </label>
+					                                   </div>
+				                                   </div>
+				                                   <div class="span5">	
+					                                   <div class="control-group">
+						                                   <label class="control-label" for="basicinput"> Reporting Manager: <%= @employee.reporting_manager %> </label>
+						                                </div>
+					                                 </div>
+				                                 </div><hr>		
+				                                 
+				                                 <div class ="row-fluid">
+			                                      <div class="span5">		
+					                                    <div class="control-group">
+						                                    <label class="control-label" for="basicinput">Father Name: <%= @employee.father_name %> </label>
+					                                   </div>
+				                                   </div>
+				                                   <div class="span5">	
+					                                   <div class="control-group">
+						                                   <label class="control-label" for="basicinput"> Gender: <%= @employee.gender %> </label>
+						                                </div>
+					                                 </div>
+				                                 </div><hr>		
+				                                				
+				                                 <div class ="row-fluid">
+			                                      <div class="span5">		
+					                                    <div class="control-group">
+						                                    <label class="control-label" for="basicinput">Date Of Birth:  <%= @employee.date_of_birth %> </label>
+					                                   </div>
+				                                   </div>
+				                                   <div class="span5">	
+					                                   <div class="control-group">
+						                                   <label class="control-label" for="basicinput"> Department: <%= @employee.department.department_name %> </label>
+						                                </div>
+					                                 </div>
+				                                 </div><hr>	  				
+				                                								                                								                                						                             <div class ="row-fluid">
+			                                      <div class="span5">
+			                                        <div class="control-group span4">
+										                            <label class="control-label" for="basicinput">Grade/Level: <%= @employee.grade.value %></label>        
+									                            </div>
+																	         </div> 
+																	      </div>  
+																	            
+									                  </div><!--/.module-body-->                               
 
 
