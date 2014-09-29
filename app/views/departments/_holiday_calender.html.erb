@@ -1,10 +1,8 @@
-  <div class="module-head">   
-		       
-		      <h3> Holiday calender</h3>
-		    <label style="font-weight:normal;margin-top:-25px;padding-right:10px;" class = "pull-right"><a><i class="fa fa-plus "></i></a><%= link_to "Add Event",  new_department_holiday_calender_path(@department ), :remote => true %></label> 
-		         
-		   </div>
-		   	         
+        <div class="module">
+		      <div class="module-head">							
+             <h3> Holiday calender</h3>
+		          <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus "></i></a><%= link_to "Add Event",  new_department_holiday_calender_path(@department ), :remote => true %></label> 
+          </div>		   	         
 		        <div class="module-body">   
 		         <%= puts @holiday_calenders.inspect %>
 		          <% if @holiday_calenders.present? %> 
