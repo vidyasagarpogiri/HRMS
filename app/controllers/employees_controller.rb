@@ -10,7 +10,7 @@ class EmployeesController < ApplicationController
 	
 
   def index
-    @employees =  Employee.all.page(params[:page]).per(2)
+    @employees =  Employee.all.page(params[:page]).per(4)
   end
 
  
