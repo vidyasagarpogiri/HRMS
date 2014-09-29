@@ -22,8 +22,9 @@ class EducationsController < ApplicationController
     @errors = @new_education.errors.full_messages
     #raise @errors.inspect
 
-  
-    
+  if @errors.present?
+     render action: 'new' 
+  end
     #for new form 
     @employee = Employee.find(params[:employee_id])
     @education = Education.new
@@ -39,7 +40,6 @@ class EducationsController < ApplicationController
   end
   
   def edit
-    #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @education = Education.find(params[:id])
   end
@@ -47,11 +47,15 @@ class EducationsController < ApplicationController
 
   
   def update
-    #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @education = Education.find(params[:id])
     @education.update(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage))
-     @educations =  @employee.educations
+    @educations =  @employee.educations
+    @errors = @education.errors.full_messages
+
+    if @errors.present?
+       format.html{render action: 'edit'} 
+    end
   end
 
   def qualifications
