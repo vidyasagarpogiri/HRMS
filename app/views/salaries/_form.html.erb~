@@ -2,7 +2,7 @@
 
                               <%= @salary.errors.full_messages.first if @salary.errors.any? %>
                             
-                                  <%= form_for ([@employee, @salary]),  :data => {:toggle => "validator", :remote => true} do |f| %>
+                                  <%= form_for ([@employee, @salary]), :html => {:class=> "edit-salary-form"}, :remote => true do |f| %>
                                        <br>
 
                                         <div class="control-group">
@@ -39,4 +39,9 @@
 										                        <!--<li><%#link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger ", :remote => true %></li>		-->							
 								  </ul>
                                   <% end %>    
-								
+					  <script>
+			  $(function(){
+          $(".edit-salary-form").validator();
+
+         });  
+			</script>			
