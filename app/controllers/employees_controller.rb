@@ -10,7 +10,7 @@ class EmployeesController < ApplicationController
 	
 
   def index
-    @employees =  Employee.all.page(params[:page]).per(2)
+    @employees =  Employee.all.page(params[:page]).per(4)
   end
 
  
@@ -84,9 +84,7 @@ class EmployeesController < ApplicationController
           @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
         end  
       @errors = @employee.errors.full_messages
-      if @errors.present?
-        render 'edit'
-      end
+     
     end
          
   end  
