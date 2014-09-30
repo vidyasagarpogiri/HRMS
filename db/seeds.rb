@@ -79,7 +79,7 @@ Designation.all.each do |desg|
 end
 #-----------------------------------------------------------------------------------------------------#
 Grades = Grade.all.pluck(:id)
-["O+ve", "O-ve", "A+ve", "A+ve", "B+ve", "B-ve", "AB+ve", "AB-ve", "ABO (Bombay Blood Group)"].each do |bloodgrp|
+["O+ve", "O-ve", "A+ve", "A-ve", "B+ve", "B-ve", "AB+ve", "AB-ve"].each do |bloodgrp|
 BloodGroup.create(:blood_group_name => bloodgrp ) 
 end
 BloodGroups = BloodGroup.all.pluck(:id)

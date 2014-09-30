@@ -15,10 +15,10 @@
                     Ipsum has been the industry's 
                 </p>
                 <div class="profile-details muted">
-                  <i class="icon-suitcase"></i> Designation <%# @employee.designation.designation_name if @employee.designation.present? %><br>
-                  <i class="icon-phone"></i> 1234567890<%# @employee.mobile_number %><br>
-                  <i class="icon-envelope-alt shaded"> mailme@amzur.com</i> <%# @employee.user.email %><br>
-                  <i class="icon-map-marker"></i> Tampa<%# employee.job_location.address.city %><br>
+                  <i class="icon-suitcase"></i>  <%= @employee.designation.designation_name if @employee.designation.present? %><br>
+                  <i class="icon-phone"></i> <%= @employee.mobile_number %><br>
+                  <i class="icon-envelope-alt shaded"> </i> <%= @employee.user.email %><br>
+                  <i class="icon-map-marker"></i> <%= @employee.job_location.address.city %><br>
                 </div>        
             </div>
          </div>                  
@@ -26,17 +26,17 @@
       
       <div class="modal-body">
         <div class="module-head">
-            Basic Info
+           <h3> Basic Info</h3>
         </div><br>
          <div class ="row-fluid">
             <div class="span5">		
               <div class="control-group">
-                <label class="control-label" for="basicinput">Employee Id:123IND <%# @employee.employee_id %> </label>
+                <label class="control-label" for="basicinput">Employee Id :<%= @employee.employee_id %> </label>
               </div>
             </div>
             <div class="span5">	
               <div class="control-group">
-                <label class="control-label" for="basicinput">Date Of Joining: 23-08-2011 <%# format_date (@employee.date_of_join) %></label>  
+                <label class="control-label" for="basicinput">Date Of Joining : <%=format_date (@employee.date_of_join) %></label>  
               </div>
             </div>
          </div>
@@ -44,12 +44,12 @@
          <div class ="row-fluid">
             <div class="span5">		
               <div class="control-group">
-                <label class="control-label" for="basicinput">Department:Develpoment <%# @employee.employee_id %> </label>
+                <label class="control-label" for="basicinput">Department: <%= @employee.department.department_name %> </label>
               </div>
             </div>
             <div class="span5">	
               <div class="control-group">
-                <label class="control-label" for="basicinput">Date Of Birth: 23-08-1990 <%# format_date (@employee.date_of_join) %></label>  
+                <label class="control-label" for="basicinput">Date Of Birth:  <%= format_date (@employee.date_of_join) %></label>  
               </div>
             </div>
          </div>
@@ -57,7 +57,7 @@
          <div class ="row-fluid">
             <div class="span5">		
               <div class="control-group">
-                <label class="control-label" for="basicinput">Blood Group: O+ve <%# @employee.employee_id %> </label>
+                <label class="control-label" for="basicinput">Blood Group: <%= @employee.blood_group.blood_group_name%> </label>
               </div>
             </div>
             <div class="span5">	
@@ -71,17 +71,22 @@
      
    
         <div class="module-head">
-            Education & Experiance  Info
+           <h3> Education & Experiance  Info</h3>
         </div><br>  
          <div class ="row-fluid">
             <div class="span5">		
               <div class="control-group">
-                <label class="control-label" for="basicinput">Specilization: B.tech <%# @employee.employee_id %> </label>
+                <label class="control-label" for="basicinput">Specilization:  
+                                  <% if @employee.educations.present? %>
+                                   <%= @specialization.specilization %>
+                                    <% else %>
+                                      ----
+                                    <% end %>
               </div>
             </div>
             <div class="span5">	
               <div class="control-group">
-                <label class="control-label" for="basicinput">Experiance : 5yrs. <%# format_date (@employee.date_of_join) %></label>  
+                <label class="control-label" for="basicinput">Experience : <%#difference_in_months(experience.from_date.to_date,experience.to_date)%></label>  
               </div>
             </div>
          </div>
@@ -89,12 +94,12 @@
       
      
         <div class="module-head">
-             Contact Info
+             <h3>Contact Info</h3>
         </div><br>   
          <div class ="row-fluid">           
             <div class="span5">	
               <div class="control-group">
-                <label class="control-label" for="basicinput">Alternate Email: njhgshdghouh<%# format_date (@employee.date_of_join) %></label>  
+                <label class="control-label" for="basicinput">Alternate Email: <%= @employee.alternate_email %></label>  
               </div>
             </div>
          </div>	
