@@ -163,6 +163,9 @@ end
   
   resources :allowances
    
+  #resources for static_salaries
+  resources :static_salaries
+   
   #get 'change_designation' => "designations#change_designation"
   
 

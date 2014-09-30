@@ -37,14 +37,17 @@
 													     <li> <%= link_to 'Edit', edit_allowance_path(allowance.id), :class => "btn btn-success pull-left" %></li><li>
 																<%= link_to 'Delete', allowance_path(allowance.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger pull-left" %></li></ul> </td>
 												      </tr>
-<% end %>
+                          <% end %>
 											      </tbody>
 											      <% end %>
 										      </table> 
-
                     <% end %>
                       </div>
-                    
+                       <div class="module-body">
+                          <%= link_to 'Configure Salary',allowances_path, :class => "btn btn-info pull-right" %>
+                          <div id="form_salary">
+                          </div>
+                       </div>
                     </div>
                  
                 </div>
