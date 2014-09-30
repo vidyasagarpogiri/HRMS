@@ -3,7 +3,7 @@
 		<div class="module-head">							
       <h3>Leave Policy</h3> 
         <% unless @leave_policy.present?%>
-          <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="fa fa-plus "></i></a>
+          <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a>
           <%= link_to "Add Leave Policy",  new_department_leave_policy_path(@department ), :remote => true %></label>
         <% end %>	
     </div>
