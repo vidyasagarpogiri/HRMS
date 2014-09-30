@@ -15,10 +15,12 @@
                                     <div class="media-body"> 
                                       <h4>
                                          Leaves DashBoard
+                                            <%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus pull-right " %> 
                                       </h4>
                                       <p>Balance Leaves:  <%= pluralize(total_balance_leaves(@employee)+carry_forward_leaves(@employee), 'day') %></p>
                                        
                                       <p>Used Leaves : <%= pluralize(total_used_leaves(@employee), 'day') %>  </p>
+                                    
                                     </div>
                                  </div>                                                                         
                                   <ul class="profile-tab nav nav-tabs">
