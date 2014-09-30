@@ -44,8 +44,7 @@
                                             <!--<button class="btn btn-primary" id="popup-show" data-toggle="modal" data-target="#employeeProfileModal">
                                                <%# employee.full_name %>
                                             </button>-->
-                                            
-                                             <%= link_to employee.full_name , profile_path(employee) %>
+                                             <%= link_to employee.full_name, profile_path(employee) %>
                                           </h5>
                                            <br>                                                                                              
                                           <ul style="list-style-type: none;">
@@ -58,15 +57,17 @@
                                      </div><!--/.media-body-->     
                                   </div>
                               </div>
-                                     
-                               <% if divscount%2 == 0 %>
-                                  </div><br>
-                             <% end %>
-                            <% end %>        
-                                                               
-                                  <% if divscount%2 == 1 %>
-                                  </div><br>
-                             <% end %>                                                              
+                             
+                       <% if divscount%2 == 0 %>
+                          </div><br>
+                     <% end %>
+                    <% end %>        
+                                                       
+                          <% if divscount%2 == 1 %>
+                          </div><br>
+                     <% end %>
+                               
+                               
                                    <div class="pagination pagination-centered">                      
                                         <%= paginate @employees, :remote => true %>                       
                                     </div>	
@@ -77,10 +78,15 @@
                 </div><!--/.span9-->                
              </div><!--/.row-->
 		      </div><!--/.container-->
-	      </div><!--/.wrapper-->     
+	      </div><!--/.wrapper-->
+  
+  
+  
+  
+  <!-- Button trigger modal -->
 
 
-<!-- Modal -->
+<!-- Modal 
 <div class="modal fade" id="employeeProfileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -88,11 +94,11 @@
           <div class="media user">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><br>
             <a href="#" class="media-avatar pull-left">
-              <% if @employee.present? && @employee.avatar_url.present? %>
-                <%= image_tag(@employee.avatar_url) %> 
-               <% else %>
+              <%# if @employee.present? && @employee.avatar_url.present? %>
+                <%# image_tag(@employee.avatar_url) %> 
+               <%# else %>
                   <img src="/assets/user.png"> 
-            <% end %></a>
+            <%# end %></a>
               <div class="media-body">
                 <h4>
                  hdghshgdfh
@@ -101,11 +107,11 @@
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                     Ipsum has been the industry's 
                 </p>
-                <div class="profile-details muted">
-                  <i class="icon-suitcase"></i> Designation <%# @employee.designation.designation_name if @employee.designation.present? %><br>
-                  <i class="icon-phone"></i> 1234567890<%# @employee.mobile_number %><br>
-                  <i class="icon-envelope-alt shaded"> mailme@amzur.com</i> <%# @employee.user.email %><br>
-                  <i class="icon-map-marker"></i> Tampa<%# employee.job_location.address.city %><br>
+                 <div class="profile-details muted">
+                    <i class="icon-suitcase"></i> Designation <%# @employee.designation.designation_name if @employee.designation.present? %><br>
+                    <i class="icon-phone"></i> 1234567890<%# @employee.mobile_number %><br>
+                    <i class="icon-envelope-alt shaded"> mailme@amzur.com</i> <%# @employee.user.email %><br>
+                    <i class="icon-map-marker"></i> Tampa<%# employee.job_location.address.city %><br>
                 </div>        
             </div>
          </div>                  
@@ -189,7 +195,7 @@
    
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+        <!--<button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -209,5 +215,5 @@
       // });
     });
    
-  </script>
+  </script>-->
    
