@@ -6,7 +6,7 @@
 								<li><a href="/departments">Departments</a></li>
 								<li><a href="#">Policies</a></li>
 								<li><a href="#">Work Shifts</a></li>
-								<li><a href="#">Holidays</a></li>
+								<li><a href="/events">Holidays</a></li>
 								<li><a href="#">Announcements</a></li>
 							</ul>
 						</li>
@@ -14,7 +14,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Employees<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Employees</a></li>
+								<li><a href="/">Employees</a></li>
 								<li><a href="#">Attendence</a></li>
 								<li><a href="/leave_histories">Leaves</a></li>
 								<li><a href="#">Resignations</a></li>
@@ -52,7 +52,9 @@
 							</a>
 							<ul class="dropdown-menu">
 									<li><%= link_to "My Profile", profile_path(current_user.employee) %></a></li>
+						
 								<li><a href="#">Edit Profile</a></li>
+
 								<li><a href="#">Account Settings</a></li>
 								<li class="divider"></li>
 							 <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-sign-out fa-fw" %></li>   

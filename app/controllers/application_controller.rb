@@ -29,4 +29,14 @@ class ApplicationController < ActionController::Base
     end 
   end
   
+  
+  def other_emp_profile_view
+    resource, id = request.path.split('/')[1,2]
+    @employee = Employee.find(id) 
+    unless current_user.employee == @employee 
+      unless current_user.department == Department::HR
+        render :text => "You Dont have permission"
+      end
+    end 
+  end
 end
