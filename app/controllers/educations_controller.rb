@@ -20,11 +20,7 @@ class EducationsController < ApplicationController
      
     @new_education = Education.create(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(Employee_id: params[:employee_id]))
     @errors = @new_education.errors.full_messages
-    #raise @errors.inspect
 
-  if @errors.present?
-     render action: 'new' 
-  end
     #for new form 
     @employee = Employee.find(params[:employee_id])
     @education = Education.new
@@ -52,10 +48,6 @@ class EducationsController < ApplicationController
     @education.update(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage))
     @educations =  @employee.educations
     @errors = @education.errors.full_messages
-
-    if @errors.present?
-       format.html{render action: 'edit'} 
-    end
   end
 
   def qualifications

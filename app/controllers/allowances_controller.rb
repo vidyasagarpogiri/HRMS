@@ -33,9 +33,9 @@ class AllowancesController < ApplicationController
  def update
    value = params[:value].to_f
   if params[:allowance_type].to_i == 1
-    @allowance.update(:allowance_name => params[:allowance][:allowance_name], :value => value)
+    @allowance.update(:allowance_name => params[:allowance][:allowance_name], :value => value, :allowance_value => nil)
   else
-    @allowance.update(:allowance_name => params[:allowance][:allowance_name], :allowance_value => value)  
+    @allowance.update(:allowance_name => params[:allowance][:allowance_name], :allowance_value => value, :value => nil)  
   end
   redirect_to allowances_path
  end

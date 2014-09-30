@@ -1,1 +1,3 @@
-$("#education").html('<%= j render "educations/index" %>');
+<% unless @errors.present? %>
+  $("#education").html('<%= j render "educations/index" %>');
+<% end %>
