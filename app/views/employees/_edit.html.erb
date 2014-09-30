@@ -30,7 +30,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Employee First Name</label>
 										<div class="controls">
-                      <%= f.text_field :first_name,:class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter First name",:data => {:error => " Please Enter Employee First Name"}, :required =>true, :pattern => '\A[a-zA-Z\s ]+\z' %>
+                      <%= f.text_field :first_name,:class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter First name",:data => {:error => " Please Enter Employee First Name"}, :required =>true, :pattern => '[a-zA-Z\s ]*' %>
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
@@ -39,7 +39,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Employee Last Name</label>
 										<div class="controls">
-                      <%= f.text_field :last_name,:class => "span8 form-control ", :id => "basicinput", :placeholder => "Enter Last name",:data => {:error => " Please Enter Employee Last Name"},:required =>true, :pattern => '[a-zA-Z/s ]*'  %> 
+                      <%= f.text_field :last_name,:class => "span8 form-control ", :id => "basicinput", :placeholder => "Enter Last name",:data => {:error => " Please Enter Employee Last Name"},:required =>true, :pattern => '[a-zA-Z\s ]*'  %> 
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
@@ -106,7 +106,8 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Alternate E-Mail</label>
 										<div class="controls">
-                     <%= f.text_field :alternate_email, :class=>"span8 form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter Employee Alternate Email"}, :required =>true, :pattern => '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$' %> 
+                     <%= f.text_field :alternate_email, :class=>"span8 form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter Employee Alternate Email"}, :required =>true, :pattern => '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$' %>
+                      <span class="help-block with-errors"></span> 
 										</div>
 									</div>
 							  </div>
@@ -190,7 +191,7 @@
 									  <div class="control-group">
 										  <label class="control-label" for="basicinput">Upload Image</label>                                         
 										  <div class="controls">
-                        <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+                        <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes, :error => " Please upload photo"}, :required =>true %>
                        <span class="help-block with-errors"></span>
 										  </div>
 									  </div>	

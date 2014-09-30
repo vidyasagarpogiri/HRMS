@@ -48,8 +48,14 @@
 							<% end %>       
 	            </tbody>
 	            </table>
-	               <%= link_to  "Cancel", leaves_department_path(@department), :class => "btn btn-info pull-left " %> 
-	               <%= f.submit  'Save', :class => "btn btn-success" %>&nbsp                 
+	            <br>
+	            	<ul class="navigation-btns pull-left">
+                    <li><%= f.submit  'Save', :class => "btn btn-success" %>  </li>
+                    <li><%= link_to  "Cancel", leaves_department_path(@department), :class => "btn btn-info pull-left " %></li>            
+                 </ul>  <br>	
+	               
+	                
+	                            
      <% end %>
 						            
 	    </div><!--module -body-->

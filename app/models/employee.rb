@@ -28,34 +28,24 @@ class Employee < ActiveRecord::Base
  	
  	# for file attachments
   has_many :employee_attachments
-  accepts_nested_attributes_for :employee_attachments
- 	 	
+  accepts_nested_attributes_for :employee_attachments 	 	
  	has_one :leave
-  
-  has_many :leave_histories
-  
+  has_many :leave_histories  
   has_many :educations
-
-
-
+  
+  
 	validates :employee_id, presence: true 
-
-	validates :first_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "only allows letters" }
-	validates :last_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "only allows letters" }
+	validates :first_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
+	validates :last_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
+	#validates :last_name, presence: true
 	validates :date_of_birth, presence: true
   validates :department_id, presence: true
-
-
-	validates :mobile_number, presence: true, length: { is: 10 }, numericality: { only_integer: true }
-
-
-
-
-	validates :father_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "only allows letters" }
+	validates :mobile_number, presence: true, numericality: true , length: { maximum: 10 }
+	validates :father_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
 	validates :blood_group_id, presence: true
 	validates :date_of_join, presence: true
-
-	
+	validates :avatar, presence: true
+  
 
 	
 	#after_create :add_leaves
