@@ -7,8 +7,8 @@ class LeaveHistoriesController < ApplicationController
 
 	def index
 		@leave = current_user.employee.department.leave_policy
-		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD').page(params[:page]).per(2)
-		@leave_histories = current_user.employee.leave_histories.where("status != ?", "HOLD" ).page(params[:page]).per(2)
+		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD').page(params[:page]).per(5)
+		@leave_histories = current_user.employee.leave_histories.where("status != ?", "HOLD" ).page(params[:page]).per(5)
 		@employee = current_user.employee
 		@holiday_calenders = current_user.employee.department.holiday_calenders
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).page(params[:page]).per(2)
