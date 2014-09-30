@@ -1,11 +1,13 @@
- <% unless(@leave_history.from_date.to_date <= Date.today) %>		
-  $("#upcoming-leaves").html('<%= j render "leave_histories/edit"%>');
- <% else %>	
-   $("#waiting-for-approval").html('<%= j render "leave_histories/edit"%>');
- <% end %>	
  
- <% if ((@leave_history.from_date.to_date <= Date.today && @leave_history.to_date.to_date >= Date.today) || (@leave_history.to_date.to_date < Date.today)) %>	
+  
+ <% if @leave_history.status == "APPROVED" || @leave_history.status == "REJECTED"  %>
+  <% if ((@leave_history.from_date.to_date <= Date.today && @leave_history.to_date.to_date >= Date.today) || (@leave_history.to_date.to_date < Date.today)) %>	
      $("#leaves-history").html('<%= j render "leave_histories/edit"%>');
- <% else %>	
+   <% else %>
+    $("#upcoming-leaves").html('<%= j render "leave_histories/edit"%>');
+    <% end %>
+ <% end %>
+ 
+<% if @leave_history.status == "HOLD" %>
    $("#waiting-for-approval").html('<%= j render "leave_histories/edit"%>');
- <% end %>							
+<% end %>
