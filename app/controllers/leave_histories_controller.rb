@@ -11,6 +11,8 @@ class LeaveHistoriesController < ApplicationController
 		@leave_histories = current_user.employee.leave_histories.where("status != ?", "HOLD" ).page(params[:page]).per(4)
 		@employee = current_user.employee
 		@holiday_calenders = current_user.employee.department.holiday_calenders
+		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).page(params[:page]).per(2)
+		@employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
 	end
 
 
@@ -83,15 +85,12 @@ class LeaveHistoriesController < ApplicationController
 	end
 		
 	def accept
-		#raise params.inspect
 		@employee = Employee.find(params[:employee_id])
 		@leave_history = LeaveHistory.find(params[:leave_history_id])
 		@leave_history.update(:status => LeaveHistory::APPROVED)
 		@leave_type = @leave_history.leave_type
-		#@leave = @employee.group.leave_policy
 		Notification.delay.accept_leave(@employee, @leave_history)
-		redirect_to reported_leaves_path
-
+	@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).page(params[:page]).per(2)
 	end
 
 	
@@ -99,9 +98,8 @@ class LeaveHistoriesController < ApplicationController
 
 		@leave_history = LeaveHistory.find(params[:id])
 		@leave_history.update(:status => LeaveHistory::REJECTED, :feedback => params[:leave_history][:feedback])
-		 Notification.delay.reject_leave(current_user.employee, @leave_history)
-
-		redirect_to reported_leaves_path
+		Notification.delay.reject_leave(current_user.employee, @leave_history)
+		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).page(params[:page]).per(2)
 	end
 
   def employee_leaves
