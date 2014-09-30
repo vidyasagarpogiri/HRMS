@@ -1,49 +1,43 @@
  <div class="wrapper">
- <div class="container">
-	<div class="row">
-
-  <div class="span12">
-		<div class="content">
-
-			<div class="module">          
- <% if @employee.reporting_manager.present? %> 
- 
-    <div class="module-head">
-     <h3> Apply leave</h3>
-    </div>
-      <% if total_balance_leaves(@employee) <= 0 %>
-        <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                           Your Have No remaining leaves Please confirm before apply
-         </div>
-      <% end %>
-      
-      
-       <%= @leave_history.errors.full_messages.first if @leave_history.errors.any? %>
-                      <div class="module-head">
-                             <h3>Leave Form </h3>
-                       </div>   
-                            
-                   <div class="module-body">         
-                            
-                               <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %> 
-                               
-                               
-     <div class="control-group">
-			<label class="control-label" for="basicinput">Leave Type</label>                                              
-					<div class="controls">
-           <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name, { :prompt => "Please Select" }, { :class => "leave_type span8 form-control", :id => "disabledSelect" } %> 
-           <span class="help-block with-errors"></span>
-					</div>
-		 </div>
-      <div class="control-group">
-										<label class="control-label" for="basicinput">Reason</label>
-										<div class="controls">
+   <div class="container">
+     <div class="row">                
+        <div class="span12">
+          <div class="content">
+            <div class="module">
+              <div class="module-head">
+                <h3> Leave Form </h3>
+              </div>
                       
-                       <%= f.text_area :reason,  :class =>"span8 form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %>  
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>                               	
+              <% if @employee.reporting_manager.present? %> 
+ 
+    
+                  <% if total_balance_leaves(@employee) <= 0 %>
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                       Your Have No remaining leaves Please confirm before apply
+                     </div>
+                   <% end %>
+                   
+    <div class="module-body">         
+      <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %> 
+                 
+                 
+   <div class="control-group">
+	  <label class="control-label" for="basicinput">Leave Type</label>                                              
+			  <div class="controls">
+         <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name, { :prompt => "Please Select" }, { :class => "leave_type span8 form-control", :id => "disabledSelect" } %> 
+         <span class="help-block with-errors"></span>
+			  </div>
+   </div>
+   
+  <div class="control-group">
+	  <label class="control-label" for="basicinput">Reason</label>
+	  <div class="controls">
+      
+       <%= f.text_area :reason,  :class =>"span8 form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %>  
+		   <span class="help-block with-errors"></span>   
+	  </div>
+  </div>                               	
                                 
         <div class="control-group">
 										<label class="control-label" for="basicinput">From</label>
@@ -55,13 +49,13 @@
                                 
                                 
                 <div class="control-group">
-										<label class="control-label" for="basicinput">From</label>
+										<label class="control-label" for="basicinput">To</label>
 										<div class="controls">
                      <%= f.text_field :to_date, :id => "idnm2", :class => "span8 form-control leave-to-date", :data => {:error => "Please Enter Valid Date"}, :required => true %>
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
-              <button type="submit" class="btn btn-success pull-right" style="margin-left:px;"> Apply </button>
+              <button type="submit" class="btn btn-success"> Apply </button>
             <% end %>
                                                                      
     <% else %>
@@ -71,50 +65,47 @@
                You have no reporting manager. Please contact your Administrator
           </div>
     <% end %>
-            
-
-            </div><!--/.module-->
-					</div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper--> 
-  
-
+      </div>
+            </div>
+          </div>
+        </div>
+       </div>
+      </div>
+</div>
 
  <script>
-           $(function () {
-               $(".leave-form-date").datepicker({
-                   dateFormat: 'dd/mm/yy',
-                   changeMonth: true,
-                   changeYear: true,
-                    minDate: -0,
-                   yearRange: "+0:+1",
-                   onClose: function (selectedDate) {
-                       var date2 = $('.leave-form-date').datepicker('getDate');
-                       date2.setDate(date2.getDate());
-                       $(".leave-to-date").datepicker("option", "minDate", date2);
-                       $(".error1").html('');
-                   }
-               });
+ $(function () {
+     $(".leave-form-date").datepicker({
+         dateFormat: 'dd/mm/yy',
+         changeMonth: true,
+         changeYear: true,
+          minDate: -0,
+         yearRange: "+0:+1",
+         onClose: function (selectedDate) {
+             var date2 = $('.leave-form-date').datepicker('getDate');
+             date2.setDate(date2.getDate());
+             $(".leave-to-date").datepicker("option", "minDate", date2);
+             $(".error1").html('');
+         }
+     });
 
-               $(".leave-to-date").datepicker({
-                   dateFormat: 'dd/mm/yy',
-                    minDate: -0,
-                    yearRange: "0:+1",
-                     changeMonth: true,
-                   changeYear: true, 
-                     onClose: function (selectedDate) {
-                      var date1 = $('.leave-form-date').datepicker('getDate');
-                      if (date1){
-                        
-                      }else{
-                        $("#idnm2").val('');
-                        $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
-                      }
-                     }
-               });
-           });
-        </script>
+     $(".leave-to-date").datepicker({
+         dateFormat: 'dd/mm/yy',
+          minDate: -0,
+          yearRange: "0:+1",
+           changeMonth: true,
+         changeYear: true, 
+           onClose: function (selectedDate) {
+            var date1 = $('.leave-form-date').datepicker('getDate');
+            if (date1){
+              
+            }else{
+              $("#idnm2").val('');
+              $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
+            }
+           }
+     });
+  });
+</script>
             
 
