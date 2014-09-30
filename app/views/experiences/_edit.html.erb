@@ -10,7 +10,7 @@
 			         <div class="control-group">
                   <label class="control-label" for="basicinput">Company Name</label>
                       <div class="controls">
-                        <%= f.text_field :previous_company, :class => "span8 form-control", :placeholder =>"Enter Company Name", :data => {:error => "Please enter Company Name"}, :required => true %>
+                        <%= f.text_field :previous_company, :class => "span8 form-control", :placeholder =>"Enter Company Name", :data => {:error => "Please enter Company Name"}, :required => true, :pattern => '[a-zA-Z0-9/s ]*' %>
                          <span class="help-block with-errors"></span>
                       </div>
 								</div>
@@ -42,13 +42,12 @@
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
-			
-	
-			<%= f.submit "Update", :class => "btn btn-success pull-left" %>				
-		
- <%= link_to 'Cancel', employee_experiences_path(@employee), :class => "btn btn-danger pull-left", :remote => true %>
-                   
-<% end %>
+			            
+			            <ul class="navigation-btns pull-left">
+									  <li><%= f.submit 'Update', :class => "btn btn-success" %></li>
+										<li> <%= link_to 'Cancel', employee_experiences_path(@employee), :class => "btn btn-danger", :remote => true %></li>
+								  </ul>										                  
+              <% end %>
 							</div><!--/.module-body-->
 						</div><!--/.module-->
 

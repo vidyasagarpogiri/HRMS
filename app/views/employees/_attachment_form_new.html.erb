@@ -17,7 +17,7 @@
 									  <div class="control-group">
 										<label class="control-label" for="basicinput"> Upload File:</label>
 										<div class="controls">
-											 <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes, :error => " Please Choose a file to attach"}, :required =>true  %> 
+											 <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes, :error => " Please Choose a file to attach"}, :required =>true %> 
 											 <div class="help-block with-errors"></div>  
 										</div>
 									</div>	
@@ -29,7 +29,7 @@
 								<ul class="navigation-btns pull-left">
                   <li><%= f.submit  'Save', :class => "btn btn-success" %></li>
                   <li><%= link_to 'Cancel', attachment_index_employee_path(@employee), :class => "btn btn-danger" %></li>            
-               </ul>  <br>
+                </ul>  <br>
             <% end %>																												
 							</div><!--/.module-body-->
 						</div><!--/.module-->
