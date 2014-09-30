@@ -45,13 +45,10 @@
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
-			   <%= f.submit 'Save', :class => "btn btn-success pull-left" %>
-                                     
-                                            
-					<%= link_to 'Cancel', employee_ff_statuses_path(@employee), :class=>"btn btn-danger  pull-right", :remote => true %>			
-							
-												
-											
+								<ul class="navigation-btns pull-left">
+                    <li><%= f.submit 'Save', :class => "btn btn-success pull-left" %></li>
+                    <li><%= link_to 'Cancel', employee_ff_statuses_path(@employee), :class=>"btn btn-danger  pull-left", :remote => true %></li>            
+                 </ul>  <br>			  																							
 										<% end %>
 							</div><!--/.module-body-->
 						</div><!--/.module-->
