@@ -30,7 +30,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Employee First Name</label>
 										<div class="controls">
-                      <%= f.text_field :first_name,:class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter First name",:data => {:error => " Please Enter Employee First Name"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
+                      <%= f.text_field :first_name,:class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter First name",:data => {:error => " Please Enter Employee First Name"}, :required =>true, :pattern => '\A[a-zA-Z\s ]+\z' %>
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>

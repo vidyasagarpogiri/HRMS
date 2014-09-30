@@ -32,6 +32,8 @@ class ProfileController < ApplicationController
        @salary = Salary.new
     end
     @report = @employee.reporting_managers.first
+    
+    @emp_get_attachments = @employee.employee_attachments
 
   end
   

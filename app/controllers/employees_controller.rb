@@ -58,22 +58,7 @@ class EmployeesController < ApplicationController
   def update
    
     @employee = Employee.find(params[:id])
-
-#TODO BalaRaju -#REDO attachements 
-=begin   
-    if params["employee_attachments"].present?
-      if params["employee_attachments"]["attachment"].present? 
-      params["employee_attachments"]["attachment"].each_with_index do |a, i|
-      #raise a.inspect
-        @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
-        
-      end
-     
-        
-    end
-       redirect_to attachment_show_employee_path(@employee)
-    end
-=end   
+  
     if params[:employee].present? 
       @employee.update(params_employees) 
       @report = @employee.reporting_managers 
@@ -106,24 +91,26 @@ class EmployeesController < ApplicationController
 			redirect_to show_exit_employee_path(@employee.id)
 	end
   
-
-  
   def attachment_form_new
    @emp_get_attachements = Employee.find(params[:id]).employee_attachments
     @emp_get_attachements = [] if Employee.find(params[:id]).employee_attachments.nil?
     @employee = Employee.find(params[:id])
-    @employee_attachments = @employee.employee_attachments.build
-    #raise params.inspect
-    #redirect_to @attachment
-   
+    @employee_attachments = @employee.employee_attachments.build  
   end
 
-   def attachment_destroy
+  def attachment_create
     @employee = Employee.find(params[:id])
-		@emp_get_attachements = EmployeeAttachment.find(params[:attachment_id])
- 		@emp_get_attachements.destroy
-		redirect_to attachment_form_new_employee_path(@employee)
-	end
+     if params["employee_attachments"].present?
+      if params["employee_attachments"]["attachment"].present? 
+      params["employee_attachments"]["attachment"].each_with_index do |a, i|
+        @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
+       
+      end   
+    end
+    end
+     @errors = @employee_attachment.errors.full_messages
+     @emp_get_attachments  = @employee.employee_attachments
+  end
 	
 	def attachment_edit
 	  #raise params.inspect
@@ -147,13 +134,20 @@ class EmployeesController < ApplicationController
 			
 	end
 
-def attachment_show
-	#raise params.inspect
+  def attachment_show
+	 #raise params.inspect
 	 @employee = Employee.find(params[:id])
 	 #raise @employee.inspect
 	 @emp_get_attachements = Employee.find(params[:id]).employee_attachments
 	 #raise @emp_get_attachements.inspect
-end
+  end
+
+  def attachment_destroy
+    @employee = Employee.find(params[:id])
+		@emp_get_attachements = EmployeeAttachment.find(params[:attachment_id])
+ 		@emp_get_attachements.destroy
+     @emp_get_attachments  = @employee.employee_attachments
+	end
 	
 	def myprofile
 	  @employee = current_user.employee
