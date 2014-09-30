@@ -3,8 +3,8 @@ class EmployeeAttachment < ActiveRecord::Base
   belongs_to :employee
   
   #Attachment Validations
-  #validates :attachment, presence: true
-	#validates :attachment_name, presence: true
+  validates :attachment, presence: true
+	validates :attachment_name, presence: true
 	#validates :attachment, :content_type =>['application/pdf']
 	
 

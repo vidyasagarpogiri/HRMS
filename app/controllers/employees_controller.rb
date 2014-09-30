@@ -103,10 +103,12 @@ class EmployeesController < ApplicationController
      if params["employee_attachments"].present?
       if params["employee_attachments"]["attachment"].present? 
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
-        @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)   
+        @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
+       
       end   
     end
     end
+     @errors = @employee_attachment.errors.full_messages
      @emp_get_attachments  = @employee.employee_attachments
   end
 	
