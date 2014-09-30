@@ -24,6 +24,7 @@ class Employee < ActiveRecord::Base
   
   has_many :reporting_managers
 
+
  	
  	# for file attachments
   has_many :employee_attachments

@@ -142,7 +142,7 @@ end
 
   #get 'profile/:id/edit' => "profile#edit" 
  # get 'profile/:id' => "profile#edit",  as: :profile
-  get 'new_profile' => "profile#edit"
+  get 'new_profile' => "profile#new"
 
   get 'myprofile' => "employees#myprofile", as: :myprofile
 

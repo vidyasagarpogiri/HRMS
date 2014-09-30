@@ -122,11 +122,13 @@ class SalariesController < ApplicationController
 	  @salary = Salary.find(params[:salary_id])
 	  @allowances = @salary.allowances
 	  if params[:Pf] == "on" && params[:Esci] == "on"
-       @salary.update(:pf_apply => "true", :esic_apply => "true", :pf => @salary.pf, :esic => @salary.esic, :pf_contribution => 1200, :esic_contribution => 1000)
+       @salary.update(:pf_apply => "true", :esic_apply => "true", :pf => @salary.pf, :esic => @salary.esic, :pf_contribution => @salary.pf_contribution, :esic_contribution => @salary.esic_contribution)
 	  elsif params[:Pf] == "on"
 	    @salary.update(:pf_apply => "true", :pf => @salary.pf, :pf_contribution => @salary.pf_contribution)
-	  else
+	  elsif params[:Esci] == "on" 
 	     @salary.update(:esic_apply => "true", :esic => @salary.esic, :esic_contribution => @salary.esic_contribution )
+	  else
+	     @salary.update(:pf_apply => nil, :esic_apply => nil )
 	  end
 	end
   
