@@ -110,6 +110,7 @@ post 'accept' => "leave_histories#accept"
 			get  'attachment_edit/:attachment_id' => 'employees#attachment_edit', as: :attachment_edit
 			patch 'attachment_update/:attachment_id'=> 'employees#attachment_update', as: :attachment_update
 			get 'attachment_show'
+			post 'attachment_create'
 		end
   
   resources :educations do

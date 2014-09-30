@@ -24,7 +24,9 @@
                               <div class="row-fluid">
                           
                           <div class="module-head" > Present Address</div> 
+                            <% if current_user.department == Department::HR %>     
                              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class=" icon-edit"></i></a><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"pull-right", :remote => true %></label> 
+                            <% end %>
                              <div class="module-body " style="margin-left:100px;">
                                 <div class ="row-fluid">
                                   <div class="span5">		

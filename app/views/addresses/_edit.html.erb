@@ -1,8 +1,4 @@
-      <div class="wrapper">
-		    <div class="container">
-			    <div class="row">	                
-            <div class="span12">
-		          <div class="content">
+
 			          <div class="module">
 				          <div class="module-head">
 					          <h3>Address Details</h3>
@@ -59,7 +55,7 @@
 							     <br>
                    <ul class="navigation-btns" style="list-style: none;display:inline;">
                     <li><button type="submit" class="btn btn-success pull-left">Update</button></li>
-                    <li><%= link_to 'Cancel', employee_addresses_path(@employee), :class => "btn btn-danger pull-left"%></li>
+                    <li><%= link_to 'Cancel', employee_addresses_path(@employee), :class => "btn btn-danger pull-left", :remote => true %></li>
                   </ul>    
 
                    <% end %>
@@ -67,11 +63,7 @@
                    
 						    </div><!--/.module-body-->
 					    </div><!--/.module-->
-				    </div><!--/.content-->
-			    </div><!--/.span12-->
-        </div><!--/.module-->
-		    </div><!--/.content-->
-	    </div><!--/.span12-->
+		
 
 
 

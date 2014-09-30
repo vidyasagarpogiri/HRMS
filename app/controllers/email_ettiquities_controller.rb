@@ -20,6 +20,7 @@ class EmailEttiquitiesController < ApplicationController
 		@employee = Employee.find(params[:employee_id])
     @email = EmailEttiquitie.create(:ettiquite => params[:email_ettiquitie][:ettiquite], :dateofsending => Date.today,:employee_id => @employee.id)
     @emails = @employee.email_ettiquities
+    @errors = @email.errors.full_messages
   end
 
   

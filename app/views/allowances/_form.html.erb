@@ -5,19 +5,19 @@
           <div class="content">
             <div class="module">
               <div class="module-head">
-                <h3>New Allowance</h3>
+                <h3> Allowance Form </h3>
               </div>
               <div class="module-body">   
                 <%= form_for @allowance do |f| %>
                   <div class="control-group">
-										<label class="control-label" for="basicinput">Allowance_name</label>
+										<label class="control-label" for="basicinput">Allowance Name</label>
 										<div class="controls">
-											 <%= f.text_field :allowance_name, :class => "span8 form-control", :placeholder=> "Enter Allowance", :data => {:error => "Please Enter Address Line 1"}, :required =>true %>
+											 <%= f.text_field :allowance_name, :class => "span8 form-control", :placeholder=> "Enter Allowance", :data => {:error => "Please Enter Allowance"}, :required =>true %>
                        <div class="help-block with-errors"></div>  
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="basicinput">Allowance Value Tyoe</label>
+										<label class="control-label" for="basicinput">Allowance Value Type</label>
 										<div class="controls">
 											 <select name="allowance_type">
 											    <option value="1">Percentage</option>
@@ -29,7 +29,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Value</label>
 										<div class="controls">
-											 <input type="text" class="span8 form-control" placeholder= "Enter Value" name="value" %>
+											 <input type="text" class="span8 form-control" placeholder= "Enter Value" name="value" id="valueofallowance" %>
                        <div class="help-block with-errors"></div>  
 										</div>
 									</div>
@@ -44,6 +44,17 @@
       </div>
 
           
+         <script>
+          $(function(){
+            <% unless @allowance.new_record? %>
+              <% if @allowance.value.present? %>
+                $("#valueofallowance").val('<%=  @allowance.value %>');
+              <% else %>
+                $("#valueofallowance").val('<%=  @allowance.allowance_value %>');
+              <% end %>
+            <% end %>
+          });
+         </script>
           
           
           
