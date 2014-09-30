@@ -154,5 +154,22 @@ end
     end 
   end
   
+  
+ # method for caluclate other allowance
+  
+  def allowance_total(allowances, salary)
+      #raise allowances.inspect
+      total = 0.0
+      allowances.each do |allowance|
+        if allowance.value.present?
+        value = (salary.basic * allowance.value)/100
+        total += value
+        else
+        total += allowance.allowance_value
+        end
+      end
+      salary_gross = salary.basic_salary + total
+      remain_allowance = salary.gross_salary - salary_gross
+  end
 
 end

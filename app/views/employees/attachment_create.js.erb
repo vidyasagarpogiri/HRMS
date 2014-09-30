@@ -1,1 +1,3 @@
-$("#attachments").html('<%= j render "employees/attachment_index"%>');
+<% unless @errors.present? %>
+  $("#attachments").html('<%= j render "employees/attachment_index"%>');
+<% end %>

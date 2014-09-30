@@ -3,9 +3,9 @@ class EmployeesController < ApplicationController
   layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index, :attachment_edit]
     
 	 
-	  before_filter :other_emp_view, :except => [:index, :profile]
+	 # before_filter :other_emp_view, :except => [:index, :profile]
 
-	  before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]	
+	 # before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]	
 
 	
 
@@ -103,10 +103,12 @@ class EmployeesController < ApplicationController
      if params["employee_attachments"].present?
       if params["employee_attachments"]["attachment"].present? 
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
-        @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)   
+        @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
+       
       end   
     end
     end
+     @errors = @employee_attachment.errors.full_messages
      @emp_get_attachments  = @employee.employee_attachments
   end
 	

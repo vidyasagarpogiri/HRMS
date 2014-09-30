@@ -87,6 +87,7 @@
 										<label class="control-label" for="basicinput">Mobile Number</label>
 										<div class="controls">
                       <%= f.text_field :mobile_number, :class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
+                      <span class="help-block with-errors"></span>
 										</div>
 									</div>
 							  </div>

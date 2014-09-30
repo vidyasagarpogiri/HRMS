@@ -1,282 +1,86 @@
 <div class="wrapper">
-		<div class="container">
-			<div class="row">
-        <div class="span12">
-					<div class="content">
-						<div class="module">
-						  <div class="module-head">       
-                <h3> My Leaves<h3>
-                  <% if @employee.department.leave_policy.present? %>
-                   <% if @employee.reporting_manager? %>  
-                   
-                   
-                   
-                   
-                  <label style="margin-top:-50px;" class = "remaining_leaves pull-right">                 
-                      <a href="#" id="show" ><i class="fa fa-dot-circle-o"></i> Remaining Leaves</a>
-
-                      <%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus" %> 
-                   
-                  </label> 
-
-                  <div class="panel-body" id="list">                       
-                      <div class="form-group col-lg-4">
-                        <label> Balance Leaves : </label> 
-                                               
-                        <%= pluralize(total_balance_leaves(@employee)+carry_forward_leaves(@employee), 'day') %>                         
-                      </div>                                            
-                      <div class="form-group col-lg-4">
-                        <label>Used Leaves : </label>                         
-                        <%= pluralize(total_used_leaves(@employee), 'day') %>                          
-                      </div>      	                																                          
-                    </div>
-                  
-                 
-                 
-                 
-                 
-                 
-                 
-                   </div><!--module head-->                             
-                  
-                  <div class="module-head">
-                    <h3> Leaves Waiting for Approval</h3>
-                  </div>  
-                  
-                 
-                  <div class="module-body">
-                  
-                  
-                  
-                    <% if employee_has_hold_leaves? %>
-										<table class="table table-striped table-hover" id="sample-table-2">
-											<thead>
-												<tr>																																						
-													<th> Date </th>
-													<th> No.of Days </th>
-													<th> Reason </th>
-													<th> Leave Type </th>				
-													<th>Status </th>
-													<th colspan=2>Action</th>												
-												</tr>
-											</thead>
-											 <%  @leaves.each do |f| %>											
-											<tbody>												
-												<tr>               												 	
-													<td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
-													<td>  <%= pluralize(f.days, 'day') %>  </td>
-													<td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
-													<td><%=f.leave_type.type_name if f.leave_type.present? %></td>													
-													<td><%=f.status %></td>
-													<td><%= link_to "Edit", edit_leave_history_path(f), :class => "btn btn-info" %>
-													<%= link_to "Cancel",  f, method: :delete, data: {confirm: "Are You sure?"}, :class => "btn btn-danger"%></td>								 
-												</tr>																						
-											</tbody>
-								      <% end %>
-									
-										</table>
-										
-										  <div class="pagination ">                      
-                          <%= paginate @leaves %>                  
-                      </div>				
-										<% else %>
-										  <div class="alert alert-success alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                           You have No Leaves Requests 
-                      </div>
-   						<% end %>
-									 
-		</div><!--module body-->						 
-								   																									
-							
-							
-							
-							
-							
-								<!-- APPROVED LEAVES VIEW --->
-		<div class="module-head">																													
-									 <h3>Upcoming Leaves List</h3> 							
-                
-    </div>                     
-                     
-				<div class="module-body">
-						 <% if @leave_histories.present? %> 	  	
-									  <table class="table table-striped table-hover" id="sample-table-2">
-											<thead>
-												<tr>
-												  <th>Date</th>
-													<th>No.of Days</th>
-													<th>Reason</th>
-													<th>Leave Type</th>																							
-													<th>Status</th>
-													<th colspan=2>Action</th>								
-												</tr>
-											</thead>
-										 <%  @leave_histories.each do |f| %>	
-										 <% unless(f.from_date.to_date <= Date.today) %>									
-											<tbody>												
-												<tr>               
-												 	<td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
-													<td>  <%= pluralize(f.days, 'day') %>  </td>
-													<td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
-													<td><%=f.leave_type.type_name %> </td>													
-													<td><%=f.status %></td>
-													<td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info" %>
-													<%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"} , :class => "btn btn-danger"%></td>		 
-												</tr>																						
-											</tbody>
-								      <% end %>
-								      <% end %>	                   
-										</table>									
-									    <div class="pagination ">                      
-                          <%= paginate @leave_histories %>                       
-                      </div>									
-										<% else %>
-										  <div class="alert alert-success alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                           You have No Leaves Requests 
-                      </div>
-                     
-										<% end %>																					
-                    
-							</div><!--module body-->	
-								
-								
-								
-								<!-- LEAVE VIEWS IN PROCESS -->
-								
-								
-								
-								<div class="module-head">
-								  <h3>Leave History &current leaves</h3>
-								</div>
-							
-									 							
-                  
-             <div class="module-body">            
-                     
-										 <% if @leave_histories.present? %> 	  	
-									  <table class="table table-striped table-hover" id="sample-table-2">
-											<thead>
-												<tr>
-												  
-													<th> Date </th>
-													<th>No.of Days</th>
-													<th> Reason </th>
-													<th> Leave Type </th>											
-													<th> Status</th>
-													<th colspan=2>Action</th>							
-												 </tr>
-											</thead>
-										 <%  @leave_histories.each do |f| %>
-										 		 <% if((f.from_date.to_date <= Date.today && f.to_date.to_date >= Date.today) || (f.to_date.to_date < Date.today)) %>									
-											<tbody>												
-												<tr>               
-												  <td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
-													<td>  <%= pluralize(f.days, 'day') %>  </td>
-													<td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
-													<td><%=f.leave_type.type_name %> </td>													
-													<td><%=f.status %></td>
-													<% unless f.to_date.to_date <= Date.today %>
-													  <td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info"  %></td>								 
-													<% end %>
-												</tr>																						
-											</tbody>
-								      <% end %>	
-								      <% end %>                   
-										</table>									
-									    <div class="pagination ">                      
-                          <%= paginate @leave_histories %>                       
-                      </div>									
-										<% else %>
-										  <div class="alert alert-success alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                           You have No Leaves Requests 
-                      </div>
-                     
-										<% end %>																					
-                    </div> <!-- /module mody -->
-               
-                 
-                  
-                  <!--if condition for reporting manager -->
-                  <% else %>
-                    <div class="alert alert-success alert-dismissable">
-                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                         You have no reporting manager. Please contact your Administrator
-                    </div>
-          																																														
-                  <%end%> 
-                             
-                   
-                   <!-- if condition for leave policy-->
-          <% else %>
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                     Please Contact Your Adminstrator to set Leave Policy
-                </div>
-          <% end %>
-               
-        
-           </div><!--/.module -->
-					</div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->      
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-                          <script>
-                         
-                       
-                             $("#list").hide();
-                            $("#show").click(function(){
-                              $("#list").toggle();
-                            }); 
-                         
+    <div class="container">
+        <div class="row">                
+            <div class="span12">
+                <div class="content">
+                    <div class="module">
+                      <% if @employee.department.leave_policy.present? %>
+                   <% if @employee.reporting_manager? %>
+                        <div class="module-body">
+                            <div class="profile-head media">                   
+                                <div class="media-body">
+                                   <a class="media-avatar pull-left" href="#">                                 
+                                      <img src="/assets/HR.jpg" style="height:120px !important;width:120px !important;"> 
+                                    </a> 
+                                    <div class="media-body"> 
+                                      <h4>
+                                         Leaves DashBoard
+                                      </h4>
+                                      <p>Balance Leaves:  <%= pluralize(total_balance_leaves(@employee)+carry_forward_leaves(@employee), 'day') %></p>
+                                       
+                                      <p>Used Leaves : <%= pluralize(total_used_leaves(@employee), 'day') %>  </p>
+                                    </div>
+                                 </div>                                                                         
+                                  <ul class="profile-tab nav nav-tabs">
+                                      <li class="active"><a href="#waiting-for-approval" data-toggle="tab">Leaves Waiting for Approval</a></li>
+                                      <li><a href="#upcoming-leaves" data-toggle="tab">Upcoming Leaves List</a></li>
+                                      <li ><a href="#leaves-history" data-toggle="tab">Leave History</a></li>
+                                      <li><a href="#leave_policy" data-toggle="tab">Leave Policy</a></li>
+                                      <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li> 
+                                      <li><a href="#leave_approavals" data-toggle="tab">Leave Approavals</a></li>  
+                                      <li><a href="#reportees" data-toggle="tab">Reportees</a></li>                                     
+                                  </ul> 
                             
-                     
-                       </script>        
-                      
-      
-      
-      <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Reason for leave</h4>
-      </div>
-      <div class="modal-body">
-        <span id="modal_body"></span>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+                                                                                                                           
+                             <div class="profile-tab-content tab-content">  
+                                <div class="tab-pane fade active in" id="waiting-for-approval">                                              
+                                    <%= render "leave_histories/waiting_for_approvals"%>                  
+                                </div><!--/.tab-pane-list--> 
+                      <!--leaves PANEL-->                                    
+                                
+                                <div class="tab-pane fade" id="upcoming-leaves">
+                                     <%= render "leave_histories/upcoming_leaves_list"%>         
+                                </div><!--/.tab-pane-list--> 
+                      <!--designations PANEL-->   
+                                 
+                                  <div class="tab-pane fade " id="leaves-history"> 
+                                     <%= render "leave_histories/leave_history" %>    
+                                  </div> <!--/.tab-pane-list-->                                              
+                      <!--leave_policies PANEL-->             
+                                 
+                                  <div class="tab-pane fade " id="leave_policy"> 
+                                    <%= render "leave_histories/leave_policy"%>                                          
+                                  </div><!--/.tab-pane-list-->
+                      <!--holiday_calender PANEL-->             
+                                  
+                                  <div class="tab-pane fade " id="holiday_calender">
+                                     <%= render "leave_histories/holiday_list" %>                                           
+                                  </div><!--/.tab-pane-list-->                                          
+                                  
+                                  <div class="tab-pane fade active in" id="leave_approavals">                                              
+                                    <%# render "departments/employees"%>                  
+                                </div><!--/.tab-pane-list--> 
+                                
+                                <div class="tab-pane fade active in" id="reportees">                                              
+                                    <%# render "departments/employees"%>                  
+                                </div><!--/.tab-pane-list--> 
+                                
+                                                                                   
+                            </div><!--/.profile-tab-content -->                                                                                      
+                          </div>
+                        <!--/.profile-head-->
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <!--/.module-->
+                </div>
+                <!--/.content-->
+            </div>
+            <!--/.span9-->
+        </div>
     </div>
-  </div>
-</div>
-
-<script>
-$(function(){
-  $("td a[id='modal-text']").click(function(){
-    var content=$(this).prev().text();
-    $("#modal_body").text(content);
-  });
-});
-</script>
+    <!--/.container-->
+    </div>	
 
 
-
-
-
+                    

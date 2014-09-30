@@ -4,13 +4,13 @@
 								<h3> Attachment Info </h3>
 							</div>
 							<div class="module-body">	
-							   <%= form_for(:employee, :url => attachment_create_employee_path(@employee), :html => {:multipart => true}, :data => {:toggle => "validator", :remote => true}, method: :post) do |f| %> 
+							   <%= form_for(:employee, :url => attachment_create_employee_path(@employee), :html => {:multipart => true, :class=>"form-horizontal row-fluid"}, :remote => true, method: :post) do |f| %> 
                    <%= fields_for :employee_attachments do |f| %>        
                  <div class="control-group">
 										<label class="control-label" for="basicinput"> Attachment Title:</label>
 										<div class="controls">
-											 <%= f.text_field :attachment_name, :class => "span8", name: "employee_attachments[attachment_name][]",:data => {:error => " Please Enter Attachment Title"},:required =>true %> 
-											 <span class="help-block with-errors"></span>  
+											 <%= f.text_field :attachment_name, :class => " span8  form-control", name: "employee_attachments[attachment_name][]", :data => {:error => " Please Enter Attachment Title"}, :required =>true %> 
+											 <div class="help-block with-errors"></div>  
 										</div>
 									</div>		
 									
@@ -18,7 +18,7 @@
 										<label class="control-label" for="basicinput"> Upload File:</label>
 										<div class="controls">
 											 <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes, :error => " Please Choose a file to attach"}, :required =>true  %> 
-											 <span class="help-block with-errors"></span>  
+											 <div class="help-block with-errors"></div>  
 										</div>
 									</div>	
 									
@@ -41,7 +41,9 @@
 <!-- data-error='Please  Attachment file' required><div class='help-block with-errors'></div>                      
 data-error='Please Enter Attachment Title' required><div class='help-block with-errors'></div> -->
                   
-          
+ <script>
+      $("#new_attachment_form").validator();
+    </script>         
 <script>
 $(function(){
    $("#add_field").click(function(){

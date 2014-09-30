@@ -2,28 +2,24 @@
 <div class="module">
 		<div class="module-head">							
       <h3>Leave Policy</h3> 
-        <% unless @leave_policy.present?%>
-          <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a>
-          <%= link_to "Add Leave Policy",  new_department_leave_policy_path(@department ), :remote => true %></label>
-        <% end %>	
     </div>
+    
     <div class="module-body">		               
-      <% if @leave_policy.present? %>
+      <% if @leave.present? %>
         <table class="table table-striped table-hover" id="sample-table-2">
           <thead>
             <tr>
-              <th>Personal leaves Per Month</th>
+              <th>Personal Leaves Per Month</th>
               <th>Maximum Carry forword Leaves</th>
              </tr>
            </thead>
            <tbody>          
-              <% unless @leave_policy.nil? %>
+              <% unless @leave.nil? %>
            <tr>
-            <td><%= @leave_policy.pl_this_year %></td>
-            <td> <%= @leave_policy.eligible_carry_forward_leaves %></td>
-            <td><%= link_to 'Edit', edit_department_leave_policy_path(@department, @leave_policy), :class => "btn btn-success pull-right", :remote => true %><td> 
+            <td><%= @leave.pl_this_year %></td>
+            <td> <%= @leave.eligible_carry_forward_leaves %></td>
+           </tr>
               <% end %>
-             </tr>
               </tbody>                        
         </table> 
       <% else %>      
@@ -33,5 +29,6 @@
           </div>                                   
        <% end %>			 
     </div> 
+    
     </div> 
     
