@@ -35,10 +35,10 @@
 								      <% end %>
 									
 										</table>
-										
-										  <div class="pagination ">                      
-                          <%= paginate @leaves %>                  
-                      </div>				
+										<div class="pagination pagination-centered waiting_for_approvals ">                      
+                          <%= paginate @leaves, :remote => true %>                       
+                      </div>
+										  				
 										<% else %>
 										  <div class="alert alert-success alert-dismissable">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
