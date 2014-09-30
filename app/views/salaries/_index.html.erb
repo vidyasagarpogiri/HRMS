@@ -38,17 +38,18 @@
 			    <td><%= @salary.esic_contribution %></td>
 					<% end %>
 					<td><%= @salary.ctc_fixed %></td>
-          <td><% if current_user.department == Department::HR %>  
-          <ul class="navigation-btns" style="list-style: none;display:inline;">                                          
-            <li><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success pull-left", :remote => true %></li>
-            <li><%= link_to 'Delete', employee_salary_path(@employee, @salary), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right", :remote => true %></li>
-						<% if @salary.allowances.present?%>													
-						<li><%= link_to 'Configure', employee_salary_edit_allowance_path(@employee, @salary), :class => "btn btn-info pull-right", :remote => true %></li>
-						<% else %>
-						<li><%= link_to 'Configure', employee_salary_configure_allowance_path(@employee, @salary), :class => "btn btn-info pull-right", :remote => true %></li>
-						<% end %>
-            <% end %>
-            </ul>
+          <td>
+          <% if current_user.department == Department::HR %>  
+            <ul class="navigation-btns pull-left">                                          
+              <li><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success ", :remote => true %></li>
+              <li><%= link_to 'Delete', employee_salary_path(@employee, @salary), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger ", :remote => true %></li>
+						  <% if @salary.allowances.present?%>													
+						  <li><%= link_to 'Configure', employee_salary_edit_allowance_path(@employee, @salary), :class => "btn btn-info ", :remote => true %></li>
+						  <% else %>
+						  <li><%= link_to 'Configure', employee_salary_configure_allowance_path(@employee, @salary), :class => "btn btn-info ", :remote => true %></li>
+						  <% end %>              
+              </ul>
+            <% end %>  
           </td>
         </tr>
       </tbody>
