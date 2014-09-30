@@ -44,7 +44,7 @@
                                            <% if current_user.department == Department::HR %>
                                               <%= link_to employee.full_name , profile_path(employee) %>
                                             <% else %>
-                                               <%= link_to employee.full_name , "#employeeProfileModal", :class => "employee-popup",  :url => employee_path(employee), :iid => employee.id,  "data-toggle" => "modal" , :id => "employee_#{employee.id}" %>
+                                               <%= link_to employee.full_name , "#employeeProfileModal", :class => "employee-popup",  :url => profile_employee_path(employee), :iid => employee.id,  "data-toggle" => "modal" , :id => "employee_#{employee.id}" %>
                                             <% end %>
                                           </h5>
                                            <br>                                                                                              
