@@ -12,7 +12,7 @@
 					                                </div>
 					                                <div class="span5">	
 						                                <div class="control-group">
-							                                <label class="control-label" for="basicinput">Date Of Joining: <%= @employee.date_of_join %></label>  
+							                                <label class="control-label" for="basicinput">Date Of Joining: <%= format_date (@employee.date_of_join) %></label>  
 							                              </div>
 						                               </div>
 					                                </div><hr>	
@@ -59,8 +59,8 @@
 				                                 <div class ="row-fluid">
 			                                      <div class="span5">		
 					                                    <div class="control-group">
-						                                    <label class="control-label" for="basicinput">Date Of Birth:  <%= @employee.date_of_birth %> </label>
-					                                   </div>
+						                                    <label class="control-label" for="basicinput">Date Of Birth:  <%= format_date (@employee.date_of_birth) %> </label>
+					                                   </div> 
 				                                   </div>
 				                                   <div class="span5">	
 					                                   <div class="control-group">
