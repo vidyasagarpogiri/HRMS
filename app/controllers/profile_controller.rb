@@ -1,10 +1,13 @@
 class ProfileController < ApplicationController
   
 #layout "emp_profile_template"
-  before_filter :hr_view, :only => [ :edit]
- before_filter :other_emp_profile_view
+  before_filter :hr_view, :only => [ :edit, :new]
+ before_filter :other_emp_profile_view, only: [:show]
   
   
+  def new
+    @employee = Employee.new 
+  end
   
 
   def edit
