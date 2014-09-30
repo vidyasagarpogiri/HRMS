@@ -2,9 +2,8 @@
 							<div class="module-head">
 								<h3> Attachment Info </h3>
                 <% if current_user.department == Department::HR %>                                 
-                <label style="font-weight:normal;margin-top:-35px;" class = "pull-right"><a><i class="fa fa-plus "></i></a> <%= link_to ' AddAttachment', attachment_form_new_employee_path, :remote => true  %></label>
+                <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to 'AddAttachment', attachment_form_new_employee_path(@employee), :remote => true  %></label>
                 <% end %>
-
 							</div>
 							<div class="module-body">
 							    <% if @emp_get_attachments.present? %>        	
@@ -23,7 +22,7 @@
                       <td><%= link_to "Download", attachment.attachment_url %></td>
                       <td>
                           <%#link_to "Edit",  attachment_edit_employee_path(@employee.id, attachment.id), :class=>"btn btn-success " %>
-                          <%= link_to "Delete",  attachment_destory_employee_path(@employee.id, attachment.id), :method => :delete, data: {confirm: "Are You sure?"},:class=>"btn btn-danger " %>
+                          <%= link_to "Delete",  attachment_destory_employee_path(@employee.id, attachment.id), :method => :delete, data: {confirm: "Are You sure?"},:class=>"btn btn-danger ", :remote => true %>
                       </td>                       
                        </tr>
                   <% end %>

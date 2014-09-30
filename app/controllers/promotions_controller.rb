@@ -21,7 +21,7 @@ class PromotionsController < ApplicationController
 		:designation_id=>params[:promotion][:designation_id])                      
 		@employee.update(:designation_id => @promotion.designation_id)
     @promotions = @employee.promotions
-    @errros = @promotion.errors.full_messages
+    @errors = @promotion.errors.full_messages
   end
   
   def edit
@@ -35,7 +35,7 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.find(params[:id])
     @promotion.update(:date_of_promotion=> params[:promotion][:date_of_promotion], :designation_id=>params[:promotion][:designation_id] )
     @promotions = @employee.promotions
-    @errros = @promotion.errors.full_messages
+    @errors = @promotion.errors.full_messages
   end
   
   

@@ -91,14 +91,7 @@ class EmployeesController < ApplicationController
 			redirect_to show_exit_employee_path(@employee.id)
 	end
   
-   def attachment_index
-   
-     @employee = Employee.find(params[:id])
-     @emp_get_attachements  = @employee.employee_attachments
-   end
-  
   def attachment_form_new
-  raise params.inspect
    @emp_get_attachements = Employee.find(params[:id]).employee_attachments
     @emp_get_attachements = [] if Employee.find(params[:id]).employee_attachments.nil?
     @employee = Employee.find(params[:id])
@@ -114,6 +107,7 @@ class EmployeesController < ApplicationController
       end   
     end
     end
+     @emp_get_attachments  = @employee.employee_attachments
   end
 	
 	def attachment_edit
@@ -150,7 +144,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
 		@emp_get_attachements = EmployeeAttachment.find(params[:attachment_id])
  		@emp_get_attachements.destroy
-		redirect_to attachment_form_new_employee_path(@employee)
+     @emp_get_attachments  = @employee.employee_attachments
 	end
 	
 	def myprofile
