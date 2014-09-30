@@ -1,14 +1,10 @@
-  <div class="wrapper">
-		<div class="container">
-			<div class="row">	
-				<div class="span12">
-					<div class="content">
+
 						<div class="module">
 							<div class="module-head">
 								<h3> Attachment Info </h3>
 							</div>
 							<div class="module-body">	
-							   <%= form_for(@employee, :html => {:multipart => true}, :data => {:toggle => "validator"}) do |f| %> 
+							   <%= form_for(:employee, :url => attachment_create_employee_path(@employee), :html => {:multipart => true}, :data => {:toggle => "validator", :remote => true}, method: :post) do |f| %> 
                    <%= fields_for :employee_attachments do |f| %>        
                  <div class="control-group">
 										<label class="control-label" for="basicinput"> Attachment Title:</label>
@@ -37,11 +33,7 @@
             <% end %>																												
 							</div><!--/.module-body-->
 						</div><!--/.module-->
-					</div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
+	
 
                                      
                    
