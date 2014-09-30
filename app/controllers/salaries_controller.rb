@@ -83,6 +83,8 @@ class SalariesController < ApplicationController
 		params[:allowance_ids].each do |a|
 		  SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)
 		end
+		@other_allowance = allowance_total(@allowances, @salary)
+		@salary.update(:special_allowance => @other_allowance )
 	end
 
 	def edit_allowance
@@ -102,6 +104,8 @@ class SalariesController < ApplicationController
 			  SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)	
 		  end
 		end
+		@other_allowance = allowance_total(@allowances, @salary)
+		@salary.update(:special_allowance => @other_allowance )
 	end
 	def add_allowance
 		@employee= Employee.find(params[:employee_id])

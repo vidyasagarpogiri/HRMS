@@ -40,7 +40,7 @@ class Employee < ActiveRecord::Base
 	validates :employee_id, presence: true 
 
 	validates :first_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "only allows letters" }
-	validates :last_name, presence: true
+	validates :last_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "only allows letters" }
 	validates :date_of_birth, presence: true
   validates :department_id, presence: true
 
@@ -50,7 +50,7 @@ class Employee < ActiveRecord::Base
 
 
 
-	validates :father_name, presence: true
+	validates :father_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "only allows letters" }
 	validates :blood_group_id, presence: true
 	validates :date_of_join, presence: true
 
