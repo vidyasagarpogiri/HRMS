@@ -44,9 +44,7 @@
                                            <% if current_user.department == Department::HR %>
                                               <%= link_to employee.full_name , profile_path(employee) %>
                                             <% else %>
-                                              <a id="popup-show" data-toggle="modal" data-target="#employeeProfileModal">
-                                                 <%= employee.full_name %>
-                                              </a>
+                                               <%= link_to employee.full_name , "#employeeProfileModal", :class => "employee-popup",  :url => employee_path(employee), :iid => employee.id,  "data-toggle" => "modal" , :id => "employee_#{employee.id}" %>
                                             <% end %>
                                           </h5>
                                            <br>                                                                                              
@@ -81,6 +79,20 @@
 		      </div><!--/.container-->
 	      </div><!--/.wrapper-->     
 
+
+
+    <script type="text/javascript">
+      $('.employee-popup').click(function(){ 
+          var employee_id = $(this).attr("iid");
+          var url = $(this).attr("url");
+          $.ajax({
+            type: "GET",
+            url: url,
+            data: {employee_id: employee_id},
+            dataType: "script"
+            });
+      });
+    </script>
 
 
 
