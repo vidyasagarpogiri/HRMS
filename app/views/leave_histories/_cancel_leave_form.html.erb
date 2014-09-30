@@ -1,4 +1,4 @@
-<%= form_for @leave, :url => reject_leave_history_path(@leave), :method => :post do |f| %>
+<%= form_for @leave, :url => reject_leave_history_path(@leave), :method => :post, :remote => true do |f| %>
  
   <%= label_tag "Reason"%><br>
   <%= f.text_area :feedback, :style => "margin: 0px; width: 538px; height: 167px;" %>

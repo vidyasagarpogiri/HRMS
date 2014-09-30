@@ -29,16 +29,18 @@
 													<td><%=f.leave_type.type_name %> </td>													
 													<td><%=f.status %></td>
 													<% unless f.to_date.to_date <= Date.today %>
-													  <td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info"  %></td>								 
+													  <td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info", :remote => true  %></td>								 
 													<% end %>
 												</tr>																						
 											</tbody>
 								      <% end %>	
 								      <% end %>                   
-										</table>									
-									    <div class="pagination ">                      
-                          <%= paginate @leave_histories %>                       
-                      </div>									
+										</table>		
+										
+										<div class="pagination pagination-centered leave_history ">                      
+                          <%= paginate @leave_histories, :remote => true %>                       
+                      </div>							
+									    									
 										<% else %>
 										  <div class="alert alert-success alert-dismissable">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
