@@ -4,7 +4,7 @@
 								<h3> Attachment Info </h3>
 							</div>
 							<div class="module-body">	
-							   <%= form_for(:employee, :url => attachment_create_employee_path(@employee), :html => {:multipart => true, :class=>"form-horizontal row-fluid"}, :remote => true, method: :post) do |f| %> 
+							   <%= form_for(:employee, :url => attachment_create_employee_path(@employee), :html => {:multipart => true, :class=>"form-horizontal row-fluid new_attachment_form"}, :remote => true, method: :post) do |f| %> 
                    <%= fields_for :employee_attachments do |f| %>        
                  <div class="control-group">
 										<label class="control-label" for="basicinput"> Attachment Title:</label>
@@ -42,13 +42,13 @@
 data-error='Please Enter Attachment Title' required><div class='help-block with-errors'></div> -->
                   
  <script>
-      $("#new_attachment_form").validator();
+      $(".new_attachment_form").validator();
     </script>         
 <script>
 $(function(){
    $("#add_field").click(function(){
     $("#add_attachment_field").append(
-    "<span><label class='required'>Attachment Name</label><input class='form-control' id='employee_attachments_attachment_name' name='employee_attachments[attachment_name][]' type='text' ><a onclick='$(this).parent().hide();' class='fa fa-icon fa-minus' style='float: right;'></a><br><label class='required'>Upload File</label><input id='employee_attachments_attachment' multiple='multiple' name='employee_attachments[attachment][]' type='file' </span>");
+    "<span><label class='required'>Attachment Name</label><input class='form-control' id='employee_attachments_attachment_name' name='employee_attachments[attachment_name][]' type='text' ><a onclick='$(this).parent().hide();' class='icon-minus' style='float: right;'></a><br><label class='required'>Upload File</label><input id='employee_attachments_attachment' multiple='multiple' name='employee_attachments[attachment][]' type='file' </span>");
   });  
 });
 </script>
