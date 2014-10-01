@@ -48,3 +48,13 @@ display:inline;
 .wrapper {
   min-height:800px;
   }
+  
+.with-errors{
+color:red;
+}
+
+.with-errors ul{
+list-style-type:none;
+margin: 0px !important;
+}
+
