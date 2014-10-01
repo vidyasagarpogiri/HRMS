@@ -6,9 +6,9 @@ class Address < ActiveRecord::Base
 
   validates :line1, presence: true
 	validates :line, presence: true
-	validates :city, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
-	validates :state, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
-  validates :country, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
+	validates :city, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Please Enter only allows letters" }
+	validates :state, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Please Enter only allows letters" }
+  validates :country, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Please Enter only allows letters" }
 	validates :zipcode, presence: true, numericality: true , length: { maximum: 6 , minimum: 6 }	
 	
 end

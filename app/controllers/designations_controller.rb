@@ -11,7 +11,7 @@ class DesignationsController < ApplicationController
   def create
     @department = Department.find(params[:designation][:department_id])
     @designation = @department.designations.create(designation_params)
-    redirect_to @department
+    
   end
 
   def show
@@ -25,7 +25,7 @@ class DesignationsController < ApplicationController
   def update
     @designation = Designation.find(params[:id])
     @designation.update(designation_params)
-    redirect_to @designation
+    
   end
   
   def edit     
