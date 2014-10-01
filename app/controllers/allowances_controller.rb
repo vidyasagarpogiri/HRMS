@@ -6,6 +6,7 @@ class AllowancesController < ApplicationController
  
  def index
   @allowances = Allowance.all
+  @static_salaries = StaticSalary.all
  end
  
  def new

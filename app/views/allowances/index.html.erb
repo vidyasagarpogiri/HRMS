@@ -45,8 +45,11 @@
                     <% end %>
                       </div>
                        <div class="module-body">
-                          <%= link_to 'Configure Salary',allowances_path, :class => "btn btn-info pull-right" %>
+                          <%= link_to 'Configure Salary',new_static_salary_path, :remote => true %>
                           <div id="form_salary">
+                          </div>
+                          <div class="salary_divisions">
+                              <%= render "static_salaries/index" %>
                           </div>
                        </div>
                     </div>
