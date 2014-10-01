@@ -4,6 +4,7 @@ class SalariesController < ApplicationController
 
 	 before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view
+  before_action :salary_percentage, only: [:create, :configure_pf]
 
   def new
 		@employee = Employee.find(params[:employee_id])
@@ -31,7 +32,7 @@ class SalariesController < ApplicationController
 	  @salary.save
     @employee.update(:salary_id => @salary.id)
 	  @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
-	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => @salary.basic)
+	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages))
     end
 
   def edit
@@ -45,7 +46,7 @@ class SalariesController < ApplicationController
     @allowances = @salary.allowances
     @salary.update(params_salary)
 		@ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
-	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => @salary.basic)
+	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages))
     
   end
 
@@ -58,6 +59,7 @@ class SalariesController < ApplicationController
     @allowances = @salary.allowances
     @insentives =  @salary.insentives
     @salary_increments =@salary.salary_increments
+    @salary_percentages = StaticSalary.all
   end
 
 	def destroy
@@ -117,22 +119,25 @@ class SalariesController < ApplicationController
 	end
 	
 	def configure_pf
-	  #raise params.inspect
 	  @employee = Employee.find(params[:employee_id])
 	  @salary = Salary.find(params[:salary_id])
 	  @allowances = @salary.allowances
 	  if params[:Pf] == "on" && params[:Esci] == "on"
-       @salary.update(:pf_apply => "true", :esic_apply => "true", :pf => @salary.pf, :esic => @salary.esic, :pf_contribution => @salary.pf_contribution, :esic_contribution => @salary.esic_contribution)
+      @salary.update(:pf_apply => "true", :esic_apply => "true", :pf => pf(@salary,@salary_percentages), :esic => esic(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages))
 	  elsif params[:Pf] == "on"
-	    @salary.update(:pf_apply => "true", :pf => @salary.pf, :pf_contribution => @salary.pf_contribution)
+	    @salary.update(:pf_apply => "true", :pf => pf(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages))
 	  elsif params[:Esci] == "on" 
-	     @salary.update(:esic_apply => "true", :esic => @salary.esic, :esic_contribution => @salary.esic_contribution )
+	    @salary.update(:esic_apply => "true", :esic => esic(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages))
 	  else
-	     @salary.update(:pf_apply => nil, :esic_apply => nil )
+	    @salary.update(:pf_apply => nil, :esic_apply => nil )
 	  end
 	end
   
   private
+  
+  def salary_percentage
+    @salary_percentages = StaticSalary.all
+  end
   
   def params_salary
     params.require(:salary).permit(:gross_salary, :bonus, :gratuity, :medical_insurance)
