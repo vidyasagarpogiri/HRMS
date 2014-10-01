@@ -1,10 +1,5 @@
                 
-<div class="wrapper">
- <div class="container">
-	<div class="row">
 
-  <div class="span12">
-		<div class="content">
 
 			<div class="module">
 				<div class="module-head">
@@ -12,7 +7,7 @@
 						</div>
 							<div class="module-body">
 							
-							<%= form_for @designation, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |des| %>
+							<%= form_for @designation, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"}, :remote => true do |des| %>
 							
 					
 			         <div class="control-group">
@@ -37,9 +32,4 @@
 										<% end %>
 							</div><!--/.module-body-->
 						</div><!--/.module-->
-					</div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
- 
+	
