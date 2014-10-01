@@ -155,14 +155,14 @@ end
   end
   
   
- # method for caluclate other allowance
+ #-------------- method for caluclate other allowance ----------------
   
   def allowance_total(allowances, salary)
       #raise allowances.inspect
       total = 0.0
       allowances.each do |allowance|
         if allowance.value.present?
-        value = (salary.basic * allowance.value)/100
+        value = (salary.basic_salary * allowance.value)/100
         total += value
         else
         total += allowance.allowance_value
@@ -171,5 +171,79 @@ end
       salary_gross = salary.basic_salary + total
       remain_allowance = salary.gross_salary - salary_gross
   end
+#--------- End of allowance caluclation method ------------------  
+
+
+#-------------------- code for Basic, pf, pf contribution, esic, esic contribution --------------------
+  def basic(salary, percentages)
+      gross = salary.gross_salary
+      basic_value = 0
+      percentages.each do |per|
+        if per.name == "Basic"
+          basic_value = (gross * per.value)/100
+          break
+        end
+      end
+      basic_value
+  end
+  
+  def pf(salary, percentages)
+      basic = salary.basic_salary
+      pf_value = 0
+      percentages.each do |per|
+        if per.name == "PF"
+          pf_value = (basic * per.value)/100
+          break
+        end
+      end
+      pf_value
+  end
+  
+  def pf_contribution(salary, percentages)
+      basic = salary.basic_salary
+      pf_contribution_value = 0
+      percentages.each do |per|
+        if per.name == "PF Contribution"
+          pf_contribution_value = (basic * per.value)/100
+          break
+        end
+      end
+      pf_contribution_value
+  end
+  
+  def esic(salary, percentages)
+      gross = salary.gross_salary
+      esic_value = 0
+      percentages.each do |per|
+        if per.name == "Esic"
+          esic_value = (gross * per.value)/100
+          break
+        end
+      end
+      esic_value
+  end
+  
+  def esic_contribution(salary, percentages)
+      gross = salary.gross_salary
+      esic_contribution_value = 0
+      percentages.each do |per|
+        if per.name == "Esic Contribution"
+          esic_contribution_value = (gross * per.value)/100
+          break
+        end
+      end
+      esic_contribution_value
+  end
+
+#-------------- End of Code ------------------------------------------------------------------
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 end

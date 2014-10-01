@@ -43,7 +43,7 @@ class Employee < ActiveRecord::Base
 	validates :father_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
 	validates :blood_group_id, presence: true
 	validates :date_of_join, presence: true
-	validates :avatar, presence: true
+	validates :avatar
   
 
 	
@@ -65,10 +65,23 @@ class Employee < ActiveRecord::Base
     end
 	end
   
-  def reporting_manager?
-    
+  def reporting_manager? 
     if reporting_managers.present?
       return true
+    else
+      return false 
+    end
+  end
+  
+  
+  def is_reporting_manager?
+    
+    if reporting_managers.present?
+      if reporting_managers.first.manager_id==id
+        return true
+      else
+        return false
+      end
     else
       return false
     end

@@ -12,7 +12,7 @@
 				</div>
 							<div class="module-body">
 							
-							<%= form_for @event, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |eve| %>
+							<%= form_for @event, :html => {:class=>"form-horizontal row-fluid new_event_form"} do |eve| %>
 							<div>
 							     <% @event.errors.full_messages.each do |msg| %>
                   <div class="alert alert-danger alert-dismissable">
@@ -36,13 +36,11 @@
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
-									
-	
-									        							
-												<button type="submit" class="btn btn-success pull-left">Save </button>
-												  <%= link_to "Back", events_path,:class => "btn btn-info pull-left"%>
-											 
-										<% end %>
+									 <ul class="navigation-btns pull-left" >
+									  <li><button type="submit" class="btn btn-success">Save</button></li>
+									  <li><%= link_to "Cancle", events_path,:class => "btn btn-danger" %></li>
+									</ul>	
+								<% end %>
 							</div><!--/.module-body-->
 						</div><!--/.module-->
 					</div><!--/.content-->
@@ -51,6 +49,8 @@
 		</div><!--/.container-->
 	</div><!--/.wrapper-->
 	
-
+        <script>
+          $(".new_event_form").validator();
+        </script>   
             
      
