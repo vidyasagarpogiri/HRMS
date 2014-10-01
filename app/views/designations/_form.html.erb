@@ -26,12 +26,16 @@
                <div class="control-group">
                <label class="control-label" for="basicinput">Name Of Designation</label>
                 <div class="controls">
-                <%= des.text_field :designation_name, :class => "span8 form-control", :placeholder =>"Enter Designation Name", :data => {:error => "Please Enter  Designation name"}, :required =>true, :pattern => '[a-zA-Z/s ]*'%>
+                <%= des.text_field :designation_name, :class => "span8 form-control", :placeholder =>"Enter Designation Name", :data => {:error => "Please Enter  Designation name"}, :required =>true, :pattern => '[a-zA-Z/./s ]*'%>
 								<span class="help-block with-errors"></span>
 								 </div>
 								</div>
-								  <%= des.submit  'Save', :class => "btn btn-success pull-left" %>
-                 <%= link_to 'Cancel', designations_path, :class=>"btn btn-danger btn btn-success pull-left" %>
+								<ul class="navigation-btns pull-left">
+                  <li><%= des.submit  'Save', :class => "btn btn-success" %></li>
+                  <li><%= link_to 'Cancel', designations_path, :class=>"btn btn-danger btn btn-success" %></li>            
+                </ul>
+								  
+                 
 							
 												 
 										<% end %>
