@@ -47,7 +47,7 @@ class Employee < ActiveRecord::Base
 
 	#validates :avatar, presence: true
 
-  
+
 
 	
 	#after_create :add_leaves
