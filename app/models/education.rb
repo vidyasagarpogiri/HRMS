@@ -8,7 +8,7 @@ class Education < ActiveRecord::Base
   validates :specilization, presence: true, format: { with: /\A[a-zA-Z0-9\.\s ]+\z/, message: "Plese Enter only allows letters" }
 	validates :institute, presence: true, format: { with: /\A[a-zA-Z0-9\.\,\s ]+\z/, message: "Plese Enter only allows letters" }
 	validates :year_of_pass, presence: true, length: { is: 4 }, numericality: { only_integer: true }
-  validates :cgpa_percentage, presence: true
+  validates :cgpa_percentage, presence: true, numericality: { only_integer: false, less_than: 100 }
 	
 
 end
