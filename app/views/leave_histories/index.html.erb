@@ -15,7 +15,7 @@
                                     <div class="media-body"> 
                                       <h4>
                                          Leaves DashBoard
-                                            <%= link_to 'Apply Leave',  new_leave_history_path, :class => "fa fa-plus pull-right " %> 
+                                            <%= link_to ' Apply Leave',  new_leave_history_path, :class => "icon-plus-sign pull-right " %> 
                                       </h4>
                                       <p>Balance Leaves:  <%= pluralize(total_balance_leaves(@employee)+carry_forward_leaves(@employee), 'day') %></p>
                                        
@@ -59,10 +59,12 @@
                                      <%= render "leave_histories/holiday_list" %>                                           
                                   </div><!--/.tab-pane-list-->                                          
                                   
+                        <!--leave_approavals PANEL-->             
                                   <div class="tab-pane fade " id="leave_approavals">                                              
                                     <%= render "leave_histories/reported_leaves"%>                  
                                 </div><!--/.tab-pane-list--> 
                                 
+                         <!--reportees PANEL-->         
                                 <div class="tab-pane fade" id="reportees">                                              
                                     <%= render "leave_histories/reportees"%>                  
                                 </div><!--/.tab-pane-list--> 
@@ -74,9 +76,9 @@
                         <% end %>
                       <% else %>
                         <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      You have No Leave Policies to display.
-                 </div>
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                              You have No Leave Policies to display.
+                        </div>
                       <% end %>
                     </div>
                     <!--/.module-->
