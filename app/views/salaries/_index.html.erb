@@ -11,6 +11,7 @@
           <th>Bonus:</th>	
           <th>Gratuity:</th>
 					<th>Medical Insurance</th>
+					<th>Basic</th>
 					<% if @salary.pf_apply == "true"%>
 					  <th>PF</th>
 					  <th>PF Contribution</th>
@@ -29,6 +30,7 @@
           <td><%= @salary.bonus %></td>
 					<td><%= @salary.gratuity %></td>
 					<td><%= @salary.medical_insurance %></td>
+					<td><%= @salary.basic_salary %></td>
            <% if @salary.pf_apply == "true"%>
 				  <td><%= @salary.pf%></td>
 				  <td><%= @salary.pf_contribution %></td>

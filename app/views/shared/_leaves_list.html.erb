@@ -29,7 +29,7 @@
 													                   <td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %></td>
 													                  <td><%= pluralize(f.days, 'day') %></td>
 													                  <td><%= f.leave_type.type_name if f.leave_type.present? %> </td>
-													                 <td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
+													                 <td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal2"}, :id => "modal-text" } %>  </td>
 													                  <td><%= f.status %></td>													                                                                 
 												                  </tr>												                  
 											                  </tbody>
@@ -42,8 +42,19 @@
                                 </div>									                											              		             
                       </div>         	
               </div>      
+
+
+<script>
+$(function(){
+  $("td a[id='modal-text']").click(function(){
+    var content=$(this).prev().text();
+    $("#modal_body_reason2").text(content);
+  });
+});
+</script>
+
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,7 +62,7 @@
         <h4 class="modal-title" id="myModalLabel">Reason for leave</h4>
       </div>
       <div class="modal-body">
-        <span id="modal_body"></span>
+        <span id="modal_body_reason2"></span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -60,11 +71,4 @@
   </div>
 </div>
 
-<script>
-$(function(){
-  $("td a[id='modal-text']").click(function(){
-    var content=$(this).prev().text();
-    $("#modal_body").text(content);
-  });
-});
-</script>
+
