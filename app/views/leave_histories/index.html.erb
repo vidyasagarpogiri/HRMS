@@ -17,7 +17,7 @@
                                          Leaves DashBoard
                                             <%= link_to ' Apply Leave',  new_leave_history_path, :class => "icon-plus-sign pull-right " %> 
                                       </h4>
-                                      <p>Balance Leaves:  <%= pluralize(total_balance_leaves(@employee)+carry_forward_leaves(@employee), 'day') %></p>
+                                      <p>Balance Leaves:  <%= pluralize(total_balance_leaves(@employee)+0, 'day') %></p>
                                        
                                       <p>Used Leaves : <%= pluralize(total_used_leaves(@employee), 'day') %>  </p>
                                     
