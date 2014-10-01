@@ -16,19 +16,19 @@ module ApplicationHelper
     
   end
   
-  def weekends( end_date, start_date)
+  def weekends( end_date, start_date, department)
    #raise start_date.inspect
     weekends = [0, 6]
-    remaining_days = (start_date .. end_date).to_a - select_holidays
+    remaining_days = (start_date .. end_date).to_a - select_holidays(department)
    holidays = (start_date .. end_date).to_a.length-(remaining_days).length
     result = remaining_days.select{ |k| weekends.include? (k.wday)}.count
    result = result + holidays
   end
   
   
-  def select_holidays
+  def select_holidays(department)
     a=[]
-    Event.all.each do |k|
+    department.events.each do |k|
     a << k.event_date.to_date
 		#raise a.inspect
   end
