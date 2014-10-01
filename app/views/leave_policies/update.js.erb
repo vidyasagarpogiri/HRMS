@@ -1,1 +1,3 @@
-$("#leave_policies").html("<%= j render('departments/leave_policies') %>");
+<% unless @errors.present? %>
+  $("#leave_policies").html("<%= j render('departments/leave_policies') %>");
+<% end %>
