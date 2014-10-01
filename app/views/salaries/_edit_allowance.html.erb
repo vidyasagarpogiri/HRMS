@@ -9,6 +9,7 @@
 													  <tr>
 															  <th>Allowance</th>
 															  <th>Percentage</th>
+															  <th>Value</th>
 															  <th>Applicable</th>
 													  <tr/>
 											   </thead>	
@@ -26,21 +27,60 @@
 													         <td> <%=  allowance.allowance_value %></td>
 													      <% end %>
                               <% if @salary.allowances.include?(allowance) %>
-                                <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = true %></td>
+                                <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = true, :class => "check_event" %></td>
                               <% else %>
-                                <td><%= check_box_tag 'allowance_ids[]', allowance.id %></td>
+                                <td><%= check_box_tag 'allowance_ids[]', allowance.id , checked = false, :class => "check_event" %></td>
                               <% end %>
 												   </tr>
                           <% end %>
 											    <% end %> 
+								  <%= hidden_field_tag('gross_sal',@salary.gross_salary) %>
+                  <%= hidden_field_tag('basic_sal',@salary.basic_salary) %>
 											   
-                          <% end %>           
+                                    
                       </tbody>          
 										</table>
-										 <%= submit_tag "Submit", :class => "btn btn-success pull-right", :id=>"btn" %><br>
+										<div class="alert alert-error alert-dismissable", id="error_message">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                         allowances are more than total salary
+                    </div>
+										<%= submit_tag "Submit", :class => "btn btn-success pull-right", :id=> "save" %><br/>
+										 <% end %> 
      </div>
      <!-- end of module body-->
 </div>
 <!-- end of module -->
-<input type="hidden" value="<%= params[:employee_id] %>" id="emp_id">
-<input type="hidden" value="<%= params[:salary_id] %>" id="sal_id">
+
+
+ <!-- Script for gross calculation -->
+<script>
+$(function(){
+
+    var gross_salary = 0.0;
+   var gross = parseFloat($("#gross_sal").val());
+    var basic = $("#basic_sal").val();
+  $(".check_event").click(function(){
+    gross_check();
+  }); 
+  gross_check();
+  function gross_check(){
+    var count = 0.0;
+     
+    for(var i=0;i<$("input:checkbox:checked").parent().parent().length;i++){
+     count += parseFloat($($($("input:checkbox:checked")[i]).parent().parent().find("td")[2]).text());
+    }
+    gross_salary = parseFloat(basic)+count;
+   
+    if(gross_salary > gross)
+    {
+      $("#save").prop("disabled",true)
+      $("#error_message").show();
+    } else {
+      $("#save").prop("disabled",false)
+      $("#error_message").hide();
+    }
+  
+  }
+
+});
+</script> 

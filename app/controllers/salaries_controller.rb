@@ -4,7 +4,7 @@ class SalariesController < ApplicationController
 
 	 before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view
-  before_action :salary_percentage, only: [:create, :configure_pf]
+  before_action :salary_percentage, only: [:create, :configure_pf, :update]
 
   def new
 		@employee = Employee.find(params[:employee_id])
@@ -81,12 +81,17 @@ class SalariesController < ApplicationController
 	def create_allowance
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
+		@allowance = @salary.gross_salary - @salary.basic_salary
 		@allowances = @salary.allowances
+		if params[:allowance_ids].present?
 		params[:allowance_ids].each do |a|
 		  SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)
 		end
 		@other_allowance = allowance_total(@allowances, @salary)
 		@salary.update(:special_allowance => @other_allowance )
+		else
+		  @salary.update(:special_allowance => @allowance )
+		end
 	end
 
 	def edit_allowance
@@ -98,6 +103,7 @@ class SalariesController < ApplicationController
 	def update_allowance
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
+		@allowance = @salary.gross_salary - @salary.basic_salary
 		@allowances = @salary.allowances
 		allowances = SalariesAllowance.where(:salary_id => @salary.id)
 		allowances.destroy_all
@@ -105,9 +111,11 @@ class SalariesController < ApplicationController
 		  params[:allowance_ids].each do |a|	
 			  SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)	
 		  end
-		end
 		@other_allowance = allowance_total(@allowances, @salary)
 		@salary.update(:special_allowance => @other_allowance )
+		else
+		  @salary.update(:special_allowance => @allowance )
+		end
 	end
 	def add_allowance
 		@employee= Employee.find(params[:employee_id])
