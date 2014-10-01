@@ -9,7 +9,7 @@
 			         <div class="control-group">
                   <label class="control-label" for="basicinput">Date of Exit</label>
                   <div class="controls">
-                <%= f.text_field :date_of_exit, :class => "span8 from form-control", :data => {:error => " Please Enter Exit Date"},:required =>true %>
+                <%= f.text_field :date_of_exit, :class => "span8 date-picker form-control", :data => {:error => " Please Enter Exit Date"},:required =>true %>
                 <span class="help-block with-errors"></span>
                       </div>
 								</div>
@@ -61,26 +61,7 @@
 			    
         <script>
            $(function () {
-               $(".from").datepicker({
-                   dateFormat: 'dd/mm/yy',
-                   changeMonth: true,
-                   changeYear: true,
-                    maxDate: -0,
-                   yearRange: "-100:+0",
-                   onClose: function (selectedDate) {
-                       var date2 = $('.from').datepicker('getDate');
-                       date2.setDate(date2.getDate());
-                       $(".to").datepicker("option", "minDate", date2);
-                   }
-               });
-
-               $(".to").datepicker({
-                   dateFormat: 'dd/mm/yy',
-                    maxDate: -0,
-                    yearRange: "-100:+0",
-                     changeMonth: true,
-                   changeYear: true
-               });
+               $( ".date-picker" ).datepicker({ dateFormat: 'dd/mm/yy' });
            });
         </script>
 
