@@ -65,10 +65,23 @@ class Employee < ActiveRecord::Base
     end
 	end
   
-  def reporting_manager?
-    
+  def reporting_manager? 
     if reporting_managers.present?
       return true
+    else
+      return false 
+    end
+  end
+  
+  
+  def is_reporting_manager?
+    
+    if reporting_managers.present?
+      if reporting_managers.first.manager_id==id
+        return true
+      else
+        return false
+      end
     else
       return false
     end
