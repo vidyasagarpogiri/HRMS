@@ -9,11 +9,17 @@
 			<div class="module">
 				<div class="module-head">
 					<h3>Add New Event</h3>
-						</div>
+				</div>
 							<div class="module-body">
 							
 							<%= form_for @event, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |eve| %>
-						
+							<div>
+							     <% @event.errors.full_messages.each do |msg| %>
+                  <div class="alert alert-danger alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <%= msg %>
+                  <%end%>          
+						</div>
 							<div class="control-group">   
 							 <label class="control-label" for="basicinput">Enter Event</label>
                    <div class="controls">

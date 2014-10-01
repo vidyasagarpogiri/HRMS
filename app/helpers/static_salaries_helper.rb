@@ -1,0 +1,2 @@
+module StaticSalariesHelper
+end

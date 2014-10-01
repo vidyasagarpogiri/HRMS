@@ -32,19 +32,18 @@
 											 <input type="text" class="span8 form-control" placeholder= "Enter Value" name="value" id="valueofallowance" data-error ="Please Enter valid Allowance value" required %>
                        <div class="help-block with-errors"></div>  
 										</div>
-								 </div>
-									<ul class="navigation-btns pull-left" >
-			               <li> <button type="submit" class="btn btn-success">Save</button></li>
-			               <li> <%= link_to 'Cancel', allowances_path, :class=>"btn btn-danger" %></li>
-									</ul> 
-									<br>
-							   <% end %>
-							   </div>
+									</div>
+									 <ul class="navigation-btns" style="list-style:none;">
+									  <li><button type="submit" class="btn btn-success">Save</button></li>
+									  <li><%= link_to 'Cancel', allowances_path, :class=>"btn btn-danger" %></li>
+									</ul>
+              <% end %>                         
              </div>
             </div>
           </div>
         </div>
        </div>
+      </div>
       </div>
 
           
