@@ -58,3 +58,11 @@ list-style-type:none;
 margin: 0px !important;
 }
 
+.balaraju ul{
+list-style:none;
+}
+
+.balaraju ul li{
+display:inline;
+}
+

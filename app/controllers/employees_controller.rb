@@ -180,6 +180,11 @@ end
     end
 	end
 	
+	
+	def attachment_index
+    @employee = Employee.find(params[:id])
+    @emp_get_attachments = @employee.employee_attachments	
+  end
   private
    
  
