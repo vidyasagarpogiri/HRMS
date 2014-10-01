@@ -44,6 +44,7 @@ class Employee < ActiveRecord::Base
 	validates :blood_group_id, presence: true
 	validates :date_of_join, presence: true
 
+
 	#validates :avatar, presence: true
 
 

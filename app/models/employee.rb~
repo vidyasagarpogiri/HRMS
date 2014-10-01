@@ -47,6 +47,7 @@ class Employee < ActiveRecord::Base
 	#validates :avatar
 =======
 
+
 	#validates :avatar, presence: true
 
 >>>>>>> 07286150de276d23e487f66d7bb1d90b079c3163
