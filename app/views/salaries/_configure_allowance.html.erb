@@ -1,4 +1,5 @@
 <div class="module">
+<% if @allowances.present? %>
 			<div class="module-head">
 				<h3>Allowance List</h3>
 			</div>
@@ -39,6 +40,13 @@
 
          </div>
        <!--end of Module-Body -->
+     <% else %>
+         <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  You have No Allowances to display.
+            </div>
+     <% end %>  
+     
 </div>
   <!-- end of module -->
             

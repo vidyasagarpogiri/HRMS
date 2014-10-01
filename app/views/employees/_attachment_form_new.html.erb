@@ -24,11 +24,12 @@
 									
 									<!---- <span id="add_attachment_field" ></span>
                    <span id='add_field'><a href="#"><i class="fa fa-icon fa-plus">Add More</i></a> </span>	<br>	<br>---->
+
                    <% end %>
                    				
 								<ul class="navigation-btns pull-left">
                   <li><%= f.submit  'Save', :class => "btn btn-success" %></li>
-                  <li><%= link_to 'Cancel', attachment_index_employee_path(@employee), :class => "btn btn-danger" %></li>            
+                  <li><%= link_to 'Cancel', attachment_index_employee_path(@employee), :class => "btn btn-danger", :remote => true %></li>            
                 </ul>  <br>
             <% end %>																												
 							</div><!--/.module-body-->
