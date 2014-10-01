@@ -20,7 +20,7 @@
 <div class="control-group">
                   <label class="control-label" for="basicinput">Designation</label>
                       <div class="controls">
-                        <%= f.text_field :last_designation, :class => "span8 form-control", :placeholder =>"Enter Designation", :data => {:error => "Please Enter Valid Designation"}, :required => true, :pattern => '[a-zA-Z/s ]*' %>
+                        <%= f.text_field :last_designation, :class => "span8 form-control", :placeholder =>"Enter Designation", :data => {:error => "Please Enter Valid Designation"}, :required => true, :pattern => '[a-zA-Z/./s ]*' %>
                          <span class="help-block with-errors"></span>
                       </div>
 								</div>
@@ -46,8 +46,8 @@
 									</div>
 									
 									<ul class="navigation-btns pull-left">
-									  <li><%= f.submit  'Save', :class => "btn btn-success pull-left" %></li>
-										<li><%= link_to 'Cancel', employee_experiences_path(@employee), :class=>"btn btn-danger  pull-left", :remote => true %></li>
+									  <li><%= f.submit  'Save', :class => "btn btn-success " %></li>
+										<li><%= link_to 'Cancel', employee_experiences_path(@employee), :class=>"btn btn-danger", :remote => true %></li>
 								  </ul>				                                                                                 																																						
 								<% end %>
 							</div><!--/.module-body-->
