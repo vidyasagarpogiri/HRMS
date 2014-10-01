@@ -43,8 +43,10 @@ class Employee < ActiveRecord::Base
 	validates :father_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
 	validates :blood_group_id, presence: true
 	validates :date_of_join, presence: true
-	#validates :avatar
-  
+
+	#validates :avatar, presence: true
+
+
 
 	
 	#after_create :add_leaves

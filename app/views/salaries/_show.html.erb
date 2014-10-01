@@ -3,9 +3,26 @@
 				<h3>Allowances Applicable</h3>
 			</div>
 			<div class="module-body">
-        <div class="panel-heading">
-           List of Allowances
-        </div>
+		<table class="table table-striped table-bordered table-condensed">
+     <thead>											      
+        <tr>
+          <th class="center">Gross Salary:</th>
+          <th>Bonus:</th>	
+          <th>Gratuity:</th>
+					<th>Medical Insurance</th>
+			   </tr>
+			</thead> 
+      <tbody>
+        <tr>               
+          <td class="center"><%= @salary.gross_salary %></td>
+          <td><%= @salary.bonus %></td>
+					<td><%= @salary.gratuity %></td>
+					<td><%= @salary.medical_insurance %></td>
+			   </tr>
+			</tbody>
+		</table>
+			<div>
+			<div class="module-body">
         <%= form_tag employee_salary_configure_path(@employee, @salary), :remote => true do %>
         <table class="table table-striped table-hover" id="sample-table-2">											      
            <tr>
