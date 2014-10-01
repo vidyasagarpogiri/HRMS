@@ -29,8 +29,10 @@
                                       <li ><a href="#leaves-history" data-toggle="tab">Leave History</a></li>
                                       <li><a href="#leave_policy" data-toggle="tab">Leave Policy</a></li>
                                       <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li> 
-                                      <li><a href="#leave_approavals" data-toggle="tab">Leave Approavals</a></li>  
-                                      <li><a href="#reportees" data-toggle="tab">Reportees</a></li>                                     
+                                     <% if current_user.employee.is_reporting_manager? %>
+                                     <li><a href="#leave_approavals" data-toggle="tab">Leave Approavals</a></li>  
+                                      <li><a href="#reportees" data-toggle="tab">Reportees</a></li>
+                                     <% end %>                                    
                                   </ul> 
                             
                                                                                                                            
@@ -73,12 +75,19 @@
                             </div><!--/.profile-tab-content -->                                                                                      
                           </div>
                         <!--/.profile-head-->
+                        <% else %>
+                        <div class="alert alert-info alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                          There is No Reporting Manager. Please contact HR.
+                        </div>  
                         <% end %>
                       <% else %>
+
                         <div class="alert alert-success alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                              You have No Leave Policies to display.
-                        </div>
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                          There is no leave policy configure to your Department. Please Contact HR.  
+                      </div>
+
                       <% end %>
                     </div>
                     <!--/.module-->
