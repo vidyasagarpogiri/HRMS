@@ -103,8 +103,8 @@ class LeaveHistoriesController < ApplicationController
 	end
 
   def employee_leaves
-    @employee = current_user.employee.department
-    @leaves = LeaveHistory.order('created_at DESC').page(params[:page]).per(2)
+    
+    @leaves = LeaveHistory.order('created_at DESC').all
    end
    
   def reported_employees
