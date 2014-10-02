@@ -10,15 +10,15 @@ class AllowancesController < ApplicationController
  end
  
  def new
-   @allowance = Allowance.new
+   @allowance = StaticAllowance.new
  end
  
  def create
   value = params[:value].to_f
   if params[:allowance_type].to_i == 1
-    @allowance = Allowance.create(:allowance_name => params[:allowance][:allowance_name], :value => value)
+    @allowance = StaticAllowance.create(:name => params[:allowance][:allowance_name], :percentage => value)
   else
-    @allowance = Allowance.create(:allowance_name => params[:allowance][:allowance_name], :allowance_value => value)  
+    @allowance = StaticAllowance.create(:name => params[:allowance][:allowance_name], :value => value)  
   end
   redirect_to allowances_path
  end
@@ -28,15 +28,14 @@ class AllowancesController < ApplicationController
  end
  
  def edit
-
  end
  
  def update
    value = params[:value].to_f
   if params[:allowance_type].to_i == 1
-    @allowance.update(:allowance_name => params[:allowance][:allowance_name], :value => value, :allowance_value => nil)
+    @allowance.update(:name => params[:allowance][:allowance_name], :percentage => value, :value => nil)
   else
-    @allowance.update(:allowance_name => params[:allowance][:allowance_name], :allowance_value => value, :value => nil)  
+    @allowance.update(:allowance_name => params[:allowance][:allowance_name], :percentage => value, :value => value)  
   end
   redirect_to allowances_path
  end
@@ -49,7 +48,7 @@ class AllowancesController < ApplicationController
  private
  
   def find_allowance
-    @allowance = Allowance.find(params[:id])
+    @allowance = StaticAllowance.find(params[:id])
   end
   
 end

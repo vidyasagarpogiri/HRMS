@@ -17,6 +17,6 @@ class StaticSalariesController < ApplicationController
     @static_salary = StaticSalary.find(s[0].to_i)
     @static_salary.update(:value => s[1][:value])
    end
-   redirect_to allowances_path
+   redirect_to static_allowances_path
    end
 end

@@ -1,4 +1,4 @@
- <div class="module-head" > <h3>Contact Info</h3></div>
+ <div class="module-head" > <h3>Contact Info</h3></div><br>
 						                  <% if current_user.department == Department::HR %>
                                   <% if @address1.nil? %>
                                     <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info" %>
