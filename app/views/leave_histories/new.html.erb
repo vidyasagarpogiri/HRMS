@@ -1,83 +1,71 @@
- <div class="wrapper">
-   <div class="container">
-     <div class="row">                
-        <div class="span12">
-          <div class="content">
-            <div class="module">
-              <div class="module-head">
-                <h3> Leave Form </h3>
-              </div>
-                      
-              <% if @employee.reporting_manager.present? %> 
- 
-    
-                  <% if total_balance_leaves(@employee) <= 0 %>
-                    <div class="alert alert-danger alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                       Your Have No remaining leaves Please confirm before apply
-                     </div>
-                   <% end %>
-                   
-    <div class="module-body">         
-      <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %> 
-                 
+<div class="wrapper">
+ <div class="container">
+   <div class="row">                
+    <div class="span12">
+      <div class="content">
+        <div class="module">
+          <div class="module-head">
+            <h3> Leave Form </h3>
+          </div>                    
+          <% if @employee.reporting_manager.present? %> 
+          <% if total_balance_leaves(@employee) <= 0 %>
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Your Have No remaining leaves Please confirm before apply
+            </div>
+          <% end %>                 
+          <div class="module-body">         
+           <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %>                          
+          <div class="control-group">
+          <label class="control-label" for="basicinput">Leave Type</label>                                              
+	            <div class="controls">
+               <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name,  { :class => "leave_type span8 form-control", :id => "disabledSelect" } %> 
+               <span class="help-block with-errors"></span>
+	            </div>
+          </div>
+
+          <div class="control-group">
+          <label class="control-label" for="basicinput">Reason</label>
+          <div class="controls">
             
-   <div class="control-group">
-	  <label class="control-label" for="basicinput">Leave Type</label>                                              
-			  <div class="controls">
-         <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name,  { :class => "leave_type span8 form-control", :id => "disabledSelect" } %> 
-         <span class="help-block with-errors"></span>
-			  </div>
-   </div>
-   
-  <div class="control-group">
-	  <label class="control-label" for="basicinput">Reason</label>
-	  <div class="controls">
-      
-       <%= f.text_area :reason,  :class =>"span8 form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %>  
-		   <span class="help-block with-errors"></span>   
-	  </div>
-  </div>                               	
+             <%= f.text_area :reason,  :class =>"span8 form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %>  
+             <span class="help-block with-errors"></span>   
+          </div>
+          </div>                               	
           <div class="row-fluid">
             <div class="span4">
               <div class="control-group">
-										<label class="control-label" for="basicinput">From</label>
-										<div class="controls">
-                     <%= f.text_field :from_date, :id => "idnm1", :class => "span8 form-control leave-form-date",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
+							  <label class="control-label" for="basicinput">From</label>
+							  <div class="controls">
+                 <%= f.text_field :from_date, :id => "idnm1", :class => "span8 form-control leave-form-date",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
+								   <span class="help-block with-errors"></span>   
+							  </div>
+						  </div>
             </div>
             <div class="span4">
               <div class="control-group">
-										<label class="control-label" for="basicinput">To</label>
-										<div class="controls">
-                     <%= f.text_field :to_date, :id => "idnm2", :class => "span8 form-control leave-to-date", :data => {:error => "Please Enter Valid Date"}, :required => true %>
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
+							  <label class="control-label" for="basicinput">To</label>
+							  <div class="controls">
+                 <%= f.text_field :to_date, :id => "idnm2", :class => "span8 form-control leave-to-date", :data => {:error => "Please Enter Valid Date"}, :required => true %>
+								   <span class="help-block with-errors"></span>   
+							  </div>
+						  </div>
             </div>
-          </div>                     
-        
-                                
-                                
-                
-              <button type="submit" class="btn btn-success"> Apply </button>
-            <% end %>
-                                                                     
-    <% else %>
-    
+          </div>                                                                                       
+          <button type="submit" class="btn btn-success"> Apply </button>
+          <% end %>                                                                   
+          <% else %>  
           <div class="alert alert-success alert-dismissable">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                You have no reporting manager. Please contact your Administrator
           </div>
-    <% end %>
-      </div>
-            </div>
+          <% end %>
+        </div>
           </div>
         </div>
-       </div>
       </div>
+     </div>
+    </div>
 </div>
 
  <script>
