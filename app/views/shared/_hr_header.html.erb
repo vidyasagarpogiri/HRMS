@@ -16,46 +16,41 @@
 							<ul class="dropdown-menu">
 								<li><a href="/">Employees</a></li>
 								<li><a href="#">Attendence</a></li>
-								<li><a href="/leave_histories">Leaves</a></li>
+								<li><a href="/employee_leaves">Employee Leaves</a></li>
 								<li><a href="#">Resignations</a></li>
 								<li><a href="#">Apprisals</a></li>
 								<li><a href="#">Employees Exit</a></li>
 								<li class="divider"></li>
-								<li><a href="/new_profile">New Employee</a></li>
-
-							
+								<li><a href="/new_profile">New Employee</a></li>						
 						  </ul>
 						</li>
 						
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Payroll <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><%= link_to 'FBA', allowances_path %></li>
+								<li><%= link_to 'FBA', static_allowances_path %></li>
 								<li><a href="#">Pay Slips</a></li>
 								<li><a>Bonus</a></li>
 								<li><a>Reimbursement</a></li>
 								<li><a href="#">Loans</a></li>
 						  </ul>
 						</li>
-	
-						
-						
+												
 						<li class="nav-user dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							  <% if @employee.present? && @employee.avatar_url.present? %>
-                                        <%= image_tag @employee.avatar_url,  :class=> "nav-avatar" %> 
-                                       <% else %>
-                                          <img src="/assets/user.png", class= "nav-avatar"> 
-                                    <% end %>
+                    <%= image_tag @employee.avatar_url,  :class=> "nav-avatar" %> 
+                   <% else %>
+                      <img src="/assets/user.png", class= "nav-avatar"> 
+                <% end %>
 						
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-									<li><%= link_to "My Profile", profile_path(current_user.employee) %></a></li>
-						
-								
+								<li><%= link_to "My Profile", profile_path(current_user.employee) %></a></li>
+								<li><a href="/leave_histories">My Leaves</a></li>								
 								<li class="divider"></li>
-							 <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-sign-out fa-fw" %></li>   
+							  <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-sign-out fa-fw" %></li>   
 							</ul>
 						</li>
 					</ul>

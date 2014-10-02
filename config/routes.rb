@@ -91,7 +91,7 @@ get 'applied_leaves' => "leave_histories#applied_leaves"
 post 'accept' => "leave_histories#accept"
 #post 'reject' => "leave_histories#reject"
 #get 'leaves' => "leave_histories#index"
-#get 'employee_leaves' => "departments#employee_leaves"
+get 'employee_leaves' => "leave_histories#employee_leaves"
  resources :employees do
 		resources :ff_statuses 
     resources :leaves
@@ -161,8 +161,8 @@ end
   
   # routes for indivisual allowances
   
+  resources :static_allowances
   resources :allowances
-   
   #resources for static_salaries
   resources :static_salaries
    

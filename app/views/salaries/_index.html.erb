@@ -11,8 +11,8 @@
           <td class="center"><%= @salary.gross_salary %></td>
          </tr>
          <tr>
-          <th>Bonus:</th>	
-          <th>Gratuity:</th>
+          <th>Bonus</th>	
+          <th>Gratuity</th>
 					<th>Medical Insurance</th>
 					<th>Basic</th>
 					
@@ -38,7 +38,7 @@
 					<td><%= @salary.basic_salary %></td>
 					
            <% if @salary.pf_apply == "true"%>
-				  <td><%= @salary.pf%></td>
+				  <td><%= @salary.pf %></td>
 				  <td><%= @salary.pf_contribution %></td>
 					<% end %>
 					<% if @salary.esic_apply == "true" %>
