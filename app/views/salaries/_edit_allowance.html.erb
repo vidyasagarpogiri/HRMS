@@ -16,17 +16,29 @@
 											   </tbody>				
 										     
                          <% @allownaces.each do |allowance, i| %>
+												 <% flag, present_allowance_value, present_allowance_percent = value(allowance.name, @employee_allowances) %>
 											   <%= fields_for "allowances[]", allowance do |f| %>   
 												   <tr>
                               <td><%= allowance.name %></td>
 														  <% if allowance.percentage.present? %>
-													        <td><%= allowance.percentage %></td>
-													       <td><%= allowance_value(allowance.percentage, @salary.basic_salary) %></td>
+														      <% if present_allowance_percent == allowance.percentage %>
+													          <td><%= allowance.percentage %></td>
+													          <td><%= allowance_value(allowance.percentage, @salary.basic_salary) %></td>
+													        <% else %>
+													          <td><%= allowance.percentage %><i class="icon-asterisk"></i></td>
+													          <td><%= allowance_value(allowance.percentage, @salary.basic_salary) %><i class="icon-asterisk"></i></td>
+													        <% end %>
 													      <% else %>
-													          <td>---</td>
-													         <td> <%=  allowance.value %></td>
+													          
+													            <td>---</td>
+													        <% if present_allowance_value == allowance.value %>
+													            <td> <%=  allowance.value %></td>
+													         <% else %>
+													            <td> <%=  allowance.value %><i class="icon-asterisk"></i></td>
+													         <% end %>
 													      <% end %>
-                              <% if @employee_allowances.include?(allowance) %>
+													 <!-- code for checking employee have allowances containing in -->
+                              <% if  flag == 1 %>
                                 <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = true, :class => "check_event" %></td>
                               <% else %>
                                 <td><%= check_box_tag 'allowance_ids[]', allowance.id , checked = false, :class => "check_event" %></td>
