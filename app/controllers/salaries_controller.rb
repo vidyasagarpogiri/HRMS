@@ -4,7 +4,7 @@ class SalariesController < ApplicationController
 
 	 before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view
-  before_action :salary_percentage, only: [:create, :configure_pf, :update]
+  before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]
 
   def new
 		@employee = Employee.find(params[:employee_id])
@@ -47,6 +47,15 @@ class SalariesController < ApplicationController
     @salary.update(params_salary)
 		@ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
 	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages))
+	  if params[:Pf] == "on" && params[:esic] == "on"
+      @salary.update(:pf_apply => "true", :esic_apply => "true", :pf => pf(@salary,@salary_percentages), :esic => esic(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages))
+	  elsif params[:Pf] == "on"
+	    @salary.update(:pf_apply => "true", :pf => pf(@salary,@salary_percentages), :esic_apply => "false", :pf_contribution => pf_contribution(@salary,@salary_percentages))
+	  elsif params[:esic] == "on" 
+	    @salary.update(:esic_apply => "true", :esic => esic(@salary,@salary_percentages), :pf_apply => "false", :esic_contribution => esic_contribution(@salary,@salary_percentages))
+	  else
+	      @salary.update(:pf => nil, :pf_apply => "false", :esic => nil, :esic_apply => "false")
+	  end
     
   end
 
@@ -136,8 +145,6 @@ class SalariesController < ApplicationController
 	    @salary.update(:pf_apply => "true", :pf => pf(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages))
 	  elsif params[:Esci] == "on" 
 	    @salary.update(:esic_apply => "true", :esic => esic(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages))
-	  else
-	    @salary.update(:pf_apply => nil, :esic_apply => nil )
 	  end
 	end
   

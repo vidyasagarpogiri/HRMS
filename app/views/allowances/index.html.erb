@@ -34,9 +34,9 @@
 													      <% end %>
                                <% if current_user.department == Department::HR %>
                                 <td>
-													      <ul class="navigation-btns" style="list-style: none;display:inline;">
-													     <li> <%= link_to 'Edit', edit_allowance_path(allowance.id), :class => "btn btn-success pull-left" %></li><li>
-																<%= link_to 'Delete', allowance_path(allowance.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger pull-left" %></li></ul> </td>
+													      <ul class="navigation-btns  pull-left" >
+													     <li> <%= link_to 'Edit', edit_allowance_path(allowance.id), :class => "btn btn-success" %></li><li>
+																<%= link_to 'Delete', allowance_path(allowance.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger" %></li></ul> </td>
 												      </tr>
                           <% end %>
 											      </tbody>
@@ -48,7 +48,7 @@
                           <%= link_to 'Configure Salary',new_static_salary_path, :remote => true %>
                           <div id="form_salary">
                           </div>
-                          <div class="salary_divisions">
+                          <div id="salary_divisions">
                               <%= render "static_salaries/index" %>
                           </div>
                        </div>

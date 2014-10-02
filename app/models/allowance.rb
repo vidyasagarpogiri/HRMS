@@ -5,3 +5,5 @@ class Allowance < ActiveRecord::Base
   validates :value, presence: true, numericality: true 	
   
 end
+
+

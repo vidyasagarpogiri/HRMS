@@ -20,8 +20,9 @@ border-radius :100% !important;
 margin-left:-25px !important;
 }
 
-.media-body ul li i{
+.media-body ul li i,.profile-details i,.media-body h4{
 color:#5ecad4;
+padding-right:5px;
 }
 
 .style .media-title , .style .module-head h3 {
@@ -57,4 +58,6 @@ color:red;
 list-style-type:none;
 margin: 0px !important;
 }
+
+
 

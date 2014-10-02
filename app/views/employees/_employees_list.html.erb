@@ -52,7 +52,8 @@
                                           </h5>
                                            <br>                                                                                              
                                           <ul style="list-style-type: none;">
-                                            <li><i class="icon-suitcase"></i> <%= employee.designation.designation_name if employee.designation.present? %></li>
+
+                                            <li><i class="icon-suitcase"></i> <%= employee.designation.designation_name if employee.designation.present? %> </li>
                                             <li><i class="icon-envelope"></i> <%= employee.user.email if employee.user.present? %></li>
                                             <li><i class="icon-phone"></i> <%= employee.mobile_number %></li>
                                             <li><i class="icon-map-marker"></i> <%= employee.job_location.address.city %></li>

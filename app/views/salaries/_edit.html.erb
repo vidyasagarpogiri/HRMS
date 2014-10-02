@@ -3,6 +3,87 @@
 				<h3>Salary Info</h3>
 			</div>
 			<div class="module-body">
-       <%= render 'salaries/form' %>
+        <%= @salary.errors.full_messages.first if @salary.errors.any? %>
+          <%= form_for ([@employee, @salary]), :html => {:class=> "edit-salary-form"}, :remote => true do |f| %>
+            <div class="control-group">
+              <label class="control-label" for="basicinput">Gross Salary </label>
+                 <div class="controls">
+                    <%= f.text_field :gross_salary,  :class=>"span8 form-control", :placeholder => "Enter Gross Salary", :data => {:error => "Please Enter valid Gross Salary value"}, :type => "number", :required => true %>   
+                    <div class="help-block with-errors"></div> 
+                  </div>
+             </div>
+                                        
+             <div class="control-group">
+               <label class="control-label" for="basicinput">Bonus</label>
+               <div class="controls">
+                 <%= f.text_field :bonus, :class=>"span8 form-control",:placeholder => "Enter Bonus ", :data => {:error => "Please Enter valid Bonus value"}, :type => "number", :required => true %>   
+                  <div class="help-block with-errors"></div>
+               </div>
+              </div>
+							<div class="control-group">
+                 <label class="control-label" for="basicinput">Gratuity</label>
+                    <div class="controls">
+                      <%= f.text_field :gratuity, :class=>"span8 form-control",:placeholder => "Enter Gratuity", :data => {:error => "Please Enter valid Gratuity value"}, :type => "number", :required => true %>   
+                      <div class="help-block with-errors"></div>
+                     </div>
+               </div>
+							 <div class="control-group">
+                 <label class="control-label" for="basicinput">Medical Insurance</label>
+                   <div class="controls">
+                     <%= f.text_field :medical_insurance, :class=>"span8 form-control",:placeholder => "Enter Medical Insurance", :data => {:error => "Please Enter valid Medical Insurance value"}, :type => "number", :required => true %>   
+                      <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="control-group">
+                   <label class="control-label" for="basicinput">Basic Salary</label> 
+                    <div class="controls"> 
+                      <%= f.text_field :basic_salary, :class=>"span6 form-control", :value => @salary.basic_salary, :disabled => true %>
+                    </div>
+                </div>   
+                
+                
+                   <div class="control-group">
+                   <% if @salary.pf_apply == "true" %>
+                   <label class="control-label" for="basicinput">PF(Applicable)</label> 
+                    <div class="controls">
+                      <%= f.text_field :pf, :class=>"span6 form-control", :value => pf(@salary,@salary_percentages), :disabled => true %>
+                      <input type="checkbox" name="Pf" class="span2" checked = "true">
+                    <% else %>
+                     <label class="control-label" for="basicinput">PF(Not Applicable)</label> 
+                    <div class="controls">
+                      <%= f.text_field :pf, :class=>"span6 form-control", :value => pf(@salary,@salary_percentages), :disabled => true %>
+                      <input type="checkbox" name="Pf" class="span2">
+                    <% end %>  
+                    </div>
+                </div> 
+                
+                   <div class="control-group">
+                   <% if @salary.esic_apply == "true" %>
+                   <label class="control-label" for="basicinput">ESIC(Applicable)</label> 
+                    <div class="controls"> 
+                      <%= f.text_field :esic, :class=>"span6 form-control", :value => esic(@salary,@salary_percentages), :disabled => true %>
+                      <input type="checkbox" name="esic" class="span2" checked = "true">  
+                    </div>
+                    <% else %>
+                       <label class="control-label" for="basicinput">ESIC(Not Applicable)</label> 
+                    <div class="controls"> 
+                      <%= f.text_field :esic, :class=>"span6 form-control", :value => esic(@salary,@salary_percentages), :disabled => true %>
+                      <input type="checkbox" name="esic" class="span2">  
+                    </div>
+                    <% end %>
+                </div>       
+       
+               
+               <ul class="navigation-btns" style="list-style:none;">
+								<li><button type="submit" class="btn btn-success">Save </button></li>
+								<!--<li><%#link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger ", :remote => true %></li>		-->				
+								</ul>
+         <% end %>    
+					  <script>
+			  $(function(){
+          $(".edit-salary-form").validator();
+
+         });  
+			</script>
       </div>
 </div>
