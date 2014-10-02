@@ -5,6 +5,14 @@
                 <div class="span12">
                     <div class="content">
                         <div class="module">
+                          <div class="module-body">
+                            <%= link_to 'Configure Salary',new_static_salary_path, :remote => true %>
+                            <div id="form_salary">
+                            </div>
+                            <div id="salary_divisions">
+                              <%= render "static_salaries/index" %>
+                            </div>
+                          </div>
                             <div class="module-head">
                                 <h3>Allowances List</h3>
                                 <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to "New Allowance",  new_static_allowance_path %></label>                                
@@ -44,14 +52,7 @@
 										      </table> 
                     <% end %>
                       </div>
-                       <div class="module-body">
-                          <%= link_to 'Configure Salary',new_static_salary_path, :remote => true %>
-                          <div id="form_salary">
-                          </div>
-                          <div id="salary_divisions">
-                              <%= render "static_salaries/index" %>
-                          </div>
-                       </div>
+                    
                     </div>
 
                  
