@@ -25,7 +25,6 @@ class DesignationsController < ApplicationController
   def update
     @designation = Designation.find(params[:id])
     @designation.update(designation_params)
-    
   end
   
   def edit     

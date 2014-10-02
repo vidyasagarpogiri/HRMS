@@ -84,17 +84,19 @@ class SalariesController < ApplicationController
 	def configure_allowance  
 			@employee= Employee.find(params[:employee_id])
 			@salary =  Salary.find(params[:salary_id])
-			@allowances = Allowance.all
+			@allowances = StaticAllowance.all
 	end
 	
 	def create_allowance
+	 
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
 		@allowance = @salary.gross_salary - @salary.basic_salary
 		@allowances = @salary.allowances
 		if params[:allowance_ids].present?
 		params[:allowance_ids].each do |a|
-		  SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)
+		  sa = StaticAllowance.find(a)
+		  Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value )
 		end
 		@other_allowance = allowance_total(@allowances, @salary)
 		@salary.update(:special_allowance => @other_allowance )
@@ -102,11 +104,13 @@ class SalariesController < ApplicationController
 		  @salary.update(:special_allowance => @allowance )
 		end
 	end
-
+	
+	
 	def edit_allowance
 			@employee= Employee.find(params[:employee_id])
 			@salary =  Salary.find(params[:salary_id])
-			@allownaces = Allowance.all
+			@allownaces = StaticAllowance.all
+			@employee_allowances = @salary.allowances 
 	end
 	
 	def update_allowance
@@ -114,11 +118,12 @@ class SalariesController < ApplicationController
 		@salary =  Salary.find(params[:salary_id])
 		@allowance = @salary.gross_salary - @salary.basic_salary
 		@allowances = @salary.allowances
-		allowances = SalariesAllowance.where(:salary_id => @salary.id)
+		allowances = Allowance.where(:salary_id => @salary.id)
 		allowances.destroy_all
 	  if params[:allowance_ids].present? 
 		  params[:allowance_ids].each do |a|	
-			  SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)	
+			  sa = StaticAllowance.find(a)
+		  Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value )
 		  end
 		@other_allowance = allowance_total(@allowances, @salary)
 		@salary.update(:special_allowance => @other_allowance )

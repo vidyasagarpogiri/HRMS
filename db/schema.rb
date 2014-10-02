@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930133706) do
+ActiveRecord::Schema.define(version: 20141001131927) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140930133706) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "allowance_value", limit: 24
+    t.integer  "salary_id"
   end
 
   create_table "blood_groups", force: true do |t|
@@ -332,6 +333,14 @@ ActiveRecord::Schema.define(version: 20140930133706) do
   end
 
   add_index "salary_increments", ["salary_id"], name: "index_salary_increments_on_salary_id", using: :btree
+
+  create_table "static_allowances", force: true do |t|
+    t.string   "name"
+    t.float    "percentage", limit: 24
+    t.float    "value",      limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "static_salaries", force: true do |t|
     t.string   "name"

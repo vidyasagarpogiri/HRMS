@@ -18,13 +18,13 @@
 									<% @allowances.each do |allowance, i| %>
 										<%= fields_for "allowances[]", allowance do |f| %>   
 											<tr>
-                          <td><%= allowance.allowance_name %></td>
-												<% if allowance.value.present? %>
-												  <td><%= allowance.value %></td>
-												  <td><%= allowance_value(allowance.value, @salary.basic_salary) %></td>
+                          <td><%= allowance.name %></td>
+												<% if allowance.percentage.present? %>
+												  <td><%= allowance.percentage %></td>
+												  <td><%= allowance_value(allowance.percentage, @salary.basic_salary) %></td>
 												<% else %>
 												  <td>---</td>
-												  <td> <%=  allowance.allowance_value %></td>
+												  <td> <%=  allowance.value %></td>
 												<% end %>
                            <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = false , :class => "check" %></td> 
 											</tr>
