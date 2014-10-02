@@ -24,13 +24,13 @@
                             <% @allowances.each do |allowance| %>
 											      <tbody>
 												      <tr>               
-													      <td><%= allowance.allowance_name %></td>
-													      <% if allowance.value.present? %>
-													      <td><%= allowance.value %>&#37</td>
+													      <td><%= allowance.name %></td>
+													      <% if allowance.percentage.present? %>
+													      <td><%= allowance.percentage %>&#37</td>
 													      <td>---</td>
 													      <% else %>
 													      <td>---</td>
-													      <td><%= allowance.allowance_value %></td>
+													      <td><%= allowance.value %></td>
 													      <% end %>
                                <% if current_user.department == Department::HR %>
                                 <td>

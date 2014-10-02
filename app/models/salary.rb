@@ -5,11 +5,8 @@ class Salary < ActiveRecord::Base
    
   #validates :ctc_fixed, presence: true
 	#validates :basic_salary, presence: true
-  
-  has_many :salaries_allowances
-  has_many :allowances, :through => :salaries_allowances
 
-
+  has_many :allowances
   #def ctc_sum
    # self.ctc_fixed = 
  # end
