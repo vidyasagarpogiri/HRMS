@@ -1,8 +1,8 @@
 class Allowance < ActiveRecord::Base
-  has_many :salaries_allowances
-  has_many :salaries, :through => :salaries_allowances
+  belongs_to :salary
+
   
-  validates :value, presence: true, numericality: true 	
+ # validates :value, presence: true, numericality: true 	
   
 end
 
