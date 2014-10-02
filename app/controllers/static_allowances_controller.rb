@@ -33,7 +33,7 @@ class StaticAllowancesController < ApplicationController
   if params[:allowance_type].to_i == 1
     @allowance.update(:name => params[:static_allowance][:name], :percentage => value, :value => nil)
   else
-    @allowance.update(:allowance_name => params[:static_allowance][:name], :percentage => value, :value => value)  
+    @allowance.update(:name => params[:static_allowance][:name], :percentage => nil, :value => value)  
   end
   redirect_to static_allowances_path
  end

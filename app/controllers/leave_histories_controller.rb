@@ -103,8 +103,9 @@ class LeaveHistoriesController < ApplicationController
 	end
 
   def employee_leaves
-   # @employee = current_user.employee.department
+
     @leaves = LeaveHistory.all
+
    end
    
   def reported_employees

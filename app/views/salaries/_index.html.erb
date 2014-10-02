@@ -5,48 +5,60 @@
   </div>
 	<div class="module-body">                                       
     <table class="table table-striped table-bordered table-condensed">
-     <thead>											      
+     <thead>
+        <tr>
+          <th>Particulars</th>
+          <th>Value(in rupees)</th>
+        </tr>											      
         <tr>
           <th>Gross Salary:</th>
-          <td class="center"><%= @salary.gross_salary %></td>
-         </tr>
-         <tr>
-          <th>Bonus</th>	
-          <th>Gratuity</th>
-					<th>Medical Insurance</th>
-					<th>Basic</th>
-					
-					<% if @salary.pf_apply == "true"%>
-					  <th>PF</th>
-					  <th>PF Contribution</th>
-					<% end %>
-					<% if @salary.esic_apply == "true"%>
-					   <th>ESIC</th>
-					   <th>ESIC Contribution</th>
-					<% end %>
-					<th>Special Allowance</th>
-					<th>CTC</th>
-					<th>Action</th>									      		
+          <td><%= @salary.gross_salary %></td>
         </tr>
-      </thead> 
-      <tbody>
-        <tr>               
-          <td class="center"><%= @salary.gross_salary %></td>
-          <td><%= @salary.bonus %></td>
-					<td><%= @salary.gratuity %></td>
+        <tr>
+          <th>Bonus:</th>
+          <td><%= @salary.bonus %></td>	
+        </tr>
+        <tr>
+          <th>Gratuity:</th>
+          <td><%= @salary.gratuity %></td>
+        </tr>
+        <tr>
+					<th>Medical Insurance</th>
 					<td><%= @salary.medical_insurance %></td>
+			  </tr>
+			  <tr>
+					<th>Basic</th>
 					<td><%= @salary.basic_salary %></td>
-					
-           <% if @salary.pf_apply == "true"%>
-				  <td><%= @salary.pf %></td>
-				  <td><%= @salary.pf_contribution %></td>
+				</tr>
+				<% if @salary.pf_apply == "true"%>
+				<tr>
+					<th>PF</th>
+					<td><%= @salary.pf %></td>
+				</tr>
+				<tr>
+					<th>PF Contribution</th>
+					<td><%= @salary.pf_contribution %></td>
+				</tr>
 					<% end %>
-					<% if @salary.esic_apply == "true" %>
-			    <td><%= @salary.esic %></td>
-			    <td><%= @salary.esic_contribution %></td>
+				<% if @salary.esic_apply == "true"%>
+				<tr>
+					<th>ESIC</th>
+					<td><%= @salary.esic %></td>
+				</tr>
+				<tr>
+					 <th>ESIC Contribution</th>
+					 <td><%= @salary.esic_contribution %></td>
+				</tr>
 					<% end %>
-					<td><%= @salary.ctc_fixed %></td>
+			  <tr>
+					<th>Special Allowance</th>
 					<td><%= @salary.special_allowance%></td>
+				</tr>
+				<tr>
+					<th>CTC</th>
+					<td><%= @salary.ctc_fixed %></td>
+				</tr>
+					<th>Action</th>									      		             	
           <td>
           <% if current_user.department == Department::HR %>  
             <ul class="navigation-btns pull-left">                                          
@@ -61,10 +73,9 @@
             <% end %>  
           </td>
         </tr>
-      </tbody>
+      </thead>
     </table>
-                                                     
-                  <!-- /.col-lg-6 (nested) -->
+  <!-- /.col-lg-6 (nested) -->
               <% else %>              
               <% if current_user.department == Department::HR %>
                   <%= render 'salaries/form' %>

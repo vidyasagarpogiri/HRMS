@@ -155,7 +155,7 @@ end
   end
   
   
- #-------------- method for caluclate other allowance ----------------
+ #-------------- sekhar - method for caluclate other allowance ----------------
   
   def allowance_total(allowances, salary)
       #raise allowances.inspect
@@ -168,14 +168,17 @@ end
         total += allowance.allowance_value
         end
       end
-      salary_gross = salary.basic_salary + total
+      salary_gross = salary.basic_salary + total + salary.pf + salary.esic
       remain_allowance = salary.gross_salary - salary_gross
   end
 #--------- End of allowance caluclation method ------------------  
 
 
-#-------------------- code for Basic, pf, pf contribution, esic, esic contribution --------------------
-  def basic(salary, percentages)
+#-------------------- sekhar - code for Basic, pf, pf contribution, esic, esic contribution --------------------
+
+# caluclation of basic salary of employee
+
+ def basic(salary, percentages)
       gross = salary.gross_salary
       basic_value = 0
       percentages.each do |per|
@@ -187,6 +190,9 @@ end
       basic_value
   end
   
+# end
+  
+# Caluclation of pf of employee  
   def pf(salary, percentages)
       basic = salary.basic_salary
       pf_value = 0
@@ -199,6 +205,10 @@ end
       pf_value
   end
   
+ # end
+ 
+ # Caluclation of pf contribution of employee 
+ 
   def pf_contribution(salary, percentages)
       basic = salary.basic_salary
       pf_contribution_value = 0
@@ -210,37 +220,43 @@ end
       end
       pf_contribution_value
   end
+# end
   
   def esic(salary, percentages)
-      gross = salary.gross_salary
+      #raise salary.inspect
+      basic = salary.basic_salary
       esic_value = 0
       percentages.each do |per|
         if per.name == "Esic"
-          esic_value = (gross * per.value)/100
+          esic_value = (basic * per.value)/100
           break
         end
       end
       esic_value
   end
   
+# end
+
+# Caluclation of esic contribution of employee
+  
   def esic_contribution(salary, percentages)
-      gross = salary.gross_salary
+      basic = salary.basic_salary
       esic_contribution_value = 0
       percentages.each do |per|
         if per.name == "Esic Contribution"
-          esic_contribution_value = (gross * per.value)/100
+          esic_contribution_value = (basic * per.value)/100
           break
         end
       end
       esic_contribution_value
   end
 
+# end
+
 #-------------- End of Code ------------------------------------------------------------------
   
-#----------------- code for allowances check ------------------------
+#----------------- sekhar - code for allowances check ------------------------
   def value(allowance, emp_allowances)
-  #raise "#{allowance.inspect} *********** #{emp_allowances.inspect}"
-  #raise allowance.inspect
    flag = present_allowance_value = present_allowance_percent = 0
    flag, present_allowance_value, present_allowance_percent = 1, emp_allowances.find_by_allowance_name(allowance).allowance_value, emp_allowances.find_by_allowance_name(allowance).value if emp_allowances.find_by_allowance_name(allowance).present?
    return flag, present_allowance_value, present_allowance_percent

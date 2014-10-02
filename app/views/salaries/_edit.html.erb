@@ -44,16 +44,16 @@
                 
                    <div class="control-group">
                    <% if @salary.pf_apply == "true" %>
-                   <label class="control-label" for="basicinput">PF(Applicable)</label> 
+                    <label class="control-label" for="basicinput">PF(Applicable)</label> 
                     <div class="controls">
                       <%= f.text_field :pf, :class=>"span6 form-control", :value => pf(@salary,@salary_percentages), :disabled => true %>
                       <input type="checkbox" name="Pf" class="span2" checked = "true">
-                    <% else %>
+                   <% else %>
                      <label class="control-label" for="basicinput">PF(Not Applicable)</label> 
-                    <div class="controls">
+                      <div class="controls">
                       <%= f.text_field :pf, :class=>"span6 form-control", :value => pf(@salary,@salary_percentages), :disabled => true %>
                       <input type="checkbox" name="Pf" class="span2">
-                    <% end %>  
+                   <% end %>  
                     </div>
                 </div> 
                 
