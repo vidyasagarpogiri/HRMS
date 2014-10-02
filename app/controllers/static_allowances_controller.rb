@@ -18,7 +18,7 @@ class StaticAllowancesController < ApplicationController
   else
     @allowance = StaticAllowance.create(:name => params[:static_allowance][:name], :value => value)  
   end
-  redirect_to allowances_path
+  redirect_to static_allowances_path
  end
  
  def show
@@ -40,7 +40,7 @@ class StaticAllowancesController < ApplicationController
 	
 	def destroy
 	@allowance.destroy
-	redirect_to allowances_path
+	redirect_to static_allowances_path
 	end
  
  private
