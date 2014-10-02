@@ -48,6 +48,8 @@
 											    <% end %> 
 								  <%= hidden_field_tag('gross_sal',@salary.gross_salary) %>
                   <%= hidden_field_tag('basic_sal',@salary.basic_salary) %>
+                  <%= hidden_field_tag('pf_val',@salary.pf) %>
+                  <%= hidden_field_tag('esic_val',@salary.esic) %>
 											   
                                     
                       </tbody>          
@@ -70,6 +72,8 @@ $(function(){
 
     var gross_salary = 0.0;
    var gross = parseFloat($("#gross_sal").val());
+   var pf = ($("#pf_val").val());
+   var esic = ($("#esic_val").val());
     var basic = $("#basic_sal").val();
   $(".check_event").click(function(){
     gross_check();
@@ -81,7 +85,7 @@ $(function(){
     for(var i=0;i<$("input:checkbox:checked").parent().parent().length;i++){
      count += parseFloat($($($("input:checkbox:checked")[i]).parent().parent().find("td")[2]).text());
     }
-    gross_salary = parseFloat(basic)+count;
+    gross_salary = parseFloat(basic)+parseFloat(pf)+parseFloat(esic)+count;
    
     if(gross_salary > gross)
     {
