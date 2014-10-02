@@ -161,8 +161,8 @@ end
   
   # routes for indivisual allowances
   
+  resources :static_allowances
   resources :allowances
-   
   #resources for static_salaries
   resources :static_salaries
    

@@ -237,7 +237,15 @@ end
 
 #-------------- End of Code ------------------------------------------------------------------
   
-  
+#----------------- code for allowances check ------------------------
+  def value(allowance, emp_allowances)
+  #raise "#{allowance.inspect} *********** #{emp_allowances.inspect}"
+  #raise allowance.inspect
+   flag = present_allowance_value = present_allowance_percent = 0
+   flag, present_allowance_value, present_allowance_percent = 1, emp_allowances.find_by_allowance_name(allowance).allowance_value, emp_allowances.find_by_allowance_name(allowance).value if emp_allowances.find_by_allowance_name(allowance).present?
+   return flag, present_allowance_value, present_allowance_percent
+  end
+#----------------- end of code -------------------------------------
   
   
   
