@@ -224,11 +224,11 @@ end
   
   def esic(salary, percentages)
       #raise salary.inspect
-      basic = salary.basic_salary
+      gross = salary.gross_salary
       esic_value = 0
       percentages.each do |per|
         if per.name == "Esic"
-          esic_value = (basic * per.value)/100
+          esic_value = (gross * per.value)/100
           break
         end
       end
@@ -240,11 +240,11 @@ end
 # Caluclation of esic contribution of employee
   
   def esic_contribution(salary, percentages)
-      basic = salary.basic_salary
+      gross = salary.gross_salary
       esic_contribution_value = 0
       percentages.each do |per|
         if per.name == "Esic Contribution"
-          esic_contribution_value = (basic * per.value)/100
+          esic_contribution_value = (gross * per.value)/100
           break
         end
       end
