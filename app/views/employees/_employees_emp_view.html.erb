@@ -12,7 +12,7 @@
                             </div>
                             <div class="module-body " style="background-color:#eee">
                               <% divscount = 0 %>
-                              <% @employees.each do |employee| %>
+                              <% @total_employees.each do |employee| %>
                               <%divscount = divscount+1 %>
                               <% if divscount%2 == 1 %>
                               <div class="row-fluid">
@@ -67,7 +67,7 @@
                                
                                
                                    <div class="pagination pagination-centered">                      
-                                        <%= paginate @employees, :remote => true %>                       
+                                        <%= paginate @total_employees, :remote => true %>                       
                                     </div>	
                                 </div>
                             </div>
