@@ -95,7 +95,7 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
  resources :employees do
 		resources :ff_statuses 
     resources :leaves
-	
+	  resources :emergency_contacts
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'

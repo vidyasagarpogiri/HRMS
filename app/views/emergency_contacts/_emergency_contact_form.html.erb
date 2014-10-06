@@ -1,0 +1,57 @@
+			<div class="module">
+				<div class="module-head">
+					<h3>Emergency Contact Info</h3>
+						</div>
+							<div class="module-body">
+							
+							<%= form_for ([@employee, @emergency]), :remote => true,  :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+							
+			         <div class="control-group">
+                  <label class="control-label" for="basicinput">Name Of person</label>
+                      <div class="controls">
+                        <%= f.text_field :name, :class => "span8 form-control", :placeholder =>"Enter name", :data => {:error => "Please Enter Degree"}, :required => true %>  
+                        <span class="help-block with-errors"></span>
+                      </div>
+								</div>
+									        
+              <div class="control-group">
+                  <label class="control-label" for="basicinput">Relation ship with the person</label>
+                      <div class="controls">
+                        <%= f.text_field :relation, :class => "span8 form-control", :placeholder =>"Enter relationship", :data => {:error => "Please Enter University"}, :required => true %>
+                        <span class="help-block with-errors"></span>
+                      </div>
+								</div>
+	
+	
+		<div class="control-group">
+										<label class="control-label" for="basicinput">Mobile 1</label>
+										<div class="controls">
+                     <%= f.text_field :mobile1, :class => "span8  form-control", :placeholder => "Enter mobile number", :data => {:error => "Please Enter mobile number"}, :required => true %> 
+											 <span class="help-block with-errors"></span>   
+										</div>
+									</div>		 		
+	
+		<div class="control-group">
+										<label class="control-label" for="basicinput">Mobile2 </label>
+										<div class="controls">
+                     <%= f.text_field :mobile2, :class => "span8  form-control", :id => "basicinput", :placeholder => "Enter mobile number",  :data => {:error => "Please mobile number"},:required => true %>                  
+											 <span class="help-block with-errors"></span>   
+										</div>
+									</div>
+								
+									<ul class="navigation-btns pull-left">
+									  <li><%= f.submit  'Save', :class => "btn btn-success" %></li>
+										<li><%= link_to 'Cancel', employee_emergency_contacts_path(@employee), :class=>"btn btn-danger ", :remote => true %></li>									
+								  </ul>		
+										<% end %>
+							</div><!--/.module-body-->
+						</div><!--/.module-->
+
+
+<script>
+  $(function(){
+   $("#new_education").validator();
+  });
+</script>
+
+    
