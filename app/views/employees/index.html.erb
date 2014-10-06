@@ -1,3 +1,8 @@
-<div class="list_of_employees">
-  <%= render "employees_list" %>
-</div>
+<% if current_user.department == Department::HR %>
+  <div class="list_of_employees">
+    <%= render "employees_list" %>
+  </div>
+<% else %>
+  <%= render "employees_emp_view" %>
+<% end %>
+
