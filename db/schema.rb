@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001131927) do
+ActiveRecord::Schema.define(version: 20141006092220) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -103,6 +103,16 @@ ActiveRecord::Schema.define(version: 20141001131927) do
   end
 
   add_index "email_ettiquities", ["employee_id"], name: "index_email_ettiquities_on_employee_id", using: :btree
+
+  create_table "emergency_contacts", force: true do |t|
+    t.string   "name"
+    t.string   "relation"
+    t.string   "mobile1"
+    t.string   "mobile2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "employee_id"
+  end
 
   create_table "employee_attachments", force: true do |t|
     t.integer  "employee_id"

@@ -11,6 +11,7 @@
                                 <ul class="profile-tab nav nav-tabs">
                                     <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
                                     <li><a href="#contact" data-toggle="tab">Contact</a></li>
+                                    <li><a href="#emergency" data-toggle="tab">Emergency Contact</a></li>
                                     <li><a href="#education" data-toggle="tab">Education</a></li>
                                     <li><a href="#experience" data-toggle="tab">Experience</a></li>
                                     <li><a href="#salary" data-toggle="tab">Salary</a></li>
@@ -31,6 +32,11 @@
                                     <div class="tab-pane fade" id="contact">
                                       <%= render "addresses/index" %>   
                                     </div><!--/.tab-pane-list--> 
+                                    
+                          <!--emergency contact Panel-->
+                                    <div class="tab-pane fade" id="emergency">
+                                    <%= render "emergency_contacts/index" %>
+                                    </div>
                           <!--education PANEL-->   
                                       <div class="tab-pane fade " id="education"> 
                                           <%= render "educations/index" %>  

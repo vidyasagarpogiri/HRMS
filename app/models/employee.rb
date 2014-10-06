@@ -32,6 +32,7 @@ class Employee < ActiveRecord::Base
  	has_one :leave
   has_many :leave_histories  
   has_many :educations
+  has_many :emergency_contacts
   
   
 	validates :employee_id, presence: true 
