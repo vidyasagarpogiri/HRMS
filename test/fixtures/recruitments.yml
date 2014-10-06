@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  jobcode: MyString
+  title: MyString
+  description: MyText
+  link: MyText
+
+two:
+  jobcode: MyString
+  title: MyString
+  description: MyText
+  link: MyText

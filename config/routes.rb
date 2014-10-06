@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  resources :recruitments
 
   resources :events
   get 'getAllEmployees' => 'employees#getAllEmployees'  

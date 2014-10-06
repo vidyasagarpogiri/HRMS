@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006092220) do
+ActiveRecord::Schema.define(version: 20141006141645) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -278,6 +278,15 @@ ActiveRecord::Schema.define(version: 20141006092220) do
 
   create_table "qualifications", force: true do |t|
     t.string   "qualification_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recruitments", force: true do |t|
+    t.string   "jobcode"
+    t.string   "title"
+    t.text     "description"
+    t.text     "link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
