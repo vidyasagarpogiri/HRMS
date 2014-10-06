@@ -5,6 +5,6 @@ class Event < ActiveRecord::Base
   has_many :departments, :through => :holiday_calenders
 
 
-  validates :event_name, uniqueness: true
+  validates :event_name, uniqueness: { case_sensitive: false }
   validates :event_date, uniqueness: true
 end
