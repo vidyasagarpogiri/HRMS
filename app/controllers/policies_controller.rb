@@ -45,7 +45,7 @@ class PoliciesController < ApplicationController
   private
   
   def policy_params
-     params.require(:policy).permit(:title, :details, :document) 
+     params.require(:policy).permit(:title, :details, :document, :bootsy_image_gallery_id) 
   end
   
 end 

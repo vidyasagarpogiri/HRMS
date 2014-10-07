@@ -28,7 +28,7 @@
             <tbody>
 	            <tr>               
 		            <td class="center"><%= policy.title %></td>
-		            <td><%= policy.details %></td>
+		            <td><%= raw policy.details %></td>
 		            <td><%= link_to "Download", policy.document_url, :target => "/blank" %></td>
                <% if current_user.department == Department::HR %>
 		            <td> 
