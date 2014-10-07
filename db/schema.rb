@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20141007062118) do
-
+ActiveRecord::Schema.define(version: 20141007085723) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -36,6 +34,14 @@ ActiveRecord::Schema.define(version: 20141007062118) do
     t.datetime "updated_at"
     t.float    "allowance_value", limit: 24
     t.integer  "salary_id"
+  end
+
+  create_table "amzur_events", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "held_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "announcements", force: true do |t|

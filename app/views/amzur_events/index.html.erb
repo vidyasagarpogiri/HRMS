@@ -1,0 +1,67 @@
+<div class="wrapper">
+ <div class="container">
+	<div class="row">
+
+  <div class="span12">
+		<div class="content">
+
+			<div class="module">
+				<div class="module-head">
+					<h3>Events Details</h3>
+					<% if current_user.department == Department::HR %>  
+					<label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-edit"></i></a> <%= link_to 'Add New Event',  new_amzur_event_path %></label>
+					<% end %>
+						</div>
+						
+						 <% if @amzurevent.present? %>
+							<div class="module-body">
+							
+							 
+                                                                                                                     
+                    <table class="table table-striped table-hover" id="sample-table-2">     
+                        <thead>											      
+	                        <tr>
+		                        <th>Title</th>
+		                        <th>Description</th>
+		                        <th>Date</th>											            									      		
+	                        </tr>
+                        </thead>
+                         <% @amzurevent.each do |amzurevent| %>
+                        <tbody>
+	                        <tr>               
+		                        <td class="center"><%= amzurevent.title %></td>
+		                        <td><%= amzurevent.description %></td>
+		                        <td><%= format_date (amzurevent.held_on) %></td>
+		                        <% if current_user.department == Department::HR %>
+		                        <td> 
+		                           <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
+                           <li><%= link_to 'Edit', edit_amzur_event_path(amzurevent), :class => "btn btn-success " %></li>
+                           <li><%= link_to "Delete", amzur_event_path(amzurevent.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+                               </ul>
+                             </td>
+                           <% end %>
+	                        </tr>
+                        </tbody>
+                        <% end %>
+                    </table>                                                              
+                                            
+                              
+                <% else %>
+   
+                      <div class="alert alert-success alert-dismissable">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            No Events to display.
+                     </div>
+              <% end %>
+      
+	           
+							</div><!--/.module-body-->
+						</div><!--/.module-->
+					</div><!--/.content-->
+				</div><!--/.span12-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+	</div><!--/.wrapper-->
+	
+
+-
