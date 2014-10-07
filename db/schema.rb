@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20141007062118) do
+
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -297,6 +299,7 @@ ActiveRecord::Schema.define(version: 20141007062118) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.string   "file"
   end
 
   create_table "reporting_managers", force: true do |t|

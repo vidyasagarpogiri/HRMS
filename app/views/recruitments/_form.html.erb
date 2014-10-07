@@ -57,6 +57,13 @@
                      <span class="help-block with-errors"></span>
 										</div>
 									</div>
+									<div class="control-group">
+										<label class="control-label" for="basicinput">Upload Image</label>                                         
+										<div class="controls">
+                      <%= f.file_field :file, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+                     <span class="help-block with-errors"></span>
+										</div>
+									</div>
 			
 								 <ul class="navigation-btns pull-left" >
 									  <li><button type="submit" class="btn btn-success">Save</button></li>
