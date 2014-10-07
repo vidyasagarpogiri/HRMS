@@ -1,6 +1,0 @@
-module EducationsHelper
-
-def getQualificationList
-    @quslifications = Qualification.all
-  end
-end
