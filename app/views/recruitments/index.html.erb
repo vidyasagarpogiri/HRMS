@@ -20,7 +20,8 @@
 		            <th>Job Code</th>
 		            <th>Title</th>
 		            <th>Description</th>
-		            <th>Link</th>															            									      		
+		            <th>Link</th>
+		            <th>Status</th>														            									      		
 	            </tr>
             </thead>
              <% @recruitments.each do |recruitment| %>
@@ -30,6 +31,7 @@
 		            <td><%= recruitment.title %></td>
 		            <td><%= recruitment.description %></td>
 		            <td><%= recruitment.link %></td>
+		            <td><%= recruitment.status %></td>
                <% if current_user.department == Department::HR %>
 		            <td> 
 		               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
