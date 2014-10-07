@@ -8,7 +8,9 @@
 			<div class="module">
 				<div class="module-head">
 					<h3>Recruitment Details</h3>
+					<% if current_user.department == Department::HR %> 
 					<label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-edit"></i></a> <%= link_to 'Add New Job',  new_recruitment_path %></label>
+					<% end %>
 						</div>
 							<div class="module-body">
 							
