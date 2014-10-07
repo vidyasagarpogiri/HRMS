@@ -17,7 +17,7 @@
 			         <div class="control-group">
                   <label class="control-label" for="basicinput">Job Code</label>
                       <div class="controls">
-                        <%= f.text_field :jobcode, :class => "span8 form-control", :placeholder =>"Enter job code", :data => {:error => "Please enter job code"}, :required => true %>
+                        <%= f.text_field :jobcode, :class => "span8 form-control", :placeholder =>"Enter Job Code", :data => {:error => "Please Enter Job Code"}, :required => true %>
                          <span class="help-block with-errors"></span>
                       </div>
 								</div>
@@ -25,7 +25,7 @@
 <div class="control-group">
                   <label class="control-label" for="basicinput">Job Title</label>
                       <div class="controls">
-                        <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Job Title", :data => {:error => "Please Enter job Title"}, :required => true, :pattern => '[a-zA-Z/s ]*' %>
+                        <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Job Title", :data => {:error => "Please Enter Job Title"}, :required => true, :pattern => '[a-zA-Z/s ]*' %>
                          <span class="help-block with-errors"></span>
                       </div>
 								</div>
@@ -34,7 +34,7 @@
 		<div class="control-group">
 										<label class="control-label" for="basicinput">Description</label>
 										<div class="controls">
-                     <%= f.text_area :description, :class => "span8  form-control", :id => "basicinput", :data => {:error => "Please Enter Job description"}, :required => true %>
+                     <%= f.text_area :description, :class => "span8  form-control", :id => "basicinput", :placeholder =>"Enter Job Description",:data => {:error => "Please Enter Job Description"}, :required => true %>
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
@@ -45,7 +45,7 @@
 		<div class="control-group">
 										<label class="control-label" for="basicinput">Link </label>
 										<div class="controls">
-                     <%= f.text_area :link, :class => "span8  form-control", :id => "basicinput", :data => {:error => "Please paste the url"}, :required => true %>
+                     <%= f.text_area :link, :class => "span8  form-control", :id => "basicinput", :placeholder =>"Enter Job URL",:data => {:error => "Please Enter Job URL"}, :required => true %>
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
