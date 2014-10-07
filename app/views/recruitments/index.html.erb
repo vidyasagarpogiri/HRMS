@@ -21,7 +21,8 @@
 		            <th>Title</th>
 		            <th>Description</th>
 		            <th>Link</th>
-		            <th>Status</th>														            									      		
+		            <th>Status</th>	
+		            <th>Attachment</th>													            									      		
 	            </tr>
             </thead>
              <% @recruitments.each do |recruitment| %>
@@ -32,6 +33,7 @@
 		            <td><%= recruitment.description %></td>
 		            <td><%= recruitment.link %></td>
 		            <td><%= recruitment.status %></td>
+		            <td><%= link_to "Download", recruitment.file_url, :target => "/blank" %></td>
                <% if current_user.department == Department::HR %>
 		            <td> 
 		               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
