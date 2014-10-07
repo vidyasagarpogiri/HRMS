@@ -69,6 +69,11 @@ gem 'daemon-spawn'
 
 
 gem 'remotipart', '~> 1.2'
+
+
+#use for bootsy wysiwig editor
+gem 'bootsy'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
