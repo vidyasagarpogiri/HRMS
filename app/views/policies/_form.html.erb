@@ -1,0 +1,58 @@
+<div class="wrapper">
+ <div class="container">
+	<div class="row">
+
+  <div class="span12">
+		<div class="content">
+
+			<div class="module">
+				<div class="module-head">
+					<h3>Policy Details</h3>
+						</div>
+							<div class="module-body">
+							
+							
+	            <%= form_for @policy,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+							
+			         <div class="control-group">
+                  <label class="control-label" for="basicinput">Policy title</label>
+                      <div class="controls">
+                        <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Policy Title", :data => {:error => "Please Enter Policy Title"}, :required => true %>
+                         <span class="help-block with-errors"></span>
+                      </div>
+								</div>
+									        
+<div class="control-group">
+                  <label class="control-label" for="basicinput">Details</label>
+                      <div class="controls">
+                        <%= f.text_field :details, :class => "span8 form-control", :placeholder =>"Enter Policy Details", :data => {:error => "Please Enter Policy  Details"}, :required => true %>
+                         <span class="help-block with-errors"></span>
+                      </div>
+								</div>
+	
+									<div class="control-group">
+										<label class="control-label" for="basicinput">Upload Image</label>                                         
+										<div class="controls">
+                      <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+                     <span class="help-block with-errors"></span>
+										</div>
+									</div>
+			
+								 <ul class="navigation-btns pull-left" >
+									  <li><button type="submit" class="btn btn-success">Save</button></li>
+									  <li><%= link_to "Cancel", policies_path,:class => "btn btn-danger" %></li>
+									</ul>	
+							
+												 
+											
+										<% end %>
+							</div><!--/.module-body-->
+						</div><!--/.module-->
+					</div><!--/.content-->
+				</div><!--/.span12-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+	</div><!--/.wrapper-->
+	
+
+

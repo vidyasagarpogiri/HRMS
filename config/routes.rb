@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
- 
+
+  resources :policies
+  
   resources :amzur_events
 
   resources :announcements
