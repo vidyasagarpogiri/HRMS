@@ -32,6 +32,7 @@ class Employee < ActiveRecord::Base
  	has_one :leave
   has_many :leave_histories  
   has_many :educations
+  has_many :emergency_contacts
   
   
 	validates :employee_id, presence: true 
@@ -43,15 +44,11 @@ class Employee < ActiveRecord::Base
 	validates :father_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
 	validates :blood_group_id, presence: true
 	validates :date_of_join, presence: true
-<<<<<<< HEAD
-	#validates :avatar
-=======
 
 
 	#validates :avatar, presence: true
 
->>>>>>> 07286150de276d23e487f66d7bb1d90b079c3163
-  
+
 
 	
 	#after_create :add_leaves

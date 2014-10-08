@@ -2,15 +2,13 @@ class SalariesController < ApplicationController
 	include ApplicationHelper
   # layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update, :configure_allowance]
 
-	 before_filter :hr_view,  only: ["new", "edit"]
+	before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view
   before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]
 
   def new
 		@employee = Employee.find(params[:employee_id])
     @salary = Salary.new
-    #@salary_percentages = StaticSalary.all
-    
   end
   
   def index
@@ -34,7 +32,8 @@ class SalariesController < ApplicationController
 	  @salary_percentages = StaticSalary.all
     @employee.update(:salary_id => @salary.id)
 	  @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
-	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages))
+	  special_allowance = @salary.gross_salary.to_f - basic(@salary,@salary_percentages)
+	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages), :special_allowance => special_allowance)
 	  
     end
 
@@ -48,18 +47,24 @@ class SalariesController < ApplicationController
     @salary = Salary.find(params[:id])
     @allowances = @salary.allowances
     @salary.update(params_salary)
-		@ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
-	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages))
+	
 	  if params[:Pf] == "on" && params[:esic] == "on"
       @salary.update(:pf_apply => "true", :esic_apply => "true", :pf => pf(@salary,@salary_percentages), :esic => esic(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages))
 	  elsif params[:Pf] == "on"
-	    @salary.update(:pf_apply => "true", :pf => pf(@salary,@salary_percentages), :esic_apply => "false", :pf_contribution => pf_contribution(@salary,@salary_percentages))
+	    @salary.update(:pf_apply => "true", :pf => pf(@salary,@salary_percentages), :esic_apply => "false", :pf_contribution => pf_contribution(@salary,@salary_percentages), :esic => 0.0, :esic_contribution => 0.0)
 	  elsif params[:esic] == "on" 
-	    @salary.update(:esic_apply => "true", :esic => esic(@salary,@salary_percentages), :pf_apply => "false", :esic_contribution => esic_contribution(@salary,@salary_percentages))
+	    @salary.update(:esic_apply => "true", :esic => esic(@salary,@salary_percentages), :pf_apply => "false", :esic_contribution => esic_contribution(@salary,@salary_percentages), :pf => 0.0, :pf_contribution => 0.0)
 	  else
-	      @salary.update(:pf => nil, :pf_apply => "false", :esic => nil, :esic_apply => "false")
+	      @salary.update(:pf => 0.0, :pf_contribution => 0.0, :pf_apply => "false", :esic => 0.0, :esic_contribution => 0.0, :esic_apply => "false")
 	  end
-    
+     @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f + @salary.pf_contribution.to_f + @salary.esic_contribution 
+     
+    if @allowances.present?
+      special_allowance = allowance_total(@allowances, @salary)
+    else
+		  special_allowance = @salary.gross_salary.to_f - ( basic(@salary,@salary_percentages) + @salary.esic + @salary.pf)
+		end
+		 @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages), :special_allowance => special_allowance)
   end
 
   def show
@@ -119,7 +124,7 @@ class SalariesController < ApplicationController
 	def update_allowance
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
-		@allowance = @salary.gross_salary - @salary.basic_salary
+		#@allowance = @salary.gross_salary - @salary.basic_salary
 		@allowances = @salary.allowances
 		allowances = Allowance.where(:salary_id => @salary.id)
 		allowances.destroy_all
@@ -131,7 +136,8 @@ class SalariesController < ApplicationController
 		@other_allowance = allowance_total(@allowances, @salary)
 		@salary.update(:special_allowance => @other_allowance )
 		else
-		  @salary.update(:special_allowance => @allowance )
+		  special_allowance = @salary.gross_salary.to_f - (@salary.basic_salary + @salary.esic + @salary.pf )
+		  @salary.update(:special_allowance => special_allowance)
 		end
 	end
 	def add_allowance
@@ -151,10 +157,15 @@ class SalariesController < ApplicationController
 	  if params[:Pf] == "on" && params[:Esci] == "on"
       @salary.update(:pf_apply => "true", :esic_apply => "true", :pf => pf(@salary,@salary_percentages), :esic => esic(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages))
 	  elsif params[:Pf] == "on"
-	    @salary.update(:pf_apply => "true", :pf => pf(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages))
+	    @salary.update(:pf_apply => "true", :pf => pf(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages), :esic => 0.0, :esic_contribution => 0.0)
 	  elsif params[:Esci] == "on" 
-	    @salary.update(:esic_apply => "true", :esic => esic(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages))
+	    @salary.update(:esic_apply => "true", :esic => esic(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages), :pf => 0.0, :pf_contribution => 0.0)
+	  else
+	      @salary.update(:pf => 0.0, :pf_contribution => 0.0, :pf_apply => "false", :esic => 0.0, :esic_contribution => 0.0, :esic_apply => "false")
 	  end
+	   @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f + @salary.pf_contribution.to_f + @salary.esic_contribution 
+    special_allowance = @salary.gross_salary.to_f - ( basic(@salary,@salary_percentages) + @salary.esic + @salary.pf )
+	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages), :special_allowance => special_allowance)
 	end
   
   private

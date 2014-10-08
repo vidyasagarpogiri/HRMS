@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
 
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+  resources :policies
+  
+  resources :amzur_events
+
+  resources :announcements
+
+  resources :recruitments
 
   resources :events
   get 'getAllEmployees' => 'employees#getAllEmployees'  
@@ -95,7 +103,7 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
  resources :employees do
 		resources :ff_statuses 
     resources :leaves
-	
+	  resources :emergency_contacts
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'

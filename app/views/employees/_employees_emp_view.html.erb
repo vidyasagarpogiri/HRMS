@@ -1,0 +1,95 @@
+
+          <div class="wrapper">
+		        <div class="container">
+			        <div class="row">                                             
+                <div class="span12">
+                    <div class="content">
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>All Members
+                                <%= current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard
+                                </h3>
+                            </div>
+                            <div class="module-body " style="background-color:#eee">
+                              <% divscount = 0 %>
+                              <% @total_employees.each do |employee| %>
+                              <%divscount = divscount+1 %>
+                              <% if divscount%2 == 1 %>
+                              <div class="row-fluid">
+                              <% end %>
+                                <div class="span6" style="border-radius:4px; background-color:#fff">
+                                  <div class="style">
+                                    <div class=" module-head">
+                                      <h3><%= employee.full_name %>'s Profile
+                                      <!--<%# current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard -->
+                                      <hr>
+                                      </h3>                                                                                  
+                                    </div>
+                                  </div>
+                                  <div class="media user">
+                                      <a class="media-avatar pull-left" href="#">                                               
+	                                      <% if employee.present? && employee.avatar_url.present? %>
+                                          <%= image_tag employee.avatar_url %> 
+                                         <% else %>
+                                          <% if employee.gender == "male" %>
+                                              <img src="/assets/user.png"> 
+                                          <% else %>
+                                            <img src="/assets/1.jpg" >
+                                          <% end %>
+                                        <% end %>                                               
+                                      </a>
+                                      <div class="media-body">
+                                        <div class="style">
+                                          <h5 class="media-title">
+                                                <%= link_to employee.full_name , "#employeeProfileModal", :class => "employee-popup",  :url => profile_employee_path(employee), :iid => employee.id,  "data-toggle" => "modal" , :id => "employee_#{employee.id}" %>
+                                             
+                                          </h5>
+                                           <br>                                                                                              
+                                          <ul style="list-style-type: none;">
+                                            <li><i class="icon-suitcase"></i> Designataion</li>
+                                            <li><i class="icon-envelope"></i> <%= employee.user.email if employee.user.present? %></li>
+                                            <li><i class="icon-phone"></i> <%= employee.mobile_number %></li>
+                                            <li><i class="icon-map-marker"></i> <%= employee.job_location.address.city %></li>
+                                          </ul> 
+                                       </div>                                         
+                                     </div><!--/.media-body-->     
+                                  </div>
+                              </div>
+                             
+                       <% if divscount%2 == 0 %>
+                          </div><br>
+                     <% end %>
+                    <% end %>        
+                                                       
+                          <% if divscount%2 == 1 %>
+                          </div><br>
+                     <% end %>
+                               
+                               
+                                   <div class="pagination pagination-centered">                      
+                                        <%= paginate @total_employees, :remote => true %>                       
+                                    </div>	
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/.content-->                    
+                </div><!--/.span9-->                
+             </div><!--/.row-->
+		      </div><!--/.container-->
+	      </div><!--/.wrapper-->
+	      
+	      
+	          <script type="text/javascript">
+      $('.employee-popup').click(function(){ 
+          var employee_id = $(this).attr("iid");
+          var url = $(this).attr("url");
+          $.ajax({
+            type: "GET",
+            url: url,
+            data: {employee_id: employee_id},
+            dataType: "script"
+            });
+      });
+    </script>
+
+  

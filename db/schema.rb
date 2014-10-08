@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001131927) do
+
+ActiveRecord::Schema.define(version: 20141007130929) do
+
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -36,8 +38,37 @@ ActiveRecord::Schema.define(version: 20141001131927) do
     t.integer  "salary_id"
   end
 
+  create_table "amzur_events", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "held_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "announcements", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "blood_groups", force: true do |t|
     t.string   "blood_group_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bootsy_image_galleries", force: true do |t|
+    t.integer  "bootsy_resource_id"
+    t.string   "bootsy_resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bootsy_images", force: true do |t|
+    t.string   "image_file"
+    t.integer  "image_gallery_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,6 +134,16 @@ ActiveRecord::Schema.define(version: 20141001131927) do
   end
 
   add_index "email_ettiquities", ["employee_id"], name: "index_email_ettiquities_on_employee_id", using: :btree
+
+  create_table "emergency_contacts", force: true do |t|
+    t.string   "name"
+    t.string   "relation"
+    t.string   "mobile1"
+    t.string   "mobile2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "employee_id"
+  end
 
   create_table "employee_attachments", force: true do |t|
     t.integer  "employee_id"
@@ -255,6 +296,14 @@ ActiveRecord::Schema.define(version: 20141001131927) do
     t.integer  "employee_id"
   end
 
+  create_table "policies", force: true do |t|
+    t.string   "title"
+    t.text     "details"
+    t.string   "document"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "promotions", force: true do |t|
     t.string   "date_of_promotion"
     t.datetime "created_at"
@@ -270,6 +319,17 @@ ActiveRecord::Schema.define(version: 20141001131927) do
     t.string   "qualification_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "recruitments", force: true do |t|
+    t.string   "jobcode"
+    t.string   "title"
+    t.text     "description"
+    t.text     "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status"
+    t.string   "file"
   end
 
   create_table "reporting_managers", force: true do |t|

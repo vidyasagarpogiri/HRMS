@@ -1,4 +1,3 @@
-       
 <div class="wrapper">
  <div class="container">
 	<div class="row">
@@ -8,7 +7,7 @@
 
 			<div class="module">
 				<div class="module-head">
-					<h3>Add New Event</h3>
+					<h3>Add New Holiday</h3>
 				</div>
 							<div class="module-body">
 							
@@ -21,7 +20,7 @@
                   <%end%>          
 						</div>
 							<div class="control-group">   
-							 <label class="control-label" for="basicinput">Enter Event</label>
+							 <label class="control-label" for="basicinput">Enter Holiday</label>
                    <div class="controls">
                       <%= eve.text_field :event_name, :class => "span8 form-control", :placeholder =>"Enter New Event Name", :data => {:error => "Please Enter Event Name"}, :required =>true,:pattern => '[a-zA-Z/s ]*' %>
                     <span class="help-block with-errors"></span>
@@ -30,7 +29,7 @@
 								          
 								          
 		<div class="control-group">
-										<label class="control-label" for="basicinput">Date Of Event</label>
+										<label class="control-label" for="basicinput">Date Of Holiday</label>
 										<div class="controls">
                      <%= eve.text_field :event_date, :class => "span8 date-picker form-control", :data => {:error => "Please Enter Event Date"}, :required => true %>
 											 <span class="help-block with-errors"></span>   
@@ -38,7 +37,7 @@
 									</div>
 									 <ul class="navigation-btns pull-left" >
 									  <li><button type="submit" class="btn btn-success">Save</button></li>
-									  <li><%= link_to "Cancle", events_path,:class => "btn btn-danger" %></li>
+									  <li><%= link_to "Cancel", events_path,:class => "btn btn-danger" %></li>
 									</ul>	
 								<% end %>
 							</div><!--/.module-body-->

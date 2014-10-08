@@ -1,107 +1,75 @@
  
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                                             
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+             <div class="module-head">
+                <h3> List of Emoloyees</h3>
+              </div>                                                                                        
+              <div class="module-body table">                                                                          								
+                <table cellpadding="0" cellspacing="0" border="0" class="datatable-2 table  table-striped	 display" width="100%">
+                  <thead>											      
+                    <tr>
+                      <th>Photo</th>
+                      <th>Employee Name</th>
+                      <th>Email-id</th>
+                      <th>Designation</th>
+                      <th>Department</th>		
+                      <th>Contact No</th>	
+                      <th>Manager</th>          									                 	                  										      		
+                    </tr>
+                  </thead>											                  	                                   			
+                  <tbody>
+                    <% @employees.each do |employee| %>
+                    <tr class="gradeA">
+                      <td>
+                        <% if employee.present? && employee.avatar_url.present? %>
+                        <%= image_tag employee.avatar_url, :width => "60", :height => "60" %> 
+                        <% else %>
+                        <% if employee.gender == "Male" %>
+                        <img src="/assets/user.png" style ="width:60px;height:60px;"> 
+                        <% else %>
+                        <img src="/assets/1.jpg" style ="width:60px;height:60px;">
+                        <% end %>
+                        <% end %>
+                      </td>                           
+                      <td>
+                          <%= link_to employee.full_name , profile_path(employee) %>
+                        
+                       </td>
+                      <td><%= employee.user.email if employee.user.present? %></td>
+                      <td><%= employee.designation.designation_name if employee.designation.present? %></td>
+                      <td><%= employee.department.department_name %></td>
+                      <td><%= employee.mobile_number %></td>
+                      <td></td>
+                    </tr>		
+                   <% end %>											                   
+                   </tbody>												                 
+                 </table>    
+             </div><!-- module body-->
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        </div><!--/.content-->                    
+      </div><!--/.span9-->                
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
 
-          <div class="wrapper">
-		        <div class="container">
-			        <div class="row">                                             
-                <div class="span12">
-                    <div class="content">
-                        <div class="module">
-                            <div class="module-head">
-                                <h3>All Members
-                                Dashboard
-                                </h3>
-                            </div>
-                            <div class="module-body " style="background-color:#eee">
-                              <% divscount = 0 %>
-                              <% @employees.each do |employee| %>
-                              <%divscount = divscount+1 %>
-                              <% if divscount%2 == 1 %>
-                              <div class="row-fluid">
-                              <% end %>
-                                <div class="span6" style="border-radius:4px; background-color:#fff">
-                                  <div class="style">
-                                    <div class=" module-head">
-                                      <h3><%= employee.full_name %>'s Profile
-                                      <!--<%# current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard -->
-                                      <hr>
-                                      </h3>                                                                                  
-                                    </div>
-                                  </div>
-                                  <div class="media user">
-                                      <a class="media-avatar pull-left" href="#">                                               
-	                                      <% if employee.present? && employee.avatar_url.present? %>
-                                          <%= image_tag employee.avatar_url %> 
-                                         <% else %>
-                                          <% if employee.gender == "Male" %>
-                                              <img src="/assets/user.png"> 
-                                          <% else %>
-                                            <img src="/assets/1.jpg" >
-                                          <% end %>
-                                        <% end %>                                               
-                                      </a>
-                                      <div class="media-body">
-                                        <div class="style">
-                                          <h5 class="media-title">
-
-                                           <% if current_user.department == Department::HR %>
-                                              <%= link_to employee.full_name , profile_path(employee) %>
-                                            <% else %>
-                                               <%= link_to employee.full_name , "#employeeProfileModal", :class => "employee-popup",  :url => profile_employee_path(employee), :iid => employee.id,  "data-toggle" => "modal" , :id => "employee_#{employee.id}" %>
-                                            <% end %>
-
-                                          </h5>
-                                           <br>                                                                                              
-                                          <ul style="list-style-type: none;">
-
-                                            <li><i class="icon-suitcase"></i> <%= employee.designation.designation_name if employee.designation.present? %> </li>
-                                            <li><i class="icon-envelope"></i> <%= employee.user.email if employee.user.present? %></li>
-                                            <li><i class="icon-phone"></i> <%= employee.mobile_number %></li>
-                                            <li><i class="icon-map-marker"></i> <%= employee.job_location.address.city %></li>
-                                          </ul> 
-                                       </div>                                         
-                                     </div><!--/.media-body-->     
-                                  </div>
-                              </div>
-                             
-                       <% if divscount%2 == 0 %>
-                          </div><br>
-                     <% end %>
-                    <% end %>        
-                                                       
-                          <% if divscount%2 == 1 %>
-                          </div><br>
-                     <% end %>
-                               
-                               
-                                   <div class="pagination pagination-centered list_of_employees">                      
-                                        <%= paginate @employees, :remote => true %>                       
-                                    </div>	
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--/.content-->                    
-                </div><!--/.span9-->                
-             </div><!--/.row-->
-		      </div><!--/.container-->
-	      </div><!--/.wrapper-->
   
-  
-  
+<script>
+	$(document).ready(function() {
+		$('.datatable-2').dataTable();
+		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
+		$('.dataTables_paginate > a').wrapInner('<span />');
+		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+	} );
+</script>
   
  
 
-    <script type="text/javascript">
-      $('.employee-popup').click(function(){ 
-          var employee_id = $(this).attr("iid");
-          var url = $(this).attr("url");
-          $.ajax({
-            type: "GET",
-            url: url,
-            data: {employee_id: employee_id},
-            dataType: "script"
-            });
-      });
-    </script>
 
 
 

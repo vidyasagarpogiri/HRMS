@@ -277,7 +277,7 @@ $(function() {
   });
   
        $( "#reporting" ).autocomplete({
-        minLength: 0,
+        minLength: 2,
         source: availableTags,
         focus: function( event, ui ) {
         $( "#reporting" ).val( ui.item.value );

@@ -36,7 +36,8 @@ class ProfileController < ApplicationController
        @salary = Salary.new
     end
     @report = @employee.reporting_managers.first
-    
+    @emergency = @employee.emergency_contacts
+   # raise @emergency.inspect
     @emp_get_attachments = @employee.employee_attachments
 
   end
