@@ -1,7 +1,10 @@
 class StaticSalariesController < ApplicationController
 
   def index
-    @static_salaries = StaticSalary.all  
+    @static_salaries = StaticSalary.all 
+    respond_to do |format|
+      format.json { render json: @static_salaries }
+    end 
   end
   def new
     @static_salary = StaticSalary.new

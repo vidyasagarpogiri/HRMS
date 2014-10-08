@@ -139,7 +139,6 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
 					post 'update_allowance'
 					get 'add_allowance'
 					post "/configure" => "salaries#configure_pf"
-					
           resources :allowances
           resources :insentives
           resources :salary_increments

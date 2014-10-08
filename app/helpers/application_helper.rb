@@ -213,7 +213,7 @@ end
       basic = salary.basic_salary
       pf_contribution_value = 0
       percentages.each do |per|
-        if per.name == "PF Contribution"
+        if per.name == "Pf Contribution"
           pf_contribution_value = (basic * per.value)/100
           break
         end
@@ -265,7 +265,18 @@ end
   
   
   
-  
+  def allowance_count_edit(salary)
+      total = 0.0
+      salary.allowances.each do |allowance|
+        if allowance.value.present?
+          value = (salary.basic_salary * allowance.value)/100
+          total += value
+        else
+          total += allowance.allowance_value
+        end
+      end
+      total
+  end
   
   
   
