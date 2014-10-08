@@ -16,7 +16,7 @@
 							
 							 <% if @announcements.present? %>									            									      		
                  <% @announcements.each do |announcement| %> 
-                    <h4><%= announcement.title %></h4><hr>
+                    <h4><%= announcement.title %></h4>
                     <% if current_user.department == Department::HR %>
                        <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                          <li><%= link_to 'Edit', edit_announcement_path(announcement), :class => "btn btn-success " %></li>
