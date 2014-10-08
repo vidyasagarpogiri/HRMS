@@ -12,8 +12,7 @@ class WelcomeController < ApplicationController
     @employee = current_user.employee
    else
     redirect_to employees_path
-  end
-  
-  
-
+   end
+  end  
+    
 end
