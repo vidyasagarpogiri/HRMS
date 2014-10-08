@@ -15,29 +15,24 @@
 							<div class="module-body">
 							
 							 <% if @announcements.present? %> 
-                                                                                                         
-        <table class="table table-striped table-hover" id="sample-table-2">     
-            <thead>											      
-	            <tr>
-		            <th>Title</th>
-		            <th>Description</th>											            									      		
-	            </tr>
-            </thead>
+       
              <% @announcements.each do |announcement| %>
+              <table class="table table-striped table-hover" id="sample-table-2"> 
             <tbody>
-	            <tr>               
-		            <td class="center"><%= announcement.title %></td>
-		            <td><%= raw announcement.description %></td>
+	                           
+		            <h4>Announcement Title : </label><%= announcement.title %></h4><br>
+		            <%= raw announcement.description %></td> <hr>
 		            <% if current_user.department == Department::HR %>
-		            <td> 
+		           
 		               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                      <li><%= link_to 'Edit', edit_announcement_path(announcement), :class => "btn btn-success " %></li>
                      <li><%= link_to "Delete", announcement_path(announcement.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+                     
                    </ul>
-                 </td>
+                
                <% end %>
-	            </tr>
-            </tbody>
+	            
+            
             <% end %>
         </table>                                                              
                                 
@@ -59,5 +54,4 @@
 		</div><!--/.container-->
 	</div><!--/.wrapper-->
 	
-
 
