@@ -33,7 +33,7 @@
 		                        <td><%= raw amzurevent.description %></td>
 		                        <td><%= format_date (amzurevent.held_on) %></td>
 		                        <% if current_user.department == Department::HR %>
-		                        <td> 
+		                        <td style="width:150px;"> 
 		                           <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                            <li><%= link_to 'Edit', edit_amzur_event_path(amzurevent), :class => "btn btn-success " %></li>
                            <li><%= link_to "Delete", amzur_event_path(amzurevent.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
