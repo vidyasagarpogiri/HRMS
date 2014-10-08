@@ -1,78 +1,71 @@
+<%# params.inspect %>
 <div class="wrapper">
 	<div class="container">
 		<div class="row">     			
 			<div class="span6">	
 			</div>
 			<div class="span6" style="margin-left:10px;">	
+			 <% if @welcomeevent.present? %>			 
+		    <div class="module">	
+		      <div class="module-head">
+	          <div class="box-title">
+              <h3>Events</h3>  
+            </div>                                            
+          </div>
+          <% @welcomeevent.each do |welcomeevent| %>
+          <div class="module-body">	
+               <div class="control-group">
+                  <a href="#"><strong><%= welcomeevent.title %> </strong> </a> on <a href="#"><strong> <%= format_date (welcomeevent.held_on) %> </strong></a>
+               </div>
+               <div class="control-group">
+                  <label class="desc" for="basicinput"> <%= raw welcomeevent.description %></label>
+               </div>                                           
+          </div><!--module body--> 
+          <% end %>						
+		    </div><!--module--> 
+		    <% end %>	
+		    	
+		    <% if @welcomeannouncements.present? %>	    
 		    <div class="module">	
 		      <div class="module-head">
 	          <div class="box-title">
               <h3>Announcements</h3>  
             </div>                                            
           </div>
-          <div class="module-body">
-            <div class ="row-fluid">	
-               <div class="control-group">
-                  <a href="#"><strong>Meeting @ conf1 </strong></a>
-               </div>
-               <div class="control-group">
-                  <label class="control-label" for="basicinput"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries 
-                  </label>
-                  <span class="pt4">posted 1 day ago</span>
-               </div><hr>                
-               <div class="control-group">
-                   <a href="#"><strong>Meeting @ conf1 </strong></a>
-               </div>
-               <div class="control-group">
-                  <label class="control-label" for="basicinput"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries 
-                  </label>
-                  <span class="pt4">posted 2 days ago</span>
-               </div><hr> 
-             </div><!--row-fluid-->               
-          </div><!--module body--> 						
-		    </div><!--module--> 
+          <% @welcomeannouncements.each do |welcomeannouncements| %>
+          <div class="module-body"> 	
+             <div class="control-group">
+                <a href="#"><strong><%= welcomeannouncements.title %> </strong></a> on 2-12-2014
+             </div>
+             <div class="control-group">
+                <label class="desc" for="basicinput">  <%= raw welcomeannouncements.description %> </label>
+             </div>       
+          </div><!--module body-->
+          <% end %>						
+		    </div><!--module-->
+		    <% end %>
 		    
-		     <div class="module">	
-		      <div class="module-head">
-	          <div class="box-title">
-              <h3>Events</h3>  
-            </div>                                            
-          </div>
-          <div class="module-body"> 
-             <div class ="row-fluid">	
-               <div class="control-group">
-                  <a href="#"><strong>Team Outing </strong></a> on 2-12-2014
-               </div>
-               <div class="control-group">
-                  <label class="control-label" for="basicinput"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries 
-                  </label>
-                  <span class="pt4">posted 5 days ago</span>
-               </div><hr>
-             </div><!--row-fluid-->            
-          </div><!--module body--> 						
-		    </div><!--module--> 
-		    		
-		     <div class="module">	
+		    <% if @welcomerecruitments.present? %>		    				
+		    <div class="module">	
 		      <div class="module-head">
 	          <div class="box-title">
               <h3>Job Openings</h3> 
             </div>                                            
           </div>
-          <div class="module-body"> 
-            <div class ="row-fluid">	
-               <div class="control-group">
-                  <a href="#"><strong>Sales Manager - JCOD23</strong></a>
-               </div>
-               <div class="control-group">
-                  <a href="#">http://jobsearch.naukri.com/jobs-in-surat</a>
-                  <label class="control-label" for="basicinput"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries 
-                  </label>                  
-                  <span class="pt4">posted 2 days ago</span>
-               </div><hr>
-             </div><!--row-fluid-->                       
-          </div><!--module body--> 						
-		    </div><!--module-->	
-		    			
+          <% @welcomerecruitments.each do |welcomerecruitments| %>
+          <div class="module-body">	
+             <div class="control-group">
+                <a href="#"><strong><%= welcomerecruitments.title %>  - <%= welcomerecruitments.jobcode %></strong></a>
+             </div>
+             <div class="control-group">
+                <a href="#"><%= welcomerecruitments.link %></a>
+                <label class="desc" for="basicinput"> <%= raw welcomerecruitments.description %></label>                  
+                <span class="pt4">posted 2 days ago</span>
+             </div>                     
+          </div><!--module body-->
+          <% end %>						
+		    </div><!--module-->
+		    <% end %>		
 			</div><!--2nd Sapn6-->
 		</div>
 	</div>				
@@ -98,5 +91,15 @@ cursor: text;
 .pt4{
 margin-top:-10px;
 float: right;
+padding-top:10px;
+}
+
+.desc{
+width:550px;
+height:40px;
+overflow:hidden;
+}
+hr{
+padding-bottom:-25px;
 }
 </style>

@@ -29,7 +29,7 @@
 		            <td class="center"><%= announcement.title %></td>
 		            <td><%= raw announcement.description %></td>
 		            <% if current_user.department == Department::HR %>
-		            <td> 
+		            <td style="width:150px"> 
 		               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                      <li><%= link_to 'Edit', edit_announcement_path(announcement), :class => "btn btn-success " %></li>
                      <li><%= link_to "Delete", announcement_path(announcement.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
