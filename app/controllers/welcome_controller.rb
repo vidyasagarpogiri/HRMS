@@ -13,8 +13,6 @@ class WelcomeController < ApplicationController
    else
     redirect_to employees_path
    end
-  end
-  
-  
-
+  end  
+    
 end
