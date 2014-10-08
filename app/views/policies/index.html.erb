@@ -24,8 +24,9 @@
                            <li><%= link_to "Delete", policy_path(policy.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>     
                           </ul>
                         <% end %><br>
-                            
-		                  <%= raw policy.details %>
+                      <div class="row-fluid">      
+		                    <%= raw policy.details %>
+		                  </div>
 	                   <h4>Attachment: </h4><%= link_to "Download", policy.document_url, :target => "/blank" %><hr>
                     <% end %>
              <% else %>
