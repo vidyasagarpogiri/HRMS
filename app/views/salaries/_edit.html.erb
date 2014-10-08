@@ -47,12 +47,12 @@
                     <label class="control-label" for="basicinput">PF(Applicable)</label> 
                     <div class="controls">
                       <%= f.text_field :pf, :class=>"span6 form-control", :value => pf(@salary,@salary_percentages), :disabled => true %>
-                      <input type="checkbox" name="Pf" class="span2" checked = "true">
+                      <input type="checkbox" name="Pf" class="span2 check_salary" checked = "true">
                    <% else %>
                      <label class="control-label" for="basicinput">PF(Not Applicable)</label> 
                       <div class="controls">
                       <%= f.text_field :pf, :class=>"span6 form-control", :value => pf(@salary,@salary_percentages), :disabled => true %>
-                      <input type="checkbox" name="Pf" class="span2">
+                      <input type="checkbox" name="Pf" class="span2 check_salary">
                    <% end %>  
                     </div>
                 </div> 
@@ -62,22 +62,25 @@
                    <label class="control-label" for="basicinput">ESIC(Applicable)</label> 
                     <div class="controls"> 
                       <%= f.text_field :esic, :class=>"span6 form-control", :value => esic(@salary,@salary_percentages), :disabled => true %>
-                      <input type="checkbox" name="esic" class="span2" checked = "true">  
+                      <input type="checkbox" name="esic" class="span2 check_salary" checked = "true">  
                     </div>
                     <% else %>
                        <label class="control-label" for="basicinput">ESIC(Not Applicable)</label> 
                     <div class="controls"> 
                       <%= f.text_field :esic, :class=>"span6 form-control", :value => esic(@salary,@salary_percentages), :disabled => true %>
-                      <input type="checkbox" name="esic" class="span2">  
+                      <input type="checkbox" name="esic" class="span2 check_salary" >  
                     </div>
                     <% end %>
                 </div>       
-       
                
                <ul class="navigation-btns" style="list-style:none;">
-								<li><button type="submit" class="btn btn-success">Save </button></li>
+								<li><button type="submit" class="btn btn-success" id="edit-btn">Save </button></li>
 								<!--<li><%#link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger ", :remote => true %></li>		-->				
 								</ul>
+								<div id="ss">
+								  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  Your allowances total is more than gross please check.
+								</div>
          <% end %>    
 					  <script>
 			  $(function(){
@@ -87,3 +90,59 @@
 			</script>
       </div>
 </div>
+
+
+
+<script>
+  $(function(){
+   $("#ss").hide();
+    $("#salary_gross_salary").change(function(){
+      var pf = parseFloat('<%=  StaticSalary.find_by_name("PF").value %>');
+      var basic = parseFloat('<%=  StaticSalary.find_by_name("basic").value %>');
+      var gross = parseFloat($(this).val());
+      var esic = parseFloat('<%= StaticSalary.find_by_name("esic").value%>');
+      var basic_value = gross*basic/100;
+      var pf_value = basic_value*pf/100;
+      var esic_value = gross*esic/100;
+      $("#salary_basic_salary").val(basic_value);
+      $("#salary_pf").val(pf_value);
+      $("#salary_esic").val(esic_value);
+    });
+    
+    $(".check_salary").click(function(){
+        var count = 0.0;
+       for(var i=0;i<$("input:checkbox:checked").parent().parent().length;i++){
+        count = count + parseFloat($($("input:checkbox:checked")[i]).parent().find('input').val());
+        }
+        var basic_value = parseFloat($("#salary_basic_salary").val());
+        var gross = parseFloat($("#salary_gross_salary").val());
+      
+       
+        
+      
+      var sal = '<%= @salary.basic_salary %>';
+       var total = 0.0
+     <% @salary.allowances.each do |allowance| %>
+       <% if allowance.value.present? %>
+          var value = parseFloat('<%= allowance.value %>');
+          total += (basic_value*value)/100;
+        <% else %>
+          var value = parseFloat('<%= allowance.allowance_value %>');
+         total += value;
+        <% end %>
+     <% end %>
+     
+     if(gross < basic_value+count+total){
+      $("#edit-btn").prop("disabled",true);
+      $("#ss").show();
+     }
+     else{
+      $("#edit-btn").prop("disabled",false);
+      $("#ss").hide();
+      }
+    });
+
+  });
+  
+
+</script>
