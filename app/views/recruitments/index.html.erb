@@ -16,7 +16,7 @@
                 <h5><%= recruitment.jobcode %> - <%= recruitment.title %></h5>               
                 <h5><%= link_to recruitment.link, recruitment.link %></h5>
                  <%= raw recruitment.description %><br>
-                <%= link_to "Attachment Download", recruitment.file_url, :target => "/blank" %>
+                Attachment:<%= link_to "Download", recruitment.file_url, :target => "/blank" %>
                  <% if current_user.department == Department::HR %> 
                 <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                   <li><%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %></li>
