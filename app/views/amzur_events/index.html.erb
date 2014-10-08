@@ -16,7 +16,7 @@
 				<div class="module-body">
 			    <% if @amzurevent.present? %>    
             <% @amzurevent.each do |amzurevent| %>
-              <h4><%= amzurevent.title %></h4><hr>
+              <h4><%= amzurevent.title %></h4>
                <% if current_user.department == Department::HR %>
                 <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                   <li><%= link_to 'Edit', edit_amzur_event_path(amzurevent), :class => "btn btn-success " %></li>

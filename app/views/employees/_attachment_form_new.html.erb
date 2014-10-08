@@ -15,7 +15,7 @@
 									</div>		
 									
 									  <div class="control-group">
-										<label class="control-label" for="basicinput"> Upload File:</label>
+										<label class="control-label" for="basicinput"> Attachment:</label>
 										<div class="controls">
 											 <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes, :error => " Please Choose a file to attach"}, :required =>true %> 
 											 <div class="help-block with-errors"></div>  
