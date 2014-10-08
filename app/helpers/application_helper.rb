@@ -190,10 +190,22 @@ end
       basic_value
   end
   
+  
+  def basic_value(salary, percentages)
+      basic_value = 0
+      percentages.each do |per|
+        if per.name == "Basic"
+          basic_value = (salary.to_f * per.value)/100
+          break
+        end
+      end
+      basic_value
+  end
 # end
   
 # Caluclation of pf of employee  
   def pf(salary, percentages)
+  #raise salary.inspect
       basic = salary.basic_salary
       pf_value = 0
       percentages.each do |per|
