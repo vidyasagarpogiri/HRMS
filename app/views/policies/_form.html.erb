@@ -33,7 +33,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Upload Attachment</label>                                         
 										<div class="controls">
-                      <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+                      <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"}, :required =>true %>
                      <span class="help-block with-errors"></span>
 										</div>
 									</div>
@@ -43,8 +43,7 @@
 									  <li><%= link_to "Cancel", policies_path,:class => "btn btn-danger" %></li>
 									</ul>	
 							
-												 
-											
+												 											
 										<% end %>
 							</div><!--/.module-body-->
 						</div><!--/.module-->
