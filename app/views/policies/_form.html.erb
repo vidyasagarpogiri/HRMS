@@ -15,7 +15,7 @@
 	            <%= form_for @policy,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
 							
 			         <div class="control-group">
-                  <label class="control-label" for="basicinput">Policy title</label>
+                  <label class="control-label" for="basicinput">Policy Title:</label>
                       <div class="controls">
                         <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Policy Title", :data => {:error => "Please Enter Policy Title"}, :required => true %>
                          <span class="help-block with-errors"></span>
@@ -23,7 +23,7 @@
 								</div>
 									        
 <div class="control-group">
-                  <label class="control-label" for="basicinput">Details</label>
+                  <label class="control-label" for="basicinput">Descrption:</label>
                       <div class="controls">
                         <%= f.bootsy_area :details, :class => "span8 form-control", :placeholder =>"Enter Policy Details", :data => {:error => "Please Enter Policy  Details"}, :required => true,:style => "margin: 0px 0px 10px; width: 650px; height: 221px;" %>
                          <span class="help-block with-errors"></span>
@@ -31,9 +31,10 @@
 								</div>
 	
 									<div class="control-group">
-										<label class="control-label" for="basicinput">Upload Image</label>                                         
+										<label class="control-label" for="basicinput">Upload Attachment</label>                                         
 										<div class="controls">
-                      <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+                      <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"}, :required =>true %>
+                      Existing Attachment: <%= link_to "#{@policy.document_url.split('/').last}", :target => "/blank" %>
                      <span class="help-block with-errors"></span>
 										</div>
 									</div>
@@ -43,8 +44,7 @@
 									  <li><%= link_to "Cancel", policies_path,:class => "btn btn-danger" %></li>
 									</ul>	
 							
-												 
-											
+												 											
 										<% end %>
 							</div><!--/.module-body-->
 						</div><!--/.module-->
@@ -54,5 +54,35 @@
 		</div><!--/.container-->
 	</div><!--/.wrapper-->
 	
+ <!-- script for image uploading-->
+    
+      <script>
+function validateFiles(inputFile) {
+  var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
+  var extErrorMessage = "Only image file with extension: .jpg, .jpeg, .gif or .png is allowed";
+  var allowedExtension = ["jpg", "jpeg", "gif", "png", "JPG", "PNG", "JPEG", "GIF"];
+  
+  var extName;
+  var maxFileSize = $(inputFile).data('max-file-size');
+  var sizeExceeded = false;
+  var extError = false;
+  
+  $.each(inputFile.files, function() {
+    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+    extName = this.name.split('.').pop();
+    if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+  });
+  if (sizeExceeded) {
+    window.alert(maxExceededMessage);
+    $(inputFile).val('');
+  };
+  
+  if (extError) {
+    window.alert(extErrorMessage);
+    $(inputFile).val('');
+  };
+}
+</script>
+
 
 

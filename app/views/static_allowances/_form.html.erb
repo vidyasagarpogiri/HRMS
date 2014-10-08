@@ -7,17 +7,17 @@
               <div class="module-head">
                 <h3> Allowance Form </h3>
               </div>
-              <div class="module-body">   
-                <%= form_for @allowance do |f| %>
+              <div class="module-body">     
+                <%= form_for @allowance,:data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"} do |f| %>
                   <div class="control-group">
 										<label class="control-label" for="basicinput">Allowance Name</label>
 										<div class="controls">
-											 <%= f.text_field :name, :class => "span8 form-control", :placeholder=> "Enter Allowance", :data => {:error => "Please Enter valid Allowance"}, :required =>true %>
+											 <%= f.text_field :name, :class => "span8 form-control", :placeholder=> "Enter Allowance", :data => {:error => "Please Enter Valid Allowance Name"}, :required =>true %>
                        <div class="help-block with-errors"></div>  
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="basicinput" data-error ="Please Enter Seclect value" required>Allowance Value Type</label>
+										<label class="control-label" for="basicinput" data-error ="Please Enter Select value" required>Allowance Value Type</label>
 										<div class="controls">
 											 <select name="allowance_type">
 											    <option value="1">Percentage</option>  
@@ -29,7 +29,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Value</label>
 										<div class="controls">
-											 <input type="text" class="span8 form-control" placeholder= "Enter Value" name="value" id="valueofallowance" data-error ="Please Enter valid Allowance value" required pattern="[0-9/.]*" %>
+											 <input type="text" class="span8 form-control" placeholder= "Enter Value" name="value" id="valueofallowance" data-error ="Please Enter Valid Allowance Value" required pattern="[0-9/.]*" %>
                        <div class="help-block with-errors"></div>  
 										</div>
 									</div>

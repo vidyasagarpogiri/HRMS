@@ -12,10 +12,10 @@
 							<div class="module-body">
 							
 							
-	            <%= form_for @amzurevent,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+	            <%= form_for @amzurevent,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid event_form"} do |f| %>
 							
 			         <div class="control-group">
-                  <label class="control-label" for="basicinput">Event Title</label>
+                  <label class="control-label" for="amzur_event_title">Event Title</label>
                       <div class="controls">
                         <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter Event Title"}, :required => true %>
                          <span class="help-block with-errors"></span>
@@ -25,17 +25,17 @@
 
 	
 		<div class="control-group">
-										<label class="control-label" for="basicinput">Description</label>
+										<label class="control-label" for="amzur_event_bootsy_image_gallery_id">Description</label>
 										<div class="controls">
-                     <%= f.text_area :description, :class => "span8  form-control", :id => "basicinput", :placeholder =>"Enter Description",:data => {:error => "Please Enter Event Description"}, :required => true %>
+                     <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter  Event Description"}, :required => true,:style => "margin: 0px 0px 10px; width: 650px; height: 221px;" %>
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
 	
 				<div class="control-group">
-										<label class="control-label" for="basicinput">Event Date & Time</label>
+										<label class="control-label" for="amzur_event_held_on">Event Date & Time</label>
 										<div class="controls">
-                     <%= f.text_field :held_on, :class => "date-picker" %>
+                     <%= f.text_field :held_on,:placeholder =>"Enter Date Of Event", :class => "date-picker", :data => {:error => "Please Select Event Date"}, :required => true %>
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
@@ -59,6 +59,8 @@
 	    <script>
       $(function() {
     $( ".date-picker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+      $(".event_form").validator();
   });
-
+  </script> 
+  
 

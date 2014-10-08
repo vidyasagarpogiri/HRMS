@@ -59,5 +59,58 @@ list-style-type:none;
 margin: 0px !important;
 }
 
+------------------------------------------------
+/* dashboard css */
+
+.box-title{
+border-radius: 2px 2px 0px 0px;
+padding: 13px 20px 0px 20px;
+padding-bottom: 13px;
+}
+
+a:hover{
+text-decoration:none;
+}
+
+.control-label:hover{
+cursor: text;
+}
+.pt4{
+margin-top:-10px;
+float: right;
+padding-top:10px;
+}
+
+.desc{
+height:40px;
+overflow:hidden;
+}
+hr{
+padding-bottom:-25px;
+}
+
+.module-head{
+background-color: #91dff3 !important;
+}
+
+.jdesc{
+height:60px;
+overflow:hidden;
+}
+
+.module-body{
+padding:10px!important;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
