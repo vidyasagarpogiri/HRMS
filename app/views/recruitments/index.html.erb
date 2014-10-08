@@ -14,7 +14,7 @@
 				<div class="module-body">
 			    <% if @recruitments.present? %> 
             <% @recruitments.each do |recruitment| %>
-              <h4><%= recruitment.jobcode %> - <%= recruitment.title %></h4><hr>
+              <h4><%= recruitment.jobcode %> - <%= recruitment.title %></h4>
               <% if current_user.department == Department::HR %> 
                 <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                   <li><%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %></li>
