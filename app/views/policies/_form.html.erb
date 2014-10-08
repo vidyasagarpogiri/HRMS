@@ -34,7 +34,9 @@
 										<label class="control-label" for="basicinput">Upload Attachment</label>                                         
 										<div class="controls">
                       <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"}, :required =>true %>
+                      <% if @policy.document_url.present? %>
                       Existing Attachment: <%= link_to "#{@policy.document_url.split('/').last}", :target => "/blank" %>
+                      <%end%>
                      <span class="help-block with-errors"></span>
 										</div>
 									</div>

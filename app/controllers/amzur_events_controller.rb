@@ -26,6 +26,10 @@ class AmzurEventsController < ApplicationController
     @amzurevent = AmzurEvent.find(params[:id]) 
   end
   
+  def show
+    @amzurevent = AmzurEvent.find(params[:id])
+  end
+  
   def update
     @amzurevent = AmzurEvent.find(params[:id])
      if @amzurevent.update(amzurevent_params)
