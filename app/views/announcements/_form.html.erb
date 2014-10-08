@@ -27,8 +27,8 @@
 		<div class="control-group">
 										<label class="control-label" for="basicinput">Description</label>
 										<div class="controls">
-                     <%= f.text_area :description, :class => "span8  form-control", :id => "basicinput", :placeholder =>"Enter Description",:data => {:error => "Please Enter Announcement Description"}, :required => true %>
-											 <span class="help-block with-errors"></span>   
+										 <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter Announcement  Description"}, :required => true,:style => "margin: 0px 0px 10px; width: 650px; height: 221px;" %>
+										 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
 	

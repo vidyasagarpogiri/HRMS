@@ -27,7 +27,7 @@
             <tbody>
 	            <tr>               
 		            <td class="center"><%= announcement.title %></td>
-		            <td><%= announcement.description %></td>
+		            <td><%= raw announcement.description %></td>
 		            <% if current_user.department == Department::HR %>
 		            <td> 
 		               <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">

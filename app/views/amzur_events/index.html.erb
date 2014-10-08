@@ -30,7 +30,7 @@
                         <tbody>
 	                        <tr>               
 		                        <td class="center"><%= amzurevent.title %></td>
-		                        <td><%= amzurevent.description %></td>
+		                        <td><%= raw amzurevent.description %></td>
 		                        <td><%= format_date (amzurevent.held_on) %></td>
 		                        <% if current_user.department == Department::HR %>
 		                        <td> 
