@@ -39,6 +39,8 @@ Rails.application.routes.draw do
       post 'update_employee'
     end  
   end
+
+  get '/dashboard' => 'welcome#dashboard'
    get '/departments_list' => "departments#department_index"
    resources :departments do
    resources :holiday_calenders
