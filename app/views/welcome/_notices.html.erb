@@ -25,7 +25,11 @@
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     There is no events
           </div>
-		    <% end %>	
+          
+		    <% end %>
+		    <div id="paginator">
+          <%= paginate @welcome_event %>
+        </div>
 		     </div><!--module-->
 		      
 		    <div class="module">	
@@ -53,6 +57,9 @@
                     There is Announcements
           </div>
 		    <% end %>	
+		     <div id="paginator">
+           <%= paginate @welcome_announcements %>
+        </div>
 		     </div><!--module-->
 		    
 		  			
@@ -82,4 +89,7 @@
                     There is Job Openings
           </div>
 		    <% end %>	
+		    		     <div id="paginator">
+                  <%= paginate @welcome_recruitments %>
+                 </div>
 		     </div><!--module-->
