@@ -5,9 +5,13 @@ class WelcomeController < ApplicationController
   end
   
   def dashboard
-    @welcomeevent = AmzurEvent.all
-    @welcomeannouncements = Announcement.all
-    @welcomerecruitments = Recruitment.where(:status => "open")
+    @welcome_event = AmzurEvent.all
+    @welcome_announcements = Announcement.all
+    @welcome_recruitments = Recruitment.where(:status => "open")
+    @employee = current_user.employee
+    
   end
+  
+  
 
 end

@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   resources :policies
   
   resources :amzur_events
-
+  get 'amzur_events/show' => 'amzur_events#show'
+  
   resources :announcements
-
-  resources :recruitments
+   get 'announcements/show' => 'announcements#show'
+   
+  resources :recruitments  
+  get 'recruitments/show' => 'recruitments#show'
 
   resources :events
   get 'getAllEmployees' => 'employees#getAllEmployees'  

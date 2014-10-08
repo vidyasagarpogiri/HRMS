@@ -1,0 +1,32 @@
+<div class="wrapper">
+	<div class="container">
+		<div class="row">     			
+			<div class="span8">	
+			
+			</div>
+			<div class="span4" style="margin-left:10px;">	
+			 <% if @welcomeevent.present? %>			 
+		    <div class="module">	
+		      <div class="module-head">
+	          <div class="box-title">
+              <h3>All Events</h3>  
+            </div>                                            
+          </div>
+          <% @welcomeevent.each do |welcomeevent| %>
+          <div class="module-body">	
+               <div class="control-group">
+                  <a href="#"><strong><%= welcomeevent.title %> </strong> </a> on <a href="#"><strong> <%= format_date (welcomeevent.held_on) %> </strong></a>
+               </div>
+               <div class="control-group">
+                  <label class="desc" for="basicinput"> <%= raw welcomeevent.description %></label>
+               </div>
+               <a href="#"><span class="pt4">Continue..</span></a><br>
+               <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                                           
+          </div><!--module body--> 
+          <% end %>						
+		    </div><!--module--> 
+		    <% end %>
+		 	</div><!--2nd Sapn4-->
+		</div>
+	</div>				
+</div>		
