@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
     @welcome_announcements = Announcement.all
     @welcome_recruitments = Recruitment.where(:status => "open")
     @employee = current_user.employee
-    
+    raise params.inspect
   end
   
   
