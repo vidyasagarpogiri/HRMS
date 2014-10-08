@@ -2,82 +2,14 @@
 <div class="wrapper">
 	<div class="container">
 		<div class="row">     			
-			<div class="span8">	
+			<div class="span8">
+				<%= render 'welcome/employee_details' %>	
 			</div>
 			<div class="span4" style="margin-left:10px;">	
-			 <% if @welcomeevent.present? %>			 
-		    <div class="module">	
-		      <div class="module-head">
-	          <div class="box-title">
-              <h3>Events</h3>  
-            </div>                                            
-          </div>
-          <% @welcomeevent.each do |welcomeevent| %>
-          <div class="module-body">	
-               <div class="control-group">
-                  <a href="#"><strong><%= welcomeevent.title %> </strong> </a> on <a href="#"><strong> <%= format_date (welcomeevent.held_on) %> </strong></a>
-               </div>
-               <div class="control-group">
-                  <label class="desc" for="basicinput"> <%= raw welcomeevent.description %></label>
-               </div>
-               <a href="#"><span class="pt4">Continue..</span></a><br>
-               <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                                           
-          </div><!--module body--> 
-          <% end %>						
-		    </div><!--module--> 
-		    <% end %>	
-		    	
-		    <% if @welcomeannouncements.present? %>	    
-		    <div class="module">	
-		      <div class="module-head">
-	          <div class="box-title">
-              <h3>Announcements</h3>  
-            </div>                                            
-          </div>
-          <% @welcomeannouncements.each do |welcomeannouncements| %>
-          <div class="module-body"> 	
-             <div class="control-group">
-                <a href="#"><strong><%= welcomeannouncements.title %> </strong></a> on 2-12-2014
-             </div>
-             <div class="control-group">
-                <label class="desc" for="basicinput">  <%= raw welcomeannouncements.description %> </label>
-             </div>
-             <a href="#"><span class="pt4">Continue..</span></a><br>
-             <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>       
-          </div><!--module body-->
-          <% end %>						
-		    </div><!--module-->
-		    <% end %>
-		    
-		    <% if @welcomerecruitments.present? %>		    				
-		    <div class="module">	
-		      <div class="module-head">
-	          <div class="box-title">
-              <h3>Job Openings</h3> 
-            </div>                                            
-          </div>
-          <% @welcomerecruitments.each do |welcomerecruitments| %>
-          <div class="module-body">	
-             <div class="control-group">
-                <a href="#"><strong><%= welcomerecruitments.title %>  - <%= welcomerecruitments.jobcode %></strong></a>
-             </div>
-             <div class="control-group">
-                <a href="#"><%= welcomerecruitments.link %></a>
-                <label class="jdesc" for="basicinput"> <%= raw welcomerecruitments.description %></label>                                  
-             </div>
-             <a href="#"><span class="pt4">Continue..</span></a><br>
-             <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                     
-          </div><!--module body-->
-          <% end %>						
-		    </div><!--module-->
-		    <% end %>		
-			</div><!--2nd Sapn6-->
+				<%= render 'welcome/notices' %>
+			</div><!--2nd Sapn4-->
 		</div>
 	</div>				
 </div>	
 
 
-
-<style type="text/css">
-
-</style>

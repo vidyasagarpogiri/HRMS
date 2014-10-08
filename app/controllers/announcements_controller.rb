@@ -23,6 +23,10 @@ class AnnouncementsController < ApplicationController
     @announcement = Announcement.find(params[:id]) 
   end
   
+  def show
+    @announcement = Announcement.find(params[:id])
+  end
+  
   def update
     @announcement = Announcement.find(params[:id])
      if @announcement.update(announcement_params)
