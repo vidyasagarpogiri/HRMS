@@ -6,15 +6,17 @@
 			  <div class="module">
 				  <div class="module-head">
 					  <h3>Job Openings </h3>
+					    <% if current_user.department == Department::HR %>                                
 					  <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add New Job',  new_recruitment_path %></label>
-				  </div>				
-				  <div class="module-body">
+					<% end %>  
+				  </div>	
+				    <div class="module-body">
 			      <% if @recruitments.present? %> 
               <% @recruitments.each do |recruitment| %>
                 <h5><%= recruitment.jobcode %> - <%= recruitment.title %></h5>               
-                <h5>Link: <%= link_to recruitment.link, recruitment.link %></h5>
-                 <%= raw recruitment.description %>
-                <h5>Attachment: </h5><%= link_to "Download", recruitment.file_url, :target => "/blank" %>
+                <h5><%= link_to recruitment.link, recruitment.link %></h5>
+                 <%= raw recruitment.description %><br>
+                <%= link_to "Attachment Download", recruitment.file_url, :target => "/blank" %>
                  <% if current_user.department == Department::HR %> 
                 <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                   <li><%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %></li>
@@ -27,7 +29,8 @@
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   No Jobs to display.
               </div>
-            <% end %>     	           
+            <% end %>  
+              
 						</div><!--/.module-body-->
 					</div><!--/.module-->
 				</div><!--/.content-->
