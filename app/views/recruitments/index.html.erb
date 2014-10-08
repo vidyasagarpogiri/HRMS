@@ -30,7 +30,7 @@
 	            <tr>               
 		            <td class="center"><%= recruitment.jobcode %></td>
 		            <td><%= recruitment.title %></td>
-		            <td><%= recruitment.description %></td>
+		            <td><%= raw recruitment.description %></td>
 		            <td><%= recruitment.link %></td>
 		            <td><%= recruitment.status %></td>
 		            <td><%= link_to "Download", recruitment.file_url, :target => "/blank" %></td>
