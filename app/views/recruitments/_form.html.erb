@@ -45,7 +45,7 @@
 		<div class="control-group">
 										<label class="control-label" for="basicinput">Link </label>
 										<div class="controls">
-                     <%= f.text_area :link, :class => "span8  form-control", :id => "basicinput", :placeholder =>"Enter Job URL",:data => {:error => "Please Enter Job URL"}, :required => true %>
+                     <%= f.text_area :link, :class => "span8  form-control", :id => "basicinput", :placeholder =>"Enter Job URL",:data => {:error => "Please Enter Job URL"}, :required => true, :pattern => '^(http[s]?://){0,1}(www.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}' %>
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
@@ -60,7 +60,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Attachment</label>                                         
 										<div class="controls">
-                      <%= f.file_field :file, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+                      <%= f.file_field :file, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"}, :required =>true %> 
                      <span class="help-block with-errors"></span>
 										</div>
 									</div>
