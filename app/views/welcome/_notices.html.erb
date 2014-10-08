@@ -1,10 +1,12 @@
- <% if @welcome_event.present? %>			 
-		    <div class="module">	
+            
+          <div class="module">	
 		      <div class="module-head">
+           		 
 	          <div class="box-title">
               <h3>Events</h3>  
             </div>                                            
           </div>
+           <% if @welcome_event.present? %>	
           <% @welcome_event.each do |welcome_event| %>
           <div class="module-body">	
                <div class="control-group">
@@ -17,16 +19,22 @@
                <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                                           
           </div><!--module body--> 
           <% end %>						
-		    </div><!--module--> 
+		   
+		    <% else %>
+		       <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    There is no events
+          </div>
 		    <% end %>	
-		    	
-		    <% if @welcome_announcements.present? %>	    
+		     </div><!--module-->
+		      
 		    <div class="module">	
 		      <div class="module-head">
 	          <div class="box-title">
               <h3>Announcements</h3>  
             </div>                                            
           </div>
+           <% if @welcome_announcements.present? %>	
           <% @welcome_announcements.each do |welcome_announcement| %>
           <div class="module-body"> 	
              <div class="control-group">
@@ -38,17 +46,23 @@
              <%= link_to "Continue..", announcement_path(welcome_announcement), :class => "pt4" %><br>          
              <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>       
           </div><!--module body-->
-          <% end %>						
-		    </div><!--module-->
-		    <% end %>
+         <% end %>
+          <% else %>
+		       <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    There is Announcements
+          </div>
+		    <% end %>	
+		     </div><!--module-->
 		    
-		    <% if @welcome_recruitments.present? %>		    				
+		  			
 		    <div class="module">	
 		      <div class="module-head">
 	          <div class="box-title">
               <h3>Job Openings</h3> 
             </div>                                            
           </div>
+            <% if @welcome_recruitments.present? %>		    	
           <% @welcome_recruitments.each do |welcome_recruitment| %>
           <div class="module-body">	
              <div class="control-group">
@@ -58,9 +72,14 @@
                 <a href="#"><%= welcome_recruitment.link %></a>
                 <label class="jdesc" for="basicinput"> <%= raw welcome_recruitment.description %></label>                                  
              </div>
-             <%= link_to "Continue..", recruitments_path(welcome_recruitment), :class => "pt4" %><br> 
+             <%= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4" %><br> 
              <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                     
           </div><!--module body-->
           <% end %>						
-		    </div><!--module-->
-		    <% end %>		
+		    <% else %>
+		       <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    There is Job Openings
+          </div>
+		    <% end %>	
+		     </div><!--module-->
