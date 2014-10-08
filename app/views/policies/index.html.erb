@@ -17,7 +17,7 @@
 							 <% if @policies.present? %> 
                   <% @policies.each do |policy| %>                                                                                               
                
-		                  <h4><%= policy.title %></h4><hr>
+		                  <h4><%= policy.title %></h4>
 		                   <% if current_user.department == Department::HR %>
 		                     <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                            <li><%= link_to 'Edit', edit_policy_path(policy), :class => "btn btn-success " %></li>
