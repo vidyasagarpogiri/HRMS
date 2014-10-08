@@ -22,7 +22,7 @@
                   <li><%= link_to 'Edit', edit_amzur_event_path(amzurevent), :class => "btn btn-success " %></li>
                   <li><%= link_to "Delete", amzur_event_path(amzurevent.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
                 </ul>
-              <% end %><br>
+              <% end %>
               <div class="row-fluid">
                 <%= raw amzurevent.description %>
               </div>
@@ -48,4 +48,4 @@
 	</div><!--/.wrapper-->
 	
 
--
+
