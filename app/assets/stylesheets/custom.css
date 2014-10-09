@@ -115,7 +115,9 @@ overflow:hidden;
 }
 
 
-
+.exp tr th{
+width:270px !important;
+}
 
 
 
