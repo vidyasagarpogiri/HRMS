@@ -13,10 +13,10 @@
 				    <div class="module-body">
 			      <% if @recruitments.present? %> 
               <% @recruitments.each do |recruitment| %>
-                <h5><%= recruitment.jobcode %> - <%= recruitment.title %></h5>               
-                <h5><%= link_to recruitment.link, recruitment.link %></h5>
-                 <%= raw recruitment.description %><br>
-                Attachment:<%= link_to "Download", recruitment.file_url, :target => "/blank" %>
+                <h5><%= recruitment.jobcode %> - <%= recruitment.title %></h5> 
+                <%= raw recruitment.description %><br>              
+                <b>Link:</b><%= link_to recruitment.link, recruitment.link %><br>
+                <b>Attachment:</b><%= link_to "Download", recruitment.file_url, :target => "/blank" %>
                  <% if current_user.department == Department::HR %> 
                 <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
                   <li><%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %></li>

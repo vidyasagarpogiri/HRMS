@@ -13,7 +13,7 @@
 				    <div class="module-body">							
 				     <% if @announcements.present? %>									            									      		
                <% @announcements.each do |announcement| %> 
-                 <h4><%= announcement.title %></h4>               
+                 <h5><%= announcement.title %></h5>               
                  <%= raw announcement.description %>
                   <% if current_user.department == Department::HR %>
                    <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
