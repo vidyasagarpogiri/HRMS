@@ -1,8 +1,7 @@
 
           <div class="module">	
-		      <div class="module-head">
-           		 
-	          <div class="box-title">
+		      <div class="box-title">           		 
+	          <div class="module-head">
               <h3>Events</h3>  
             </div>                                            
           </div>
@@ -33,8 +32,8 @@
 		     </div><!--module-->
 		      
 		    <div class="module">	
-		      <div class="module-head">
-	          <div class="box-title">
+		      <div class="box-title">           		 
+	          <div class="module-head">
               <h3>Announcements</h3>  
             </div>                                            
           </div>
@@ -64,8 +63,8 @@
 		    
 		  			
 		    <div class="module">	
-		      <div class="module-head">
-	          <div class="box-title">
+		      <div class="box-title">           		 
+	          <div class="module-head">
               <h3>Job Openings</h3> 
             </div>                                            
           </div>
@@ -93,86 +92,4 @@
                   <%= paginate @welcome_recruitments %>
                  </div>
 		     </div><!--module-->
-<div class="module">	
-  <div class="box-title">   		 
-    <div class="module-head">
-      <h3>Events</h3>  
-    </div>                                            
-  </div>
-  <% if @welcome_event.present? %>	
-  <% @welcome_event.each do |welcome_event| %>
-  <div class="module-body">	
-       <div class="control-group">
-          <a href="#"><strong><%= welcome_event.title %> </strong> </a> on <a href="#"><strong> <%= format_date (welcome_event.held_on) %> </strong></a>
-       </div>
-       <div class="control-group">
-          <label class="desc" for="basicinput"> <%= raw welcome_event.description %></label>
-       </div>
-       <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %><br>              
-       <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                                           
-  </div><!--module body--> 
-  <% end %>						
 
-<% else %>
-   <div class="alert alert-success alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            There is no events
-  </div>
- <% end %>	
-</div><!--module-->
-  
-<div class="module">	
-  <div class="box-title">   		 
-    <div class="module-head">
-      <h3>Announcements</h3>  
-    </div>                                            
-  </div>
-   <% if @welcome_announcements.present? %>	
-  <% @welcome_announcements.each do |welcome_announcement| %>
-  <div class="module-body"> 	
-     <div class="control-group">
-        <a href="#"><strong><%= welcome_announcement.title %> </strong></a> on 2-12-2014
-     </div>
-     <div class="control-group">
-        <label class="desc" for="basicinput">  <%= raw welcome_announcement.description %> </label>
-     </div>
-     <%= link_to "Continue..", announcement_path(welcome_announcement), :class => "pt4" %><br>          
-     <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>       
-  </div><!--module body-->
- <% end %>
-  <% else %>
-   <div class="alert alert-success alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            There is Announcements
-  </div>
-<% end %>	
-</div><!--module-->
-
-		
-<div class="module">	
-  <div class="box-title">   		 
-    <div class="module-head">
-      <h3>Job Openings</h3> 
-    </div>                                            
-  </div>
-    <% if @welcome_recruitments.present? %>		    	
-  <% @welcome_recruitments.each do |welcome_recruitment| %>
-  <div class="module-body">	
-     <div class="control-group">
-        <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a>
-     </div>
-     <div class="control-group">
-        <a href="#"><%= welcome_recruitment.link %></a>
-        <label class="jdesc" for="basicinput"> <%= raw welcome_recruitment.description %></label>                                  
-     </div>
-     <%= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4" %><br> 
-     <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                     
-  </div><!--module body-->
-  <% end %>						
-<% else %>
-   <div class="alert alert-success alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            There is Job Openings
-  </div>
-<% end %>	
-</div><!--module-->
