@@ -10,6 +10,7 @@ class WelcomeController < ApplicationController
     @welcome_announcements = Announcement.all.page(params[:page]).per(2)
     @welcome_recruitments = Recruitment.where(:status => "open").page(params[:page]).per(2)
     @employee = current_user.employee
+    #@leaves = LeaveHistory.all
    else
     redirect_to employees_path
    end

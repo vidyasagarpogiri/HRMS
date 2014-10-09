@@ -26,6 +26,7 @@ class RecruitmentsController < ApplicationController
   
   def show
     @recruitment = Recruitment.find(params[:id])
+    @recruitments = Recruitment.all
   end
   
   def update

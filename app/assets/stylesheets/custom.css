@@ -98,11 +98,21 @@ height:60px;
 overflow:hidden;
 }
 
+/* end of dashboard css */
+
 .module-body{
 padding:10px!important;
 }
 
 
+.module-head{
+background-color: !important;
+}
+
+.idesc{
+height:80px;
+overflow:hidden;
+}
 
 
 

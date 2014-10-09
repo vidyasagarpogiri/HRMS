@@ -8,26 +8,38 @@
 					    <h3>Announcement Details</h3>					    
 					  </div>
 				    <div class="module-body">											    
-               <h5><%= @announcement.title %></h5>               
+               <h5><%= @announcement.title %></h5>
+               <ul class="navigation-btns pull-right" style="margin-top:-20px">
+                 <li><%= link_to 'Edit', edit_announcement_path(@announcement), :class => "btn btn-success " %></li>
+                 <li><%= link_to "Delete", announcement_path(@announcement), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+               </ul>    <br>           
                <%= raw @announcement.description %>
-                <% if current_user.department == Department::HR %>
-                 <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                   <li><%= link_to 'Edit', edit_announcement_path(@announcement), :class => "btn btn-success " %></li>
-                   <li><%= link_to "Delete", announcement_path(@announcement), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>  
-                 </ul>
-               <% end %><br><hr>                              
+                <% if current_user.department == Department::HR %>                 
+               <% end %>                        
 						  </div><!--/.module-body-->
 					  </div><!--/.module-->
 				  </div><!--/.content-->
 			  </div><!--/.span8-->
 			  <div class="span4">	
           <div class="module">	
-            <div class="module-head">
-              <div class="box-title">
+            <div class="box-title">
+              <div class="module-head">
                 <h3>All Announcements</h3> 
               </div>                                            
             </div>
             <div class="module-body">
+              <% @announcements.each do |announcement| %>
+              <div class="module-body"> 	
+                 <div class="control-group">
+                    <a href="#"><strong><%= announcement.title %> </strong></a> on 2-12-2014
+                 </div>
+                 <div class="control-group">
+                    <label class="desc" for="basicinput">  <%= raw announcement.description %> </label>
+                 </div>
+                 <%= link_to "Continue..", announcement_path(announcement), :class => "pt4" %><br>          
+                 <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>       
+              </div><!--module body-->
+              <% end %>
             </div><!--/.module-body-->
          </div><!--/.module-->
 		  </div><!--/.span4-->

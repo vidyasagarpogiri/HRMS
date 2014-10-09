@@ -1,66 +1,55 @@
 <div class="wrapper">
- <div class="container">
-	<div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+              <h3>Event Details</h3>
+            </div>
+            <div class="module-body">
+              <%= form_for @amzurevent, :html => {:class=>"form-horizontal row-fluid event_form"} do |f| %>
+              <div class="control-group">
+                <label class="control-label" for="amzur_event_title">Event Title</label>
+                <div class="controls">
+                  <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter Event Title"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label" for="amzur_event_bootsy_image_gallery_id">Description</label>
+                <div class="controls">
+                  <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter  Event Description"}, :style => "margin: 0px 0px 10px; width: 650px; height: 221px;" %>
+                  <span class="help-block with-errors"></span>   
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label" for="amzur_event_held_on">Event Date & Time</label>
+                <div class="controls">
+                  <%= f.text_field :held_on,:placeholder =>"Enter Date Of Event", :class => "date-picker", :data => {:error => "Please Select Event Date"}, :required => true %>
+                  <span class="help-block with-errors"></span>   
+                </div>
+              </div>
+              <ul class="navigation-btns pull-left" >
+              <li><button type="submit" class="btn btn-success">Save</button></li>
+              <li><%= link_to "Cancel", amzur_events_path,:class => "btn btn-danger" %></li>
+              </ul>	
+              <% end %>
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
 
-  <div class="span12">
-		<div class="content">
+<script>
+    $(function() {
+  $( ".date-picker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    $(".event_form").validator();
+});
+</script> 
 
-			<div class="module">
-				<div class="module-head">
-					<h3>Event Details</h3>
-						</div>
-							<div class="module-body">
-							
-							
-	            <%= form_for @amzurevent,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid event_form"} do |f| %>
-							
-			         <div class="control-group">
-                  <label class="control-label" for="amzur_event_title">Event Title</label>
-                      <div class="controls">
-                        <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter Event Title"}, :required => true %>
-                         <span class="help-block with-errors"></span>
-                      </div>
-								</div>
-									        
-
-	
-		<div class="control-group">
-										<label class="control-label" for="amzur_event_bootsy_image_gallery_id">Description</label>
-										<div class="controls">
-                     <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter  Event Description"}, :required => true,:style => "margin: 0px 0px 10px; width: 650px; height: 221px;" %>
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
-	
-				<div class="control-group">
-										<label class="control-label" for="amzur_event_held_on">Event Date & Time</label>
-										<div class="controls">
-                     <%= f.text_field :held_on,:placeholder =>"Enter Date Of Event", :class => "date-picker", :data => {:error => "Please Select Event Date"}, :required => true %>
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
-				
-				
-								 <ul class="navigation-btns pull-left" >
-									  <li><button type="submit" class="btn btn-success">Save</button></li>
-									  <li><%= link_to "Cancel", amzur_events_path,:class => "btn btn-danger" %></li>
-									</ul>	
-							
-												 
-											
-										<% end %>
-							</div><!--/.module-body-->
-						</div><!--/.module-->
-					</div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
-	    <script>
-      $(function() {
-    $( ".date-picker" ).datepicker({ dateFormat: 'dd/mm/yy' });
-      $(".event_form").validator();
-  });
-  </script> 
-  
 

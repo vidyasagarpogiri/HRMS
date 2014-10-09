@@ -10,27 +10,28 @@
 					  <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add New Job',  new_recruitment_path %></label>
 					<% end %>  
 				  </div>	
-				    <div class="module-body">
-			      <% if @recruitments.present? %> 
-              <% @recruitments.each do |recruitment| %>
-                <h5><%= recruitment.jobcode %> - <%= recruitment.title %></h5>               
-                <h5><%= link_to recruitment.link, recruitment.link %></h5>
-                 <%= raw recruitment.description %><br>
-                Attachment:<%= link_to "Download", recruitment.file_url, :target => "/blank" %>
-                 <% if current_user.department == Department::HR %> 
-                <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                  <li><%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %></li>
-                 <li><%= link_to "Delete", recruitment_path(recruitment.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-                  </ul>
-                <% end %><hr>
-              <% end %>                                                                                                                             
+			    <div class="module-body">
+		        <% if @recruitments.present? %> 
+            <% @recruitments.each do |recruitment| %>
+              <h5><%= recruitment.jobcode %> - <%= recruitment.title %></h5> 
+               <ul class="navigation-btns pull-right" style="margin-top:-20px">
+                <li><%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %></li>
+                <li><%= link_to "Delete", recruitment_path(recruitment.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+              </ul>              
+              <h5><%= link_to recruitment.link, recruitment.link %></h5>             
+              <label class="idesc">
+                <%= raw recruitment.description %>                
+              </label><%= link_to "Continue..", recruitment_path(recruitment), :class => "pt4" %><br>
+              Attachment:<%= link_to "Download", recruitment.file_url, :target => "/blank" %>
+              <% if current_user.department == Department::HR %>               
+              <% end %><hr>
+            <% end %>                                                                                                                             
             <% else %>
               <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   No Jobs to display.
               </div>
-            <% end %>  
-              
+            <% end %>                
 						</div><!--/.module-body-->
 					</div><!--/.module-->
 				</div><!--/.content-->
