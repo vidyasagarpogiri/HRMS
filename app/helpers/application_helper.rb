@@ -313,7 +313,7 @@ end
   
   #--------------- code for monthly salary calculation ------------------
   def monthly(value)
-    (value/12).round()
+    (value/12).round(2)
   end
   
   #----------------------------------------------------------------------
