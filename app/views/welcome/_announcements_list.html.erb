@@ -20,11 +20,11 @@
   <% else %>
    <div class="alert alert-success alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            There is Announcements
+            There are no announcements
   </div>
 <% end %>	
 <div id="paginator">
-           <%= paginate @welcome_announcements %>
+           <%= paginate @welcome_announcements, :remote => true, :param_name => 'page2' %>
         </div>
 </div><!--module-->
 

@@ -41,6 +41,10 @@ end
   	time.strftime("%d %b, %Y") if time
 	end
 	
+	 def format_date_time(time)
+    time.strftime("%d %b, %Y  %I:%M %p") if time
+  end
+	
   def leavesDateWise(search_date)
   leaves_array=[]
     LeaveHistory.all.each do |leave|
@@ -89,6 +93,22 @@ end
   
   end
 
+
+  
+  def total_leaves(employee)
+  employee_join = employee.date_of_join.to_date
+  if(employee_join.year == Date.current.cwyear)
+   a =  ((13-employee_join.month)*employee.department.leave_policy.pl_this_year) if employee.department.leave_policy.present?
+   else
+   
+   a =  (12 * employee.department.leave_policy.pl_this_year)  if employee.department.leave_policy.present?
+   end
+    
+  
+   a 
+   
+  
+  end
 # caluculate carry forward leaves from previous year
 
 def carry_forward_leaves(employee)
