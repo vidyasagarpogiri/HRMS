@@ -26,7 +26,7 @@
 													<td><%=f.leave_type.type_name %> </td>													
 													<td><%=f.status %></td>
 													<td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info", :remote => true  %>
-													<%= link_to "Cancel",  f, method: :delete, data: {confirm: "You sure?"} , :class => "btn btn-danger"%></td>		 
+													<%= link_to "Cancel",  f, method: :delete, data: {confirm: "Are You sure?"} , :class => "btn btn-danger"%></td>		 
 												</tr>																						
 											</tbody>
 								      <% end %>
