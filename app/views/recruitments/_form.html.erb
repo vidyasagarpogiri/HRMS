@@ -62,7 +62,7 @@
 										<div class="controls">
                       <%= f.file_field :file, :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"}, :required =>true %> <br>
                       <%if @recruitment.file_url.present? %>
-                      <%= link_to "#{@recruitment.file_url.split('/').last}", :target => "/blank" %>
+                      Existing Attachment: <%= link_to "#{@recruitment.file_url.split('/').last}", :target => "/blank" %>
                       <%end%>
                      <span class="help-block with-errors"></span>
 										</div>
