@@ -1,7 +1,7 @@
 class RecruitmentsController < ApplicationController
-
+  before_filter :hr_view,  only: ["new", "edit"]
   def index
-   @recruitments = Recruitment.all.page(params[:page]).per(3)
+   @recruitments = Recruitment.all.page(params[:page]).per(4)
   end
   
   def new

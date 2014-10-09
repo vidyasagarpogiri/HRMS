@@ -1,8 +1,10 @@
 class AmzurEventsController < ApplicationController
 
+  before_filter :hr_view,  only: ["new", "edit"]
+  
   def index
   #raise params.inspect
-   @amzurevent = AmzurEvent.all.page(params[:page]).per(3)
+   @amzurevent = AmzurEvent.all.page(params[:page]).per(5)
   end
   
   def new

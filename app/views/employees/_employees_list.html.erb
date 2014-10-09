@@ -1,4 +1,3 @@
- 
 <div class="wrapper">
   <div class="container">
     <div class="row">                                             
@@ -23,7 +22,7 @@
                   </thead>											                  	                                   			
                   <tbody>
                     <% @employees.each do |employee| %>
-                    <tr>
+                    <tr class="gradeA">
                       <td>
                         <% if employee.present? && employee.avatar_url.present? %>
                         <%= image_tag employee.avatar_url, :width => "60", :height => "60" %> 
@@ -36,9 +35,8 @@
                         <% end %>
                       </td>                           
                       <td>
-                          <%= link_to employee.full_name , profile_path(employee) %>
-                        
-                       </td>
+                          <%= link_to employee.full_name , profile_path(employee) %>                        
+                      </td>
                       <td><%= employee.user.email if employee.user.present? %></td>
                       <td><%= employee.designation.designation_name if employee.designation.present? %></td>
                       <td><%= employee.department.department_name %></td>

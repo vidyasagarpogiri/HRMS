@@ -93,7 +93,7 @@ padding-bottom:-25px;
 background-color: #91dff3 !important;
 }
 
-.jdesc{
+.jdesc,.idesc{
 height:60px;
 overflow:hidden;
 }
@@ -108,12 +108,6 @@ padding:10px!important;
 .module-head{
 background-color: !important;
 }
-
-.idesc{
-height:80px;
-overflow:hidden;
-}
-
 
 .exp tr th{
 width:270px !important;
