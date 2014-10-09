@@ -71,7 +71,7 @@
 				                                								                                								                                						                             <div class ="row-fluid">
 			                                      <div class="span5">
 			                                        <div class="control-group span4">
-										                            <label class="control-label" for="basicinput">Grade/Level: <%= @employee.grade.value %></label>        
+										                            <label class="control-label" for="basicinput">Grade/Level: <%= @employee.grade.value if @employee.grade.present? %></label>        
 									                            </div>
 																	         </div> 
 																	      </div>  

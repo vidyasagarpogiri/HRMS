@@ -14,17 +14,20 @@
         <label class="desc" for="basicinput">  <%= raw welcome_announcement.description %> </label>
      </div>
      <%= link_to "Continue..", announcement_path(welcome_announcement), :class => "pt4" %><br>          
-     <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>       
-  </div><!--module body-->
- <% end %>
+     <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>  
+      </div><!--module body-->
+      <% end %>     
+  
+
+ <div id="paginator">
+           <%= paginate @welcome_announcements, :remote => true, :param_name => 'page2' %>
+ </div>
   <% else %>
    <div class="alert alert-success alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             There are no announcements
   </div>
 <% end %>	
-<div id="paginator">
-           <%= paginate @welcome_announcements, :remote => true, :param_name => 'page2' %>
-        </div>
+
 </div><!--module-->
 

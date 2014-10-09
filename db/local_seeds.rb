@@ -27,17 +27,18 @@ Promotion.destroy_all
 EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
-Group.destroy_all;
-StaticAllowance.destroy_all
 Allowance.destroy_all
  
 
 
 #sekharberi@1989
+ 
  @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
  @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
  @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
  @user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
+
+
 
 
 Address.create(:id=>1,:line1 => "BAY STREET",:line => "GUL END",:city => "Sydney",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
@@ -79,7 +80,7 @@ Designation.all.each do |desg|
 end
 #-----------------------------------------------------------------------------------------------------#
 Grades = Grade.all.pluck(:id)
-["O+ve", "O-ve", "A+ve", "A+ve", "B+ve", "B-ve", "AB+ve", "AB-ve", "ABO (Bombay Blood Group)"].each do |bloodgrp|
+["O+ve", "O-ve", "A+ve", "A-ve", "B+ve", "B-ve", "AB+ve", "AB-ve"].each do |bloodgrp|
 BloodGroup.create(:blood_group_name => bloodgrp ) 
 end
 BloodGroups = BloodGroup.all.pluck(:id)
@@ -93,15 +94,13 @@ FfStatuses = FfStatus.all.pluck(:id)
 
 
 
-
-
-Employee.create(:id => 1,:employee_id => 1, :title=> "Mr.", :first_name=>"Meher",:last_name=>"Goru",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",
+Employee.create(:employee_id => 1, :title=> "Mr", :first_name=>"Meher",:last_name=>"Goru",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",
 :status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",
 :image_url=> "image",
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)],:role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)], :salary_id=>3,:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user.id, :alternate_email => "email@mail.com")
 
-Employee.create(:id => 2,:employee_id => 2, :title=> "Mr.", :first_name=>"bala",:last_name=>"nemani",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"13",
+Employee.create(:employee_id => 2, :title=> "Mr", :first_name=>"bala",:last_name=>"nemani",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"13",
 :status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",
  :image_url=> "image",
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
@@ -110,12 +109,15 @@ Employee.create(:id => 2,:employee_id => 2, :title=> "Mr.", :first_name=>"bala",
 :salary_id=>3,:avatar=>"best-employee-md.png", :user_id => @user1.id,:alternate_email => "email@mail.com")
 
 
-Employee.create(:id => 3,:employee_id => 3, :title=> "Miss.", :first_name=>"Sonia",:last_name=>"Kumar",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+Employee.create(:employee_id => 3, :title=> "Miss", :first_name=>"Sonia",:last_name=>"Kumar",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
 :salary_id=>2,:avatar=>"gates_print.jpg", :user_id => @user2.id,:alternate_email => "email@mail.com")
 
 
-Employee.create(:id => 4,:employee_id => 4, :title=> "Mr.", :first_name=>"pattabhi",:last_name=>"ramarao",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+Employee.create(:employee_id => 4, :title=> "Mr", :first_name=>"pattabhi",:last_name=>"ramarao",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
 :salary_id=>2,:avatar=>"gates_print.jpg", :user_id => @user3.id, :alternate_email => "email@mail.com")
+
+
+
 
 
 
@@ -140,20 +142,23 @@ LeaveType.create(:type_name => leave )
 end
 LeaveTypes = LeaveType.all.pluck(:id)
 
-Group.all.each do |group|
-  ReportingManager.create(employee_id: rand(1..Employee.count), group_id: group.id)
-
-#static allowance
-StaticAllowance.create(:allowance_name => 'HRA', :percentage => 25.0)
-StaticAllowance.create(:allowance_name => 'Car Allowance', :percentage => 15.0)
-StaticAllowance.create(:allowance_name => 'DA', :percentage => 5.0)
 
 
+Event.create(:event_name =>"Pongal", :event_date => "14/01/2014")
+Event.create(:event_name =>"Ugadi", :event_date => "11/04/2014")
+Event.create(:event_name=>"Independence Day", :event_date => "15/08/2014")
+Event.create(:event_name =>"Raksha Bhandan", :event_date => "23/08/2014")
+Event.create(:event_name =>"Vinayaka Chaturthi", :event_date => "29/08/2014")
+Event.create(:event_name =>"Dussehra", :event_date => "04/10/2014")
+Event.create(:event_name =>"Diwali", :event_date => "14/11/2014")
+Event.create(:event_name =>"Naga Panchami", :event_date => "21/11/2014")
+Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")
+Event.create(:event_name =>"Christmas", :event_date => "25/12/2014")
 
-end
 
+StaticSalary.create(:name => "Basic", :value => 40.0)
+StaticSalary.create(:name => "PF", :value => 20)
+StaticSalary.create(:name => "PF Contribution", :value => 10)
+StaticSalary.create(:name => "Esic", :value => 10)
+StaticSalary.create(:name => "Esic Contribution", :value => 10)
 
-Allowance.create(:allowance_name =>"travel allawance",:value=>"1500.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"true") 
-Allowance.create(:allowance_name =>"travel allawance",:value=>"2500.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"false") 
-Allowance.create(:allowance_name =>"travel allawance",:value=>"500.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"true") 
-Allowance.create(:allowance_name =>"travel allawance",:value=>"1000.00",:salary_id=>Salaries[rand(Salaries.length)],:applicable=>"false") 
