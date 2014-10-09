@@ -2,7 +2,7 @@ class AmzurEventsController < ApplicationController
 
   def index
   #raise params.inspect
-   @amzurevent = AmzurEvent.all
+   @amzurevent = AmzurEvent.all.page(params[:page]).per(3)
   end
   
   def new
