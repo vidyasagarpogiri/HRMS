@@ -15,16 +15,20 @@
           <label class="jdesc" for="basicinput"> <%= raw welcome_recruitment.description %></label>                                  
        </div>
        <%= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4" %><br> 
-       <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                     
-    </div><!--module body-->
-    <% end %>						
+       <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div> 
+       </div><!--module body-->
+         <% end %>	                    
+    
+  
+     <div id="paginator">
+    <%= paginate @welcome_recruitments, :remote => true, :param_name => 'page3' %>
+
+   </div>					
   <% else %>
      <div class="alert alert-success alert-dismissable">
        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         There are no Job Openings
     </div>
   <% end %>	
-   <div id="paginator">
-    <%= paginate @welcome_recruitments %>
-   </div>
+  
 </div><!--module-->
