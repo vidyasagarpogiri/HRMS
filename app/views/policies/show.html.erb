@@ -1,0 +1,45 @@
+<div class="wrapper">
+	<div class="container">
+		<div class="row">     			
+			<div class="span8">	
+			  <div class="module">
+          <div class="module-head">
+			      <h3>Ploicy Details</h3>			      
+	        </div>			
+		      <div class="module-body">	       
+            <h4><%= @policy.title %></h4>
+            <% if current_user.department == Department::HR %>
+            <ul class="navigation-btns pull-right" style="margin-top:-20px">
+              <li><%= link_to 'Edit', edit_policy_path(@policy), :class => "btn btn-success " %></li>
+              <li><%= link_to "Delete", policy_path(@policy.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>     
+            </ul>
+            <% end %><br>
+            <%= raw @policy.details %>            
+            Attachment:<%= link_to "Download", @policy.document_url, :target => "/blank" %><hr>                                                      
+					</div><!--/.module-body-->
+				</div><!--/.module-->
+			</div>	
+			<div class="span4">	
+        <div class="module">	
+          <div class="box-title">
+            <div class="module-head">
+              <h3>All Events</h3> 
+            </div>                                            
+            <div class="module-body">
+              <% @policies.each do |policy| %>
+                <div class="control-group">
+                   <a href="#"><strong><%= policy.title %> </strong> </a>
+                </div>
+                <div class="control-group">
+                  <label class="desc" for="basicinput"> <%= raw policy.details %></label>
+                </div>
+                <%= link_to "Continue..", policy_path(policy), :class => "pt4" %><br>              
+                <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                                           
+             <% end %>						
+              </div><!--/.module-body-->
+            </div><!--/.module-->
+  		   </div><!--/.module-->
+	     </div>	<!--/.span4-->			
+     </div>	
+  </div>
+</div>

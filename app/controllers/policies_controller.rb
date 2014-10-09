@@ -1,5 +1,9 @@
 class PoliciesController < ApplicationController
   
+   before_filter :hr_view,  only: ["new", "edit"]
+  
+ 
+  
   def index
    @policies = Policy.all.page(params[:page]).per(3)
   end
@@ -23,6 +27,11 @@ class PoliciesController < ApplicationController
   
   def edit
     @policy = Policy.find(params[:id]) 
+  end
+  
+  def show
+    @policy = Policy.find(params[:id]) 
+    @policies = Policy.all
   end
   
   def update
