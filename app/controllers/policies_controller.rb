@@ -29,6 +29,11 @@ class PoliciesController < ApplicationController
     @policy = Policy.find(params[:id]) 
   end
   
+  def show
+    @policy = Policy.find(params[:id]) 
+    @policies = Policy.all
+  end
+  
   def update
     @policy = Policy.find(params[:id])
      if @policy.update(policy_params)
