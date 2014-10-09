@@ -18,7 +18,7 @@
                 <div class="control-group">
                   <label class="control-label" for="basicinput">Status of F & F</label>
                       <div class="controls">
-                      <%= f.select :status_name, options_for_select(FfStatus::STATUS), { :prompt => "Please Select" }, :class => "span8 form-control", :data => {:error => " Please Enter Status"},:required =>true %>
+                      <%= f.select :status_name, options_for_select(FfStatus::STATUS), { :prompt => "Please Select" }, :class => "span8 form-control", :data => {:error => " Please Select Status"},:required =>true %>
                       
                       <span class="help-block with-errors"></span>
                      </div>
@@ -28,7 +28,7 @@
 		<div class="control-group">
 										<label class="control-label" for="basicinput">InterView Status</label>
 										<div class="controls">
-										<%= f.select :interview_status, options_for_select([['Yes', 'Yes'], ['No', 'No']]), {:prompt => "Please Select"}, :class=> "span8 form-control", :id=>"disabledSelect",:data => {:error => " Please Enter InterView Status"}, :required =>true %>
+										<%= f.select :interview_status, options_for_select([['Yes', 'Yes'], ['No', 'No']]), {:prompt => "Please Select"}, :class=> "span8 form-control", :id=>"disabledSelect",:data => {:error => " Please Select InterView Status"}, :required =>true %>
 										
                      <span class="help-block with-errors"></span>   
 										</div>
