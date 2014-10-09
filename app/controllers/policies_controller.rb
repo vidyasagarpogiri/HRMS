@@ -1,7 +1,7 @@
 class PoliciesController < ApplicationController
   
   def index
-   @policies = Policy.all
+   @policies = Policy.all.page(params[:page]).per(3)
   end
   
   def new

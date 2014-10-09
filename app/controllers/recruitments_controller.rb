@@ -1,7 +1,7 @@
 class RecruitmentsController < ApplicationController
 
   def index
-   @recruitments = Recruitment.all
+   @recruitments = Recruitment.all.page(params[:page]).per(3)
   end
   
   def new
