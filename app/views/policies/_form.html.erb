@@ -30,7 +30,7 @@
                 <div class="controls">
                   <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"} %>
                   <% if @policy.document_url.present? %>
-                  Existing Attachment: <%= link_to "#{@policy.document_url.split('/').last}", :target => "/blank" %>
+                  Existing Attachment: <%= link_to "Attachment", @policy.document_url, :target => "/blank"%>
                   <%end%>
                 </div>
               </div>
