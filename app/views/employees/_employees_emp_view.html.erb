@@ -10,7 +10,7 @@
                                 <%= current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard
                                 </h3>
                             </div><br>
-                            <div class="module-body " >
+                            <div class="module-body " style="background-color:#eee" >
                               <% divscount = 0 %>
                               <% @total_employees.each do |employee| %>
                               <%divscount = divscount+1 %>
@@ -19,8 +19,8 @@
                               <% end %>
                                 <div class="span6" style="border-radius:4px; background-color:#fff">
                                   <div class="style">
-                                    <div class=" module-head">
-                                      <h3><%= employee.full_name %>'s Profile
+                                    <div class=" module-head" style="background-color:#F0F5F5!important;">
+                                      <h3 style=" color:black!important;"><%= employee.full_name %>'s Profile
                                       <!--<%# current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard -->
                                       <hr>
                                       </h3>                                                                                  
@@ -54,29 +54,25 @@
                                        </div>                                         
                                      </div><!--/.media-body-->     
                                   </div>
-                              </div>
-                             
-                       <% if divscount%2 == 0 %>
-                          </div><br>
-                     <% end %>
-                    <% end %>        
-                                                       
-                          <% if divscount%2 == 1 %>
-                          </div><br>
-                     <% end %>
-                               
-                               
-                                   <div class="pagination pagination-centered">                      
-                                        <%= paginate @total_employees, :remote => true %>                       
-                                    </div>	
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--/.content-->                    
-                </div><!--/.span9-->                
-             </div><!--/.row-->
-		      </div><!--/.container-->
-	      </div><!--/.wrapper-->
+                              </div>                             
+                             <% if divscount%2 == 0 %>
+                             </div><br>
+                             <% end %>
+                             <% end %>                                                                     
+                             <% if divscount%2 == 1 %>
+                             </div><br>
+                             <% end %>                                                              
+                             <div class="pagination pagination-centered">                      
+                                  <%= paginate @total_employees, :remote => true %>                       
+                              </div>	
+                          </div>
+                      </div>
+                  </div>
+              </div><!--/.content-->                    
+          </div><!--/.span9-->                
+       </div><!--/.row-->
+    </div><!--/.container-->
+  </div><!--/.wrapper-->
 	      
 	      
 	          <script type="text/javascript">
