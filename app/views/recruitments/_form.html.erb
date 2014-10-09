@@ -51,11 +51,7 @@
               
               <div class="control-group">
                 <label class="control-label" for="basicinput">Attachment</label>                                         
-<<<<<<< HEAD
-                <div class="controls">                
-=======
                 <div class="controls">
->>>>>>> 45c3ab3b964c67c711a55a8312fcd6563d463ccb
                   <%= f.file_field :file, :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"} %> <br>
                   <%if @recruitment.file_url.present? %>
                   <%= link_to "attachment", @recruitment.file_url, :target => "/blank" %>
