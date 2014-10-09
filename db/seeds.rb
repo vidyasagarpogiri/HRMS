@@ -52,7 +52,7 @@ addresses = Address.all.pluck(:id)
 
 #---------------seeds for job locations -------------------------
 
-(3..5).each do 
+(2..5).each do 
 JobLocation.create( :address_id => addresses[rand(addresses.length)])
 end
 JobLocations = JobLocation.all.pluck(:id)
