@@ -25,6 +25,6 @@
   </div>
 <% end %>	
 <div id="paginator">
-                  <%= paginate @welcome_recruitments %>
+                  <%= paginate @welcome_recruitments, :remote => true, :param_name => 'page3' %>
                  </div>
 </div><!--module-->
