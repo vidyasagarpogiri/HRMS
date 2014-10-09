@@ -2,7 +2,7 @@
  <%= render 'employees/my_info'%>
 </div><!--/.module --> 
 
-
+<br><br>
 
 <div class="module">
   <div class="module-head">							
@@ -24,7 +24,7 @@
   </div><!--/.module-body -->
 </div><!--/.module -->      
                                 
-                                
+<br><br>                                
                                 
 <div class="module">
   <div class="module-head">							
@@ -47,12 +47,8 @@
         </tr>  
          <tr>
           <th>Upcoming Leaves</th>
-         
-          <td>
-           <% if @latest_leave.present? %>
-          <% if @latest_leave.from_date.to_date > Date.today %>
+          <td><% if @latest_leave.present? && @latest_leave.from_date.to_date > Date.today %>
                   <%= format_date(@latest_leave.from_date) %> TO <%= format_date(@latest_leave.to_date)%>
-               <% end %>
                <% end %>
           </td>
           

@@ -5,12 +5,12 @@
                 <div class="span12">
                     <div class="content">
                         <div class="module">
-                            <div class="module-head">
+                            <div class="module-head" style="background-color: #82B4E6 ">
                                 <h3>All Members
                                 <%= current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard
                                 </h3>
-                            </div>
-                            <div class="module-body " style="background-color:#eee">
+                            </div><br>
+                            <div class="module-body " >
                               <% divscount = 0 %>
                               <% @total_employees.each do |employee| %>
                               <%divscount = divscount+1 %>

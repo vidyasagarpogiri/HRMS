@@ -1,88 +1,77 @@
 <div class="wrapper">
- <div class="container">
-	<div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+              <h3>Recruitment Details</h3>
+            </div>
+            <div class="module-body">
+              <%= form_for @recruitment,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Job Code</label>
+                  <div class="controls">
+                  <%= f.text_field :jobcode, :class => "span8 form-control", :placeholder =>"Enter Job Code", :data => {:error => "Please Enter Job Code"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
 
-  <div class="span12">
-		<div class="content">
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Job Title</label>
+                <div class="controls">
+                  <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Job Title", :data => {:error => "Please Enter Job Title"}, :required => true, :pattern => '[a-zA-Z/s ]*' %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
 
-			<div class="module">
-				<div class="module-head">
-					<h3>Recruitment Details</h3>
-						</div>
-							<div class="module-body">
-							
-							
-	            <%= form_for @recruitment,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
-							
-			         <div class="control-group">
-                  <label class="control-label" for="basicinput">Job Code</label>
-                      <div class="controls">
-                        <%= f.text_field :jobcode, :class => "span8 form-control", :placeholder =>"Enter Job Code", :data => {:error => "Please Enter Job Code"}, :required => true %>
-                         <span class="help-block with-errors"></span>
-                      </div>
-								</div>
-									        
-<div class="control-group">
-                  <label class="control-label" for="basicinput">Job Title</label>
-                      <div class="controls">
-                        <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Job Title", :data => {:error => "Please Enter Job Title"}, :required => true, :pattern => '[a-zA-Z/s ]*' %>
-                         <span class="help-block with-errors"></span>
-                      </div>
-								</div>
-	
-	
-		<div class="control-group">
-										<label class="control-label" for="basicinput">Description</label>
-										<div class="controls">
-										 <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Job Description", :data => {:error => "Please Enter Job Description"}, :required => true,:style => "margin: 0px 0px 10px; width: 650px; height: 221px;" %>
-						      	 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
-	
-	
-	
-	
-		<div class="control-group">
-										<label class="control-label" for="basicinput">Link </label>
-										<div class="controls">
-                     <%= f.text_area :link, :class => "span8  form-control", :id => "basicinput", :placeholder =>"Enter Job URL",:data => {:error => "Please Enter Job URL"}, :required => true, :pattern => '/^(ftp:\/\/|http:\/\/|https:\/\/)?(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!-\/]))?$/' %>
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
-									
-										<div class="control-group">
-										<label class="control-label" for="basicinput">Status</label>
-										<div class="controls">
-                     <%= f.select(:status, options_for_select([['open', 'open'], ['closed', 'closed']]), {}, :class=> "span8 form-control", :id=>"disabledSelect") %>
-                     <span class="help-block with-errors"></span>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Attachment</label>                                         
-										<div class="controls">
-                      <%= f.file_field :file, :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"}, :required =>true %> <br>
-                      <%if @recruitment.file_url.present? %>
-                      Existing Attachment: <%= link_to "#{@recruitment.file_url.split('/').last}", :target => "/blank" %>
-                      <%end%>
-                     <span class="help-block with-errors"></span>
-										</div>
-									</div>
-			
-								 <ul class="navigation-btns pull-left" >
-									  <li><button type="submit" class="btn btn-success">Save</button></li>
-									  <li><%= link_to "Cancel", recruitments_path,:class => "btn btn-danger" %></li>
-									</ul>	
-							
-												 
-											
-										<% end %>
-							</div><!--/.module-body-->
-						</div><!--/.module-->
-					</div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
-	
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Description</label>
+                <div class="controls">
+                  <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Job Description", :data => {:error => "Please Enter Job Description"}, :required => true,:style => "margin: 0px 0px 10px; width: 650px; height: 221px;" %>
+                  <span class="help-block with-errors"></span>   
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Link </label>
+                <div class="controls">
+                  <%= f.text_area :link, :class => "span8  form-control", :id => "basicinput", :placeholder =>"Enter Job URL",:data => {:error => "Please Enter Job URL"}, :required => true, :pattern => '/^(ftp:\/\/|http:\/\/|https:\/\/)?(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!-\/]))?$/' %>
+                  <span class="help-block with-errors"></span>   
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Status</label>
+                <div class="controls">
+                  <%= f.select(:status, options_for_select([['open', 'open'], ['closed', 'closed']]), {}, :class=> "span8 form-control",:id=>"disabledSelect") %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Attachment</label>                                         
+                <div class="controls">
+                  <%= f.file_field :file, :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"}, :required =>true %> <br>
+                  <%if @recruitment.file_url.present? %>
+                  <%= link_to "#{@recruitment.file_url.split('/').last}", :target => "/blank" %>
+                  <%end%>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+
+              <ul class="navigation-btns pull-left" >
+                <li><button type="submit" class="btn btn-success">Save</button></li>
+                <li><%= link_to "Cancel", recruitments_path,:class => "btn btn-danger" %></li>
+              </ul>	
+              <% end %>
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
+
 
 

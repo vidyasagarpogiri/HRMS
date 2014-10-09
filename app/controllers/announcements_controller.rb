@@ -25,6 +25,7 @@ class AnnouncementsController < ApplicationController
   
   def show
     @announcement = Announcement.find(params[:id])
+    @announcements = Announcement.all
   end
   
   def update
