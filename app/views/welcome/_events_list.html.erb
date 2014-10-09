@@ -1,0 +1,30 @@
+<div class="module">	
+  <div class="box-title">   		 
+    <div class="module-head">
+      <h3>Events</h3>  
+    </div>                                            
+  </div>
+  <% if @welcome_event.present? %>	
+  <% @welcome_event.each do |welcome_event| %>
+  <div class="module-body">	
+       <div class="control-group">
+          <a href="#"><strong><%= welcome_event.title %> </strong> </a> on <a href="#"><strong> <%= format_date (welcome_event.held_on) %> </strong></a>
+       </div>
+       <div class="control-group">
+          <label class="desc" for="basicinput"> <%= raw welcome_event.description %></label>
+       </div>
+       <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %><br>              
+       <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                                           
+  </div><!--module body--> 
+  <% end %>						
+
+<% else %>
+   <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            There is no events
+  </div>
+ <% end %>	
+ <div id="paginator">
+          <%= paginate @welcome_event %>
+        </div>
+</div><!--module-->

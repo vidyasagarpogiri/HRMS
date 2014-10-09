@@ -1,0 +1,30 @@
+<div class="module">	
+  <div class="box-title">   		 
+    <div class="module-head">
+      <h3>Job Openings</h3> 
+    </div>                                            
+  </div>
+    <% if @welcome_recruitments.present? %>		    	
+  <% @welcome_recruitments.each do |welcome_recruitment| %>
+  <div class="module-body">	
+     <div class="control-group">
+        <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a>
+     </div>
+     <div class="control-group">
+        <a href="#"><%= welcome_recruitment.link %></a>
+        <label class="jdesc" for="basicinput"> <%= raw welcome_recruitment.description %></label>                                  
+     </div>
+     <%= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4" %><br> 
+     <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                     
+  </div><!--module body-->
+  <% end %>						
+<% else %>
+   <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            There is Job Openings
+  </div>
+<% end %>	
+<div id="paginator">
+                  <%= paginate @welcome_recruitments %>
+                 </div>
+</div><!--module-->

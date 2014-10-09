@@ -1,0 +1,30 @@
+<div class="module">	
+  <div class="box-title">   		 
+    <div class="module-head">
+      <h3>Announcements</h3>  
+    </div>                                            
+  </div>
+   <% if @welcome_announcements.present? %>	
+  <% @welcome_announcements.each do |welcome_announcement| %>
+  <div class="module-body"> 	
+     <div class="control-group">
+        <a href="#"><strong><%= welcome_announcement.title %> </strong></a> on 2-12-2014
+     </div>
+     <div class="control-group">
+        <label class="desc" for="basicinput">  <%= raw welcome_announcement.description %> </label>
+     </div>
+     <%= link_to "Continue..", announcement_path(welcome_announcement), :class => "pt4" %><br>          
+     <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>       
+  </div><!--module body-->
+ <% end %>
+  <% else %>
+   <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            There is Announcements
+  </div>
+<% end %>	
+<div id="paginator">
+           <%= paginate @welcome_announcements %>
+        </div>
+</div><!--module-->
+
