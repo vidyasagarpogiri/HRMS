@@ -56,13 +56,7 @@
          changeMonth: true,
          changeYear: true,
           minDate: -0,
-         yearRange: "+0:+1",
-         onClose: function (selectedDate) {
-             var date2 = $('.leave-form-date').datepicker('getDate');
-             date2.setDate(date2.getDate());
-             $(".leave-to-date").datepicker("option", "minDate", date2);
-             $(".error1").html('');
-         }
+         yearRange: "+0:+1",         
      });
 </script>
 
