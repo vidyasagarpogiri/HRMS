@@ -5,14 +5,6 @@ class WelcomeController < ApplicationController
   end
   
   def dashboard
-  #raise params.inspect
-    if params[:page1].present?
-      @pages = "Event"
-    elsif params[:page2].present?
-      @pages = "announcments"
-    elsif params[:page3].present?
-      @pages = "jobopenings"
-    end
    unless current_user.department == Department::HR
     @welcome_event = AmzurEvent.all.page(params[:page1]).per(2)
     @welcome_announcements = Announcement.all.page(params[:page2]).per(2)
