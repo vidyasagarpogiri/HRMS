@@ -36,15 +36,16 @@
 
         <tr>
           <th>Leaves-Earned</th>
-          <td><%= total_leaves(@employee).to_f  %></td>
+         
+          <td> <%= pluralize(total_leaves(@employee)+0, 'day') %> </td>
         </tr>
         <tr>
           <th>Leaves Utilized</th>
-          <td><%= total_used_leaves(@employee)%></td>
+          <td><%= pluralize(total_used_leaves(@employee)+0, 'day') %></td>
         </tr>  
          <tr>
           <th>Balance Leaves</th>
-          <td><%= total_balance_leaves(@employee) %></td>
+          <td><%= pluralize(total_balance_leaves(@employee)+0, 'day') %></td>
         </tr>  
          <tr>
           <th>Upcoming Leaves</th>
