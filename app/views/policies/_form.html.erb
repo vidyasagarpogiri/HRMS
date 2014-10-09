@@ -28,11 +28,10 @@
               <div class="control-group">
                 <label class="control-label" for="basicinput">Upload Attachment</label>                                         
                 <div class="controls">
-                  <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"}, :required =>true %>
+                  <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"} %>
                   <% if @policy.document_url.present? %>
                   Existing Attachment: <%= link_to "#{@policy.document_url.split('/').last}", :target => "/blank" %>
                   <%end%>
-                  <span class="help-block with-errors"></span>
                 </div>
               </div>
               <ul class="navigation-btns pull-left" >
@@ -50,11 +49,11 @@
 	
  <!-- script for image uploading-->
     
-      <script>
-function validateFiles(inputFile) {
+<script>
+  function validateFiles(inputFile) {
   var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
-  var extErrorMessage = "Only image file with extension: .jpg, .jpeg, .gif or .png is allowed";
-  var allowedExtension = ["jpg", "jpeg", "gif", "png", "JPG", "PNG", "JPEG", "GIF"];
+  var extErrorMessage = "Only file with extension: .jpg, .jpeg, .gif, .png, .pdf, .ppt, .pptx, .doc, .docx, .zip, .rar, .txt, .xls is allowed";
+  var allowedExtension = ["jpg", "LPG", "JPEG", "jpeg", "gif", "GIF",  "png", "PNG",  "doc", "DOC", "docx", "DOCX", "ppt", "PPT", "pptx", "PPTX", "xls", "XLS", "xlsx", "XLSX", "txt", "TXT", "rar", "RAR", "pdf", "PDf", "psd", "PSD"]; 
   
   var extName;
   var maxFileSize = $(inputFile).data('max-file-size');
@@ -78,9 +77,9 @@ function validateFiles(inputFile) {
 }
 </script>
 
- <script>
+<script>
   $(function() {
     $(".policy_form").validator();
   });
-  </script> 
+</script> 
 

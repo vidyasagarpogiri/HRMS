@@ -15,9 +15,7 @@
        </div>
        <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %><br>              
        <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div> <br> 
-       <div id="paginator">
-         <%= paginate @welcome_event %>
-       </div>                                         
+                                              
   </div><!--module body--> 
   <% end %>						
   <% else %>
@@ -26,5 +24,7 @@
             There are no events
   </div>
  <% end %>	
-
+ <div id="paginator">
+   <%= paginate @welcome_event %>
+ </div> 
 </div><!--module-->

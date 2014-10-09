@@ -44,19 +44,18 @@
               <div class="control-group">
                 <label class="control-label" for="basicinput">Status</label>
                 <div class="controls">
-                  <%= f.select(:status, options_for_select([['open', 'open'], ['closed', 'closed']]), {}, :class=> "span8 form-control",:id=>"disabledSelect") %>
+                 <%= f.select(:status, options_for_select([['open', 'open'], ['closed', 'closed']]), {}, :class=> "span8 form-control",:id=>"disabledSelect") %>
                   <span class="help-block with-errors"></span>
                 </div>
               </div>
               
               <div class="control-group">
                 <label class="control-label" for="basicinput">Attachment</label>                                         
-                <div class="controls">
-                  <%= f.file_field :file, :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"}, :required =>true %> <br>
+                <div class="controls">                
+                  <%= f.file_field :file, :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"} %> <br>
                   <%if @recruitment.file_url.present? %>
                   <%= link_to "#{@recruitment.file_url.split('/').last}", :target => "/blank" %>
                   <%end%>
-                  <span class="help-block with-errors"></span>
                 </div>
               </div>
 
@@ -73,5 +72,39 @@
   </div><!--/.container-->
 </div><!--/.wrapper-->
 
+
+<script>
+  function validateFiles(inputFile) {
+  var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
+  var extErrorMessage = "Only file with extension: .jpg, .jpeg, .gif, .png, .pdf, .ppt, .pptx, .doc, .docx, .zip, .rar, .txt, .xls is allowed";
+  var allowedExtension = ["jpg", "LPG", "JPEG", "jpeg", "gif", "GIF",  "png", "PNG",  "doc", "DOC", "docx", "DOCX", "ppt", "PPT", "pptx", "PPTX", "xls", "XLS", "xlsx", "XLSX", "txt", "TXT", "rar", "RAR", "pdf", "PDf", "psd", "PSD"]; 
+  
+  var extName;
+  var maxFileSize = $(inputFile).data('max-file-size');
+  var sizeExceeded = false;
+  var extError = false;
+  
+  $.each(inputFile.files, function() {
+    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+    extName = this.name.split('.').pop();
+    if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+  });
+  if (sizeExceeded) {
+    window.alert(maxExceededMessage);
+    $(inputFile).val('');
+  };
+  
+  if (extError) {
+    window.alert(extErrorMessage);
+    $(inputFile).val('');
+  };
+}
+</script>
+
+<script>
+  $(function() {
+    $(".policy_form").validator();
+  });
+</script> 
 
 
