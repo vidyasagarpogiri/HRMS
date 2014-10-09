@@ -25,7 +25,7 @@
 													          <td><%= allowance.percentage %></td>
 													          <td><%= allowance_value(allowance.percentage, @salary.basic_salary) %></td>
 													        <% else %>
-													          <td><%= allowance.percentage %><i class="icon-asterisk small"></i></td>
+													          <td><%= allowance.percentage %><i class="icon-asterisk"></i></td>
 													          <td><%= allowance_value(allowance.percentage, @salary.basic_salary) %><i class="icon-asterisk"></i></td>
 													        <% end %>
 													      <% else %>

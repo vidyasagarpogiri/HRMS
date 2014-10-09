@@ -29,24 +29,12 @@
            <h3> Basic Info</h3>
         </div><br>
          <div class ="row-fluid">
-            <div class="span5">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Employee Id :<%= @employee.employee_id %> </label>
-              </div>
-            </div>
+          
             <div class="span5">	
               <div class="control-group">
                 <label class="control-label" for="basicinput">Date Of Joining : <%=format_date (@employee.date_of_join) %></label>  
               </div>
-            </div>
-         </div>
-         
-         <div class ="row-fluid">
-            <div class="span5">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Department: <%= @employee.department.department_name %> </label>
-              </div>
-            </div>
+            </div>        
             <div class="span5">	
               <div class="control-group">
                 <label class="control-label" for="basicinput">Date Of Birth:  <%= format_date (@employee.date_of_birth) %></label>  
@@ -60,51 +48,20 @@
                 <label class="control-label" for="basicinput">Blood Group: <%= @employee.blood_group.blood_group_name%> </label>
               </div>
             </div>
-            <div class="span5">	
-              <div class="control-group">
-                <label class="control-label" for="basicinput"> <%# format_date (@employee.date_of_join) %></label>  
+            <% if @employee.emergency_contacts.present? %>
+            <div class="span5">		
+              <div class="control-group">Emergency Contact:
+                <label class="control-label" for="basicinput"> 
+                Person:<%= @employee.emergency_contacts.first.name %><br/>
+                Number:<%= @employee.emergency_contacts.first.mobile1 %></label>
               </div>
             </div>
+           <% end %>
          </div>
       </div>
      </div>  
      
-      <div class="modal-body" style="background-color:#fff;">
-        <div class="module-head">
-           <h3> Education & Experiance  Info</h3>
-        </div><br>  
-         <div class ="row-fluid">
-            <div class="span5">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Specilization:  
-                                  <% if @employee.educations.present? %>
-                                   <%= @specialization.specilization %>
-                                    <% else %>
-                                      ----
-                                    <% end %>
-              </div>
-            </div>
-            <div class="span5">	
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Experience : <%#difference_in_months(experience.from_date.to_date,experience.to_date)%></label>  
-              </div>
-            </div>
-         </div>
-      </div>
       
-     <div class="modal-body" style="background-color:#fff;">
-        <div class="module-head">
-             <h3>Contact Info</h3>
-        </div><br>   
-         <div class ="row-fluid">           
-            <div class="span5">	
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Alternate Email: <%= @employee.alternate_email %></label>  
-              </div>
-            </div>
-         </div>	
-      </div>
-     </div> 
       
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

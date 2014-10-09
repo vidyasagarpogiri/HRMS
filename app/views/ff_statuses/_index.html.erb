@@ -5,7 +5,7 @@
 								<h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> F&F Status Info</h3>								 
 							   	<% if current_user.department == Department::HR %>
 								    <% unless @status.present? %>             
-                    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-edit"></i></a> <%= link_to 'Add FFStatus', new_employee_ff_status_path(@employee), :remote => true %></label>                  
+                    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add FFStatus', new_employee_ff_status_path(@employee), :remote => true %></label>                  
                   <% else %>
                     <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class=" icon-edit"></i></a> <%= link_to 'Edit', edit_employee_ff_status_path(@employee, @status), :remote => true %></label>
                  <% end %>   
