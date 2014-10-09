@@ -9,15 +9,15 @@
     <h3>Reporting</h3>   
   </div>
   <div class="module-body">
-    <table class="table table-striped table-hover" id="sample-table-2">
-									      
+    <table class="table table-striped table-bordered" id="sample-table-2">
+			      
         <tr>
           <th>Report-to</th>
           <td><%= @employee.reporting_manager %></td>
         </tr>
         <tr>
           <th>Reporting-to-me</th>
-          <td><% @reportee_employees.each do |emp|%><%= emp.full_name %>, <% end %></td>
+          <td><% @reportee_employees.each do |emp|%><tr><td></td><td><%= emp.full_name %></td></tr><% end %></td>
         </tr>           
 
     </table>   
@@ -31,7 +31,7 @@
     <h3>My Leaves</h3>   
   </div>
   <div class="module-body">
-    <table class="table table-striped table-hover" id="sample-table-2">
+    <table class="table table-striped table-hover table-bordered" id="sample-table-2">
       											      
         <tr>
           <th>Leaves-Earned</th>
@@ -47,7 +47,7 @@
         </tr>  
          <tr>
           <th>Upcoming Leaves</th>
-          <td><% if @latest_leave.from_date.to_date > Date.today %>
+          <td><% if @latest_leave.present? && @latest_leave.from_date.to_date > Date.today %>
                   <%= format_date(@latest_leave.from_date) %> TO <%= format_date(@latest_leave.to_date)%>
                <% end %>
           </td>
