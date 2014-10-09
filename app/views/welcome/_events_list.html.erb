@@ -14,7 +14,7 @@
           <label class="desc" for="basicinput"> <%= raw welcome_event.description %></label>
        </div>
        <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %><br>              
-       <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div> <br> 
+       <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>  
   </div>
   <% end %>                                             
    
@@ -24,9 +24,9 @@
        </div> 
                                               					
   <% else %>
-   <div class="alert alert-success alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            There are no events
+  <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      There are no events
   </div>
  <% end %>	
 </div><!--module-->
