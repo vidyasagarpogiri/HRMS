@@ -8,15 +8,14 @@
 	        </div>			
 		      <div class="module-body">	       
             <h5><%= @amzurevent.title %></h5>
-            <ul class="navigation-btns pull-right" style="margin-top:-20px">
-              <li><%= link_to 'Edit', edit_amzur_event_path(@amzurevent), :class => "btn btn-success " %></li>
-              <li><%= link_to "Delete", amzur_event_path(@amzurevent), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-            </ul><br>              
-              <%= raw @amzurevent.description %><br>
-            Event Date: <%= format_date (@amzurevent.held_on) %>
             <% if current_user.department == Department::HR %>
-              
-            <% end %>                   
+              <ul class="navigation-btns pull-right" style="margin-top:-20px">
+                <li><%= link_to 'Edit', edit_amzur_event_path(@amzurevent), :class => "btn btn-success " %></li>
+                <li><%= link_to "Delete", amzur_event_path(@amzurevent), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+              </ul><br>   
+            <% end %>           
+              <%= raw @amzurevent.description %><br>
+            Event Date: <%= format_date (@amzurevent.held_on) %>                  
 					</div><!--/.module-body-->
 				</div><!--/.module-->
 			</div>	
