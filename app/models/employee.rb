@@ -80,15 +80,12 @@ class Employee < ActiveRecord::Base
   
   def is_reporting_manager?
     
-    if reporting_managers.present?
-      if reporting_managers.first.manager_id==id
-        return true
-      else
-        return false
-      end
-    else
-      return false
-    end
+   if ReportingManager.where(:manager_id => id).present?
+    return true
+   else
+   return false
+   end
+   
   end
 
   def full_name
