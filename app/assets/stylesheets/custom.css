@@ -45,11 +45,7 @@ height:130px !important;
 display:inline;
 }
 
-
-.wrapper {
-  min-height:800px;
-  }
-  
+ 
 .with-errors{
 color:red;
 }
@@ -106,7 +102,7 @@ padding:10px!important;
 
 
 .module-head{
-background-color: !important;
+background-color: #82B4E6 !important;
 }
 
 .exp tr th{

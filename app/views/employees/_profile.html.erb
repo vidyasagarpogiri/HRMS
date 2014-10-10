@@ -4,8 +4,8 @@
               <% if @employee.present? && @employee.avatar_url.present? %>
                 <%= image_tag(@employee.avatar_url) %> 
                <% else %>
-                  <img src="/assets/user.png"> 
-            <% end %></a>
+                 <img src="/assets/user.png"> 
+              <% end %></a>
               <div class="media-body">
                 <h4>
                 <%= @employee.title %>.<%= @employee.full_name %>
@@ -28,16 +28,15 @@
         <div class="module-head">
            <h3> Basic Info</h3>
         </div><br>
-         <div class ="row-fluid">
-          
+         <div class ="row-fluid">          
             <div class="span5">	
               <div class="control-group">
-                <label class="control-label" for="basicinput">Date Of Joining : <%=format_date (@employee.date_of_join) %></label>  
+                <label class="control-label" for="basicinput">Amzur Experience : <%= difference_in_months(@employee.date_of_join,Date.today) %></label>  
               </div>
             </div>        
             <div class="span5">	
               <div class="control-group">
-                <label class="control-label" for="basicinput">Date Of Birth:  <%= format_date (@employee.date_of_birth) %></label>  
+                <label class="control-label" for="basicinput">Date Of Birth:  <%= format_date_without_year(@employee.date_of_birth) %></label>  
               </div>
             </div>
          </div>
@@ -48,20 +47,29 @@
                 <label class="control-label" for="basicinput">Blood Group: <%= @employee.blood_group.blood_group_name%> </label>
               </div>
             </div>
+         </div> 
+         
+         <div class="module-head">
+           <h3> Emergency Contact</h3>
+         </div><br>
+         <div class ="row-fluid">  
             <% if @employee.emergency_contacts.present? %>
             <div class="span5">		
-              <div class="control-group">Emergency Contact:
-                <label class="control-label" for="basicinput"> 
-                Name:<%= @employee.emergency_contacts.first.name %><br/>
-                Contact Number:<%= @employee.emergency_contacts.first.mobile1 %></label>
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Name: <%= @employee.emergency_contacts.first.name %></label>                
               </div>
             </div>
+            <div class="span5">		
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Contact Number: <%= @employee.emergency_contacts.first.mobile1 %></label>                
+              </div>
+            </div>            
            <% end %>
          </div>
-      </div>
-     </div>  
-     
-      
+      </div><!- -->
+    </div>  
+  </div> 
+ </div>     
       
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

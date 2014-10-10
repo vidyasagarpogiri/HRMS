@@ -1,12 +1,12 @@
-<div class="wrapper">
-    <div class="container">
+<div class="wrapper" >
+    <div class="container" >
         <div class="row">                
             <div class="span12">
                 <div class="content">
                     <div class="module">
                       <% if @employee.department.leave_policy.present? %>
                    <% if @employee.reporting_manager? %>
-                        <div class="module-body">
+                        <div class="module-body" style="min-height:800px;">
                             <div class="profile-head media">                   
                                 <div class="media-body">
                                    <a class="media-avatar pull-left" href="#">                                 
@@ -37,28 +37,38 @@
                             
                                                                                                                            
                              <div class="profile-tab-content tab-content">  
-                                <div class="tab-pane fade active in" id="waiting-for-approval">                                              
-                                    <%= render "leave_histories/waiting_for_approvals"%>                  
-                                </div><!--/.tab-pane-list--> 
+                                <div class="tab-pane fade active in" id="waiting-for-approval">
+                                  <div class="module">                                              
+                                      <%= render "leave_histories/waiting_for_approvals"%>                  
+                                  </div> 
+                                </div><!--/.tab-pane-list-->
                       <!--leaves PANEL-->                                    
                                 
                                 <div class="tab-pane fade" id="upcoming-leaves">
-                                     <%= render "leave_histories/upcoming_leaves_list"%>         
+                                  <div class="module">
+                                     <%= render "leave_histories/upcoming_leaves_list"%>
+                                  </div>         
                                 </div><!--/.tab-pane-list--> 
                       <!--designations PANEL-->   
                                  
-                                  <div class="tab-pane fade " id="leaves-history"> 
-                                     <%= render "leave_histories/leave_history" %>    
+                                  <div class="tab-pane fade " id="leaves-history">
+                                    <div class="module"> 
+                                      <%= render "leave_histories/leave_history" %>    
+                                    </div>
                                   </div> <!--/.tab-pane-list-->                                              
                       <!--leave_policies PANEL-->             
                                  
-                                  <div class="tab-pane fade " id="leave_policy"> 
-                                    <%= render "leave_histories/leave_policy"%>                                          
+                                  <div class="tab-pane fade " id="leave_policy">
+                                    <div class="module"> 
+                                      <%= render "leave_histories/leave_policy"%>
+                                    </div>                                          
                                   </div><!--/.tab-pane-list-->
                       <!--holiday_calender PANEL-->             
                                   
                                   <div class="tab-pane fade " id="holiday_calender">
-                                     <%= render "leave_histories/holiday_list" %>                                           
+                                    <div class="module">  
+                                      <%= render "leave_histories/holiday_list" %>
+                                    </div>                                          
                                   </div><!--/.tab-pane-list-->                                          
                                   
                         <!--leave_approavals PANEL-->             
@@ -67,8 +77,10 @@
                                 </div><!--/.tab-pane-list--> 
                                 
                          <!--reportees PANEL-->         
-                                <div class="tab-pane fade" id="reportees">                                              
-                                    <%= render "leave_histories/reportees"%>                  
+                                <div class="tab-pane fade" id="reportees">
+                                  <div class="module">                                              
+                                    <%= render "leave_histories/reportees"%>
+                                  </div>                  
                                 </div><!--/.tab-pane-list--> 
                                 
                                                                                    
@@ -99,7 +111,7 @@
     </div>
     <!--/.container-->
     </div>	
-
+</div>
 
 
 
