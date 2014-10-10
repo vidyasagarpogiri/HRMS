@@ -23,9 +23,8 @@
               <label class="idesc">
                 <%= raw amzurevent.description %>
               </label>
-              <%= link_to "Continue..", amzur_event_path(amzurevent), :class => "pt4" %>
-              Event Date: <%= format_date (amzurevent.held_on) %>
-         
+              <strong>Event Date: </strong><%= format_date (amzurevent.held_on) %>
+              <%= link_to "Continue..", amzur_event_path(amzurevent), :class => "pt4" %><br><hr>                       
               <% end %>
               <% else %>     
               <div class="alert alert-success alert-dismissable">
