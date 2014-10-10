@@ -45,11 +45,7 @@ height:130px !important;
 display:inline;
 }
 
-
-.wrapper {
-  min-height:800px;
-  }
-  
+ 
 .with-errors{
 color:red;
 }
