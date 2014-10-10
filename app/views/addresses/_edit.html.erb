@@ -51,16 +51,13 @@
                           <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter ZipCode ", :minlength => "6", :maxlenght => "6"}, :type => "number", :required =>true %> 
                            <span class="help-block with-errors"></span>
                         </div>
-							    </div> 								
-							     <br>
-                   <ul class="navigation-btns" style="list-style: none;display:inline;">
-                    <li><button type="submit" class="btn btn-success pull-left">Update</button></li>
-                    <li><%= link_to 'Cancel', employee_addresses_path(@employee), :class => "btn btn-danger pull-left", :remote => true %></li>
+							    </div> 															    
+                   <ul class="navigation-btns pull-left" >
+                    <li><button type="submit" class="btn btn-success ">Update</button></li>
+                    <li><%= link_to 'Cancel', employee_addresses_path(@employee), :class => "btn btn-danger", :remote => true %></li>
                   </ul>    
-
-                   <% end %>
-							
-                   
+                    <br>
+                   <% end %>							                   
 						    </div><!--/.module-body-->
 					    </div><!--/.module-->
 		

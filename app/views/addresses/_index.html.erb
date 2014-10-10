@@ -8,9 +8,9 @@
 <% if @address2.nil? %>
 <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info pull-right" %><br>
 <% end %> 
-<% end %>
+<% end %><br><br>
 <div class ="new_address_form">
-  <% if !@address1.present? && !@address2.present? %><br/>
+  <% if !@address1.present? && !@address2.present? %>
     <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       You have No Addresses to display. 
