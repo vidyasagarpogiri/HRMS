@@ -20,7 +20,7 @@
                     <li><%= link_to "Delete", recruitment_path(recruitment.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
                   </ul> 
                 <% end %>             
-              <h5><%= link_to recruitment.link, recruitment.link %></h5>             
+              <h5><%= link_to recruitment.link, recruitment.link, :target => "/blank" %></h5>             
               <label class="idesc">
                 <%= raw recruitment.description %>                
               </label><%= link_to "Continue..", recruitment_path(recruitment), :class => "pt4" %><br>
