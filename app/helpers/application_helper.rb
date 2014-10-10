@@ -41,6 +41,13 @@ end
   	time.strftime("%d %b, %Y") if time
 	end
 	
+	def format_date_without_year(time)
+    time = time.to_date if time
+  	time.strftime("%b #{time.day.ordinalize}") if time
+  	#{time.day.ordinalize}
+	end
+	
+	
 	 def format_date_time(time)
     time.strftime("%d %b, %Y  %I:%M %p") if time
   end
