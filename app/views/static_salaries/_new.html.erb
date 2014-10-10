@@ -17,7 +17,7 @@
 										<%= fields_for "salary[]", salary do |f| %>   
 											<tr>
                           <td><%= salary.name %></td>
-                          <td><%= f.text_field :value %></td>
+                          <td><%= f.text_field :value,:placeholder =>"Enter Value", :data => {:error => "Please Enter Value"}, :required => true,:type => "number"%></td>
                       <tr>
 		          <% end %>
 		          <% end %>
