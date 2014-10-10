@@ -32,12 +32,12 @@
           
             <div class="span5">	
               <div class="control-group">
-                <label class="control-label" for="basicinput">Date Of Joining : <%=format_date (@employee.date_of_join) %></label>  
+                <label class="control-label" for="basicinput">Amzur Experience : <%= difference_in_months(@employee.date_of_join,Date.today) %></label>  
               </div>
             </div>        
             <div class="span5">	
               <div class="control-group">
-                <label class="control-label" for="basicinput">Date Of Birth:  <%= format_date (@employee.date_of_birth) %></label>  
+                <label class="control-label" for="basicinput">Date Of Birth:  <%= format_date_without_year(@employee.date_of_birth) %></label>  
               </div>
             </div>
          </div>
