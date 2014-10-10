@@ -4,8 +4,8 @@
               <% if @employee.present? && @employee.avatar_url.present? %>
                 <%= image_tag(@employee.avatar_url) %> 
                <% else %>
-                  <img src="/assets/user.png"> 
-            <% end %></a>
+                 <img src="/assets/user.png"> 
+              <% end %></a>
               <div class="media-body">
                 <h4>
                 <%= @employee.title %>.<%= @employee.full_name %>

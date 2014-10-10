@@ -1,8 +1,8 @@
 <div class="module">
   <div class="module-head">
-    <h3>Salary Info</h3> 
-     <% unless @salary.new_record? %>
+    <h3>Salary Info</h3>     
   </div>
+   <% unless @salary.new_record? %>
 	<div class="module-body">                                       
     <table class="table table-striped table-bordered table-condensed">
      <thead>
@@ -76,61 +76,61 @@
       </thead>
     </table>
   <!-- /.col-lg-6 (nested) -->
-              <% else %>              
-              <% if current_user.department == Department::HR %>
-                  <%= render 'salaries/form' %>
-               <% else %><br> <br>
-	              <div class="alert alert-success alert-dismissable">
-                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      Salary Not Yet Created please contact HR 
-                </div>
-								<% end %>               
-              <% end %>
-          </div>
-         
-           <div class="configure_allowance">     
-           </div>
-           <!-- Code for extra features in salaries -->
-        <!-- Code for Allowances Display in salaries index -->  
-         
-           <% unless @salary.new_record? %> 
-            <% if @allowances.present? %>                                            
-					    <div id="allownaces"><br>
-                <div class="module-head">
-                        List of Allowances
-                </div>
-                <div class="module-body">  
-			            <table class="table table-striped table-hover" id="sample-table-2">
-				            <thead>											      
-                       <tr>
-                        <th>Allowance Name</th>
-                        <th>Allowance</th>	                        										      		
-                       </tr>
-                     </thead> 
-                     <tbody>
-                       <% @allowances.each do |allowance| %>																	
-						              <tr>		 								             
-										        <td><%= allowance.allowance_name %></td> 													   								          								              
-                            <% if allowance.value.present? %>													
-                            <td><%= allowance_value(allowance.value, @salary.basic_salary)  %>
-                            </td>
-                            <% else %>
-                            <td><%= allowance.allowance_value %>
-                            </td>
-                            <% end %>
-                       </tr>
-                        <% end %>
-                     </tbody>                          
-			             </table>
-			            </div><!-- /.allowances -->	  
-               </div><!-- /.allowances -->	
-           <% else %>
-            <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  You have No Allowances to display.
-            </div>
-           <% end %>                              
-        <% end %>
+      <% else %>              
+      <% if current_user.department == Department::HR %>
+          <%= render 'salaries/form' %>
+       <% else %><br> <br>
+        <div class="alert alert-success alert-dismissable">
+           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              Salary Not Yet Created please contact HR 
+        </div>
+				<% end %>               
+      <% end %>
+    </div>
+ 
+   <div class="configure_allowance">     
+   </div>
+   <!-- Code for extra features in salaries -->
+  <!-- Code for Allowances Display in salaries index -->  
+ 
+   <% unless @salary.new_record? %> 
+    <% if @allowances.present? %>                                            
+	    <div id="allownaces"><br>
+        <div class="module-head">
+                List of Allowances
+        </div>
+        <div class="module-body">  
+          <table class="table table-striped table-hover" id="sample-table-2">
+            <thead>											      
+               <tr>
+                <th>Allowance Name</th>
+                <th>Allowance</th>	                        										      		
+               </tr>
+             </thead> 
+             <tbody>
+                <% @allowances.each do |allowance| %>																	
+	              <tr>		 								             
+					        <td><%= allowance.allowance_name %></td> 													   								          								              
+                  <% if allowance.value.present? %>													
+                  <td><%= allowance_value(allowance.value, @salary.basic_salary)  %>
+                  </td>
+                  <% else %>
+                  <td><%= allowance.allowance_value %>
+                  </td>
+                  <% end %>
+               </tr>
+                <% end %>
+             </tbody>                          
+           </table>
+          </div><!-- /.allowances -->	  
+       </div><!-- /.allowances -->	
+   <% else %>
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          You have No Allowances to display.
+    </div>
+   <% end %>                              
+<% end %>
 </div>
 <script>
   $(function(){
