@@ -2,8 +2,8 @@
   <div class="module-head">
     <h3>Salary Info</h3>     
   </div>
-   <% unless @salary.new_record? %>
-	<div class="module-body">                                       
+  <div class="module-body">   
+   <% unless @salary.new_record? %>                                    
     <table class="table table-striped table-bordered table-condensed">
      <thead>
         <tr>
@@ -131,7 +131,7 @@
     </div>
    <% end %>                              
 <% end %>
-
+</div>
 <script>
   $(function(){
     $("#insentives").hide();
