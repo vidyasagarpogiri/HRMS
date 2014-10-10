@@ -25,7 +25,7 @@ Education.destroy_all
 Experience.destroy_all
 Promotion.destroy_all
 EmailEttiquitie.destroy_all
-Salary.destroy_all
+#Salary.destroy_all
 LeaveType.destroy_all
 Allowance.destroy_all
  
@@ -98,7 +98,7 @@ Employee.create(:employee_id => 1, :title=> "Mr", :first_name=>"Meher",:last_nam
 :status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",
 :image_url=> "image",
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
-:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)],:role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)], :salary_id=>3,:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user.id, :alternate_email => "email@mail.com")
+:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)],:role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)], :avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user.id, :alternate_email => "email@mail.com")
 
 Employee.create(:employee_id => 2, :title=> "Mr", :first_name=>"bala",:last_name=>"nemani",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"13",
 :status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",
@@ -106,15 +106,15 @@ Employee.create(:employee_id => 2, :title=> "Mr", :first_name=>"bala",:last_name
 :department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)],
 :grade_id=>Grades[rand(Grades.length)],:role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
-:salary_id=>3,:avatar=>"best-employee-md.png", :user_id => @user1.id,:alternate_email => "email@mail.com")
+:avatar=>"best-employee-md.png", :user_id => @user1.id,:alternate_email => "email@mail.com")
 
 
 Employee.create(:employee_id => 3, :title=> "Miss", :first_name=>"Sonia",:last_name=>"Kumar",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
-:salary_id=>2,:avatar=>"gates_print.jpg", :user_id => @user2.id,:alternate_email => "email@mail.com")
+:avatar=>"gates_print.jpg", :user_id => @user2.id,:alternate_email => "email@mail.com")
 
 
 Employee.create(:employee_id => 4, :title=> "Mr", :first_name=>"pattabhi",:last_name=>"ramarao",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
-:salary_id=>2,:avatar=>"gates_print.jpg", :user_id => @user3.id, :alternate_email => "email@mail.com")
+:avatar=>"gates_print.jpg", :user_id => @user3.id, :alternate_email => "email@mail.com")
 
 
 
@@ -130,12 +130,7 @@ end
 EmailEttiquities = EmailEttiquitie.all.pluck(:id)
 
 
-Salary.create(:ctc_fixed =>"12000",:basic_salary => "4000",:gross_salary=>"16000",:gratuity =>"2500",:bonus=>"1500",:medical_insurance=>"2500") 
-Salary.create(:ctc_fixed =>"16000",:basic_salary => "2000",:gross_salary=>"13500",:gratuity =>"1500",:bonus=>"1600",:medical_insurance=>"2500")
-Salary.create(:ctc_fixed =>"22000",:basic_salary => "3500",:gross_salary=>"16500",:gratuity =>"2000",:bonus=>"1700",:medical_insurance=>"2500")
-Salary.create(:ctc_fixed =>"10000",:basic_salary => "4500",:gross_salary=>"18000",:gratuity =>"2200",:bonus=>"1000",:medical_insurance=>"2500")
 
-Salaries = Salary.all.pluck(:id)
 
 ["Sick Leave", "Floating Leave" , "Casual Leave","Carry Forward Leave"].each do |leave|
 LeaveType.create(:type_name => leave ) 
