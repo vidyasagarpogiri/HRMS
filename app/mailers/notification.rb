@@ -25,6 +25,14 @@ class Notification < ActionMailer::Base
 		 mail(:to => @leave_history.employee.user.email, :subject => "Leave Rejected")
 
 	end
+	
+		def job_notification(user,recruitment)
+		#raise users.inspect
+	    @recruitment = recruitment
+		  #raise @recruitment.inspect
+      #users.each do |user|
+		   mail(:to => user.email, :subject => "New Job....")
+	     end
+  
 end
-
 
