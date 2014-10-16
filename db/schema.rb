@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007130929) do
+ActiveRecord::Schema.define(version: 20141016111425) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20141007130929) do
     t.datetime "updated_at"
     t.float    "allowance_value", limit: 24
     t.integer  "salary_id"
+    t.boolean  "is_deductable"
   end
 
   create_table "amzur_events", force: true do |t|
@@ -180,6 +181,9 @@ ActiveRecord::Schema.define(version: 20141007130929) do
     t.string   "avatar"
     t.string   "alternate_email"
     t.integer  "designation_id"
+    t.string   "bank_name"
+    t.string   "branch_name"
+    t.string   "account_number"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree

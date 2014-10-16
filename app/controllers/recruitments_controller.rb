@@ -14,7 +14,7 @@ class RecruitmentsController < ApplicationController
    @users = User.all
   
     if @recruitment.present?
-      #raise  @users.inspect
+      #raise  params.inspect
       #Notification.job_notification(@users,@recruitment).deliver
       @users.each do |user|
       Notification.delay.job_notification(user,@recruitment)
