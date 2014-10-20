@@ -1,4 +1,4 @@
-.media .media-avatar {
+ .media-avatar {
 /* border: 1px solid rgba(204, 204, 204, 0.5); */
 border: none !important;
 height: 130px !important;
@@ -8,10 +8,9 @@ overflow:hidden !important;
 border-radius :100% !important;
 }
 
-.media .media-avatar img {
+.media-avatar img {
 height: 130px!important;
 width: 130px !important;
-margin-left:20px;
 border-radius :100% !important;
 }
 
