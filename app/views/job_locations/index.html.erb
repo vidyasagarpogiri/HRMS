@@ -26,7 +26,7 @@
                              <%# if current_user.department == Department::HR %>
                               <td> 
                                  <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                                   <li><%= link_to 'Edit',:class => "btn btn-success " %></li>
+                                   <li><%= link_to 'Edit', edit_job_location_path(job.id), :class => "btn btn-success " %></li>
                                    <li><%#= link_to "Delete", event_path(event.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
                                  </ul>
                                </td>
