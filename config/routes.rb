@@ -147,7 +147,7 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
           resources :salary_increments
       end
     resources :experiences
-  resources :addresses
+  resources :addresses 
 end
 
 
@@ -177,7 +177,10 @@ end
   resources :allowances
   #resources for static_salaries
   resources :static_salaries
-   
+  
+  #rout for job locations
+ resources :job_locations 
+ 
   #get 'change_designation' => "designations#change_designation"
   
 
