@@ -147,7 +147,7 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
           resources :salary_increments
       end
     resources :experiences
-  resources :addresses
+  resources :addresses 
 end
 
 
@@ -178,11 +178,17 @@ end
   #resources for static_salaries
   resources :static_salaries
   
+
   # routes for pay slips generation page- sekhar
   get 'payslips' => "salaries#generate_pay_slips"
   
   #--------------------------------------
    
+
+  #rout for job locations
+ resources :job_locations 
+ 
+
   #get 'change_designation' => "designations#change_designation"
   
 

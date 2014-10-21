@@ -51,8 +51,12 @@
          <tr>
           <th>Upcoming Leaves</th>
           <td>
-            <% if @latest_leave.present? && @latest_leave.from_date.to_date > Date.today %>
-            <%= format_date(@latest_leave.from_date) %> TO <%= format_date(@latest_leave.to_date)%>
+            <% if @latest_leave.present? %>
+            <ul>
+            <% @latest_leave.each do |leave|%>
+            <li><%= format_date(leave.from_date.to_date) %> TO <%= format_date(leave.to_date.to_date)%></li>
+            <%end%>
+            </ul>
             <% end %>
           </td>
         </tr> </div>              
