@@ -318,13 +318,30 @@ end
   end
   
   
-  #--------------- code for monthly salary calculation ------------------
+  #--------------- code for monthly salary calculation - sekhar ------------------
   def monthly(value)
     (value/12).round(2)
   end
   
   #----------------------------------------------------------------------
   
-  
+=begin
+    code for payslips calculation -sekhar
+    this will return netpay of each employee by calculating it indivisually
+=end
+def calculate_net_salary(salary)
+   total_deductions = 0.0
+   netpay = 0.0
+   allowances = salary.allowances
+   allowances.each do |allowance|
+      if allowance.is_deductable
+        total_deductions += allowance.allowance_value
+      end
+   end
+   total_deductions = total_deductions + salary.pf + salary.esic
+   netpay = salary.gross_salary - total_deductions
+   return netpay #, total_deductions 
+end
+
 
 end

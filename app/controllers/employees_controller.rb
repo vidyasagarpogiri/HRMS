@@ -11,7 +11,7 @@ class EmployeesController < ApplicationController
 
   def index
     @employees =  Employee.all
-    @total_employees =  Employee.all.page(params[:page]).per(4)
+    @total_employees =  Employee.where(:status => false).page(params[:page]).per(4)
   end
 
  

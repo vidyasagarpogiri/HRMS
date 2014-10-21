@@ -109,7 +109,11 @@ background-color: #82B4E6 !important;
 width:270px !important;
 }
 
-
+---------------------
+.status_active
+{
+  background:#0ff;
+}
 
 
 

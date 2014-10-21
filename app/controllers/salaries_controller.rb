@@ -26,6 +26,7 @@ class SalariesController < ApplicationController
   end
   
   def create
+    
     @salary = Salary.new(params_salary)
     @employee = Employee.find(params[:employee_id])
 	  @salary.save
@@ -77,9 +78,9 @@ class SalariesController < ApplicationController
   end
  
   def show
-    
-    @salary =  Salary.find(params[:id])   
+   
     @employee= Employee.find(params[:employee_id])
+    @salary =  @employee.salary
     @allowance = Allowance.new
     @allowances = @salary.allowances
     @salary_increments =@salary.salary_increments
@@ -164,19 +165,43 @@ class SalariesController < ApplicationController
 	  @salary = Salary.find(params[:salary_id])
 	  @allowances = @salary.allowances
 	  @salary_percentages = StaticSalary.all
+	  # this if-else statement is to check applicability of pf and esic based on their values in the salary record
 	  if params[:Pf] == "on" && params[:Esci] == "on"
       @salary.update(:pf_apply => "true", :esic_apply => "true", :pf => pf(@salary,@salary_percentages), :esic => esic(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages))
+      
 	  elsif params[:Pf] == "on"
 	    @salary.update(:pf_apply => "true", :pf => pf(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages), :esic => 0.0, :esic_contribution => 0.0)
+	    
 	  elsif params[:Esci] == "on" 
 	    @salary.update(:esic_apply => "true", :esic => esic(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages), :pf => 0.0, :pf_contribution => 0.0)
+	    
 	  else
 	      @salary.update(:pf => 0.0, :pf_contribution => 0.0, :pf_apply => "false", :esic => 0.0, :esic_contribution => 0.0, :esic_apply => "false")
+	      
 	  end
+	  
 	   @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f + @salary.pf_contribution.to_f + @salary.esic_contribution 
+	   
     special_allowance = @salary.gross_salary.to_f - ( basic(@salary,@salary_percentages) + @salary.esic + @salary.pf )
+    
 	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages), :special_allowance => special_allowance)
 	end
+	
+	# code for payslips genaration - sekhar
+	 
+	 def generate_pay_slips
+	   @employees = Employee.all
+	   @employees.each do |employee|
+	   @salary = employee.salary
+	     if @salary.present?
+	      #@allowances = @salary.allowances
+	      @netpay = calculate_net_salary(@salary)
+	      @payslip = Payslip.create(:netpay => @netpay, :total_deductions => @total_deductions, :employee_id => employee.id)  
+	      end
+	    end
+	    @payslips = Payslip.all
+	  end
+	#--------------------------------------
   
   private
   

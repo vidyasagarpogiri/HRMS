@@ -177,6 +177,11 @@ end
   resources :allowances
   #resources for static_salaries
   resources :static_salaries
+  
+  # routes for pay slips generation page- sekhar
+  get 'payslips' => "salaries#generate_pay_slips"
+  
+  #--------------------------------------
    
   #get 'change_designation' => "designations#change_designation"
   
