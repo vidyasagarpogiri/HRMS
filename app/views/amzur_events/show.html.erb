@@ -38,7 +38,8 @@
             <%= link_to "Continue..", amzur_event_path(event), :class => "pt4" %><br>              
             <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                                           
             </div><!--module body--> 
-            <% end %>						
+            <% end %>
+            <%= paginate @event %>						
           </div><!--/.module-body-->
        </div><!--/.module-->
 		</div><!--/.span4-->

@@ -26,7 +26,7 @@ before_filter :hr_view,  only: ["new", "edit"]
   
   def show
     @announcement = Announcement.find(params[:id])
-    @announcements = Announcement.all
+    @announcements = Announcement.all.page(params[:page]).per(5)
   end
   
   def update
