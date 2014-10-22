@@ -32,12 +32,14 @@ class LeaveHistoriesController < ApplicationController
     #raise params.inspect
     @employee = current_user.employee
     @leave_history = current_user.employee.leave_histories.new(params_leave_history)
+
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, current_user.employee.department)  
     applied_days = total_days - weekend_count 
     #--TODO----- leave balance alert before save
     @leave_history.save
     @leave_history.update(:days => applied_days)
+    
     Notification.delay.applyleave(current_user.employee, @leave_history)
 		redirect_to leave_histories_path
 	#else
@@ -132,6 +134,5 @@ class LeaveHistoriesController < ApplicationController
   def params_leave_history
     params.require(:leave_history).permit(:from_date, :to_date, :reason, :feedback, :leave_type_id)
   end
-
 end
 

@@ -32,10 +32,12 @@
             </div>
             <div class="control-group">
               <label class="desc" for="basicinput"> <%= raw event.description %></label>
-            </div>
-              <%= link_to "Continue..", amzur_event_path(event), :class => "pt4" %><br>              
-              <div style="border-top: 1px solid #eeeeee;"></div>                                            
-            <% end %>						
+            </div>         						
+            <%= link_to "Continue..", amzur_event_path(event), :class => "pt4" %><br>              
+            <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>
+            <% end %> 
+            <%= paginate @event %>	                                          
+            </div><!--module body-->                         					
           </div><!--/.module-body-->
        </div><!--/.module-->
 		</div><!--/.span4-->
