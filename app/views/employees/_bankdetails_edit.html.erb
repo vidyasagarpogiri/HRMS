@@ -47,17 +47,17 @@
   </div> <!--/module-body-->      
 </div>
 
-        <script>
-          $(function(){          
-              <% if @employee.present? %>
-                $(".bankname").val('<%= @employee.bank_name %>');
-                $(".accountno").val('<%= @employee.account_number %>');
-                $(".branchname").val('<%= @employee.branch_name %>');
-                $(".pan").val('<%= @employee.pan %>');
-              <% end %>
-         });
-       </script>
-         
-       <script>
-          $(".bankdetails-edit-form").validator();
-       </script>                     
+<script>
+  $(function(){          
+      <% if @employee.present? %>
+        $(".bankname").val('<%= @employee.bank_name %>');
+        $(".accountno").val('<%= @employee.account_number %>');
+        $(".branchname").val('<%= @employee.branch_name %>');
+        $(".pan").val('<%= @employee.pan %>');
+      <% end %>
+ });
+</script>
+ 
+<script>
+  $(".bankdetails-edit-form").validator();
+</script>                     
