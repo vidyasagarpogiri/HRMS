@@ -80,10 +80,18 @@
 					  <td><%= monthly(@salary.esic_contribution) %></td>
 				  </tr>
 				<% end %>
+			  
 			  <tr>
-					<th>Special Allowance</th>
-					<td><%= @salary.special_allowance%></td>
-					<td><%= monthly(@salary.special_allowance) %></td>
+			    <th>Special Allowance</th>
+				   <%  if @salary.special_allowance.present? %>
+				      <td><%= @salary.special_allowance%></td>
+				      <td><%= monthly(@salary.special_allowance) %></td>
+				    
+			    <%else%>
+			   
+			      	<td>You have no special allowance</td>
+			      	
+			  	<%end%>
 				</tr>
 				<tr>
 					<th>CTC</th>

@@ -54,7 +54,7 @@
             <% if @latest_leave.present? %>
             <ul>
             <% @latest_leave.each do |leave|%>
-            <li><%= format_date(leave.from_date.to_date) %> TO <%= format_date(leave.to_date.to_date)%></li>
+            <li><b>Days : <%= leave.days%></b> - <b>FROM</b> <%= format_date(leave.from_date.to_date) %> <b>TO</b> <%= format_date(leave.to_date.to_date)%></li>
             <%end%>
             </ul>
             <% end %>
