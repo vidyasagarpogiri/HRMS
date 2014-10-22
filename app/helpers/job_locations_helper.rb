@@ -1,0 +1,2 @@
+module JobLocationsHelper
+end

@@ -35,7 +35,7 @@ class AmzurEventsController < ApplicationController
   
   def show
     @amzurevent = AmzurEvent.find(params[:id])
-    @event = AmzurEvent.all
+    @event = AmzurEvent.all.page(params[:page]).per(5)
   end
   
   def update

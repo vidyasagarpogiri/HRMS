@@ -25,7 +25,7 @@
                     <tr class="gradeA">
                       <td>
                         <% if employee.present? && employee.avatar_url.present? %>
-                        <%= image_tag employee.avatar_url, :width => "60", :height => "60" %> 
+                        <%= image_tag employee.avatar_url, :width => "60px", :height => "60px" %> 
                         <% else %>
                         <% if employee.gender == "Male" %>
                         <img src="/assets/user.png" style ="width:60px;height:60px;"> 

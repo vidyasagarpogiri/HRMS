@@ -1,6 +1,6 @@
 <div class="module-head" >
   <h3>Contact Info</h3>
-</div><br>
+</div>
 <% if current_user.department == Department::HR %>
 <% if @address1.nil? %>
 <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info pull-right" %>
@@ -8,7 +8,7 @@
 <% if @address2.nil? %>
 <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info pull-right" %><br>
 <% end %> 
-<% end %><br><br>
+<% end %>
 <div class ="new_address_form">
   <% if !@address1.present? && !@address2.present? %>
     <div class="alert alert-success alert-dismissable">

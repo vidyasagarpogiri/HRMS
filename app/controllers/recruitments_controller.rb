@@ -34,7 +34,7 @@ class RecruitmentsController < ApplicationController
   
   def show
     @recruitment = Recruitment.find(params[:id])
-    @recruitments = Recruitment.all
+    @recruitments = Recruitment.all.page(params[:page]).per(4)
   end
   
   def update
