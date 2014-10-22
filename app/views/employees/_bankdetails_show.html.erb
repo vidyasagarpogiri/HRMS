@@ -1,7 +1,9 @@
 <div class="module-head">
   <h3>Basic Info</h3>
-</div>                                                 
-  <label style="font-weight:normal;margin-top:-30px;" class="pull-right"><a><i class="icon-edit"></i></a><%= link_to " Edit",  bankdetails_edit_employee_path(@employee), :remote => true %></label>
+</div>
+  <% if current_user.department == Department::HR %>                                                  
+    <label style="font-weight:normal;margin-top:-30px;" class="pull-right"><a><i class="icon-edit"></i></a><%= link_to " Edit",  bankdetails_edit_employee_path(@employee), :remote => true %></label>
+  <% end %>
   <div class="module-body " style="margin-left:100px;">	                                       
     <div class ="row-fluid">
       <div class="span5">		
