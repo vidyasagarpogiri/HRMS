@@ -5,7 +5,14 @@
   </ul>                                                                                                
   <div class="profile-tab-content tab-content">                                                                
     <div class="tab-pane fade active in" id="bank_info">
-     <%=render 'salaries/bankdetails_form' %>
+      <% if @employee.account_number.present? %>
+        <%=render 'employees/bankdetails_show' %>
+      <%else%>
+      <div class="bank_form">
+        <%=render 'employees/bankdetails_form' %>
+      </div>
+        <div class="bankdetails_show"></div>
+      <% end %>  
     </div><!--/.tab-pane-list-->     
     
     <!--salary_structure-->  

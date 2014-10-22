@@ -85,7 +85,7 @@ padding-bottom:-25px;
 }
 
 .box-title .module-head{
-background-color: #91dff3 !important;
+background-color: #BDD8EE  !important;
 }
 
 .jdesc,.idesc{
@@ -108,7 +108,9 @@ background-color: #82B4E6 !important;
 width:270px !important;
 }
 
-
+#paginator{
+margin-left:10px;
+}
 
 
 

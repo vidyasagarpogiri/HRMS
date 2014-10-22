@@ -2,10 +2,8 @@
 				<div class="module-head">
 					<h3>Emergency Contact Info</h3>
 						</div>
-							<div class="module-body">
-							                                              
-							<%= form_for ([@employee, @emergency]), :remote => true,  :html => {:class=>"form-horizontal row-fluid new_emergency-contact-form"} do |f| %>
-							
+							<div class="module-body">							                                              
+							<%= form_for ([@employee, @emergency]), :remote => true,  :html => {:class=>"form-horizontal row-fluid new_emergency-contact-form"} do |f| %>		
 			         <div class="control-group">
                   <label class="control-label" for="basicinput">Name Of person</label>
                       <div class="controls">
@@ -23,7 +21,7 @@
 								</div>
 	
 	
-		<div class="control-group">
+		           <div class="control-group">
 										<label class="control-label" for="basicinput">Mobile 1</label>
 										<div class="controls">
                      <%= f.text_field :mobile1, :class => "span8  form-control", :placeholder => "Enter Mobile Number", :data => {:error => "Please Enter Mobile number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
