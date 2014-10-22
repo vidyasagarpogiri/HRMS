@@ -1,4 +1,4 @@
-.media .media-avatar {
+ .media-avatar {
 /* border: 1px solid rgba(204, 204, 204, 0.5); */
 border: none !important;
 height: 130px !important;
@@ -8,10 +8,9 @@ overflow:hidden !important;
 border-radius :100% !important;
 }
 
-.media .media-avatar img {
+.media-avatar img {
 height: 130px!important;
 width: 130px !important;
-margin-left:20px;
 border-radius :100% !important;
 }
 
@@ -86,7 +85,7 @@ padding-bottom:-25px;
 }
 
 .box-title .module-head{
-background-color: #91dff3 !important;
+background-color: #BDD8EE  !important;
 }
 
 .jdesc,.idesc{
@@ -109,7 +108,10 @@ background-color: #82B4E6 !important;
 width:270px !important;
 }
 
-
+#paginator{
+margin-left:10px;
+margin-top:-20px;
+}
 
 
 

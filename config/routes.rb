@@ -124,6 +124,11 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
 			patch 'attachment_update/:attachment_id'=> 'employees#attachment_update', as: :attachment_update
 			get 'attachment_show'
 			post 'attachment_create'
+			get 'bankdetails_form'
+			get 'bankdetails_show'
+			get 'bankdetails_edit'
+			post 'bankdetails_create'
+			patch 'bankdetails_update'
 		end
   
   resources :educations do

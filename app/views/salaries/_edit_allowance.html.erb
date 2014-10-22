@@ -10,7 +10,8 @@
 															  <th>Allowance</th>
 															  <th>Percentage</th>
 															  <th>Value</th>
-															  <th>Applicable</th>
+															  <th>Applicable</th> 
+															  <th>Deductable</th>
 													  <tr/>
 											   </thead>	
 											   </tbody>				
@@ -43,6 +44,7 @@
                               <% else %>
                                 <td><%= check_box_tag 'allowance_ids[]', allowance.id , checked = false, :class => "check_event" %></td>
                               <% end %>
+                              <td><%= check_box_tag 'deductable_allowance_ids[]', allowance.id, checked = false , :class => "check" %></td> 
 												   </tr>
                           <% end %>
 											    <% end %> 

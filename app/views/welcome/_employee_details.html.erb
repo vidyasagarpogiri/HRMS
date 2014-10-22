@@ -10,16 +10,17 @@
   </div>
 
   <div class="module-body exp">
-    <table class="table table-striped table-hover" id="sample-table-2">									      
-        <tr>
-          <th>Report-to</th>
-          <td><%= @employee.reporting_manager %></td>
-        </tr>
-        <tr>
-          <th>Reporting-to-me</th>
-          <td><% @reportee_employees.each do |emp|%><tr><td></td><td><%= emp.full_name %></td></tr><% end %></td>
-        </tr>           
-    </table>   
+    <table class="table table-striped table-hover text" id="test">					      
+      <tr>
+        <th>Report-to</th>
+        <td><%= @employee.reporting_manager %></td>
+      </tr>
+      <tr>
+        <th>Reporting-to-me</th>
+        <td><% @reportee_employees.each do |emp|%><tr><td></td><td><%= emp.full_name %></td></tr><% end %></td>
+      </tr>                
+    </table>
+    <i class="glyphicon glyphicon-sort btn" style="margin-left:300px;"></i> <br>
   </div><!--/.module-body -->
 </div><!--/.module -->      
                                 
@@ -36,8 +37,7 @@
     <div class="">     											      
 
         <tr>
-          <th>Leaves-Earned</th>
-         
+          <th>Leaves-Earned</th>         
           <td> <%= pluralize(total_leaves(@employee)+0, 'day') %> </td>
         </tr>
         <tr>
@@ -60,7 +60,7 @@
             <% end %>
           </td>
         </tr> </div>              
-    </table>
+    </table> 
    <% else %>
      <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -69,5 +69,12 @@
    <% end %>   
   </div><!--/.module-body -->
 </div><!--/.module -->      
-                                                                                                                                                                            
+   
+   
+<script type="text/javascript">
+  $("#test tr:nth-child(n+5)").hide()
+    $('.btn').click(function(){  
+    $("#test tr:nth-child(n+5)").toggle()
+  });
+</script>
 
