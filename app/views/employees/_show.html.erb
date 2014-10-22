@@ -7,13 +7,13 @@
     <div class ="row-fluid">
       <div class="span5">		
         <div class="control-group">
-          <label class="control-label" for="basicinput"><strong>Date Of Joining: </strong><%= format_date (@employee.date_of_join) %></label>
+          <label class="control-label" for="basicinput"><strong>Job Location: </strong> <%= @employee.job_location.address.city if @employee.job_location.address.present? %> </label>          
           <!--<label class="control-label" for="basicinput">Employee Id: <%# @employee.employee_id %> </label>-->
         </div>
       </div>
       <div class="span5">	
         <div class="control-group">
-           <label class="control-label" for="basicinput"><strong>Grade/Level: </strong> <%= @employee.grade.value if @employee.grade.present? %></label> 
+          <label class="control-label" for="basicinput"><strong>Department: </strong><%= @employee.department.department_name %> </label>           
         </div>
        </div>
       </div><hr>	
@@ -21,12 +21,12 @@
       <div class ="row-fluid">
         <div class="span5">		
           <div class="control-group">
-            <label class="control-label" for="basicinput"><strong>Job Location: </strong> <%= @employee.job_location.address.city if @employee.job_location.address.present? %> </label>
-         </div>
+            <label class="control-label" for="basicinput"><strong>Alternate E-Mail: </strong><%= @employee.alternate_email %> </label>  
+          </div>
        </div>
        <div class="span5">	
          <div class="control-group">
-           <label class="control-label" for="basicinput"><strong>Blood Group: </strong> <%= @employee.blood_group.blood_group_name %></label>
+           <label class="control-label" for="basicinput"> <strong>Reporting Manager: </strong><%= Employee.find(@report.manager_id).full_name if @report.present? && @report.manager_id? %> </label>           
         </div>
        </div>
      </div><hr>
@@ -34,20 +34,20 @@
      <div class ="row-fluid">
         <div class="span5">		
           <div class="control-group">
-            <label class="control-label" for="basicinput"><strong>Alternate E-Mail: </strong><%= @employee.alternate_email %> </label>
-         </div>
+            <label class="control-label" for="basicinput"><strong>Date Of Joining: </strong><%= format_date (@employee.date_of_join) %></label>  
+          </div>
        </div>
        <div class="span5">	
          <div class="control-group">
-           <label class="control-label" for="basicinput"> <strong>Reporting Manager: </strong><%= Employee.find(@report.manager_id).full_name if @report.present? && @report.manager_id? %> </label>
-        </div>
+           <label class="control-label" for="basicinput"><strong>Grade/Level: </strong> <%= @employee.grade.value if @employee.grade.present? %></label>   
+         </div>
        </div>
      </div><hr>		
      
      <div class ="row-fluid">
         <div class="span5">		
           <div class="control-group">
-            <label class="control-label" for="basicinput"><strong>Father Name: </strong><%= @employee.father_name %> </label>
+            <label class="control-label" for="basicinput"><strong>Date Of Birth:  </strong><%= format_date (@employee.date_of_birth) %> </label>            
          </div>
        </div>
        <div class="span5">	
@@ -60,13 +60,13 @@
      <div class ="row-fluid">
         <div class="span5">		
           <div class="control-group">
-            <label class="control-label" for="basicinput"><strong>Date Of Birth:  </strong><%= format_date (@employee.date_of_birth) %> </label>
-         </div> 
+            <label class="control-label" for="basicinput"><strong>Father Name: </strong><%= @employee.father_name %> </label>  
+          </div> 
        </div>
        <div class="span5">	
          <div class="control-group">
-           <label class="control-label" for="basicinput"><strong>Department: </strong><%= @employee.department.department_name %> </label>
-        </div>
+           <label class="control-label" for="basicinput"><strong>Blood Group: </strong> <%= @employee.blood_group.blood_group_name %></label>  
+         </div>
        </div>
      </div><hr>	  				
     								                                								                                						                           

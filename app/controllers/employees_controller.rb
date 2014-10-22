@@ -215,9 +215,10 @@ end
 		@employee = Employee.find(params[:id])
   end
 	
-	def bankdetails_update		
+	def bankdetails_update	
 	  @employee = Employee.find(params[:id])
 		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan])
+		
 	end
 	
   private   
