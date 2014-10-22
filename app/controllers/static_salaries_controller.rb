@@ -16,10 +16,15 @@ class StaticSalariesController < ApplicationController
    @static_salaries = StaticSalary.all 
    @salaries = params[:salary]  
    #raise @salaries.inspect
+   if @salaries.present?
    @salaries.each do |s|
     @static_salary = StaticSalary.find(s[0].to_i)
     @static_salary.update(:value => s[1][:value])
    end
+   else
+    flash[:notice]= "Please configure salaries"
+   end
+  
    redirect_to static_allowances_path
    end
 end
