@@ -53,5 +53,9 @@ class Notification < ActionMailer::Base
     mail(:to => user.email, :subject => "#{@policy.title} Policy ")
     end
     
+    def holiday_list(user,events)
+    @events = events
+     mail(:to => user.email, :subject => "Holidays List")
+    end
 end
 

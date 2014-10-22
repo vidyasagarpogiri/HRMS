@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   resources :recruitments  
   get 'recruitments/show' => 'recruitments#show'
 
-  resources :events
-  get 'getAllEmployees' => 'employees#getAllEmployees'  
+  resources :events 
+  get 'getAllEmployees' => 'employees#getAllEmployees'
+  get 'holiday_notification' => "events#holiday_notification" 
 
   #devise_for :users
 
