@@ -12,6 +12,7 @@
 									<th>percentage</th>
 									<th>value</th>
 									<th>Applicable</th>
+									<th>Deductable</th>
 								 <tr/>
 							 </thead>	
 							 </tbody>				
@@ -27,6 +28,7 @@
 												  <td> <%=  allowance.value %></td>
 												<% end %>
                            <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = false , :class => "check" %></td> 
+                            <td><%= check_box_tag 'deductable_allowance_ids[]', allowance.id, checked = false , :class => "check" %></td> 
 											</tr>
 										 <% end %>
 									  <% end %> 

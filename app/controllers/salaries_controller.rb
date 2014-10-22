@@ -98,21 +98,31 @@ class SalariesController < ApplicationController
   end
   
 	def configure_allowance  
+	  
 			@employee= Employee.find(params[:employee_id])
 			@salary =  Salary.find(params[:salary_id])
 			@allowances = StaticAllowance.all
 	end
 	
 	def create_allowance
-	 
+	  # raise params.inspect
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
 		@allowance = @salary.gross_salary - @salary.basic_salary
 		@allowances = @salary.allowances
 		if params[:allowance_ids].present?
 		params[:allowance_ids].each do |a|
+		# code for updation of deductable allowances -sekhar
 		  sa = StaticAllowance.find(a)
-		  Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value )
+		  if params[:deductable_allowance_ids].present?
+		    params[:deductable_allowance_ids].each do |d|
+		      if a == d
+		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :is_deductable => true)
+		      else
+		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value)
+		      end
+		    end
+		  end
 		end
 		@other_allowance = allowance_total(@allowances, @salary)
 		@salary.update(:special_allowance => @other_allowance )

@@ -12,10 +12,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20141007130929) do
+ActiveRecord::Schema.define(version: 20141016111425) do
 =======
-ActiveRecord::Schema.define(version: 20141007104944) do
->>>>>>> 530be04f3ffd70a935039c036b03e0fc29162f56
+ActiveRecord::Schema.define(version: 20141020092633) do
+>>>>>>> 008052ce312197aa9ff6cc8dc4a11dd6218bbfc6
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20141007104944) do
     t.datetime "updated_at"
     t.float    "allowance_value", limit: 24
     t.integer  "salary_id"
+    t.boolean  "is_deductable",              default: false
   end
 
   create_table "amzur_events", force: true do |t|
@@ -184,6 +185,9 @@ ActiveRecord::Schema.define(version: 20141007104944) do
     t.string   "avatar"
     t.string   "alternate_email"
     t.integer  "designation_id"
+    t.string   "bank_name"
+    t.string   "branch_name"
+    t.string   "account_number"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
