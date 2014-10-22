@@ -1,4 +1,5 @@
 class Notification < ActionMailer::Base
+  require 'open-uri'
   default from: "from@example.com"
   
   def applyleave(employee, leave_history)
@@ -36,7 +37,20 @@ class Notification < ActionMailer::Base
     
     def announcement_notification(user,announcement)
     @announcement = announcement
-    mail(:to => user.email, :subject => "Announcement....")
+    mail(:to => user.email, :subject => "Announcement for #{@announcement.title}")
+    end
+    
+    def event_notification(user,amzurevent)
+    @amzurevent = amzurevent
+    #raise @amzurevent.inspect
+    mail(:to => user.email, :subject => "Amzur Technologies is conducting a #{@amzurevent.title} Event ")
+    end
+    
+    def policy_notification(user,policy) 
+
+    @policy = policy
+    #attachments.inline['document'] = File.read("#{Rails.root}#{@policy.document}")
+    mail(:to => user.email, :subject => "#{@policy.title} Policy ")
     end
     
 end

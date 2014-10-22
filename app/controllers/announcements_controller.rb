@@ -14,6 +14,7 @@ before_filter :hr_view,  only: ["new", "edit"]
    @users = User.all
   
     if @announcement.save
+    #raise params.inspect
       @users.each do |user|
       Notification.delay.announcement_notification(user,@announcement)
       end

@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20141016111425) do
     t.datetime "updated_at"
     t.float    "allowance_value", limit: 24
     t.integer  "salary_id"
-    t.boolean  "is_deductable"
+    t.boolean  "is_deductable",              default: false
   end
 
   create_table "amzur_events", force: true do |t|

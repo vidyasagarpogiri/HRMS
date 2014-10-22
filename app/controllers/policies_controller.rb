@@ -15,9 +15,14 @@ class PoliciesController < ApplicationController
   def create
   #raise params.inspect
    @policy = Policy.new(policy_params)
+   @users = User.all
   
     if @policy.save
     #raise params.inspect
+     @users.each do |user|
+      Notification.delay.policy_notification(user,@policy)
+      end 	
+  
       redirect_to policies_path
     else
        flash.now[:error]

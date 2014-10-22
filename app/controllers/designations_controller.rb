@@ -1,7 +1,8 @@
 class DesignationsController < ApplicationController
 
   def index
-    @designations = Designation.all.page(params[:page]).per(4)
+    @designations = Designation.all
+    @departments = Department.all
   end
 
   def new
@@ -11,11 +12,11 @@ class DesignationsController < ApplicationController
   def create
     @department = Department.find(params[:designation][:department_id])
     @designation = @department.designations.create(designation_params)
-    
+    redirect_to designations_path
   end
 
   def show
-    #raise params.inspect
+
     @designation = Designation.find(params[:id])
     @employees = @designation.employees
     @grades = @designation.grades
@@ -25,6 +26,7 @@ class DesignationsController < ApplicationController
   def update
     @designation = Designation.find(params[:id])
     @designation.update(designation_params)
+    redirect_to designations_path
   end
   
   def edit     
