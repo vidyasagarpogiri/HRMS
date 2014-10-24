@@ -312,11 +312,11 @@ ActiveRecord::Schema.define(version: 20141024063952) do
     t.float    "working_days",       limit: 24
     t.float    "basic_salary",       limit: 24
     t.float    "gross_salary",       limit: 24
-    t.float    "arriars",            limit: 24
     t.float    "pf",                 limit: 24
     t.float    "esic",               limit: 24
     t.float    "pt",                 limit: 24
     t.float    "tds",                limit: 24
+    t.float    "special_allowance",  limit: 24
   end
 
   create_table "payslips_allowances", force: true do |t|

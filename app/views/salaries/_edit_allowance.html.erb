@@ -18,6 +18,7 @@
 										     
                          <% @allownaces.each do |allowance, i| %>
 												 <% flag, present_allowance_value, present_allowance_percent = value(allowance.name, @employee_allowances) %>
+												 <% deductable_value = value_deductable(allowance.name, @employee_allowances) %>
 											   <%= fields_for "allowances[]", allowance do |f| %>   
 												   <tr>
                               <td><%= allowance.name %></td>
@@ -40,11 +41,18 @@
 													      <% end %>
 													 <!-- code for checking employee have allowances containing in -->
                               <% if  flag == 1 %>
-                                <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = true, :class => "check_event" %></td>
+                                <% if deductable_value %>
+                                  <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = true, :class => "check_event" %></td>
+                                  <td><%= check_box_tag 'deductable_allowance_ids[]', allowance.id, checked = true, :class => "check_event" %></td>
+                                <% else %>
+                                  <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = true, :class => "check_event" %></td>
+                                  <td><%= check_box_tag 'deductable_allowance_ids[]', allowance.id, checked = false, :class => "check_event" %></td>
+                                <% end %>
                               <% else %>
                                 <td><%= check_box_tag 'allowance_ids[]', allowance.id , checked = false, :class => "check_event" %></td>
+                                <td><%= check_box_tag 'deductable_allowance_ids[]', allowance.id, checked = false , :class => "check" %></td>
                               <% end %>
-                              <td><%= check_box_tag 'deductable_allowance_ids[]', allowance.id, checked = false , :class => "check" %></td> 
+                               
 												   </tr>
                           <% end %>
 											    <% end %> 

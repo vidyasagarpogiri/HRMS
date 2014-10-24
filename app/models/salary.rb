@@ -18,7 +18,6 @@ class Salary < ActiveRecord::Base
   
   
   def payslip_allowance_value(payslip, allowance)
-
     if allowance.value.present?
       total_value = (payslip.basic_salary*allowance.value)/100
       return total_value

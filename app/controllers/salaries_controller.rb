@@ -30,12 +30,14 @@ class SalariesController < ApplicationController
     @salary = Salary.new(params_salary)
     @employee = Employee.find(params[:employee_id])
 	  @salary.save
-	  @salary_percentages = StaticSalary.all
-    @employee.update(:salary_id => @salary.id)
-	  @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
-	  special_allowance = @salary.gross_salary.to_f - basic(@salary,@salary_percentages)
-	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages), :special_allowance => special_allowance)
-	  
+	  unless @salary.errors.present? 
+	    @salary_percentages = StaticSalary.all
+      @employee.update(:salary_id => @salary.id)
+	    @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
+	    special_allowance = @salary.gross_salary.to_f - basic(@salary,@salary_percentages)
+	    @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages), :special_allowance => special_allowance)
+	  else
+	    @errors = @salary.errors
     end
 
   def edit
@@ -106,7 +108,7 @@ class SalariesController < ApplicationController
 	end
 	
 	def create_allowance
-	  # raise params.inspect
+	  #raise params.inspect
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
 		@allowance = @salary.gross_salary - @salary.basic_salary
@@ -116,15 +118,15 @@ class SalariesController < ApplicationController
 		# code for updation of deductable allowances -sekhar
 		  sa = StaticAllowance.find(a)
 		  if params[:deductable_allowance_ids].present?
-		    params[:deductable_allowance_ids].each do |d|
-		      if a == d
+		    if params[:deductable_allowance_ids].include?(a)
 		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :is_deductable => true)
-		      else
+		    else
 		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value)
-		      end
 		    end
-		  end
-		end
+		   else
+		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value)
+		   end
+		 end
 		@other_allowance = allowance_total(@allowances, @salary)
 		@salary.update(:special_allowance => @other_allowance )
 		else
@@ -140,16 +142,24 @@ class SalariesController < ApplicationController
 	end
 	
 	def update_allowance
+	#raise params.inspect
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
 		#@allowance = @salary.gross_salary - @salary.basic_salary
-		@allowances = @salary.allowances
-		allowances = Allowance.where(:salary_id => @salary.id)
-		allowances.destroy_all
+		@allowances = Allowance.where(:salary_id => @salary.id)
+		@allowances.destroy_all
 	  if params[:allowance_ids].present? 
 		  params[:allowance_ids].each do |a|	
 			  sa = StaticAllowance.find(a)
-		  Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value )
+			    if params[:deductable_allowance_ids].present?
+			      if params[:deductable_allowance_ids].include?(a)
+		          Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :is_deductable => true)
+		        else
+		          Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value )
+		        end
+		      else
+		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value )
+		      end
 		  end
 		@other_allowance = allowance_total(@allowances, @salary)
 		@salary.update(:special_allowance => @other_allowance )
@@ -220,7 +230,7 @@ class SalariesController < ApplicationController
 	       @total_deducted_allowances_value = deducted_allowances_total(@payslip)
 	       @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value #TODO need add PT and TDS
 	       @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
-	       @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic)
+	       @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
       end
     end  
       redirect_to payslips_view_path
@@ -257,6 +267,7 @@ class SalariesController < ApplicationController
 	  end
 	  
 	  def show_payslip
+	    @payslip = Payslip.find(params[:id])
 	  end
 	#--------------------------------------
 

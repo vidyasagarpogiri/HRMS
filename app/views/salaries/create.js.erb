@@ -1,1 +1,3 @@
-$("#salary").html('<%= j render "salaries/show" %>');
+<% if @errors.present? %>
+  $("#salary").html('<%= j render "salaries/show" %>');
+<% end %>

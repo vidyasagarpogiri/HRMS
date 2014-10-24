@@ -1,0 +1,86 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                                             
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head" style="background-color: #82B4E6 ">
+              <h3>pay slip for <%= (@payslip.created_at - 1.month).strftime("%B") %>
+              </h3>
+            </div><br>
+            <div class="module-body">
+                <!-- code for displayin all employees payslips -->
+                
+                  <table class="table table-striped table-bordered table-condensed">
+                    <tr>
+                      <th>Employee-id</th>
+                      <td><%= @payslip.employee.employee_id %></td>
+                    </tr>
+                    <tr>
+                      <th>Name</th>
+                      <td><%= @payslip.employee.full_name %></td>
+                    </tr>
+                    <tr>
+                      <th>Department</th>
+                      <td><%= @payslip.employee.department.department_name %></td>
+                    </tr>
+                    <tr>
+                      <th>Number Of Working Days</th>
+                      <td><%= Time.days_in_month(Time.now.month-1,Time.now.year) %></td>
+                    </tr>
+                    <tr>
+                      <th>Basic Salary</th>
+                      <td><%= @payslip.basic_salary %></td>
+                    </tr>
+                    <tr>
+                      <th>PF value</th>
+                      <td><%= @payslip.pf %></td>
+                    </tr>
+                    <tr>
+                      <th>ESIC Value</th>
+                      <td><%= @payslip.esic%></td>
+                    </tr>
+                     <% @payslip.allowances.each do |allowance| %>
+                      <tr>
+                        <th><%= allowance.allowance_name %></th>
+                        <td><%= allowance.total_value %></td>
+                      </tr>
+                    <% end %>
+                    <tr>
+                      <th>Special Allowance</th>
+                      <td><%= @payslip.special_allowance %></td>
+                    </tr>
+                    <tr>
+                      <th>Gross Salary</th>
+                      <td><%= @payslip.gross_salary %></td>
+                    </tr>
+                    <tr>
+                      <th>PT</th>
+                      <td><%= @payslip.pt%></td>
+                    </tr>
+                    <tr>
+                      <th>TDS</th>
+                      <td><%= @payslip.tds %></td>
+                    </tr> 
+                    <tr>
+                      <th>Total Deductions</th>
+                      <td><%= @payslip.total_deductions %></td>
+                    </tr>
+                    <tr>
+                      <th>Arrears</th>
+                      <td><%= @payslip.arrears %></td>
+                    </tr>
+                    <tr>
+                      <th>NetPay</th>
+                      <td><%= @payslip.netpay %></td>
+                    </tr> 
+                  </table>
+            
+          </div>
+          </div><!--/.module-->
+        </div><!--/.content-->                    
+      </div><!--/.span9-->                
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
+

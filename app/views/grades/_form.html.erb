@@ -1,31 +1,32 @@
-           
 <div class="wrapper">
- <div class="container">
-	<div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+		    <div class="content">
 
-  <div class="span12">
-		<div class="content">
-
-			<div class="module">
-				<div class="module-head">
-					<h3>Add New Grade</h3>
+			    <div class="module">
+				    <div class="module-head">
+					    <h3>Add New Grade</h3>
 						</div>
-							<div class="module-body">
-							
+					  
+					  <div class="module-body">
 							<%= form_for @grade, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
-							
-					
-			         <div class="control-group">
+			          <div class="control-group">
                   <label class="control-label" for="basicinput">Designation</label>
-                      <div class="controls">
-                      
+                    <div class="controls">
                       <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "span8  form-control", :id=>"disabledSelect"  } %>                             
                       <span class="help-block with-errors"></span>
-                      </div>
+                    </div>
 								</div>
-											
+							  
+							  <div class="control-group">
+							    <label class="control-label" for="basicinput">Grade</label>
+							    <div class="controls">
+							       <%= f.text_field :value, :class => "span8 form-control", :placeholder =>"Enter Grade Name", :data => {:error => "Please Enter  Designation name"}, :required =>true  %>                             
+                      <span class="help-block with-errors"></span>
+							    </div>
+							  </div>	
 								  <%= f.submit  'Save', :class => "btn btn-success pull-left" %>
-                							
 												 
 										<% end %>
 							</div><!--/.module-body-->
@@ -36,12 +37,4 @@
 		</div><!--/.container-->
 	</div><!--/.wrapper-->
 	
-	    <script>
-            $(function(){
-  
-    $("#active").toggleClass("active").children("ul").collapse("toggle");
 
-          });
-        </script>
-        
-     

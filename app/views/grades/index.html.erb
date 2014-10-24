@@ -11,33 +11,38 @@
 					   <div class="module-body">
 						  <table class="table table-striped table-bordered table-condensed">
 							  <thead>
-							   <% @grades.each do |grade| %>
-							   <tr><td colspan="3" style="color:green"><%= grade.value %></td></tr>
-								  <tr>
+							    <tr>
 				            <th>Name Of Designation</th>
 				            <th>Number of Employees</th>
 				            <th>Actions</th>
 									</tr>
 								</thead>
+								 <% @designations.each do |des| %>
 								<tbody>
-								<% @designations.each do |des| %>
-							
-								    <tr>
-                    
-								       <th><%= des.designation_name %></th>
+							    <tr>
+							      <th style="color:green"><%= des.department.department_name%></th>
+							      <th colspan="2" style="color:green"><%= des.designation_name %></th>
+							     
+							    </tr>
+								 <% des.grades.each do |grade| %>
+								  <tr>
+								       <th><%= grade.value %></th>
 								       <th><%= grade.employees.count %></th> 
-								       <th><% if current_user.department == Department::HR %>
-	                        <ul class="navigation-btns" style="list-style: none;display:inline;">
-                            <li><%= link_to 'Edit', edit_grade_path(grade.id), :class => "btn btn-success pull-left" %></li>  
-                        <li><%= link_to "Show",grade_path(grade.id),:class => "btn btn-info ",:class=>"btn btn-info pull-left"%></li>                      
-                        <li><%= link_to "Delete",grade_path(grade.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-left" %></li>                                   </th>
-								    </tr> 
+								       <th>
+								         <ul class="navigation-btns" style="list-style: none;display:inline;">
+								        <% if current_user.department == Department::HR %>
 	                      
-									  <% end %>
+                            <li><%= link_to 'Edit', edit_grade_path(grade.id), :class => "btn btn-success pull-left" %></li>               
+                            <!--<li><%= link_to "Delete",grade_path(grade.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-left" %></li> -->      
+                                         
+                       <% end %>
+                      </ul>  
+                       </th>
+								    </tr> 
 									    <% end %>
-									     <%#end %>
+									   
 								  </tbody>
-								<% end %>
+								   <% end %>
 								</table>
 								
 							</div><!--.module-body-->
