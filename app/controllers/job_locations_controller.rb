@@ -1,6 +1,7 @@
 class JobLocationsController < ApplicationController
  def index
   @job_locations = JobLocation.all
+  @departments = Department.all
  end
 
  def new
@@ -25,6 +26,22 @@ class JobLocationsController < ApplicationController
  def update
   @job_location = JobLocation.find(params[:id])
   @address = @job_location.address.update(:line => params[:line],:line1=> params[:line1],:city=> params[:city],:state=> params[:state],:country=> params[:country],:zipcode=> params[:zipcode])
+   redirect_to job_locations_path
+ end
+ 
+ def show
+ #raise params.inspect
+  @job_location = JobLocation.find(params[:id])
+  
+  #raise @job_location.inspect
+ end
+ 
+ def destroy
+ # raise params.inspect
+   @job_location = JobLocation.find(params[:id])
+  # raise @job_location.address.inspect
+   @job_location.address.destroy
+   @job_location.destroy
    redirect_to job_locations_path
  end
 end

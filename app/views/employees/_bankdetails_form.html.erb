@@ -2,7 +2,7 @@
   <h3>Bank Details</h3>
 </div>
 <div class="module-body">
-  <%= form_tag bankdetails_create_employee_path(@employee), :remote => true do %> 
+  <%= form_tag bankdetails_create_employee_path(@employee), :class => "new_bank_details", :remote => true do %> 
   <div class="control-group">
     <label class="control-label" for="basicinput">Name Of Bank</label>
       <div class="controls">
@@ -31,7 +31,7 @@
   </div>
   
   <div class="control-group">
-    <label class="control-label" for="basicinput">Pan No</label>
+    <label class="control-label" for="basicinput">PAN No</label>
       <div class="controls">
       <input type="text" id="basicinput" placeholder="Enter Enter Pan No" class="span8" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" name="pan" data-error="Pelase enter Valid Pan No" required>             
         <!--<%# f.text_field :pan, :class => "span8 form-control", :placeholder =>"Enter Pan No", :data => {:error => "Please Correct Pan No"}, :required => true,:pattern => '[A-Z]{5}[0-9]{4}[A-Z]{1}'%>-->
@@ -44,4 +44,10 @@
 			<!--<li> <%# link_to 'Cancel', bankdetails_show_employee_path(@employee.id), :class=>"btn btn-danger ", :remote => true %></li>-->									
 	 </ul>		
 	 <% end %>        
-</div> <!--/module-body-->                          
+</div> <!--/module-body-->    
+
+<script>
+  $(function(){
+    $(".new_bank_details").validator();
+  });
+</script>                         
