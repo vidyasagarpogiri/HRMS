@@ -1,6 +1,13 @@
-Hello Team, 
-           there is an event which is conducted by Amzur Technologies and the details are given below.
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    Hello Team, 
+              <p> there is an event which is conducted by Amzur Technologies and the details are given below.</p>
 
-<h4> Event Name:<%= @amzurevent.title %> </h4>
-<h4> Event Description:<%= raw @amzurevent.description %> </h4> 
-<h4> Event Date:<%= (@amzurevent.held_on) %> </h4> 
+    <div> <b>Event Name: </b><%= @amzurevent.title %> </div>
+    <div> <b> Event Description:</b><%= raw @amzurevent.description %> </div> 
+    <div> <b> Event Date:</b> <%= (@amzurevent.held_on) %> </div>
+  </body>
+</html>

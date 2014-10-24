@@ -15,7 +15,10 @@ border-radius :100% !important;
 margin: 0px !important;
 }
 
-
+.department_image{
+height:130px !important;
+width:160px !important;
+}
 .media-body ul li{
 margin-left:-25px !important;
 }

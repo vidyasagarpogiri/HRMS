@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20141016111425) do
-b
+ActiveRecord::Schema.define(version: 20141024063952) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -37,11 +35,8 @@ b
     t.float    "allowance_value", limit: 24
     t.integer  "salary_id"
     t.boolean  "is_deductable",              default: false
-<<<<<<< HEAD
     t.integer  "payslip_id"
     t.float    "total_value",     limit: 24
-=======
->>>>>>> c815b2db39e67e44ed51c578273f05e7b7d8543b
   end
 
   create_table "amzur_events", force: true do |t|
