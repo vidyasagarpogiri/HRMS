@@ -14,10 +14,9 @@ class GradesController < ApplicationController
   end
 
   def create
-    
     @designation = Designation.find(params[:grade][:designation_id])
     @grade = @designation.grades.create(grade_params)
-    redirect_to @designation 
+    redirect_to grades_path 
   end
 
   def show
@@ -29,7 +28,7 @@ class GradesController < ApplicationController
   def update
     @grade = Grade.find(params[:id])
     @grade.update(grade_params)
-    redirect_to @grade
+    redirect_to grades_path 
   end
   
   def edit     
