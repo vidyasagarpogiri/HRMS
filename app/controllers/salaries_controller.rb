@@ -30,12 +30,14 @@ class SalariesController < ApplicationController
     @salary = Salary.new(params_salary)
     @employee = Employee.find(params[:employee_id])
 	  @salary.save
-	  @salary_percentages = StaticSalary.all
-    @employee.update(:salary_id => @salary.id)
-	  @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
-	  special_allowance = @salary.gross_salary.to_f - basic(@salary,@salary_percentages)
-	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages), :special_allowance => special_allowance)
-	  
+	  unless @salary.errors.present? 
+	    @salary_percentages = StaticSalary.all
+      @employee.update(:salary_id => @salary.id)
+	    @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
+	    special_allowance = @salary.gross_salary.to_f - basic(@salary,@salary_percentages)
+	    @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages), :special_allowance => special_allowance)
+	  else
+	    @errors = @salary.errors
     end
 
   def edit
