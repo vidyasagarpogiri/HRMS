@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20141024063952) do
     t.string   "gender"
     t.string   "marital_status"
     t.float    "total_experience",     limit: 24
-    t.boolean  "status",                          default: false
+    t.boolean  "status"
     t.string   "mobile_number"
     t.string   "father_name"
     t.string   "pan"

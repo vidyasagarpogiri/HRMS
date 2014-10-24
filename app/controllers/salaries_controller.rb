@@ -254,14 +254,14 @@ class SalariesController < ApplicationController
 	   pt = allowance_value(params[:pt].to_f,@payslip.gross_salary) if params[:pt].present?
 	   @payslip.update(:arrears => params[:arrears], :pt => pt , :tds => params[:tds])
 	   #raise @payslip.inspect
-	   if params[:deductable_allowance_ids].present?
-	    params[:deductable_allowance_ids].each do |id|
-	      @payslip_allowance = PayslipsAllowance.find(id)
-	      unless @payslip_allowance.is_deductable
-	        @payslip_allowance.update(:is_deductable => true)
+	    if params[:deductable_allowance_ids].present?
+	      params[:deductable_allowance_ids].each do |id|
+	        @payslip_allowance = PayslipsAllowance.find(id)
+	        unless @payslip_allowance.is_deductable
+	          @payslip_allowance.update(:is_deductable => true)
+	        end
 	      end
 	    end
-	   end
 	   @netpay, @total_deductions, @gross_salary = update_net_salary(@payslip)
      #raise @payslip.inspect
 	  end
