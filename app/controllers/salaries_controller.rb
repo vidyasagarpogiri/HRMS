@@ -220,7 +220,7 @@ class SalariesController < ApplicationController
 	       @total_deducted_allowances_value = deducted_allowances_total(@payslip)
 	       @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value #TODO need add PT and TDS
 	       @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
-	       @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic)
+	       @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
       end
     end  
       redirect_to payslips_view_path
@@ -257,6 +257,7 @@ class SalariesController < ApplicationController
 	  end
 	  
 	  def show_payslip
+	    @payslip = Payslip.find(params[:id])
 	  end
 	#--------------------------------------
 
