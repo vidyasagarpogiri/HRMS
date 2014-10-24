@@ -11,8 +11,13 @@ before_filter :hr_view,  only: ["new", "edit"]
   
   def create
    @announcement = Announcement.new(announcement_params)
+   @users = User.all
   
     if @announcement.save
+    #raise params.inspect
+      @users.each do |user|
+      Notification.delay.announcement_notification(user,@announcement)
+      end
       redirect_to announcements_path
     else
        flash.now[:error]
@@ -26,7 +31,7 @@ before_filter :hr_view,  only: ["new", "edit"]
   
   def show
     @announcement = Announcement.find(params[:id])
-    @announcements = Announcement.all
+    @announcements = Announcement.all.page(params[:page]).per(5)
   end
   
   def update

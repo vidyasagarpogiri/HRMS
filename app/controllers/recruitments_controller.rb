@@ -10,9 +10,16 @@ class RecruitmentsController < ApplicationController
   
   def create
   #raise params.inspect
-   @recruitment = Recruitment.new(recruitment_params)
+   @recruitment = Recruitment.create(recruitment_params)
+   @users = User.all
   
-    if @recruitment.save
+    if @recruitment.present?
+      #raise  params.inspect
+      #Notification.job_notification(@users,@recruitment).deliver
+      @users.each do |user|
+      Notification.delay.job_notification(user,@recruitment)
+      end 	
+       #raise Notification.delay.job_notification(@users,@recruitment).inspect
       redirect_to recruitments_path
     else
        flash.now[:error]
@@ -20,13 +27,14 @@ class RecruitmentsController < ApplicationController
     end
   end
   
+  
   def edit
     @recruitment = Recruitment.find(params[:id]) 
   end
   
   def show
     @recruitment = Recruitment.find(params[:id])
-    @recruitments = Recruitment.all
+    @recruitments = Recruitment.all.page(params[:page]).per(4)
   end
   
   def update

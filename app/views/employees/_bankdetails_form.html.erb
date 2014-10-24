@@ -1,0 +1,47 @@
+<div class="module-head">
+  <h3>Bank Details</h3>
+</div>
+<div class="module-body">
+  <%= form_tag bankdetails_create_employee_path(@employee), :remote => true do %> 
+  <div class="control-group">
+    <label class="control-label" for="basicinput">Name Of Bank</label>
+      <div class="controls">
+      <input type="text" id="basicinput" placeholder="Enter Bank Name" class="span8" pattern="[a-zA-Z/s ]*" name="bank_name">
+        <!--<%# f.text_field :bank_name, :class => "span8 form-control", :placeholder =>"Enter Bank Name", :data => {:error => "Please Enter Bank Name"}, :required => true,:pattern => '[a-zA-Z/s ]*'%>-->
+        <span class="help-block with-errors"></span>
+      </div>
+  </div>
+  
+  <div class="control-group">
+    <label class="control-label" for="basicinput">Account No</label>
+      <div class="controls">
+      <input type="text" id="basicinput" placeholder="Enter Account No" class="span8" pattern="[0-9]{16}" name="account_number">
+        <!--<%# f.text_field :account_number, :class => "span8 form-control", :placeholder =>"Enter Account No", :data => {:error => "Please Enter 16 Digit Account No"}, :required => true,:pattern => '[0-9 ]{16}'%>-->
+        <span class="help-block with-errors"></span>
+      </div>
+  </div>
+  
+  <div class="control-group">
+    <label class="control-label" for="basicinput">Branch Name</label>
+      <div class="controls">
+      <input type="text" id="basicinput" placeholder="Enter Branch Name" class="span8" pattern="[a-zA-Z/s ]*" name="branch_name">
+       <!-- <%# f.text_field :branch_name , :class => "span8 form-control", :placeholder =>"Enter Branch Name", :data => {:error => "Please Enter Branch Name"}, :required => true,:pattern => '[a-zA-Z/s ]*'%>-->
+        <span class="help-block with-errors"></span>
+      </div>
+  </div>
+  
+  <div class="control-group">
+    <label class="control-label" for="basicinput">Pan No</label>
+      <div class="controls">
+      <input type="text" id="basicinput" placeholder="Enter Enter Pan No" class="span8" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" name="pan">             
+        <!--<%# f.text_field :pan, :class => "span8 form-control", :placeholder =>"Enter Pan No", :data => {:error => "Please Correct Pan No"}, :required => true,:pattern => '[A-Z]{5}[0-9]{4}[A-Z]{1}'%>-->
+        <span class="help-block with-errors"></span>
+      </div>
+  </div>
+  
+  	<ul class="navigation-btns pull-left">
+		  <li><button type="submit" class="btn btn-success">Save </button></li>
+			<li><button type="submit" class="btn btn-danger">Cancel </button><!--<%# link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger ", :remote => true %>--></li>									
+	 </ul>		
+	 <% end %>        
+</div> <!--/module-body-->                          

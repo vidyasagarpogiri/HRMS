@@ -1,0 +1,12 @@
+<table border="1">
+  <tr>
+    <th>Event Name</th>
+    <th>Event Date</th>
+    </tr>
+  <% @event_for_file.each do |event| %>
+  <tr>
+    <td><%= event.event_name %></td>
+    <td><%= event.event_date %></td>
+     </tr>
+  <% end %>
+</table>

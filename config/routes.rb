@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   resources :recruitments  
   get 'recruitments/show' => 'recruitments#show'
 
-  resources :events
-  get 'getAllEmployees' => 'employees#getAllEmployees'  
+  resources :events 
+  get 'getAllEmployees' => 'employees#getAllEmployees'
+  get 'holiday_notification' => "events#holiday_notification" 
 
   #devise_for :users
 
@@ -124,6 +125,11 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
 			patch 'attachment_update/:attachment_id'=> 'employees#attachment_update', as: :attachment_update
 			get 'attachment_show'
 			post 'attachment_create'
+			get 'bankdetails_form'
+			get 'bankdetails_show'
+			get 'bankdetails_edit'
+			post 'bankdetails_create'
+			post 'bankdetails_update'
 		end
   
   resources :educations do
@@ -147,7 +153,7 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
           resources :salary_increments
       end
     resources :experiences
-  resources :addresses
+  resources :addresses 
 end
 
 
@@ -177,7 +183,10 @@ end
   resources :allowances
   #resources for static_salaries
   resources :static_salaries
-   
+  
+  #rout for job locations
+ resources :job_locations 
+ 
   #get 'change_designation' => "designations#change_designation"
   
 

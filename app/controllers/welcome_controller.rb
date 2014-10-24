@@ -14,7 +14,8 @@ class WelcomeController < ApplicationController
 
     @reportee_employees = ReportingManager.where(:manager_id => @employee.id).map(&:employee)
     #TODO We have to find latest leave based on date . not by created at. #balaraju
-    @latest_leave = @employee.leave_histories.where(:status => "APPROVED").order(created_at: :desc).first
+    #@latest_leave = @employee.leave_histories.where(:status => "APPROVED").order(created_at: :desc).first
+    @latest_leave = @employee.leave_histories.where(status: "APPROVED")
    else
     redirect_to employees_path
    end

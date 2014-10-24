@@ -1,50 +1,22 @@
-      <div class="wrapper">
-		         <div class="container">
-			         <div class="row">                                             
-                 <div class="span12">
-                    <div class="content">
-                        <div class="module">
-                            <div class="module-head">
-                            <h3> <%= @designation.designation_name %> Designation</h3>
-                            <div>
-                          <div class="module-head">
-                          List Of Employees
-                          <label style="font-weight:normal;" class = "pull-right"><a><i class="icon-plus-sign "></i></a>&nbsp<%= link_to "Add Employee ", add_employee_designation_path(@designation) %></label>                                                         
-                       <div>
-                       
-                       <div class="module-body">
-                          <%= form_for(@designation) do |designation| %> 
-                              <table class="table table-striped table-bordered table-condensed">
-											          <thead>
-												          <tr>
-													          <th class="center">Employee Name</th>
-													          <th> Email  </th>
-													           <th> Grade  </th>
-													           
-												          </tr>
-											          </thead>
-											          <% @employees.each do |employee| %>
-											          <tbody>
-												          <tr>
-													          <th class="center"><%= link_to employee.first_name, employee_path(employee) %></th>	
-													          <th class="center"><%= employee.user.email %></th>
-													          <th class="center"><%= employee.grade.value %></th	
-												          </tr>
-											          </tbody>
-									          <% end %>
-
-										          </table>                       
-                             
-                                    <% end %>
-                        </div><!--module body-->
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                
+      <div class="span12">
+        <div class="content">         
+				  <div class="module">
+					  <div class="module-head">
+              <h3> <%= @designation.designation_name %> Designation</h3>
+            </div>
+                 <div class="module-body">         
+                    
                                 
-                         <div class="module-head">    
+                        
                           List Of Grades 
                          
                            <label style="font-weight:normal;" class = "pull-right"><a><i class="icon-plus-sign "></i></a>&nbsp<%= link_to "Add Grade",new_grade_path %></label>
                                                                       
-                       </div>
-                         <div class="module-body">
+                     
+                        
                             <table class="table table-striped table-bordered table-condensed">
 									            <thead>
 										            <tr>
@@ -70,14 +42,6 @@
 		</div><!--/.container-->
 	</div><!--/.wrapper--> 
                        
-
-<script>
-          $(function(){
-  
-    $("#active").toggleClass("active").children("ul").collapse("toggle");
-
-          });
-        </script>
 
 
 

@@ -1,0 +1,48 @@
+Hello Team, 
+           there is a job opening in our Amzur Technologies and below is the detailed description of the job requirement and experience.
+  
+  <!DOCTYPE html>
+<html>
+
+<head>
+<style>
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+</style>
+</head>
+
+<body>
+
+<table style="width:100%">
+ <h3><center>Job Opening Details</center></h3>
+ 
+  <tr>
+    <td><b>Job Code:</b></td>
+    <td><%= @recruitment.jobcode %></td>
+    </tr>
+  <br>
+  <tr>
+    <td><b>Job Title:</b></td>
+    <td> <%= @recruitment.title %></td>
+    </tr>
+  <br>
+  <tr>
+    <td><b>Job Description:</b></td>
+    <td> <%= raw @recruitment.description %></td>
+    </tr>
+  <br>
+   <tr>
+    <td><b>Job Link:</b></td>
+    <td><%= @recruitment.link %></td>
+    </tr>
+</table>
+
+</body>
+</html>
+
