@@ -47,17 +47,13 @@ class Employee < ActiveRecord::Base
 
 
 	#validates :avatar, presence: true
-
-
-
-	
 	#after_create :add_leaves
 	#after_update :update_leaves
 
 
 
  def reporting_manager
-     if reporting_managers.first.present? && reporting_managers.first.manager_id.present? 
+    if reporting_managers.first.present? && reporting_managers.first.manager_id.present? 
       Employee.find(reporting_managers.first.manager_id).full_name  unless reporting_managers.first.manager_id == 0 
     end
   end

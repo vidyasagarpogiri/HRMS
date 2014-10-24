@@ -104,11 +104,10 @@ class EmployeesController < ApplicationController
      if params["employee_attachments"].present?
       if params["employee_attachments"]["attachment"].present? 
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
-        @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
-       
+        @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)       
       end   
     end
-    end
+  end
      @errors = @employee_attachment.errors.full_messages
      @emp_get_attachments  = @employee.employee_attachments
   end
@@ -159,11 +158,11 @@ class EmployeesController < ApplicationController
 		@address = Address.find(@employee.present_address_id) if @employee.present_address_id.present?
 		@promotions = @employee.promotions
 		@salary = @employee.salary
-	if @salary.present?
-		@allowances = @salary.allowances
-		@insentives = @salary.insentives
-		@increments = @salary.salary_increments
-end
+	  if @salary.present?
+		  @allowances = @salary.allowances
+		  @insentives = @salary.insentives
+		  @increments = @salary.salary_increments
+    end
 		 @emails = @employee.email_ettiquities
 	end
 	
@@ -199,16 +198,14 @@ end
   def bankdetails_create
     #raise params.inspect
     @employee = Employee.find(params[:id])
-		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan])
-		
+		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan])		
 	end
   
   def bankdetails_show
 		#raise params.inspect
-		emp_id = params[:employee_id] if params[:employee_id].present?
+		#emp_id = params[:employee_id] if params[:employee_id].present?
 		emp_id = params[:id] if params[:id].present?
-		@employee = Employee.find(emp_id)
-		
+		@employee = Employee.find(emp_id)		
 	end	
 	
 	def bankdetails_edit
@@ -218,8 +215,7 @@ end
 	
 	def bankdetails_update	
 	  @employee = Employee.find(params[:id])
-		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan])
-		
+		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan])	
 	end
 	
   private   
@@ -233,10 +229,8 @@ end
   end
 	
 	def bank_details
-    params.require(:bank_details).permit(:bank_name, :branch_name, :account_number, :pan)
+    params.require(:bank_details).permit(:bank_name, :account_number, :branch_name, :pan)
   end
 	
-
 end
-
 
