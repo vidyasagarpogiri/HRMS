@@ -184,9 +184,21 @@ end
   #resources for static_salaries
   resources :static_salaries
   
+
+  # routes for pay slips generation page- sekhar
+  get 'payslips' => "salaries#pay_slips_generation"
+  get 'payslips_view' => "salaries#generated_payslips"
+  #get 'payslip_form' => "salaries#edit_payslip"
+  get 'payslip/:id/edit' => 'salaries#edit_payslip'
+  put 'payslip/:id' => 'salaries#update_payslip'
+  get 'payslip/:id' => 'salaries#show_payslip'
+  #--------------------------------------
+   
+
   #rout for job locations
  resources :job_locations 
  
+
   #get 'change_designation' => "designations#change_designation"
   
 

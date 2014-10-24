@@ -158,6 +158,7 @@ end
   end
 
 		def allowance_value(value, salary)
+		#raise value.inspect
 			 (salary)*value/100
 
 		end
@@ -295,11 +296,16 @@ end
 #-------------- End of Code ------------------------------------------------------------------
   
 #----------------- sekhar - code for allowances check ------------------------
+ 
+ 
   def value(allowance, emp_allowances)
    flag = present_allowance_value = present_allowance_percent = 0
    flag, present_allowance_value, present_allowance_percent = 1, emp_allowances.find_by_allowance_name(allowance).allowance_value, emp_allowances.find_by_allowance_name(allowance).value if emp_allowances.find_by_allowance_name(allowance).present?
    return flag, present_allowance_value, present_allowance_percent
-  end
+ end
+
+
+
 #----------------- end of code -------------------------------------
   
   
@@ -318,13 +324,78 @@ end
   end
   
   
-  #--------------- code for monthly salary calculation ------------------
+  #--------------- code for monthly salary calculation - sekhar ------------------
   def monthly(value)
     (value/12).round(2)
   end
   
   #----------------------------------------------------------------------
   
+=begin
+    code for payslips calculation -sekhar
+    this will return netpay of each employee by calculating it indivisually
+=end
+def calculate_net_salary(salary)
+   total_deductions = 0.0
+   netpay = 0.0
+   allowances = salary.allowances
+   allowances.each do |allowance|
+      if allowance.is_deductable
+        total_deductions += allowance.allowance_value
+      end
+   end
+   total_deductions = total_deductions + salary.pf + salary.esic
+   netpay = salary.gross_salary - total_deductions
+   return netpay , total_deductions 
+end
+
+def update_net_salary(payslip)
+  raise payslip.inspect
+  total_deductions = payslip.total_deductions + payslip.pt.to_f + payslip.tds.to_f 
+  basic_salary = payslip.basic_salary
+  payslip_gross_salary = payslip.gross_salary
+  payslip_allowances = @payslip.payslips_allowances
+  raise payslip_allowances.inspect
+  payslip_allowances.each do |all|
+    payslip_allowance = Allowance.where(:id => all.allowance_id, :salary_id => @payslip.employee.salary.id).first
+    if all.is_deductable
+      
+    end
+  end
+end
+
+#---------------------------------------------------------------
+# monthly calculations of payslips
+
+  def payslip_basic(salary, employee_working_days, actual_days)
+    monthly_basic = salary.basic_salary/12
+    payslip_basic = (monthly_basic*employee_working_days)/actual_days 
+  end 
   
+  def payslip_pf_value(basic_salary, salary_percentages)
+     payslip_pf_value = 0
+       salary_percentages.each do |per|
+        if per.name == "PF"
+          payslip_pf_value = (basic_salary * per.value)/100
+          break
+        end
+      end
+      payslip_pf_value
+  end
+  
+  def payslip_esic_value(gross_salary, salary_percentages)
+     esic_value = 0
+       salary_percentages.each do |per|
+        if per.name == "Esic"
+          esic_value = (gross_salary * per.value)/100
+          break
+        end
+      end
+      esic_value
+  end
+  
+  def  deducted_allowances_total(payslip)
+    allowance_deducted = payslip.allowances.where(:is_deductable => true).sum(:total_value)
+  end
 
 end
