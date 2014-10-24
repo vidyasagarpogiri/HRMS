@@ -9,7 +9,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :gender
       t.string :marital_status
       t.float :total_experience
-      t.boolean :status
+      t.boolean :status, :default => false
       t.string :mobile_number
       t.string :father_name
       t.string :pan

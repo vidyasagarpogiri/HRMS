@@ -22,7 +22,7 @@ class FfStatusesController < ApplicationController
 		@employee = Employee.find(params[:employee_id])
 		@status = FfStatus.new(status_params)
 		if @status.save
-		@employee.update(:ff_status_id => @status.id)
+		@employee.update(:ff_status_id => @status.id, :status => true)
 		@status = @employee.ff_status
 	end
 	end
@@ -43,7 +43,7 @@ class FfStatusesController < ApplicationController
 	def update
 		
 		@employee = Employee.find(params[:employee_id])
-		@status = FfStatus.find(params[:id])
+		@status = @employee.ff_status
 #raise @status.inspect
 		if @status.update(status_params)
 	    @status = @employee.ff_status

@@ -26,6 +26,7 @@ class SalariesController < ApplicationController
   end
   
   def create
+    
     @salary = Salary.new(params_salary)
     @employee = Employee.find(params[:employee_id])
 	  @salary.save
@@ -77,9 +78,9 @@ class SalariesController < ApplicationController
   end
  
   def show
-    
-    @salary =  Salary.find(params[:id])   
+   
     @employee= Employee.find(params[:employee_id])
+    @salary =  @employee.salary
     @allowance = Allowance.new
     @allowances = @salary.allowances
     @salary_increments =@salary.salary_increments
@@ -131,7 +132,6 @@ class SalariesController < ApplicationController
 		end
 	end
 	
-	
 	def edit_allowance
 			@employee= Employee.find(params[:employee_id])
 			@salary =  Salary.find(params[:salary_id])
@@ -174,20 +174,92 @@ class SalariesController < ApplicationController
 	  @salary = Salary.find(params[:salary_id])
 	  @allowances = @salary.allowances
 	  @salary_percentages = StaticSalary.all
+	  # this if-else statement is to check applicability of pf and esic based on their values in the salary record
 	  if params[:Pf] == "on" && params[:Esci] == "on"
       @salary.update(:pf_apply => "true", :esic_apply => "true", :pf => pf(@salary,@salary_percentages), :esic => esic(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages))
+      
 	  elsif params[:Pf] == "on"
 	    @salary.update(:pf_apply => "true", :pf => pf(@salary,@salary_percentages), :pf_contribution => pf_contribution(@salary,@salary_percentages), :esic => 0.0, :esic_contribution => 0.0)
+	    
 	  elsif params[:Esci] == "on" 
 	    @salary.update(:esic_apply => "true", :esic => esic(@salary,@salary_percentages), :esic_contribution => esic_contribution(@salary,@salary_percentages), :pf => 0.0, :pf_contribution => 0.0)
+	    
 	  else
 	      @salary.update(:pf => 0.0, :pf_contribution => 0.0, :pf_apply => "false", :esic => 0.0, :esic_contribution => 0.0, :esic_apply => "false")
+	      
 	  end
+	  
 	   @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f + @salary.pf_contribution.to_f + @salary.esic_contribution 
+	   
     special_allowance = @salary.gross_salary.to_f - ( basic(@salary,@salary_percentages) + @salary.esic + @salary.pf )
+    
 	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages), :special_allowance => special_allowance)
 	end
 	
+
+	# code for payslips genaration - sekhar
+	 
+  def pay_slips_generation
+	  #TODO Have to specify Month and Year 
+	  #TODO NO of Working days
+	  #TODO PT, TDS 
+	  @salary_percentages = StaticSalary.all
+	  @employees = Employee.where(status: false)
+	  @actual_days = Time.days_in_month(Time.now.month,Time.now.year)
+	  @employees.each do |employee|
+	    @salary = employee.salary
+	    if @salary.present?
+	      payslip_basic = payslip_basic(@salary, @actual_days, @actual_days) #have to replace first actual days to employee working days
+	      @payslip = Payslip.create(:no_of_working_days => @actual_days, :working_days => @actual_days, :basic_salary => payslip_basic, :employee_id => employee.id)
+	      #for creating allowances for payslip
+	      @salary.payslip_allowances(@payslip)
+	      @payslip_special_allowance = @salary.special_allowance/12
+	       @gross = @payslip.basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance #TODO need arrears add to below forumla
+	       @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
+	       @payslip_esic = payslip_esic_value(@gross, @salary_percentages)
+	       @total_deducted_allowances_value = deducted_allowances_total(@payslip)
+	       @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value #TODO need add PT and TDS
+	       @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
+	       @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic)
+      end
+    end  
+      redirect_to payslips_view_path
+	  end
+	  
+	  def generated_payslips
+	    @payslips =  Payslip.where("created_at > ?", Time.now.beginning_of_month)
+	  end
+	  
+	  def edit_payslip
+	    @payslip = Payslip.find(params[:id])
+	    @payslip_allowances = @payslip.payslips_allowances
+	  end
+	  
+	  def update_payslip
+	  #raise params.inspect
+	   @payslip = Payslip.find(params[:id])
+	   
+	   @payslip_allowances = @payslip.payslips_allowances
+	   
+	   pt = allowance_value(params[:pt].to_f,@payslip.gross_salary) if params[:pt].present?
+	   @payslip.update(:arrears => params[:arrears], :pt => pt , :tds => params[:tds])
+	   #raise @payslip.inspect
+	   if params[:deductable_allowance_ids].present?
+	    params[:deductable_allowance_ids].each do |id|
+	      @payslip_allowance = PayslipsAllowance.find(id)
+	      unless @payslip_allowance.is_deductable
+	        @payslip_allowance.update(:is_deductable => true)
+	      end
+	    end
+	   end
+	   @netpay, @total_deductions, @gross_salary = update_net_salary(@payslip)
+     #raise @payslip.inspect
+	  end
+	  
+	  def show_payslip
+	  end
+	#--------------------------------------
+
 	def bankdetails_index
     @employee = Employee.find(params[:employee_id])
     @bank_details =  @employee.bank_detail
@@ -202,6 +274,7 @@ class SalariesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
 		@bank_details = @employee.update(bank_details)
   end
+
   
   def bankdetails_show
 		#raise params.inspect
