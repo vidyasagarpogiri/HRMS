@@ -1,0 +1,33 @@
+Hello Team, 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the following are the list of holidays for this year.
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Holidays List  </h3>
+
+<table border="1">
+
+    <thead>
+
+    <tr>
+        <th>Festival Name </th>
+        <th>Festival Date </th>        
+    </tr>
+    </thead>
+    <% @events.each do |event| %>
+    <tr>
+     
+        <td><%= event.event_name %></td>           
+        <td><%= event.event_date %></td> 
+        
+   <% end %>     
+    </tr>        
+      
+  
+</table>
+
+<br><br>
+
+
+</body>
+</html>

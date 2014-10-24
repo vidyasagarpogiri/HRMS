@@ -30,7 +30,7 @@
 	                        <ul class="navigation-btns" style="list-style: none;display:inline;">
                             <li><%= link_to 'Edit', edit_grade_path(grade.id), :class => "btn btn-success pull-left" %></li>  
                         <li><%= link_to "Show",grade_path(grade.id),:class => "btn btn-info ",:class=>"btn btn-info pull-left"%></li>                      
-                        <li><%= link_to "Delete",g_path(grade.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-left" %></li>                                   </th>
+                        <li><%= link_to "Delete",grade_path(grade.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-left" %></li>                                   </th>
 								    </tr> 
 	                      
 									  <% end %>

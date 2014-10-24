@@ -181,9 +181,6 @@ ActiveRecord::Schema.define(version: 20141016111425) do
     t.string   "avatar"
     t.string   "alternate_email"
     t.integer  "designation_id"
-    t.string   "bank_name"
-    t.string   "branch_name"
-    t.string   "account_number"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
