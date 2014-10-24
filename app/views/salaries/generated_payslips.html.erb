@@ -31,7 +31,7 @@
                         <td><%= payslip.employee.employee_id %></td>
                         <td><%= link_to payslip.employee.full_name, "payslip/#{payslip.id}" %></td>
                         <td><%= payslip.employee.department.department_name %></td>
-                        <td><%= Time.days_in_month(Time.now.month,Time.now.year)%></td>
+                        <td><%= Time.days_in_month(Time.now.month-1,Time.now.year)%></td>
                         <td><%= payslip.basic_salary%></td>
                          <td><%= payslip.gross_salary %></td>
                         <td><%= payslip.total_deductions %></td>

@@ -106,7 +106,7 @@ class SalariesController < ApplicationController
 	end
 	
 	def create_allowance
-	  # raise params.inspect
+	  #raise params.inspect
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
 		@allowance = @salary.gross_salary - @salary.basic_salary
@@ -116,15 +116,15 @@ class SalariesController < ApplicationController
 		# code for updation of deductable allowances -sekhar
 		  sa = StaticAllowance.find(a)
 		  if params[:deductable_allowance_ids].present?
-		    params[:deductable_allowance_ids].each do |d|
-		      if a == d
+		    if params[:deductable_allowance_ids].include?(a)
 		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :is_deductable => true)
-		      else
+		    else
 		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value)
-		      end
 		    end
-		  end
-		end
+		   else
+		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value)
+		   end
+		 end
 		@other_allowance = allowance_total(@allowances, @salary)
 		@salary.update(:special_allowance => @other_allowance )
 		else
@@ -140,16 +140,24 @@ class SalariesController < ApplicationController
 	end
 	
 	def update_allowance
+	#raise params.inspect
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
 		#@allowance = @salary.gross_salary - @salary.basic_salary
-		@allowances = @salary.allowances
-		allowances = Allowance.where(:salary_id => @salary.id)
-		allowances.destroy_all
+		@allowances = Allowance.where(:salary_id => @salary.id)
+		@allowances.destroy_all
 	  if params[:allowance_ids].present? 
 		  params[:allowance_ids].each do |a|	
 			  sa = StaticAllowance.find(a)
-		  Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value )
+			    if params[:deductable_allowance_ids].present?
+			      if params[:deductable_allowance_ids].include?(a)
+		          Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :is_deductable => true)
+		        else
+		          Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value )
+		        end
+		      else
+		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value )
+		      end
 		  end
 		@other_allowance = allowance_total(@allowances, @salary)
 		@salary.update(:special_allowance => @other_allowance )

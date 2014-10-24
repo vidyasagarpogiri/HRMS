@@ -187,16 +187,28 @@ end
   
   def allowance_total(allowances, salary)
       #raise allowances.inspect
-      total = 0.0
+      total_added_allowances = 0.0
+      total_deductable_allowances = 0.0
+      total_allowance = 0.0
       allowances.each do |allowance|
-        if allowance.value.present?
-        value = (salary.basic_salary * allowance.value)/100
-        total += value
+        unless allowance.is_deductable
+          if allowance.value.present?
+            value = (salary.basic_salary * allowance.value)/100
+            total_added_allowances += value
+          else
+            total_added_allowances += allowance.allowance_value
+          end
         else
-        total += allowance.allowance_value
+          if allowance.value.present?
+            value = (salary.basic_salary * allowance.value)/100
+            total_deductable_allowances += value
+          else
+            total_deductable_allowances += allowance.allowance_value
+          end
         end
       end
-      salary_gross = salary.basic_salary + total + salary.pf + salary.esic
+      total_allowance = total_added_allowances - total_deductable_allowances
+      salary_gross = salary.basic_salary + total_allowance + salary.pf + salary.esic
       remain_allowance = salary.gross_salary - salary_gross
   end
 #--------- End of allowance caluclation method ------------------  
@@ -396,6 +408,14 @@ end
   
   def  deducted_allowances_total(payslip)
     allowance_deducted = payslip.allowances.where(:is_deductable => true).sum(:total_value)
+  end
+  
+  def value_deductable(allowance, emp_allowances)
+    if emp_allowances.find_by_allowance_name(allowance).present?
+     if  emp_allowances.find_by_allowance_name(allowance).is_deductable
+      return true
+     end
+   end
   end
 
 end
