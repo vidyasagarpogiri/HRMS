@@ -1,64 +1,72 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                                             
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+            <h3>Address Details</h3>
+            </div>						    
+            <div class="module-body"> 
+              <%= form_tag job_locations_path, :method => :post, :data => {:toggle => "validator"} do   %> 
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Address Line 1</label>
+                <div class="controls">
+                  <%= text_field_tag :line, nil , :class => "span8 form-control", :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter Address Line 1"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Address Line 2</label>
+                <div class="controls">
+                  <%= text_field_tag :line1, nil, :class => "span8 form-control", :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter Address Line 1"}, :required => true%>  
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div> 
 
-			          <div class="module">
-				          <div class="module-head">
-					          <h3>Address Details</h3>
-						      </div>						    
-						      <div class="module-body"> 
-                   <%= form_tag job_locations_path, :method => :post, :data => {:toggle => "validator"} do   %> 
-	                 <div class="control-group">
-                      <label class="control-label" for="basicinput">Address Line 1</label>
-                      <div class="controls">
-                       
-                        <%= text_field_tag :line, nil ,:placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter Address Line 1"}, :required => true %>
-                         <span class="help-block with-errors"></span>
-                      </div>
-	                 </div>
-	                  <div class="control-group">
-                    <label class="control-label" for="basicinput">Address Line 2</label>
-                        <div class="controls">
-                          <%= text_field_tag :line1, nil, :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter Address Line 1"}, :required => true%>  
-                           <span class="help-block with-errors"></span>
-                        </div>
-							    </div> 
-							
-							    <div class="control-group">
-                    <label class="control-label" for="basicinput">City</label>
-                        <div class="controls">
-                          <%= text_field_tag :city, nil,  :placeholder=> "Enter City",:data => {:error => "Please Enter City Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
-                           <span class="help-block with-errors"></span>
-                        </div>
-							    </div>
-							
-							    <div class="control-group">
-                    <label class="control-label" for="basicinput">State</label>
-                        <div class="controls">
-                          <%= text_field_tag :state, nil, :placeholder=> "Enter State",:data => {:error => "Please Enter State Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>   
-                           <span class="help-block with-errors"></span>
-                        </div>
-							    </div>
-							
-							    <div class="control-group">
-                    <label class="control-label" for="basicinput">Country</label>
-                        <div class="controls">
-                          <%= text_field_tag :country, nil,  :placeholder=> "Enter Country",:data => {:error => "Please Enter Country Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
-                           <span class="help-block with-errors"></span>
-                        </div>
-							    </div> 
-							
-							    <div class="control-group">
-                    <label class="control-label" for="basicinput">ZipCode</label>
-                        <div class="controls">
-                          <%= text_field_tag :zipcode, nil,  :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter ZipCode ", :minlength => "6", :maxlenght => "6"}, :type => "number", :required =>true %> 
-                           <span class="help-block with-errors"></span>
-                        </div>
-							    </div> 								
-								                                                                   
-                <%= submit_tag "Add",:class => "btn btn-success" %>
-                <%= link_to 'Cancel', job_locations_path(@job_locations), :class => "btn btn-danger" %>	
-                   <% end %>							                   
-						    </div><!--/.module-body-->
-					    </div><!--/.module-->
-		
+              <div class="control-group">
+                <label class="control-label" for="basicinput">City</label>
+                <div class="controls">
+                  <%= text_field_tag :city, nil, :class => "span8 form-control", :placeholder=> "Enter City",:data => {:error => "Please Enter City Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+
+              <div class="control-group">
+              <label class="control-label" for="basicinput">State</label>
+              <div class="controls">
+              <%= text_field_tag :state, nil, :class => "span8 form-control", :placeholder=> "Enter State",:data => {:error => "Please Enter State Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>   
+              <span class="help-block with-errors"></span>
+              </div>
+              </div>
+
+              <div class="control-group">
+              <label class="control-label" for="basicinput">Country</label>
+              <div class="controls">
+              <%= text_field_tag :country, nil, :class => "span8 form-control", :placeholder=> "Enter Country",:data => {:error => "Please Enter Country Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
+              <span class="help-block with-errors"></span>
+              </div>
+              </div> 
+
+              <div class="control-group">
+                <label class="control-label" for="basicinput">ZipCode</label>
+                <div class="controls">
+                  <%= text_field_tag :zipcode, nil, :class => "span8 form-control", :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter ZipCode ", :minlength => "6", :maxlenght => "6"}, :type => "number", :required =>true %> 
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div> 								
+                                     
+              <%= submit_tag "Add",:class => "btn btn-success" %>
+              <%= link_to 'Cancel', job_locations_path(@job_locations), :class => "btn btn-danger" %>	
+              <% end %>							                   
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

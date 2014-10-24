@@ -8,8 +8,17 @@
 							
 
                       <h3>List of Holidays</h3> 
-                     <% if current_user.department == Department::HR %>                                
+                     <% if current_user.department == Department::HR %>
+                                                 
                         <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a><%= link_to " Add New Holiday", new_event_path %></label>
+                <p>
+                  Download:
+                  <%= link_to "CSV", events_path(format: "csv") %> |
+                  <%= link_to "Excel", events_path(format: "xls") %>
+                </p>
+                 
+                      <%= link_to 'Send As Email', holiday_notification_path, :class => "btn btn-success " %>
+                  
                       <% end %>
              </div>
              

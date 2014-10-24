@@ -180,14 +180,49 @@ end
       format.json { render json: json_data }
     end
 	end
-	
-	
+			
 	def attachment_index
     @employee = Employee.find(params[:id])
     @emp_get_attachments = @employee.employee_attachments	
   end
-  private
-   
+    	
+	def bankdetails_index
+    @employee = Employee.find(params[:employee_id])
+    @bank_details =  @employee.bank_detail
+  end
+  
+  def bankdetails_form
+    @employee = Employee.find(params[:employee_id])
+    @bank_details = Employee.new    
+  end
+  
+  def bankdetails_create
+    #raise params.inspect
+    @employee = Employee.find(params[:id])
+		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan])
+		
+	end
+  
+  def bankdetails_show
+		#raise params.inspect
+		emp_id = params[:employee_id] if params[:employee_id].present?
+		emp_id = params[:id] if params[:id].present?
+		@employee = Employee.find(emp_id)
+		
+	end	
+	
+	def bankdetails_edit
+		#raise params.inspect		
+		@employee = Employee.find(params[:id])
+  end
+	
+	def bankdetails_update	
+	  @employee = Employee.find(params[:id])
+		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan])
+		
+	end
+	
+  private   
  
   def params_employees
     params.require(:employee).permit(:employee_id, :title, :first_name, :last_name, :date_of_birth, :gender, :marital_status, :total_experience, :status, :mobile_number, :father_name, :pan, :date_of_confirmation, :date_of_join, :date_of_exit, :department_id, :blood_group_id, :ff_status_id, :designation_id, :grade_id, :role_id, :group_id, :alternate_email, :avatar, :job_location_id, employee_attachments_attributes: [:id, :employee_id, :attachment])
@@ -197,6 +232,9 @@ end
     params.require(:employee_attachements).permit(employee_attachments_attributes: [:id, :employee_id, :attachment, :attachment_name])
   end
 	
+	def bank_details
+    params.require(:bank_details).permit(:bank_name, :branch_name, :account_number, :pan)
+  end
 	
 
 end

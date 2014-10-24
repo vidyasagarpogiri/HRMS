@@ -23,29 +23,29 @@
                   <tbody>
                     <!-- loop for iterating employees list -->
                     <% @employees.each do |employee| %>
-                        <tr class="gradeA">
-                          <td>
-                            <% if employee.present? && employee.avatar_url.present? %>
-                              <%= image_tag employee.avatar_url, :width => "60", :height => "60" %> 
-                            <% else %>
-                            <% if employee.gender == "Male" %>
-                              <img src="/assets/user.png" style ="width:60px;height:60px;"> 
-                            <% else %>
-                              <img src="/assets/1.jpg" style ="width:60px;height:60px;">
-                            <% end %>
-                            <% end %>
-                          </td>                           
-                          <td>
-                            <%= link_to employee.full_name , profile_path(employee) %>                        
-                          </td>
-                          <td><%= employee.user.email if employee.user.present? %></td>
-                          <td><%= employee.designation.designation_name if employee.designation.present? %></td>
-                          <td><%= employee.department.department_name %></td>
-                          <td><%= employee.mobile_number %></td>
-                          <td><%= employee.reporting_manager %></td>
-                        </tr>
-                   <% end %>
-                   <!-- end of employees list iterator loop -->											                   
+
+                    <tr class="gradeA">
+                      <td>
+                        <% if employee.present? && employee.avatar_url.present? %>
+                        <%= image_tag employee.avatar_url, :width => "60px", :height => "60px" %> 
+                        <% else %>
+                        <% if employee.gender == "Male" %>
+                        <img src="/assets/user.png" style ="width:60px;height:60px;"> 
+                        <% else %>
+                        <img src="/assets/1.jpg" style ="width:60px;height:60px;">
+                        <% end %>
+                        <% end %>
+                      </td>                           
+                      <td>
+                          <%= link_to employee.full_name , profile_path(employee) %>                        
+                      </td>
+                      <td><%= employee.user.email if employee.user.present? %></td>
+                      <td><%= employee.designation.designation_name if employee.designation.present? %></td>
+                      <td><%= employee.department.department_name %></td>
+                      <td><%= employee.mobile_number %></td>
+                      <td><%= employee.reporting_manager %></td>
+                    </tr>		
+                   <% end %>											                   
                    </tbody>												                 
                  </table>    
              </div><!-- module body-->

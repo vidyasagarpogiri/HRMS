@@ -6,9 +6,22 @@ class EventsController < ApplicationController
 
  
  def index
+    @users = User.all
     @events = Event.all
+    @event_for_file = Event.select(:event_name, :event_date)
+   respond_to do |format|
+    format.html
+    format.csv { send_data @event_for_file.to_csv.gsub(",created_at,updated_at","").gsub("id","") }
+    format.xls { send_data @event_for_file.to_csv(col_sep: "\t").gsub("created_at\tupdated_at","").gsub("id","") }
+    #raise @event_for_file.find_by_event_name(params[:event_name]).inspect
+    #raise @events.inspect
+    @users.each do |user|
+      #Notification.holiday_list(user,@events).deliver
+      end
+    end
   end
-
+  
+    
   def show
     @event = Event.find(params[:id])
   end
@@ -50,6 +63,18 @@ class EventsController < ApplicationController
    @event.destroy
    redirect_to events_path 
   end
+  
+  def holiday_notification
+     @users = User.all
+     @events = Event.all
+        #raise @events.inspect
+      @users.each do |user|
+         Notification.delay.holiday_list(user,@events)       
+         flash.now[:error]
+       end
+       render "index"
+     end
+  
 
   private
    

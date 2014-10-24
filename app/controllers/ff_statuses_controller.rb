@@ -45,7 +45,9 @@ class FfStatusesController < ApplicationController
 		@employee = Employee.find(params[:employee_id])
 		@status = @employee.ff_status
 #raise @status.inspect
-	  @status.update(status_params) 
+		if @status.update(status_params)
+	    @status = @employee.ff_status
+	  end 
 	end
 	
 	

@@ -44,7 +44,8 @@
                <%= link_to "Continue..", recruitment_path(recruitment), :class => "pt4" %><br> 
                <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                     
             </div><!--module body-->
-            <% end %>	
+            <% end %>
+             <%= paginate  @recruitments %> 	
           </div><!--/.module-body-->
        </div><!--/.module-->
 			</div><!--/.span4-->

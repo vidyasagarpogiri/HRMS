@@ -99,6 +99,7 @@ class SalariesController < ApplicationController
   end
   
 	def configure_allowance  
+	  
 			@employee= Employee.find(params[:employee_id])
 			@salary =  Salary.find(params[:salary_id])
 			@allowances = StaticAllowance.all
@@ -195,6 +196,7 @@ class SalariesController < ApplicationController
 	  @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic(@salary,@salary_percentages), :special_allowance => special_allowance)
 	end
 	
+
 	# code for payslips genaration - sekhar
 	 
   def pay_slips_generation
@@ -257,7 +259,45 @@ class SalariesController < ApplicationController
 	  def show_payslip
 	  end
 	#--------------------------------------
+
+	def bankdetails_index
+    @employee = Employee.find(params[:employee_id])
+    @bank_details =  @employee.bank_detail
+  end
   
+  def bankdetails_new
+    @employee = Employee.find(params[:employee_id])
+    @bank_details = Employee.new    
+  end
+  
+  def bankdetails_create
+    @employee = Employee.find(params[:employee_id])
+		@bank_details = @employee.update(bank_details)
+  end
+
+  
+  def bankdetails_show
+		#raise params.inspect
+		@bank_details = Employee.find(params[:id])
+		@employee = Employee.find(params[:employee_id])		
+	end	
+	
+	def bankdetails_edit
+		#raise params.inspect
+		@employee = Employee.find(params[:employee_id])
+		@bank_details = Employee.find(params[:id])
+  end
+	
+	def bankdetails_update		
+		@employee = Employee.find(params[:employee_id])
+		@bank_details = Employee.find(params[:id])
+    #raise @status.inspect
+		if @bank_details.update(bank_details)
+	     @bank_details = @employee.Employee
+	  end 
+	end
+	
+	
   private
   
   def salary_percentage
@@ -268,6 +308,8 @@ class SalariesController < ApplicationController
     params.require(:salary).permit(:gross_salary, :bonus, :gratuity, :medical_insurance)
   end
 
-
+  def bank_details
+    params.require(:bank_details).permit(:bank_name, :branch_name, :account_number, :pan)
+  end
   
 end

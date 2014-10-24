@@ -15,8 +15,13 @@ class AmzurEventsController < ApplicationController
   def create
   #raise params.inspect
    @amzurevent = AmzurEvent.new(amzurevent_params)
+   @users = User.all
   
     if @amzurevent.save
+    #raise params.inspect
+      @users.each do |user|
+      Notification.delay.event_notification(user,@amzurevent)
+      end
       redirect_to amzur_events_path
     else
        flash.now[:error]
@@ -30,7 +35,7 @@ class AmzurEventsController < ApplicationController
   
   def show
     @amzurevent = AmzurEvent.find(params[:id])
-    @event = AmzurEvent.all
+    @event = AmzurEvent.all.page(params[:page]).per(5)
   end
   
   def update
