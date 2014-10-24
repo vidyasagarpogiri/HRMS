@@ -205,8 +205,9 @@ end
   
   def bankdetails_show
 		#raise params.inspect
-		@employee = Employee.find(params[:employee_id])
-		@employee = Employee.find(params[:id])
+		emp_id = params[:employee_id] if params[:employee_id].present?
+		emp_id = params[:id] if params[:id].present?
+		@employee = Employee.find(emp_id)
 		
 	end	
 	

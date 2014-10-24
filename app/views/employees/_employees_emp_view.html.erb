@@ -25,7 +25,7 @@
                     <tr>
                     <% end %>
                     <td> 
-                      <div class="span5"><%= employee.full_name %>'s Profile 
+                      <div class="span5"> 
                       <a class="media-avatar pull-left" href="#">                                               
                         <% if employee.present? && employee.avatar_url.present? %>
                         <%= image_tag employee.avatar_url %> 
@@ -45,8 +45,7 @@
                             <% else %>
                             <%= link_to employee.full_name , "#employeeProfileModal", :class => "employee-popup",  :url => profile_employee_path(employee), :iid => employee.id,  "data-toggle" => "modal" , :id => "employee_#{employee.id}" %>
                             <% end %>
-                          </h5>
-                          <br>                                                                                              
+                          </h5>                                                                                             
                           <ul style="list-style-type: none;">
                             <li><i class="icon-suitcase"></i> <%= employee.designation.designation_name if employee.designation.present? %> </li>
                             <li><i class="icon-envelope"></i> <%= employee.user.email if employee.user.present? %></li>
