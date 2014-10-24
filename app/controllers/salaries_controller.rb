@@ -39,7 +39,8 @@ class SalariesController < ApplicationController
 	  else
 	    @errors = @salary.errors
     end
-
+  end
+  
   def edit
     @employee = Employee.find(params[:employee_id])
     @salary = Salary.find(params[:id])
