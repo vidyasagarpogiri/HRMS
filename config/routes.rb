@@ -180,8 +180,12 @@ end
   
 
   # routes for pay slips generation page- sekhar
-  get 'payslips' => "salaries#generate_pay_slips"
-  
+  get 'payslips' => "salaries#pay_slips_generation"
+  get 'payslips_view' => "salaries#generated_payslips"
+  #get 'payslip_form' => "salaries#edit_payslip"
+  get 'payslip/:id/edit' => 'salaries#edit_payslip'
+  put 'payslip/:id' => 'salaries#update_payslip'
+  get 'payslip/:id' => 'salaries#show_payslip'
   #--------------------------------------
    
 

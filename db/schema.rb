@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020105832) do
+ActiveRecord::Schema.define(version: 20141024063952) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20141020105832) do
     t.datetime "updated_at"
     t.float    "allowance_value", limit: 24
     t.integer  "salary_id"
+    t.boolean  "is_deductable",              default: false
+    t.integer  "payslip_id"
+    t.float    "total_value",     limit: 24
   end
 
   create_table "amzur_events", force: true do |t|
@@ -301,6 +304,22 @@ ActiveRecord::Schema.define(version: 20141020105832) do
     t.float    "arrears",            limit: 24
     t.float    "netpay",             limit: 24
     t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "working_days",       limit: 24
+    t.float    "basic_salary",       limit: 24
+    t.float    "gross_salary",       limit: 24
+    t.float    "arriars",            limit: 24
+    t.float    "pf",                 limit: 24
+    t.float    "esic",               limit: 24
+    t.float    "pt",                 limit: 24
+    t.float    "tds",                limit: 24
+  end
+
+  create_table "payslips_allowances", force: true do |t|
+    t.integer  "allowance_id"
+    t.integer  "payslip_id"
+    t.boolean  "is_deductable", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
