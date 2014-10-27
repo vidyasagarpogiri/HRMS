@@ -2,14 +2,13 @@
 							<% if current_user.department == Department::HR %>
 							<div class="module-body">	
 							  <%= form_for [@employee, @address],  :remote => true  do |f| %>  
-						    <div class="module-head" style="background-color:#F0F5F5!important;">                                
-                  <%= @address_type %> Address
+						    <div class="" style="color:black">                                
+                  <u><strong><%= @address_type %> Address</strong></u>
                 </div><br>
                   <% if @employee.addresses.present? %>                                        
                     <a href="#" id="address-check-box-hyper-link"><input type="checkbox", id="address-check-box"></a> 
                     Same As &nbsp<%= @copy_address_type %> Address                    
-                  <% end %>	
-                    														
+                  <% end %>	                    														
                   <div class="control-group">
 										<label class="control-label" for="basicinput">Address Line 1</label>
 										<div class="controls">
