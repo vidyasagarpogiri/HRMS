@@ -52,7 +52,7 @@
               <div class="control-group">
                 <label class="control-label" for="basicinput">ZipCode</label>
                 <div class="controls">
-                  <%= text_field_tag :zipcode, nil, :class => "span8 form-control", :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter ZipCode ", :minlength => "6", :maxlenght => "6"}, :type => "number", :required =>true %> 
+                  <%= text_field_tag :zipcode, nil, :class => "span8 form-control", :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter ZipCode ", :minlength => "6"}, :pattern => '[0-9]{6}', :required =>true %> 
                   <span class="help-block with-errors"></span>
                 </div>
               </div> 								

@@ -7,7 +7,7 @@
     <div class ="row-fluid">
       <div class="span5">		
         <div class="control-group">
-          <label class="control-label" for="basicinput"><strong>Job Location: </strong> <%= @employee.job_location.address.city if @employee.job_location.address.present? %> </label>          
+          <label class="control-label" for="basicinput"><strong>Job Location: </strong> <%= @employee.job_location.address.city if @employee.job_location.present? %> </label>          
           <!--<label class="control-label" for="basicinput">Employee Id: <%# @employee.employee_id %> </label>-->
         </div>
       </div>
