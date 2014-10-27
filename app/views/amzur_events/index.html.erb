@@ -13,7 +13,7 @@
 			      <div class="module-body">
 		          <% if @amzurevent.present? %>    
               <% @amzurevent.each do |amzurevent| %>
-              <h5><%= amzurevent.title %></h5> 
+              <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
               <% if current_user.department == Department::HR %>         
                 <ul class="navigation-btns pull-right" style="margin-top:-20px">
                   <li><%= link_to 'Edit', edit_amzur_event_path(amzurevent), :class => "btn btn-success " %></li>
@@ -22,8 +22,7 @@
               <% end %>             
               <label class="idesc">
                 <%= raw amzurevent.description %>
-              </label>
-              <strong>Event Date: </strong><%= format_date (amzurevent.held_on) %>
+              </label>              
               <%= link_to "Continue..", amzur_event_path(amzurevent), :class => "pt4" %><br><hr>                       
               <% end %>
               <% else %>     

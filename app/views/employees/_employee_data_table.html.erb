@@ -18,10 +18,10 @@
         <% if employee.present? && employee.avatar_url.present? %>
         <%= image_tag employee.avatar_url, :width => "60px", :height => "60px" %> 
         <% else %>
-        <% if employee.gender == "Male" %>
-        <img src="/assets/user.png" style ="width:60px;height:60px;"> 
+        <% if employee.gender == "Female" %>
+        <img src="/assets/1.jpg" style ="width:60px;height:60px;"> 
         <% else %>
-        <img src="/assets/1.jpg" style ="width:60px;height:60px;">
+        <img src="/assets/user.png" style ="width:60px;height:60px;">
         <% end %>
         <% end %>
       </td>                           
@@ -37,3 +37,4 @@
     <%end%>											                   
    </tbody>												                 
  </table> 
+ 

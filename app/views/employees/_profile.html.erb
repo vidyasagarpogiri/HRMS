@@ -9,11 +9,7 @@
               <div class="media-body">
                 <h4>
                 <%= @employee.title %>.<%= @employee.full_name %>
-                </h4>
-                <p class="profile-brief">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                    Ipsum has been the industry's 
-                </p>
+                </h4>              
                 <div class="profile-details muted">
                   <i class="icon-suitcase"></i>  <%= @employee.designation.designation_name if @employee.designation.present? %><br>
                   <i class="icon-phone"></i> <%= @employee.mobile_number %><br>
