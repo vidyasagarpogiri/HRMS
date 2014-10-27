@@ -222,6 +222,12 @@ end
 		
 	end
 	
+	#inactive employees code
+	def inactive_employees
+	 @employees =  Employee.all
+    @total_employees =  Employee.where(:status => false).page(params[:page]).per(4)
+	end
+	
   private   
  
   def params_employees
