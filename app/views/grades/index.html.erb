@@ -21,36 +21,31 @@
 								<tbody>
 							    <tr>
 							      <th style="color:green"><%= des.department.department_name%></th>
-							      <th colspan="2" style="color:green"><%= des.designation_name %></th>
-							     
+							      <th colspan="2" style="color:green"><%= des.designation_name %></th>							     
 							    </tr>
 								 <% des.grades.each do |grade| %>
 								  <tr>
-								       <th><%= grade.value %></th>
-								       <th><%= grade.employees.count %></th> 
-								       <th>
-								         <ul class="navigation-btns" style="list-style: none;display:inline;">
-								        <% if current_user.department == Department::HR %>
-	                      
-                            <li><%= link_to 'Edit', edit_grade_path(grade.id), :class => "btn btn-success pull-left" %></li>               
-                            <!--<li><%= link_to "Delete",grade_path(grade.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-left" %></li> -->      
-                                         
-                       <% end %>
-                      </ul>  
-                       </th>
-								    </tr> 
-									    <% end %>
-									   
-								  </tbody>
-								   <% end %>
-								</table>
-								
-							</div><!--.module-body-->
-						</div><!--/.module -->
-			    </div><!--/.content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->
+						       <th><%= grade.value %></th>
+						       <th><%= grade.employees.count %></th> 
+						       <th>
+						         <ul class="navigation-btns  pull-left" >
+						            <% if current_user.department == Department::HR %>                   
+                        <li><%= link_to 'Edit', edit_grade_path(grade.id), :class => "btn btn-success pull-left" %></li>               
+                        <!--<li><%= link_to "Delete",grade_path(grade.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-left" %></li> -->                                           
+                   <% end %>
+                    </ul>  
+                  </th>
+							  </tr> 
+							  <% end %>								   
+							  </tbody>
+							  <% end %>
+							</table>								
+						</div><!--.module-body-->
+					</div><!--/.module -->
+		    </div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->
 
 
