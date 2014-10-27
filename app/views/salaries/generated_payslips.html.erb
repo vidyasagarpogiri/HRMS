@@ -17,7 +17,7 @@
                         <th>Employee-Id</th>
                         <th>Name</th>
                         <th>Department</th>
-                        <th>No.of.Working days</th>
+                        <th>Total Working days</th>
                         <th>Basic</th>
                         <th>Gross</th>
                         <th>Total Deductions</th>
@@ -31,18 +31,22 @@
                         <td><%= payslip.employee.employee_id %></td>
                         <td><%= link_to payslip.employee.full_name, "payslip/#{payslip.id}" %></td>
                         <td><%= payslip.employee.department.department_name %></td>
-                        <td><%= Time.days_in_month(Time.now.month-1,Time.now.year)%></td>
+                        <td><%= payslip.no_of_working_days%></td>
                         <td><%= payslip.basic_salary%></td>
                          <td><%= payslip.gross_salary %></td>
                         <td><%= payslip.total_deductions %></td>
                         <td><%= payslip.netpay %></td>
-                        <td><%= link_to 'Edit', "payslip/#{payslip.id}/edit" %></td>
+                        <td><%= link_to 'Edit', "payslip/#{payslip.id}/edit", :remote => true %></td>
                      </tbody>
                          <% end %> 
                   </table>
             
           </div>
+          
+          
           </div><!--/.module-->
+          <div id="payslip_edit">
+          </div>
         </div><!--/.content-->                    
       </div><!--/.span9-->                
     </div><!--/.row-->
