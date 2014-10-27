@@ -253,8 +253,10 @@ class SalariesController < ApplicationController
 	  end
 	  
 	  def payslips_list
-	    @payslip = Payslip.last
-	    @payslips = Payslip.where(:month => @payslip.month ,:year => @payslip.year)
+	    @payslips = Payslip.where(:month => Time.now.month-1 ,:year => Time.now.year)
+	#     @payslip = Payslip.last
+	  
+	 #   @payslips = Payslip.where(:month => @payslip.month ,:year => @payslip.year)
 	  end
 	  
 	  def edit_payslip
