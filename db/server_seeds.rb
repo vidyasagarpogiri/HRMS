@@ -33,7 +33,8 @@ Event.destroy_all
 
 
 #sekharberi@1989
- @user = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
+ @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
+ @user2 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
 
 
 

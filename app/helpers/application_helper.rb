@@ -380,8 +380,7 @@ end
 # monthly calculations of payslips
 
   def payslip_basic(salary, employee_working_days, actual_days)
-    monthly_basic = salary.basic_salary/12
-    payslip_basic = (monthly_basic*employee_working_days)/actual_days 
+    payslip_basic = (salary*employee_working_days)/(actual_days) 
   end 
   
   def payslip_pf_value(basic_salary, salary_percentages)
