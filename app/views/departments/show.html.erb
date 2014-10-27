@@ -18,11 +18,13 @@
                                         <img src="/assets/bdm.jpg" style="height:120px !important;width:120px !important;">
                                       <% end %>
                                     </a><br> 
-                                    <div class="media-body"> 
+                                    <div class="media-body">
+                                      <div class="pull-right" ><a href="/departments" style="color:#5ecad4 pull-right">Back to index</a></div> 
                                       <h4>
                                          <%= @department.department_name %> 
                                       </h4>
                                       <p>Employees :<%= @department.employees.count %></p>
+                                      
                                       <!---<p>Manager : Mehar</p> -->
                                     </div><!--/.module-body-->
                                  </div><!--/.module-body-->                                                                         

@@ -143,7 +143,6 @@ end
 LeaveTypes = LeaveType.all.pluck(:id)
 
 
-
 Event.create(:event_name =>"Pongal", :event_date => "14/01/2014")
 Event.create(:event_name =>"Ugadi", :event_date => "11/04/2014")
 Event.create(:event_name=>"Independence Day", :event_date => "15/08/2014")
