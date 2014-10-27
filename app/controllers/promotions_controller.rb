@@ -13,14 +13,15 @@ class PromotionsController < ApplicationController
   def new
     @promotion = Promotion.new
 		@employee = Employee.find(params[:employee_id])
+		
   end
     
 	def create
 		@employee = Employee.find(params[:employee_id])    
 		@promotion = Promotion.create(:date_of_promotion=> params[:promotion][:date_of_promotion], :employee_id=>params[:employee_id],
-		:designation_id=>params[:promotion][:designation_id])                      
-		@employee.update(:designation_id => @promotion.designation_id)
-    @promotions = @employee.promotions
+		:designation_id=>params[:promotion][:designation_id], :department_id => params[:promotion][:department_id], :grade_id => params[:promotion][:grade_id])                 
+		@employee.update(:designation_id => @promotion.designation_id, :department_id => @promotion.department_id, :grade_id => @promotion.grade_id)
+		@promotions = @employee.promotions
     @errors = @promotion.errors.full_messages
   end
   
@@ -33,7 +34,9 @@ class PromotionsController < ApplicationController
     #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @promotion = Promotion.find(params[:id])
-    @promotion.update(:date_of_promotion=> params[:promotion][:date_of_promotion], :designation_id=>params[:promotion][:designation_id] )
+    @promotion.update(:date_of_promotion=> params[:promotion][:date_of_promotion], :employee_id=>params[:employee_id],
+		:designation_id=>params[:promotion][:designation_id], :department_id => params[:promotion][:department_id], :grade_id => params[:promotion][:grade_id])
+		@employee.update(:designation_id => @promotion.designation_id, :department_id => @promotion.department_id, :grade_id => @promotion.grade_id)                 
     @promotions = @employee.promotions
     @errors = @promotion.errors.full_messages
   end
