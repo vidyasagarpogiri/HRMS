@@ -21,22 +21,20 @@ Designation.destroy_all
 Grade.destroy_all
 Role.destroy_all
 Employee.destroy_all
-Education.destroy_all
-Experience.destroy_all
-Promotion.destroy_all
-EmailEttiquitie.destroy_all
+#Education.destroy_all
+#Experience.destroy_all
+#Promotion.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
-Group.destroy_all;
+#Group.destroy_all;
 Allowance.destroy_all
-Event.destroy_all 
+Event.destroy_all
+StaticSalary.destroy_all 
 
 
 #sekharberi@1989
- @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
- @user2 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
-
-
+  @user1 = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
+ 
 
 
 Address.create(:line1 => "BAY STREET",:line => "GUL END",:city => "Tampa",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
@@ -91,11 +89,6 @@ Employee.create(:employee_id => 1, :title=> "Mr.", :first_name=>"shankar Rao",:l
 Employees = Employee.all.pluck(:id)
 
 
-["Need Holidays list for year 2014", "Need Hand book/Scribbling pad"].each do |ettiquite|
-EmailEttiquitie.create(:ettiquite => ettiquite ) 
-end
-EmailEttiquities = EmailEttiquitie.all.pluck(:id)
-
 
 ["Personal Leave", "Carry Forward Leave"].each do |leave|
 LeaveType.create(:type_name => leave ) 
@@ -114,5 +107,9 @@ Event.create(:event_name =>"Naga Panchami", :event_date => "21/11/2014")
 Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")
 Event.create(:event_name =>"Christmas", :event_date => "25/12/2014")
 
-
+StaticSalary.create(:name => "Basic", :value => 40.0)
+StaticSalary.create(:name => "PF", :value => 20)
+StaticSalary.create(:name => "PF Contribution", :value => 10)
+StaticSalary.create(:name => "Esic", :value => 10)
+StaticSalary.create(:name => "Esic Contribution", :value => 10)
 

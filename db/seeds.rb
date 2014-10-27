@@ -21,20 +21,23 @@ Designation.destroy_all
 Grade.destroy_all
 Role.destroy_all
 Employee.destroy_all
-Education.destroy_all
-Experience.destroy_all
-Promotion.destroy_all
-EmailEttiquitie.destroy_all
+#Education.destroy_all
+#Experience.destroy_all
+#Promotion.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
-Group.destroy_all;
+#Group.destroy_all
 Allowance.destroy_all
 Event.destroy_all 
+StaticSalary.destroy_all
 
 
 #sekharberi@1989
- #@user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
- @user1 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
+ @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
+ @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
+ @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
+ @user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
+
 
 
 
@@ -72,6 +75,7 @@ Designation.all.each do |desg|
     Grade.create(:value => level, :designation_id =>  desg.id) 
   end
 end
+Grades = Grade.all.pluck(:id)
 #-----------------------------------------------------------------------------------------------------#
 
 ["O+ve", "O-ve", "A+ve", "A+ve", "B+ve", "B-ve", "AB+ve", "AB-ve", "ABO (Bombay Blood Group)"].each do |bloodgrp|
@@ -85,16 +89,27 @@ end
 FfStatuses = FfStatus.all.pluck(:id)
 
 
-Employee.create(:employee_id => 1, :title=> "Mr.", :first_name=>"shankar Rao",:last_name=>"Piriya",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
-:ff_status_id=>FfStatuses[rand(FfStatuses.length)], :job_location_id=>JobLocations[rand(JobLocations.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user1.id, :alternate_email => "ravi.nuni@amzur.com")
+Employee.create(:employee_id => 1, :title=> "Mr.", :first_name=>"Sekhar",:last_name=>"Beri",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
+:ff_status_id=>FfStatuses[rand(FfStatuses.length)], :job_location_id=>JobLocations[rand(JobLocations.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user.id, :alternate_email => "ravi.nuni@amzur.com")
+
+
+Employee.create(:employee_id => 2, :title=> "Mr", :first_name=>"bala",:last_name=>"nemani",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"13",
+:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",
+ :image_url=> "image",
+:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
+:ff_status_id=>FfStatuses[rand(FfStatuses.length)],
+:grade_id=>Grades[rand(Grades.length)],:role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:avatar=>"best-employee-md.png", :user_id => @user1.id,:alternate_email => "email@mail.com")
+
+
+Employee.create(:employee_id => 3, :title=> "Miss", :first_name=>"Sonia",:last_name=>"Kumar",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:avatar=>"gates_print.jpg", :user_id => @user2.id,:alternate_email => "email@mail.com")
+
+
+Employee.create(:employee_id => 4, :title=> "Mr", :first_name=>"pattabhi",:last_name=>"ramarao",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:avatar=>"gates_print.jpg", :user_id => @user3.id, :alternate_email => "email@mail.com")
 
 Employees = Employee.all.pluck(:id)
-
-
-["Need Holidays list for year 2014", "Need Hand book/Scribbling pad"].each do |ettiquite|
-EmailEttiquitie.create(:ettiquite => ettiquite ) 
-end
-EmailEttiquities = EmailEttiquitie.all.pluck(:id)
 
 
 ["Personal Leave", "Carry Forward Leave"].each do |leave|
@@ -114,5 +129,10 @@ Event.create(:event_name =>"Naga Panchami", :event_date => "21/11/2014")
 Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")
 Event.create(:event_name =>"Christmas", :event_date => "25/12/2014")
 
+StaticSalary.create(:name => "Basic", :value => 40.0)
+StaticSalary.create(:name => "PF", :value => 20)
+StaticSalary.create(:name => "PF Contribution", :value => 10)
+StaticSalary.create(:name => "Esic", :value => 10)
+StaticSalary.create(:name => "Esic Contribution", :value => 10)
 
 
