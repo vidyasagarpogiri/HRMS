@@ -106,6 +106,7 @@ post 'accept' => "leave_histories#accept"
 #post 'reject' => "leave_histories#reject"
 #get 'leaves' => "leave_histories#index"
 get 'employee_leaves' => "leave_histories#employee_leaves"
+get 'inactive_employees' => "employees#inactive_employees"
  resources :employees do
 		resources :ff_statuses 
     resources :leaves
@@ -130,7 +131,9 @@ get 'employee_leaves' => "leave_histories#employee_leaves"
 			get 'bankdetails_edit'
 			post 'bankdetails_create'
 			post 'bankdetails_update'
+			
 		end
+		
   
   resources :educations do
      collection do

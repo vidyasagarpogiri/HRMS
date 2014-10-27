@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h3>Hello <%= @leave_history.employee.first_name %> <%= @leave_history.employee.last_name %> your leave request is rejected  </h3>
-
-<table border="1">
-    <thead>
-
-    <tr>
-        <th>Employee Id </th>
-        <th>Name Of The Employee </th>        
-        <th>Leave Type</th>
-        <th>From Date </th>
-        <th>To Date </th>
-        <th>Number Of Day(s)</th>
-        <th>Reason For Rejection </th>
-    </tr>
-    </thead>
-    <tr>
-        <td><%= @leave_history.employee_id %></td>           
-        <td><%= @leave_history.employee.first_name %></td>        
-        <td><%= @leave_history.leave_type.type_name %></td>
-        <td><%= @leave_history.from_date %></td>
-        <td><%= @leave_history.to_date %> </td>
-        <td><%= @leave_history.days %></td>
-        <td><%= @leave_history.feedback %></td>
-    </tr>        
-      
-
-</table>
-
-<br><br>
-
-
-
-</body>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+  <h3>Hello <%= @leave_history.employee.first_name %> <%= @leave_history.employee.last_name %> your leave request is rejected.  </h3>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Employee Id </th>
+            <th>Name Of The Employee </th>        
+            <th>Leave Type</th>
+            <th>From Date </th>
+            <th>To Date </th>
+            <th>Number Of Day(s)</th>
+            <th>Reason For Rejection </th>
+        </tr>
+        </thead>
+        <tr>
+            <td><%= @leave_history.employee_id %></td>           
+            <td><%= @leave_history.employee.first_name %></td>        
+            <td><%= @leave_history.leave_type.type_name %></td>
+            <td><%= @leave_history.from_date %></td>
+            <td><%= @leave_history.to_date %> </td>
+            <td><%= @leave_history.days %></td>
+            <td><%= @leave_history.feedback %></td>
+        </tr>              
+    </table>
+  </body>
 </html>
 
 

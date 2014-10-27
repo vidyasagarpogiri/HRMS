@@ -10,38 +10,38 @@
               <ul class="navigation-btns pull-right" style="margin-top:-20px">
                 <li><%= link_to 'Edit', edit_job_location_path(@job_location.id), :class => "btn btn-success " %></li>
                 <li><%#= link_to "Delete", amzur_event_path(@amzurevent), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-              </ul><br>   
+              </ul>  
             <% end %> 
               </div>
-            <div class="module-body ">               
-              	 <table class="table table-striped table-hove" id="sample-table-2">														   
-													    <tbody>
-													      <tr>
-													        <td>Lline1:</td>
-													        <td><%= @job_location.address.line1 %></td>
-													      </tr>
-													      <tr>
-													        <td>Line2:</td>
-													        <td><%= @job_location.address.line %></td>
-													      </tr>
-													      <tr>
-													        <td>city:</td>
-													        <td><%= @job_location.address.city %></td>
-													      </tr>
-													      <tr>
-													        <td>state:</td>
-													        <td><%= @job_location.address.state %></td>
-													      </tr>
-													      <tr>
-													        <td>country:</td>
-													        <td><%= @job_location.address.country %></td>
-													      </tr>
-													      <tr>
-													        <td>zipcode:</td>
-													        <td><%= @job_location.address.zipcode %></td>
-													      </tr>
-													    </tbody>
-													  </table> 
+            <div class="module-body">               
+            	 <table class="table table-striped table-bordered table-condensed" id="sample-table-2">														   
+					        <tbody>
+					          <tr>
+					            <td><strong>Lline1:</strong></td>
+					            <td><%= @job_location.address.line1 %></td>
+					          </tr>
+					          <tr>
+					            <td><strong>Line2:</strong></td>
+					            <td><%= @job_location.address.line %></td>
+					          </tr>
+					          <tr>
+					            <td><strong>City:</strong></td>
+					            <td><%= @job_location.address.city %></td>
+					          </tr>
+					          <tr>
+					            <td><strong>State:</strong></td>
+					            <td><%= @job_location.address.state %></td>
+					          </tr>
+					          <tr>
+					            <td><strong>Country:</strong></td>
+					            <td><%= @job_location.address.country %></td>
+					          </tr>
+					          <tr>
+					            <td><strong>Zipcode:</strong></td>
+					            <td><%= @job_location.address.zipcode %></td>
+					          </tr>
+					        </tbody>
+					      </table> 
             </div><!--module-body -->    																																											                               
           </div><!-- /.module-->									      				                                      
         </div><!--/.content-->                    

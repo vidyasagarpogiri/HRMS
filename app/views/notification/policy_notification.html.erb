@@ -1,7 +1,13 @@
-Hello Team,<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; The primary motive of Amzur Technologies is to make it's employees comfortable with the working environment, knowledgeable about the on going /New policies and practices. We would like to bring to your notice that we are launching/modifying couple of policies.Below are the new policies
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    Hello Team, 
+           <p>The primary motive of Amzur Technologies is to make it's employees comfortable with the working environment, knowledgeable about the on going /New policies and practices. We would like to bring to your notice that we are launching/modifying couple of policies.Below are the new policies.</p>
            
-
-<h4> Policy Title:<%= @policy.title %> </h4>
-<h4> Policy Description:<%= raw @policy.details %> </h4> 
-<h4> Attachment:</h4><%= @policy.document %> 
+    <div> <b>Policy Title: </b><%= @policy.title %> </div>
+    <div> <b>Policy Description :</b><%= raw @policy.description %> </div> 
+    <div> <b>Attachment:</b><%= @policy.document %></div>
+  </body>
+</html>

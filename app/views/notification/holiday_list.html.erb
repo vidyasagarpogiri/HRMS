@@ -1,33 +1,27 @@
-Hello Team, 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the following are the list of holidays for this year.
+
 <!DOCTYPE html>
 <html>
-<body>
-<h3>Holidays List  </h3>
+  <body>
+  Hello Team, 
+  <p>the following are the list of holidays for this year.</p><br>
+  <h3>Holidays List  </h3>
+  <table border="1">
 
-<table border="1">
+      <thead>
 
-    <thead>
-
-    <tr>
-        <th>Festival Name </th>
-        <th>Festival Date </th>        
-    </tr>
-    </thead>
-    <% @events.each do |event| %>
-    <tr>
-     
-        <td><%= event.event_name %></td>           
-        <td><%= event.event_date %></td> 
-        
-   <% end %>     
-    </tr>        
-      
-  
-</table>
-
-<br><br>
-
-
-</body>
+      <tr>
+          <th>Festival Name </th>
+          <th>Festival Date </th>        
+      </tr>
+      </thead>
+      <% @events.each do |event| %>
+      <tr>
+       
+          <td><%= event.event_name %></td>           
+          <td><%= event.event_date %></td> 
+          
+     <% end %>     
+      </tr>                   
+  </table>
+  </body>
 </html>
