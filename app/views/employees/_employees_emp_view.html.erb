@@ -26,7 +26,8 @@
                     <% end %>
                     <td> 
                       <div class="span5"> 
-                      <a class="media-avatar pull-left" href="#">                                               
+                      <a class="media-avatar pull-left" href="#"> 
+                       <% if employee.status == false %>                                              
                         <% if employee.present? && employee.avatar_url.present? %>
                         <%= image_tag employee.avatar_url %> 
                         <% else %>
@@ -40,6 +41,7 @@
                       <div class="media-body">
                         <div class="style">
                           <h5 class="media-title">
+                          
                             <% if current_user.department == Department::HR %>
                             <%= link_to employee.full_name , profile_path(employee) %>
                             <% else %>
@@ -50,8 +52,9 @@
                             <li><i class="icon-suitcase"></i> <%= employee.designation.designation_name if employee.designation.present? %> </li>
                             <li><i class="icon-envelope"></i> <%= employee.user.email if employee.user.present? %></li>
                             <li><i class="icon-phone"></i> <%= employee.mobile_number %></li>
-                            <li><i class="icon-map-marker"></i> <%= employee.job_location.address.city %></li>
+                            <li><i class="icon-map-marker"></i> <%= employee.job_location.address.city if employee.job_location.present? %></li>
                           </ul> 
+                          <%end%>
                         </div>                                         
                       </div><!--/.media-body-->
                     </div>
