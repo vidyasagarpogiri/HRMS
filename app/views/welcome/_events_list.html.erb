@@ -7,26 +7,25 @@
   <% if @welcome_event.present? %>	
   <% @welcome_event.each do |welcome_event| %>
   <div class="module-body">	
-       <div class="control-group">
-          <a href="#"><strong><%= welcome_event.title %> </strong> </a> on <a href="#"><strong> <%= format_date (welcome_event.held_on) %> </strong></a>
-       </div>
-       <div class="control-group">
-          <label class="desc" for="basicinput"> <%= raw welcome_event.description %></label>
-       </div>
-       <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %><br>              
-       <div style="border-top: 1px solid #eeeeee;"></div>  
-  </div>
-  <% end %>                                             
-   
-  <div id="paginator">
-         <%= paginate @welcome_event, :remote => true, :param_name => 'page1' %>
-
-       </div> 
-                                              					
+    <div class="control-group">
+        <a href="#"><strong><%= welcome_event.title %> </strong> </a> on <a href="#"><strong> <%= format_date (welcome_event.held_on) %> </strong></a>
+     </div>
+     <div class="control-group">
+        <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>
+        <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %> 
+     </div><br>             
+     <div style="border-top: 1px solid #eeeeee;"></div>
+     <% end %>                                                
+     <div id="paginator">
+        <%= paginate @welcome_event, :remote => true, :param_name => 'page1' %>
+     </div>                                               					
   <% else %>
-  <div class="alert alert-success alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      There are no events
-  </div>
- <% end %>	
+  <div class="module-body">
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        There are no events
+    </div>
+  </div><!--module-body-->
+  <% end %>	
+  </div><!--module-body-->
 </div><!--module-->
