@@ -29,11 +29,11 @@
                       <% if employee.present? && employee.avatar_url.present? %>
                       <%= image_tag employee.avatar_url %> 
                       <% else %>
-                      <% if employee.gender == "Male" %>
+                      <!--<%# if employee.gender == "Male" %>-->
                       <img src="/assets/user.png" stle="width:70px;height:20px;"> 
-                      <% else %>
+                      <!--<%# else %>
                       <img src="/assets/1.jpg" stle="width:70px;height:20px;">
-                      <% end %>
+                      <%# end %>-->
                       <% end %>                                               
                     </a>
                     <div class="media-body">
