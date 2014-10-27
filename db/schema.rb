@@ -317,8 +317,6 @@ ActiveRecord::Schema.define(version: 20141027134344) do
     t.float    "pt",                 limit: 24
     t.float    "tds",                limit: 24
     t.float    "special_allowance",  limit: 24
-    t.integer  "month"
-    t.integer  "year"
   end
 
   create_table "payslips_allowances", force: true do |t|
