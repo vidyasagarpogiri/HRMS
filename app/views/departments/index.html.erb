@@ -24,7 +24,7 @@
                                     </div>
                                   </div>
                                   <div class="media user">  
-                                    <div class="media-avatar pull-left" href="#">                                 
+                                    <a class="media-avatar pull-left" href="#">                                 
                                       <% if department.department_name == "HR" %>
                                           <img src="/assets/HR.jpg" class="department_image" > 
                                       <% elsif department.department_name == "Development"%>
@@ -33,8 +33,10 @@
                                         <img src="/assets/accounts.jpg" class="department_image">
                                       <% elsif department.department_name == "Accounts"%>
                                         <img src="/assets/bdm.jpg" class="department_image">
+                                      <% else %>  
+                                        <!--<img src="/assets/user.png" class="department_image">-->
                                       <% end %>
-                                    </div>     
+                                    </a>     
                                     <div class="media-body">
                                       <div class="style">
                                         <h5 class="media-title">

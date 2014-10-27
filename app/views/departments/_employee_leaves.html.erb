@@ -7,14 +7,14 @@
     <table class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
-					  <th> Full Name</th>
-						<th>Date</th>
-						<th>No of Days</th>													
-						<th>Leaves Type</th>
+					  <th width="80px">Full Name</th>
+						<th width="80px">Date</th>
+						<th width="80px">No of Days</th>													
+						<th width="80px">Leaves Type</th>
 						<th> Reason </th>
-						<th>Leaves Balance</th>													
-						<th>Status</th>
-						<th>Reporting Manger</th>													
+						<th width="100px">Leaves Balance</th>													
+						<th width="60px">Status</th>
+						<th width="120px">Reporting Manger</th>													
 					</tr>
 				</thead>		
 			  <% @leaves.each do |f| %>		
@@ -22,10 +22,10 @@
 					<tr>               
 					  <td> <%= f.employee.full_name %></td>
 				    <td> <%= format_date(f.from_date) %> to <%= format_date(f.to_date) %>  </td>
-					  <td> <%= f.days %> </td>
+					  <td> <center><%= f.days %> </center></td>
 					  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
 					  <td> <%= f.reason %> </td> 
-					  <td> <%= total_balance_leaves(f.employee) %></td>												  
+					  <td><center> <%= total_balance_leaves(f.employee) %> </center></td>												  
 					  <td> <%= f.status %> </td>
 					  <td> <%= f.employee.reporting_manager%></td>
 					</tr>
