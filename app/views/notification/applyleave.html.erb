@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<h3>Hello  <%= @employee.reporting_manager %> there is a leave request from <%= @employee.first_name %> <%= @employee.last_name%> </h3>
+Hello  <%= @employee.reporting_manager %>,
+ <p>You have a leave request from <%= @employee.first_name %> <%= @employee.last_name%> </p>
 <table border="1">
     <thead>
-
-    <tr>
-        <th>Employee Id </th>
-        <th>Name Of The Employee </th>        
-        <th>Leave Type</th>
-        <th>From Date </th>
-        <th>To Date </th>
-        <th>Number Of Day(s)</th>
-        <th>Reason </th>
-    </tr>
+      <tr>
+          <th>Employee Id </th>
+          <th>Name Of The Employee </th>        
+          <th>Leave Type</th>
+          <th>From Date </th>
+          <th>To Date </th>
+          <th>Number Of Day(s)</th>
+          <th>Reason </th>
+      </tr>
     </thead>
-    <tr>
-        <td><%= @employee.employee_id %></td>           
-        <td><%= @employee.first_name %> <%= @employee.last_name%></td>        
-        <td><%= @leave_history.leave_type.type_name %></td>
-        <td><%= @leave_history.from_date %></td>
-        <td><%= @leave_history.to_date %> </td>
-        <td><%= @leave_history.days %></td>
-        <td><%= @leave_history.reason %></td>
-    </tr>        
-      
-
-</table>
-
-<br><br>
-
-
-
+    <tbody>  
+      <tr>
+          <td><%= @employee.employee_id %></td>           
+          <td><%= @employee.first_name %> <%= @employee.last_name%></td>        
+          <td><%= @leave_history.leave_type.type_name %></td>
+          <td><%= @leave_history.from_date %></td>
+          <td><%= @leave_history.to_date %> </td>
+          <td><%= @leave_history.days %></td>
+          <td><%= @leave_history.reason %></td>
+      </tr>
+    </tbody>                
+  </table>
 </body>
 </html>
 
