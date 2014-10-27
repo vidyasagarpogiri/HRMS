@@ -24,7 +24,8 @@
                   <tr>
                     <th>Allowance</th>
                     <th>Percentage </th>	
-                    <th>Value</th>									      		
+                    <th>Value</th>
+                    <th>Detactable/Non Detactable</th>									      		
                   </tr>
                 </thead>
               <% @allowances.each do |allowance| %>
@@ -38,6 +39,12 @@
                   <td>---</td>
                   <td><%= allowance.value %></td>
                   <% end %>
+                  <% if allowance.is_deductable == true %>
+                    <td> Detactable</td>
+                   <%else%> 
+                      <td>Non Detactable</td>
+                   <%end%>
+                  
                   <% if current_user.department == Department::HR %>
                   <td>
                     <ul class="navigation-btns  pull-left" >

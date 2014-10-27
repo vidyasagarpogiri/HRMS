@@ -12,7 +12,7 @@
       <thead>											      
         <tr>
         <th class="center">Date Of Promotion</th>
-        <th>Department </th
+        <th>Department </th>
         <th>Designation </th>
          <th>Grade/Level </th>
         <th></th>									      		
@@ -23,7 +23,6 @@
         <tr>               
         <td class="center"><%= format_date (promotion.date_of_promotion) %></td>
         <td> <%= promotion.department.department_name  if promotion.department.present? %> </td>
-        <td> <%= promotion.designation.designation_name  if promotion.designation.present? %> </td>
         <td> <%= promotion.designation.designation_name  if promotion.designation.present? %> </td>
         <td> <%= promotion.grade.value  if promotion.grade.present? %> </td>
         <% if current_user.department == Department::HR %>

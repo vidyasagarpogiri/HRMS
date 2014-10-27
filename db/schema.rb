@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027111855) do
+ActiveRecord::Schema.define(version: 20141027134344) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -429,10 +429,11 @@ ActiveRecord::Schema.define(version: 20141027111855) do
 
   create_table "static_allowances", force: true do |t|
     t.string   "name"
-    t.float    "percentage", limit: 24
-    t.float    "value",      limit: 24
+    t.float    "percentage",    limit: 24
+    t.float    "value",         limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_deductable"
   end
 
   create_table "static_salaries", force: true do |t|
