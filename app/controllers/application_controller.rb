@@ -17,10 +17,11 @@ class ApplicationController < ActionController::Base
   end
   
   def is_employee_active
-  
+  if current_user.present?
     unless current_user.employee.present? && current_user.employee.status == false 
       redirect_to '/422'  
     end 
+   end
   end
   
   
