@@ -243,11 +243,11 @@ class SalariesController < ApplicationController
 	  
 	  def edit_payslip
 	    @payslip = Payslip.find(params[:id])
-	    @payslip_allowances = @payslip.payslips_allowances
+	    @payslip_allowances = @payslip.allowances
 	  end
 	  
 	  def update_payslip
-	  #raise params.inspect
+	  raise params.inspect
 	   @payslip = Payslip.find(params[:id])
 	   
 	   @payslip_allowances = @payslip.payslips_allowances

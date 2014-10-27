@@ -23,7 +23,7 @@
                   <tbody>
                     <!-- loop for iterating employees list -->
                     <% @employees.each do |employee| %>
-
+                    <% if employee.status == false %>
                     <tr class="gradeA">
                       <td>
                         <% if employee.present? && employee.avatar_url.present? %>
@@ -44,7 +44,8 @@
                       <td><%= employee.department.department_name %></td>
                       <td><%= employee.mobile_number %></td>
                       <td><%= employee.reporting_manager %></td>
-                    </tr>		
+                    </tr>	
+                    <%end%>	
                    <% end %>											                   
                    </tbody>												                 
                  </table>    

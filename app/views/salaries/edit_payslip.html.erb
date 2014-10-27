@@ -40,17 +40,16 @@
 							 </thead>	
 							 <tbody>
                   <% @payslip_allowances.each do |allowance, i| %>
-										<%= fields_for "payslip_allowances[]", allowance do |f| %>   
-										  <% payslip_allowance = Allowance.where(:id => allowance.allowance_id, :salary_id => @payslip.employee.salary.id).first %>
+										<%= fields_for "payslip_allowances[]", allowance do |f| %>  
 										  <%# raise payslip_allowance.inspect %>
 											<tr>
-                          <td><%= payslip_allowance.allowance_name %></td>
-												<% if payslip_allowance.value.present? %>
-												  <td><%= payslip_allowance.value %></td>
-												  <td><%= allowance_value(payslip_allowance.value, monthly(@payslip.employee.salary.basic_salary)) %></td>
+                          <td><%= allowance.allowance_name %></td>
+												<% if allowance.value.present? %>
+												  <td><%= allowance.value %></td>
+												  <td><%= allowance_value(allowance.value, monthly(@payslip.basic_salary)) %></td>
 												<% else %>
 												  <td>---</td>
-												  <td> <%=  payslip_allowance.allowance_value %></td>
+												  <td> <%= allowance.allowance_value %></td>
 												<% end %>
 												   <% if allowance.is_deductable %>
 												    <td><%= check_box_tag 'deductable_allowance_ids[]', allowance.id, checked = true , :class => "check" %></td>
