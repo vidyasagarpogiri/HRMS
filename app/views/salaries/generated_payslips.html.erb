@@ -7,42 +7,45 @@
             <div class="module-head" style="background-color: #82B4E6 ">
               <h3>pay slips
               </h3>
-            </div><br>
+            </div>
             <div class="module-body">
-                <!-- code for displayin all employees payslips -->
-                
-                  <table class="table table-striped table-bordered table-condensed">
-                     <thead>
-                     <tr>
-                        <th>Employee-Id</th>
-                        <th>Name</th>
-                        <th>Department</th>
-                        <th>No.of.Working days</th>
-                        <th>Basic</th>
-                        <th>Gross</th>
-                        <th>Total Deductions</th>
-                        <th>NetPay</th>
-                        <th>Aciton</th>
-                      </tr>
-                     </thead>
-                     <% @payslips.each do |payslip| %>
-                     <tbody>
-                      <tr>
-                        <td><%= payslip.employee.employee_id %></td>
-                        <td><%= link_to payslip.employee.full_name, "payslip/#{payslip.id}" %></td>
-                        <td><%= payslip.employee.department.department_name %></td>
-                        <td><%= Time.days_in_month(Time.now.month-1,Time.now.year)%></td>
-                        <td><%= payslip.basic_salary%></td>
-                         <td><%= payslip.gross_salary %></td>
-                        <td><%= payslip.total_deductions %></td>
-                        <td><%= payslip.netpay %></td>
-                        <td><%= link_to 'Edit', "payslip/#{payslip.id}/edit" %></td>
-                     </tbody>
-                         <% end %> 
-                  </table>
-            
-          </div>
-          </div><!--/.module-->
+              <div class="payslip_date pull-right">
+                <label><strong>Select Month to generate payslip :&nbsp&nbsp </strong><input class=" datepicker_with_year form-control hasDatepicker" data-error=" Please Enter Employee Date Of Birth"   placeholder="Enter Date Of Birth" required="required" type="date"> <button type="button" class="btn btn-success">View</button> </label>                
+              </div>                            
+                <!-- code for displayin all employees payslips -->                
+                <table class="table table-striped table-bordered table-condensed">
+                   <thead>
+                   <tr>
+                      <th>Employee-Id</th>
+                      <th>Name</th>
+                      <th>Department</th>
+                      <th>Total Working days</th>
+                      <th>Basic</th>
+                      <th>Gross</th>
+                      <th>Total Deductions</th>
+                      <th>NetPay</th>
+                      <th>Aciton</th>
+                    </tr>
+                   </thead>
+                   <% @payslips.each do |payslip| %>
+                   <tbody>
+                    <tr>
+                      <td><%= payslip.employee.employee_id %></td>
+                      <td><%= link_to payslip.employee.full_name, "payslip/#{payslip.id}" %></td>
+                      <td><%= payslip.employee.department.department_name %></td>
+                      <td><%= payslip.no_of_working_days%></td>
+                      <td><%= payslip.basic_salary%></td>
+                       <td><%= payslip.gross_salary %></td>
+                      <td><%= payslip.total_deductions %></td>
+                      <td><%= payslip.netpay %></td>
+                      <td><%= link_to 'Edit', "payslip/#{payslip.id}/edit", :remote => true %></td>
+                   </tbody>
+                       <% end %> 
+                </table>            
+              </div>
+            </div><!--/.module-->
+            <div id="payslip_edit">
+            </div>
         </div><!--/.content-->                    
       </div><!--/.span9-->                
     </div><!--/.row-->

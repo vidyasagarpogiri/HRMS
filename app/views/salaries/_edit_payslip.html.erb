@@ -1,0 +1,31 @@
+
+          <div class="module">
+            <div class="module-head" style="background-color: #82B4E6 ">
+              <h3>pay slip edit form
+              </h3>
+            </div><br>
+            <div class="module-body ajax-edit-form" >
+              <%= render "salaries/payslip_form_table"%>
+          </div>
+          </div><!--/.module-->
+
+
+
+
+<!-- script to change values dynamically on change working days -->
+<script>
+  $(function(){
+    $("#working_days").change(function(){
+      $(".payslip-form").submit();
+    });
+    $("#arrears").change(function(){
+      $(".payslip-form").submit();
+    });
+    $("#pt").change(function(){
+      $(".payslip-form").submit();
+    });
+    $("#tds").change(function(){
+      $(".payslip-form").submit();
+    });
+  });
+</script>
