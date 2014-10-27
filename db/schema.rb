@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024063952) do
+ActiveRecord::Schema.define(version: 20141027134344) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -317,6 +317,8 @@ ActiveRecord::Schema.define(version: 20141024063952) do
     t.float    "pt",                 limit: 24
     t.float    "tds",                limit: 24
     t.float    "special_allowance",  limit: 24
+    t.integer  "month"
+    t.integer  "year"
   end
 
   create_table "payslips_allowances", force: true do |t|
@@ -341,6 +343,8 @@ ActiveRecord::Schema.define(version: 20141024063952) do
     t.datetime "updated_at"
     t.integer  "employee_id"
     t.integer  "designation_id"
+    t.integer  "department_id"
+    t.integer  "grade_id"
   end
 
   add_index "promotions", ["designation_id"], name: "index_promotions_on_designation_id", using: :btree
@@ -427,10 +431,11 @@ ActiveRecord::Schema.define(version: 20141024063952) do
 
   create_table "static_allowances", force: true do |t|
     t.string   "name"
-    t.float    "percentage", limit: 24
-    t.float    "value",      limit: 24
+    t.float    "percentage",    limit: 24
+    t.float    "value",         limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_deductable"
   end
 
   create_table "static_salaries", force: true do |t|

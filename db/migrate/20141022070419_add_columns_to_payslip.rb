@@ -8,5 +8,7 @@ class AddColumnsToPayslip < ActiveRecord::Migration
     add_column :payslips, :pt, :float
     add_column :payslips, :tds, :float
     add_column :payslips, :special_allowance, :float
+    add_column :payslips, :month, :integer
+    add_column :payslips, :year, :integer
   end
 end

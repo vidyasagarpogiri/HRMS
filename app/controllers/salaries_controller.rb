@@ -214,31 +214,47 @@ class SalariesController < ApplicationController
 	  #TODO Have to specify Month and Year 
 	  #TODO NO of Working days
 	  #TODO PT, TDS 
-	  @salary_percentages = StaticSalary.all
-	  @employees = Employee.where(status: false)
-	  @actual_days = Time.days_in_month(Time.now.month-1,Time.now.year)
-	  @employees.each do |employee|
-	    @salary = employee.salary
-	    if @salary.present?
-	      payslip_basic = payslip_basic((@salary.basic_salary)/12, @actual_days, @actual_days) #have to replace first actual days to employee working days
-	      @payslip = Payslip.create(:no_of_working_days => @actual_days, :working_days => @actual_days, :basic_salary => payslip_basic, :employee_id => employee.id)
-	      #for creating allowances for payslip
-	      @salary.payslip_allowances(@payslip)
-	      @payslip_special_allowance = @salary.special_allowance/12
-	      @gross = @payslip.basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance #TODO need arrears add to below forumla
-	       @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
-	       @payslip_esic = payslip_esic_value(@gross, @salary_percentages)
-	       @total_deducted_allowances_value = deducted_allowances_total(@payslip)
-	       @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value #TODO need add PT and TDS
-	       @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
-	       @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
-      end
-    end  
-      redirect_to payslips_view_path
+	  @month = params[:payslip_view_month].to_i
+	  @year = params[:payslip_view_year].to_i
+	  @payslips = Payslip.where(:month => @month ,:year => @year)
+	  unless @payslips.present?
+	    @salary_percentages = StaticSalary.all
+	    @employees = Employee.where(status: false)
+	    @actual_days = Time.days_in_month(Time.now.month-1,Time.now.year)
+	    @employees.each do |employee|
+	      @salary = employee.salary
+	      if @salary.present?
+	        payslip_basic = payslip_basic((@salary.basic_salary)/12, @actual_days, @actual_days) #have to replace first actual days to employee working days
+	        @payslip = Payslip.create(:no_of_working_days => @actual_days, :working_days => @actual_days, :basic_salary => payslip_basic, :month=> @month, :year => @year, :employee_id => employee.id)
+	        #for creating allowances for payslip
+	        @salary.payslip_allowances(@payslip)
+	        @payslip_special_allowance = @salary.special_allowance/12
+	        @gross = @payslip.basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance #TODO need arrears add to below forumla
+	        @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
+	        @payslip_esic = payslip_esic_value(@gross, @salary_percentages)
+	        @total_deducted_allowances_value = deducted_allowances_total(@payslip)
+	        @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value #TODO need add PT and TDS
+	        @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
+	        @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
+        end
+      end 
+     end
+      @payslips = Payslip.where(:month => @month ,:year => @year)
 	  end
 	  
 	  def generated_payslips
-	    @payslips =  Payslip.where("created_at > ?", Time.now.beginning_of_month)
+	    if params[:payslip_view_month].present?
+	      @month = params[:payslip_view_month].to_i
+	      @year = params[:payslip_view_year].to_i
+	      @payslips = Payslip.where(:month => @month ,:year => @year)
+	    else
+	      @payslips = Payslip.where(:month => Time.now.month-1 ,:year => Time.now.year)
+	    end
+	  end
+	  
+	  def payslips_list
+	    @payslip = Payslip.last
+	    @payslips = Payslip.where(:month => @payslip.month ,:year => @payslip.year)
 	  end
 	  
 	  def edit_payslip
@@ -270,6 +286,17 @@ class SalariesController < ApplicationController
 	  
 	  def show_payslip
 	    @payslip = Payslip.find(params[:id])
+	  end
+	  
+	  def monthly_payslips
+	   
+	   @month = params[:payslip_view_month].to_i
+	   @year = params[:payslip_view_year].to_i
+	   @payslips = Payslip.where(:month => @month ,:year => @year)
+	   if @payslips.present
+	    redirect_to payslips_view_path
+	   else
+	   end
 	  end
 	#--------------------------------------
 

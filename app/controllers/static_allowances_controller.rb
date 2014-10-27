@@ -12,11 +12,12 @@ class StaticAllowancesController < ApplicationController
  end
  
  def create
+  #raise params.inspect
   value = params[:value].to_f
   if params[:allowance_type].to_i == 1
-    @allowance = StaticAllowance.create(:name => params[:static_allowance][:name], :percentage => value)
+    @allowance = StaticAllowance.create(:name => params[:static_allowance][:name], :percentage => value, :is_deductable => params[:static_allowance][:is_deductable])
   else
-    @allowance = StaticAllowance.create(:name => params[:static_allowance][:name], :value => value)  
+    @allowance = StaticAllowance.create(:name => params[:static_allowance][:name], :value => value, :is_deductable => params[:static_allowance][:is_deductable])  
   end
   redirect_to static_allowances_path
  end
@@ -31,9 +32,9 @@ class StaticAllowancesController < ApplicationController
  def update
    value = params[:value].to_f
   if params[:allowance_type].to_i == 1
-    @allowance.update(:name => params[:static_allowance][:name], :percentage => value, :value => nil)
+    @allowance.update(:name => params[:static_allowance][:name], :percentage => value, :value => nil, :is_deductable => params[:static_allowance][:is_deductable])
   else
-    @allowance.update(:name => params[:static_allowance][:name], :percentage => nil, :value => value)  
+    @allowance.update(:name => params[:static_allowance][:name], :percentage => nil, :value => value, :is_deductable => params[:static_allowance][:is_deductable])  
   end
   redirect_to static_allowances_path
  end
