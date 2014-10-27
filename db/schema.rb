@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20141024063952) do
     t.string   "gender"
     t.string   "marital_status"
     t.float    "total_experience",     limit: 24
-    t.boolean  "status"
+    t.boolean  "status",                          default: false
     t.string   "mobile_number"
     t.string   "father_name"
     t.string   "pan"
@@ -317,6 +317,8 @@ ActiveRecord::Schema.define(version: 20141024063952) do
     t.float    "pt",                 limit: 24
     t.float    "tds",                limit: 24
     t.float    "special_allowance",  limit: 24
+    t.integer  "month"
+    t.integer  "year"
   end
 
   create_table "payslips_allowances", force: true do |t|
