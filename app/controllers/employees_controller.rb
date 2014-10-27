@@ -218,6 +218,12 @@ class EmployeesController < ApplicationController
 		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan])	
 	end
 	
+	#inactive employees code
+	def inactive_employees
+	 @employees =  Employee.all
+    @total_employees =  Employee.where(:status => false).page(params[:page]).per(4)
+	end
+	
   private   
  
   def params_employees
