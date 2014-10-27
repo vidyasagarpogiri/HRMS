@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :empId
+  before_filter :is_employee_active
   
   private
   def empId
@@ -14,6 +15,14 @@ class ApplicationController < ActionController::Base
     end
 
   end
+  
+  def is_employee_active
+  
+    unless current_user.employee.present? && current_user.employee.status == false 
+      redirect_to '/422'  
+    end 
+  end
+  
   
   def hr_view
 	  unless current_user.department == Department::HR

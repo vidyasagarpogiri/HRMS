@@ -10,8 +10,7 @@ class EmployeesController < ApplicationController
 	
 
   def index
-    @employees =  Employee.all
-    @total_employees =  Employee.where(:status => false).page(params[:page]).per(4)
+    @employees =  Employee.where(:status => false).page(params[:page]).per(4)
   end
 
  
@@ -224,8 +223,7 @@ end
 	
 	#inactive employees code
 	def inactive_employees
-	 @employees =  Employee.all
-    @total_employees =  Employee.where(:status => false).page(params[:page]).per(4)
+    @employees =  Employee.where(:status => true).page(params[:page]).per(4)
 	end
 	
   private   
