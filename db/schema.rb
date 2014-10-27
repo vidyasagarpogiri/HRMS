@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024063952) do
+ActiveRecord::Schema.define(version: 20141027111855) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -341,6 +341,8 @@ ActiveRecord::Schema.define(version: 20141024063952) do
     t.datetime "updated_at"
     t.integer  "employee_id"
     t.integer  "designation_id"
+    t.integer  "department_id"
+    t.integer  "grade_id"
   end
 
   add_index "promotions", ["designation_id"], name: "index_promotions_on_designation_id", using: :btree
