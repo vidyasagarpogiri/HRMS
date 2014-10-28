@@ -214,6 +214,7 @@ class SalariesController < ApplicationController
 	  #TODO Have to specify Month and Year 
 	  #TODO NO of Working days
 	  #TODO PT, TDS 
+	 unless params[:payslip_view_month].to_i == 0 && params[:payslip_view_year].to_i == 0
 	  @month = params[:payslip_view_month].to_i
 	  @year = params[:payslip_view_year].to_i
 	  if @month <= Time.now.month && @year <= Time.now.year
@@ -254,16 +255,20 @@ class SalariesController < ApplicationController
         end
       else
        flash[:notice] = "Sorry You Cannot Generate Next Month Payslips"
-      end  
+      end
+     else
+       flash[:notice] = "Enter Proper Month and Year To Generate Payslip"
+     end  
 	  end
 	  
 	  def generated_payslips
-	    if params[:payslip_view_month].present?
+	    unless params[:payslip_view_month].to_i == 0 && params[:payslip_view_year].to_i == 0
 	      @month = params[:payslip_view_month].to_i
 	      @year = params[:payslip_view_year].to_i
 	      @payslips = Payslip.where(:month => @month ,:year => @year)
 	    else
-	      @payslips = Payslip.where(:month => Time.now.month-1 ,:year => Time.now.year)
+	      flash[:notice] = "Enter Proper Month And Year To View Payslip"
+	      #@payslips = Payslip.where(:month => Time.now.month-1 ,:year => Time.now.year)
 	    end
 	  end
 	  

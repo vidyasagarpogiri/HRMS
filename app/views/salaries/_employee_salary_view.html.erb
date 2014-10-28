@@ -36,13 +36,6 @@
               <td><%= @salary.basic_salary %></td>
               <td><%= monthly(@salary.basic_salary) %></td>
             </tr>
-            <% if @salary.pf_apply == "true"%>
-            <tr>
-              <th>PF</th>
-              <td><%= @salary.pf %></td>
-              <td><%= monthly(@salary.pf) %></td>	
-            </tr>
-            <% end %>
             <% if @salary.present? %> 
              <% if @allowances.present? %>
              <% @allowances.each do |allowance| %>
@@ -61,47 +54,21 @@
               <% end %>
            <% end %>
           <% end %>
-          <tr>
-					  <th>Gross Salary</th>
-					  <td><%= @salary.gross_salary %></td>
-					  <td><%= monthly(@salary.gross_salary) %></td>
-			    </tr>
-          <tr>
-					  <th>Medical Insurance</th>
-					  <td><%= @salary.medical_insurance %></td>
-					  <td><%= monthly(@salary.medical_insurance) %></td>
-			    </tr>      
-          <tr>
-            <th>Gratuity</th>
-            <td><%= @salary.gratuity %></td>
-            <td><%= monthly(@salary.gratuity) %></td>
-          </tr>
-			    <tr>
-					  <th>Bonus</th>
-					  <td><%= @salary.bonus %></td>
-					  <td><%= monthly(@salary.bonus) %></td>
-				  </tr>
-				  <% if @salary.pf_apply == "true"%>
+          <% if @salary.pf_apply == "true"%>
 				    <tr>
 					    <th>PF Contribution</th>
-					    <td><%= @salary.pf_contribution %></td>
-					    <td><%= monthly(@salary.pf_contribution) %></td>
+					    <td><%= @salary.pf %></td>
+					    <td><%= monthly(@salary.pf) %></td>
 				    </tr>
 			    <% end %>
-				  <% if @salary.esic_apply == "true"%>
-				    <tr>
+			    <% if @salary.esic_apply == "true"%>
+			      <tr>
 					    <th>ESIC</th>
 					    <td><%= @salary.esic %></td>
 					    <td><%= monthly(@salary.esic) %></td>
 				    </tr>
-				    <tr>
-					    <th>ESIC Contribution</th>
-					    <td><%= @salary.esic_contribution %></td>
-					    <td><%= monthly(@salary.esic_contribution) %></td>
-				    </tr>
 				  <% end %>
-			    
-			    <tr>
+				   <tr>
 			      <th>Special Allowance</th>
 				     <%  if @salary.special_allowance.present? %>
 				        <td><%= @salary.special_allowance%></td>
@@ -113,6 +80,40 @@
 			        	
 			    	<%end%>
 				  </tr>
+          <tr>
+					  <th>Gross Salary</th>
+					  <td><%= @salary.gross_salary %></td>
+					  <td><%= monthly(@salary.gross_salary) %></td>
+			    </tr>
+            <th>Gratuity</th>
+            <td><%= @salary.gratuity %></td>
+            <td><%= monthly(@salary.gratuity) %></td>
+          </tr>
+          <% if @salary.pf_apply == "true"%>
+				    <tr>
+					    <th>PF Contribution</th>
+					    <td><%= @salary.pf_contribution %></td>
+					    <td><%= monthly(@salary.pf_contribution) %></td>
+				    </tr>
+			    <% end %>
+				  <% if @salary.esic_apply == "true"%>
+				    <tr>
+					    <th>ESIC Contribution</th>
+					    <td><%= @salary.esic_contribution %></td>
+					    <td><%= monthly(@salary.esic_contribution) %></td>
+				    </tr>
+				  <% end %>
+			    <tr>
+					  <th>Bonus</th>
+					  <td><%= @salary.bonus %></td>
+					  <td><%= monthly(@salary.bonus) %></td>
+				  </tr>
+				    <tr>
+					  <th>Medical Insurance</th>
+					  <td><%= @salary.medical_insurance %></td>
+					  <td><%= monthly(@salary.medical_insurance) %></td>
+			    </tr>      
+          <tr>			   
 				  <tr>
 					  <th>CTC</th>
 					  <td><%= @salary.ctc_fixed %></td>
