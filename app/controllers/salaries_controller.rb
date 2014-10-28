@@ -238,8 +238,10 @@ class SalariesController < ApplicationController
 	        @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
         end
       end 
-     end
-      @payslips = Payslip.where(:month => @month ,:year => @year)
+        @payslips = Payslip.where(:month => @month ,:year => @year)
+      else
+        flash[:notice] = "You Already Generated Payslip With Given Details"
+      end
 	  end
 	  
 	  def generated_payslips
