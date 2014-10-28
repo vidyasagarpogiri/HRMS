@@ -1,7 +1,6 @@
 <%= form_for @static_salary do |s|%>             
 <div class="module-body">
-  <p style="color:red;"><u>Note:</u></p><p>Basic, Esic, Esic contribution depends on Gross</p>
-  <p>PF,Pf Contribution depends on basic</p>     
+  <p style="color:red;"><u>Note:</u></p><p>Basic, Esic, Esic contribution depends on Gross and PF,Pf Contribution depends on basic</p>     
   <table class="table table-striped table-bordered table-condensed">
     <thead>
 	    <tr>
@@ -14,7 +13,7 @@
 	  <%= fields_for "salary[]", salary do |f| %>   
     <tr>
       <td><%= salary.name %></td>
-      <td><%= f.number_field :value,:placeholder =>"Enter Value", :data => {:error => "Please Enter Value"}, :required => true, :step=> "0.5"%>
+      <td><%= f.text_field :value,:placeholder =>"Enter Value", :data => {:error => "Please Enter Value"}, :required => true, :pattern => '[0-9/.]*'%>
       </td>
     <tr>
     <% end %>

@@ -405,8 +405,15 @@ end
       esic_value
   end
   
-  def  deducted_allowances_total(payslip)
-    allowance_deducted = payslip.allowances.where(:is_deductable => true).sum(:total_value)
+  def deducted_allowances_total(payslip)
+    allowance_deducted_total = 0.0
+    salary = payslip.employee.salary
+    salary.allowances.each do |allowance|
+      if allowance.is_deductable
+        allowance_deducted_total += (allowance.allowance_value)/12
+      end
+    end
+    allowance_deducted_total
   end
   
   def value_deductable(allowance, emp_allowances)
