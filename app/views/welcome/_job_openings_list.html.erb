@@ -4,9 +4,10 @@
       <h3>Job Openings</h3> 
     </div>                                            
   </div>
+  <div class="module-body">	
   <% if @welcome_recruitments.present? %>		    	
   <% @welcome_recruitments.each do |welcome_recruitment| %>
-  <div class="module-body">	
+  
      <div class="control-group">
         <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a>
      </div>
@@ -21,12 +22,12 @@
     <%= paginate @welcome_recruitments, :remote => true, :param_name => 'page3' %>
   </div>					
   <% else %>
-  <div class="module-body">
+
     <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         are no Job Openings
     </div>
-  </div><!--module-body-->
+ 
   <% end %>	
   </div><!--module body-->       
 </div><!--module-->
