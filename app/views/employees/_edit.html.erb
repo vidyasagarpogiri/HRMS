@@ -10,7 +10,7 @@
                     <div class="control-group">
 										  <label class="control-label" for="basicinput">Employee Id</label>
 										  <div class="controls">
-											 <%= f.text_field :employee_id, :class => "span8 form-control ", :placeholder =>"Enter Emp Id", :data => {:error => " Please Enter Employee Id"},:required =>true %>
+											 <%= f.text_field :employee_id, :class => "span8 form-control ", :placeholder =>"Enter Emp Id", :data => {:error => " Please Enter valid Employee Id"},:required =>true %>
 											 <span class="help-block with-errors"></span>  
 										  </div>
 									  </div>
@@ -30,7 +30,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Employee First Name</label>
 										<div class="controls">
-                      <%= f.text_field :first_name,:class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter First name",:data => {:error => " Please Enter Employee First Name"}, :required =>true, :pattern => '[a-zA-Z\s ]*' %>
+                      <%= f.text_field :first_name,:class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter First name",:data => {:error => " Please Enter valid Employee First Name"}, :required =>true, :pattern => '[a-zA-Z\s ]*' %>
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
@@ -39,7 +39,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Employee Last Name</label>
 										<div class="controls">
-                      <%= f.text_field :last_name,:class => "span8 form-control ", :id => "basicinput", :placeholder => "Enter Last name",:data => {:error => " Please Enter Employee Last Name"},:required =>true, :pattern => '[a-zA-Z\s ]*'  %> 
+                      <%= f.text_field :last_name,:class => "span8 form-control ", :id => "basicinput", :placeholder => "Enter Last name",:data => {:error => " Please Enter valid Employee Last Name"},:required =>true, :pattern => '[a-zA-Z\s ]*'  %> 
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
@@ -51,7 +51,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Date Of Joining</label>
 										<div class="controls">
-                     <%= text_field :employee, :date_of_join, :placeholder=>"Enter Date Of Joining",:class => "span8 datepicker form-control ", :placeholder => "Enter Last name",:data => {:error => " Please Enter Employee Joinh dateName"},:required =>true %> 
+                     <%= text_field :employee, :date_of_join, :placeholder=>"Enter Date Of Joining",:class => "span8 datepicker form-control ", :placeholder => "Enter Last name",:data => {:error => " Please Enter valid Employee Joinh dateName"},:required =>true %> 
 											 <span class="help-block with-errors"></span>   
 										</div>
 									</div>
@@ -86,7 +86,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Mobile Number</label>
 										<div class="controls">
-                      <%= f.text_field :mobile_number, :class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
+                      <%= f.text_field :mobile_number, :class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter valid Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
                       <span class="help-block with-errors"></span>
 										</div>
 									</div>
@@ -106,7 +106,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Alternate E-Mail</label>
 										<div class="controls">
-                     <%= f.text_field :alternate_email, :class=>"span8 form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter Employee Alternate Email"}, :required =>true, :pattern => '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$' %>
+                     <%= f.text_field :alternate_email, :class=>"span8 form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter valid Employee Alternate Email"}, :required =>true, :pattern => '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$' %>
                       <span class="help-block with-errors"></span> 
 										</div>
 									</div>
@@ -118,7 +118,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput"> Reporting Manager</label>
 										<div class="controls">
-                     <input type="text" id="reporting" class ="span8 form-control", name= "reporting" , place_holder = "Enter Reporting Manager Name" data-error="Please Enter Employee Reporting Manager" required>
+                     <input type="text" id="reporting" class ="span8 form-control", name= "reporting" , place_holder = "Enter Reporting Manager Name" data-error="Please Enter valid Employee Reporting Manager" required>
                      <input type="hidden" id="reporting_id"  name= "reporting_id"> 
                      <span class="help-block with-errors"></span> 
 										</div>
@@ -128,7 +128,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput">Father Name</label>
 										<div class="controls">
-                     <%= f.text_field :father_name, :class => "span8 form-control", :id =>"basicinput",  :placeholder=>"Enter Father name",:data => {:error => " Please Enter Employee Father Number"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
+                     <%= f.text_field :father_name, :class => "span8 form-control", :id =>"basicinput",  :placeholder=>"Enter Father name",:data => {:error => " Please Enter valid Employee Father Number"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
                      <span class="help-block with-errors"></span>
 										</div>
 									</div>
@@ -149,7 +149,7 @@
 									  <div class="control-group">
 										  <label class="control-label" for="basicinput">Date Of Birth</label>                                             
 										  <div class="controls">
-                       <%= f.text_field :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"span8 datepicker_with_year form-control", :data => {:error => " Please Enter Employee Date Of Birth"}, :required =>true %> 
+                       <%= f.text_field :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"span8 datepicker_with_year form-control", :data => {:error => " Please Enter valid Employee Date Of Birth"}, :required =>true %> 
                        <span class="help-block with-errors"></span>
 										  </div>
 									  </div>
@@ -191,7 +191,7 @@
 									  <div class="control-group">
 										  <label class="control-label" for="basicinput">Employee Display Picture</label>                                         
 										  <div class="controls">
-                        <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes, :error => " Please upload photo"}, :required =>true %>
+                        <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes, :error => " Please upload valid photo"}, :required =>true %>
                        <span class="help-block with-errors"></span>
 										  </div>
 									  </div>	

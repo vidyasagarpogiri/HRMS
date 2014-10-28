@@ -75,16 +75,19 @@ text-decoration:none;
 cursor: text;
 }
 .pt4{
-margin-top:-10px;
+
 float: right;
-padding-top:10px;
+
 }
+
+
 
 .desc{
 height:40px;
 overflow:hidden;
 margin-left:50px;
 margin-right:50px;
+padding-top:10px;
 }
 
 hr{

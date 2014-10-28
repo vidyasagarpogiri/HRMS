@@ -31,7 +31,7 @@
                  <a href="#"><br><strong><%= event.title %> </strong> </a> on <a href="#"><strong> <%= format_date (event.held_on) %> </strong></a>
               </div>
               <div class="control-group">
-                <label class="desc" for="basicinput"> <%= raw event.description %></label>
+                <label class="idesc" for="basicinput"> <%= raw event.description %></label>
               </div>         						
               <%= link_to "Continue..", amzur_event_path(event), :class => "pt4" %><br>              
               <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>
