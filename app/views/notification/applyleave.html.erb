@@ -3,34 +3,33 @@
 <body>
 Hello  <%= @employee.reporting_manager %>,
  <p>You have a leave request from <%= @employee.first_name %> <%= @employee.last_name%> </p>
-<table border="1">
+<table border="0">
     <thead>
       <tr>
           <th>Employee Id </th>
-          <th>Name Of The Employee </th>        
+          <td>:   <%= @employee.employee_id %></td> 
+ </tr><tr>
+          <th>Name Of The Employee </th>
+          <td>:   <%= @employee.first_name %> <%= @employee.last_name%></td>
+</tr><tr>
           <th>Leave Type</th>
+          <td>:   <%= @leave_history.leave_type.type_name %></td>
+</tr><tr>
           <th>From Date </th>
+           <td>:  <%= @leave_history.from_date %></td>
+</tr><tr>
           <th>To Date </th>
+          <td>:   <%= @leave_history.to_date %> </td>
+</tr><tr>
           <th>Number Of Day(s)</th>
+           <td>:  <%= @leave_history.days %></td>
+</tr><tr>
           <th>Reason </th>
-      </tr>
+           <td>:  <%= @leave_history.reason %></td>
+</tr>
+      
     </thead>
-    <tbody>  
-      <tr>
-          <td><%= @employee.employee_id %></td>           
-          <td><%= @employee.first_name %> <%= @employee.last_name%></td>        
-          <td><%= @leave_history.leave_type.type_name %></td>
-          <td><%= @leave_history.from_date %></td>
-          <td><%= @leave_history.to_date %> </td>
-          <td><%= @leave_history.days %></td>
-          <td><%= @leave_history.reason %></td>
-      </tr>
-    </tbody>                
+           
   </table>
 </body>
 </html>
-
-
-
-
-

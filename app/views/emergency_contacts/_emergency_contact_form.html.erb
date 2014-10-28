@@ -25,7 +25,7 @@
 										<label class="control-label" for="basicinput">Mobile 1</label>
 										<div class="controls">
                      <%= f.text_field :mobile1, :class => "span8  form-control", :placeholder => "Enter Mobile Number", :data => {:error => "Please Enter Mobile number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
-											 <span class="help-block with-errors"></span>   
+											 <span class="help-block with-errors mobile-format"></span>   
 										</div>
 									</div>		 		
 	
@@ -49,6 +49,9 @@
 <script>
   $(function(){
    $(".new_emergency-contact-form").validator();
+   $("#emergency_contact_mobile1").click(function(){
+    $(".mobile-format").html("");
+   });
   });
 </script>
 

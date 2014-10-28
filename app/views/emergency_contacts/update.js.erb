@@ -1,3 +1,5 @@
 <% unless @errors.present? %>
   $("#emergency").html('<%= j render "emergency_contacts/index" %>');
+<% else %>
+   $(".mobile-format").html('Please Enter Mobile Number with 10 digits');
 <% end %>

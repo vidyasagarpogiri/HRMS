@@ -69,7 +69,7 @@ class EventsController < ApplicationController
      @events = Event.all
         #raise @events.inspect
       @users.each do |user|
-         Notification.delay.holiday_list(user,@events)
+         Notification.holiday_list(user,@events).deliver
          flash.now[:error]
        end
        render "index"

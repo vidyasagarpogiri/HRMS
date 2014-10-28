@@ -31,6 +31,7 @@ class EmergencyContactsController < ApplicationController
      @employee = Employee.find(params[:employee_id])
      @emergency = EmergencyContact.find(params[:id])
      @emergency.update(params.require(:emergency_contact).permit(:name, :relation, :mobile1, :mobile2).merge(employee_id: params[:employee_id]))
+     @errors = @emergency.errors.full_messages
      @emergency = @employee.emergency_contacts
      
   end

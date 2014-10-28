@@ -20,7 +20,7 @@
                   <li><%= link_to "Delete", amzur_event_path(amzurevent.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
                 </ul> 
               <% end %>             
-              <label class="idesc">
+              <label class="desc">
                 <%= raw amzurevent.description %>
               </label>              
               <%= link_to "Continue..", amzur_event_path(amzurevent), :class => "pt4" %><br><hr>                       
