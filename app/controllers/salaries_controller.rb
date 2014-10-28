@@ -3,7 +3,7 @@ class SalariesController < ApplicationController
   # layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update, :configure_allowance]
 
 	before_filter :hr_view,  only: ["new", "edit"]
-  before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view]
+  before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year]
   before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]
 
   def new
@@ -310,6 +310,15 @@ class SalariesController < ApplicationController
   
   def monthly_payslip_view
     @payslip = Payslip.find(params[:id])
+  end
+  
+  def employee_payslips_by_year
+    unless params[:payslip_view_year].to_i == 0
+      @year = params[:payslip_view_year].to_i
+      @payslips = Payslip.where(:year => @year, :employee_id => current_user.employee.id)
+    else
+      flash[:notice] = "Please Enter Proper Year"
+    end
   end
 #---------------------------------
 
