@@ -66,7 +66,7 @@ gem 'kaminari'
 #gem for delayed-job
 gem 'delayed_job_active_record'
 gem 'daemon-spawn'
-
+#gem "daemons" -- add this gem in production while deployment
 
 gem 'remotipart', '~> 1.2'
 
