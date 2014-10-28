@@ -1,0 +1,2 @@
+module InvestmentDeclarationsHelper
+end

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+  
 
+  resources :investment_declarations
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   resources :policies
   
@@ -199,6 +201,7 @@ end
   get 'salaries/payslips_list'
   get 'monthly_payslips' => "salaries#employee_monthly_payslips"
   get 'monthly_payslip_view/:id' => "salaries#monthly_payslip_view"
+  post 'salaries/employee_payslips_by_year'
   #--------------------------------------
    
 

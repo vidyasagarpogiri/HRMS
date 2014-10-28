@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028101505) do
+ActiveRecord::Schema.define(version: 20141028102552) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -264,6 +264,15 @@ ActiveRecord::Schema.define(version: 20141028101505) do
 
   add_index "insentives", ["salary_id"], name: "index_insentives_on_salary_id", using: :btree
 
+  create_table "investment_declarations", force: true do |t|
+    t.integer  "generic_investment_declaration_id"
+    t.float    "monthly_value",                     limit: 24
+    t.float    "yearly_value",                      limit: 24
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "job_locations", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -326,6 +335,8 @@ ActiveRecord::Schema.define(version: 20141028101505) do
     t.float    "pt",                 limit: 24
     t.float    "tds",                limit: 24
     t.float    "special_allowance",  limit: 24
+    t.integer  "month"
+    t.integer  "year"
   end
 
   create_table "payslips_allowances", force: true do |t|
