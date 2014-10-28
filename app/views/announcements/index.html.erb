@@ -21,7 +21,7 @@
                <li><%= link_to "Delete", announcement_path(announcement.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger" %></li>
              </ul>  
                <% end %>           
-             <label class="idesc">
+             <label class="desc">
                <%= raw announcement.description %>             
              </label>
              <%= link_to "Continue..", announcement_path(announcement), :class => "pt4" %><br><hr>

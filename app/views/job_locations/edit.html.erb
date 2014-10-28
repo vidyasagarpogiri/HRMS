@@ -12,7 +12,7 @@
               <div class="control-group">
                 <label class="control-label" for="basicinput">Address Line 1</label>
                 <div class="controls">                 
-                  <%= text_field_tag :line, @address.line, :class => "span8 form-control", :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter Address Line 1"}, :required => true %>
+                  <%= text_field_tag :line, @address.line, :class => "span8 form-control", :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter valid Address Line 1"}, :required => true %>
                   <span class="help-block with-errors"></span>
                 </div>
               </div>	
@@ -20,7 +20,7 @@
               <div class="control-group">
                 <label class="control-label" for="basicinput">Address Line 2</label>
                 <div class="controls">
-                  <%= text_field_tag :line1,  @address.line1, :class => "span8 form-control", :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter Address Line 1"}, :required => true%>  
+                  <%= text_field_tag :line1,  @address.line1, :class => "span8 form-control", :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter valid Address Line 1"}, :required => true%>  
                   <span class="help-block with-errors"></span>
                </div>
              </div> 
@@ -28,7 +28,7 @@
 				     <div class="control-group">
                <label class="control-label" for="basicinput">City</label>
                <div class="controls">
-                 <%= text_field_tag :city,  @address.city,  :class => "span8 form-control", :placeholder=> "Enter City",:data => {:error => "Please Enter City Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
+                 <%= text_field_tag :city,  @address.city,  :class => "span8 form-control", :placeholder=> "Enter City",:data => {:error => "Please Enter valid City"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
                  <span class="help-block with-errors"></span>
               </div>
 				    </div>
@@ -36,7 +36,7 @@
 			      <div class="control-group">
               <label class="control-label" for="basicinput">State</label>
                 <div class="controls">
-                  <%= text_field_tag :state,  @address.state, :class => "span8 form-control", :placeholder=> "Enter State",:data => {:error => "Please Enter State Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>   
+                  <%= text_field_tag :state,  @address.state, :class => "span8 form-control", :placeholder=> "Enter State",:data => {:error => "Please Enter valid State"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>   
                    <span class="help-block with-errors"></span>
                 </div>
 			      </div>
@@ -44,7 +44,7 @@
 			      <div class="control-group">
               <label class="control-label" for="basicinput">Country</label>
                 <div class="controls">
-                  <%= text_field_tag :country,  @address.country,  :class => "span8 form-control", :placeholder=> "Enter Country",:data => {:error => "Please Enter Country Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
+                  <%= text_field_tag :country,  @address.country,  :class => "span8 form-control", :placeholder=> "Enter Country",:data => {:error => "Please Enter valid Country"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
                    <span class="help-block with-errors"></span>
                 </div>
 			      </div> 
@@ -52,7 +52,7 @@
 			      <div class="control-group">
               <label class="control-label" for="basicinput">ZipCode</label>
                 <div class="controls">
-                  <%= text_field_tag :zipcode,  @address.zipcode, :class => "span8 form-control",  :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter ZipCode "}, :pattern => '[0-9]{6}', :required =>true %> 
+                  <%= text_field_tag :zipcode,  @address.zipcode, :class => "span8 form-control",  :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter valid ZipCode "}, :pattern => '[0-9]{6}', :required =>true %> 
                    <span class="help-block with-errors"></span>
                 </div>
 			      </div> 													                                                                               

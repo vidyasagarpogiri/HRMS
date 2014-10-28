@@ -23,7 +23,7 @@
                 <% end %>
                 <label class="desc"><%= raw policy.details %></label>
                 <%= link_to "Continue..", policy_path(policy), :class => "pt4" %><br>
-                Attachment:<%= link_to "Download", policy.document_url, :target => "/blank" %><hr>
+                Attachment: <%= link_to "Download", policy.document_url, :target => "/blank" %><hr>
             <% end %>
             <% else %>
             <div class="alert alert-success alert-dismissable">
