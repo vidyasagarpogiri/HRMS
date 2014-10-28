@@ -5,41 +5,36 @@
   </head>
   <body>
   <h3>Hello <%= @leave_history.employee.first_name %> <%= @leave_history.employee.last_name %> your leave request is rejected.  </h3>
-    <table border="1">
-        <thead>
-        <tr>
-            <th>Employee Id </th>
-            <th>Name Of The Employee </th>        
-            <th>Leave Type</th>
-            <th>From Date </th>
-            <th>To Date </th>
-            <th>Number Of Day(s)</th>
-            <th>Reason For Rejection </th>
-        </tr>
-        </thead>
-        <tr>
-            <td><%= @leave_history.employee_id %></td>           
-            <td><%= @leave_history.employee.first_name %></td>        
-            <td><%= @leave_history.leave_type.type_name %></td>
-            <td><%= @leave_history.from_date %></td>
-            <td><%= @leave_history.to_date %> </td>
-            <td><%= @leave_history.days %></td>
-            <td><%= @leave_history.feedback %></td>
-        </tr>              
-    </table>
-  </body>
+<table border="0">
+    <thead>
+      <tr>
+          <th>Employee Id </th>
+          <td>:   <%= @employee.employee_id %></td> 
+ </tr><tr>
+          <th>Name Of The Employee </th>
+          <td>:   <%= @employee.first_name %> <%= @employee.last_name%></td>
+</tr><tr>
+          <th>Leave Type</th>
+          <td>:   <%= @leave_history.leave_type.type_name %></td>
+</tr><tr>
+          <th>From Date </th>
+           <td>:  <%= @leave_history.from_date %></td>
+</tr><tr>
+          <th>To Date </th>
+          <td>:   <%= @leave_history.to_date %> </td>
+</tr><tr>
+          <th>Number Of Day(s)</th>
+           <td>:  <%= @leave_history.days %></td>
+</tr><tr>
+          <th>Reason </th>
+           <td>:  <%= @leave_history.feedback %></td>
+</tr>
+      
+    </thead>
+           
+  </table>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
