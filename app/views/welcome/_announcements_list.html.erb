@@ -4,9 +4,11 @@
       <h3>Announcements</h3>  
     </div>                                            
   </div>
+  
+    <div class="module-body"> 
   <% if @welcome_announcements.present? %>	
   <% @welcome_announcements.each do |welcome_announcement| %>
-  <div class="module-body"> 	
+	
     <div class="control-group">
       <a href="#"><strong><%= welcome_announcement.title %> </strong></a>
     </div>
@@ -20,12 +22,12 @@
      <%= paginate @welcome_announcements, :remote => true, :param_name => 'page2' %>
   </div>  
   <% else %>
-  <div class="module-body">
+
     <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         There are no announcements
     </div>
-  </div><!--module body-->
+
   <% end %>  
   </div><!--module body-->  
 </div><!--module-->
