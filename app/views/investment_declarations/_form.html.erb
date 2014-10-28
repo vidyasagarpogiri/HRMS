@@ -7,11 +7,11 @@
 
 			<div class="module">
 				<div class="module-head">
-					<h3>Add New Holiday</h3>
+					<h3>Edit Investment Declaration</h3>
 				</div>
 							<div class="module-body">
 							
-							<%= form_for @declaration, :html => {:class=>"form-horizontal row-fluid new_event_form"} do |d| %>
+							<%= form_for @declaration, :html => {:class=>"form-horizontal row-fluid edit_form"} do |d| %>
 							<div>
 							     <% @declaration.errors.full_messages.each do |msg| %>
                   <div class="alert alert-danger alert-dismissable">
@@ -20,24 +20,25 @@
                   <%end%>          
 						</div>
 							<div class="control-group">   
-							 <label class="control-label" for="basicinput">Enter Section</label>
+							 <label class="control-label" for="basicinput">Monthly Value</label>
                    <div class="controls">
-                      <%= d.text_field :section, :class => "span8 form-control", :placeholder =>"Enter New Section Name", :data => {:error => "Please Enter valid Section Name"}, :required =>true,:pattern => '[a-zA-Z/s ]*' %>
+                      <%= d.text_field :monthly_value, :class => "span8 form-control", :placeholder =>"Enter Value", :data => {:error => "Please Enter Value"}, :required =>true,:pattern => '[0-9]*\.?[0-9]*'  %>
                     <span class="help-block with-errors"></span>
-							          </div>
-								          </div>
-								          
-								          
-		<div class="control-group">
-										<label class="control-label" for="basicinput">Date Of Holiday</label>
-										<div class="controls">
-                     <%= eve.text_field :event_date, :class => "span8 date-picker form-control", :data => {:error => "Please Enter valid Event Date"}, :required => true %>
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
+							      </div>
+							</div>
+							<div class="control-group">   
+							 <label class="control-label" for="basicinput">Yearly Value</label>
+                   <div class="controls">
+                      <%= d.text_field :yearly_value, :class => "span8 form-control", :placeholder =>"Enter Value", :data => {:error => "Please Enter Value"}, :required =>true,:pattern => '[0-9]*\.?[0-9]*'  %>
+                    <span class="help-block with-errors"></span>
+							      </div>
+							</div>
+								      
+							
+		
 									 <ul class="navigation-btns pull-left" >
 									  <li><button type="submit" class="btn btn-success">Save</button></li>
-									  <li><%= link_to "Cancel", events_path,:class => "btn btn-danger" %></li>
+									  <li><%= link_to "Cancel", investment_declarations_path,:class => "btn btn-danger" %></li>
 									</ul>	
 								<% end %>
 							</div><!--/.module-body-->
@@ -48,8 +49,8 @@
 		</div><!--/.container-->
 	</div><!--/.wrapper-->
 	
-        <script>
-          $(".new_event_form").validator();
+    <script>
+          $(".edit_form").validator();
         </script>   
-            
+               
      
