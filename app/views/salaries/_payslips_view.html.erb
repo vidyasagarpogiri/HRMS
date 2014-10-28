@@ -71,11 +71,7 @@
                 <table class="table table-striped table-bordered table-condensed">
                    <thead>
                    <tr>
-                    <% unless @payslip.present? %>
-                      <th><strong>PaySlips For <%= Date::MONTHNAMES[Time.now.month-1] %>, <%= Time.now.year %></strong></th>
-                    <% else %>
-                      <th><strong>PaySlips For <%= Date::MONTHNAMES[@payslip.month] %>, <%= @payslip.year %></strong></th>
-                    <% end %>
+                      <th><strong>PaySlips For <%= Date::MONTHNAMES[@month] %>, <%= @year %></strong></th>
                    </tr>
                    <tr>
                       <th>Employee-Id</th>

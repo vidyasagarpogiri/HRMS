@@ -197,13 +197,18 @@ end
   get 'payslip/:id/edit' => 'salaries#edit_payslip'
   put 'payslip/:id' => 'salaries#update_payslip'
   get 'payslip/:id' => 'salaries#show_payslip'
-  post 'payslips_monthly_view' => "salaries#monthly_payslips"
+  #post 'payslips_monthly_view' => "salaries#monthly_payslips"
   get 'salaries/payslips_list'
+  get 'monthly_payslips' => "salaries#employee_monthly_payslips"
+  get 'monthly_payslip_view/:id' => "salaries#monthly_payslip_view"
   #--------------------------------------
    
 
   #rout for job locations
  resources :job_locations 
+ 
+ #route for generic_investment_declarations
+ resources :generic_investment_declarations
  
 
   #get 'change_designation' => "designations#change_designation"
