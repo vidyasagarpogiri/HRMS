@@ -37,25 +37,13 @@
             </ul>
             </td>
             <% end %>
-          </tr>
-        </tbody>
-      <% end %>
-      </table>
-    </div>                                                                                                                    
-  </div><!--/.module -->
-<% else %>
-  <div class="module-head">							
-    <h3>Generic Investment Declaration Info</h3> 
-    <% if current_user.department == Department::HR %>                                
-    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add newGeneric Investment Declaration', new_generic_investment_declaration_path %></label>
-    <% end %>
-  </div>
-  <br>
-  <div class="alert alert-success alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    You have No Generic Investment Declaration Details to display.
-  </div>
-<% end %>   
+          </div>
+          <br>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            You have No Generic Investment Declaration Details to display.
+          </div>
+        <% end %>   
       		</div><!--/.content-->
 				</div><!--/.span12-->
 			</div><!--/.row-->
