@@ -23,6 +23,8 @@ class Employee < ActiveRecord::Base
   belongs_to :group
   
   has_many :reporting_managers
+  # for investment declartion
+  has_many :investment_declarations
 
 
  	

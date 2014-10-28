@@ -1,0 +1,55 @@
+<div class="wrapper">
+ <div class="container">
+	<div class="row">
+
+  <div class="span12">
+		<div class="content">
+
+			<div class="module">
+				<div class="module-head">
+					<h3>Add New Holiday</h3>
+				</div>
+							<div class="module-body">
+							
+							<%= form_for @declaration, :html => {:class=>"form-horizontal row-fluid new_event_form"} do |d| %>
+							<div>
+							     <% @declaration.errors.full_messages.each do |msg| %>
+                  <div class="alert alert-danger alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <%= msg %>
+                  <%end%>          
+						</div>
+							<div class="control-group">   
+							 <label class="control-label" for="basicinput">Enter Section</label>
+                   <div class="controls">
+                      <%= d.text_field :section, :class => "span8 form-control", :placeholder =>"Enter New Section Name", :data => {:error => "Please Enter valid Section Name"}, :required =>true,:pattern => '[a-zA-Z/s ]*' %>
+                    <span class="help-block with-errors"></span>
+							          </div>
+								          </div>
+								          
+								          
+		<div class="control-group">
+										<label class="control-label" for="basicinput">Date Of Holiday</label>
+										<div class="controls">
+                     <%= eve.text_field :event_date, :class => "span8 date-picker form-control", :data => {:error => "Please Enter valid Event Date"}, :required => true %>
+											 <span class="help-block with-errors"></span>   
+										</div>
+									</div>
+									 <ul class="navigation-btns pull-left" >
+									  <li><button type="submit" class="btn btn-success">Save</button></li>
+									  <li><%= link_to "Cancel", events_path,:class => "btn btn-danger" %></li>
+									</ul>	
+								<% end %>
+							</div><!--/.module-body-->
+						</div><!--/.module-->
+					</div><!--/.content-->
+				</div><!--/.span12-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+	</div><!--/.wrapper-->
+	
+        <script>
+          $(".new_event_form").validator();
+        </script>   
+            
+     

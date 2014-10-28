@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  section: MyString
+  title: MyString
+  max_limit: 1.5
+  description: MyText
+  monthly_value: 1.5
+  yearly_value: 1.5
+  employee_id: 1
+
+two:
+  section: MyString
+  title: MyString
+  max_limit: 1.5
+  description: MyText
+  monthly_value: 1.5
+  yearly_value: 1.5
+  employee_id: 1

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+  
 
+  resources :investment_declarations
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   resources :policies
   

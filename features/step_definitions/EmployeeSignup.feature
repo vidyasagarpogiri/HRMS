@@ -4,8 +4,8 @@ Feature: Employee Signup
 @javascript
 Scenario: Adds a New Employee
 				#Given there are departments seeded
-        Given I am on the new_employee page
-        And I fill in "employee_employee_id" with "123"
+        Given I am on the new_profile page
+        And I fill in "employee_employee_id" with "3456"
         And I fill in "employee_date_of_join" with "12-02-2006"
         When I select "Mrs" from "employee_title"
         And I fill in "employee_first_name" with "First Name"
@@ -24,3 +24,4 @@ Scenario: Adds a New Employee
 				When I select "HR" from "employee[department_id]"
         When I press "Submit"
 				
+
