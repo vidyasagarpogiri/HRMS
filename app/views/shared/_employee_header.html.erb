@@ -23,8 +23,7 @@
 						</li>
 						
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Apprisal <b class="caret"></b></a>
-							
+						 <a href="/monthly_payslips" >Payslips</a>
 						</li>
 	
 	      <!---  <li class="dropdown">
@@ -35,8 +34,8 @@
 						
 						<li class="nav-user dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">                                                           							
-							  <% if @employee.present? && @employee.avatar_url.present? %>
-                  <%= image_tag @employee.avatar_url, :class => "nav-avatar" %> 
+							  <% if current_user.employee.present? && current_user.employee.avatar_url.present? %>
+                  <%= image_tag current_user.employee.avatar_url, :class => "nav-avatar" %> 
                 <% else %>
                   <img src="/assets/user.png", class= "nav-avatar"> 
                 <% end %>
