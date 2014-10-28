@@ -8,6 +8,7 @@
               <h3>pay slips
               </h3>
             </div><br>
+         
           <div class="module-body">
            
               <div class="row-fluid">
@@ -66,6 +67,7 @@
            <% end %>  
                </div>
              </div><br>
+              <% if @payslips.present? %>
                 <!-- code for displayin all employees payslips -->
               <% if flash[:notice] %>
                  <div class="alert alert-danger alert-dismissable">
@@ -95,19 +97,28 @@
                    <tbody>
                     <tr>
                       <td><%= payslip.employee.employee_id %></td>
-                      <td><%= link_to payslip.employee.full_name, "payslip/#{payslip.id}" %></td>
+                      <td><%= link_to payslip.employee.full_name, "/payslip/#{payslip.id}" %></td>
                       <td><%= payslip.employee.department.department_name %></td>
                       <td><%= payslip.no_of_working_days%></td>
                       <td><%= payslip.basic_salary%></td>
                        <td><%= payslip.gross_salary %></td>
                       <td><%= payslip.total_deductions %></td>
                       <td><%= payslip.netpay %></td>
-                      <td><%= link_to 'Edit', "payslip/#{payslip.id}/edit", :remote => true %></td>
+                      <td><%= link_to 'Edit', "/payslip/#{payslip.id}/edit", :remote => true %></td>
                    </tbody>
                <% end %> 
-              </table>            
+              </table> 
+               <% else %>
+                  <% if flash[:notice] %>
+                    <div class="alert alert-danger alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <%= flash[:notice] %>
+                    </div>
+              <% end %>
+            <% end %>           
           </div>
-          </div><!--/.module-->
+            </div><!--/.module-->
+            <div class="payslip_edit"></div>
         </div><!--/.content-->                    
       </div><!--/.span9-->                
     </div><!--/.row-->

@@ -73,6 +73,7 @@
                     </div>
                   </div>
                   <%= hidden_field_tag('total_working_days',@payslip.no_of_working_days) %>
+                <% if @payslip_allowances.present? %>
                   <table class="table table-striped table-hover" id="sample-table-2">
 							<thead>
 								<tr>
@@ -82,6 +83,7 @@
 								 <tr/>
 							 </thead>	
 							 <tbody>
+							  
                   <% @payslip_allowances.each do |allowance, i| %>
 										<%= fields_for "payslip_allowances[]", allowance do |f| %>  
 										  <%# raise payslip_allowance.inspect %>
@@ -97,9 +99,17 @@
 											</tr>
 										 <% end %>
 									  <% end %> 
+									
                  
                </tbody>
-              </table><br/>
+              </table>
+              <% else %>
+                <div class="alert alert-danger alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        No Allowances Applicable For This Payslip 
+                    </div>
+              <% end %>
+              <br/>
               <%= link_to 'view payslip', "/payslip/#{@payslip.id}", :class => "btn btn-success pull-right" %><br/>
              <% end %>
              
