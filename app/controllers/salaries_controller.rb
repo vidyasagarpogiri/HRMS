@@ -218,7 +218,7 @@ class SalariesController < ApplicationController
 	  @year = params[:payslip_view_year].to_i
 	  if @month <= Time.now.month && @year <= Time.now.year
 	    @payslips = Payslip.where(:month => @month ,:year => @year)
-	      @payslip_pf = @payslip_esic = 0.0
+	      
 	      unless @payslips.present?
 	        @salary_percentages = StaticSalary.all
 	        @employees = Employee.where(status: false)
@@ -234,9 +234,13 @@ class SalariesController < ApplicationController
 	                @gross = @payslip.basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance #TODO need arrears add to below forumla       
 	                if @salary.pf_apply == "true"
 	                  @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
+	                else
+	                  @payslip_pf = 0.0
 	                end
 	                if @salary.esic_apply == "true"
 	                  @payslip_esic = payslip_esic_value(@gross, @salary_percentages)
+	                else
+	                  @payslip_esic = 0.0
 	                end
 	                @total_deducted_allowances_value = deducted_allowances_total(@payslip)
 	                @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value #TODO need add PT and TDS
