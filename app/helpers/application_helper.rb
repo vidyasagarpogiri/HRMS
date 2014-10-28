@@ -265,7 +265,7 @@ end
       basic = salary.basic_salary
       pf_contribution_value = 0
       percentages.each do |per|
-        if per.name == "Pf Contribution"
+        if per.name == "PF Contribution"
           pf_contribution_value = (basic * per.value)/100
           break
         end

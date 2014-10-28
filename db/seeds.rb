@@ -128,9 +128,9 @@ Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")
 Event.create(:event_name =>"Christmas", :event_date => "25/12/2014")
 
 StaticSalary.create(:name => "Basic", :value => 40.0)
-StaticSalary.create(:name => "PF", :value => 20)
-StaticSalary.create(:name => "PF Contribution", :value => 10)
-StaticSalary.create(:name => "Esic", :value => 10)
-StaticSalary.create(:name => "Esic Contribution", :value => 10)
+StaticSalary.create(:name => "PF", :value => 12)
+StaticSalary.create(:name => "PF Contribution", :value => 13.61)
+StaticSalary.create(:name => "Esic", :value => 1.75)
+StaticSalary.create(:name => "Esic Contribution", :value => 4.25)
 
 
