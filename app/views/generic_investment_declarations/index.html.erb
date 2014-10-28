@@ -9,7 +9,7 @@
     <div class="module-head">							
       <h3>Generic Investment Declaration Info</h3> 
       <% if current_user.department == Department::HR %>                                
-      <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add newGeneric Investment Declaration', new_generic_investment_declaration_path %></label>
+      <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add Investment Declaration', new_generic_investment_declaration_path %></label>
       <% end %>
     </div>
     <div class="module-body">					                                        
@@ -33,7 +33,7 @@
             <td> 
             <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
             <li><%= link_to 'Edit',  edit_generic_investment_declaration_path(generic.id), :class => "btn btn-success " %></li>
-            <li><%= link_to "Delete", generic_investment_declaration_path(generic), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+           <!-- <li><%#= link_to "Delete", generic_investment_declaration_path(generic), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li> -->
             </ul>
             </td>
             <% end %>
