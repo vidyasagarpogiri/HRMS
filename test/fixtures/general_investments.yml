@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  section: MyString
   title: MyString
-  maximum_limit: 1.5
-  description: MyText
+  decription: MyText
+  section_declaration_id: 1
 
 two:
-  section: MyString
   title: MyString
-  maximum_limit: 1.5
-  description: MyText
+  decription: MyText
+  section_declaration_id: 1

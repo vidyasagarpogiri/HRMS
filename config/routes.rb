@@ -216,7 +216,9 @@ end
  resources :job_locations 
  
  #route for generic_investment_declarations
- resources :generic_investment_declarations
+ resources :section_declarations
+ 
+ resources :general_investments
  
 
   #get 'change_designation' => "designations#change_designation"
