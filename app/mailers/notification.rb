@@ -57,5 +57,15 @@ class Notification < ActionMailer::Base
     @events = events
      mail(:to => user.email, :subject => "Holidays List")
     end
+    
+    #def send_payslip
+     # mail(:to => "sekhar.beri@amzur.com", :subject => "payslip List") do format
+      #  format.html { render }
+      #  format.xls { attachments["/home/sekhar/payslip.xlsx"]  }
+    #end
+
+    end
+    
+    
 end
 

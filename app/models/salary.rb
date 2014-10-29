@@ -6,7 +6,6 @@ class Salary < ActiveRecord::Base
 
   has_many :allowances
   
-  
   def payslip_allowances(payslip)
     non_deductable_allowances = allowances.where(is_deductable: false) 
     non_deductable_allowances.each do |allowance|
