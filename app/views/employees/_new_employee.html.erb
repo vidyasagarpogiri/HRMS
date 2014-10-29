@@ -25,7 +25,7 @@
 						     <div class="control-group">
 									  <label class="control-label" for="basicinput">Title</label>
 									  <div class="controls">									
-                      <%= f.select :title, options_for_select([['Mr', 'Mr'], ['Mrs', 'Mrs'], ['Miss', 'Miss']]), :class=> "span12 form-control",:data => {:error => " Please Select Title"}, :required =>true %>
+                      <%= f.select :title, options_for_select([['Mr', 'Mr'], ['Mrs', 'Mrs'], ['Miss', 'Miss']]),  { :prompt => "Please Select" },:class=> "span12 form-control",:data => {:error => " Please Select Title"}, :required =>true %>
                      <span class="help-block with-errors"></span>											 
 									  </div>
 								</div>
@@ -74,7 +74,7 @@
 								<div class="control-group">
 									<label class="control-label" for="basicinput">Job Location</label>
 									<div class="controls">
-                    <%= f.select :job_location_id, a, { :class => "job_location, span12 form-control", :id => "disabledSelect" } %>
+                    <%= f.select :job_location_id, a, { :prompt => "Please Select" }, { :class => "job_location, span12 form-control", :id => "disabledSelect" } %>
 									</div>
 								</div>
 							</div>

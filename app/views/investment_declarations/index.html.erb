@@ -16,7 +16,7 @@
             <th class="center">Section</th>
             <th>Title </th>	
             <th>Maximum Limit </th>
-            <th>Montly Value</th>
+            <th>Description</th>
             <th>Yealy Value</th>	
             <th>Actions</th>													            									      		
           </tr>
@@ -24,10 +24,10 @@
        <% @declarations.each do |dec| %>
         <tbody>
           <tr>               
-            <td class="center"><%= dec.generic_investment_declaration.section %></td>
-            <td><%= dec.generic_investment_declaration.title %></td>
-            <td><%= dec.generic_investment_declaration.maximum_limit %></td>
-            <td><%= dec.monthly_value %></td>
+            <td class="center"><%= dec.general_investment.section_declaration.section %></td>
+            <td><%= dec.general_investment.title %></td>
+            <td><%= dec.general_investment.section_declaration.maximum_limit %></td>
+            <td><%= dec.general_investment.description %></td>
             <td><%= dec.yearly_value %></td>
             <td>
           

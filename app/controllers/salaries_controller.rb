@@ -213,14 +213,12 @@ class SalariesController < ApplicationController
   def pay_slips_generation
 	  #TODO Have to specify Month and Year 
 	  #TODO NO of Working days
-	  #TODO PT, TDS 
-	 unless params[:payslip_view_month].to_i == 0 && params[:payslip_view_year].to_i == 0
-	  @month = params[:payslip_view_month].to_i
-	  @year = params[:payslip_view_year].to_i
-	  if @month <= Time.now.month && @year <= Time.now.year
+	  #TODO PT, TDS
+	  
+	    @month = Time.now.month-1
+	    @year = Time.now.year 
 	    @payslips = Payslip.where(:month => @month ,:year => @year)
-	      
-	      unless @payslips.present?
+        unless @payslips.present?
 	        @salary_percentages = StaticSalary.all
 	        @employees = Employee.where(status: false)
 	        @actual_days = Time.days_in_month(@month,@year)
@@ -250,20 +248,18 @@ class SalariesController < ApplicationController
                 end
             end 
             @payslips = Payslip.where(:month => @month ,:year => @year)
+            @company_payroll = CompanyPayRollMaster.create(:month => Date::MONTHNAMES[@month], :year => @year, :status => "PayRoll Generated", :name => current_user.employee.full_name)
         else
           flash[:notice] = "You Already Generated Payslip With Given Details"
-        end
-      else
-       flash[:notice] = "Sorry You Cannot Generate Next Month Payslips"
-      end
-     else
-       flash[:notice] = "Enter Proper Month and Year To Generate Payslip"
-     end  
+        end  
 	  end
 	  
 	  def generated_payslips
-	    unless params[:payslip_view_month].to_i == 0 && params[:payslip_view_year].to_i == 0
-	      @month = params[:payslip_view_month].to_i
+	    @payroll_last = CompanyPayRollMaster.last
+	    @payroll_month = Date::MONTHNAMES.index(@payroll_last.month)
+	    @years = CompanyPayRollMaster.pluck(:year).uniq
+	    @month = Date::MONTHNAMES.index(params[:payslip_view_month])
+	    unless @month == 0 && params[:payslip_view_year].to_i == 0
 	      @year = params[:payslip_view_year].to_i
 	      @payslips = Payslip.where(:month => @month ,:year => @year)
 	    else
@@ -273,6 +269,12 @@ class SalariesController < ApplicationController
 	  end
 	  
 	  def payslips_list
+	    #@payrolls = CompanyPayRollMaster.all
+	    #@payroll_years = CompanyPayRollMaster.all
+	    #@payroll_first = CompanyPayRollMaster.first
+	    @payroll_last = CompanyPayRollMaster.last
+	    @payroll_month = Date::MONTHNAMES.index(@payroll_last.month) if @payroll_last.present?
+	    @years = CompanyPayRollMaster.pluck(:year).uniq
       @payslip = Payslip.last
       if @payslip.present?
         @month = @payslip.month
@@ -325,6 +327,19 @@ class SalariesController < ApplicationController
       flash[:notice] = "Please Enter Proper Year"
     end
   end
+  
+  def get_payroll_years
+    @years = CompanyPayRollMaster.pluck(:year)
+    json_hash = {}
+    @years.each do |year|
+      json_hash[year.to_s] = CompanyPayRollMaster.where(year: year).map(&:month)
+    end
+    @payroll_years = json_hash[params["yr"]] if params["yr"].present?
+    @payroll_years =  @years.uniq if !params["yr"].present?
+    respond_to do|format|
+      format.json { render json: @payroll_years }
+    end
+  end
 #---------------------------------
 
 # action for Exporting Excel sheet
@@ -336,17 +351,14 @@ class SalariesController < ApplicationController
     @payslips = Payslip.where(:month => @month, :year => @year)
     #raise @payslips.inspect
     @workbook.add_worksheet(name: "Test") do |sheet|
-      sheet.add_row ["Employee-id", "Employee Name", "Basic", "Department", "Gross", "Deductions", "Netpay"]
+      sheet.add_row ["Employee-id", "Employee Name", "Department", "Basic", "Gross", "Deductions", "Netpay"]
        @payslips.each do |payslip|
           sheet.add_row [payslip.employee.employee_id, payslip.employee.full_name, payslip.employee.department.department_name, payslip.basic_salary, payslip.gross_salary, payslip.total_deductions, payslip.netpay]
         end
     end
-    #raise @package.serialize.inspect
     @package.serialize("/home/sekhar/payslip.xlsx")
-    #s = @package.to_stream()
-     # File.open('test.xlsx', 'w') { |f| f.write(s.read) }
-   # send_file("/home/sekhar/test.xlsx", filename: "Basic.xls", type: "application/vnd.xls")
-    #Notification.send_payslip
+    @mail = current_user.email
+    Notification.send_payslip(@mail).deliver
     redirect_to salaries_payslips_list_path
   end
 #---------------------------------
