@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029105600) do
+ActiveRecord::Schema.define(version: 20141029134504) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -342,6 +342,7 @@ ActiveRecord::Schema.define(version: 20141029105600) do
     t.float    "total_tds",      limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "payslips", force: true do |t|
