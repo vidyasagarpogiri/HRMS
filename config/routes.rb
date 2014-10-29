@@ -212,7 +212,7 @@ end
   get 'payslip/salaries/salaries/payslips_list' => 'salaries#payslips_list'
   #--------------------------------------
    
-
+   
   #rout for job locations
  resources :job_locations 
  

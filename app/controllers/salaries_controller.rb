@@ -273,7 +273,7 @@ class SalariesController < ApplicationController
 	    #@payroll_years = CompanyPayRollMaster.all
 	    #@payroll_first = CompanyPayRollMaster.first
 	    @payroll_last = CompanyPayRollMaster.last
-	    @payroll_month = Date::MONTHNAMES.index(@payroll_last.month)
+	    @payroll_month = Date::MONTHNAMES.index(@payroll_last.month) if @payroll_last.present?
 	    @years = CompanyPayRollMaster.pluck(:year).uniq
       @payslip = Payslip.last
       if @payslip.present?
@@ -361,7 +361,7 @@ class SalariesController < ApplicationController
     #s = @package.to_stream()
      # File.open('test.xlsx', 'w') { |f| f.write(s.read) }
    # send_file("/home/sekhar/test.xlsx", filename: "Basic.xls", type: "application/vnd.xls")
-    #Notification.send_payslip
+    Notification.send_payslip
     redirect_to salaries_payslips_list_path
   end
 #---------------------------------
