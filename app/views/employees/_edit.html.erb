@@ -191,10 +191,10 @@
 									  <div class="control-group">
 										  <label class="control-label" for="basicinput">Employment Status</label>                                             
 										  <div class="controls">
-                      <%= f.select(:employment_status, options_for_select([['New', 'New'], ['Trainee', 'Trainee'], ['Regular', 'Regular'], ['F&F', 'F&F']]), {}, :class=> "span8 form-control", :id=>"disabledSelect") %>
+                      <%= f.select :employment_status,[['New', 'New'], ['Trainee', 'Trainee'], ['Regular', 'Regular'], ['F&F', 'F&F']], {}, :class=> "span8 form-control", :id=>"disabledSelect" %>
                       <span class="help-block with-errors"></span>
 										  </div>
-									  </div>
+									  </div> 
 									</div>
 								</div>
 						   
