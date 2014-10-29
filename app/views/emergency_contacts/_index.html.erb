@@ -5,9 +5,9 @@
     <% if current_user.department == Department::HR %>                                       
     <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add Emergency Contact', new_employee_emergency_contact_path(@employee.id), :remote => true %></label>
     <% end %>
-  </div>     
-  <% if @emergency.present? %>            
-  <div class="module-body">					                                   
+  </div>                   
+  <div class="module-body">	
+    <% if @emergency.present? %>				                                   
     <table class="table table-striped table-bordered table-condensed">
       <thead>											      
         <tr>
@@ -35,15 +35,13 @@
       </tr>
     </tbody>
     <% end %>			      
-    </table>                                                                                                                            
-  </div> 
-  <% else %>
-  <br>
-  <div class="alert alert-success alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    You have No Emergency contact Details to display.
-  </div>
-  <% end %>      
-</div> 						
-                               
+    </table>                                                                                                                              
+    <% else %>
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      You have No Emergency contact Details to display.
+    </div>
+    <% end %>      
+  </div> 						
+</div>                                
                          

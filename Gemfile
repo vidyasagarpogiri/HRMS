@@ -70,6 +70,8 @@ gem 'daemon-spawn'
 
 gem 'remotipart', '~> 1.2'
 
+# gem for excel page generation
+gem 'axlsx'
 
 #use for bootsy wysiwig editor
 gem 'bootsy'

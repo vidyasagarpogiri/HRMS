@@ -46,13 +46,14 @@ class Employee < ActiveRecord::Base
 	validates :father_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
 	validates :blood_group_id, presence: true
 	validates :date_of_join, presence: true
-
+  #validates :employment_status, presence: true 
 
 	#validates :avatar, presence: true
 	#after_create :add_leaves
 	#after_update :update_leaves
 
 
+  #Employment_Status = []
 
  def reporting_manager
     if reporting_managers.first.present? && reporting_managers.first.manager_id.present? 

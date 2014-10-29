@@ -20,23 +20,23 @@
     <% end %>
     <!-- /.row -->
       <% if @address1.present? %>
-      <div class="row-fluid"><br>                          
+      <div class="row-fluid">            
         <div class="module-head" style="background-color:#F0F5F5!important;"> 
-          <p style="color:green">Present Address</p>
-        </div> 
-        <% if current_user.department == Department::HR %>     
-        <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class=" icon-edit"></i></a><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"pull-right", :remote => true %></label> 
-        <% end %>
+          <strong>Present Address</strong>
+          <% if current_user.department == Department::HR %>     
+            <label style="font-weight:normal;" class = "pull-right"><a href="#"><i class=" icon-edit"></i></a><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"pull-right", :remote => true %></label> 
+          <% end %>
+        </div>         
         <div class="module-body " style="margin-left:100px;">
           <div class ="row-fluid">
             <div class="span5">		
               <div class="control-group">
-                <label class="control-label" for="basicinput">Address Line 1: <%= @address1.line %> </label>
+                <label class="control-label" for="basicinput"><strong>Address Line 1: </strong><%= @address1.line %> </label>
               </div>
             </div>
           <div class="span5">	
             <div class="control-group">
-             <label class="control-label" for="basicinput">Address Line 2: <%= @address1.line1 %></label>  
+             <label class="control-label" for="basicinput"><strong>Address Line 2: </strong><%= @address1.line1 %></label>  
             </div>
         </div>
       </div>	
@@ -44,12 +44,12 @@
       <div class ="row-fluid">
         <div class="span5">		
           <div class="control-group">
-            <label class="control-label" for="basicinput">City: <%= @address1.city %> </label>
+            <label class="control-label" for="basicinput"><strong>City: </strong><%= @address1.city %> </label>
           </div>
         </div>
         <div class="span5">	
           <div class="control-group">
-            <label class="control-label" for="basicinput">State: <%= @address1.state %></label>  
+            <label class="control-label" for="basicinput"><strong>State: </strong><%= @address1.state %></label>  
           </div>
         </div>
       </div>
@@ -57,12 +57,12 @@
       <div class ="row-fluid">
         <div class="span5">		
           <div class="control-group">
-            <label class="control-label" for="basicinput">Country: <%= @address1.country %> </label>
+            <label class="control-label" for="basicinput"><strong>Country: </strong><%= @address1.country %> </label>
           </div>
         </div>
         <div class="span5">	
           <div class="control-group">
-            <label class="control-label" for="basicinput">Zipcode: <%= @address1.zipcode %></label>  
+            <label class="control-label" for="basicinput"><strong>Zipcode: </strong><%= @address1.zipcode %></label>  
           </div>
         </div>
       </div>
@@ -74,22 +74,22 @@
     <% if @address2.present? %>                               
     <div class="row-fluid">  
       <div class="module-head" style="background-color:#F0F5F5!important;">  
-        <p style="color:green">Permanent Address</p>
-      </div>                                                   
-      <% if current_user.department == Department::HR %>                             
-      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class=" icon-edit"></i></a><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"pull-right", :remote => true %></label>
+        <strong>Permanent Address</strong>
+        <% if current_user.department == Department::HR %>   
+          <label style="font-weight:normal;" class = "pull-right"><a href="#"><i class=" icon-edit"></i></a><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"pull-right", :remote => true %></label>
       <% end %>
+      </div>                                                                                         
       </ul> 	              
       <div class="module-body " style="margin-left:100px;">								                          
         <div class ="row-fluid">
           <div class="span5">		
             <div class="control-group">
-              <label class="control-label" for="basicinput">Address Line 1: <%= @address2.line %> </label>
+              <label class="control-label" for="basicinput"><strong>Address Line 1: </strong><%= @address2.line %> </label>
             </div>
           </div>
           <div class="span5">	
             <div class="control-group">
-              <label class="control-label" for="basicinput">Address Line 2: <%= @address2.line1 %></label>  
+              <label class="control-label" for="basicinput"><strong>Address Line 2: </strong><%= @address2.line1 %></label>  
             </div>
           </div>
         </div>	
@@ -97,12 +97,12 @@
       <div class ="row-fluid">
         <div class="span5">		
           <div class="control-group">
-            <label class="control-label" for="basicinput">City: <%= @address2.city %> </label>
+            <label class="control-label" for="basicinput"><strong>City: </strong><%= @address2.city %> </label>
           </div>
         </div>
         <div class="span5">	
           <div class="control-group">
-            <label class="control-label" for="basicinput">State: <%= @address2.state %></label>  
+            <label class="control-label" for="basicinput"><strong>State: </strong><%= @address2.state %></label>  
           </div>
         </div>
       </div>
@@ -110,12 +110,12 @@
       <div class ="row-fluid">
         <div class="span5">		
           <div class="control-group">
-            <label class="control-label" for="basicinput">Country: <%= @address2.country %> </label>
+            <label class="control-label" for="basicinput"><strong>Country: </strong><%= @address2.country %> </label>
           </div>
         </div>
         <div class="span5">	
           <div class="control-group">
-           <label class="control-label" for="basicinput">Zipcode: <%= @address2.zipcode %></label>  
+           <label class="control-label" for="basicinput"><strong>Zipcode: </strong><%= @address2.zipcode %></label>  
           </div>
         </div>
       </div><!-- /.row-fluid -->
