@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029063517) do
+ActiveRecord::Schema.define(version: 20141029074820) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -319,6 +319,15 @@ ActiveRecord::Schema.define(version: 20141029063517) do
     t.integer  "employee_id"
   end
 
+  create_table "pay_roll_masters", force: true do |t|
+    t.date     "assesment_year"
+    t.float    "total_income",   limit: 24
+    t.float    "total_savings",  limit: 24
+    t.float    "total_tds",      limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "payslips", force: true do |t|
     t.string   "month_and_year"
     t.float    "no_of_working_days", limit: 24
@@ -338,6 +347,7 @@ ActiveRecord::Schema.define(version: 20141029063517) do
     t.float    "special_allowance",  limit: 24
     t.integer  "month"
     t.integer  "year"
+    t.string   "status"
   end
 
   create_table "payslips_allowances", force: true do |t|
