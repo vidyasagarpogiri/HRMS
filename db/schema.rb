@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20141029105600) do
 
   create_table "addresses", force: true do |t|
@@ -353,11 +352,8 @@ ActiveRecord::Schema.define(version: 20141029105600) do
     t.float    "pt",                 limit: 24
     t.float    "tds",                limit: 24
     t.float    "special_allowance",  limit: 24
-<<<<<<< HEAD
     t.integer  "month"
     t.integer  "year"
-=======
->>>>>>> 1f4c665fb55d116f98b3c86bbd745e72e0462a25
     t.string   "status"
   end
 
