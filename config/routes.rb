@@ -203,6 +203,7 @@ end
   get 'monthly_payslip_view/:id' => "salaries#monthly_payslip_view"
   post 'salaries/employee_payslips_by_year'
   get "salaries/exporting_payslips_excel_sheet"
+  get "salaries/get_payroll_years"
   #--------------------------------------
    
 
