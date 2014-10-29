@@ -204,6 +204,12 @@ end
   post 'salaries/employee_payslips_by_year'
   get "salaries/exporting_payslips_excel_sheet"
   #--------------------------------------
+  
+  
+  # routes for pay slips navigation- priyanka
+  get 'payslip/salaries/payslips_list' => 'salaries#payslips_list'
+  get 'payslip/salaries/salaries/payslips_list' => 'salaries#payslips_list'
+  #--------------------------------------
    
 
   #rout for job locations
