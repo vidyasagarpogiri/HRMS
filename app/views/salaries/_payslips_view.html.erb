@@ -10,28 +10,25 @@
             </div>
             <div class="module-body">
               <div class="row-fluid">
-                <div class="span6">   <br/>  
-                <% unless @payroll_month == Time.now.month-1 %>      
-                   <%= link_to "Generate Last Month PaySlips", payslips_path, :class => "btn btn-success", method: :post, :remote => true %> 
-                <% end %>
-               </div>
-     
-               <div class="span6">
-             <%= form_tag(payslips_view_path, method: :get,  :class => "form-horizontal", :remote => true) do %>
-            
-                <label><strong>Select Month to View payslip :&nbsp&nbsp </strong><br>
-                <select name="payslip_view_year" class="payroll_year">
-                  <option value=0>-select year-</option>
-                  <% @years.each do |year| %>
-                    <option value="<%= year %>"><%= year %></option>
-                  <% end %>             
-                </select>
-                <select name="payslip_view_month" class ="payroll_month">
-                  <option value=0>-select month-</option>
-                </select>   
-                <input type="submit" class="btn btn-success" value="View">                
-      
-           <% end %>  
+                <div class="span6">
+                  <%= form_tag(payslips_view_path, method: :get,  :class => "form-horizontal", :remote => true) do %>            
+                  <label><strong>Select Month to View payslip :&nbsp&nbsp </strong><br>
+                  <select name="payslip_view_year" class="payroll_year">
+                    <option value=0>-select year-</option>
+                    <% @years.each do |year| %>
+                      <option value="<%= year %>"><%= year %></option>
+                    <% end %>             
+                  </select>
+                  <select name="payslip_view_month" class ="payroll_month">
+                    <option value=0>-select month-</option>
+                  </select>   
+                  <input type="submit" class="btn btn-success" value="View">                      
+                  <% end %>      
+                </div>              
+                <div class="span6">  <br> 
+                  <% unless @payroll_month == Time.now.month-1 %>      
+                    <%= link_to "Generate Last Month PaySlips", payslips_path, :class => "btn btn-success pull-right", method: :post, :remote => true %> 
+                  <% end %>               
                </div>
              </div></br>
                <% if @payslips.present? %>                 

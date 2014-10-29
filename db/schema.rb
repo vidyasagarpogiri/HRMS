@@ -241,15 +241,6 @@ ActiveRecord::Schema.define(version: 20141029134504) do
     t.datetime "updated_at"
   end
 
-  create_table "generic_investment_declarations", force: true do |t|
-    t.string   "section"
-    t.string   "title"
-    t.float    "maximum_limit", limit: 24
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "grades", force: true do |t|
     t.string   "value"
     t.datetime "created_at"
@@ -362,6 +353,8 @@ ActiveRecord::Schema.define(version: 20141029134504) do
     t.float    "pt",                 limit: 24
     t.float    "tds",                limit: 24
     t.float    "special_allowance",  limit: 24
+    t.integer  "month"
+    t.integer  "year"
     t.string   "status"
   end
 

@@ -58,11 +58,11 @@ class Notification < ActionMailer::Base
      mail(:to => user.email, :subject => "Holidays List")
     end
     
-    #def send_payslip
-     # mail(:to => "sekhar.beri@amzur.com", :subject => "payslip List") do format
-      #  format.html { render }
-      #  format.xls { attachments["/home/sekhar/payslip.xlsx"]  }
-    #end
+    def send_payslip(mail)
+       attachments.inline["payslip.xlsx"] = File.read("/home/sekhar/payslip.xlsx")
+       mail(:to => mail, :subject => "Subject Of the Mail")
+    end
+     
 
 end
     

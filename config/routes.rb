@@ -208,11 +208,10 @@ end
   
   
   # routes for pay slips navigation- priyanka
-  get 'payslip/salaries/payslips_list' => 'salaries#payslips_list'
-  get 'payslip/salaries/salaries/payslips_list' => 'salaries#payslips_list'
+ 
   #--------------------------------------
    
-
+   
   #rout for job locations
  resources :job_locations 
  
