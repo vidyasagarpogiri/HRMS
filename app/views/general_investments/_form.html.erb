@@ -1,0 +1,60 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+		    <div class="content">
+			    <div class="module">
+				    <div class="module-head">
+					    <h3>Add Investment Declaration</h3>
+				    </div>
+						<div class="module-body">						
+						<%= form_for @investment, :html => {:class=>"form-horizontal row-fluid new_event_form"} do |gen| %>
+						
+						<div class="control-group">   
+						 <label class="control-label" for="basicinput">Section Name</label>
+               <div class="controls">
+                  <%= gen.collection_select :section_declaration_id, SectionDeclaration.all, :id, :section, { :promt => "please select"}, { :class => "section_declaration, span8 form-control",  :id => "disabledSelect"}  %>
+  
+                <span class="help-block with-errors"></span>
+					    </div>
+						</div>
+						<div class="control-group">   
+						 <label class="control-label" for="basicinput">Title</label>
+               <div class="controls">
+                  <%= gen.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Section  Name", :data => {:error => "Section Should not be Empty"}, :required =>true %>
+                <span class="help-block with-errors"></span>
+					    </div>
+						</div>
+							      
+					  
+						<div class="control-group">   
+						 <label class="control-label" for="basicinput"> Description</label>
+               <div class="controls">
+                  <%= gen.text_area :decription, :class => "span8 form-control", :placeholder =>"Enter Maximum limit value", :data => {:error => "maxlimit Should not be Empty"}, :required =>true,:pattern => '[0-9]*\.?[0-9]*' %>
+                 <span class="help-block with-errors"></span>
+					     </div>
+					
+						</div>	
+												  								          		
+					   <ul class="navigation-btns pull-left" >
+					    <li><button type="submit" class="btn btn-success">Save</button></li>
+					    <li><%= link_to "Cancel", section_declarations_path,:class => "btn btn-danger" %></li>
+					  </ul>	
+						<% end %>
+						</div><!--/.module-body-->
+					</div><!--/.module-->
+				</div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->
+	
+      
+      
+      
+      
+      
+      
+      
+      
+      

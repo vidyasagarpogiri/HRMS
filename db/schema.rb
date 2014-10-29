@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029063517) do
+
+ActiveRecord::Schema.define(version: 20141029105600) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -224,6 +225,14 @@ ActiveRecord::Schema.define(version: 20141029063517) do
     t.text     "summary"
   end
 
+  create_table "general_investments", force: true do |t|
+    t.string   "title"
+    t.text     "decription"
+    t.integer  "section_declaration_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "generic_investment_declarations", force: true do |t|
     t.string   "section"
     t.string   "title"
@@ -266,9 +275,8 @@ ActiveRecord::Schema.define(version: 20141029063517) do
   add_index "insentives", ["salary_id"], name: "index_insentives_on_salary_id", using: :btree
 
   create_table "investment_declarations", force: true do |t|
-    t.integer  "generic_investment_declaration_id"
-    t.float    "monthly_value",                     limit: 24
-    t.float    "yearly_value",                      limit: 24
+    t.integer  "general_investment_id"
+    t.float    "yearly_value",          limit: 24
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -319,6 +327,15 @@ ActiveRecord::Schema.define(version: 20141029063517) do
     t.integer  "employee_id"
   end
 
+  create_table "pay_roll_masters", force: true do |t|
+    t.date     "assesment_year"
+    t.float    "total_income",   limit: 24
+    t.float    "total_savings",  limit: 24
+    t.float    "total_tds",      limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "payslips", force: true do |t|
     t.string   "month_and_year"
     t.float    "no_of_working_days", limit: 24
@@ -336,8 +353,12 @@ ActiveRecord::Schema.define(version: 20141029063517) do
     t.float    "pt",                 limit: 24
     t.float    "tds",                limit: 24
     t.float    "special_allowance",  limit: 24
+<<<<<<< HEAD
+=======
     t.integer  "month"
     t.integer  "year"
+    t.string   "status"
+>>>>>>> f73a26fe1a2a136b361f45e382ba269a8201bea0
   end
 
   create_table "payslips_allowances", force: true do |t|
@@ -447,6 +468,13 @@ ActiveRecord::Schema.define(version: 20141029063517) do
   end
 
   add_index "salary_increments", ["salary_id"], name: "index_salary_increments_on_salary_id", using: :btree
+
+  create_table "section_declarations", force: true do |t|
+    t.string   "section"
+    t.float    "maximum_limit", limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "static_allowances", force: true do |t|
     t.string   "name"
