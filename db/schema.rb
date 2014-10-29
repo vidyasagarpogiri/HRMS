@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20141029105600) do
     t.datetime "updated_at"
   end
 
+  create_table "company_pay_roll_masters", force: true do |t|
+    t.string   "month"
+    t.integer  "year"
+    t.string   "status"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
@@ -228,15 +237,6 @@ ActiveRecord::Schema.define(version: 20141029105600) do
     t.string   "title"
     t.text     "decription"
     t.integer  "section_declaration_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "generic_investment_declarations", force: true do |t|
-    t.string   "section"
-    t.string   "title"
-    t.float    "maximum_limit", limit: 24
-    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
