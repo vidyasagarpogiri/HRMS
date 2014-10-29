@@ -187,8 +187,20 @@
 									    </div>
 								    </div>
 									</div>
-									<div class="span5">	
+									 <div class="span5">									  
 									  <div class="control-group">
+										  <label class="control-label" for="basicinput">Employment Status</label>                                             
+										  <div class="controls">
+                      <%= f.select(:employment_status, options_for_select([['New', 'New'], ['Trainee', 'Trainee'], ['Regular', 'Regular'], ['F&F', 'F&F']]), {}, :class=> "span8 form-control", :id=>"disabledSelect") %>
+                      <span class="help-block with-errors"></span>
+										  </div>
+									  </div>
+									</div>
+								</div>
+						   
+						   <div class ="row-fluid">
+						   <div class="span5">
+						    <div class="control-group">
 										  <label class="control-label" for="basicinput">Employee Display Picture</label>                                         
 										  <div class="controls">
                         <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes, :error => " Please upload valid photo"}, :required =>true %>
@@ -196,7 +208,8 @@
 										  </div>
 									  </div>	
 								 </div>
-						   </div>						
+						   </div>	
+						   					
 									 <button type="submit" class="btn btn-success">Save & Continue</button><br>											
 							  <% end %> 
 							</div>
