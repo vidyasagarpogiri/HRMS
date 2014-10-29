@@ -10,7 +10,7 @@ class EmployeesController < ApplicationController
 	
 
   def index
-    @employees =  Employee.where(:status => false).page(params[:page]).per(4)
+    @employees =  Employee.where(:status => false)
   end
 
  

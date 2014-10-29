@@ -53,6 +53,7 @@ class Employee < ActiveRecord::Base
 	#after_update :update_leaves
 
 
+  #Employment_Status = []
 
  def reporting_manager
     if reporting_managers.first.present? && reporting_managers.first.manager_id.present? 
