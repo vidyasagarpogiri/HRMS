@@ -351,17 +351,14 @@ class SalariesController < ApplicationController
     @payslips = Payslip.where(:month => @month, :year => @year)
     #raise @payslips.inspect
     @workbook.add_worksheet(name: "Test") do |sheet|
-      sheet.add_row ["Employee-id", "Employee Name", "Basic", "Department", "Gross", "Deductions", "Netpay"]
+      sheet.add_row ["Employee-id", "Employee Name", "Department", "Basic", "Gross", "Deductions", "Netpay"]
        @payslips.each do |payslip|
           sheet.add_row [payslip.employee.employee_id, payslip.employee.full_name, payslip.employee.department.department_name, payslip.basic_salary, payslip.gross_salary, payslip.total_deductions, payslip.netpay]
         end
     end
-    #raise @package.serialize.inspect
     @package.serialize("/home/sekhar/payslip.xlsx")
-    #s = @package.to_stream()
-     # File.open('test.xlsx', 'w') { |f| f.write(s.read) }
-   # send_file("/home/sekhar/test.xlsx", filename: "Basic.xls", type: "application/vnd.xls")
-    Notification.send_payslip
+    @mail = current_user.email
+    Notification.send_payslip(@mail).deliver
     redirect_to salaries_payslips_list_path
   end
 #---------------------------------
