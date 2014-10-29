@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GenericInvestmentDeclarationTest < ActiveSupport::TestCase
+class SectionDeclarationsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
