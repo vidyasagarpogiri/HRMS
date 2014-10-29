@@ -1,0 +1,2 @@
+module SectionDeclarationsHelper
+end

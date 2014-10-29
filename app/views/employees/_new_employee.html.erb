@@ -148,7 +148,7 @@
 								<div class="control-group">
 									<label class="control-label" for="basicinput">Gender</label>
 									<div class="controls">
-                   <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]), {}, :class=> "span8 form-control", :id=>"disabledSelect") %>
+                   <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]), {}, :class=> "span12 form-control", :id=>"disabledSelect") %>
                    <span class="help-block with-errors"></span>
 									</div>
 								</div>
@@ -167,6 +167,15 @@
 					  <div class ="row-fluid">
 						  <div class="span5">		
 								<div class="control-group">
+								<label class="control-label" for="basicinput">Employment Status</label>
+									<div class="controls">
+										 <%= f.select(:employment_status, options_for_select([['New', 'New'], ['Trainee', 'Trainee'], ['Regular', 'Regular'], ['F&F', 'F&F']]), {}, :class=> "span12 form-control") %>
+								  <span class="help-block with-errors"></span>
+									</div>
+								</div>
+							</div>
+							<div class="span5">		
+								<div class="control-group">
 									<label class="control-label" for="basicinput">Department</label>                                              
 									<div class="controls">
                    <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, span12 form-control", :id => "disabledSelect1" } %> 
@@ -174,27 +183,28 @@
 									</div>
 								</div>
 							</div>
-							<div class="span5">	
-								<div class="control-group">
-									<label class="control-label" for="basicinput">Designation</label>                                              
-									<div class="controls">
-                   <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation span12 form-control", :id=>"disabledSelect"  } %>  
-                   <span class="help-block with-errors"></span>
-									</div>
-								</div>
-							</div>	
+							</div>	<hr>
+							<div class ="row-fluid">
+							  <div class="span5">	
+								  <div class="control-group">
+									  <label class="control-label" for="basicinput">Designation</label>                                              
+									  <div class="controls">
+                     <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation span12 form-control", :id=>"disabledSelect"  } %>  
+                     <span class="help-block with-errors"></span>
+									  </div>
+								  </div>
+							  </div>							
+						    <div class="span5">	
+							    <div class="control-group">
+								    <label class="control-label" for="basicinput">Grade/Level</label>                                           
+								    <div class="controls">
+                       <%= f.grouped_collection_select :grade_id, Designation.all, :grades, :designation_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades span12 form-control", :id=>"disabledSelect"  } %>
+                       <span class="help-block with-errors"></span>
+								  </div>
+							  </div>
+						  </div>
 						</div>	<hr>
-						
 						<div class ="row-fluid">
-						  <div class="span5">	
-								<div class="control-group">
-									<label class="control-label" for="basicinput">Grade/Level</label>                                           
-									<div class="controls">
-                    <%= f.grouped_collection_select :grade_id, Designation.all, :grades, :designation_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades span12 form-control", :id=>"disabledSelect"  } %>
-                   <span class="help-block with-errors"></span>
-									</div>
-								</div>
-							</div>
 							<div class="span5">	
 								<div class="control-group">
 									<label class="control-label" for="basicinput">Employee Display Picture</label>                                         
@@ -203,9 +213,10 @@
                    <span class="help-block with-errors"></span>
 									</div>
 								</div>
-              </div>
-           </div><hr>   
-	
+              </div> 
+           </div> <hr><br> 
+           
+          	
 					 <button type="submit" class="btn btn-success">Save & Continue</button><br>
 										
 						<% end %>

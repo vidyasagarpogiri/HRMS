@@ -205,13 +205,21 @@ end
   get "salaries/exporting_payslips_excel_sheet"
   get "salaries/get_payroll_years"
   #--------------------------------------
+  
+  
+  # routes for pay slips navigation- priyanka
+  get 'payslip/salaries/payslips_list' => 'salaries#payslips_list'
+  get 'payslip/salaries/salaries/payslips_list' => 'salaries#payslips_list'
+  #--------------------------------------
    
 
   #rout for job locations
  resources :job_locations 
  
  #route for generic_investment_declarations
- resources :generic_investment_declarations
+ resources :section_declarations
+ 
+ resources :general_investments
  
 
   #get 'change_designation' => "designations#change_designation"
