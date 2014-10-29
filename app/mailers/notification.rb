@@ -64,8 +64,5 @@ class Notification < ActionMailer::Base
       #  format.xls { attachments["/home/sekhar/payslip.xlsx"]  }
     #end
 
-    end
-    
-    
 end
-
+    
