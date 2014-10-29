@@ -31,7 +31,7 @@
                     <% sec.general_investments.each do |gen| %>
                     <tr>
                       <td><%= gen.title%><td>
-                      <td><%= gen.decription%></td>
+                      <td><%= gen.description%></td>
                       <td> 
                        	<% if current_user.department == Department::HR %>
                           <%= link_to 'Edit',  edit_general_investment_path(gen), :class => "btn btn-success " %>
