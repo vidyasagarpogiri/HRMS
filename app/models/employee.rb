@@ -18,6 +18,8 @@ class Employee < ActiveRecord::Base
   has_many :experiences
 	has_many :email_ettiquities, :class_name => "EmailEttiquitie"
   has_many :payslips
+  
+  has_many :pay_roll_masters
 
 
   belongs_to :group
@@ -46,6 +48,7 @@ class Employee < ActiveRecord::Base
 	validates :father_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
 	validates :blood_group_id, presence: true
 	validates :date_of_join, presence: true
+	validates :alternate_email, presence: true
   #validates :employment_status, presence: true 
 
 	#validates :avatar, presence: true
