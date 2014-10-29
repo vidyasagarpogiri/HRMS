@@ -208,7 +208,7 @@ end
   
   
   # routes for pay slips navigation- priyanka
- 
+  resources :company_pay_roll_masters
   #--------------------------------------
    
    
