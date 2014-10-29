@@ -352,6 +352,13 @@ ActiveRecord::Schema.define(version: 20141029105600) do
     t.float    "pt",                 limit: 24
     t.float    "tds",                limit: 24
     t.float    "special_allowance",  limit: 24
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1f29aa9820440327ba81d43cc1387eb3cb3407d7
+>>>>>>> 4c7e4a6f70cb6beea1584781bfba7675ea4b22ce
     t.integer  "month"
     t.integer  "year"
     t.string   "status"
