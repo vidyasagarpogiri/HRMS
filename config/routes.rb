@@ -203,12 +203,12 @@ end
   get 'monthly_payslip_view/:id' => "salaries#monthly_payslip_view"
   post 'salaries/employee_payslips_by_year'
   get "salaries/exporting_payslips_excel_sheet"
+  get "salaries/get_payroll_years"
   #--------------------------------------
   
   
   # routes for pay slips navigation- priyanka
-  get 'payslip/salaries/payslips_list' => 'salaries#payslips_list'
-  get 'payslip/salaries/salaries/payslips_list' => 'salaries#payslips_list'
+ 
   #--------------------------------------
    
 
