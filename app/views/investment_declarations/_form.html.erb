@@ -3,31 +3,25 @@
   <div class="control-group">
     <label class="control-label" for="basicinput">Section</label>
     <div class="controls">
-       <input class=" span8 form-control",  value=<%= @declaration.generic_investment_declaration.section %> disabled >
+       <input class=" span8 form-control",  value=<%= @declaration.general_investment.section_declaration.section %> disabled >
     </div>
   </div>
   
   <div class="control-group">
     <label class="control-label" for="basicinput">Title</label>
     <div class="controls">
-      <input class=" span8 form-control",  value=<%= @declaration.generic_investment_declaration.title %> disabled >
+      <input class=" span8 form-control",  value=<%= @declaration.general_investment.title %> disabled >
     </div>
   </div>
   
   <div class="control-group">
     <label class="control-label" for="basicinput">Max Limit</label>
     <div class="controls">
-     <input class=" span8 form-control",  value=<%= @declaration.generic_investment_declaration.maximum_limit %> disabled >
+     <input class=" span8 form-control",  value=<%= @declaration.general_investment.section_declaration.maximum_limit %> disabled >
     </div>
   </div>
   
-  <div class="control-group">   
-    <label class="control-label" for="basicinput">Monthly Value</label>
-    <div class="controls">
-      <%= d.text_field :monthly_value, :class => "span8 form-control", :placeholder =>"Enter Value", :data => {:error => "Please Enter Value"}, :required =>true,:pattern => '[0-9]*\.?[0-9]*'  %>
-      <span class="help-block with-errors"></span>
-    </div>
-  </div>
+
 
   <div class="control-group">   
     <label class="control-label" for="basicinput">Yearly Value</label>
