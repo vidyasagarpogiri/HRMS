@@ -1,47 +1,40 @@
-<% if @emails.present? %>	                              
-  <div class="module">
-    <div class="module-head">														
-      <h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> Etiquette Info</h3>
-      <% if current_user.department == Department::HR %>
-      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to 'Add Etiquette',  new_employee_email_ettiquity_path(@id), :remote => true  %></label>
-      <% end %>
-    </div>
-    <div class="module-body">																	
-      <table class="table table-striped table-bordered table-condensed">
-        <thead>
-          <tr>
-            <th style="width:100px">Date</th>
-            <th>Mail Content </th>
-            <th></th>									      		
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-          <% @emails.each do |email| %>
-            <td class="center"><%= format_date (email.dateofsending) %></td>
-            <td> <%= email.ettiquite %> </td>                                     
-              <% if current_user.department == Department::HR %>
-            <td> 		                
-            <%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right", :remote => true %>  </td>                                                            
-          <% end %>
-          </tr>
-        </tbody>
-      <% end %>
-      </table>
-    </div> 
-  </div><!--/.module --> 
-<% else %>
+<div class="module">
   <div class="module-head">														
     <h3><%= current_user.employee.role.role_name if current_user.employee.role.present? %> Etiquette Info</h3>
     <% if current_user.department == Department::HR %>
     <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to 'Add Etiquette',  new_employee_email_ettiquity_path(@id), :remote => true  %></label>
     <% end %>
-  </div><br>
-  <div class="alert alert-success alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    You have No Email Ettiquites to display.
-  </div>                                
-<% end %>
-
+  </div>
+  <div class="module-body">
+    <% if @emails.present? %>																		
+    <table class="table table-striped table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th style="width:100px">Date</th>
+          <th>Mail Content </th>
+          <th></th>									      		
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <% @emails.each do |email| %>
+          <td class="center"><%= format_date (email.dateofsending) %></td>
+          <td> <%= email.ettiquite %> </td>                                     
+            <% if current_user.department == Department::HR %>
+          <td> 		                
+          <%= link_to "Delete", employee_email_ettiquity_path(@employee, email), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-right", :remote => true %>  </td>                                                            
+        <% end %>
+        </tr>
+      </tbody>
+    <% end %>
+    </table>    
+    <% else %>  
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        You have No Email Ettiquites to display.
+      </div>                                
+    <% end %>
+  </div> 
+</div><!--/.module --> 
 
 

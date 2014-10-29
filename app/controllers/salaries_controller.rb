@@ -357,7 +357,7 @@ class SalariesController < ApplicationController
         end
     end
     #raise @package.serialize.inspect
-    @package.serialize("/home/sekhar/payslip.xlsx")
+    @package.serialize("/home/priyanka/payslip.xlsx")
     #s = @package.to_stream()
      # File.open('test.xlsx', 'w') { |f| f.write(s.read) }
    # send_file("/home/sekhar/test.xlsx", filename: "Basic.xls", type: "application/vnd.xls")
