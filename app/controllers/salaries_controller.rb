@@ -5,8 +5,8 @@ class SalariesController < ApplicationController
 	before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year]
   before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]
-  before_filter :accountant_view, only: [:pay_slips_generation, :generated_payslips, :payslips_list, :edit_payslip, :update_payslip, :show_payslip, :exporting_payslips_excel_sheet ]
-  before_filter :payslip_view, only: [:monthly_payslip_view, :employee_payslips_by_year]
+  #before_filter :accountant_view, only: [:pay_slips_generation, :generated_payslips, :payslips_list, :edit_payslip, :update_payslip, :show_payslip, :exporting_payslips_excel_sheet ]
+  #before_filter :payslip_view, only: [:monthly_payslip_view, :employee_payslips_by_year]
 
   def new
 		@employee = Employee.find(params[:employee_id])
@@ -250,17 +250,17 @@ class SalariesController < ApplicationController
                 end
             end 
             @payslips = Payslip.where(:month => @month ,:year => @year)
-            @company_payroll = CompanyPayRollMaster.create(:month => Date::MONTHNAMES[@month], :year => @year, :status => "PayRoll Generated", :name => current_user.employee.full_name)
+            @company_payroll = CompanyPayRollMaster.create(:month => Date::MONTHNAMES[@month], :year => @year, :status => CompanyPayRollMaster::GENERATED, :name => current_user.employee.full_name)
         else
           flash[:notice] = "You Already Generated Payslip With Given Details"
         end  
 	  end
 	  
 	  def generated_payslips
-	    @payroll_last = CompanyPayRollMaster.last
 	    @payroll_month = Date::MONTHNAMES.index(@payroll_last.month)   
 	    @years = CompanyPayRollMaster.pluck(:year).uniq
 	    @month = Date::MONTHNAMES.index(params[:payslip_view_month])
+	    @payroll_last = CompanyPayRollMaster.where(:month => @month, :year => @year).first
 	    unless @month == 0 && params[:payslip_view_year].to_i == 0
 	      @year = params[:payslip_view_year].to_i
 	      @payslips = Payslip.where(:month => @month ,:year => @year)
@@ -274,7 +274,7 @@ class SalariesController < ApplicationController
 	    #@payrolls = CompanyPayRollMaster.all
 	    #@payroll_years = CompanyPayRollMaster.all
 	    #@payroll_first = CompanyPayRollMaster.first
-	    @payroll_last = CompanyPayRollMaster.last
+	    @payroll_last = CompanyPayRollMaster.last if CompanyPayRollMaster.last.present?
 	    @payroll_month = Date::MONTHNAMES.index(@payroll_last.month) if @payroll_last.present?
 	    @years = CompanyPayRollMaster.pluck(:year).uniq
       @payslip = Payslip.last
@@ -371,12 +371,12 @@ class SalariesController < ApplicationController
            #sheet.add_row ["#{allowance.allowance_name}", allowance.total_value]
           end
          end
-         details_array.merge[""]
       end    
     end
     @package.serialize("/home/sekhar/#{@month_name}-#{@year}-payslips.xlsx")
    # @mail = current_user.email
     Notification.send_payslip(@mail).deliver
+    @payroll_status = CompanyPayRollMaster.last.update(:status => CompanyPayRollMaster::PROCESSING)
     redirect_to salaries_payslips_list_path
   end
 #---------------------------------
