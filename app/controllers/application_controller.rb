@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
   
   def accountant_view
-    unless current_user.department == Department::ACCOUNTS
+    unless current_user.department == Department::ACCOUNTS || current_user.department == Department::HR 
       render :text => "You Don`t Have Permission"
     end
   end
