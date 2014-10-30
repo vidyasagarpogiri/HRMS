@@ -68,12 +68,16 @@
                        <% end %> 
                 </table>
                 </div> 
-                       
-                 <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
-               <% if @payroll_last.present? %>
-                <% if @payroll_last.status = CompanyPayRollMaster::PROCESSING %>
-                  <%= link_to "Send To Bank", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                <% if @payroll_last.present? %>
+                  <% unless @payroll_last.status == CompanyPayRollMaster::SENDTOBANK %>
+                    <% if @payroll_last.status == CompanyPayRollMaster::GENERATED %>
+                      <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                    <% end %>
+                
+                <% if @payroll_last.status = CompanyPayRollMaster::PROCESSING || @payroll_last.status = CompanyPayRollMaster::GENERATED  %>
+                  <%= link_to "Send To Bank", salaries_bank_process_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
                 <% end %>
+               <% end %>
                <% end %>
                   <% elsif @error.present? %>
                   <hr>

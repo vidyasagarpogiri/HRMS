@@ -22,8 +22,8 @@ class Salary < ActiveRecord::Base
       return total_value
     else
     #TODO allowance_value depends on working days and actual working days
-      total_value  = allowance.allowance_value/12
-       return total_value
+      total_value  = (allowance.allowance_value)
+       return (total_value/12).round(2)
     end
   end
   

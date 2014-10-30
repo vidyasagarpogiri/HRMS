@@ -358,7 +358,7 @@ def calculate_net_salary(salary)
    end
    total_deductions = total_deductions + salary.pf + salary.esic
    netpay = salary.gross_salary - total_deductions
-   return netpay , total_deductions 
+   return netpay.round(2) , total_deductions.round(2) 
 end
 
 def update_net_salary(payslip)
@@ -391,7 +391,7 @@ end
           break
         end
       end
-      payslip_pf_value
+      payslip_pf_value.round(2)
   end
   
   def payslip_esic_value(gross_salary, salary_percentages)
@@ -402,7 +402,7 @@ end
           break
         end
       end
-      esic_value
+      esic_value.round(2)
   end
   
   def deducted_allowances_total(payslip)
@@ -413,7 +413,7 @@ end
         allowance_deducted_total += (allowance.allowance_value)/12
       end
     end
-    allowance_deducted_total
+    allowance_deducted_total.round(2)
   end
   
   def value_deductable(allowance, emp_allowances)
