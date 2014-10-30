@@ -14,4 +14,5 @@ class Department < ActiveRecord::Base
 	has_one :leave_policy
 
 	HR = "HR"
+	ACCOUNTS = "Accounts"
 end
