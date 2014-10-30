@@ -279,7 +279,7 @@ class SalariesController < ApplicationController
 	      @month_name = Date::MONTHNAMES[@enter_month]
 	      @enter_year = params[:payslip_view_year].to_i
 	      @payslips = Payslip.where(:month => @enter_month ,:year => @enter_year)
-	      @payroll_last  = CompanyPayRollMaster.where(:month => @enter_month, :year => @enter_year)
+	      @payroll_last  = CompanyPayRollMaster.where(:month => params[:payslip_view_month], :year => @enter_year).first
 	    end	
 	  end
 	  
@@ -294,6 +294,7 @@ class SalariesController < ApplicationController
 	    @month_name = Date::MONTHNAMES[@month]
 	    @cprm = CompanyPayRollMaster.where(month: @month_name, year: @year)	   
 	    @years = CompanyPayRollMaster.pluck(:year).uniq
+	    @payroll_last  = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
       @payslips = Payslip.where(:month => @month ,:year => @year)
 	  end
 	  
@@ -360,7 +361,7 @@ class SalariesController < ApplicationController
   def exporting_payslips_excel_sheet
     @month = params[:month].to_i
     @year = params[:year].to_i
-    @month_name = Date::MONTHNAMES.index(@month)
+    @month_name =Date::MONTHNAMES[@month]
     #details_array = Array.new
     details_array = ["Employee-id", "Employee Name", "Department", "Basic"]
     allowances_array = StaticAllowance.all.pluck(:name)
@@ -388,7 +389,27 @@ class SalariesController < ApplicationController
     @package.serialize("/home/sekhar/#{@month_name}-#{@year}-payslips.xlsx")
    # @mail = current_user.email
     Notification.send_payslip(@mail).deliver
-    @payroll_status = CompanyPayRollMaster.last.update(:status => CompanyPayRollMaster::PROCESSING)
+    @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
+    @payroll_status.update(:status => CompanyPayRollMaster::PROCESSING)
+    redirect_to salaries_payslips_list_path
+  end
+  
+  def bank_process
+    @month = params[:month].to_i
+    @year = params[:year].to_i
+    @month_name = Date::MONTHNAMES[@month]
+    @package = Axlsx::Package.new
+    @workbook = @package.workbook
+    @payslips = Payslip.where(:month => @month, :year => @year)
+    @workbook.add_worksheet(name: "Bank Statement") do |sheet|
+      sheet.add_row ["Account Number", "Employee_name","Netpay","Month"]
+      @payslips.each do |payslip|
+        sheet.add_row [payslip.employee.account_number, payslip.employee.full_name, payslip.netpay,Date::MONTHNAMES[payslip.month]]
+      end
+    end
+    @package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
+    @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
+    @payroll_status.update(:status => CompanyPayRollMaster::SENDTOBANK)
     redirect_to salaries_payslips_list_path
   end
 #---------------------------------
