@@ -20,6 +20,10 @@ class GeneralInvestmentsController < ApplicationController
     redirect_to  section_declarations_path
   end
   
+  def show
+    @investment = GeneralInvestment.find(params[:id])
+  end
+  
  private 
  
  def general_investment_params

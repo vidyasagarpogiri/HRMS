@@ -11,6 +11,7 @@ class InvestmentDeclarationsController < ApplicationController
       InvestmentDeclaration.create(general_investment_id: id, yearly_value: 0, employee_id: current_user.employee.id )
     end
     @declarations = InvestmentDeclaration.all
+    
   end
   
   def edit
