@@ -75,9 +75,11 @@
                 <% end %>           
               
                 <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
-                <% if @payroll_last.status = CompanyPayrollMaster::Processing %>
+               <% if @payroll_last.present? %>
+                <% if @payroll_last.status = CompanyPayRollMaster::PROCESSING %>
                   <%= link_to "Send To Bank", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
                 <% end %>
+               <% end %>
                 </div><br/>
             </div><!--/.module-->
           
