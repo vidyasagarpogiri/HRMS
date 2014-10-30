@@ -14,7 +14,7 @@
 						<div class="control-group">   
 						 <label class="control-label" for="basicinput">Section Name</label>
                <div class="controls">
-                  <%= sec.text_field :section, :class => "span8 form-control", :placeholder =>"Enter Section  Name", :data => {:error => "Section Should not be Empty"}, :required =>true %>
+                  <%= sec.text_field :section, :class => "span8 form-control", :placeholder =>"Enter Section Name", :data => {:error => "Enter Valid Section Name"}, :required =>true %>
                 <span class="help-block with-errors"></span>
 					    </div>
 						</div>
@@ -23,7 +23,7 @@
 						<div class="control-group">   
 						 <label class="control-label" for="basicinput"> Maximum Limit</label>
                <div class="controls">
-                  <%= sec.text_field :maximum_limit, :class => "span8 form-control", :placeholder =>"Enter Maximum limit value", :data => {:error => "maxlimit Should not be Empty"}, :required =>true,:pattern => '[0-9]*\.?[0-9]*' %>
+                  <%= sec.text_field :maximum_limit, :class => "span8 form-control", :placeholder =>"Enter Maximum limit value", :data => {:error => "Enter Valid Maxlimit Value"}, :required =>true,:pattern => '[0-9]*\.?[0-9]*' %>
                  <span class="help-block with-errors"></span>
 					     </div>
 					
@@ -43,4 +43,6 @@
 </div><!--/.wrapper-->
 	
           
-     
+     <script>
+          $(".new_event_form").validator();
+        </script> 
