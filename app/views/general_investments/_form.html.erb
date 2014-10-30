@@ -8,16 +8,15 @@
 					    <h3>Add Investment Declaration</h3>
 				    </div>
 						<div class="module-body">						
-						<%= form_for @investment, :html => {:class=>"form-horizontal row-fluid new_event_form"} do |gen| %>
-						
+						<%= form_for @investment, :html => {:class=>"form-horizontal row-fluid new_event_form"} do |gen| %>						
 						<div class="control-group">   
 						 <label class="control-label" for="basicinput">Section Name</label>
                <div class="controls">
-                  <%= gen.collection_select :section_declaration_id, SectionDeclaration.all, :id, :section, { :promt => "please select"}, { :class => "section_declaration, span8 form-control",  :id => "disabledSelect"}  %>
-  
+                  <%= gen.collection_select :section_declaration_id, SectionDeclaration.all, :id, :section, { :promt => "please select"}, { :class => "section_declaration, span8 form-control",  :id => "disabledSelect"}  %>  
                 <span class="help-block with-errors"></span>
 					    </div>
 						</div>
+						
 						<div class="control-group">   
 						 <label class="control-label" for="basicinput">Title</label>
                <div class="controls">
@@ -25,15 +24,13 @@
                 <span class="help-block with-errors"></span>
 					    </div>
 						</div>
-							      
-					  
+							      					  
 						<div class="control-group">   
 						 <label class="control-label" for="basicinput"> Description</label>
                <div class="controls">
-                  <%= gen.text_area :description, :class => "span8 form-control", :placeholder =>"Enter Maximum limit value", :data => {:error => "maxlimit Should not be Empty"}, :required =>true,:pattern => '[0-9]*\.?[0-9]*' %>
+                  <%= gen.text_area :description, :class => "span8 form-control", :placeholder =>"Add some descrption here", :data => {:error => " Should not be Empty"}, :required =>true,:pattern => '[0-9]*\.?[0-9]*' %>
                  <span class="help-block with-errors"></span>
-					     </div>
-					
+					     </div>					
 						</div>	
 												  								          		
 					   <ul class="navigation-btns pull-left" >
