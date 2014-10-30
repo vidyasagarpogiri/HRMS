@@ -10,7 +10,12 @@ class InvestmentDeclarationsController < ApplicationController
     remaining_ids.each do |id|
       InvestmentDeclaration.create(general_investment_id: id, yearly_value: 0, employee_id: current_user.employee.id )
     end
-    @declarations = InvestmentDeclaration.all
+
+    @declarations = current_user.employee.investment_declarations
+  #adding data to payroll master table @pattabhi  
+    unless current_user.employee.pay_roll_masters.present? 
+       @payroll = PayRollMaster.create(:employee_id => current_user.employee.id, :assesment_year => Date.today, :total_income => current_user.employee.salary.ctc_fixed, :total_savings => @declarations.sum(:yearly_value) )
+    end
     
   end
   
@@ -20,8 +25,16 @@ class InvestmentDeclarationsController < ApplicationController
   
   def update
     @declaration = InvestmentDeclaration.find(params[:id])
-    #raise params[:investment_declaration][:monthly_value].inspect
+   
      @declaration.update(:general_investment_id =>  @declaration.general_investment_id, :yearly_value => params[:investment_declaration][:yearly_value], :employee_id => current_user.employee.id)
+     
+     #payroll master update of current user @pattabhi
+     @declarations = current_user.employee.investment_declarations
+     
+     @payroll = current_user.employee.pay_roll_masters.first
+     @payroll.update(:total_savings => @declarations.sum(:yearly_value) )
+     
+     
      redirect_to investment_declarations_path
   end
   

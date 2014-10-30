@@ -27,7 +27,7 @@ class GeneralInvestmentsController < ApplicationController
  private 
  
  def general_investment_params
-   params.require(:general_investment).permit(:title, :decription, :section_declaration_id) 
+   params.require(:general_investment).permit(:title, :description, :section_declaration_id) 
  end
  
 end
