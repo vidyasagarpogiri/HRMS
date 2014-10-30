@@ -73,8 +73,12 @@
                       No PaySlips To Show with given month and Year
                   </div>
                 <% end %>           
-              </div>
+              
+                <%= link_to "Send To Accountant", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                <%= link_to "Send To Accountant", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                </div><br/>
             </div><!--/.module-->
+          
                <!-- div for render edit form -->
                
                <div class="payslip_edit"></div>
