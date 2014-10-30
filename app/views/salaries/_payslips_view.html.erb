@@ -67,15 +67,17 @@
                        <% end %> 
                 </table>
                 </div> 
-                <% else %>
+                       
+              
+                <%= link_to "Save and Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                
+                <%= link_to "Send To Bank", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                  <% else %>
                   <div class="alert alert-success alert-dismissable">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                       No PaySlips To Show with given month and Year
                   </div>
-                <% end %>           
-              
-                <%= link_to "Send To Accountant", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
-                <%= link_to "Send To Accountant", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                <% end %>  
                 </div><br/>
             </div><!--/.module-->
           
