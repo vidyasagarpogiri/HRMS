@@ -5,8 +5,8 @@ class SalariesController < ApplicationController
 	before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year]
   before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]
-  #before_filter :accountant_view, only: [:pay_slips_generation, :generated_payslips, :payslips_list, :edit_payslip, :update_payslip, :show_payslip, :exporting_payslips_excel_sheet ]
-  #before_filter :payslip_view, only: [:monthly_payslip_view, :employee_payslips_by_year]
+  before_filter :accountant_view, only: [:pay_slips_generation, :generated_payslips, :payslips_list, :edit_payslip, :update_payslip, :show_payslip, :exporting_payslips_excel_sheet ]
+  before_filter :payslip_view, only: [:monthly_payslip_view, :employee_payslips_by_year]
 
   def new
 		@employee = Employee.find(params[:employee_id])
@@ -233,7 +233,7 @@ class SalariesController < ApplicationController
 	                @payslip = Payslip.create(:no_of_working_days => @actual_days, :working_days => @actual_days, :basic_salary => payslip_basic, :month=> @month, :year => @year, :employee_id => employee.id)
 	                #for creating allowances for payslip
 	                @salary.payslip_allowances(@payslip)
-	                @payslip_special_allowance = @salary.special_allowance/12
+	                @payslip_special_allowance = (@salary.special_allowance/12).round(2)
 	                @gross = @payslip.basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance #TODO need arrears add to below forumla       
 	                if @salary.pf_apply == "true"
 	                  @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
@@ -305,20 +305,29 @@ class SalariesController < ApplicationController
 	  
 	  def update_payslip
 	   @payslip = Payslip.find(params[:id]) 
+	   @salary = @payslip.employee.salary
 	   @payslip_allowances = @payslip.allowances
 	   @salary_percentages = StaticSalary.all
 	   @payslip.update(:arrears => params[:arrears], :pt => params[:pt] , :tds => params[:tds], :working_days => params[:working_days])
-	   @payslip_special_allowance = @payslip.employee.salary.special_allowance/12
+	   @payslip_special_allowance = (@payslip.employee.salary.special_allowance/12).round(2)
 	   @basic_salary = payslip_basic((@payslip.employee.salary.basic_salary)/12, @payslip.working_days, @payslip.no_of_working_days)
 	   @payslip.update(:basic_salary => @basic_salary)
 	   @payslip.payslip_allowance_update(@payslip)
-	   @gross = @basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance + @payslip.arrears.to_f #TODO need arrears add to below forumla
-	   @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
-	   @payslip_esic = payslip_esic_value(@gross, @salary_percentages)
-	   @total_deducted_allowances_value = deducted_allowances_total(@payslip)
-	   @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value + @payslip.pt.to_f + @payslip.tds.to_f  #TODO need add PT and TDS
-	   @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
-	   @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
+	   @gross = @basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance  #TODO need arrears add to below forumla
+	   if @salary.pf_apply == "true"
+	     @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
+	   else
+	     @payslip_pf = 0.0
+	  end
+	  if @salary.esic_apply == "true"
+	     @payslip_esic = payslip_esic_value(@gross, @salary_percentages)
+	  else
+	     @payslip_esic = 0.0
+	  end
+	  @total_deducted_allowances_value = deducted_allowances_total(@payslip)
+	  @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value + @payslip.pt.to_f + @payslip.tds.to_f
+	  @net_pay = @gross + @payslip.arrears.to_f - @total_deductions #TODO We have to remove all deduable allowances from here. 
+	  @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
 	  end
 	  
 	  def show_payslip
