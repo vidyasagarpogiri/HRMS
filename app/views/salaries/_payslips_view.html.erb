@@ -68,11 +68,12 @@
                 </table>
                 </div> 
                        
-              
-                <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
-                <%# if @payroll_last.status = CompanyPayrollMaster::PROCESSING %>
+                 <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+               <% if @payroll_last.present? %>
+                <% if @payroll_last.status = CompanyPayRollMaster::PROCESSING %>
                   <%= link_to "Send To Bank", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
-                <%# end %>
+                <% end %>
+               <% end %>
                   <% else %>
                   <div class="alert alert-success alert-dismissable">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -80,8 +81,8 @@
                   </div>
 
                 <% end %>           
-              
 
+             
 
                 </div><br/>
             </div><!--/.module-->
