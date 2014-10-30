@@ -250,7 +250,7 @@ class SalariesController < ApplicationController
                 end
             end 
             @payslips = Payslip.where(:month => @month ,:year => @year)
-            @company_payroll = CompanyPayRollMaster.create(:month => Date::MONTHNAMES[@month], :year => @year, :status => "PayRoll Generated", :name => current_user.employee.full_name)
+            @company_payroll = CompanyPayRollMaster.create(:month => Date::MONTHNAMES[@month], :year => @year, :status => CompanyPayRollMaster::Generated, :name => current_user.employee.full_name)
         else
           flash[:notice] = "You Already Generated Payslip With Given Details"
         end  
@@ -371,12 +371,12 @@ class SalariesController < ApplicationController
            #sheet.add_row ["#{allowance.allowance_name}", allowance.total_value]
           end
          end
-         details_array.merge[""]
       end    
     end
     @package.serialize("/home/sekhar/#{@month_name}-#{@year}-payslips.xlsx")
    # @mail = current_user.email
     Notification.send_payslip(@mail).deliver
+    @payroll_status = CompanyPayRollMaster.last.update(:status => Processing)
     redirect_to salaries_payslips_list_path
   end
 #---------------------------------

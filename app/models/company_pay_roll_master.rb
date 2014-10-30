@@ -1,6 +1,6 @@
 class CompanyPayRollMaster < ActiveRecord::Base
   # static statuses for payroll
-  Generated = "PayRollGenerated"
-  Processing = "PayRollProcessing"
-  SendToBank = "SendToBank"
+  GENERATED = "PayRoll Generated"
+  PROCESSING = "PayRoll Processing"
+  SENDTOBANK = "Send To Bank"
 end
