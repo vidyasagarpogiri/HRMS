@@ -24,11 +24,11 @@
        <% @declarations.each do |dec| %>
         <tbody>
           <tr>               
-            <td class="center"><%= dec.general_investment.section_declaration.section %></td>
-            <td><%= dec.general_investment.title %></td>
-            <td><%= dec.general_investment.section_declaration.maximum_limit %></td>
-            <td><%= dec.general_investment.description %></td>
-            <td><%= dec.yearly_value %></td>
+            <td class="center"><%= dec.general_investment.section_declaration.section if dec.general_investment.section_declaration.present? %></td>
+            <td><%= dec.general_investment.title if dec.general_investment.section_declaration.present?%></td>
+            <td><%= dec.general_investment.section_declaration.maximum_limit  if dec.general_investment.section_declaration.present? %></td>
+            <td><%= dec.general_investment.description if dec.general_investment.section_declaration.present?%></td>
+            <td><%= dec.yearly_value if dec.general_investment.section_declaration.present?%></td>
             <td>
           
            <%= link_to 'Edit', "#editInvestmentForm",  :class => "btn btn-success dec ",   :url => edit_investment_declaration_path(dec), :iid => dec.id, "data-toggle" => "modal", :id => "dec_#{dec.id}"   %>
