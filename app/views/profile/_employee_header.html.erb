@@ -17,6 +17,6 @@
      <div class="profile-details muted">
         <i class="icon-suitcase"></i> <%= @employee.designation.designation_name if @employee.designation.present? %><br>
         <i class="icon-phone"></i> <%= @employee.mobile_number %><br>
-        <i class="icon-envelope-alt shaded"></i> <%= @employee.user.email %><br>
+        <i class="icon-envelope-alt shaded"></i> <%= @employee.user.email if @employee.user.email.present? %><br>
     </div>        
 </div>
