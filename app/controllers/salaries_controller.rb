@@ -5,6 +5,8 @@ class SalariesController < ApplicationController
 	before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year]
   before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]
+  before_filter :accountant_view, only: [:pay_slips_generation, :generated_payslips, :payslips_list, :edit_payslip, :update_payslip, :show_payslip, :exporting_payslips_excel_sheet ]
+  before_filter :payslip_view, only: [:monthly_payslip_view, :employee_payslips_by_year]
 
   def new
 		@employee = Employee.find(params[:employee_id])
@@ -256,7 +258,7 @@ class SalariesController < ApplicationController
 	  
 	  def generated_payslips
 	    @payroll_last = CompanyPayRollMaster.last
-	    @payroll_month = Date::MONTHNAMES.index(@payroll_last.month)
+	    @payroll_month = Date::MONTHNAMES.index(@payroll_last.month)   
 	    @years = CompanyPayRollMaster.pluck(:year).uniq
 	    @month = Date::MONTHNAMES.index(params[:payslip_view_month])
 	    unless @month == 0 && params[:payslip_view_year].to_i == 0
@@ -346,25 +348,35 @@ class SalariesController < ApplicationController
   def exporting_payslips_excel_sheet
     @month = params[:month].to_i
     @year = params[:year].to_i
+    @month_name = Date::MONTHNAMES.index(@month)
+    #details_array = Array.new
+    details_array = ["Employee-id", "Employee Name", "Department", "Basic"]
+    allowances_array = StaticAllowance.all.pluck(:name)
+    details_array << allowances_array
+    details_array.flatten! 
+    details_array
     @package = Axlsx::Package.new
     @workbook = @package.workbook
     @payslips = Payslip.where(:month => @month, :year => @year)
     #raise @payslips.inspect
-    @workbook.add_worksheet(name: "Test") do |sheet|
-      sheet.add_row ["Employee-id", "Employee Name", "Department", "Basic"]
+    @workbook.add_worksheet(name: "Payslips") do |sheet|
+      #sheet.add_row details_array 
        @payslips.each do |payslip|
-         sheet.add_row [payslip.employee.employee_id, payslip.employee.full_name, payslip.employee.department.department_name, payslip.basic_salary]
-         #if payslip.allowances.present?
-          #payslip.allowances.each do |allowance|
-           # sheet.add_row ["#{allowance.allowance_name}", allowance.total_value]
-          #end
-         #end
-         #sheet.add_riw ["Special Allowance", payslip.special_allowance]
-     end
+       #sheet.add_row 
+        values_array = [payslip.employee.employee_id, payslip.employee.full_name, payslip.employee.department.department_name, payslip.basic_salary]
+         if payslip.allowances.present?
+          payslip.allowances.each do |allowance|
+           details_array.push allowance.allowance_name
+           values_array.push allowance.total_value
+           #sheet.add_row ["#{allowance.allowance_name}", allowance.total_value]
+          end
+         end
+         details_array.merge[""]
+      end    
     end
-    @package.serialize("/home/sekhar/payslip.xlsx")
+    @package.serialize("/home/sekhar/#{@month_name}-#{@year}-payslips.xlsx")
    # @mail = current_user.email
-    #Notification.send_payslip(@mail).deliver
+    Notification.send_payslip(@mail).deliver
     redirect_to salaries_payslips_list_path
   end
 #---------------------------------
