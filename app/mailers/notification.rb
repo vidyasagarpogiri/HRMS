@@ -58,8 +58,8 @@ class Notification < ActionMailer::Base
      mail(:to => user.email, :subject => "Holidays List")
     end
     
-    def send_payslip(mail)
-       attachments.inline["payslip.xlsx"] = File.read("/home/sekhar/payslip.xlsx")
+    def send_payslip(mail,month_name,year)
+       attachments.inline["payslip.xlsx"] = File.read("#{Rails.root}/public/PAYSLIPS/#{month_name}-#{year}-payslips.xlsx")
        mail(:to => mail, :subject => "Subject Of the Mail")
     end
      

@@ -155,6 +155,23 @@
 <br/>
 <%= link_to 'view payslip', "/payslip/#{@payslip.id}", :class => "btn btn-success pull-right" %><br/>
 <% end %>
-             
+  
+  
+  <script>
+  $(function(){
+    $("#working_days").change(function(){
+      $(".payslip-form").submit();
+    });
+    $("#arrears").change(function(){
+      $(".payslip-form").submit();
+    });
+    $("#pt").change(function(){
+      $(".payslip-form").submit();
+    });
+    $("#tds").change(function(){
+      $(".payslip-form").submit();
+    });
+  });
+</script>           
              
 
