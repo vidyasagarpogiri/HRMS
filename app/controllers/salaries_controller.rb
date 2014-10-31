@@ -230,7 +230,7 @@ class SalariesController < ApplicationController
 	            @salary = employee.salary
 	              if @salary.present?
 	                payslip_basic = payslip_basic((@salary.basic_salary)/12, @actual_days, @actual_days) #have to replace first actual days to employee working days
-	                @payslip = Payslip.create(:no_of_working_days => @actual_days, :working_days => @actual_days, :basic_salary => payslip_basic, :month=> @month, :year => @year, :employee_id => employee.id)
+	                @payslip = Payslip.create(:no_of_working_days => @actual_days, :working_days => @actual_days, :basic_salary => payslip_basic, :month=> @month, :year => @year, :employee_id => employee.id, :status => "NEW")
 	                #for creating allowances for payslip
 	                @salary.payslip_allowances(@payslip)
 	                @payslip_special_allowance = (@salary.special_allowance/12).round(2)
@@ -408,12 +408,26 @@ class SalariesController < ApplicationController
           if c == 0
             b << 0
           end
-        end #non -deductabke end 
+        end #non -deductable end 
         
-        #other_salary = []
-        c=  a << b 
-        c.flatten!
-        sheet.add_row c
+        other_salary = [payslip.special_allowance, payslip.arrears.to_f, payslip.gross_salary]
+        other_deducations = [payslip.pf.to_f, payslip.esic.to_f, payslip.pt.to_f, payslip.tds.to_f]
+        k=[]
+        deductable_allowances_array.each do |allowance|
+        g= 0
+        payslip.allowances.where(is_deductable: true).each do |p_allowance|
+          if allowance == p_allowance.allowance_name
+            k << p_allowance.total_value
+            g = 1
+          end
+        end
+        if g == 0
+          k << 0
+        end
+      end #non -deductable end 
+      last_salary_array = [payslip.total_deductions, payslip.netpay]
+        total_values = [a,b, other_salary, other_deducations, k, last_salary_array].flatten!
+        sheet.add_row total_values
         i = i+1 
       end #payslip end
         
@@ -432,7 +446,7 @@ class SalariesController < ApplicationController
          end
       end  
 =end  
-    
+
     @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-payslips.xlsx")
     @mail = current_user.email
     Notification.send_payslip(@mail,@month_name,@year).deliver
@@ -457,6 +471,9 @@ class SalariesController < ApplicationController
     @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-bank_statement.xlsx")
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
     @payroll_status.update(:status => CompanyPayRollMaster::SENDTOBANK)
+    @payslips.each do |payslip|
+      payslip.update(:status => "PROCESS")
+    end
     redirect_to salaries_payslips_list_path
   end
 #---------------------------------
