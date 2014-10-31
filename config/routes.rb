@@ -65,7 +65,7 @@ Rails.application.routes.draw do
 
   end
 
-  
+  get 'payslips_pdf' => "salaries#payslips_pdf"
    
   resources :designations do 
     member do

@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 20141030120625) do
   end
 
   create_table "employee_attendences", force: true do |t|
-    t.string   "employee_id"
+    t.integer  "employee_id"
     t.date     "log_date"
     t.boolean  "is_present"
     t.float    "total_working_hours", limit: 24
@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(version: 20141030120625) do
     t.string   "gender"
     t.string   "marital_status"
     t.float    "total_experience",     limit: 24
-    t.boolean  "status",                          default: false
+    t.boolean  "status"
     t.string   "mobile_number"
     t.string   "father_name"
     t.string   "pan"
@@ -254,6 +254,15 @@ ActiveRecord::Schema.define(version: 20141030120625) do
     t.string   "title"
     t.text     "description"
     t.integer  "section_declaration_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "generic_investment_declarations", force: true do |t|
+    t.string   "section"
+    t.string   "title"
+    t.float    "maximum_limit", limit: 24
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
