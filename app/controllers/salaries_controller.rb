@@ -516,6 +516,18 @@ class SalariesController < ApplicationController
 	end
 	
 	
+	def payslips_pdf
+	  @month = DateTime.now.month-1
+	  @year = DateTime.now.year
+	  if @month == 0
+	    @month = 12
+	    @year = @year - 1 
+	  end
+	  @payslips = Payslip.where(:month => @month ,:year => @year)
+    
+	end
+	
+	
   private
   
   def salary_percentage

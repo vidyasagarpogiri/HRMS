@@ -1,0 +1,2 @@
+class EmployeeAttendenceLogsController < ApplicationController
+end
