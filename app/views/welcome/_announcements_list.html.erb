@@ -15,8 +15,8 @@
     <div class="control-group">
       <label class="idesc" for="basicinput">  <%= raw welcome_announcement.description %> </label>
     </div>
-    <%= link_to "Continue..", announcement_path(welcome_announcement), :class => "pt4" %>          
-    <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>
+    <%= link_to "Continue..", announcement_path(welcome_announcement), :class => "pt4" %><br>      
+    <div style="border-top: 1px solid #eeeeee;"></div>
     <% end %>     
   <div id="paginator">
      <%= paginate @welcome_announcements, :remote => true, :param_name => 'page2' %>
@@ -28,7 +28,7 @@
         There are no announcements
     </div>
 
-  <% end %>  
+  <% end %> <br>
   </div><!--module body-->  
 </div><!--module-->
 
