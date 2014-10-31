@@ -3,9 +3,10 @@ class SalariesController < ApplicationController
   # layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update, :configure_allowance]
 
 	before_filter :hr_view,  only: ["new", "edit"]
-  #before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year]
+	before_filter :accountant_view, only: [:pay_slips_generation, :generated_payslips, :payslips_list, :edit_payslip, :update_payslip, :show_payslip, :exporting_payslips_excel_sheet ]
+  #before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year, :payslips_list]
   before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]
-  before_filter :accountant_view, only: [:pay_slips_generation, :generated_payslips, :payslips_list, :edit_payslip, :update_payslip, :show_payslip, :exporting_payslips_excel_sheet ]
+  
   before_filter :payslip_view, only: [:monthly_payslip_view, :employee_payslips_by_year]
 
   def new
@@ -299,7 +300,6 @@ class SalariesController < ApplicationController
 	  end
 	  
 	  def edit_payslip
-	  raise params.inspect
 	    @payslip = Payslip.find(params[:id])
 	    @payslip_allowances = @payslip.allowances
 	  end
@@ -311,9 +311,9 @@ class SalariesController < ApplicationController
 	   @salary_percentages = StaticSalary.all
 	   @payslip.update(:arrears => params[:arrears], :pt => params[:pt] , :tds => params[:tds], :working_days => params[:working_days])
 	   @payslip_special_allowance = (@payslip.employee.salary.special_allowance/12).round(2)
-	   @basic_salary = payslip_basic((@payslip.employee.salary.basic_salary)/12, @payslip.working_days, @payslip.no_of_working_days)
+	   @basic_salary = payslip_basic(((@payslip.employee.salary.basic_salary)/12).round(2), @payslip.working_days, @payslip.no_of_working_days)
 	   @payslip.update(:basic_salary => @basic_salary)
-	   @payslip.payslip_allowance_update(@payslip)
+	   #@payslip.payslip_allowance_update(@payslip)
 	   @gross = @basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance  #TODO need arrears add to below forumla
 	   if @salary.pf_apply == "true"
 	     @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
@@ -347,7 +347,7 @@ class SalariesController < ApplicationController
   def employee_payslips_by_year
     unless params[:payslip_view_year].to_i == 0
       @year = params[:payslip_view_year].to_i
-      @payslips = Payslip.where(:year => @year, :employee_id => current_user.employee.id)
+      @payslips = Payslip.where(:year => @year, :employee_id => current_user.employee.id, :status => "PROCESS")
     else
       flash[:notice] = "Please Enter Proper Year"
     end

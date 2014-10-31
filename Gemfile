@@ -62,6 +62,8 @@ gem 'carrierwave'
 #gem for pagination
 gem 'kaminari'
 
+#gem for time difference
+gem 'time_difference'
 
 #gem for delayed-job
 gem 'delayed_job_active_record'
@@ -75,6 +77,10 @@ gem 'axlsx'
 
 #use for bootsy wysiwig editor
 gem 'bootsy'
+
+
+# gem for schedular
+gem 'rufus-scheduler'
 
 #for PDF
 

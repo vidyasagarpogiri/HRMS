@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029144443) do
+ActiveRecord::Schema.define(version: 20141030120625) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -161,6 +161,23 @@ ActiveRecord::Schema.define(version: 20141029144443) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "attachment_name"
+  end
+
+  create_table "employee_attendence_logs", force: true do |t|
+    t.integer  "employee_attendence_id"
+    t.datetime "time"
+    t.boolean  "in_out"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employee_attendences", force: true do |t|
+    t.string   "employee_id"
+    t.date     "log_date"
+    t.boolean  "is_present"
+    t.float    "total_working_hours", limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "employees", force: true do |t|
@@ -485,6 +502,14 @@ ActiveRecord::Schema.define(version: 20141029144443) do
   create_table "static_salaries", force: true do |t|
     t.string   "name"
     t.float    "value",      limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "temporary_attendence_logs", force: true do |t|
+    t.integer  "device_id"
+    t.integer  "employee_id"
+    t.datetime "date_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
