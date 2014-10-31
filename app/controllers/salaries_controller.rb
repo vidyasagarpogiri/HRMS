@@ -524,7 +524,14 @@ class SalariesController < ApplicationController
 	    @year = @year - 1 
 	  end
 	  @payslips = Payslip.where(:month => @month ,:year => @year)
-    
+     respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportPdf.new(@payslips)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+
 	end
 	
 	

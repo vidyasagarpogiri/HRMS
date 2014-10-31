@@ -38,6 +38,15 @@ class EmployeeAttendenceController < ApplicationController
     end
   end 
   
+  def show  
+    @employeeattendece = EmployeeAttendence.all
+  end
+  
+  def show_attendance
+    @employeeattendece = EmployeeAttendence.all
+  end
+
+
   def upload_file    
     i=0
     @temproray_attachment_log=TemporaryAttendenceLog.destroy_all
