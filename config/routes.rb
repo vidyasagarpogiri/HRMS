@@ -204,6 +204,7 @@ end
   post 'salaries/employee_payslips_by_year'
   get "salaries/exporting_payslips_excel_sheet"
   get "salaries/get_payroll_years"
+  get "salaries/bank_process"
   #--------------------------------------
   
   

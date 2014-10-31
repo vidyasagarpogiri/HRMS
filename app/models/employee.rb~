@@ -19,7 +19,7 @@ class Employee < ActiveRecord::Base
 	has_many :email_ettiquities, :class_name => "EmailEttiquitie"
   has_many :payslips
   
-  has_many :pay_roll_master
+  has_many :pay_roll_masters
 
 
   belongs_to :group
