@@ -7,7 +7,7 @@ class SalariesController < ApplicationController
   #before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year, :payslips_list]
   before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]
   
-  before_filter :payslip_view, only: [:monthly_payslip_view, :employee_payslips_by_year]
+  before_filter :payslip_view, only: [:monthly_payslip_view]
 
   def new
 		@employee = Employee.find(params[:employee_id])
