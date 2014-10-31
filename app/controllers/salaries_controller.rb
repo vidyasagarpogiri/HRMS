@@ -299,6 +299,7 @@ class SalariesController < ApplicationController
 	  end
 	  
 	  def edit_payslip
+	  raise params.inspect
 	    @payslip = Payslip.find(params[:id])
 	    @payslip_allowances = @payslip.allowances
 	  end
@@ -371,7 +372,7 @@ class SalariesController < ApplicationController
     @month = params[:month].to_i
     @year = params[:year].to_i
 
-    @month_name = Date::MONTHNAMES.index(@month)
+    @month_name = Date::MONTHNAMES[@month]
     
     employee_basic_array = ["SL #", "MONTH", "Emp. NAME", "DOJ", "STATUS", "DESIGNATION", "DEPARTMENT"]
     salary_array = ["GROSS", "Per Month", "Actual Per Month", "Actual Days", "Working Days", "BASIC"]
@@ -432,9 +433,9 @@ class SalariesController < ApplicationController
       end  
 =end  
     
-    @package.serialize("/home/etekidev/Desktop/payslip222.xlsx")
-   # @mail = current_user.email
-    Notification.send_payslip(@mail).deliver
+    @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-payslips.xlsx")
+    @mail = current_user.email
+    Notification.send_payslip(@mail,@month_name,@year).deliver
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
     @payroll_status.update(:status => CompanyPayRollMaster::PROCESSING)
     redirect_to salaries_payslips_list_path
@@ -453,7 +454,7 @@ class SalariesController < ApplicationController
         sheet.add_row [payslip.employee.account_number, payslip.employee.full_name, payslip.netpay,Date::MONTHNAMES[payslip.month]]
       end
     end
-    @package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
+    @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-bank_statement.xlsx")
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
     @payroll_status.update(:status => CompanyPayRollMaster::SENDTOBANK)
     redirect_to salaries_payslips_list_path
