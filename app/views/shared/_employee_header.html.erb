@@ -23,7 +23,11 @@
 						</li>
 						
 						<li class="dropdown">
-						 <a href="/monthly_payslips" >Payslips</a>
+						  <% if current_user.department == Department::ACCOUNTS %>
+						    <li><%= link_to 'Pay Slips View', salaries_payslips_list_path %></li>
+						  <% else %>
+						    <a href="/monthly_payslips" >Payslips</a>
+						  <% end%>
 						</li>
 	
 	      <!---  <li class="dropdown">
