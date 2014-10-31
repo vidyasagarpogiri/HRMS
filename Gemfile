@@ -78,6 +78,10 @@ gem 'axlsx'
 #use for bootsy wysiwig editor
 gem 'bootsy'
 
+
+# gem for schedular
+gem 'rufus-scheduler'
+
 #for PDF
 
 gem 'prawn'
