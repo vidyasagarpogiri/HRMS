@@ -220,7 +220,11 @@ end
  resources :section_declarations
  
  resources :general_investments
- resources :employee_attendence
+ resources :employee_attendence do
+  collection do
+    get 'show_attendance'
+  end
+ end
 
   #get 'change_designation' => "designations#change_designation"
   
