@@ -23,7 +23,11 @@
 						</li>
 						
 						<li class="dropdown">
-						 <a href="/monthly_payslips" >Payslips</a>
+						  <% if current_user.department == Department::ACCOUNTS %>
+						    <li><%= link_to 'Pay Slips View', salaries_payslips_list_path %></li>
+						  <% else %>
+						    <a href="/monthly_payslips" >Payslips</a>
+						  <% end%>
 						</li>
 	
 	      <!---  <li class="dropdown">
@@ -46,6 +50,9 @@
 								<li><%= link_to "My Profile", profile_path(current_user.employee) %></a></li>
 								<% if current_user.department == Department::HR %>
 								  <li><a href="#">Edit Profile</a></li>
+			          <% end %>
+			          <% if current_user.department == Department::ACCOUNTS %>
+			            <li><a href="/monthly_payslips" >Payslips</a></li>
 			          <% end %>
 								<li><a href="#">Account Settings</a></li>
 								<li class="divider"></li>

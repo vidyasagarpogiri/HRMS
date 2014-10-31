@@ -120,5 +120,21 @@
        });
     });
   });
-</script>  
+
+<script>
+  $(function(){
+    $(".working_days").change(function(){
+      $(".payslip-form").submit();
+    });
+    $(".arrears").change(function(){
+      $(".payslip-form").submit();
+    });
+    $(".pt").change(function(){
+      $(".payslip-form").submit();
+    });
+    $(".tds").change(function(){
+      $(".payslip-form").submit();
+    });
+  });
+</script>
 
