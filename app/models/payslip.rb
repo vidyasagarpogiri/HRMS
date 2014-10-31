@@ -9,9 +9,13 @@ class Payslip < ActiveRecord::Base
     allowances.each do |allowance|
       total_allowance_value += allowance.total_value
     end
-    (total_allowance_value/12).round(2)
+    (total_allowance_value).round(2)
   end
-  
+=begin author - sekhar
+   = this code will be modified or removed depends on reqirement 
+   = untill don`t touch this code
+   
+--------------------------------------------    
   def payslip_allowance_update(payslip)
     allowances.each do |allowance|
       total_value = payslip_allowance_update_value(payslip, allowance)
@@ -30,5 +34,7 @@ class Payslip < ActiveRecord::Base
       return total_value
     end
   end
+====================================================================
+=end
   
 end
