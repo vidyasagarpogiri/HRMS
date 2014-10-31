@@ -65,7 +65,7 @@ Rails.application.routes.draw do
 
   end
 
-  
+  get 'payslips_pdf' => "salaries#payslips_pdf"
    
   resources :designations do 
     member do
@@ -203,21 +203,28 @@ end
   get 'monthly_payslip_view/:id' => "salaries#monthly_payslip_view"
   post 'salaries/employee_payslips_by_year'
   get "salaries/exporting_payslips_excel_sheet"
+  get "salaries/get_payroll_years"
+  get "salaries/bank_process"
   #--------------------------------------
   
   
   # routes for pay slips navigation- priyanka
-  get 'payslip/salaries/payslips_list' => 'salaries#payslips_list'
-  get 'payslip/salaries/salaries/payslips_list' => 'salaries#payslips_list'
+  resources :company_pay_roll_masters
   #--------------------------------------
    
-
+   
   #rout for job locations
  resources :job_locations 
  
  #route for generic_investment_declarations
- resources :generic_investment_declarations
+ resources :section_declarations
  
+ resources :general_investments
+ resources :employee_attendence do
+  collection do
+    get 'show_attendance'
+  end
+ end
 
   #get 'change_designation' => "designations#change_designation"
   

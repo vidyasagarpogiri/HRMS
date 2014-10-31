@@ -10,68 +10,35 @@
             </div>
             <div class="module-body">
               <div class="row-fluid">
-                <div class="span6">           
-                   <%= form_tag(payslips_path, :class => "form-horizontal", :remote => true ) do %>
-                    
-                        <label><strong>Select Month to generate payslip :&nbsp&nbsp </strong><br>
-                        <select name="payslip_view_month">
-                          <option value=0>-select-</option>
-                          <option value=1>Jan</option>
-                          <option value=2>Feb</option>
-                          <option value=3>Mar</option>
-                          <option value=4>Apr</option>
-                          <option value=5>May</option>                  
-                          <option value=6>Jun</option>
-                          <option value=7>Jul</option>
-                          <option value=8>Aug</option>
-                          <option value=9>Sep</option>
-                          <option value=10>Oct</option>
-                          <option value=11>Nov</option>
-                          <option value=12>Dec</option>
-                        </select>
-                        <select name="payslip_view_year">
-                         <option value=0>-select-</option>s
-                          <option>2014</option>
-                        </select> 
-                        <input type="submit" class="btn btn-success" value="Generate">                
-               
-                   <% end %>
-               </div>
-               <div class="span6">
-             <%= form_tag(payslips_view_path, method: :get,  :class => "form-horizontal", :remote => true) do %>
-            
-                <label><strong>Select Month to View payslip :&nbsp&nbsp </strong><br>
-                <select name="payslip_view_month">
-                  <option value=0>-select-</option>
-                  <option value=1>Jan</option>
-                  <option value=2>Feb</option>
-                  <option value=3>Mar</option>
-                  <option value=4>Apr</option>
-                  <option value=5>May</option>                  
-                  <option value=6>Jun</option>
-                  <option value=7>Jul</option>
-                  <option value=8>Aug</option>
-                  <option value=9>Sep</option>
-                  <option value=10>Oct</option>
-                  <option value=11>Nov</option>
-                  <option value=12>Dec</option>
-                </select>
-                <select name="payslip_view_year">
-                  <option value=0>-select-</option>
-                  <option>2014</option>
-                </select> 
-                <input type="submit" class="btn btn-success" value="View">                
-      
-           <% end %>  
+                <div class="span6">
+                  <%= form_tag(payslips_view_path, method: :get,  :class => "form-horizontal", :remote => true) do %>            
+                  <label><strong>Select Month to View payslip :&nbsp&nbsp </strong><br>
+                  <select name="payslip_view_year" class="payroll_year">
+                    <option value=0>-select year-</option>
+                    <% @years.each do |year| %>
+                      <option value="<%= year %>"><%= year %></option>
+                    <% end %>             
+                  </select>
+                  <select name="payslip_view_month" class ="payroll_month">
+                    <option value=0>-select month-</option>
+                  </select>   
+                  <input type="submit" class="btn btn-success" value="View">                      
+                  <% end %>      
+                </div>              
+                <div class="span6">  <br> 
+                  <% unless @cprm.present? %>     
+                    <%= link_to "Generate Last Month PaySlips", payslips_path, :class => "btn btn-success pull-right", method: :post, :remote => true %> 
+                  <% end %>               
                </div>
              </div></br>
+             
                <% if @payslips.present? %>                 
                 <!-- code for displayin all employees payslips -->  
                 <div class="employee_payslip">             
                 <table class="table table-striped table-bordered table-condensed">
                    <thead>
                    <tr>
-                      <th><strong>PaySlips For <%= Date::MONTHNAMES[@month] %>, <%= @year %></strong></th>
+                      <th><strong>PaySlips For <%= @month_name %>, <%= @year %></strong></th>
                    </tr>
                    <tr>
                       <th>Employee-Id</th>
@@ -101,14 +68,37 @@
                        <% end %> 
                 </table>
                 </div> 
-                <% else %>
+
+                <% if @payroll_last.present? %>
+                  <% unless @payroll_last.status == CompanyPayRollMaster::SENDTOBANK %>
+                    <% if @payroll_last.status == CompanyPayRollMaster::GENERATED %>
+                      <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                    <% end %>
+                
+                <% if @payroll_last.status = CompanyPayRollMaster::PROCESSING || @payroll_last.status = CompanyPayRollMaster::GENERATED  %>
+                  <%= link_to "Send To Bank", salaries_bank_process_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+
+                <% end %>
+               <% end %>
+               <% end %>
+                  <% elsif @error.present? %>
+                  <hr>
                   <div class="alert alert-success alert-dismissable">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      No PaySlips To Show with given month and Year
+                      <%= @error%>
                   </div>
+                <% else %>
+                 <hr>
+                  <div class="alert alert-success alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      
+                     There is no payslips for <%= @month_name %>  and <%= @year %>
+                  </div>
+                
                 <% end %>           
-              </div>
+                </div><br/>
             </div><!--/.module-->
+          
                <!-- div for render edit form -->
                
                <div class="payslip_edit"></div>
@@ -119,4 +109,32 @@
     </div><!--/.row-->
   </div><!--/.container-->
 </div><!--/.wrapper-->
+<script>
+  $(function(){
+    $(".payroll_year").change(function(){
+      var year = $(this).val();
+      $.getJSON("http://localhost:3000/salaries/get_payroll_years.json?yr="+ year, function(data){
+        $.each( data, function(key, val) {
+          $(".payroll_month").append( "<option>" + val  + "</option>" );
+        });
+       });
+    });
+  });
+
+<script>
+  $(function(){
+    $(".working_days").change(function(){
+      $(".payslip-form").submit();
+    });
+    $(".arrears").change(function(){
+      $(".payslip-form").submit();
+    });
+    $(".pt").change(function(){
+      $(".payslip-form").submit();
+    });
+    $(".tds").change(function(){
+      $(".payslip-form").submit();
+    });
+  });
+</script>
 

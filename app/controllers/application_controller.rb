@@ -28,14 +28,14 @@ class ApplicationController < ActionController::Base
   
   def hr_view
 	  unless current_user.department == Department::HR
-	    render :text => "You Dont Have Permission"  
+	    render :text => "You Don`t Have Permission"  
 	  end
 	end 
   
   def other_emp_view
     unless current_user.employee == @emp  
       unless current_user.department == Department::HR
-        render :text => "You Dont have permission"
+        render :text => "You Don`t Have Permission"
       end
     end 
   end
@@ -46,8 +46,24 @@ class ApplicationController < ActionController::Base
     @employee = Employee.find(id) 
     unless current_user.employee == @employee 
       unless current_user.department == Department::HR
-        render :text => "You Dont have permission"
+        render :text => "You Don`t Have Permission"
       end
     end 
+  end
+  
+  def accountant_view
+    unless current_user.department == Department::ACCOUNTS || current_user.department == Department::HR 
+      render :text => "You Don`t Have Permission"
+    end
+  end
+  
+  def payslip_view
+    resource, id = request.path.split('/')[1,2]
+    @employee = Payslip.find(id).employee
+    unless current_user.employee == @employee 
+      unless current_user.department == Department::ACCOUNTS
+        render :text => "You Don`t Have Permission"
+      end
+    end
   end
 end

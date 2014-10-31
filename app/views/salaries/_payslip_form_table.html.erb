@@ -22,7 +22,7 @@
     <div class="control-group">
       <label class="control-label" for="basicinput">No.of.Working Days</label>
       <div class="controls">
-        <%= text_field_tag :working_days, (params[:working_days] or @payslip.working_days) %>
+        <%= text_field_tag :working_days, (params[:working_days] or @payslip.working_days), :class => "working_days" %>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
     <div class="control-group">
       <label class="control-label" for="basicinput">Arrears</label></th>
         <div class="controls">
-          <%= text_field_tag :arrears, @payslip.arrears %>
+          <%= text_field_tag :arrears, @payslip.arrears, :class => "arrears" %>
         </div>      
     </div>
   </div>
@@ -49,7 +49,7 @@
     <div class="control-group">
       <label class="control-label" for="basicinput">Proffesional Tax</label></th>
         <div class="controls">
-          <%= text_field_tag :pt, @payslip.pt %>
+          <%= text_field_tag :pt, @payslip.pt, :class => "pt" %>
         </div>        
     </div>
   </div>
@@ -69,7 +69,7 @@
     <div class="control-group">
       <label class="control-label" for="basicinput">TDS</label></th>
       <div class="controls">
-        <%= text_field_tag :tds, @payslip.tds %>
+        <%= text_field_tag :tds, @payslip.tds, :class => "tds" %>
       </div> 
     </div>
   </div>
@@ -155,21 +155,23 @@
 <br/>
 <%= link_to 'view payslip', "/payslip/#{@payslip.id}", :class => "btn btn-success pull-right" %><br/>
 <% end %>
-             
-             
-             <script>
+  
+  
+<script>
   $(function(){
-    $("#working_days").change(function(){
+    $(".working_days").change(function(){
       $(".payslip-form").submit();
     });
-    $("#arrears").change(function(){
+    $(".arrears").change(function(){
       $(".payslip-form").submit();
     });
-    $("#pt").change(function(){
+    $(".pt").change(function(){
       $(".payslip-form").submit();
     });
-    $("#tds").change(function(){
+    $(".tds").change(function(){
       $(".payslip-form").submit();
     });
   });
-</script>
+</script>          
+             
+

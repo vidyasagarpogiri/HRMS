@@ -3,8 +3,11 @@ class SalariesController < ApplicationController
   # layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update, :configure_allowance]
 
 	before_filter :hr_view,  only: ["new", "edit"]
-  before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year]
+	before_filter :accountant_view, only: [:pay_slips_generation, :generated_payslips, :payslips_list, :edit_payslip, :update_payslip, :show_payslip, :exporting_payslips_excel_sheet ]
+  #before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year, :payslips_list]
   before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]
+  
+  before_filter :payslip_view, only: [:monthly_payslip_view, :employee_payslips_by_year]
 
   def new
 		@employee = Employee.find(params[:employee_id])
@@ -210,28 +213,28 @@ class SalariesController < ApplicationController
 
 	# code for payslips genaration - sekhar
 	 
-  def pay_slips_generation
-	  #TODO Have to specify Month and Year 
-	  #TODO NO of Working days
-	  #TODO PT, TDS 
-	 unless params[:payslip_view_month].to_i == 0 && params[:payslip_view_year].to_i == 0
-	  @month = params[:payslip_view_month].to_i
-	  @year = params[:payslip_view_year].to_i
-	  if @month <= Time.now.month && @year <= Time.now.year
-	    @payslips = Payslip.where(:month => @month ,:year => @year)
-	      
-	      unless @payslips.present?
-	        @salary_percentages = StaticSalary.all
-	        @employees = Employee.where(status: false)
-	        @actual_days = Time.days_in_month(@month,@year)
+  def pay_slips_generation	
+  #PAYSLIP GENERATION  
+    @month = DateTime.now.month-1
+	  @year = DateTime.now.year
+	  if @month == 0
+	    @month = 12
+	    @year = @year - 1 
+	  end
+	  @payslips = Payslip.where(:month => @month ,:year => @year)
+    
+    unless @payslips.present?
+	    @salary_percentages = StaticSalary.all
+	    @employees = Employee.where(status: false)
+	    @actual_days = Time.days_in_month(@month,@year)
 	          @employees.each do |employee|
 	            @salary = employee.salary
 	              if @salary.present?
 	                payslip_basic = payslip_basic((@salary.basic_salary)/12, @actual_days, @actual_days) #have to replace first actual days to employee working days
-	                @payslip = Payslip.create(:no_of_working_days => @actual_days, :working_days => @actual_days, :basic_salary => payslip_basic, :month=> @month, :year => @year, :employee_id => employee.id)
+	                @payslip = Payslip.create(:no_of_working_days => @actual_days, :working_days => @actual_days, :basic_salary => payslip_basic, :month=> @month, :year => @year, :employee_id => employee.id, :status => "NEW")
 	                #for creating allowances for payslip
 	                @salary.payslip_allowances(@payslip)
-	                @payslip_special_allowance = @salary.special_allowance/12
+	                @payslip_special_allowance = (@salary.special_allowance/12).round(2)
 	                @gross = @payslip.basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance #TODO need arrears add to below forumla       
 	                if @salary.pf_apply == "true"
 	                  @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
@@ -250,35 +253,50 @@ class SalariesController < ApplicationController
                 end
             end 
             @payslips = Payslip.where(:month => @month ,:year => @year)
+            @company_payroll = CompanyPayRollMaster.create(:month => Date::MONTHNAMES[@month], :year => @year, :status => CompanyPayRollMaster::GENERATED, :name => current_user.employee.full_name)
         else
-          flash[:notice] = "You Already Generated Payslip With Given Details"
-        end
-      else
-       flash[:notice] = "Sorry You Cannot Generate Next Month Payslips"
-      end
-     else
-       flash[:notice] = "Enter Proper Month and Year To Generate Payslip"
-     end  
+          flash[:notice] = "You Already Generated Payslip With Given Month"
+        end  
 	  end
 	  
 	  def generated_payslips
-	    unless params[:payslip_view_month].to_i == 0 && params[:payslip_view_year].to_i == 0
-	      @month = params[:payslip_view_month].to_i
-	      @year = params[:payslip_view_year].to_i
-	      @payslips = Payslip.where(:month => @month ,:year => @year)
-	    else
-	      flash[:notice] = "Enter Proper Month And Year To View Payslip"
-	      #@payslips = Payslip.where(:month => Time.now.month-1 ,:year => Time.now.year)
+      #BY SEARCH BY MONTH AND YEAR
+	  	@month = DateTime.now.month-1
+	    @year = DateTime.now.year
+	    if @month == 0
+	      @month = 12
+	      @year = @year - 1 
 	    end
+	    
+	    @cprm = CompanyPayRollMaster.where(month: Date::MONTHNAMES[@month], year: @year)	
+	    
+	    @enter_month = Date::MONTHNAMES.index(params[:payslip_view_month])
+      @enter_year = params[:payslip_view_year].to_i 
+	    @years = CompanyPayRollMaster.pluck(:year).uniq
+	      
+	    if params["payslip_view_year"] == "0" || params["payslip_view_month"] == "0"
+	      @error = "Please Enter Month and Year"
+	    else
+	      @month_name = Date::MONTHNAMES[@enter_month]
+	      @enter_year = params[:payslip_view_year].to_i
+	      @payslips = Payslip.where(:month => @enter_month ,:year => @enter_year)
+	      @payroll_last  = CompanyPayRollMaster.where(:month => params[:payslip_view_month], :year => @enter_year).first
+	    end	
 	  end
 	  
 	  def payslips_list
-      @payslip = Payslip.last
-      if @payslip.present?
-        @month = @payslip.month
-        @year = @payslip.year
-	      @payslips = Payslip.where(:month => @month ,:year => @year)
+	  #BY DEFULT VIEW
+	    @month = DateTime.now.month-1
+	    @year = DateTime.now.year
+	    if @month == 0
+	      @month = 12
+	      @year = @year - 1 
 	    end
+	    @month_name = Date::MONTHNAMES[@month]
+	    @cprm = CompanyPayRollMaster.where(month: @month_name, year: @year)	   
+	    @years = CompanyPayRollMaster.pluck(:year).uniq
+	    @payroll_last  = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
+      @payslips = Payslip.where(:month => @month ,:year => @year)
 	  end
 	  
 	  def edit_payslip
@@ -288,20 +306,29 @@ class SalariesController < ApplicationController
 	  
 	  def update_payslip
 	   @payslip = Payslip.find(params[:id]) 
+	   @salary = @payslip.employee.salary
 	   @payslip_allowances = @payslip.allowances
 	   @salary_percentages = StaticSalary.all
 	   @payslip.update(:arrears => params[:arrears], :pt => params[:pt] , :tds => params[:tds], :working_days => params[:working_days])
-	   @payslip_special_allowance = @payslip.employee.salary.special_allowance/12
-	   @basic_salary = payslip_basic((@payslip.employee.salary.basic_salary)/12, @payslip.working_days, @payslip.no_of_working_days)
+	   @payslip_special_allowance = (@payslip.employee.salary.special_allowance/12).round(2)
+	   @basic_salary = payslip_basic(((@payslip.employee.salary.basic_salary)/12).round(2), @payslip.working_days, @payslip.no_of_working_days)
 	   @payslip.update(:basic_salary => @basic_salary)
-	   @payslip.payslip_allowance_update(@payslip)
-	   @gross = @basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance + @payslip.arrears.to_f #TODO need arrears add to below forumla
-	   @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
-	   @payslip_esic = payslip_esic_value(@gross, @salary_percentages)
-	   @total_deducted_allowances_value = deducted_allowances_total(@payslip)
-	   @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value + @payslip.pt.to_f + @payslip.tds.to_f  #TODO need add PT and TDS
-	   @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
-	   @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
+	   #@payslip.payslip_allowance_update(@payslip)
+	   @gross = @basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance  #TODO need arrears add to below forumla
+	   if @salary.pf_apply == "true"
+	     @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
+	   else
+	     @payslip_pf = 0.0
+	  end
+	  if @salary.esic_apply == "true"
+	     @payslip_esic = payslip_esic_value(@gross, @salary_percentages)
+	  else
+	     @payslip_esic = 0.0
+	  end
+	  @total_deducted_allowances_value = deducted_allowances_total(@payslip)
+	  @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value + @payslip.pt.to_f + @payslip.tds.to_f
+	  @net_pay = @gross + @payslip.arrears.to_f - @total_deductions #TODO We have to remove all deduable allowances from here. 
+	  @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
 	  end
 	  
 	  def show_payslip
@@ -320,9 +347,22 @@ class SalariesController < ApplicationController
   def employee_payslips_by_year
     unless params[:payslip_view_year].to_i == 0
       @year = params[:payslip_view_year].to_i
-      @payslips = Payslip.where(:year => @year, :employee_id => current_user.employee.id)
+      @payslips = Payslip.where(:year => @year, :employee_id => current_user.employee.id, :status => "PROCESS")
     else
       flash[:notice] = "Please Enter Proper Year"
+    end
+  end
+  
+  def get_payroll_years
+    @years = CompanyPayRollMaster.pluck(:year)
+    json_hash = {}
+    @years.each do |year|
+      json_hash[year.to_s] = CompanyPayRollMaster.where(year: year).map(&:month)
+    end
+    @payroll_years = json_hash[params["yr"]] if params["yr"].present?
+    @payroll_years =  @years.uniq if !params["yr"].present?
+    respond_to do|format|
+      format.json { render json: @payroll_years }
     end
   end
 #---------------------------------
@@ -331,22 +371,109 @@ class SalariesController < ApplicationController
   def exporting_payslips_excel_sheet
     @month = params[:month].to_i
     @year = params[:year].to_i
+
+    @month_name = Date::MONTHNAMES[@month]
+    
+    employee_basic_array = ["SL #", "MONTH", "Emp. NAME", "DOJ", "STATUS", "DESIGNATION", "DEPARTMENT"]
+    salary_array = ["GROSS", "Per Month", "Actual Per Month", "Actual Days", "Working Days", "BASIC"]
+    non_deductable_allowances_array = StaticAllowance.where(is_deductable: false).pluck(:name)
+    other_salary_array = ["Spcl Allowance", "Arrears", "Gross Pay"]
+    deducations = ["PF", "ESIC", "PT", "TDS"]
+    deductable_allowances_array = StaticAllowance.where(is_deductable: true).pluck(:name)
+    netpay_array = ["total_deducations", "NetPay"]
+    
+    total_array = [employee_basic_array, salary_array, non_deductable_allowances_array, other_salary_array, deducations,  deductable_allowances_array, netpay_array]
+    total_array.flatten!
+
     @package = Axlsx::Package.new
     @workbook = @package.workbook
     @payslips = Payslip.where(:month => @month, :year => @year)
     #raise @payslips.inspect
-    @workbook.add_worksheet(name: "Test") do |sheet|
-      sheet.add_row ["Employee-id", "Employee Name", "Basic", "Department", "Gross", "Deductions", "Netpay"]
-       @payslips.each do |payslip|
-          sheet.add_row [payslip.employee.employee_id, payslip.employee.full_name, payslip.employee.department.department_name, payslip.basic_salary, payslip.gross_salary, payslip.total_deductions, payslip.netpay]
+    @workbook.add_worksheet(name: "Payslips") do |sheet|
+      sheet.add_row total_array
+      i = 1
+      
+      @payslips.each do |payslip|
+        a = [i, "#{payslip.month}-#{payslip.year}", payslip.employee.full_name, payslip.employee.date_of_join, payslip.employee.employment_status, payslip.employee.designation.designation_name, payslip.employee.department.department_name, payslip.employee.salary.gross_salary, payslip.employee.salary.gross_salary/12, payslip.gross_salary, payslip.no_of_working_days, payslip.working_days, payslip.basic_salary ]
+        b = []
+        
+        non_deductable_allowances_array.each do |allowance|
+          c= 0
+          payslip.allowances.where(is_deductable: false).each do |p_allowance|
+            if allowance == p_allowance.allowance_name
+              b << p_allowance.total_value
+              c = 1
+            end
+          end
+          if c == 0
+            b << 0
+          end
+        end #non -deductable end 
+        
+        other_salary = [payslip.special_allowance, payslip.arrears.to_f, payslip.gross_salary]
+        other_deducations = [payslip.pf.to_f, payslip.esic.to_f, payslip.pt.to_f, payslip.tds.to_f]
+        k=[]
+        deductable_allowances_array.each do |allowance|
+        g= 0
+        payslip.allowances.where(is_deductable: true).each do |p_allowance|
+          if allowance == p_allowance.allowance_name
+            k << p_allowance.total_value
+            g = 1
+          end
         end
+        if g == 0
+          k << 0
+        end
+      end #non -deductable end 
+      last_salary_array = [payslip.total_deductions, payslip.netpay]
+        total_values = [a,b, other_salary, other_deducations, k, last_salary_array].flatten!
+        sheet.add_row total_values
+        i = i+1 
+      end #payslip end
+        
+       
+      end #workbook end
+=begin
+       
+       #sheet.add_row 
+        values_array = [payslip.employee.employee_id, payslip.employee.full_name, payslip.employee.department.department_name, payslip.basic_salary]
+         if payslip.allowances.present?
+          payslip.allowances.each do |allowance|
+           details_array.push allowance.allowance_name
+           values_array.push allowance.total_value
+           sheet.add_row ["#{allowance.allowance_name}", allowance.total_value]
+          end
+         end
+      end  
+=end  
+
+    @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-payslips.xlsx")
+    @mail = current_user.email
+    Notification.send_payslip(@mail,@month_name,@year).deliver
+    @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
+    @payroll_status.update(:status => CompanyPayRollMaster::PROCESSING)
+    redirect_to salaries_payslips_list_path
+  end
+  
+  def bank_process
+    @month = params[:month].to_i
+    @year = params[:year].to_i
+    @month_name = Date::MONTHNAMES[@month]
+    @package = Axlsx::Package.new
+    @workbook = @package.workbook
+    @payslips = Payslip.where(:month => @month, :year => @year)
+    @workbook.add_worksheet(name: "Bank Statement") do |sheet|
+      sheet.add_row ["Account Number", "Employee_name","Netpay","Month"]
+      @payslips.each do |payslip|
+        sheet.add_row [payslip.employee.account_number, payslip.employee.full_name, payslip.netpay,Date::MONTHNAMES[payslip.month]]
+      end
     end
-    #raise @package.serialize.inspect
-    @package.serialize("/home/sekhar/payslip.xlsx")
-    #s = @package.to_stream()
-     # File.open('test.xlsx', 'w') { |f| f.write(s.read) }
-   # send_file("/home/sekhar/test.xlsx", filename: "Basic.xls", type: "application/vnd.xls")
-    #Notification.send_payslip
+    @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-bank_statement.xlsx")
+    @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
+    @payroll_status.update(:status => CompanyPayRollMaster::SENDTOBANK)
+    @payslips.each do |payslip|
+      payslip.update(:status => "PROCESS")
+    end
     redirect_to salaries_payslips_list_path
   end
 #---------------------------------
@@ -386,6 +513,25 @@ class SalariesController < ApplicationController
 		if @bank_details.update(bank_details)
 	     @bank_details = @employee.Employee
 	  end 
+	end
+	
+	
+	def payslips_pdf
+	  @month = DateTime.now.month-1
+	  @year = DateTime.now.year
+	  if @month == 0
+	    @month = 12
+	    @year = @year - 1 
+	  end
+	  @payslips = Payslip.where(:month => @month ,:year => @year)
+     respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportPdf.new(@payslips)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+
 	end
 	
 	

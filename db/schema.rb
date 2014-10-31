@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029074820) do
+ActiveRecord::Schema.define(version: 20141030120625) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(version: 20141029074820) do
   create_table "bootsy_images", force: true do |t|
     t.string   "image_file"
     t.integer  "image_gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "company_pay_roll_masters", force: true do |t|
+    t.string   "month"
+    t.integer  "year"
+    t.string   "status"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -154,6 +163,23 @@ ActiveRecord::Schema.define(version: 20141029074820) do
     t.string   "attachment_name"
   end
 
+  create_table "employee_attendence_logs", force: true do |t|
+    t.integer  "employee_attendence_id"
+    t.datetime "time"
+    t.boolean  "in_out"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employee_attendences", force: true do |t|
+    t.string   "employee_id"
+    t.date     "log_date"
+    t.boolean  "is_present"
+    t.float    "total_working_hours", limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "employees", force: true do |t|
     t.string   "employee_id"
     t.string   "title"
@@ -224,11 +250,10 @@ ActiveRecord::Schema.define(version: 20141029074820) do
     t.text     "summary"
   end
 
-  create_table "generic_investment_declarations", force: true do |t|
-    t.string   "section"
+  create_table "general_investments", force: true do |t|
     t.string   "title"
-    t.float    "maximum_limit", limit: 24
     t.text     "description"
+    t.integer  "section_declaration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -266,9 +291,8 @@ ActiveRecord::Schema.define(version: 20141029074820) do
   add_index "insentives", ["salary_id"], name: "index_insentives_on_salary_id", using: :btree
 
   create_table "investment_declarations", force: true do |t|
-    t.integer  "generic_investment_declaration_id"
-    t.float    "monthly_value",                     limit: 24
-    t.float    "yearly_value",                      limit: 24
+    t.integer  "general_investment_id"
+    t.float    "yearly_value",          limit: 24
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -326,6 +350,7 @@ ActiveRecord::Schema.define(version: 20141029074820) do
     t.float    "total_tds",      limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "payslips", force: true do |t|
@@ -458,6 +483,13 @@ ActiveRecord::Schema.define(version: 20141029074820) do
 
   add_index "salary_increments", ["salary_id"], name: "index_salary_increments_on_salary_id", using: :btree
 
+  create_table "section_declarations", force: true do |t|
+    t.string   "section"
+    t.float    "maximum_limit", limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "static_allowances", force: true do |t|
     t.string   "name"
     t.float    "percentage",    limit: 24
@@ -470,6 +502,14 @@ ActiveRecord::Schema.define(version: 20141029074820) do
   create_table "static_salaries", force: true do |t|
     t.string   "name"
     t.float    "value",      limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "temporary_attendence_logs", force: true do |t|
+    t.integer  "device_id"
+    t.integer  "employee_id"
+    t.datetime "date_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GenericInvestmentDeclarationTest < ActiveSupport::TestCase
+class EmployeeAttendenceLogsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

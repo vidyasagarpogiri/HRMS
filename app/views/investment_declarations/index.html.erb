@@ -16,7 +16,7 @@
             <th class="center">Section</th>
             <th>Title </th>	
             <th>Maximum Limit </th>
-            <th>Montly Value</th>
+            <th>Description</th>
             <th>Yealy Value</th>	
             <th>Actions</th>													            									      		
           </tr>
@@ -24,11 +24,11 @@
        <% @declarations.each do |dec| %>
         <tbody>
           <tr>               
-            <td class="center"><%= dec.generic_investment_declaration.section %></td>
-            <td><%= dec.generic_investment_declaration.title %></td>
-            <td><%= dec.generic_investment_declaration.maximum_limit %></td>
-            <td><%= dec.monthly_value %></td>
-            <td><%= dec.yearly_value %></td>
+            <td class="center"><%= dec.general_investment.section_declaration.section if dec.general_investment.section_declaration.present? %></td>
+            <td><%= dec.general_investment.title if dec.general_investment.section_declaration.present?%></td>
+            <td><%= dec.general_investment.section_declaration.maximum_limit  if dec.general_investment.section_declaration.present? %></td>
+            <td><%= dec.general_investment.description if dec.general_investment.section_declaration.present?%></td>
+            <td><%= dec.yearly_value if dec.general_investment.section_declaration.present?%></td>
             <td>
           
            <%= link_to 'Edit', "#editInvestmentForm",  :class => "btn btn-success dec ",   :url => edit_investment_declaration_path(dec), :iid => dec.id, "data-toggle" => "modal", :id => "dec_#{dec.id}"   %>
