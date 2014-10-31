@@ -3,7 +3,7 @@ class SalariesController < ApplicationController
   # layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update, :configure_allowance]
 
 	before_filter :hr_view,  only: ["new", "edit"]
-  before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year]
+  #before_filter :other_emp_view, except: [:employee_monthly_payslips, :monthly_payslip_view, :employee_payslips_by_year]
   before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]
   before_filter :accountant_view, only: [:pay_slips_generation, :generated_payslips, :payslips_list, :edit_payslip, :update_payslip, :show_payslip, :exporting_payslips_excel_sheet ]
   before_filter :payslip_view, only: [:monthly_payslip_view, :employee_payslips_by_year]
@@ -524,7 +524,14 @@ class SalariesController < ApplicationController
 	    @year = @year - 1 
 	  end
 	  @payslips = Payslip.where(:month => @month ,:year => @year)
-    
+     respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportPdf.new(@payslips)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+
 	end
 	
 	
