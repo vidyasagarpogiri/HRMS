@@ -9,7 +9,7 @@
             </div><!--/.module-head -->            
             <div class="module-body">
               <% if current_user.department == Department::HR %>                                
-                <label class = "pull-right"><a><i class="icon-plus-sign"></i></a><%= link_to ' Add Investment Declaration', new_general_investment_path %></label>&nbsp;&nbsp;<label style="padding-right:20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add Section Declaration ', new_section_declaration_path %></label>
+                <label class = "pull-right"><a><i class="icon-plus-sign"></i></a><%= link_to ' Add Investment', new_general_investment_path %></label>&nbsp;&nbsp;<label style="padding-right:20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add Section', new_section_declaration_path %></label>
               <% end %>            
               <% if @sections.present? %>
                 <table class="table table-striped table-bordered table-condensed" >
