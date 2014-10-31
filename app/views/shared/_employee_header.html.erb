@@ -51,6 +51,9 @@
 								<% if current_user.department == Department::HR %>
 								  <li><a href="#">Edit Profile</a></li>
 			          <% end %>
+			          <% if current_user.department == Department::ACCOUNTS %>
+			            <li><a href="/monthly_payslips" >Payslips</a></li>
+			          <% end %>
 								<li><a href="#">Account Settings</a></li>
 								<li class="divider"></li>
 								<li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-sign-out fa-fw" %></li>   
