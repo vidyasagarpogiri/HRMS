@@ -15,12 +15,12 @@ class PoliciesController < ApplicationController
   def create
   #raise params.inspect
    @policy = Policy.new(policy_params)
-   @users = User.all
+   #@users = User.all
   
     if @policy.save
     #raise params.inspect
-     @users.each do |user|
-      Notification.delay.policy_notification(user,@policy)
+      Employee.where(status: false).each do |emp|
+      Notification.delay.policy_notification(emp.user,@policy)
       end 	
   
       redirect_to policies_path
