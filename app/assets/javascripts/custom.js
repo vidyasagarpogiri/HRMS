@@ -9,5 +9,7 @@ try {
 catch(err) {
 
 } 
+
+$(".modal").hide();
   
 });
