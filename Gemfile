@@ -76,6 +76,10 @@ gem 'axlsx'
 #use for bootsy wysiwig editor
 gem 'bootsy'
 
+#for PDF
+
+gem 'prawn'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
