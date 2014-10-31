@@ -219,7 +219,7 @@ end
  resources :section_declarations
  
  resources :general_investments
- 
+ resources :employee_attendence
 
   #get 'change_designation' => "designations#change_designation"
   

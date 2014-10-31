@@ -62,6 +62,8 @@ gem 'carrierwave'
 #gem for pagination
 gem 'kaminari'
 
+#gem for time difference
+gem 'time_difference'
 
 #gem for delayed-job
 gem 'delayed_job_active_record'
