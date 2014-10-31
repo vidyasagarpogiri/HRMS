@@ -15,9 +15,9 @@ before_filter :hr_view,  only: ["new", "edit"]
   
     if @announcement.save
     #raise params.inspect
-      @users.each do |user|
-      Notification.delay.announcement_notification(user,@announcement)
-      end
+      Employee.where(status: false).each do |emp|
+      Notification.delay.announcement_notification(emp.user,@announcement) 
+    end
       redirect_to announcements_path
     else
        flash.now[:error]
