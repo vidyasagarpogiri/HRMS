@@ -342,6 +342,14 @@ class SalariesController < ApplicationController
   
   def monthly_payslip_view
     @payslip = Payslip.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportPdf.new(@payslips)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+    
   end
   
   def employee_payslips_by_year
