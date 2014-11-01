@@ -25,58 +25,68 @@
          <% unless @salary.new_record? %>                                    
           <table class="table table-striped table-bordered table-condensed">
            <thead>
+              <tr style="color:black;">
+			          <th colspan="2" style="text-align:center">Employee Salary Info</th>					      
+					    </tr>
               <tr>
                 <th>Particulars</th>
                 <th>Value(INR)</th>
-              </tr>											      
+              </tr>
+              <tr>
+					      <th>Basic</th>
+					      <td><%= @salary.basic_salary %></td>
+				      </tr>											      
               <tr>
                 <th>Gross Salary</th>
                 <td><%= @salary.gross_salary %></td>
               </tr>
-              <tr>
-                <th>Bonus</th>
-                <td><%= @salary.bonus %></td>	
-              </tr>
-              <tr>
-                <th>Gratuity</th>
-                <td><%= @salary.gratuity %></td>
-              </tr>
-              <tr>
-					      <th>Medical Insurance</th>
-					      <td><%= @salary.medical_insurance %></td>
-			        </tr>
-			        <tr>
-					      <th>Basic</th>
-					      <td><%= @salary.basic_salary %></td>
-				      </tr>
-				      <% if @salary.pf_apply == "true"%>
+              <% if @salary.pf_apply == "true"%>
 				      <tr>
 					      <th>PF</th>
 					      <td><%= @salary.pf %></td>
 				      </tr>
-				      <tr>
-					      <th>PF Contribution</th>
-					      <td><%= @salary.pf_contribution %></td>
-				      </tr>
-					      <% end %>
+				      <% end %>				   
 				      <% if @salary.esic_apply == "true"%>
 				      <tr>
 					      <th>ESIC</th>
 					      <td><%= @salary.esic %></td>
 				      </tr>
+				      <% end %> 
+				      <tr>
+					      <th>CTC</th>
+					      <td><%= @salary.ctc_fixed %></td>
+				      </tr>                                       			        
+			        
+			        <tr style="color:black;">
+			          <th colspan="2" style="text-align:center">Employer Contribution</th>					      
+					    </tr>
+					    
+					     <tr>
+                <th>Bonus</th>
+                <td><%= @salary.bonus %></td>	
+              </tr>					    					    					   					   			        				      
+				      <% if @salary.pf_apply == "true"%>
+				      <tr>
+					      <th>PF Contribution</th>
+					      <td><%= @salary.pf_contribution %></td>
+				      </tr>
+					    <% end %>				      
+				      <% if @salary.esic_apply == "true"%>
 				      <tr>
 					       <th>ESIC Contribution</th>
 					       <td><%= @salary.esic_contribution %></td>
 				      </tr>
-					      <% end %>
+					    <% end %>
+					    <tr>
+					      <th>Medical Insurance</th>
+					      <td><%= @salary.medical_insurance %></td>
+			        </tr>
 			        <tr>
-					      <th>Special Allowance</th>
-					      <td><%= @salary.special_allowance%></td>
-				      </tr>
-				      <tr>
-					      <th>CTC</th>
-					      <td><%= @salary.ctc_fixed %></td>
-				      </tr>
+                <th>Gratuity</th>
+                <td><%= @salary.gratuity %></td>
+              </tr> 
+			        
+				      
 					      <th>Action</th>									      		             	
                 <td>
                 <% if current_user.department == Department::HR %>  

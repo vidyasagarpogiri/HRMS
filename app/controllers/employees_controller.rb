@@ -197,7 +197,7 @@ class EmployeesController < ApplicationController
   def bankdetails_create
     #raise params.inspect
     @employee = Employee.find(params[:id])
-		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan])		
+		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan], :PFAccountNumber => params[:PFAccountNumber])		
 	end
   
   def bankdetails_show
@@ -214,7 +214,7 @@ class EmployeesController < ApplicationController
 	
 	def bankdetails_update	
 	  @employee = Employee.find(params[:id])
-		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan])	
+		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan], :PFAccountNumber => params[:PFAccountNumber])		
 	end
 	
 	#inactive employees code
@@ -233,7 +233,7 @@ class EmployeesController < ApplicationController
   end
 	
 	def bank_details
-    params.require(:bank_details).permit(:bank_name, :account_number, :branch_name, :pan)
+    params.require(:bank_details).permit(:bank_name, :account_number, :branch_name, :pan, :PFAccountNumber)
   end
 	
 end

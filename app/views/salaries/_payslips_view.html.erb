@@ -73,17 +73,19 @@
                 </table>
                 </div> 
 
-                <% if @payroll_last.present? %>
-             
-                    <% if @payroll_last.status == CompanyPayRollMaster::GENERATED %>
-                      <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
-                    <% end %>
+                <% if @payroll_last.present? %>             
+                <% if @payroll_last.status == CompanyPayRollMaster::GENERATED %><br>
+                  <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                <% end %>
                 
                 <% if @payroll_last.status == CompanyPayRollMaster::PROCESSING %>
-                     <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
-                  <%= link_to "Send To Bank", salaries_bank_process_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                <ul class="navigation-btns pull-right">
+                   <li><%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success" %></li>
+                  <li><%= link_to "Generate To Bank", salaries_bank_process_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success" %></li>
+                </ul>  
                <% end %>
                <% end %>
+
                   <% elsif @error.present? %>
                   <hr>
                   <div class="alert alert-success alert-dismissable">
@@ -124,6 +126,7 @@
     });
   });
 
+<script>
   $(function(){
     $(".working_days").change(function(){
       $(".payslip-form").submit();
