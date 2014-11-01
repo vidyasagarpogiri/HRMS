@@ -26,16 +26,33 @@
 	    <% unless @salary.new_record? %>                                       
         <table class="table table-striped table-bordered table-condensed">
          <thead>
+             <tr style="color:black;">
+			          <th colspan="3" ><div style="text-align:center">Employee Salary Info</div></th>					      
+					    </tr>
             <tr>
               <th>Particulars</th>
               <th>Yearly Value(INR)</th>
               <th>Monthly Value(INR)</th>
             </tr>											      
             <tr>
-              <th>Basic Salary</th>
+              <th>Basic</th>
               <td><%= @salary.basic_salary %></td>
               <td><%= monthly(@salary.basic_salary) %></td>
             </tr>
+            <% if @salary.pf_apply == "true"%>
+				    <tr>
+					    <th>PF Contribution</th>
+					    <td><%= @salary.pf %></td>
+					    <td><%= monthly(@salary.pf) %></td>
+				    </tr>
+			    <% end %>
+			    <% if @salary.esic_apply == "true"%>
+			      <tr>
+					    <th>ESIC</th>
+					    <td><%= @salary.esic %></td>
+					    <td><%= monthly(@salary.esic) %></td>
+				    </tr>
+				  <% end %>
             <% if @salary.present? %> 
              <% if @allowances.present? %>
              <% @allowances.each do |allowance| %>
@@ -57,17 +74,11 @@
           <% if @salary.pf_apply == "true"%>
 				    <tr>
 					    <th>PF Contribution</th>
-					    <td><%= @salary.pf %></td>
-					    <td><%= monthly(@salary.pf) %></td>
+					    <td><%= @salary.pf_contribution %></td>
+					    <td><%= monthly(@salary.pf_contribution) %></td>
 				    </tr>
 			    <% end %>
-			    <% if @salary.esic_apply == "true"%>
-			      <tr>
-					    <th>ESIC</th>
-					    <td><%= @salary.esic %></td>
-					    <td><%= monthly(@salary.esic) %></td>
-				    </tr>
-				  <% end %>
+			   
 				   <tr>
 			      <th>Special Allowance</th>
 				     <%  if @salary.special_allowance.present? %>
@@ -89,13 +100,7 @@
             <td><%= @salary.gratuity %></td>
             <td><%= monthly(@salary.gratuity) %></td>
           </tr>
-          <% if @salary.pf_apply == "true"%>
-				    <tr>
-					    <th>PF Contribution</th>
-					    <td><%= @salary.pf_contribution %></td>
-					    <td><%= monthly(@salary.pf_contribution) %></td>
-				    </tr>
-			    <% end %>
+          
 				  <% if @salary.esic_apply == "true"%>
 				    <tr>
 					    <th>ESIC Contribution</th>

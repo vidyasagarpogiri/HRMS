@@ -5,7 +5,7 @@
         <div class="content">
           <div class="module">
             <div class="module-head" style="background-color: #82B4E6 ">
-              <h3>pay slips
+              <h3>PayRoll
               </h3>
             </div>
             <div class="module-body">
@@ -69,34 +69,34 @@
                 </table>
                 </div> 
 
-                <% if @payroll_last.present? %>
-             
-                    <% if @payroll_last.status == CompanyPayRollMaster::GENERATED %>
-                      <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
-                    <% end %>
+                <% if @payroll_last.present? %>             
+                <% if @payroll_last.status == CompanyPayRollMaster::GENERATED %><br>
+                  <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                <% end %>
                 
                 <% if @payroll_last.status == CompanyPayRollMaster::PROCESSING %>
-                     <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
-                  <%= link_to "Send To Bank", salaries_bank_process_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                <ul class="navigation-btns pull-right">
+                   <li><%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success" %></li>
+                  <li><%= link_to "Send To Bank", salaries_bank_process_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success" %></li>
+                </ul>  
                <% end %>
                <% end %>
-                  <% elsif @error.present? %>
-                  <hr>
-                  <div class="alert alert-success alert-dismissable">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      <%= @error%>
-                  </div>
-                <% else %>
-                 <hr>
-                  <div class="alert alert-success alert-dismissable">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      
-                     There is no payslips for <%= @month_name %>  and <%= @year %>
-                  </div>
-                
-                <% end %>           
-                </div><br/>
-            </div><!--/.module-->
+              <% elsif @error.present? %>
+              <hr>
+              <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <%= @error%>
+              </div>
+            <% else %>
+             <hr>
+              <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>                      
+                 There is no payslips for <%= @month_name %>  and <%= @year %>
+              </div>
+            
+            <% end %>           
+            </div><br/>
+        </div><!--/.module-->
           
                <!-- div for render edit form -->
                
@@ -120,6 +120,7 @@
     });
   });
 
+<script>
   $(function(){
     $(".working_days").change(function(){
       $(".payslip-form").submit();
