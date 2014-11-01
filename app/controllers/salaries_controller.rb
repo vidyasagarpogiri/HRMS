@@ -345,7 +345,7 @@ class SalariesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = ReportPdf.new(@payslips)
+        pdf = ReportPdf.new(@payslip)
         send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
       end
     end
@@ -455,8 +455,8 @@ class SalariesController < ApplicationController
       end  
 =end  
 
-    #@package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-payslips.xlsx")
-    @package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
+    @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-payslips.xlsx")
+    #@package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
     @mail = current_user.email
     Notification.send_payslip(@mail,@month_name,@year).deliver
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
@@ -477,8 +477,8 @@ class SalariesController < ApplicationController
         sheet.add_row [payslip.employee.account_number, payslip.employee.full_name, payslip.netpay,Date::MONTHNAMES[payslip.month]]
       end
     end
-    #@package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-bank_statement.xlsx")
-    @package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
+    @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-bank_statement.xlsx")
+    #@package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
     @payroll_status.update(:status => CompanyPayRollMaster::SENDTOBANK)
     @payslips.each do |payslip|
