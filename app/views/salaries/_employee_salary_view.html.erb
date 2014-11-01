@@ -38,8 +38,8 @@
             </tr>
             <tr>
               <th>FBP</th>
-              <td></td>
-              <td></td>
+              <td><%= fbp_allowance(@allowances,@salary.basic_salary) %></td>
+              <td><%= (fbp_allowance(@allowances,@salary.basic_salary)/12).round(2) %></td>
             </tr>
             <tr>            
               <th>Special Allowance</th>
@@ -53,8 +53,8 @@
 				    				    
 				    <tr style="color:black">
 		          <th>Total Fixed Cash</th>	
-		          <td><%= (@salary.basic_salary) + (@salary.special_allowance) %> + FBP yearly</td>
-		          <td><%= monthly(@salary.basic_salary) + (@salary.basic_salary) %> + FBP monthly </td>				      
+		          <td><%= (@salary.basic_salary) + (@salary.special_allowance) + (fbp_allowance(@allowances,@salary.basic_salary)) %></td>
+		          <td><%= monthly(@salary.basic_salary) + (@salary.basic_salary) + ((fbp_allowance(@allowances,@salary.basic_salary)/12).round(2)) %> </td>				      
 					  </tr>
 			      
 			      <% if @salary.pf_apply == "true"%>
@@ -81,7 +81,7 @@
 				    <tr style="color:black">
 		          <th>Total Fixed Compensation</th>	
 		          <td><%= (@salary.pf ) + (@salary.esic) + (@salary.gratuity) %> </td>
-		          <td><%= monthly(@salary.pf) + monthly(@salary.esic) + monthly(@salary.gratuity)%> </td>				      
+		          <td><%= (monthly(@salary.pf) + monthly(@salary.esic) + monthly(@salary.gratuity)).round(2) %> </td>				      
 					  </tr>
 					  
 					   <tr>
@@ -94,54 +94,31 @@
 					    <td><%= @salary.medical_insurance %></td>
 					    <td><%= monthly(@salary.medical_insurance) %></td>
 			      </tr>
-					  <th>Gross Salary</th>
-					    <td><%= @salary.gross_salary %></td>
-					    <td><%= monthly(@salary.gross_salary) %></td>
-			      </tr>
+					  
 				    <tr style="color:black;">
 					    <th>CTC</th>
 					    <td><%= @salary.ctc_fixed %></td>
 					    <td><%= monthly(@salary.ctc_fixed) %></td>
 				    </tr>				    				    			  				  				    
-				       
-            <% if @salary.present? %> 
-             <% if @allowances.present? %>
-             <% @allowances.each do |allowance| %>
-              <tr>
-                 <th><%= allowance.allowance_name %></th> 
-                 <% if allowance.value.present? %>													
-                   <td><%= allowance_value(allowance.value, @salary.basic_salary)  %>
-                   </td>
-                   <td><%= monthly(allowance_value(allowance.value, @salary.basic_salary)) %></td>
-                 <% else %>
-                   <td><%= allowance.allowance_value %>
-                   </td>
-                   <td><%= monthly(allowance.allowance_value) %></td>
-                 <% end %>	                        										      		
-              </tr>
-              <% end %>
-             <% end %>
-            <% end %>
-            <% if @salary.pf_apply == "true"%>
+				    
+				    <!--<th>Gross Salary</th>
+					    <td><%# @salary.gross_salary %></td>
+					    <td><%# monthly(@salary.gross_salary) %></td>
+			      </tr>               
+            <%# if @salary.pf_apply == "true"%>
 				      <tr>
 					      <th>PF Contribution</th>
-					      <td><%= @salary.pf_contribution %></td>
-					      <td><%= monthly(@salary.pf_contribution) %></td>
+					      <td><%# @salary.pf_contribution %></td>
+					      <td><%# monthly(@salary.pf_contribution) %></td>
 				      </tr>
-			      <% end %>
-			     
-				    
-            
-				    <% if @salary.esic_apply == "true"%>
+			      <%# end %>			     				                
+				    <%# if @salary.esic_apply == "true"%>
 				      <tr>
 					      <th>ESIC Contribution</th>
-					      <td><%= @salary.esic_contribution %></td>
-					      <td><%= monthly(@salary.esic_contribution) %></td>
+					      <td><%# @salary.esic_contribution %></td>
+					      <td><%# monthly(@salary.esic_contribution) %></td>
 				      </tr>
-				    <% end %>
-			      
-				       
-          <tr>			   				  
+				    <%# end %>-->		   				  
         </thead>
       </table>
     <!-- /.col-lg-6 (nested) -->

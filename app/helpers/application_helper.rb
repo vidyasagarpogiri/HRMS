@@ -423,5 +423,19 @@ end
      end
    end
   end
+  
+  # for calculating sum pf allowances
+  
+  def fbp_allowance(allowances, basic)
+    fbp_total = 0.0
+    allowances.each do |allowance|
+    if allowance.value.present?
+      fbp_total += (basic*allowance.value)/100
+    else
+      fbp_total += allowance.allowance_value
+    end  
+  end
+    return fbp_total
+  end
 
 end
