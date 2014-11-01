@@ -24,79 +24,67 @@
         <div class="module-body">   
          <% unless @salary.new_record? %>                                    
           <table class="table table-striped table-bordered table-condensed">
-           <thead>              
+           <thead>
+              <tr style="color:black;">
+			          <th colspan="2" >Employee Salary Info</th>					      
+					    </tr>
               <tr>
                 <th>Particulars</th>
                 <th>Value(INR)</th>
-              </tr>
-              <tr>
-					      <th>Basic</th>
-					      <td><%= @salary.basic_salary %></td>
-				      </tr>											      
+              </tr>											      
               <tr>
                 <th>Gross Salary</th>
                 <td><%= @salary.gross_salary %></td>
-              </tr>                   
+              </tr>
               <tr>
-                <th>Special Allowance</th>
-                <td><%= @salary.gross_salary %></td>
-              </tr>         				      
-				      
-				      <tr style="color:black">
-			          <th>Total Fixed Cash</th>	
-			          <td><%= (@salary.basic_salary) + (@salary.gross_salary) %></td>				      
-					    </tr>
-					    
-					    <% if @salary.pf_apply == "true"%>
+                <th>Bonus</th>
+                <td><%= @salary.bonus %></td>	
+              </tr>
+              <tr>
+                <th>Gratuity</th>
+                <td><%= @salary.gratuity %></td>
+              </tr>
+              <tr>
+					      <th>Medical Insurance</th>
+					      <td><%= @salary.medical_insurance %></td>
+			        </tr>
+			        
+			        
+			        <tr style="color:black;">
+			          <th colspan="2">Employer Contribution</th>					      
+					    </tr>					    					    					   					   
+			        <tr>
+					      <th>Basic</th>
+					      <td><%= @salary.basic_salary %></td>
+				      </tr>
+				      <% if @salary.pf_apply == "true"%>
 				      <tr>
 					      <th>PF</th>
 					      <td><%= @salary.pf %></td>
 				      </tr>
-				      <% end %>				   
+				      <tr>
+					      <th>PF Contribution</th>
+					      <td><%= @salary.pf_contribution %></td>
+				      </tr>
+					      <% end %>
 				      <% if @salary.esic_apply == "true"%>
 				      <tr>
 					      <th>ESIC</th>
 					      <td><%= @salary.esic %></td>
 				      </tr>
-				      <% end %> 
-				      <tr>
-                <th>Gratuity</th>
-                <td><%= @salary.gratuity %></td>
-              </tr>
-				                                          			        
-			        
-			        <tr style="color:black;">
-			          <th>Total Fixed Compensation</th>	
-			          <td><!--<%# (@salary.gratuity)+(@salary.esic)+(@salary.pf) %>--></td>				      
-					    </tr>
-					    
-					    
-					    <tr>
-					      <th>Medical Insurance</th>
-					      <td><%= @salary.medical_insurance %></td>
-			        </tr>
-					    <tr>
-                <th>Bonus</th>
-                <td><%= @salary.bonus %></td>	
-              </tr>					    					    					   					   			        				      
-				     <!-- <%# if @salary.pf_apply == "true"%>
-				      <tr>
-					      <th>PF Contribution</th>
-					      <td><%# @salary.pf_contribution %></td>
-				      </tr>
-					    <%# end %>				      
-				      <%# if @salary.esic_apply == "true"%>
 				      <tr>
 					       <th>ESIC Contribution</th>
-					       <td><%# @salary.esic_contribution %></td>
+					       <td><%= @salary.esic_contribution %></td>
 				      </tr>
-					    <%# end %>-->
-					    			         
-			        <tr style="color:black;">
+					      <% end %>
+			        <tr>
+					      <th>Special Allowance</th>
+					      <td><%= @salary.special_allowance%></td>
+				      </tr>
+				      <tr>
 					      <th>CTC</th>
 					      <td><%= @salary.ctc_fixed %></td>
-				      </tr>   
-				      
+				      </tr>
 					      <th>Action</th>									      		             	
                 <td>
                 <% if current_user.department == Department::HR %>  
@@ -136,7 +124,7 @@
           <% if @allowances.present? %>                                            
 	          <div id="allownaces"><br>
               <div class="module-head">
-                      List of Allowances
+                  List of Allowances
               </div>
               <div class="module-body">  
                 <table class="table table-striped table-hover" id="sample-table-2">

@@ -26,7 +26,7 @@
 	    <% unless @salary.new_record? %>                                       
         <table class="table table-striped table-bordered table-condensed" >
          <thead>             
-            <tr>
+            <tr style="color:black">
               <th>Particulars</th>
               <th>Yearly Value(INR)</th>
               <th>Monthly Value(INR)</th>
@@ -54,7 +54,7 @@
 				    <tr style="color:black">
 		          <th>Total Fixed Cash</th>	
 		          <td><%= (@salary.basic_salary) + (@salary.special_allowance) + (fbp_allowance(@allowances,@salary.basic_salary)) %></td>
-		          <td><%= monthly(@salary.basic_salary) + (@salary.basic_salary) + ((fbp_allowance(@allowances,@salary.basic_salary)/12).round(2)) %> </td>				      
+		          <td><%= ((@salary.basic_salary + @salary.special_allowance + fbp_allowance(@allowances,@salary.basic_salary))/12).round(2) %> </td>				      
 					  </tr>
 			      
 			      <% if @salary.pf_apply == "true"%>
