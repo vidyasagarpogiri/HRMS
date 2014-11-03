@@ -207,9 +207,9 @@
 						<div class ="row-fluid">
 							<div class="span5">	
 								<div class="control-group">
-									<label class="control-label" for="basicinput">Employee Display Picture</label>                                         
+									<label class="control-label" for="basicinput">Employee Devise Id</label>                                         
 									<div class="controls">
-                    <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+                   <%= f.text_field :devise_id, :class=>"span12 form-control", :placeholder=>"Enter Devise Id",:data => {:error => " Please Enter Valid Devise Id"}, :required =>true %>
                    <span class="help-block with-errors"></span>
 									</div>
 								</div>
@@ -224,8 +224,22 @@
 									</div>
 								</div>
 							</div>
-						</div><hr>                      
-					 <button type="submit" class="btn btn-success">Save & Continue</button><br>										
+						</div><hr>
+						
+						<div class ="row-fluid">
+							<div class="span5">	
+								<div class="control-group">
+								<label class="control-label" for="basicinput">Employee Display Picture</label>                                         
+									<div class="controls">
+                    <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+									
+                   <span class="help-block with-errors"></span>
+									</div>
+								</div>
+              </div> </hr>
+                <ul class="navigation-btns pull-right" >                    
+					 <button type="submit" class="btn btn-success">Save & Continue</button></ul>
+					 </div>										
 						<% end %>
 						</div><!--/.module-body-->
 					</div><!--/.module-->
