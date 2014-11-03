@@ -12,7 +12,8 @@ class InvestmentDeclarationsController < ApplicationController
     end
 
     @declarations = current_user.employee.investment_declarations
-  
+    @sections = @declarations.map(&:general_investment).map(&:section_declaration).uniq
+    #raise @sections.inspect
   #adding data to payroll master table @pattabhi  
   if current_user.employee.salary.present?
     unless current_user.employee.pay_roll_masters.present? 

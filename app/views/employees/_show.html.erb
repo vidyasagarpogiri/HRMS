@@ -78,7 +78,7 @@
        </div> 
        <div class="span5">	
          <div class="control-group">
-           <label class="control-label" for="basicinput"><strong>Shift: </strong> <%= @employee.shift.name %></label>  
+           <label class="control-label" for="basicinput"><strong>Shift: </strong> <%= @employee.shift.name if @employee.shift.present? %></label>  
          </div>
        </div> 				
     	 </div>	<hr>					                                								                                						                           
