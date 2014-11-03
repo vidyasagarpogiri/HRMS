@@ -468,12 +468,17 @@ class SalariesController < ApplicationController
     @package = Axlsx::Package.new # will create an Axlsx package object
     @workbook = @package.workbook # will create a workbook of Alxls object
     @payslips = Payslip.where(:month => @month, :year => @year)
+   # @workbook.styles do |style|
+    #  center = style.add_style alignment:  {horizontal: :center}, fg_color: "0000FF", sz: 15, b: true
     @workbook.add_worksheet(name: "Bank Statement") do |sheet| # will crate a sheet in the work book
+      #sheet.add_row ["Bank Details and Netpay of Employees"] , style: center
+      #sheet.merge_cells "A1:F1"
       sheet.add_row ["Account Number", "Employee_name","Netpay","Month"] # will add a row to the sheet
       @payslips.each do |payslip|
         sheet.add_row [payslip.employee.account_number, payslip.employee.full_name, payslip.netpay,Date::MONTHNAMES[payslip.month]]
       end
     end
+    #end
     @package.serialize("#{Rails.root}/public/#{@month_name}-#{@year}-bank_statement.xlsx") #will create and save an excel sheet with given details
     #@package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first

@@ -18,6 +18,7 @@ class Employee < ActiveRecord::Base
   has_many :experiences
 	has_many :email_ettiquities, :class_name => "EmailEttiquitie"
   has_many :payslips
+  belongs_to :shift
   
   has_many :pay_roll_masters
 

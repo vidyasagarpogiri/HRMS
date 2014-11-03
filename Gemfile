@@ -86,6 +86,9 @@ gem 'rufus-scheduler'
 
 gem 'prawn'
 
+# for date picker
+gem 'jquery-timepicker-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
