@@ -1,6 +1,4 @@
-
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -11,7 +9,7 @@ table, th, td {
     border-collapse: collapse;
 }
 th, td {
-    padding: 5px;
+    padding: 2px;
     text-align: left;
 }
 </style>
@@ -19,9 +17,11 @@ th, td {
 
 <body>
 Hello Team, 
-           <p>there is a job opening in our Amzur Technologies and below is the detailed description of the job requirement and experience.</p><br>
- <h3 >Job Opening Details</h3>
-<table style="width:100%;"> 
+           <p>there is a job opening in our Amzur Technologies and below is the detailed description of the job requirement and experience, for more info <%= link_to "Click Here", recruitment_url(@recruitment) %></p><br>
+           
+                     
+<h3 >Job Opening Details:</h3>
+<table style="width:40%;"> 
   <tr>
     <td><b>Job Code:</b></td>
     <td><%= @recruitment.jobcode %></td>
@@ -41,8 +41,11 @@ Hello Team,
     <td><b>Job Link:</b></td>
     <td><%= @recruitment.link %></td>
     </tr>
+    
 </table>
 
 </body>
 </html>
+
+  
 

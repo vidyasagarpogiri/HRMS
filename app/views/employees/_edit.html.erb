@@ -208,8 +208,17 @@
 										  </div>
 									  </div>	
 								 </div>
-						   </div>	
-						   					
+						     <div class="span5">	
+								<div class="control-group">
+									<label class="control-label" for="basicinput">Shift</label>
+									<div class="controls">
+                   <%= f.collection_select :shift_id, Shift.all, :id, :name, { :prompt => "Please Select" }, { :class => "shifts span8 form-control", :id => "disabledSelect2" } %> 
+                    
+                   <span class="help-block with-errors"></span> 
+									</div>
+								</div>
+							</div>	 
+						    </div>			
 									 <button type="submit" class="btn btn-success">Save & Continue</button><br>											
 							  <% end %> 
 							</div>
@@ -244,24 +253,24 @@ $(function() {
     });
   });
 
-            var designations = $('.designation').html();
-            
-            $('#disabledSelect1').change(function() {
-             var department = $('#disabledSelect1 :selected').text();
-             var  options = $(designations).filter("optgroup[label='"+department+"']").html();
-            
-             
-              if (options) {
-                $('.designation').html(options);
-                $('.designation').parent().show();
-                }
-              else {
-                $('.designation').empty();
-                $('.designation').parent().hide();
-                }
-            
-            });
-            
+    var designations = $('.designation').html();
+    
+    $('#disabledSelect1').change(function() {
+     var department = $('#disabledSelect1 :selected').text();
+     var  options = $(designations).filter("optgroup[label='"+department+"']").html();
+    
+     
+      if (options) {
+        $('.designation').html(options);
+        $('.designation').parent().show();
+        }
+      else {
+        $('.designation').empty();
+        $('.designation').parent().hide();
+        }
+    
+    });
+    
             
     var grades =  $('.grades').html();
     $('.designation').change(function() {

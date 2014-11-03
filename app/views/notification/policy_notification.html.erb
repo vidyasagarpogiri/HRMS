@@ -5,9 +5,10 @@
   <body>
     Hello Team, 
            <p>The primary motive of Amzur Technologies is to make it's employees comfortable with the working environment, knowledgeable about the on going /New policies and practices. We would like to bring to your notice that we are launching/modifying couple of policies.Below are the new policies.</p>
-           
+    
     <div> <b>Policy Title: </b><%= @policy.title %> </div>
     <div> <b>Policy Description :</b><%= raw @policy.details %> </div> 
-   <!--- <div> <b>Attachment:</b><%= @policy.document %></div> --->
+    <%= link_to "Click here for more info", policy_url(@policy) %>
+   
   </body>
 </html>
