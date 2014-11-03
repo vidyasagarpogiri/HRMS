@@ -73,16 +73,23 @@
      <div class ="row-fluid">
         <div class="span5">		
           <div class="control-group">
-            <label class="control-label" for="basicinput"><strong>Employment Status: </strong><%= @employee.employment_status %> </label>  
+            <label class="control-label" for="basicinput"><strong>Employment Status: </strong><%= @employee.employment_status if @employee.employment_status.present? %> </label>  
           </div> 
        </div> 
        <div class="span5">	
          <div class="control-group">
            <label class="control-label" for="basicinput"><strong>Shift: </strong> <%= @employee.shift.name if @employee.shift.present? %></label>  
-         </div>
+         </div>                       
        </div> 				
     	 </div>	<hr>					                                								                                						                           
-          
+       
+       <div class ="row-fluid">
+        <div class="span5">		
+          <div class="control-group">
+            <label class="control-label" for="basicinput"><strong>Device Id: </strong><%= @employee.devise_id if @employee.devise_id.present? %> </label>  
+          </div> 
+       </div> 
+     </div>   
 </div><!--/.module-body-->                               
 
 

@@ -36,11 +36,23 @@
               <td><%= @salary.basic_salary %></td>
               <td><%= monthly(@salary.basic_salary) %></td>
             </tr>
-            <tr>
-              <th>FBP</th>
-              <td><%= fbp_allowance(@allowances,@salary.basic_salary) %></td>
-              <td><%= (fbp_allowance(@allowances,@salary.basic_salary)/12).round(2) %></td>
-            </tr>
+            <% if @allowances.present? %>
+              <% allowance_total = 0.0 %>
+				      <% @allowances.each do |allowance| %>																	
+	             <tr>		 								             
+					       <th><%= allowance.allowance_name %></th> 													   								          								              
+                 <% if allowance.value.present? %>													 
+                  <td><%= allowance_value(allowance.value, @salary.basic_salary)  %></td>
+                  <td><%= monthly(allowance_value(allowance.value, @salary.basic_salary))  %></td>
+                  <% allowance_total += allowance_value(allowance.value, @salary.basic_salary) %>
+                 <% else %>
+                 <td><%= allowance.allowance_value %></td>
+                 <td><%= monthly(allowance.allowance_value) %></td>
+                 <% allowance_total += allowance.allowance_value %>
+                 <% end %>
+               </tr>
+              <% end %>
+              <% end %>
             <tr>            
               <th>Special Allowance</th>
 				       <%  if @salary.special_allowance.present? %>
@@ -53,8 +65,8 @@
 				    				    
 				    <tr style="color:black">
 		          <th>Total Fixed Cash</th>	
-		          <td><%= (@salary.basic_salary) + (@salary.special_allowance) + (fbp_allowance(@allowances,@salary.basic_salary)) %></td>
-		          <td><%= ((@salary.basic_salary + @salary.special_allowance + fbp_allowance(@allowances,@salary.basic_salary))/12).round(2) %> </td>				      
+		          <td><%= (@salary.basic_salary) + (@salary.special_allowance) + allowance_total %></td>
+		          <td><%= ((@salary.basic_salary + @salary.special_allowance + allowance_total)/12).round(2) %> </td>				      
 					  </tr>
 			      
 			      <% if @salary.pf_apply == "true"%>
@@ -80,8 +92,9 @@
 				  
 				    <tr style="color:black">
 		          <th>Total Fixed Compensation</th>	
-		          <td><%= (@salary.pf ) + (@salary.esic) + (@salary.gratuity) %> </td>
-		          <td><%= (monthly(@salary.pf) + monthly(@salary.esic) + monthly(@salary.gratuity)).round(2) %> </td>				      
+		          <% total_compensation = @salary.pf + @salary.esic + @salary.gratuity + @salary.basic_salary + @salary.special_allowance + allowance_total %>
+		          <td><%= total_compensation %> </td>
+		          <td><%= monthly(total_compensation)%> </td>				      
 					  </tr>
 					  
 					   <tr>
