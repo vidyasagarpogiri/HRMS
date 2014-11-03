@@ -212,18 +212,20 @@ class SalariesController < ApplicationController
 
 	# code for payslips genaration - sekhar
 	 
-  def pay_slips_generation
-	  #TODO Have to specify Month and Year 
-	  #TODO NO of Working days
-	  #TODO PT, TDS
-	  
-	    @month = Time.now.month-1
-	    @year = Time.now.year 
-	    @payslips = Payslip.where(:month => @month ,:year => @year)
-        unless @payslips.present?
-	        @salary_percentages = StaticSalary.all
-	        @employees = Employee.where(status: false)
-	        @actual_days = Time.days_in_month(@month,@year)
+  def pay_slips_generation	
+  #PAYSLIP GENERATION  
+    @month = DateTime.now.month-1
+	  @year = DateTime.now.year
+	  if @month == 0
+	    @month = 12
+	    @year = @year - 1 
+	  end
+	  @payslips = Payslip.where(:month => @month ,:year => @year)
+    
+    unless @payslips.present?
+	    @salary_percentages = StaticSalary.all
+	    @employees = Employee.where(status: false)
+	    @actual_days = Time.days_in_month(@month,@year)
 	          @employees.each do |employee|
 	            @salary = employee.salary
 	              if @salary.present?
@@ -252,37 +254,47 @@ class SalariesController < ApplicationController
             @payslips = Payslip.where(:month => @month ,:year => @year)
             @company_payroll = CompanyPayRollMaster.create(:month => Date::MONTHNAMES[@month], :year => @year, :status => CompanyPayRollMaster::GENERATED, :name => current_user.employee.full_name)
         else
-          flash[:notice] = "You Already Generated Payslip With Given Details"
+          flash[:notice] = "You Already Generated Payslip With Given Month"
         end  
 	  end
 	  
 	  def generated_payslips
-	    @payroll_month = Date::MONTHNAMES.index(@payroll_last.month)   
-	    @years = CompanyPayRollMaster.pluck(:year).uniq
-	    @month = Date::MONTHNAMES.index(params[:payslip_view_month])
-	    @payroll_last = CompanyPayRollMaster.where(:month => @month, :year => @year).first
-	    unless @month == 0 && params[:payslip_view_year].to_i == 0
-	      @year = params[:payslip_view_year].to_i
-	      @payslips = Payslip.where(:month => @month ,:year => @year)
-	    else
-	      flash[:notice] = "Enter Proper Month And Year To View Payslip"
-	      #@payslips = Payslip.where(:month => Time.now.month-1 ,:year => Time.now.year)
+      #BY SEARCH BY MONTH AND YEAR
+	  	@month = DateTime.now.month-1
+	    @year = DateTime.now.year
+	    if @month == 0
+	      @month = 12
+	      @year = @year - 1 
 	    end
+	    
+	    @cprm = CompanyPayRollMaster.where(month: Date::MONTHNAMES[@month], year: @year)	
+	    
+	    @enter_month = Date::MONTHNAMES.index(params[:payslip_view_month])
+      @enter_year = params[:payslip_view_year].to_i 
+	    @years = CompanyPayRollMaster.pluck(:year).uniq
+	      
+	    if params["payslip_view_year"] == "0" || params["payslip_view_month"] == "0"
+	      @error = "Please Enter Month and Year"
+	    else
+	      @month_name = Date::MONTHNAMES[@enter_month]
+	      @enter_year = params[:payslip_view_year].to_i
+	      @payslips = Payslip.where(:month => @enter_month ,:year => @enter_year)
+	      @payroll_last  = CompanyPayRollMaster.where(:month => @enter_month, :year => @enter_year)
+	    end	
 	  end
 	  
 	  def payslips_list
-	    #@payrolls = CompanyPayRollMaster.all
-	    #@payroll_years = CompanyPayRollMaster.all
-	    #@payroll_first = CompanyPayRollMaster.first
-	    @payroll_last = CompanyPayRollMaster.last if CompanyPayRollMaster.last.present?
-	    @payroll_month = Date::MONTHNAMES.index(@payroll_last.month) if @payroll_last.present?
-	    @years = CompanyPayRollMaster.pluck(:year).uniq
-      @payslip = Payslip.last
-      if @payslip.present?
-        @month = @payslip.month
-        @year = @payslip.year
-	      @payslips = Payslip.where(:month => @month ,:year => @year)
+	  #BY DEFULT VIEW
+	    @month = DateTime.now.month-1
+	    @year = DateTime.now.year
+	    if @month == 0
+	      @month = 12
+	      @year = @year - 1 
 	    end
+	    @month_name = Date::MONTHNAMES[@month]
+	    @cprm = CompanyPayRollMaster.where(month: @month_name, year: @year)	   
+	    @years = CompanyPayRollMaster.pluck(:year).uniq
+      @payslips = Payslip.where(:month => @month ,:year => @year)
 	  end
 	  
 	  def edit_payslip
