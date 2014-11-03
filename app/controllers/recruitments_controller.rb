@@ -17,7 +17,7 @@ class RecruitmentsController < ApplicationController
       #raise  params.inspect
       #Notification.job_notification(@users,@recruitment).deliver
       Employee.where(status: false).each do |emp|
-      Notification.delay.job_notification(emp.user,@recruitment)
+      #Notification.delay.job_notification(emp.user,@recruitment)
       end 	
        #raise Notification.delay.job_notification(@users,@recruitment).inspect
       redirect_to recruitments_path
@@ -57,7 +57,7 @@ class RecruitmentsController < ApplicationController
   private
   
   def recruitment_params
-     params.require(:recruitment).permit(:jobcode, :title, :description, :link, :status, :file ) 
+     params.require(:recruitment).permit(:jobcode, :title, :description, :link, :status, :file, :job_type) 
   end
   
 end
