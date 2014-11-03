@@ -225,6 +225,8 @@ end
     get 'show_attendance'
     get 'new_attendence_log'
     post 'upload_file'
+    get 'attandence_ws'
+    get 'attendence_log_ws'
   end
  end
 
