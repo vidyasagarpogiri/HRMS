@@ -95,4 +95,26 @@ class EmployeeAttendenceController < ApplicationController
     redirect_to ""
   end
   
+  def emp_show_attendance
+  
+  end
+  
+  def emp_show_attendance_ws
+    last_week = EmployeeAttendence.last.log_date 
+    last_week = EmployeeAttendence.last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?
+    
+    @employeeattendece = EmployeeAttendenceLog.where("time >? and time < ?", last_week.beginning_of_week, last_week.end_of_week)
+    attendance_hash = {"Mon" => {:total_hrs=>0, :logs=>[]}, "Tue" => {:total_hrs=>0, :logs=>[]}, "Wed" => {:total_hrs=>0, :logs=>[]}, "Thu" => {:total_hrs=>0, :logs=>[]}, "Fri" => {:total_hrs=>0, :logs=>[]}} 
+    @employeeattendece.each do|logs|
+      lg ="out"
+      lg ="in" if logs.in_out
+      attendance_hash[logs.time.strftime("%a").to_s][:logs] << "#{logs.time} #{lg}"
+      attendance_hash[logs.time.strftime("%a").to_s][:total_hrs] = EmployeeAttendence.where(:employee_id=>"85", :log_date=>logs.time.strftime("%Y-%m-%d")).first.total_working_hours
+    end
+    
+    respond_to do |format|
+      format.json { render json: attendance_hash }
+    end
+  
+  end  
 end

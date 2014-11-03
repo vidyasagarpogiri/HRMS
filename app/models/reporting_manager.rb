@@ -1,5 +1,5 @@
 class ReportingManager < ActiveRecord::Base
-  has_many :employees
+  belongs_to :employee
   belongs_to :department
   belongs_to :group
   
