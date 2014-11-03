@@ -223,6 +223,8 @@ end
  resources :employee_attendence do
   collection do
     get 'show_attendance'
+    get 'new_attendence_log'
+    post 'upload_file'
   end
  end
 

@@ -1,0 +1,50 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                                             
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+             <div class="module-head" style="background-color: #82B4E6 ">
+                <h3> Form for CSV Uploading</h3>
+              </div>
+              <%= form_for(@employee_attendence_log_file, :url=>"/employee_attendence/upload_file", :html => {:multipart => true}) do |f| %>
+              <div class="module-body">
+                <%= f.file_field :log_file, :onchange =>"validateFiles(this);",:data => {:error => " Please Choose a CSV file to attach"} %>
+                <%= f.submit %>                
+              </div><!-- module body-->
+              <% end %> 
+            </div><!--/.module-->
+          </div><!--/.content-->                    
+        </div><!--/.span9-->                
+     </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
+
+
+<script>
+  function validateFiles(inputFile) {
+  //var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
+  var extErrorMessage = "Only file with extension: .csv is allowed";
+  var allowedExtension = ["CSV" , "csv"] 
+  
+  var extName;
+  var maxFileSize = $(inputFile).data('max-file-size');
+  var sizeExceeded = false;
+  var extError = false;
+  
+  $.each(inputFile.files, function() {
+    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+    extName = this.name.split('.').pop();
+    if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+  });
+  if (sizeExceeded) {
+    //window.alert(maxExceededMessage);
+    $(inputFile).val('');
+  };
+  
+  if (extError) {
+    window.alert(extErrorMessage);
+    $(inputFile).val('');
+  };
+}
+</script>

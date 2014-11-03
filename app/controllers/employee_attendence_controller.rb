@@ -2,11 +2,40 @@ require 'csv'
 class EmployeeAttendenceController < ApplicationController
 
   def index
+    @employeeattendece = EmployeeAttendence.all
+=begin   
    
+=end    
+  end 
+  
+  def show  
+    #@employeeattendece = EmployeeAttendence.all
+  end
+  
+  def show_attendance
+    last_week = EmployeeAttendence.last.log_date
+    @employeeattendece = EmployeeAttendence.where("log_date >? and log_date < ?", last_week.beginning_of_week, last_week.end_of_week)
+  end
+
+  def new_attendence_log
+    @employee_attendence_log_file = EmployeeAttendenceLogFile.new
+  end
+  
+  def upload_file    
+   uploader = AttendenceLogCsvUploader.new
+   uploader.store!(params[:employee_attendence_log_file][:log_file])
+   #raise uploader.path.inspect
+   i=0
+    @temproray_attachment_log=TemporaryAttendenceLog.destroy_all
+    CSV.foreach(uploader.path) do |column|
+    #puts "#{column[2]} - #{column[3]} - #{column[4]}" unless i==0
+    @temproray_attachment_log=TemporaryAttendenceLog.create(device_id: column[2], employee_id: column[3], date_time: column[4]) unless i==0
+    i+=1
+    end      
     @allEmployeesIds = TemporaryAttendenceLog.all.map(&:employee_id).uniq
     @attendanceDates = TemporaryAttendenceLog.all.map(&:date_time)
-    @attendaceDates = attendanceDates.collect {|dt| dt.to_datetime.strftime("%d-%m-%Y") }
-    @attendaceDates = attendaceDates.uniq
+    @attendaceDates = @attendanceDates.collect {|dt| dt.to_datetime.strftime("%d-%m-%Y") }
+    @attendaceDates = @attendaceDates.uniq
 
     @allEmployeesIds.each do|employeeId|
       @attendaceDates.each do|logDate|
@@ -20,41 +49,22 @@ class EmployeeAttendenceController < ApplicationController
               if inFlag
                 inTime = inOutTime
                 inFlag = false
-                EmployeeAttendenceLog.create(employee_attendence_id: emp.id, time:inOutTime , in_out: true)
+                EmployeeAttendenceLog.create(employee_attendence_id: @emp.id, time:inOutTime , in_out: true)
               else
                 timeDiff = TimeDifference.between(inTime, inOutTime).in_each_component
                 totalWorkingHours += timeDiff[:hours]
                 inFlag = true
-                EmployeeAttendenceLog.create(employee_attendence_id: emp.id, time:inOutTime , in_out: false)
+                EmployeeAttendenceLog.create(employee_attendence_id: @emp.id, time:inOutTime , in_out: false)
               end
           end
           is_emp_present = true if totalWorkingHours!=0
-          emp.is_present, emp.total_working_hours =  false, totalWorkingHours
-          emp.save
-        inOutTimingsArray = TemporaryAttendenceLog.where("demployee_id = ? and ate_time >= ? and date_time < ?", employeeId, logDate.to_datetime.at_noon, logDate.to_datetime.tomorrow.at_noon).map(&:date_time)
+          @emp.is_present, @emp.total_working_hours = is_emp_present, totalWorkingHours
+          @emp.save
+        #inOutTimingsArray = TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", employeeId, logDate.to_datetime.at_noon, logDate.to_datetime.tomorrow.at_noon).map(&:date_time)
         puts totalWorkingHours
-      break  
       end
     end
-  end 
-  
-  def show  
-    @employeeattendece = EmployeeAttendence.all
-  end
-  
-  def show_attendance
-    @employeeattendece = EmployeeAttendence.all
-  end
-
-
-  def upload_file    
-    i=0
-    @temproray_attachment_log=TemporaryAttendenceLog.destroy_all
-    CSV.foreach(filePath) do |column|
-    #puts "#{column[2]} - #{column[3]} - #{column[4]}" unless i==0
-    @temproray_attachment_log=TemporaryAttendenceLog.create(device_id: column[2], employee_id: column[3], date_time: column[4]) unless i==0
-    i+=1
-    end    
+    redirect_to ""
   end
   
 end

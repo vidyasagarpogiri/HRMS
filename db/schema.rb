@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101062843) do
+ActiveRecord::Schema.define(version: 20141103051026) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -161,6 +161,12 @@ ActiveRecord::Schema.define(version: 20141101062843) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "attachment_name"
+  end
+
+  create_table "employee_attendence_log_files", force: true do |t|
+    t.string   "log_file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "employee_attendence_logs", force: true do |t|
