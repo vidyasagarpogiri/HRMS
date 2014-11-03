@@ -4,7 +4,7 @@
   </head>
   <body>
     Hello Team, 
-              <p> there is an event which is conducted by Amzur Technologies and the details are given below.</p>
+              <p> there is an event which is conducted by Amzur Technologies and the details are given below,for more info <%= link_to "Click Here", amzur_event_url(@amzurevent) %></p><br>
 
     <div> <b>Event Name: </b><%= @amzurevent.title %> </div>
     <div> <b> Event Date:</b> <%= (@amzurevent.held_on) %> </div>
