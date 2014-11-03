@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103094543) do
+ActiveRecord::Schema.define(version: 20141103132919) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 20141103094543) do
     t.boolean  "in_out"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "devise_id"
   end
 
   create_table "employee_attendences", force: true do |t|
