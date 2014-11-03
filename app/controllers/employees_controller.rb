@@ -225,7 +225,8 @@ class EmployeesController < ApplicationController
   private   
  
   def params_employees
-    params.require(:employee).permit(:employee_id, :title, :first_name, :last_name, :date_of_birth, :gender, :marital_status, :total_experience, :status, :mobile_number, :father_name, :pan, :date_of_confirmation, :date_of_join, :date_of_exit, :department_id, :blood_group_id, :ff_status_id, :designation_id, :grade_id, :role_id, :group_id, :alternate_email, :avatar, :job_location_id, :employment_status, employee_attachments_attributes: [:id, :employee_id, :attachment])
+    params.require(:employee).permit(:employee_id, :title, :first_name, :last_name, :date_of_birth, :gender, :marital_status, :total_experience, :status, :mobile_number, :father_name, :pan, :date_of_confirmation, :date_of_join, :date_of_exit, :department_id, :blood_group_id, :ff_status_id, :designation_id, :grade_id, :role_id, :group_id, :alternate_email, :avatar, :job_location_id, :employment_status, 
+    :shift_id, employee_attachments_attributes: [:id, :employee_id, :attachment])
   end
   
   def attachment_employees

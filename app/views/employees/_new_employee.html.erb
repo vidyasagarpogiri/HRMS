@@ -214,7 +214,17 @@
 									</div>
 								</div>
               </div> 
-           </div> <hr><br>                      
+           
+           <div class="span5">	
+								<div class="control-group">
+									<label class="control-label" for="basicinput">Shift</label>
+									<div class="controls">
+                   <%= f.collection_select :shift_id, Shift.all, :id, :name, { :prompt => "Please Select" }, { :class => "shifts, span12 form-control", :id => "disabledSelect1" } %> 
+                   <span class="help-block with-errors"></span> 
+									</div>
+								</div>
+							</div>
+						</div><hr>                      
 					 <button type="submit" class="btn btn-success">Save & Continue</button><br>										
 						<% end %>
 						</div><!--/.module-body-->
