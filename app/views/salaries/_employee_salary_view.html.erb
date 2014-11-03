@@ -39,6 +39,24 @@
               <td><%= @salary.basic_salary %></td>
               <td><%= monthly(@salary.basic_salary) %></td>
             </tr>
+           <% if @salary.present? %> 
+           <% if @allowances.present? %>
+           <% @allowances.each do |allowance| %>
+            <tr>
+               <th><%= allowance.allowance_name %></th> 
+               <% if allowance.value.present? %>													
+                 <td><%= allowance_value(allowance.value, @salary.basic_salary)  %>
+                 </td>
+                 <td><%= monthly(allowance_value(allowance.value, @salary.basic_salary)) %></td>
+               <% else %>
+                 <td><%= allowance.allowance_value %>
+                 </td>
+                 <td><%= monthly(allowance.allowance_value) %></td>
+               <% end %>	                        										      		
+            </tr>
+            <% end %>
+           <% end %>
+          <% end %>
             <% if @salary.pf_apply == "true"%>
 				    <tr>
 					    <th>PF</th>
@@ -72,8 +90,7 @@
 					  <td><%= @salary.ctc_fixed %></td>
 					  <td><%= monthly(@salary.ctc_fixed) %></td>
 				  </tr>
-				  
-				  			  				  
+				   			  				  
 				  <tr style="color:black;">
 	          <th colspan="3" ><div style="text-align:center">Employer Contribution</div></th>					      
 			    </tr>
@@ -88,48 +105,11 @@
 					  <td><%= @salary.medical_insurance %></td>
 					  <td><%= monthly(@salary.medical_insurance) %></td>
 			    </tr>   
-          <% if @salary.present? %> 
-           <% if @allowances.present? %>
-           <% @allowances.each do |allowance| %>
-            <tr>
-               <th><%= allowance.allowance_name %></th> 
-               <% if allowance.value.present? %>													
-                 <td><%= allowance_value(allowance.value, @salary.basic_salary)  %>
-                 </td>
-                 <td><%= monthly(allowance_value(allowance.value, @salary.basic_salary)) %></td>
-               <% else %>
-                 <td><%= allowance.allowance_value %>
-                 </td>
-                 <td><%= monthly(allowance.allowance_value) %></td>
-               <% end %>	                        										      		
-            </tr>
-            <% end %>
-           <% end %>
-          <% end %>
-          <% if @salary.pf_apply == "true"%>
-				    <tr>
-					    <th>PF Contribution</th>
-					    <td><%= @salary.pf_contribution %></td>
-					    <td><%= monthly(@salary.pf_contribution) %></td>
-				    </tr>
-			    <% end %>
-			   
 				   <tr>			               
             <th>Gratuity</th>
             <td><%= @salary.gratuity %></td>
             <td><%= monthly(@salary.gratuity) %></td>
-          </tr>
-          
-				  <% if @salary.esic_apply == "true"%>
-				    <tr>
-					    <th>ESIC Contribution</th>
-					    <td><%= @salary.esic_contribution %></td>
-					    <td><%= monthly(@salary.esic_contribution) %></td>
-				    </tr>
-				  <% end %>
-			    
-				     
-          <tr>			   				  
+          </tr>			   				  
         </thead>
       </table>
     <!-- /.col-lg-6 (nested) -->

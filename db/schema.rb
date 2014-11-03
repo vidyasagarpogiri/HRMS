@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101062843) do
+ActiveRecord::Schema.define(version: 20141103060521) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 20141101062843) do
   end
 
   create_table "employee_attendences", force: true do |t|
-    t.string   "employee_id"
+    t.integer  "employee_id"
     t.date     "log_date"
     t.boolean  "is_present"
     t.float    "total_working_hours", limit: 24
@@ -255,6 +255,15 @@ ActiveRecord::Schema.define(version: 20141101062843) do
     t.string   "title"
     t.text     "description"
     t.integer  "section_declaration_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "generic_investment_declarations", force: true do |t|
+    t.string   "section"
+    t.string   "title"
+    t.float    "maximum_limit", limit: 24
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -374,6 +383,7 @@ ActiveRecord::Schema.define(version: 20141101062843) do
     t.integer  "month"
     t.integer  "year"
     t.string   "status"
+    t.string   "mode"
   end
 
   create_table "payslips_allowances", force: true do |t|
