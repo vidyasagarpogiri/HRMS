@@ -52,7 +52,6 @@ class SalariesController < ApplicationController
   end
   
   def update
-
     @employee = Employee.find(params[:employee_id])
     @salary = Salary.find(params[:id])
     @allowances = @salary.allowances
