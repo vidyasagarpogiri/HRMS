@@ -57,7 +57,7 @@ class RecruitmentsController < ApplicationController
   private
   
   def recruitment_params
-     params.require(:recruitment).permit(:jobcode, :title, :description, :link, :status, :file ) 
+     params.require(:recruitment).permit(:jobcode, :title, :description, :link, :status, :file, :job_type) 
   end
   
 end

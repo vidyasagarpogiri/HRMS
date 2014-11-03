@@ -1,53 +1,55 @@
 <div class="wrapper">
- <div class="container">
-	<div class="row">
-  <div class="span12">
-		<div class="content">
-
-
-  <div class="module">
-    <div class="module-head">							
-      <h3> Investment Declaration Form</h3>                  
-     </div>
-    <div class="module-body">					                                        
-      <table class="table table-striped table-bordered table-condensed" >
-        <thead>											      
-          <tr>
-            <th class="center">Section</th>
-            <th>Title </th>	
-            <th>Maximum Limit </th>
-            <th>Description</th>
-            <th>Yealy Value</th>	
-            <th>Actions</th>													            									      		
-          </tr>
-        </thead>
-       <% @declarations.each do |dec| %>
-        <tbody>
-          <tr>               
-            <td class="center"><%= dec.general_investment.section_declaration.section if dec.general_investment.section_declaration.present? %></td>
-            <td><%= dec.general_investment.title if dec.general_investment.section_declaration.present?%></td>
-            <td><%= dec.general_investment.section_declaration.maximum_limit  if dec.general_investment.section_declaration.present? %></td>
-            <td><%= dec.general_investment.description if dec.general_investment.section_declaration.present?%></td>
-            <td><%= dec.yearly_value if dec.general_investment.section_declaration.present?%></td>
-            <td>
-          
-           <%= link_to 'Edit', "#editInvestmentForm",  :class => "btn btn-success dec ",   :url => edit_investment_declaration_path(dec), :iid => dec.id, "data-toggle" => "modal", :id => "dec_#{dec.id}"   %>
-          
-		   
-            </td>
-            <% end %>
-          </tr>
-        </tbody>
-      </table>
-    </div>                                                                                                                    
-  </div><!--module-->
-  
-  
-      				</div><!--content-->
-				</div><!--/.span12-->
-			</div><!--/.row-->
-		</div><!--/.container-->
-	</div><!--/.wrapper-->          
+  <div class="container">
+	  <div class="row">
+      <div class="span12">
+		    <div class="content">
+          <div class="module">
+            <div class="module-head">							
+              <h3> Investment Declaration Form</h3>                  
+            </div>
+            
+            <div class="module-body">					                                        
+              <% @sections.each do |section| %>
+                <table class="table" >
+                  <tr>
+                    <td>Section: <%= section.section %></td>
+                    <td>Maximum Limit: <%= section.maximum_limit %></td>
+                    <table class="table table-striped table-bordered table-condensed" >
+                      <thead>											      
+                        <tr>
+                          <th>Title </th>	
+                          <th>Description</th>
+                          <th>Yealy Value</th>	
+                          <th>Actions</th>													            									      		
+                        </tr>
+                      </thead>
+                       <tbody>
+                     <% @declarations.each do |dec| %>
+                      <% if dec.general_investment.section_declaration == section %>
+                     
+                        <tr>               
+                          <td><%= dec.general_investment.title if dec.general_investment.section_declaration.present?%></td>
+                          <td><%= dec.general_investment.description if dec.general_investment.section_declaration.present?%></td>
+                          <td><%= dec.yearly_value if dec.general_investment.section_declaration.present?%></td>
+                          <td>
+                         <%= link_to 'Edit', "#editInvestmentForm",  :class => "btn btn-success dec ",   :url => edit_investment_declaration_path(dec), :iid => dec.id, "data-toggle" => "modal", :id => "dec_#{dec.id}"   %>   
+                          </td>
+                        </tr>
+                     
+                      <% end %>
+                    <% end %>
+                    </tbody>
+                </table>
+                 </tr>
+                </table>
+              <% end %>
+            </div>                                                                                                                    
+          </div><!--module-->
+        </div><!--content-->
+		  </div><!--/.span12-->
+	  </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->          
 
 
    <script type="text/javascript">
