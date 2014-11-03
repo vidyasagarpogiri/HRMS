@@ -4,7 +4,7 @@
   </head>
   <body>
     Hello Team, 
-           <p>We have an announcement for you.</p>
+           <p>We have an announcement for you, for more info <%= link_to "Click Here", announcement_url(@announcement) %></p><br>
            
     <div> <b>Title: </b><%= @announcement.title %> </div>
     <div> <b>Description :</b><%= raw @announcement.description %> </div> 

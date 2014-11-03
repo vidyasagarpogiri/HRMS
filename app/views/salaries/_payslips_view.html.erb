@@ -81,9 +81,15 @@
                 <% if @payroll_last.status == CompanyPayRollMaster::PROCESSING %>
                 <ul class="navigation-btns pull-right">
                    <li><%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success" %></li>
-                  <li><%= link_to "Generate To Bank", salaries_bank_process_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success" %></li>
-                </ul>  
-               <% end %>
+                  <li><%= link_to "Generate To Bank", salaries_bank_process_path(:month => @month, :year => @year), :class => "btn btn-success" %></li> 
+                </ul> 
+                
+                 <% end %> 
+                <% if @payroll_last.status == CompanyPayRollMaster::SENDTOBANK %>
+                <%= link_to "Download Bank Statement","/#{@month_name}-#{@year}-bank_statement.xlsx", :class => "btn btn-success pull-right" %>
+                <% end %>
+                
+               
                <% end %>
 
                   <% elsif @error.present? %>
@@ -115,6 +121,8 @@
   </div><!--/.container-->
 </div><!--/.wrapper-->
 <script>
+// Script for listing months in select box depends on selected year in select box 
+// In this script it will get json data of months from a service and display it in dropdown select box -sekhar
   $(function(){
     $(".payroll_year").change(function(){
       var year = $(this).val();
@@ -126,7 +134,10 @@
     });
   });
 
-<script>
+/*
+ this script contains a change function and it  will submit form every time when a change occurs in fields
+ which are reside in div elements which have  given class attributes
+*/
   $(function(){
     $(".working_days").change(function(){
       $(".payslip-form").submit();
