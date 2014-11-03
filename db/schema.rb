@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 20141101062843) do
   end
 
   create_table "employee_attendences", force: true do |t|
-    t.string   "employee_id"
+    t.integer  "employee_id"
     t.date     "log_date"
     t.boolean  "is_present"
     t.float    "total_working_hours", limit: 24
