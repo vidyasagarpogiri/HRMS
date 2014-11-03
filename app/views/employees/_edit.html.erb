@@ -253,24 +253,24 @@ $(function() {
     });
   });
 
-            var designations = $('.designation').html();
-            
-            $('#disabledSelect1').change(function() {
-             var department = $('#disabledSelect1 :selected').text();
-             var  options = $(designations).filter("optgroup[label='"+department+"']").html();
-            
-             
-              if (options) {
-                $('.designation').html(options);
-                $('.designation').parent().show();
-                }
-              else {
-                $('.designation').empty();
-                $('.designation').parent().hide();
-                }
-            
-            });
-            
+    var designations = $('.designation').html();
+    
+    $('#disabledSelect1').change(function() {
+     var department = $('#disabledSelect1 :selected').text();
+     var  options = $(designations).filter("optgroup[label='"+department+"']").html();
+    
+     
+      if (options) {
+        $('.designation').html(options);
+        $('.designation').parent().show();
+        }
+      else {
+        $('.designation').empty();
+        $('.designation').parent().hide();
+        }
+    
+    });
+    
             
     var grades =  $('.grades').html();
     $('.designation').change(function() {

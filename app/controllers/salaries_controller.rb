@@ -295,6 +295,7 @@ class SalariesController < ApplicationController
 	  end
 	  
 	  def update_payslip
+	   @mode = params[:mode]
 	   @payslip = Payslip.find(params[:id]) 
 	   @salary = @payslip.employee.salary
 	   @payslip_allowances = @payslip.allowances
@@ -318,7 +319,7 @@ class SalariesController < ApplicationController
 	  @total_deducted_allowances_value = deducted_allowances_total(@payslip)
 	  @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value + @payslip.pt.to_f + @payslip.tds.to_f
 	  @net_pay = @gross + @payslip.arrears.to_f - @total_deductions #TODO We have to remove all deduable allowances from here. 
-	  @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
+	  @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance, mode: @mode)
 	  end
 	  
 	  def show_payslip
@@ -454,20 +455,31 @@ class SalariesController < ApplicationController
     redirect_to salaries_payslips_list_path
   end
   
+  
+=begin
+******  sekhar *********
+  this action will take month and year params from resepective link and  
+  will generate payroll excel sheet for given month and year
+=end  
   def bank_process
     @month = params[:month].to_i
     @year = params[:year].to_i
     @month_name = Date::MONTHNAMES[@month]
-    @package = Axlsx::Package.new
-    @workbook = @package.workbook
+    @package = Axlsx::Package.new # will create an Axlsx package object
+    @workbook = @package.workbook # will create a workbook of Alxls object
     @payslips = Payslip.where(:month => @month, :year => @year)
-    @workbook.add_worksheet(name: "Bank Statement") do |sheet|
-      sheet.add_row ["Account Number", "Employee_name","Netpay","Month"]
+   # @workbook.styles do |style|
+    #  center = style.add_style alignment:  {horizontal: :center}, fg_color: "0000FF", sz: 15, b: true
+    @workbook.add_worksheet(name: "Bank Statement") do |sheet| # will crate a sheet in the work book
+      #sheet.add_row ["Bank Details and Netpay of Employees"] , style: center
+      #sheet.merge_cells "A1:F1"
+      sheet.add_row ["Account Number", "Employee_name","Netpay","Month"] # will add a row to the sheet
       @payslips.each do |payslip|
         sheet.add_row [payslip.employee.account_number, payslip.employee.full_name, payslip.netpay,Date::MONTHNAMES[payslip.month]]
       end
     end
-    @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-bank_statement.xlsx")
+    #end
+    @package.serialize("#{Rails.root}/public/#{@month_name}-#{@year}-bank_statement.xlsx") #will create and save an excel sheet with given details
     #@package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
     @payroll_status.update(:status => CompanyPayRollMaster::SENDTOBANK)
