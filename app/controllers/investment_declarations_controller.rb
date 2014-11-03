@@ -1,17 +1,19 @@
 class InvestmentDeclarationsController < ApplicationController
   
   def index
-   # raise params.inspect
+
  
     @general_investments = GeneralInvestment.all
     g_ids = @general_investments.map(&:id)
-    i_ids = InvestmentDeclaration.all.map(&:general_investment_id)
+    i_ids =  current_user.employee.investment_declarations.map(&:general_investment_id)
     remaining_ids = g_ids-i_ids
     remaining_ids.each do |id|
-      InvestmentDeclaration.create(general_investment_id: id, yearly_value: 0, employee_id: current_user.employee.id )
+     current_user.employee.investment_declarations.create(general_investment_id: id, yearly_value: 0)
     end
 
     @declarations = current_user.employee.investment_declarations
+    @sections = @declarations.map(&:general_investment).map(&:section_declaration).uniq
+    #raise @sections.inspect
   #adding data to payroll master table @pattabhi  
   if current_user.employee.salary.present?
     unless current_user.employee.pay_roll_masters.present? 

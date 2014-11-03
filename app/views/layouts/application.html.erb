@@ -42,12 +42,13 @@
       <%= render "shared/ui_header"%>
      
       <%= yield %>
-     <%# debug(params)%>
+     <%= debug(params)%>
    
 
   <div class="footer">
 		<div class="container">			 
 			<b class="copyright">&copy; 2014 AmzurHRm - amzur.com </b> All rights reserved.
+			<%= policy_url(1)%>
 		</div>
 	</div>
 

@@ -19,7 +19,8 @@
                     <li><%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %></li>
                     <li><%= link_to "Delete", recruitment_path(recruitment.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
                   </ul> 
-                <% end %>             
+                <% end %> 
+              <h5>Job Type: <%= recruitment.job_type%></h5>              
               <h5><%= link_to recruitment.link, recruitment.link, :target => "/blank" %></h5>             
               <label class="desc"><%= raw recruitment.description %></label>
               <%= link_to "Continue..", recruitment_path(recruitment), :class => "pt4" %><br>

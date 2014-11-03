@@ -48,12 +48,10 @@
                 </table>
                 </div> 
                  <% else %>
-                  <% if flash[:notice] %>
                     <div class="alert alert-danger alert-dismissable">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      <%= flash[:notice] %>
+                        <b>There is no payslips</b>
                     </div>
-                  <% end %>
                 <% end %>           
               </div>
             </div><!--/.module-->

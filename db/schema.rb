@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141103132919) do
 
+
   create_table "addresses", force: true do |t|
     t.text     "line1"
     t.text     "line"
@@ -430,6 +431,7 @@ ActiveRecord::Schema.define(version: 20141103132919) do
     t.datetime "updated_at"
     t.string   "status"
     t.string   "file"
+    t.string   "job_type"
   end
 
   create_table "reporting_managers", force: true do |t|
