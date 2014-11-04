@@ -238,7 +238,7 @@ class SalariesController < ApplicationController
 	                @total_deducted_allowances_value = deducted_allowances_total(@payslip)
 	                @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value #TODO need add PT and TDS
 	                @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
-	                @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance)
+	                @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance, :mode => "Bank")
                 end
             end 
             @payslips = Payslip.where(:month => @month ,:year => @year)
@@ -294,7 +294,7 @@ class SalariesController < ApplicationController
 	  end
 	  
 	  def update_payslip
-	   @mode = params[:mode]
+	   @mode = params[:mode_value]
 	   @payslip = Payslip.find(params[:id]) 
 	   @salary = @payslip.employee.salary
 	   @payslip_allowances = @payslip.allowances
@@ -445,7 +445,7 @@ class SalariesController < ApplicationController
       end  
 =end  
 
-    @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-payslips.xlsx")
+    @package.serialize("#{Rails.root}/public/Payroll/#{@month_name}-#{@year}-payslips.xlsx")
     #@package.serialize("#{Rails.root}/public/#{@month_name}-#{@year}-payslips.xlsx")
     @mail = current_user.email
     Notification.send_payslip(@mail,@month_name,@year).deliver
@@ -466,9 +466,10 @@ class SalariesController < ApplicationController
     @month_name = Date::MONTHNAMES[@month]
     @package = Axlsx::Package.new # will create an Axlsx package object
     @workbook = @package.workbook # will create a workbook of Alxls object
-    @payslips = Payslip.where(:month => @month, :year => @year)
+    @payslips_with_out_mode = Payslip.where(:month => @month, :year => @year)
+    @payslips = @payslips_with_out_mode.where(:mode => "Bank")
    # @workbook.styles do |style|
-    #  center = style.add_style alignment:  {horizontal: :center}, fg_color: "0000FF", sz: 15, b: true
+    #  center = style.add_style alignment:  {horizontal: :center}, fg_color: "1254FF", sz: 14, b: true, bg_color: "abc123"
     @workbook.add_worksheet(name: "Bank Statement") do |sheet| # will crate a sheet in the work book
       #sheet.add_row ["Bank Details and Netpay of Employees"] , style: center
       #sheet.merge_cells "A1:F1"
@@ -483,7 +484,7 @@ class SalariesController < ApplicationController
     @netpay_total = total_netpay(@payslips)
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
     @payroll_status.update(:status => CompanyPayRollMaster::SENDTOBANK, :total_netpay => @netpay_total)
-    @payslips.each do |payslip|
+    @payslips_with_out_mode.each do |payslip|
       payslip.update(:status => "PROCESS")
     end
     redirect_to salaries_payslips_list_path
@@ -536,14 +537,21 @@ class SalariesController < ApplicationController
 	    @year = @year - 1 
 	  end
 	  @payslips = Payslip.where(:month => @month ,:year => @year)
-     respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = ReportPdf.new(@payslips)
-        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+	  @payslips.each do |payslip| 
+	    file_path = "#{Rails.root}/public/PAYSLIPS/#{payslip.year}/#{payslip.month}"
+      unless File.exist?(file_path)
+        FileUtils.mkdir_p file_path 
+      end 
+      
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = ReportPdf.new(payslip)
+          pdf.render_file File.join(file_path, "#{payslip.employee.id}.pdf")
+          raise File.join(file_path, "#{payslip.employee.id}.pdf").inspect
+        end
       end
-    end
-
+	  end
 	end
 	
 	
