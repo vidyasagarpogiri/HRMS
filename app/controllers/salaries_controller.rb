@@ -446,7 +446,7 @@ class SalariesController < ApplicationController
 =end  
 
     @package.serialize("#{Rails.root}/public/PAYSLIPS/#{@month_name}-#{@year}-payslips.xlsx")
-    #@package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
+    #@package.serialize("#{Rails.root}/public/#{@month_name}-#{@year}-payslips.xlsx")
     @mail = current_user.email
     Notification.send_payslip(@mail,@month_name,@year).deliver
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
@@ -480,8 +480,9 @@ class SalariesController < ApplicationController
     #end
     @package.serialize("#{Rails.root}/public/#{@month_name}-#{@year}-bank_statement.xlsx") #will create and save an excel sheet with given details
     #@package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
+    @netpay_total = total_netpay(@payslips)
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
-    @payroll_status.update(:status => CompanyPayRollMaster::SENDTOBANK)
+    @payroll_status.update(:status => CompanyPayRollMaster::SENDTOBANK, :total_netpay => @netpay_total)
     @payslips.each do |payslip|
       payslip.update(:status => "PROCESS")
     end

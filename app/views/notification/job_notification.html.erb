@@ -16,10 +16,21 @@ th, td {
 </head>
 
 <body>
-Hello Team, 
-           <p>there is a job opening in our Amzur Technologies and below is the detailed description of the job requirement and experience, for more info <%= link_to "Click Here", recruitment_url(@recruitment) %></p><br>
-           
-                     
+
+Dear All,<br>
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the past we have seen that employee referral constitutes a very healthy source towards our recruitment efforts. Many of you have experienced the process and now have people you referred as co-workers.<br><br>
+ 
+<p>To make the whole process more rewarding and to define various processes, we are encourage ‘Bring Your Buddy’ – Employee Referral.</p><br>
+  
+<p>Process for referrals:</p><br>
+Any CV being referred by an Amzur employee should be sent to referral@amzur.com with mention of the position for which the candidate is being referred.
+It will be great if you can fill the Reference Rating Form (Will share across with you all). It helps us understand the candidate’s strengths & weaknesses better.<br><br>
+
+"Jump in and grab the opportunity to claim your referral award for the hot vacancies."<br><br>
+
+<p>For more info <%= link_to "Click Here", recruitment_url(@recruitment) %></p><br>
+                               
 <h3 >Job Opening Details:</h3>
 <table style="width:40%;"> 
   <tr>
@@ -30,6 +41,11 @@ Hello Team,
   <tr>
     <td><b>Job Title:</b></td>
     <td> <%= @recruitment.title %></td>
+    </tr>
+  <br>
+  <tr>
+    <td><b>Job Type:</b></td>
+    <td> <%= raw @recruitment.job_type %></td>
     </tr>
   <br>
   <tr>
