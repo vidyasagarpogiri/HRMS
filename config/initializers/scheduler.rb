@@ -6,6 +6,7 @@ require 'active_record'
 #singleton @pattabhi
 scheduler = Rufus::Scheduler.singleton
 
+=begin
 scheduler.cron '0 0 7 * *'  do 
    #puts "hello"
 end
@@ -21,6 +22,26 @@ scheduler.every '24h' do
 end
 
 scheduler.every '10s' do
-  #puts " hello "
+  puts " hello "
 end
+=end
 
+ scheduler.cron '5 0 * *	*	' do    # This scheduler will run at midnight 12:05 everyday for birthday mail  
+   	
+  #scheduler.every '24h' do   
+  #puts "happy bday" 
+    
+	  
+  @employees = Employee.all
+  @employees.each do |employee|
+    if(Date.today.month == employee.date_of_birth.to_date.month)
+       if(Date.today.mday == employee.date_of_birth.to_date.mday)
+        #raise employee.full_name.inspect
+         Employee.where(status: false).each do |emp|
+         #raise emp.inspect
+         Notification.birthday_notification(emp.user,employee).deliver
+         end
+       end
+     end                        
+  end
+end
