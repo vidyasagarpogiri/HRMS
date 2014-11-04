@@ -7,10 +7,10 @@ class ReportPdf < Prawn::Document
     header
     employee_details
     employee_salary
-    total_salary
-    net_pay
-    genral_info
-    footer
+    #total_salary
+    #net_pay
+    #genral_info
+    #footer
     #text_content
     table_content
   end
@@ -30,9 +30,9 @@ class ReportPdf < Prawn::Document
     draw_text "EMP CODE:", :at => [@x+50, @y-120] #2
     draw_text "0891", :at => [@x+150, @y-120]
     draw_text "DEPARTMENT:", :at => [@x+300, @y-120]
-    draw_text "Development", :at => [@x+400, @y-120]
+    draw_text "#{@payslip.employee.department.department_name if @payslip.employee.department.present? }", :at => [@x+400, @y-120]
     draw_text "NAME:", :at => [@x+50, @y-140] #3
-    draw_text "BALA", :at => [@x+150, @y-140]
+    draw_text "#{@payslip.employee.full_name}", :at => [@x+150, @y-140]
     draw_text "PF No:", :at => [@x+300, @y-140]
     draw_text "8328213", :at => [@x+400, @y-140]
     draw_text "LOCATION:", :at => [@x+50, @y-160] #4
@@ -59,74 +59,70 @@ class ReportPdf < Prawn::Document
   
     draw_text "BASIC:", :at => [@x+50, @y-260] #1
     draw_text "10000", :at => [@x+150, @y-260]
-    draw_text "TDS:", :at => [@x+300, @y-260]
-    draw_text "400", :at => [@x+400, @y-260]
-    draw_text "HRA:", :at => [@x+50, @y-280] #2
-    draw_text "2000", :at => [@x+150, @y-280]
-    draw_text "PT:", :at => [@x+300, @y-280]
-    draw_text "100", :at => [@x+400, @y-280]
-    draw_text "HRA:", :at => [@x+50, @y-300] #3
-    draw_text "2000", :at => [@x+150, @y-300]
-    draw_text "PT:", :at => [@x+300, @y-300]
-    draw_text "100", :at => [@x+400, @y-300]
-    draw_text "HRA:", :at => [@x+50, @y-320] #4
-    draw_text "2000", :at => [@x+150, @y-320]
-    draw_text "PT:", :at => [@x+300, @y-320]
-    draw_text "100", :at => [@x+400, @y-320]
-    draw_text "HRA:", :at => [@x+50, @y-340] #5
-    draw_text "2000", :at => [@x+150, @y-340]
-    draw_text "HRA:", :at => [@x+50, @y-360] 
-    draw_text "2000", :at => [@x+150, @y-360]
-    draw_text "HRA:", :at => [@x+50, @y-380] #6
-    draw_text "2000", :at => [@x+150, @y-380]
-    draw_text "HRA:", :at => [@x+50, @y-400] 
-    draw_text "2000", :at => [@x+150, @y-400]
+    
+    
+    #non -dedcutable allowances
+    @z = @y-260
+    @payslip.allowances.each do |allowance|
+      draw_text "#{allowance.allowance_name}", :at => [@x+50, @z-20] #2
+      draw_text "#{allowance.total_value}", :at => [@x+150, @z-20] 
+      @z = @z-20
+    end
+    
+    #draw_text "TDS:", :at => [@x+300, @y-260]
+    #draw_text "400", :at => [@x+400, @y-260]
+    
+   total_salary(@z)
    
   end
   
-  def total_salary
+  def total_salary(z)
+  @z= z
     stroke_color "000000"
     fill_color "D1D0BD"
     stroke do
-      fill_and_stroke_rectangle [@x+10, @y-420], 520, 20 
+      fill_and_stroke_rectangle [@x+10, @z-20], 520, 20 
     end
     fill_color "000000"
     font("Times-Roman") do
-      draw_text "TOTAL:", :at => [@x+50, @y-435]
-      draw_text "100000", :at => [@x+150, @y-435]
-      draw_text "TOTAL:", :at => [@x+300, @y-435]
-      draw_text "1000", :at => [@x+400, @y-435]
+      draw_text "TOTAL:", :at => [@x+50, @z-35]
+      draw_text "100000", :at => [@x+150, @z-35]
+      draw_text "TOTAL:", :at => [@x+300, @z-35]
+      draw_text "#{@payslip.total_deductions}", :at => [@x+400, @z-35]
     end
+    net_pay(@z)
   end
   
-  def net_pay
+  def net_pay(z)
     stroke_color "000000"
     fill_color "ADD6FF"
     stroke do
-      fill_and_stroke_rectangle [@x+10, @y-460], 520, 20 
+      fill_and_stroke_rectangle [@x+10, z-60], 520, 20 
     end
     fill_color "000000"
     font("Times-Roman") do
-      draw_text "NET PAY SALARY:", :at => [@x+50, @y-475]
-      draw_text "38765", :at => [@x+150, @y-475]    
-      draw_text "(Rupees In words)", :at => [@x+200, @y-475] 
+      draw_text "NET PAY SALARY:", :at => [@x+50, z-75]
+      draw_text "38765", :at => [@x+150, z-75]    
+      draw_text "(Rupees In words)", :at => [@x+200, z-75] 
     end
+    genral_info(z)
   end   
   
-  def genral_info    
-      draw_text "Computer generated print, Hence sign not required ", :at => [@x+10, @y-530]      
+  def genral_info(z)
+      draw_text "Computer generated print, Hence sign not required ", :at => [@x+10, z-130]
+      footer(z)      
   end     
   
-  def footer
+  def footer(z)
     stroke_color "000000"
     fill_color "0047B2"
     stroke do
-      fill_and_stroke_rectangle [@x+10, @y-550], 520, 40 
+      fill_and_stroke_rectangle [@x+10, z-150], 520, 40 
     end
     fill_color "ffffff"
     font("Times-Roman") do    
-      draw_text "Amzur Technologies (I) Private Limited, 9-29-22, Pioneer Sankar Shantiniketan, Balaji Nagar, Siripuram, ", :at => [@x+20, @y-565]
-      draw_text "Visakhaptnam. Tel: +91-891-6451882", :at => [@x+20, @y-580]      
+      draw_text "Amzur Technologies (I) Private Limited, 9-29-22, Pioneer Sankar Shantiniketan, Balaji Nagar, Siripuram, ", :at => [@x+20, z-165]
+      draw_text "Visakhaptnam. Tel: +91-891-6451882", :at => [@x+20, z-180]      
     end
   end
   
