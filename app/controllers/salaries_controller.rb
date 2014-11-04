@@ -361,33 +361,69 @@ class SalariesController < ApplicationController
     @month = params[:month].to_i
     @year = params[:year].to_i
     @month_name = Date::MONTHNAMES.index(@month)
-    #details_array = Array.new
-    details_array = ["Employee-id", "Employee Name", "Department", "Basic"]
-    allowances_array = StaticAllowance.all.pluck(:name)
-    details_array << allowances_array
-    details_array.flatten! 
-    details_array
+    
+    employee_basic_array = ["SL #", "MONTH", "Emp. NAME", "DOJ", "STATUS", "DESIGNATION", "DEPARTMENT"]
+    salary_array = ["GROSS", "Per Month", "Actual Per Month", "Actual Days", "Working Days", "BASIC"]
+    non_deductable_allowances_array = StaticAllowance.where(is_deductable: false).pluck(:name)
+    other_salary_array = ["Spcl Allowance", "Arrears", "Gross Pay"]
+    deducations = ["PF", "ESIC", "PT", "TDS"]
+    deductable_allowances_array = StaticAllowance.where(is_deductable: true).pluck(:name)
+    netpay_array = ["total_deducations", "NetPay"]
+    
+    total_array = [employee_basic_array, salary_array, non_deductable_allowances_array, other_salary_array, deducations,  deductable_allowances_array, netpay_array]
+    total_array.flatten!
+    
     @package = Axlsx::Package.new
     @workbook = @package.workbook
     @payslips = Payslip.where(:month => @month, :year => @year)
     #raise @payslips.inspect
     @workbook.add_worksheet(name: "Payslips") do |sheet|
-      #sheet.add_row details_array 
-       @payslips.each do |payslip|
+      sheet.add_row total_array
+      i = 1
+      
+      @payslips.each do |payslip|
+        a = [i, "#{payslip.month}-#{payslip.year}", payslip.employee.full_name, payslip.employee.date_of_join, payslip.employee.employment_status, payslip.employee.designation.designation_name, payslip.employee.department.department_name, payslip.employee.salary.gross_salary, payslip.employee.salary.gross_salary/12, payslip.gross_salary, payslip.no_of_working_days, payslip.working_days, payslip.basic_salary ]
+        b = []
+        
+        non_deductable_allowances_array.each do |allowance|
+          c= 0
+          payslip.allowances.where(is_deductable: false).each do |p_allowance|
+            if allowance == p_allowance.allowance_name
+              b << p_allowance.total_value
+              c = 1
+            end
+          end
+          if c == 0
+            b << 0
+          end
+        end #non -deductabke end 
+        
+        #other_salary = []
+        c=  a << b 
+        c.flatten!
+        sheet.add_row c
+        i = i+1 
+      end #payslip end
+        
+       
+      end #workbook end
+=begin
+       
        #sheet.add_row 
         values_array = [payslip.employee.employee_id, payslip.employee.full_name, payslip.employee.department.department_name, payslip.basic_salary]
          if payslip.allowances.present?
           payslip.allowances.each do |allowance|
            details_array.push allowance.allowance_name
            values_array.push allowance.total_value
-           #sheet.add_row ["#{allowance.allowance_name}", allowance.total_value]
+           sheet.add_row ["#{allowance.allowance_name}", allowance.total_value]
           end
          end
-      end    
-    end
-    @package.serialize("/home/sekhar/#{@month_name}-#{@year}-payslips.xlsx")
+      end  
+=end  
+    
+    @package.serialize("/home/etekidev/Desktop/payslip222.xlsx")
    # @mail = current_user.email
-    Notification.send_payslip(@mail).deliver
+    #Notification.send_payslip(@mail).deliver
     @payroll_status = CompanyPayRollMaster.last.update(:status => CompanyPayRollMaster::PROCESSING)
     redirect_to salaries_payslips_list_path
   end
