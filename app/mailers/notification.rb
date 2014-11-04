@@ -32,7 +32,7 @@ class Notification < ActionMailer::Base
 	    @recruitment = recruitment
 		  #raise @recruitment.inspect
       #users.each do |user|
-		  mail(:to => user.email, :subject => "New Job Opening for #{@recruitment.title}.")
+		  mail(:to => user.email, :subject => "Bring Your Buddy - Employee Referral - New Job Opening for #{@recruitment.title}.")
 	  end
     
     def announcement_notification(user,announcement)
