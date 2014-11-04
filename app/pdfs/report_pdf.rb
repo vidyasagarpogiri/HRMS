@@ -9,6 +9,8 @@ class ReportPdf < Prawn::Document
     employee_salary
     total_salary
     net_pay
+    genral_info
+    footer
     #text_content
     table_content
   end
@@ -79,7 +81,7 @@ class ReportPdf < Prawn::Document
     draw_text "2000", :at => [@x+150, @y-380]
     draw_text "HRA:", :at => [@x+50, @y-400] 
     draw_text "2000", :at => [@x+150, @y-400]
-    
+   
   end
   
   def total_salary
@@ -109,7 +111,23 @@ class ReportPdf < Prawn::Document
       draw_text "38765", :at => [@x+150, @y-475]    
       draw_text "(Rupees In words)", :at => [@x+200, @y-475] 
     end
-  end    
+  end   
+  
+  def genral_info    
+      draw_text "Computer generated print, Hence sign not required ", :at => [@x+50, @y-540]      
+  end     
+  
+  def footer
+    stroke_color "000000"
+    fill_color "002E8A"
+    stroke do
+      fill_and_stroke_rectangle [@x+10, @y-460], 520, 20 
+    end
+    fill_color "000000"
+    font("Times-Roman") do    
+      draw_text "Amzur Technologies (I) Private Limited, 9-29-22, Pioneer Sankar Shantiniketan, Balaji Nagar, Siripuram, Visakhaptnam. Tel: +91-891-6451882", :at => [@x+50, @y-565]      
+    end
+  end
   
   def text_content
     stroke_axis
@@ -120,12 +138,7 @@ class ReportPdf < Prawn::Document
        horizontal_rule
        vertical_line 100, 300, :at => 50
        horizontal_line 200, 500, :at => 150
-     end
-
-   
- 
-   
-  
+     end        
   end
  
   def table_content
@@ -135,8 +148,8 @@ class ReportPdf < Prawn::Document
    
   end
  
-  def product_rows
+  def product_rows  
   
-    end
+  end
 
 end
