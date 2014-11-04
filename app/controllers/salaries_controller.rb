@@ -456,7 +456,6 @@ class SalariesController < ApplicationController
     @package.serialize("/home/sekhar/#{@month_name}-#{@year}-bank_statement.xlsx")
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
     @payroll_status.update(:status => CompanyPayRollMaster::SENDTOBANK)
->>>>>>> 1b6bc7b64edb0f29aab46a9829ffe0a9deab2f34
     redirect_to salaries_payslips_list_path
   end
 #---------------------------------
