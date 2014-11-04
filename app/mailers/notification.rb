@@ -59,9 +59,9 @@ class Notification < ActionMailer::Base
     end
     
     def send_payslip(mail,month_name,year)
-       attachments.inline["payslip.xlsx"] = File.read("#{Rails.root}/public/PAYSLIPS/#{month_name}-#{year}-payslips.xlsx")
+       attachments.inline["payroll.xlsx"] = File.read("#{Rails.root}/public/Payroll/#{month_name}-#{year}-payslips.xlsx")
        #attachments.inline["payslip.xlsx"] = File.read("#{Rails.root}/public/#{month_name}-#{year}-payslips.xlsx")
-       mail(:to => mail, :subject => "Payslips of #{month_name}-#{year}")
+       mail(:to => mail, :subject => "Payroll for #{month_name}-#{year}")
     end
      
 

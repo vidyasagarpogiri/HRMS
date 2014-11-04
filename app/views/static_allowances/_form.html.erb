@@ -18,7 +18,7 @@
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="basicinput" data-error ="Please Enter Select value" required>Allowance Value Type</label>
-									<div class="controls">
+									<div class="controls allowance_select">
 										 <select name="allowance_type">
 										    <option value="1">Percentage</option>
 										    <option value="2">value</option>
@@ -60,8 +60,10 @@
             <% unless @allowance.new_record? %>
               <% if @allowance.percentage.present? %>
                 $("#valueofallowance").val('<%=  @allowance.percentage %>');
+                $(".allowance_select select").val("1");
               <% else %>
                 $("#valueofallowance").val('<%=  @allowance.value %>');
+                $(".allowance_select select").val("2");
               <% end %>
             <% end %>
           });
