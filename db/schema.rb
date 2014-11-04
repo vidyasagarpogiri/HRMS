@@ -270,15 +270,6 @@ ActiveRecord::Schema.define(version: 20141104053050) do
     t.datetime "updated_at"
   end
 
-  create_table "generic_investment_declarations", force: true do |t|
-    t.string   "section"
-    t.string   "title"
-    t.float    "maximum_limit", limit: 24
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "grades", force: true do |t|
     t.string   "value"
     t.datetime "created_at"

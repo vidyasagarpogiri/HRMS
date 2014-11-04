@@ -2,7 +2,6 @@
  <%= render 'employees/my_info'%>
 </div><!--/.module --> 
 
-<br><br>
 
 <div class="module">
   <div class="module-head">							
@@ -23,8 +22,7 @@
     <i class="glyphicon glyphicon-sort btn" style="margin-left:300px;"></i> <br>
   </div><!--/.module-body -->
 </div><!--/.module -->      
-                                
-<br><br>                                
+                                                           
                                 
 <div class="module">
   <div class="module-head">							
@@ -67,9 +65,12 @@
     </div>
    <% end %>   
   </div><!--/.module-body -->
-</div><!--/.module -->      
-   
-   
+</div><!--/.module -->  
+
+<div class="module">
+  <%= render 'employee_attendence/my_login_out'%>  
+</div><!--/.module -->          
+      
 <script type="text/javascript">
   $("#test tr:nth-child(n+5)").hide()
     $('.btn').click(function(){  

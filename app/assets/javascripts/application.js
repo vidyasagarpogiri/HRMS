@@ -15,6 +15,7 @@
 //= require bootsy
 //= require jquery.remotipart
 //= require twitter/bootstrap
+//= require jquery.timepicker.js
 
 
 //= require_tree .

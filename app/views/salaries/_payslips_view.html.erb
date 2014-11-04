@@ -78,13 +78,13 @@
                   <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
                 <% end %>
                 
-                <% if @payroll_last.status == CompanyPayRollMaster::PROCESSING %>
+                <% if @payroll_last.status == CompanyPayRollMaster::PROCESSING %><br>
                 <ul class="navigation-btns pull-right">
                    <li><%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success" %></li>
                   <li><%= link_to "Generate To Bank", salaries_bank_process_path(:month => @month, :year => @year), :class => "btn btn-success" %></li> 
                 </ul> 
                 
-                 <% end %> 
+                 <% end %><br> 
                 <% if @payroll_last.status == CompanyPayRollMaster::SENDTOBANK %>
                 <%= link_to "Download Bank Statement","/#{@month_name}-#{@year}-bank_statement.xlsx", :class => "btn btn-success pull-right" %>
                 <% end %>
