@@ -19,7 +19,7 @@ class EmployeeAttendenceController < ApplicationController
       if attendance_hash.has_key?(rec.employee_id.to_s)
         attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.total_working_hours 
       else
-        attendance_hash[rec.employee_id.to_s] =  {"Mon" => 0, "Tue" => 0, "Wed" => 0, "Thu" => 0, "Fri" => 0} 
+        attendance_hash[rec.employee_id.to_s] =  {"Mon" => 0, "Tue" => 0, "Wed" => 0, "Thu" => 0, "Fri" => 0, "Sat" => 0, "Sun" => 0} 
         attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a|%d-%m-%Y").to_s] = rec.total_working_hours 
       end
     end
@@ -92,7 +92,7 @@ class EmployeeAttendenceController < ApplicationController
         puts totalWorkingHours
       end
     end
-    redirect_to ""
+    redirect_to "/employee_attendence/show_attendance"
   end
   
   def emp_show_attendance
@@ -105,7 +105,7 @@ class EmployeeAttendenceController < ApplicationController
     last_week = EmployeeAttendence.last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?
     
     @employeeattendece = EmployeeAttendenceLog.where("time >? and time < ?", last_week.beginning_of_week, last_week.end_of_week)
-    attendance_hash = {"Mon" => {:total_hrs=>0, :logs=>[]}, "Tue" => {:total_hrs=>0, :logs=>[]}, "Wed" => {:total_hrs=>0, :logs=>[]}, "Thu" => {:total_hrs=>0, :logs=>[]}, "Fri" => {:total_hrs=>0, :logs=>[]}} 
+    attendance_hash = {"Mon" => {:total_hrs=>0, :logs=>[]}, "Tue" => {:total_hrs=>0, :logs=>[]}, "Wed" => {:total_hrs=>0, :logs=>[]}, "Thu" => {:total_hrs=>0, :logs=>[]}, "Fri" => {:total_hrs=>0, :logs=>[]}, "Sat" => {:total_hrs=>0, :logs=>[]}, "Sun" => {:total_hrs=>0, :logs=>[]}} 
     @employeeattendece.each do|logs|
       lg ="out"
       lg ="in" if logs.in_out
