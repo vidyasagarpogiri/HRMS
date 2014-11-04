@@ -5,8 +5,7 @@ class CreateCompanyPayRollMasters < ActiveRecord::Migration
       t.integer :year
       t.string :status
       t.string :name
-      t.float :total_netpay
-      t.float :total_tds
+
       t.timestamps
     end
   end
