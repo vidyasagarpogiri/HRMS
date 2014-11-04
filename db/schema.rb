@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141103132919) do
 
-
   create_table "addresses", force: true do |t|
     t.text     "line1"
     t.text     "line"
@@ -180,7 +179,7 @@ ActiveRecord::Schema.define(version: 20141103132919) do
   end
 
   create_table "employee_attendences", force: true do |t|
-    t.string   "employee_id"
+    t.integer  "employee_id"
     t.date     "log_date"
     t.boolean  "is_present"
     t.float    "total_working_hours", limit: 24
