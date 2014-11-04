@@ -28,21 +28,21 @@ class ReportPdf < Prawn::Document
     draw_text "ATTD:", :at => [@x+300, @y-100]
     draw_text "30", :at => [@x+400, @y-100]
     draw_text "EMP CODE:", :at => [@x+50, @y-120] #2
-    draw_text "0891", :at => [@x+150, @y-120]
+    draw_text "#{@payslip.employee.employee_id}", :at => [@x+150, @y-120]
     draw_text "DEPARTMENT:", :at => [@x+300, @y-120]
     draw_text "#{@payslip.employee.department.department_name if @payslip.employee.department.present? }", :at => [@x+400, @y-120]
     draw_text "NAME:", :at => [@x+50, @y-140] #3
     draw_text "#{@payslip.employee.full_name}", :at => [@x+150, @y-140]
     draw_text "PF No:", :at => [@x+300, @y-140]
-    draw_text "8328213", :at => [@x+400, @y-140]
+    draw_text "#{@payslip.employee.PFAccountNumber}", :at => [@x+400, @y-140]
     draw_text "LOCATION:", :at => [@x+50, @y-160] #4
-    draw_text "VSKP", :at => [@x+150, @y-160]
+    draw_text "#{@payslip.employee.job_location.address.city}", :at => [@x+150, @y-160]
     draw_text "PAN No:", :at => [@x+300, @y-160]
-    draw_text "fgdgdf435", :at => [@x+400, @y-160]
+    draw_text "#{@payslip.employee.pan}", :at => [@x+400, @y-160]
     draw_text "MODE:", :at => [@x+50, @y-180] #5
-    draw_text "BANK", :at => [@x+150, @y-180]
+    draw_text "#{@payslip.mode}", :at => [@x+150, @y-180]
     draw_text "A/c No:", :at => [@x+300, @y-180]
-    draw_text "6326592335", :at => [@x+400, @y-180]
+    draw_text "#{@payslip.employee.account_number}", :at => [@x+400, @y-180]
     stroke_color "000000"
     fill_color "D1D0BD"
     stroke do
@@ -73,6 +73,7 @@ class ReportPdf < Prawn::Document
     #draw_text "400", :at => [@x+400, @y-260]
     
    total_salary(@z)
+
    
   end
   
@@ -89,6 +90,7 @@ class ReportPdf < Prawn::Document
       draw_text "100000", :at => [@x+150, @z-35]
       draw_text "TOTAL:", :at => [@x+300, @z-35]
       draw_text "#{@payslip.total_deductions}", :at => [@x+400, @z-35]
+
     end
     net_pay(@z)
   end
@@ -104,6 +106,7 @@ class ReportPdf < Prawn::Document
       draw_text "NET PAY SALARY:", :at => [@x+50, z-75]
       draw_text "38765", :at => [@x+150, z-75]    
       draw_text "(Rupees In words)", :at => [@x+200, z-75] 
+
     end
     genral_info(z)
   end   

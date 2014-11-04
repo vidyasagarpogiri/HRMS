@@ -542,11 +542,13 @@ class SalariesController < ApplicationController
       unless File.exist?(file_path)
         FileUtils.mkdir_p file_path 
       end 
+      
       respond_to do |format|
         format.html
         format.pdf do
           pdf = ReportPdf.new(payslip)
           pdf.render_file File.join(file_path, "#{payslip.employee.id}.pdf")
+          raise File.join(file_path, "#{payslip.employee.id}.pdf").inspect
         end
       end
 	  end

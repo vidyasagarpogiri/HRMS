@@ -16,13 +16,13 @@ class WelcomeController < ApplicationController
     #TODO We have to find latest leave based on date . not by created at. #balaraju
     #@latest_leave = @employee.leave_histories.where(:status => "APPROVED").order(created_at: :desc).first
     @latest_leave = @employee.leave_histories.where(status: "APPROVED")
-    
+    if EmployeeAttendence.last.present?
     last_week = EmployeeAttendence.last.log_date 
     
     @myattendence = EmployeeAttendence.where("log_date >? and log_date <= ?", last_week.beginning_of_week, last_week).count.to_s
     @sumofworkinghours = EmployeeAttendence.where("log_date >? and log_date <= ?", last_week.beginning_of_week, last_week).map(&:total_working_hours).sum
     @avg = @sumofworkinghours/5
-    
+    end
    else
     redirect_to employees_path
    end

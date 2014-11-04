@@ -17,7 +17,9 @@
                       <th>Thuesday</th>
                       <th>Wednessday</th>
                       <th>Thursday</th>
-                      <th>Friday</th>                          
+                      <th>Friday</th>
+                      <th>Saturday</th>
+                      <th>Sunday</th>                         
 									  </tr>
 								  </thead>
 								  <tbody>
@@ -29,6 +31,8 @@
 									    <td class="Wed"></td>
 									    <td class="Thu"></td>
 									    <td class="Fri"></td>
+									    <td class="Sat"></td>
+									    <td class="Sun"></td>
                     </tr>
                     <% end %>
                     <tr id= "85">
@@ -38,6 +42,8 @@
 									    <td class="Wed"></td>
 									    <td class="Thu"></td>
 									    <td class="Fri"></td>
+									    <td class="Sat"></td>
+									    <td class="Sun"></td>
                     </tr>
 								  </tbody>
 								</table>
@@ -91,8 +97,8 @@ function call_log_sw(val){
   var log_records = ""
   $.get( "/employee_attendence/attendence_log_ws.json?dt="+val, function( data ) {
     $.each(data, function( key, value ) {     
-          in_out = value[1]==true ? "in" : "out" ;
-          log_records += "<tr><td>"+value[0]+"</td><td> "+ in_out +"</td></tr>";
+          in_out = value[1]==true ? "<i class='icon-circle-arrow-down text-success'></i> in" : "<i class='icon-circle-arrow-up text-error '></i> out " ;
+          log_records += "<tr><td>"+new Date(value[0])+" </td><td> "+ in_out +"</td></tr>";
           $("#show-attendance table#attendance_table tbody").html(log_records);    
      });
   });
@@ -109,7 +115,7 @@ function call_log_sw(val){
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Attendance Logs</h4>
+        <h4 class="modal-title" id="myModalLabel"> <i class="icon-time icon-large"></i> Attendance Logs </h4>
       </div>
       <div class="modal-body show-investment-modal-body" style="min-height:200px;margin-top:-100px;">
          <table class="table table-striped table-bordered table-condensed" id="attendance_table">
