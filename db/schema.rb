@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103132919) do
+ActiveRecord::Schema.define(version: 20141104053050) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 20141103132919) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "total_netpay", limit: 24
+    t.float    "total_tds",    limit: 24
   end
 
   create_table "delayed_jobs", force: true do |t|
@@ -264,6 +266,15 @@ ActiveRecord::Schema.define(version: 20141103132919) do
     t.string   "title"
     t.text     "description"
     t.integer  "section_declaration_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "generic_investment_declarations", force: true do |t|
+    t.string   "section"
+    t.string   "title"
+    t.float    "maximum_limit", limit: 24
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

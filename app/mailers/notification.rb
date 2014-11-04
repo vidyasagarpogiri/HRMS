@@ -32,7 +32,7 @@ class Notification < ActionMailer::Base
 	    @recruitment = recruitment
 		  #raise @recruitment.inspect
       #users.each do |user|
-		  mail(:to => user.email, :subject => "New Job Opening for #{@recruitment.title}.")
+		  mail(:to => user.email, :subject => "Bring Your Buddy - Employee Referral - New Job Opening for #{@recruitment.title}.")
 	  end
     
     def announcement_notification(user,announcement)
@@ -60,7 +60,7 @@ class Notification < ActionMailer::Base
     
     def send_payslip(mail,month_name,year)
        attachments.inline["payslip.xlsx"] = File.read("#{Rails.root}/public/PAYSLIPS/#{month_name}-#{year}-payslips.xlsx")
-        #attachments.inline["payslip.xlsx"] = File.read("/home/sekhar/#{month_name}-#{year}-bank_statement.xlsx")
+       #attachments.inline["payslip.xlsx"] = File.read("#{Rails.root}/public/#{month_name}-#{year}-payslips.xlsx")
        mail(:to => mail, :subject => "Payslips of #{month_name}-#{year}")
     end
      

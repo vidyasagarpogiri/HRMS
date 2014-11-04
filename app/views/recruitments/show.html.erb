@@ -9,6 +9,7 @@
 				  </div>				
 				  <div class="module-body">			    
             <h5><%= @recruitment.jobcode %> - <%= @recruitment.title %></h5> 
+             <h5>Job Type: <%= @recruitment.job_type%></h5>
               <% if current_user.department == Department::HR %>     
                 <ul class="navigation-btns pull-right" style="margin-top:-20px">
                   <li><%= link_to 'Edit', edit_recruitment_path(@recruitment), :class => "btn btn-success " %></li>
