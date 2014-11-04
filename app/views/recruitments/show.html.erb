@@ -24,7 +24,7 @@
 						</div><!--/.module-body-->
 					</div><!--/.module-->
 				</div><!--/.content-->
-			</div><!--/.span8-->
+			</div><!--/.span8-->  
 			<div class="span4">
 			  <div class="module">	
           <div class="box-title">
@@ -40,7 +40,7 @@
                </div>
                <div class="control-group">
                   <a href="#"><%= recruitment.link %></a>
-                  <label class="idesc" for="basicinput"> <%= recruitment.description %></label>                                  
+                  <label class="idesc" for="basicinput"> <%= raw recruitment.description %></label>                                  
                </div>
                <%= link_to "Continue..", recruitment_path(recruitment), :class => "pt4" %><br> 
                <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                     

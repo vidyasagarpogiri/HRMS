@@ -537,14 +537,21 @@ class SalariesController < ApplicationController
 	    @year = @year - 1 
 	  end
 	  @payslips = Payslip.where(:month => @month ,:year => @year)
-     respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = ReportPdf.new(@payslips)
-        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+	  @payslips.each do |payslip| 
+	    file_path = "#{Rails.root}/public/PAYSLIPS/#{payslip.year}/#{payslip.month}"
+      unless File.exist?(file_path)
+        FileUtils.mkdir_p file_path 
+      end 
+      
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = ReportPdf.new(payslip)
+          pdf.render_file File.join(file_path, "#{payslip.employee.id}.pdf")
+          raise File.join(file_path, "#{payslip.employee.id}.pdf").inspect
+        end
       end
-    end
-
+	  end
 	end
 	
 	
