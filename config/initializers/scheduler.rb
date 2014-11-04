@@ -5,6 +5,7 @@ require 'active_record'
 #scheduler = Rufus::Scheduler.new
 #singleton @pattabhi
 scheduler = Rufus::Scheduler.singleton
+
 # eg:Thursday, November 6, 2014 11:58 PM (every moth - crom job)
 scheduler.cron '58 23 6 *  *'  do 
    puts "hello"
@@ -33,17 +34,17 @@ scheduler.cron '58 23 6 *  *'  do
  
 end
 
+
+
+=begin
+scheduler.cron '0 0 7 * *'  do 
+   #puts "hello"
+end
+
 #cron job to do a task in every month day 7 at zero th hour  5th minute (5 min after mid night) 
-#scheduler.cron '5 0 7 * *'  do 
- #  puts "hello"
-#end
-
-# schedular to do job in every 24 hrs
-#scheduler.every '24h' do
-  # do something every 24 hours
-#end
-
-
+scheduler.cron '5 0 7 * *'  do 
+   #puts "hello"
+end
 
 
 
@@ -70,3 +71,6 @@ scheduler.every '24h' do
  end
 end
 =end
+
+
+ 
