@@ -432,11 +432,11 @@ class SalariesController < ApplicationController
       end  
 =end  
     
-    @package.serialize("/home/etekidev/Desktop/payslip222.xlsx")
+    @package.serialize("/home/etekidev/Desktop/payslip2221.xlsx")
    # @mail = current_user.email
-    Notification.send_payslip(@mail).deliver
-    @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
-    @payroll_status.update(:status => CompanyPayRollMaster::PROCESSING)
+    #Notification.send_payslip(@mail).deliver
+    #@payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
+    #@payroll_status.update(:status => CompanyPayRollMaster::PROCESSING)
     redirect_to salaries_payslips_list_path
   end
   
