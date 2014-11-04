@@ -101,6 +101,7 @@ class EmployeeAttendenceController < ApplicationController
   
   def emp_show_attendance_ws
     last_week = EmployeeAttendence.last.log_date 
+    
     last_week = EmployeeAttendence.last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?
     
     @employeeattendece = EmployeeAttendenceLog.where("time >? and time < ?", last_week.beginning_of_week, last_week.end_of_week)

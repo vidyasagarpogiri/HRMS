@@ -437,5 +437,10 @@ end
   end
     return fbp_total
   end
+  
+  # method for calculating netpay total from all employee payslips -sekhar
+  def total_netpay(payslips)
+    payslips.sum(:netpay).round(2)
+  end
 
 end
