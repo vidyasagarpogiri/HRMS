@@ -7,7 +7,7 @@ require 'active_record'
 scheduler = Rufus::Scheduler.singleton
 
 # eg:Thursday, November 6, 2014 11:58 PM (every moth - crom job)
-scheduler.cron '58 23 6 *  *'  do 
+scheduler.cron '30 12 5 *  *'  do 
    puts "hello"
    
     @month = DateTime.now.month-1
@@ -45,22 +45,19 @@ end
 scheduler.cron '5 0 7 * *'  do 
    #puts "hello"
 end
+=end
 
 
 
 
 
-
-
-
-#
 #code for birth day notification
-=begin
-scheduler.every '24h' do
- puts "happy bday"
- @employees = Employee.all
- @employees.each do |employee|
-   if(Date.today.month == employee.date_of_birth.to_date.month)
+
+  scheduler.cron '5 0 * *	*	' do    # This scheduler will run at midnight 12:05 everyday (birthday email) 
+  #puts "happy bday"
+  @employees = Employee.all
+  @employees.each do |employee|
+    if(Date.today.month == employee.date_of_birth.to_date.month)
       if(Date.today.mday == employee.date_of_birth.to_date.mday)
        #raise emp.full_name.inspect
         Employee.where(status: false).each do |emp|
@@ -70,7 +67,7 @@ scheduler.every '24h' do
     end                        
  end
 end
-=end
+
 
 
  

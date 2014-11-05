@@ -64,7 +64,7 @@ class Notification < ActionMailer::Base
        mail(:to => mail, :subject => "Payroll for #{month_name}-#{year}")
     end
 
-=begin  
+ 
 #birth day alert code
    def birthday_notification(user,employee)  
        @user = user
@@ -72,7 +72,7 @@ class Notification < ActionMailer::Base
        attachments.inline["birthday.jpg"] = File.read("#{Rails.root}/public/assets/birthdaycards/#{rand(6)}.jpg")
        mail(:to => @user.email, :subject => "Happy Birthday To #{@employee.full_name}  ")
    end
-=end
+
 
    def send_pdf(payslip, file_path)
     @employee = payslip.employee

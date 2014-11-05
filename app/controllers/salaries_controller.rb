@@ -243,8 +243,6 @@ class SalariesController < ApplicationController
             end 
             @payslips = Payslip.where(:month => @month ,:year => @year)
             @company_payroll = CompanyPayRollMaster.create(:month => Date::MONTHNAMES[@month], :year => @year, :status => CompanyPayRollMaster::GENERATED, :name => current_user.employee.full_name)
-        else
-          flash[:notice] = "You Already Generated Payslip With Given Month"
         end  
 	  end
 	  
@@ -304,7 +302,7 @@ class SalariesController < ApplicationController
 	   @basic_salary = payslip_basic(((@payslip.employee.salary.basic_salary)/12).round(2), @payslip.working_days, @payslip.no_of_working_days)
 	   @payslip.update(:basic_salary => @basic_salary)
 	   #@payslip.payslip_allowance_update(@payslip)
-	   @gross = @basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance  #TODO need arrears add to below forumla
+	   @gross = @basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance + @payslip.arrears.to_f  #TODO need arrears add to below forumla
 	   if @salary.pf_apply == "true"
 	     @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
 	   else
@@ -317,7 +315,7 @@ class SalariesController < ApplicationController
 	  end
 	  @total_deducted_allowances_value = deducted_allowances_total(@payslip)
 	  @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value + @payslip.pt.to_f + @payslip.tds.to_f
-	  @net_pay = @gross + @payslip.arrears.to_f - @total_deductions #TODO We have to remove all deduable allowances from here. 
+	  @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
 	  @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance, mode: @mode)
 	  end
 	  
