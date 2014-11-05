@@ -6,76 +6,75 @@
           <div class="module">
             <div class="module-head" style="background-color: #82B4E6 ">
               <h3>PayRoll for <%= Date::MONTHNAMES[@payslip.month] %>,<%= @payslip.year %></h3>
-              <label style="margin-top:-10px;" class = "pull-right"><a href="/salaries/payslips_list"><i class="icon-circle-arrow-left"></i> Back to PayRoll </a></label>
+              <label style="margin-top:-20px;" class = "pull-right"><a href="/salaries/payslips_list"><i class="icon-circle-arrow-left"></i> Back to PayRoll </a></label>
             </div><br>
             <div class="module-body">
                 <!-- code for displayin all employees payslips -->
                   <table class="table table-striped">
                     <tr>
                       <th>Month&Year:</th>
-                      <td><%= Date::MONTHNAMES[@payslip.month] %>&nbsp<%= @payslip.year  %></td>
+                      <td width="280px;"><%= Date::MONTHNAMES[@payslip.month] %>&nbsp<%= @payslip.year  %></td>
                       <th>Number Of Working Days:</th>
                       <td><%= Time.days_in_month(Time.now.month-1,Time.now.year) %></td>
                     </tr>
                     <tr>
                       <th>Employee-id:</th>
-                      <td><%= @payslip.employee.employee_id %>:</td>
+                      <td  width="280px;"><%= @payslip.employee.employee_id %>:</td>
                       <th>Department:</th>
                       <td><%= @payslip.employee.department.department_name %></td>
                     </tr>
                     <tr>
                       <th>Name:</th>
-                      <td><%= @payslip.employee.full_name %></td>
+                      <td  width="280px;"><%= @payslip.employee.full_name %></td>
                       <th>PF.NO:</th>
                       <td><<%= @payslip.employee.PFAccountNumber %>/td>
                     </tr>
                     <tr>
                       <th>Location:</th>
-                      <td><%= @payslip.employee.job_location.address.city %></td>
+                      <td  width="280px;"><%= @payslip.employee.job_location.address.city %></td>
                       <th>PAN NO:</th>
                       <td><%= @payslip.employee.pan %></td>
                     </tr>
                     <tr>
                       <th>Mode:</th>
-                      <td><%= @payslip.mode%></td>
+                      <td  width="280px;"><%= @payslip.mode%></td>
                       <th>A/C NO:</th>
                       <td><%= @payslip.employee.account_number%></td>
                     </tr>
                   </table>
-                  <table class="table tab">
+                  <table class="table table-striped">
                     <tr>
                       <td>
-                      <table class="table" style=" width:560px;">
-                        <tr>
-                          <th  width="280px;">Earnings</th><th></th>
-                        </tr>                      
-                        <tr>
-                          <th width="280px;">Basic:</th>
-                          <td width="280px;"><%= @payslip.basic_salary %></td>
-                        </tr>
-                        <% @payslip.allowances.each do |allowance|%>
-                          <% unless allowance.is_deductable %>
-                        <tr>
-                          <th width="280px;"><%= allowance.allowance_name %></th>
-                          <td width="280px;"> <%= allowance.total_value %></td>
-                        </tr>
+                        <table class="table" style=" width:560px;">
+                          <tr>
+                            <th colspan="2" style="text-align:center">Earnings</th>
+                          </tr>                      
+                          <tr>
+                            <th >Basic:</th>
+                            <td ><%= @payslip.basic_salary %></td>
+                          </tr>
+                          <% @payslip.allowances.each do |allowance|%>
+                            <% unless allowance.is_deductable %>
+                          <tr>
+                            <th ><%= allowance.allowance_name %></th>
+                            <td> <%= allowance.total_value %></td>
+                          </tr>
+                          <% end %>
                         <% end %>
-                      <% end %>
-                        <tr>
-                          <th>Special Allowance</th>
-                          <td><%= @payslip.special_allowance %></td>
-                        </tr>
-                        <tr>
-                          <th>Arrears</th>
-                          <td><%= @payslip.arrears %></td>
-                        </tr>
-                        </div>                                                                                             
-                      </table>  
+                          <tr>
+                            <th>Special Allowance</th>
+                            <td><%= @payslip.special_allowance %></td>
+                          </tr>
+                          <tr>
+                            <th>Arrears</th>
+                            <td><%= @payslip.arrears %></td>
+                          </tr>                                                                                                                     
+                        </table>  
                      </td>                        
                      <td>
                        <table class="table "  style=" width:560px;">
-                          <tr>
-                            <th>Deductions</th><th></th>
+                          <tr >
+                            <th colspan="2" style="text-align:center">Deductions</th>
                           </tr>
                           <tr>
                             <th>Basic:</th>
@@ -96,27 +95,25 @@
                           <tr>
                             <th>Arrears</th>
                             <td><%= @payslip.arrears %></td>
-                          </tr>
-                          </div>                                                 
-                     
+                          </tr>                                                                                        
                         </table>  
                         </td>
                       
-                      </tr>
-                      
-                      <tr width="1170px;">
-                        <th width="280px;">TOTAL: </th>
-                        <td width="280px;">849365 </td>
-                        <th width="280px;">TOTAL: </th>
-                        <td width="280px;"> 849365 </td>
-                      </tr>
-                      <tr>
-                        <th>NetPay: </th>
-                        <td>849365 (INR) </td>
-                        <th></th><th></th>
-                      </tr>
-                     
-                 </table>                                                                                 
+                      </tr>                                            
+                 </table>
+                 <table class="table table-striped">
+                    <tr>
+                      <th >TOTAL: </th>
+                      <td  width="280px;" >849365 </td>
+                      <th>TOTAL: </th>
+                      <td > 849365 </td>
+                    </tr>
+                    <tr>
+                      <th>NetPay: </th>
+                      <td>849365 (INR) </td>
+                      <th></th><th></th>
+                    </tr>
+                </table>                                                                                                       
             </div>
           </div><!--/.module-->
         </div><!--/.content-->                    
