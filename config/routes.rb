@@ -200,7 +200,7 @@ end
   #post 'payslips_monthly_view' => "salaries#monthly_payslips"
   get 'salaries/payslips_list'
   get 'monthly_payslips' => "salaries#employee_monthly_payslips"
-  get 'monthly_payslip_view/:id' => "salaries#monthly_payslip_view"
+  get 'monthly_payslip_view/:id' => "salaries#monthly_payslip_view", as: :individual_payslips
   post 'salaries/employee_payslips_by_year'
   get "salaries/exporting_payslips_excel_sheet"
   get "salaries/get_payroll_years"

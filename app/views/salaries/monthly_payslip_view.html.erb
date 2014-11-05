@@ -108,7 +108,8 @@
                         <th></th><th></th>
                       </tr> 
                  </table> <br>
-                  <%= link_to "Save As PDF", "#" , :class => "btn btn-info" %>                                      
+                
+                  <%= link_to "Save As PDF", individual_payslips_path(@payslip, :format => 'pdf'), :class => "btn btn-info" %>                                      
             </div>
           </div><!--/.module-->
         </div><!--/.content-->                    
