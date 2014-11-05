@@ -243,8 +243,6 @@ class SalariesController < ApplicationController
             end 
             @payslips = Payslip.where(:month => @month ,:year => @year)
             @company_payroll = CompanyPayRollMaster.create(:month => Date::MONTHNAMES[@month], :year => @year, :status => CompanyPayRollMaster::GENERATED, :name => current_user.employee.full_name)
-        else
-          flash[:notice] = "You Already Generated Payslip With Given Month"
         end  
 	  end
 	  
