@@ -13,11 +13,13 @@
 								  <thead>
 									  <tr>	
   									  <th></th>									     
-									    <th>Monday</th>									     
-                      <th>Thuesday</th>
-                      <th>Wednessday</th>
-                      <th>Thursday</th>
-                      <th>Friday</th>                          
+									    <th class="Mon">Monday</th>									     
+                      <th class="Tue">Thuesday</th>
+                      <th class="Wed">Wednesday</th>
+                      <th class="Thu">Thursday</th>
+                      <th class="Fri">Friday</th> 
+                      <th class="Sat">Saturday</th>
+                      <th class="Sun">Sunday</th>                         
 									  </tr>
 								  </thead>
 								  <tbody>
@@ -28,6 +30,8 @@
 								    <td class="Wed"></td>
 								    <td class="Thu"></td>
 								    <td class="Fri"></td>
+								    <td class="Sat"></td>
+									  <td class="Sun"></td>
 								   </tr>
 								   <tr>
     							  <td><b>Total</b></td>
@@ -36,6 +40,8 @@
 								    <td class="Total_Wed"></td>
 								    <td class="Total_Thu"></td>
 								    <td class="Total_Fri"></td>
+								    <td class="Total_Sat"></td>
+								    <td class="Total_Sun"></td>
 								   </tr>
 								  </tbody>
 								</table>
@@ -70,9 +76,11 @@ $(function(){
 
 
 function call_sw(){
+  $("th span").remove();
   $("#attendance_table tr td:not(:first-child)").html("");
   $.get( "/employee_attendence/emp_show_attendance_ws.json?week_no="+$("#week_no").val(), function( data ) {
     $.each(data, function( key, value ) {
+      $("th."+key).prepend("<span>"+value["dt"]+"</span> ");
       $.each(value["logs"], function(hrs, vl ) {
         $("td."+key).append(vl+"<br/>");
       });

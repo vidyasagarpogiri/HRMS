@@ -5,14 +5,14 @@
         <div class="content">
           <div class="module">
             <div class="module-head"> 
-              <h3>Add New Shift</h3>
+              <h3>Add New Work Shift</h3>
             </div>
             <div class="module-body">
               <%= form_for @shift,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |s| %>
               <div class="control-group">
-                <label class="control-label" for="basicinput">Shift Name:</label>
+                <label class="control-label" for="basicinput">Work Shift Name:</label>
                 <div class="controls">
-                  <%= s.text_field :name, :class => "span8 form-control ", :placeholder =>"Enter Shift Name", :data => {:error => "Please Enter valid Shift Name"}, :required => true %>
+                  <%= s.text_field :name, :class => "span8 form-control ", :placeholder =>"Enter Work Shift Name", :data => {:error => "Please Enter valid Shift Name"}, :required => true %>
                   <span class="help-block with-errors"></span>
                 </div>
               </div>
