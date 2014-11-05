@@ -58,7 +58,7 @@ class ReportPdf < Prawn::Document
   def employee_salary
   
     draw_text "BASIC:", :at => [@x+50, @y-260] #1
-    draw_text "10000", :at => [@x+200, @y-260]
+    draw_text "#{@payslip.basic_salary}", :at => [@x+200, @y-260]
     
     
     #non -dedcutable allowances
