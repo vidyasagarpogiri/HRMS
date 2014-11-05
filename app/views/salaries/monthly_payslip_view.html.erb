@@ -14,17 +14,18 @@
                       <th>Month&Year:</th>
                       <td width="280px;"><%= Date::MONTHNAMES[@payslip.month] %>&nbsp<%= @payslip.year%></td>
                       <th>Number Of Working Days:</th>
-                     <td><%= @payslip.working_days %></td>
+                      <td><%= @payslip.working_days %></td>
                     </tr>
                     <tr>
                       <th>Employee-id:</th>
-                      <td width="280px;"><%= @payslip.employee.employee_id %></td>
+                      <td width="280px;"><%= @payslip.employee.employee_id %>:</td>
+
                       <th>Department:</th>
                       <td><%= @payslip.employee.department.department_name %></td>
                     </tr>
                     <tr>
                       <th>Name:</th>
-                      <td width="280px;"><%= @payslip.employee.full_name %></td>
+                      <td width="280px;"><%= @payslip.employee.full_name %></td>5
                       <th>PF.NO:</th>
                       <td><%= @payslip.employee.PFAccountNumber %></td>
                     </tr>
@@ -52,6 +53,7 @@
                           <th>Basic:</th>
                           <td ><%= @payslip.basic_salary %></td>
                         </tr>
+                        <% if @payslip.allowances.present? %>
                         <% @payslip.allowances.each do |allowance|%>
                           <% unless allowance.is_deductable %>
                         <tr>
@@ -60,14 +62,17 @@
                         </tr>
                         <% end %>
                       <% end %>
+                     <% end %>
                         <tr>
                           <th>Special Allowance</th>
                           <td><%= @payslip.special_allowance %></td>
                         </tr>
+                        <% if @payslip.arrears.present? %>
                         <tr>
                           <th>Arrears</th>
                           <td><%= @payslip.arrears %></td>
-                        </tr>                                                                                            
+                        </tr>
+                        <% end %>                                                                                            
                       </table>  
                      </td>                        
                      <td>
@@ -75,22 +80,31 @@
                           <tr class="change">
                             <th colspan="2">Deductions</th>
                           </tr>
+                          <% if @payslip.tds.present? %>
                           <tr>
                             <th>TDS:</th>
-                            <td><%= @payslip.tds %></td>
+                            <td><%= @payslip.tds%></td>
                           </tr>
+                          <% end %>
+                          <% if @payslip.pt.present? %> 
                           <tr>
                             <th>PT</th>
                             <td><%= @payslip.pt %></td>
                           </tr>
+                          <% end %>
+                          <% if @payslip.pf.present? %>
                           <tr>
                             <th>PF</th>
                             <td><%= @payslip.pf %></td>
                           </tr>
+                          <% end %>
+                          <% if @payslip.esic.present? %>
                           <tr>
                             <th>EISC</th>
-                            <td><%= @payslip.esic %></td>
-                          </tr
+                            <td><%= @payslip.esic if @payslip.esic.present? %></td>
+                          </tr>
+                          <% end %>
+                          <% if @payslip.employee.salary.allowances.present? %>
                           <% @payslip.employee.salary.allowances.each do |allowance|%>
                             <% if allowance.is_deductable %>
                             <tr>
@@ -99,10 +113,11 @@
                             </tr>
                             <% end %>
                           <% end %>
-                          <tr>
+                         <% end %>
+                      <!--    <tr>
                             <th>Medical</th>
                             <td></td>
-                          </tr>                                             
+                          </tr>    -->                                                              
                         </table>  
                         </td>
                       </tr>                      
@@ -119,9 +134,7 @@
                         <td><%= @payslip.netpay %>(INR) </td>
                         <th></th><th></th>
                       </tr> 
-                 </table> <br>
-                
-                  <%= link_to "Save As PDF", individual_payslips_path(@payslip, :format => 'pdf'), :class => "btn btn-info" %>                                      
+                 </table>                                                                                 
             </div>
           </div><!--/.module-->
         </div><!--/.content-->                    
@@ -140,6 +153,6 @@
   .change{
     color:black;
     background-color:rgba(60, 152, 165, 0.24);
-    font-size:14px;
+    font-size:18px;
   }  
 </style>

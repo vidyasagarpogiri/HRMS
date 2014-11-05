@@ -228,15 +228,15 @@ class SalariesController < ApplicationController
 	                if @salary.pf_apply == "true"
 	                  @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
 	                else
-	                  @payslip_pf = 0.0
+	                  @payslip_pf = nil
 	                end
 	                if @salary.esic_apply == "true"
 	                  @payslip_esic = payslip_esic_value(@gross, @salary_percentages)
 	                else
-	                  @payslip_esic = 0.0
+	                  @payslip_esic = nil
 	                end
 	                @total_deducted_allowances_value = deducted_allowances_total(@payslip)
-	                @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value #TODO need add PT and TDS
+	                @total_deductions = @payslip_pf.to_f + @payslip_esic.to_f + @total_deducted_allowances_value #TODO need add PT and TDS
 	                @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
 	                @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance, :mode => "Bank")
                 end
@@ -306,15 +306,15 @@ class SalariesController < ApplicationController
 	   if @salary.pf_apply == "true"
 	     @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
 	   else
-	     @payslip_pf = 0.0
+	     @payslip_pf = nil
 	  end
 	  if @salary.esic_apply == "true"
 	     @payslip_esic = payslip_esic_value(@gross, @salary_percentages)
 	  else
-	     @payslip_esic = 0.0
+	     @payslip_esic = nil
 	  end
 	  @total_deducted_allowances_value = deducted_allowances_total(@payslip)
-	  @total_deductions = @payslip_pf + @payslip_esic + @total_deducted_allowances_value + @payslip.pt.to_f + @payslip.tds.to_f
+	  @total_deductions = @payslip_pf.to_f + @payslip_esic.to_f + @total_deducted_allowances_value + @payslip.pt.to_f + @payslip.tds.to_f
 	  @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
 	  @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance, mode: @mode)
 	  end
@@ -325,6 +325,7 @@ class SalariesController < ApplicationController
 	#--------------------------------------
 # code for employee payslips views -sekhar
   def employee_monthly_payslips
+    @years = CompanyPayRollMaster.pluck(:year).uniq
     @payslips = current_user.employee.payslips.where(:status => "PROCESS")
   end
   
