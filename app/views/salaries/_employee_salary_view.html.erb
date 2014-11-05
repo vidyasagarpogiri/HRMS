@@ -92,7 +92,7 @@
 				  
 				    <tr style="color:black">
 		          <th>Total Fixed Compensation</th>	
-		          <% total_compensation = @salary.pf + @salary.esic + @salary.gratuity + @salary.basic_salary + @salary.special_allowance + allowance_total.to_f %>
+		          <% total_compensation = @salary.pf.to_f + @salary.esic.to_f + @salary.gratuity.to_f + @salary.basic_salary.to_f + @salary.special_allowance.to_f + allowance_total.to_f %>
 		          <td><%= total_compensation %> </td>
 		          <td><%= monthly(total_compensation)%> </td>				      
 					  </tr>
