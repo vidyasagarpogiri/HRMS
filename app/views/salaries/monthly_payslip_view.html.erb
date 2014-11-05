@@ -88,6 +88,18 @@
                             <td><%= @payslip.pf %></td>
                           </tr>
                           <tr>
+                            <th>EISC</th>
+                            <td><%= @payslip.esic %></td>
+                          </tr
+                          <% @payslip.employee.salary.allowances.each do |allowance|%>
+                            <% if allowance.is_deductable %>
+                            <tr>
+                              <th ><%= allowance.allowance_name %></th>
+                              <td ><%= (allowance.allowance_value/12).round(2) %></td>
+                            </tr>
+                            <% end %>
+                          <% end %>
+                          <tr>
                             <th>Medical</th>
                             <td></td>
                           </tr>                                             
@@ -131,4 +143,3 @@
     font-size:14px;
   }  
 </style>
-
