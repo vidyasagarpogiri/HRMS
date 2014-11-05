@@ -18,7 +18,7 @@
                     </tr>
                     <tr>
                       <th>Employee-id:</th>
-                      <td width="280px;"><%= @payslip.employee.employee_id %>:</td>
+                      <td width="280px;"><%= @payslip.employee.employee_id %></td>
                       <th>Department:</th>
                       <td><%= @payslip.employee.department.department_name %></td>
                     </tr>
@@ -88,13 +88,21 @@
                             <td><%= @payslip.pf %></td>
                           </tr>
                           <tr>
+                            <th>EISC</th>
+                            <td><%= @payslip.esic %></td>
+                          </tr
+                          <% @payslip.employee.salary.allowances.each do |allowance|%>
+                            <% if allowance.is_deductable %>
+                            <tr>
+                              <th ><%= allowance.allowance_name %></th>
+                              <td ><%= (allowance.allowance_value/12).round(2) %></td>
+                            </tr>
+                            <% end %>
+                          <% end %>
+                          <tr>
                             <th>Medical</th>
                             <td></td>
-                          </tr>
-                          <tr>
-                            <th>Charity Contribution</th>
-                            <td></td>
-                          </tr>                                                 
+                          </tr>                                             
                         </table>  
                         </td>
                       </tr>                      
@@ -111,7 +119,9 @@
                         <td><%= @payslip.netpay %>(INR) </td>
                         <th></th><th></th>
                       </tr> 
-                 </table>                                                                                 
+                 </table> <br>
+                
+                  <%= link_to "Save As PDF", individual_payslips_path(@payslip, :format => 'pdf'), :class => "btn btn-info" %>                                      
             </div>
           </div><!--/.module-->
         </div><!--/.content-->                    
@@ -130,7 +140,6 @@
   .change{
     color:black;
     background-color:rgba(60, 152, 165, 0.24);
-    font-size:18px;
+    font-size:14px;
   }  
 </style>
-
