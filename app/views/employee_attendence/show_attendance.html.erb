@@ -13,13 +13,13 @@
 								  <thead>
 									  <tr>		
   									  <th>Employee Name</th>								    
-									    <th>Monday</th>									     
-                      <th>Thuesday</th>
-                      <th>Wednessday</th>
-                      <th>Thursday</th>
-                      <th>Friday</th>
-                      <th>Saturday</th>
-                      <th>Sunday</th>                         
+									    <th class="Mon">Monday</th>									     
+                      <th class="Tue">Thuesday</th>
+                      <th class="Wed">Wednessday</th>
+                      <th class="Thu">Thursday</th>
+                      <th class="Fri">Friday</th>
+                      <th class="Sat">Saturday</th>
+                      <th class="Sun">Sunday</th>                         
 									  </tr>
 								  </thead>
 								  <tbody>
@@ -80,26 +80,40 @@ function call_sw(){
   $("#attendance_table tr td:not(:first-child)").val("0");
   $.get( "/employee_attendence/attandence_ws.json?week_no="+$("#week_num").val(), function( data ) {
     $.each(data, function( key, value ) {
+          $("th span").remove();
+          $.each(data["dt"], function( dt, v ) {
+            $("th."+dt).prepend("<span>"+v+"</span> ");
+          });
+
+      var i=0;          
       $.each(value, function( day, hrs ) {
         day_arr = day.split("|"); 
         if(hrs!="0"){
-          $("tr#"+key+" ."+day_arr[0]).html(hrs+ " <i class='icon-comment' onclick='call_log_sw(&#39;"+day_arr[1]+"&#39;)'></i>"); 
+          $("tr#"+key+" ."+day_arr[0]).html(hrs+ " <i class='icon-comment' onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'></i>"); 
         }
         else {
           $("tr#"+key+" ."+day_arr[0]).text(hrs); 
         }
+        
+        i+=1;
       });
    });
   });
 }
 
-function call_log_sw(val){
+function call_log_sw(id, val){
   var log_records = ""
-  $.get( "/employee_attendence/attendence_log_ws.json?dt="+val, function( data ) {
-    $.each(data, function( key, value ) {     
+  $.get( "/employee_attendence/attendence_log_ws.json?emp_id="+id+"&dt="+val, function( data ) {
+    $.each(data, function( k, v ) {   
+          $(".modal-header h4").html("<i class='icon-time icon-large'></i> Attendance Logs - "+v);
+      if(k!="dt"){
+      $.each(v, function( key, value ) {   
+      console.log(value[0]);
           in_out = value[1]==true ? "<i class='icon-circle-arrow-down text-success'></i> in" : "<i class='icon-circle-arrow-up text-error '></i> out " ;
-          log_records += "<tr><td>"+new Date(value[0])+" </td><td> "+ in_out +"</td></tr>";
+          log_records += "<tr><td>"+value[0]+" </td><td> "+ in_out +"</td></tr>";
           $("#show-attendance table#attendance_table tbody").html(log_records);    
+       });
+       }
      });
   });
   $("#show-attendance").modal('show');
