@@ -24,7 +24,7 @@ class ReportPdf < Prawn::Document
   def employee_details
   draw_text "PaySlip", style: :bold,  size: 15, :at => [@x+230, @y-60]
     draw_text "MONTH/YEAR:", :at => [@x+50, @y-100] #1
-    draw_text "#{@payslip.month}-#{@payslip.year}", :at => [@x+150, @y-100]
+    draw_text "#{I18n.t("date.abbr_month_names")[@payslip.month]}-#{@payslip.year}", :at => [@x+150, @y-100]
     draw_text "ATTD:", :at => [@x+300, @y-100]
     draw_text "30", :at => [@x+400, @y-100]
     draw_text "EMP CODE:", :at => [@x+50, @y-120] #2
@@ -36,7 +36,7 @@ class ReportPdf < Prawn::Document
     draw_text "PF No:", :at => [@x+300, @y-140]
     draw_text "#{@payslip.employee.PFAccountNumber}", :at => [@x+400, @y-140]
     draw_text "LOCATION:", :at => [@x+50, @y-160] #4
-    draw_text "#{@payslip.employee.job_location.address.city}", :at => [@x+150, @y-160]
+    draw_text "#{@payslip.employee.job_location.address.city if @payslip.employee.job_location.present? }", :at => [@x+150, @y-160]
     draw_text "PAN No:", :at => [@x+300, @y-160]
     draw_text "#{@payslip.employee.pan}", :at => [@x+400, @y-160]
     draw_text "MODE:", :at => [@x+50, @y-180] #5
@@ -58,21 +58,62 @@ class ReportPdf < Prawn::Document
   def employee_salary
   
     draw_text "BASIC:", :at => [@x+50, @y-260] #1
-    draw_text "10000", :at => [@x+150, @y-260]
+    draw_text "10000", :at => [@x+200, @y-260]
     
     
     #non -dedcutable allowances
     @z = @y-260
     @payslip.allowances.each do |allowance|
-      draw_text "#{allowance.allowance_name}", :at => [@x+50, @z-20] #2
-      draw_text "#{allowance.total_value}", :at => [@x+150, @z-20] 
+      draw_text "#{allowance.allowance_name}:", :at => [@x+50, @z-20] #2
+      draw_text "#{allowance.total_value}", :at => [@x+200, @z-20] 
       @z = @z-20
     end
     
-    #draw_text "TDS:", :at => [@x+300, @y-260]
-    #draw_text "400", :at => [@x+400, @y-260]
+    if @payslip.special_allowance.present?
+      draw_text "Special Allowance:", :at => [@x+50, @z-20] 
+      draw_text "#{@payslip.special_allowance}", :at => [@x+200, @z-20] 
+      @z = @z-20
+    end
     
-   total_salary(@z)
+    if @payslip.arrears.present?
+      draw_text "Arrears", :at => [@x+50, @z-20] 
+      draw_text "#{@payslip.arrears}", :at => [@x+200, @z-20] 
+      @z = @z-20
+    end
+    
+    @d = @y-240
+    #deducations 
+    if @payslip.tds.present?
+      draw_text "TDS:", :at => [@x+300, @d-20]
+      draw_text "#{@payslip.tds}", :at => [@x+400, @d-20]
+      @d = @d -20
+    end 
+    
+    if @payslip.pt.present? 
+      draw_text "PT:", :at => [@x+300, @d-20]
+      draw_text "#{@payslip.pt}", :at => [@x+400, @d-20]
+      @d = @d -20
+    end
+    
+    if @payslip.pf.present? 
+      draw_text "PF:", :at => [@x+300, @d-20]
+      draw_text "#{@payslip.pf}", :at => [@x+400, @d-20]
+      @d = @d -20
+    end 
+   
+    if @payslip.esic.present? 
+      draw_text "ESIC:", :at => [@x+300, @d-20]
+      draw_text "#{@payslip.esic}", :at => [@x+400, @d-20]
+      @d = @d -20
+    end 
+    
+    @payslip.employee.salary.allowances.where(:is_deductable => true).each do |allowance|
+      draw_text "#{allowance.allowance_name}:", :at => [@x+300, @d-20]
+      draw_text "#{(allowance.allowance_value/12).round(2)}", :at => [@x+400, @d-20]
+      @d = @d -20
+    end     
+    k = @z<@d ? @z : @d
+   total_salary(k)
 
    
   end
@@ -87,7 +128,7 @@ class ReportPdf < Prawn::Document
     fill_color "000000"
     font("Times-Roman") do
       draw_text "TOTAL:", :at => [@x+50, @z-35]
-      draw_text "100000", :at => [@x+150, @z-35]
+      draw_text "#{@payslip.gross_salary}", :at => [@x+200, @z-35]
       draw_text "TOTAL:", :at => [@x+300, @z-35]
       draw_text "#{@payslip.total_deductions}", :at => [@x+400, @z-35]
 
@@ -104,8 +145,8 @@ class ReportPdf < Prawn::Document
     fill_color "000000"
     font("Times-Roman") do
       draw_text "NET PAY SALARY:", :at => [@x+50, z-75]
-      draw_text "38765", :at => [@x+150, z-75]    
-      draw_text "(Rupees In words)", :at => [@x+200, z-75] 
+      draw_text "#{@payslip.netpay}", :at => [@x+200, z-75]    
+      draw_text "(Rupees In words)", :at => [@x+300, z-75] 
 
     end
     genral_info(z)

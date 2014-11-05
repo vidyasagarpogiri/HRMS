@@ -5,6 +5,7 @@ class CreateCompanyPayRollMasters < ActiveRecord::Migration
       t.integer :year
       t.string :status
       t.string :name
+
       t.timestamps
     end
   end

@@ -105,11 +105,12 @@ class EmployeeAttendenceController < ApplicationController
     last_week = EmployeeAttendence.last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?
     
     @employeeattendece = EmployeeAttendenceLog.where("time >? and time < ?", last_week.beginning_of_week, last_week.end_of_week)
-    attendance_hash = {"Mon" => {:total_hrs=>0, :logs=>[]}, "Tue" => {:total_hrs=>0, :logs=>[]}, "Wed" => {:total_hrs=>0, :logs=>[]}, "Thu" => {:total_hrs=>0, :logs=>[]}, "Fri" => {:total_hrs=>0, :logs=>[]}, "Sat" => {:total_hrs=>0, :logs=>[]}, "Sun" => {:total_hrs=>0, :logs=>[]}} 
+    complete_week = last_week.beginning_of_week
+    attendance_hash = {"Mon" => {:total_hrs=>0, :logs=>[], :dt=>complete_week.strftime("%d-%m-%Y")}, "Tue" => {:total_hrs=>0, :logs=>[], :dt=>( complete_week + 1.day).strftime("%d-%m-%Y")}, "Wed" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 2.day).strftime("%d-%m-%Y")}, "Thu" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 3.day).strftime("%d-%m-%Y")}, "Fri" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week+ 4.day).strftime("%d-%m-%Y")}, "Sat" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 5.day).strftime("%d-%m-%Y")}, "Sun" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 6.day).strftime("%d-%m-%Y")}} 
     @employeeattendece.each do|logs|
       lg ="out"
       lg ="in" if logs.in_out
-      attendance_hash[logs.time.strftime("%a").to_s][:logs] << "#{logs.time} #{lg}"
+      attendance_hash[logs.time.strftime("%a").to_s][:logs] << "#{logs.time.strftime("%H:%M")} #{lg}"
       attendance_hash[logs.time.strftime("%a").to_s][:total_hrs] = EmployeeAttendence.where(:employee_id=>"85", :log_date=>logs.time.strftime("%Y-%m-%d")).first.total_working_hours
     end
     
