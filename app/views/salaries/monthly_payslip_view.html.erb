@@ -14,7 +14,7 @@
                       <th>Month&Year:</th>
                       <td width="280px;"><%= Date::MONTHNAMES[@payslip.month] %>&nbsp<%= @payslip.year%></td>
                       <th>Number Of Working Days:</th>
-                      <td><%= Time.days_in_month(Time.now.month-1,Time.now.year) %></td>
+                     <td><%= @payslip.working_days %></td>
                     </tr>
                     <tr>
                       <th>Employee-id:</th>
