@@ -54,7 +54,7 @@ end
 #code for birth day notification
 
   scheduler.cron '5 0 * *	*	' do    # This scheduler will run at midnight 12:05 everyday (birthday email) 
-  puts "happy bday"
+  #puts "happy bday"
   @employees = Employee.all
   @employees.each do |employee|
     if(Date.today.month == employee.date_of_birth.to_date.month)
