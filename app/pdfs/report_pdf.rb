@@ -69,10 +69,51 @@ class ReportPdf < Prawn::Document
       @z = @z-20
     end
     
-    draw_text "TDS:", :at => [@x+300, @y-260]
-    draw_text "#{@payslip.}", :at => [@x+400, @y-260]
+    if @payslip.special_allowance.present?
+      draw_text "Special Allowance:", :at => [@x+50, @z-20] 
+      draw_text "#{@payslip.special_allowance}", :at => [@x+200, @z-20] 
+      @z = @z-20
+    end
     
-   total_salary(@z)
+    if @payslip.arrears.present?
+      draw_text "Arrears", :at => [@x+50, @z-20] 
+      draw_text "#{@payslip.arrears}", :at => [@x+200, @z-20] 
+      @z = @z-20
+    end
+    
+    @d = @y-240
+    #deducations 
+    if @payslip.tds.present?
+      draw_text "TDS:", :at => [@x+300, @d-20]
+      draw_text "#{@payslip.tds}", :at => [@x+400, @d-20]
+      @d = @d -20
+    end 
+    
+    if @payslip.pt.present? 
+      draw_text "PT:", :at => [@x+300, @d-20]
+      draw_text "#{@payslip.pt}", :at => [@x+400, @d-20]
+      @d = @d -20
+    end
+    
+    if @payslip.pf.present? 
+      draw_text "PF:", :at => [@x+300, @d-20]
+      draw_text "#{@payslip.pf}", :at => [@x+400, @d-20]
+      @d = @d -20
+    end 
+   
+    if @payslip.esic.present? 
+      draw_text "ESIC:", :at => [@x+300, @d-20]
+      draw_text "#{@payslip.esic}", :at => [@x+400, @d-20]
+      @d = @d -20
+    end 
+    
+    @payslip.employee.salary.allowances.where(:is_deductable => true).each do |allowance|
+      draw_text "#{allowance.allowance_name}:", :at => [@x+300, @d-20]
+      draw_text "#{(allowance.allowance_value/12).round(2)}", :at => [@x+400, @d-20]
+      @d = @d -20
+    end     
+    k = @z<@d ? @z : @d
+   total_salary(k)
 
    
   end
@@ -87,7 +128,7 @@ class ReportPdf < Prawn::Document
     fill_color "000000"
     font("Times-Roman") do
       draw_text "TOTAL:", :at => [@x+50, @z-35]
-      draw_text "100000", :at => [@x+150, @z-35]
+      draw_text "#{@payslip.gross_salary}", :at => [@x+200, @z-35]
       draw_text "TOTAL:", :at => [@x+300, @z-35]
       draw_text "#{@payslip.total_deductions}", :at => [@x+400, @z-35]
 
@@ -104,8 +145,8 @@ class ReportPdf < Prawn::Document
     fill_color "000000"
     font("Times-Roman") do
       draw_text "NET PAY SALARY:", :at => [@x+50, z-75]
-      draw_text "38765", :at => [@x+150, z-75]    
-      draw_text "(Rupees In words)", :at => [@x+200, z-75] 
+      draw_text "#{@payslip.netpay}", :at => [@x+200, z-75]    
+      draw_text "(Rupees In words)", :at => [@x+300, z-75] 
 
     end
     genral_info(z)
