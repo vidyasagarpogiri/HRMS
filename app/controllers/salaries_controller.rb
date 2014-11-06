@@ -342,6 +342,7 @@ class SalariesController < ApplicationController
   end
   
   def employee_payslips_by_year
+  @years = CompanyPayRollMaster.pluck(:year)
     unless params[:payslip_view_year].to_i == 0
       @year = params[:payslip_view_year].to_i
       @payslips = Payslip.where(:year => @year, :employee_id => current_user.employee.id, :status => "PROCESS")

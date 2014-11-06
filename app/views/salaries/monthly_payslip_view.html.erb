@@ -5,7 +5,8 @@
         <div class="content">
           <div class="module">
             <div class="module-head" style="background-color: #82B4E6 ">
-              <h3>PaySlip for <%= Date::MONTHNAMES[@payslip.month] %>,<%= @payslip.year %></h3>
+              <h3>PayRoll for <%= Date::MONTHNAMES[@payslip.month] %>,<%= @payslip.year %></h3>
+              <label style="margin-top:-20px;" class = "pull-right"><a href="/monthly_payslips"><i class="icon-circle-arrow-left"></i> Back to Payslips </a></label>
             </div><br>
             <div class="module-body">
                 <!-- code for displayin all employees payslips -->
@@ -119,6 +120,9 @@
                   </div>
                 </div>
                </div>
+
+<hr>
+
          <div class="head">
           <div class="row-fluid">
             <div class="sapn6">
@@ -133,6 +137,7 @@
      <div class="row-fluid">
                 <div class="span6">
                  
+
                   <!-------- Earnings------>
                   <div class="row-fluid">  
                     <div class="span6">
@@ -178,7 +183,7 @@
                </div>
                <div class="span6">
                   <!---- Dedcuations --->
-                   
+
                   <% if @payslip.tds.present? %>
                   <div class="row-fluid"> 
                     <div class="span6">
@@ -233,6 +238,7 @@
                  <% end %>
                 </div>
               </div>
+              <hr>
              <div class="head">
              <div class="row-fluid">
               <div class="span6">
@@ -257,7 +263,7 @@
               </div>
              </div>
             </div><br/>
-             
+             <hr>
              <div class="head">
              <div class="row-fluid">
                <div class="span6">
@@ -297,7 +303,7 @@
      width:545px;
     height:35px;
     font-size:16px;
-    color:black;
+    color:green;
     float:left;
     
    }
