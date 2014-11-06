@@ -9,10 +9,12 @@
              <%= form_tag(salaries_employee_payslips_by_year_path,  :class => "form-horizontal", :remote => true) do %>
             
                 <label><strong>Select Month to View payslip :&nbsp&nbsp </strong><br>
-                <select name="payslip_view_year">
-                  <option value=0>-select-</option>
-                  <option>2014</option>
-                </select> 
+                <select name="payslip_view_year" class="payroll_year">
+                    <option value=0>-select year-</option>
+                    <% @years.each do |year| %>
+                      <option value="<%= year %>"><%= year %></option>
+                    <% end %>             
+                  </select> 
                 <input type="submit" class="btn btn-success" value="View">                
            <% end %>  
                </div>
@@ -55,3 +57,4 @@
                 <% end %>           
               </div>
             </div><!--/.module-->
+
