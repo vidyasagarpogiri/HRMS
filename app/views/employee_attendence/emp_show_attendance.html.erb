@@ -45,11 +45,9 @@
 								   </tr>
 								   <tr>
     							  <td><b>Total Working Hours</b></td>
-								    <td colspan="7" id="Grand_Total"> </td>
-								   </tr>
-								   <tr>
-								    <td><b>Average Working Hours</b></td>
-								    <td colspan="7" id="Average_Working_Hours"> </td>
+								    <td colspan="3" id="Grand_Total"> </td>								   
+								    <td id="avg"></td>
+								    <td colspan="3" id="Average_Working_Hours"> </td>
 								   </tr>
 								  </tbody>
 								</table>
@@ -111,14 +109,10 @@ function call_sw(){
       } else {
         $("td#Average_Working_Hours").html(tl_val[0]+" hrs <br/>");
       }
+      
+     $("#avg").html("<b>Average Working Hours</b>");
   });
 }
 
 </script>
-<script>
 
-$(function() {
-  $("table tbody tr:nth-child(2) td");
-});
-
-</script>
