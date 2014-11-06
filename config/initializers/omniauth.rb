@@ -5,4 +5,4 @@ Rails.application.config.middleware.use OmniAuth::Builder do
  #for LocalHost
  provider :google_oauth2, "71430295460-q3ld798qpr7k3e3jgldr01oi539ic59u.apps.googleusercontent.com", "0kDHCpHKPH92vIvX8PNQUUAU"
 
-end
+end                                                                       
