@@ -173,10 +173,14 @@ class EmployeeAttendenceController < ApplicationController
       end
       
       week_working_hours_str = attendance_hash[w_day.strftime("%a").to_s][:total_hrs].to_s.split(".")
-      week_working_hours_hrs = week_working_hours_str[0]
-      week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f.minutes.to_i.to_s
+      #week_working_hours_hrs = week_working_hours_str[0]
+      week_working_hours_hrs = week_working_hours_str[0].to_f
+      #week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f.minutes.to_i.to_s
+      week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f
+      week_working_hours_hrs += week_working_hours_min % 60
+      week_working_hours_min = week_working_hours_min / 60
       
-      week_working_hours_min = week_working_hours_min.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
+      week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
       
       attendance_hash[w_day.strftime("%a").to_s][:total_hrs] = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
     
@@ -197,24 +201,32 @@ class EmployeeAttendenceController < ApplicationController
           attendance_hash_json = {}
           attendance_hash_json[:week_data] = attendance_hash
           
-          sumofworkinghours = EmployeeAttendence.where("log_date >? and log_date <= ?  and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours).sum
+          sumofworkinghours = EmployeeAttendence.where("log_date >=? and log_date <= ?  and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours).sum
           
           week_working_hours_str = sumofworkinghours.to_s.split(".")
-          week_working_hours_hrs = week_working_hours_str[0]
-          week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f.minutes.to_i.to_s
+          #week_working_hours_hrs = week_working_hours_str[0]
+          week_working_hours_hrs = week_working_hours_str[0].to_f
+          #week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f.minutes.to_i.to_s
+          week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f
+          week_working_hours_hrs += week_working_hours_min % 60
+          week_working_hours_min = week_working_hours_min / 60
           
-          week_working_hours_min = week_working_hours_min.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
+          week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
           
           sumofworkinghours = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
-          
+                    #raise sumofworkinghours.inspect
           #attendance_hash_json[:total_week_hours] = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
-          attendance_hash_json[:total_week_hours] = sumofworkinghours
+          attendance_hash_json[:total_week_hours] = sumofworkinghours.round(2)
           
           avg_week_working_hours_str = ( week_working_hours / working_days.to_f).round(2).to_s.split(".")
-          avg_week_working_hours_hrs = avg_week_working_hours_str[0]
-          avg_week_working_hours_min = "0.#{avg_week_working_hours_str[1]}".to_f.minutes.to_i.to_s
+          #avg_week_working_hours_hrs = avg_week_working_hours_str[0]
+          avg_week_working_hours_hrs = avg_week_working_hours_str[0].to_f
+          #avg_week_working_hours_min = "0.#{avg_week_working_hours_str[1]}".to_f.minutes.to_i.to_s
+          avg_week_working_hours_min = "0.#{avg_week_working_hours_str[1]}".to_f
+          avg_week_working_hours_hrs += avg_week_working_hours_min % 60
+          avg_week_working_hours_min = avg_week_working_hours_min / 60
           
-          avg_week_working_hours_min = avg_week_working_hours_min.length==1? "0#{avg_week_working_hours_min}" : "#{avg_week_working_hours_min}"
+          avg_week_working_hours_min = avg_week_working_hours_min.to_s.length==1? "0#{avg_week_working_hours_min}" : "#{avg_week_working_hours_min}"
           
           attendance_hash_json[:avg_week_hours] = "#{avg_week_working_hours_hrs}.#{avg_week_working_hours_min}".to_f
           

@@ -24,10 +24,12 @@ class WelcomeController < ApplicationController
     @sumofworkinghours = EmployeeAttendence.where("log_date >? and log_date <= ?  and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours).sum
 
     week_working_hours_str = @sumofworkinghours.to_s.split(".")
-    week_working_hours_hrs = week_working_hours_str[0]
-    week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f.minutes.to_i.to_s
+    week_working_hours_hrs = week_working_hours_str[0].to_f
+    week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f
+    week_working_hours_hrs += week_working_hours_min % 60
+    week_working_hours_min = week_working_hours_min / 60
     
-    week_working_hours_min = week_working_hours_min.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
+    week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
     
     @sumofworkinghours = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
   

@@ -93,12 +93,8 @@ function call_sw(){
       $.each(value["logs"], function(hrs, vl ) {
         $("td."+key).append(vl+"<br/>");
       });
-      tl_val = (value["total_hrs"]+"").split(".");
-      if(tl_val.length==2){
-        $("td.Total_"+key).html(tl_val[0]+" hrs "+ tl_val[1] +"min <br/>");
-      } else {
-        $("td.Total_"+key).html(tl_val[0]+" hrs <br/>");
-      }
+
+        $("td.Total_"+key).html(value["total_hrs"]+" hr <br/>");
    });
    
       tl_val = (data["total_week_hours"]+"").split(".");
