@@ -9,7 +9,7 @@
                  <div class="control-group">
 										<label class="control-label" for="basicinput"> Attachment Title:</label>
 										<div class="controls">
-											 <%= f.text_field :attachment_name, :class => " span8  form-control", name: "employee_attachments[attachment_name][]", :data => {:error => " Please Enter valid Attachment Title"}, :required =>true %> 
+											 <%= f.text_field :attachment_name, :class => " span8  form-control", name: "employee_attachments[attachment_name][]",:placeholder =>"Enter Attachment Title", :data => {:error => " Please Enter valid Attachment Title"}, :required =>true %> 
 											 <div class="help-block with-errors"></div>  
 										</div>
 									</div>		
@@ -17,7 +17,7 @@
 									<div class="control-group">
 										<label class="control-label" for="basicinput"> Attachment:</label>
 										<div class="controls">
-											 <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes, :error => " Please Choose valid a file to attach"}, :required =>true %> 
+											 <%= f.file_field :attachment, :multiple => true, name: "employee_attachments[attachment][]", :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes, :error => " Please Choose valid file to attach"}, :required =>true %> 
 											 <div class="help-block with-errors"></div>  
 										</div>
 									</div>	
