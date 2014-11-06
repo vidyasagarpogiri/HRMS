@@ -100,7 +100,7 @@ class LeaveHistoriesController < ApplicationController
 
 		@leave_history = LeaveHistory.find(params[:id])
 		@leave_history.update(:status => LeaveHistory::REJECTED, :feedback => params[:leave_history][:feedback])
-		Notification.reject_leave(current_user.employee, @leave_history).deliver
+		Notification.delay.reject_leave(current_user.employee, @leave_history)
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
 	end
 

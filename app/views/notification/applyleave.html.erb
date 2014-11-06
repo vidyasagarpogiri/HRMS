@@ -16,10 +16,10 @@ Hello  <%= @employee.reporting_manager %>,
           <td>:   <%= @leave_history.leave_type.type_name %></td>
 </tr><tr>
           <th>From Date </th>
-           <td>:  <%= @leave_history.from_date %></td>
+           <td>:  <%= @leave_history.from_date.to_date.strftime("%d %b, %Y") %></td>
 </tr><tr>
           <th>To Date </th>
-          <td>:   <%= @leave_history.to_date %> </td>
+          <td>:   <%= @leave_history.to_date.to_date.strftime("%d %b, %Y") %> </td>
 </tr><tr>
           <th>Number Of Day(s)</th>
            <td>:  <%= @leave_history.days %></td>
