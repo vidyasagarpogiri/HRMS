@@ -80,7 +80,9 @@ class EmployeeAttendenceController < ApplicationController
     @attendaceDates = @attendanceDates.collect {|dt| dt.to_datetime.strftime("%d-%m-%Y") }
     @attendaceDates = @attendaceDates.uniq
 
-    @allUserIds.each do|userId|
+    @employee_devise_ids = Employee.where(:status=>false).map(&:devise_id).compact.uniq
+    #@allUserIds.each do|deviceUserId|
+    @employee_devise_ids.each do|deviceUserId|
       @attendaceDates.each do|logDate|
       
         inFlag = true
@@ -88,14 +90,14 @@ class EmployeeAttendenceController < ApplicationController
         totalWorkingHours = 0
         is_emp_present = false
         
-        emp_rec = Employee.find_by_devise_id(userId)
+        emp_rec = Employee.find_by_devise_id(deviceUserId)
         from_work_time = emp_rec.shift.from_time
         to_work_time = emp_rec.shift.to_time
         
         inOutTimingsArray =  if(from_work_time > to_work_time)
-        TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", userId, logDate.to_datetime.at_noon, logDate.to_datetime.tomorrow.at_noon).map(&:date_time)
+        TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.at_noon, logDate.to_datetime.tomorrow.at_noon).map(&:date_time)
         else
-        TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", userId, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day).map(&:date_time)
+        TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day).map(&:date_time)
         end
           @emp = EmployeeAttendence.create(employee_id: emp_rec.id, log_date: logDate, is_present: is_emp_present, total_working_hours: totalWorkingHours)
           

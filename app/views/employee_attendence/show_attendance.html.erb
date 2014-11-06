@@ -98,7 +98,7 @@ function call_log_sw(id, val){
           $(".modal-header h4").html("<i class='icon-time icon-large'></i> Attendance Logs - "+v);
       if(k!="dt"){
       $.each(v, function( key, value ) {   
-      console.log(value[0]);
+      //console.log(value[0]);
           in_out = value[1]==true ? "<i class='icon-circle-arrow-down text-success'></i> in" : "<i class='icon-circle-arrow-up text-error '></i> out " ;
           log_records += "<tr><td>"+value[0]+" </td><td> "+ in_out +"</td></tr>";
           $("#show-attendance table#attendance_table tbody").html(log_records);    

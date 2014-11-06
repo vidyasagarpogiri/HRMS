@@ -50,6 +50,10 @@
 }
 
 $(function(){
-  //$(".processing").hide();
+  $(".processing").hide();
+  $(".csv-upload").click(function(){
+    $csvUploadModal = $(".processing");
+    $csvUploadModal.modal('show');
+  });
 });
 </script>
