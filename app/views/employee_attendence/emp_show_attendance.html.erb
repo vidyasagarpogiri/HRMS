@@ -13,13 +13,13 @@
 								  <thead>
 									  <tr>	
   									  <th></th>									     
-									    <th class="Mon">Monday</th>									     
-                      <th class="Tue">Thuesday</th>
-                      <th class="Wed">Wednesday</th>
-                      <th class="Thu">Thursday</th>
-                      <th class="Fri">Friday</th> 
-                      <th class="Sat">Saturday</th>
-                      <th class="Sun">Sunday</th>                         
+									    <th class="Mon"><br>Monday</th>									     
+                      <th class="Tue"><br>Thuesday</th>
+                      <th class="Wed"><br>Wednesday</th>
+                      <th class="Thu"><br>Thursday</th>
+                      <th class="Fri"><br>Friday</th> 
+                      <th class="Sat"><br>Saturday</th>
+                      <th class="Sun"><br>Sunday</th>                         
 									  </tr>
 								  </thead>
 								  <tbody>
@@ -42,6 +42,14 @@
 								    <td class="Total_Fri"></td>
 								    <td class="Total_Sat"></td>
 								    <td class="Total_Sun"></td>
+								   </tr>
+								   <tr>
+    							  <td><b>Total Working Hours</b></td>
+								    <td colspan="7" id="Grand_Total"> </td>
+								   </tr>
+								   <tr>
+								    <td><b>Average Working Hours</b></td>
+								    <td colspan="7" id="Average_Working_Hours"> </td>
 								   </tr>
 								  </tbody>
 								</table>
@@ -79,14 +87,42 @@ function call_sw(){
   $("th span").remove();
   $("#attendance_table tr td:not(:first-child)").html("");
   $.get( "/employee_attendence/emp_show_attendance_ws.json?week_no="+$("#week_no").val(), function( data ) {
-    $.each(data, function( key, value ) {
+    $.each(data["week_data"], function( key, value ) {
       $("th."+key).prepend("<span>"+value["dt"]+"</span> ");
+      
       $.each(value["logs"], function(hrs, vl ) {
         $("td."+key).append(vl+"<br/>");
       });
-      $("td.Total_"+key).html(value["total_hrs"]+"<br/>");
+      tl_val = (value["total_hrs"]+"").split(".");
+      if(tl_val.length==2){
+        $("td.Total_"+key).html(tl_val[0]+" hrs "+ tl_val[1] +"min <br/>");
+      } else {
+        $("td.Total_"+key).html(tl_val[0]+" hrs <br/>");
+      }
    });
+   
+      tl_val = (data["total_week_hours"]+"").split(".");
+      if(tl_val.length==2){
+        $("td#Grand_Total").html(tl_val[0]+" hrs "+ tl_val[1] +"min <br/>");
+      } else {
+        $("td#Grand_Total").html(tl_val[0]+" hrs <br/>");
+      }
+      //$("td#Grand_Total").html(data["total_week_hours"]+"<br/>");
+      
+      tl_val = (data["avg_week_hours"]+"").split(".");
+      if(tl_val.length==2){
+        $("td#Average_Working_Hours").html(tl_val[0]+" hrs "+ tl_val[1] +"min <br/>");
+      } else {
+        $("td#Average_Working_Hours").html(tl_val[0]+" hrs <br/>");
+      }
   });
 }
+
+</script>
+<script>
+
+$(function() {
+  $("table tbody tr:nth-child(2) td");
+});
 
 </script>

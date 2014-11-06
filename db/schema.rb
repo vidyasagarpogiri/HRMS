@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105102527) do
+ActiveRecord::Schema.define(version: 20141106110959) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(version: 20141105102527) do
     t.float    "total_working_hours", limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
   end
 
   create_table "employees", force: true do |t|
