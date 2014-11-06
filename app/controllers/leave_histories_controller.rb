@@ -40,7 +40,7 @@ class LeaveHistoriesController < ApplicationController
     @leave_history.save
     @leave_history.update(:days => applied_days)
     
-    Notification.delay.applyleave(current_user.employee, @leave_history)
+    Notification.applyleave(current_user.employee, @leave_history).deliver
 		redirect_to leave_histories_path
 	#else
 		#flash[:notice]= "no leave policy for you"
@@ -91,8 +91,8 @@ class LeaveHistoriesController < ApplicationController
 		@leave_history = LeaveHistory.find(params[:leave_history_id])
 		@leave_history.update(:status => LeaveHistory::APPROVED)
 		@leave_type = @leave_history.leave_type
-		Notification.delay.accept_leave(@employee, @leave_history)
-	@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
+		Notification.accept_leave(@employee, @leave_history).deiver
+	@reported_leaves = ReportingManager.where(:manasger_id => current_user.employee.id)
 	end
 
 	
@@ -100,7 +100,7 @@ class LeaveHistoriesController < ApplicationController
 
 		@leave_history = LeaveHistory.find(params[:id])
 		@leave_history.update(:status => LeaveHistory::REJECTED, :feedback => params[:leave_history][:feedback])
-		Notification.reject_leave(current_user.employee, @leave_history).deliver
+		Notification.reject_leave(current_user.employee, @leave_history).deiver
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
 	end
 
