@@ -7,7 +7,7 @@ require 'active_record'
 scheduler = Rufus::Scheduler.singleton
 
 # eg:Thursday, November 6, 2014 11:58 PM (every moth - crom job)
-scheduler.cron '30 12 5 *  *'  do 
+scheduler.cron '18 16 5 *  *'  do 
    puts "hello"
    
     @month = DateTime.now.month-1
