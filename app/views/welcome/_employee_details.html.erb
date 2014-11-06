@@ -16,7 +16,13 @@
       </tr>
       <tr>
         <th>Reporting-to-me</th>
-        <td><% @reportee_employees.each do |emp|%><tr><td></td><td><%= emp.full_name %></td></tr><% end %></td>
+        <td>
+          <% @reportee_employees.each do |emp|%>
+          <tr>
+            <td><%= emp.full_name %></td>
+          </tr>
+          <% end %>
+        </td>
       </tr>                
     </table>
     <i class="glyphicon glyphicon-sort btn" style="margin-left:300px;"></i> <br>

@@ -22,7 +22,10 @@ class WelcomeController < ApplicationController
     emp_rec = Employee.find_by_user_id(current_user.id)
     @myattendence = EmployeeAttendence.where("log_date >? and log_date <= ? and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).count.to_s
     @sumofworkinghours = EmployeeAttendence.where("log_date >? and log_date <= ?  and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours).sum
-    @avg = @sumofworkinghours/5
+    
+    @working_days = TimeDifference.between(last_week, last_week.beginning_of_week).in_general[:days]
+    
+    @avg = (@sumofworkinghours/@working_days).round(2)
     end
    else
     redirect_to employees_path
