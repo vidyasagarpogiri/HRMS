@@ -9,7 +9,7 @@
               </div>
               <%= form_for(@employee_attendence_log_file, :url=>"/employee_attendence/upload_file", :html => {:multipart => true}) do |f| %>
               <div class="module-body">
-                <%= f.file_field :log_file, :onchange =>"validateFiles(this);",:data => {:error => " Please Choose a CSV file to attach"} %>
+                <%= f.file_field :log_file, :onchange =>"validateFiles(this);",:data => {:error => " Please Choose a CSV file to attach"}, :required => true %>
                 <%= f.submit %>                
               </div><!-- module body-->
               <% end %> 
