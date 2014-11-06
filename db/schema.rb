@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 20141105102527) do
     t.string   "gender"
     t.string   "marital_status"
     t.float    "total_experience",     limit: 24
-    t.boolean  "status",                          default: false
+    t.boolean  "status"
     t.string   "mobile_number"
     t.string   "father_name"
     t.string   "pan"
@@ -267,6 +267,15 @@ ActiveRecord::Schema.define(version: 20141105102527) do
     t.string   "title"
     t.text     "description"
     t.integer  "section_declaration_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "generic_investment_declarations", force: true do |t|
+    t.string   "section"
+    t.string   "title"
+    t.float    "maximum_limit", limit: 24
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
