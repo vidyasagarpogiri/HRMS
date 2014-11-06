@@ -8,6 +8,7 @@
               <h3>pay slips
               </h3>
             </div>
+            <div class="processing"></div>
             <div class="module-body">
                <% if @payslips.present? %>                 
                 <!-- code for displayin all employees payslips -->   
@@ -51,7 +52,7 @@
                        <% end %> 
                 </table>
                 <hr>
-                 <%= link_to "Save and Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %> 
+                 <%= link_to "Save and Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right save-process" %> 
                 </div> 
                
                 <% end %>
@@ -88,6 +89,14 @@
     $(".mode_option").change(function(){
       $(".payslip-form").submit();
     });
+    
+     $(".save-process").click(function(){
+      var $saveProcessModal = $('.processing');
+      $saveProcessModal.modal('show');
+     
+    });
+    
+     $('.processing').hide();
  
   });
 </script>
