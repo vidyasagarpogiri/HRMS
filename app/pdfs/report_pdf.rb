@@ -26,7 +26,7 @@ class ReportPdf < Prawn::Document
     draw_text "MONTH/YEAR:", :at => [@x+50, @y-100] #1
     draw_text "#{I18n.t("date.abbr_month_names")[@payslip.month]}-#{@payslip.year}", :at => [@x+150, @y-100]
     draw_text "ATTD:", :at => [@x+300, @y-100]
-    draw_text "30", :at => [@x+400, @y-100]
+    draw_text "#{@payslip.working_days}", :at => [@x+400, @y-100]
     draw_text "EMP CODE:", :at => [@x+50, @y-120] #2
     draw_text "#{@payslip.employee.employee_id}", :at => [@x+150, @y-120]
     draw_text "DEPARTMENT:", :at => [@x+300, @y-120]
@@ -85,31 +85,31 @@ class ReportPdf < Prawn::Document
     #deducations 
     if @payslip.tds.present?
       draw_text "TDS:", :at => [@x+300, @d-20]
-      draw_text "#{@payslip.tds}", :at => [@x+400, @d-20]
+      draw_text "#{@payslip.tds}", :at => [@x+450, @d-20]
       @d = @d -20
     end 
     
     if @payslip.pt.present? 
       draw_text "PT:", :at => [@x+300, @d-20]
-      draw_text "#{@payslip.pt}", :at => [@x+400, @d-20]
+      draw_text "#{@payslip.pt}", :at => [@x+450, @d-20]
       @d = @d -20
     end
     
     if @payslip.pf.present? 
       draw_text "PF:", :at => [@x+300, @d-20]
-      draw_text "#{@payslip.pf}", :at => [@x+400, @d-20]
+      draw_text "#{@payslip.pf}", :at => [@x+450, @d-20]
       @d = @d -20
     end 
    
     if @payslip.esic.present? 
       draw_text "ESIC:", :at => [@x+300, @d-20]
-      draw_text "#{@payslip.esic}", :at => [@x+400, @d-20]
+      draw_text "#{@payslip.esic}", :at => [@x+450, @d-20]
       @d = @d -20
     end 
     
     @payslip.employee.salary.allowances.where(:is_deductable => true).each do |allowance|
       draw_text "#{allowance.allowance_name}:", :at => [@x+300, @d-20]
-      draw_text "#{(allowance.allowance_value/12).round(2)}", :at => [@x+400, @d-20]
+      draw_text "#{(allowance.allowance_value/12).round(2)}", :at => [@x+450, @d-20]
       @d = @d -20
     end     
     k = @z<@d ? @z : @d
@@ -130,7 +130,7 @@ class ReportPdf < Prawn::Document
       draw_text "TOTAL:", :at => [@x+50, @z-35]
       draw_text "#{@payslip.gross_salary}", :at => [@x+200, @z-35]
       draw_text "TOTAL:", :at => [@x+300, @z-35]
-      draw_text "#{@payslip.total_deductions}", :at => [@x+400, @z-35]
+      draw_text "#{@payslip.total_deductions}", :at => [@x+450, @z-35]
 
     end
     net_pay(@z)
