@@ -122,63 +122,59 @@
                </div>
 
 <hr>
-
-         <div class="head">
-          <div class="row-fluid">
-            <div class="sapn6">
-              <label class="heading">EARNINGS</label>
-            </div>
-            <div class="sapn6">
-               <label class="heading">DEDUCTIONS</label>
-            </div>
-          </div>
-        </div>
-
-     <div class="row-fluid">
-                <div class="span6">
-                 
-
-                  <!-------- Earnings------>
-                  <div class="row-fluid">  
-                    <div class="span6">
-                      <label class="label">Basic</label>
+                <div class="head">
+                  <div class="row-fluid">
+                    <div class="sapn6">
+                      <label class="heading">EARNINGS</label>
                     </div>
-                    <div class="span6">
-                      <label class="label"><%= @payslip.basic_salary %></label>
-                    </div>
-                  </div> 
-                  <!--- Allowances --->
-                  <% if @payslip.allowances.present? %>
-                    <% @payslip.allowances.where(is_deductable: false).each do |allowance|%>
-                      <div class="row-fluid">
-                        <div class="span6">
-                           <label class="label"><%= allowance.allowance_name %></label>
-                        </div>
-                        <div class="span6">
-                          <label class="label"><%= allowance.total_value %></label>
-                        </div>
-                      </div>
-                    <% end %>
-                  <% end %>
-                  <% if @payslip.special_allowance.present? %>
-                  <div class="row-fluid"> 
-                    <div class="span6">
-                      <label class="label"> Special Allowance:</label>
-                    </div>
-                    <div class="span6">
-                      <label class="label"><%= @payslip.special_allowance %></label>
+                    <div class="sapn6">
+                      <label class="heading">DEDUCTIONS</label>
                     </div>
                   </div>
-                 <% end %>
-                 <% if @payslip.arrears.present? %>
-                   <div class="row-fluid"> 
-                    <div class="span6">
-                      <label class="label">Arrears:</label>
-                    </div>
-                    <div class="span6">
-                      <label class="label"><%= @payslip.arrears %></label>
-                    </div>
-                  </div> 
+                </div>
+                <div class="row-fluid">
+                  <div class="span6">
+                  <!-------- Earnings------>
+                    <div class="row-fluid">  
+                      <div class="span6">
+                        <label class="label">Basic</label>
+                      </div>
+                      <div class="span6">
+                        <label class="label"><%= @payslip.basic_salary %></label>
+                      </div>
+                    </div> 
+                  <!--- Allowances --->
+                    <% if @payslip.allowances.present? %>
+                      <% @payslip.allowances.where(is_deductable: false).each do |allowance|%>
+                        <div class="row-fluid">
+                          <div class="span6">
+                           <label class="label"><%= allowance.allowance_name %></label>
+                          </div>
+                          <div class="span6">
+                            <label class="label"><%= allowance.total_value %></label>
+                          </div>
+                        </div>
+                      <% end %>
+                    <% end %>
+                    <% if @payslip.special_allowance.present? %>
+                      <div class="row-fluid"> 
+                        <div class="span6">
+                          <label class="label"> Special Allowance:</label>
+                        </div>
+                        <div class="span6">
+                          <label class="label"><%= @payslip.special_allowance %></label>
+                        </div>
+                      </div>
+                  <% end %>
+                  <% if @payslip.arrears.present? %>
+                    <div class="row-fluid"> 
+                      <div class="span6">
+                        <label class="label">Arrears:</label>
+                      </div>
+                      <div class="span6">
+                        <label class="label"><%= @payslip.arrears %></label>
+                      </div>
+                    </div> 
                  <% end %> 
                </div>
                <div class="span6">
@@ -278,7 +274,6 @@
             </div>
            </div> 
           </div>
-          <%= link_to "Save AS Pdf", "/payslip/#{@payslip.id}.pdf", :class => "btn btn-info"%><br><br>
                </div>                                                                              
             </div><!-- module-body-->
           </div><!--/.module-->
@@ -290,9 +285,9 @@
 <style>
   .label{
     margin-left:25px;
-    width:200px;
-    height:35px;
-    font-size:13px;
+    width:150px;
+    height:30px;
+    font-size:15px;
     font-weight:normal;
     color:black;
     text-align:left;
