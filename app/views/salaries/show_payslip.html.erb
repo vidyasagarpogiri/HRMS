@@ -120,6 +120,9 @@
                   </div>
                 </div>
                </div>
+
+<hr>
+
          <div class="head">
           <div class="row-fluid">
             <div class="sapn6">
@@ -134,6 +137,7 @@
      <div class="row-fluid">
                 <div class="span6">
                  
+
                   <!-------- Earnings------>
                   <div class="row-fluid">  
                     <div class="span6">
@@ -179,7 +183,7 @@
                </div>
                <div class="span6">
                   <!---- Dedcuations --->
-                   
+
                   <% if @payslip.tds.present? %>
                   <div class="row-fluid"> 
                     <div class="span6">
@@ -234,6 +238,7 @@
                  <% end %>
                 </div>
               </div>
+              <hr>
              <div class="head">
              <div class="row-fluid">
               <div class="span6">
@@ -252,13 +257,13 @@
                     <label class="text">TOTAL:</label>
                   </div>
                   <div class="span6">
-                    <label class="text"><%= @payslip.gross_salary %></label>
+                    <label class="text"><%= @payslip.total_deductions %></label>
                   </div>
                 </div>
               </div>
              </div>
             </div><br/>
-             
+             <hr>
              <div class="head">
              <div class="row-fluid">
                <div class="span6">
@@ -273,6 +278,7 @@
             </div>
            </div> 
           </div>
+          <%= link_to "Save AS Pdf", "/payslip/#{@payslip.id}.pdf", :class => "btn btn-info"%><br><br>
                </div>                                                                              
             </div><!-- module-body-->
           </div><!--/.module-->
@@ -298,7 +304,7 @@
      width:545px;
     height:35px;
     font-size:16px;
-    color:black;
+    color:green;
     float:left;
     
    }
