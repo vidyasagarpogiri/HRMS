@@ -19,8 +19,9 @@ class WelcomeController < ApplicationController
     if EmployeeAttendence.last.present?
     last_week = EmployeeAttendence.last.log_date 
     
-    @myattendence = EmployeeAttendence.where("log_date >? and log_date <= ?", last_week.beginning_of_week, last_week).count.to_s
-    @sumofworkinghours = EmployeeAttendence.where("log_date >? and log_date <= ?", last_week.beginning_of_week, last_week).map(&:total_working_hours).sum
+    emp_rec = Employee.find_by_user_id(current_user.id)
+    @myattendence = EmployeeAttendence.where("log_date >? and log_date <= ? and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).count.to_s
+    @sumofworkinghours = EmployeeAttendence.where("log_date >? and log_date <= ?  and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours).sum
     @avg = @sumofworkinghours/5
     end
    else
