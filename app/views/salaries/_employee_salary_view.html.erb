@@ -107,7 +107,27 @@
 					    <td><%= @salary.medical_insurance %></td>
 					    <td><%= monthly(@salary.medical_insurance) %></td>
 			      </tr>
-					  
+			      <% if @salary.pf_apply == "true" && @salary.esic_apply == "true" %>
+			      <tr>
+					    <th>Employer Contribution</th>
+					    <td><%= @salary.pf_contribution + @salary.esic_contribution %></td>
+					    <td><%= monthly(@salary.pf_contribution + @salary.esic_contribution) %></td>
+			      </tr>
+			      <% end %>
+					  <% if @salary.pf_apply == "true" %>
+					    <tr>
+					    <th>Employer Contribution</th>
+					    <td><%= @salary.pf_contribution %></td>
+					    <td><%= monthly(@salary.pf_contribution) %></td>
+			      </tr>
+			      <% end %>
+			      <% if @salary.esic_apply == "true" %>
+			        <tr>
+					    <th>Employer Contribution</th>
+					      <td><%= @salary.esic_contribution %></td>
+					      <td><%= monthly(@salary.esic_contribution) %></td>
+			        </tr>
+			      <% end %>
 				    <tr style="color:black;">
 					    <th>CTC</th>
 					    <td><%= @salary.ctc_fixed %></td>
