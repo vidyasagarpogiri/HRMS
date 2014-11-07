@@ -407,8 +407,8 @@ end
   
   def deducted_allowances_total(payslip)
     allowance_deducted_total = 0.0
-    salary = payslip.employee.salary
-    salary.allowances.each do |allowance|
+    allowances = payslip.employee.salary.allowances
+    allowances.each do |allowance|
       if allowance.is_deductable
         allowance_deducted_total += (allowance.allowance_value)/12
       end
