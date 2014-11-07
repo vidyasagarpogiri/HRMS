@@ -113,15 +113,13 @@
 					    <td><%= @salary.pf_contribution + @salary.esic_contribution %></td>
 					    <td><%= monthly(@salary.pf_contribution + @salary.esic_contribution) %></td>
 			      </tr>
-			      <% end %>
-					  <% if @salary.pf_apply == "true" %>
+					  <% elsif @salary.pf_apply == "true" %>
 					    <tr>
 					    <th>Employer Contribution</th>
 					    <td><%= @salary.pf_contribution %></td>
 					    <td><%= monthly(@salary.pf_contribution) %></td>
 			      </tr>
-			      <% end %>
-			      <% if @salary.esic_apply == "true" %>
+			      <% else %>
 			        <tr>
 					    <th>Employer Contribution</th>
 					      <td><%= @salary.esic_contribution %></td>
