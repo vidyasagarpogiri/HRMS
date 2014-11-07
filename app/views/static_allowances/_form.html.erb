@@ -12,7 +12,7 @@
                 <div class="control-group">
 									<label class="control-label" for="basicinput">Allowance Name</label>
 									<div class="controls">
-										 <%= f.text_field :name, :class => "span8 form-control", :placeholder=> "Enter Allowance", :data => {:error => "Please Enter Valid Allowance Name"}, :required =>true, :pattern => '[a-zA-Z/- /s ]*' %>
+										 <%= f.text_field :name, :class => "span6 form-control", :placeholder=> "Enter Allowance", :data => {:error => "Please Enter Valid Allowance Name"}, :required =>true, :pattern => '[a-zA-Z/- /s ]*' %>
                      <div class="help-block with-errors"></div>  
 									</div>
 								</div>
@@ -41,7 +41,7 @@
 								  </div>
 								</div><br>
 																	
-								 <ul class="navigation-btns pull-left" >
+								 <ul class="navigation-btns edit" >
 								   <li><button type="submit" class="btn btn-success">Save</button></li>
 								   <li><%= link_to 'Cancel', static_allowances_path, :class=>"btn btn-danger" %></li>
 								 </ul><br><br>

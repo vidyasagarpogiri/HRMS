@@ -40,17 +40,23 @@
               <% allowance_total = 0.0 %>
 				      <% @allowances.each do |allowance| %>																	
 	             <tr>		 								             
-					       <th><%= allowance.allowance_name %></th> 													   								          								              
-                 <% if allowance.value.present? %>													 
-                  <td><%= allowance_value(allowance.value, @salary.basic_salary)  %></td>
-                  <td><%= monthly(allowance_value(allowance.value, @salary.basic_salary))  %></td>
+					       <th><%= allowance.allowance_name %></th> 													   								          								               <% unless allowance.is_deductable %>
+                  <% if allowance.value.present? %>													 
+                    <td><%= allowance_value(allowance.value, @salary.basic_salary)  %></td>
+                    <td><%= monthly(allowance_value(allowance.value, @salary.basic_salary))  %></td>
                   <% allowance_total += allowance_value(allowance.value, @salary.basic_salary) %>
-                 <% else %>
-                 <td><%= allowance.allowance_value %></td>
-                 <td><%= monthly(allowance.allowance_value) %></td>
-                 <% allowance_total += allowance.allowance_value %>
-                 <% end %>
+                  <% else %>
+                    <td><%= allowance.allowance_value %></td>
+                    <td><%= monthly(allowance.allowance_value) %></td>
+                    <% allowance_total += allowance.allowance_value %>
+                  <% end %>
+                <% else %>
+                    <td><%= allowance.allowance_value %></td>
+                    <td><%= monthly(allowance.allowance_value) %></td>
+                    <% allowance_total -= allowance.allowance_value %>
+               <% end %>
                </tr>
+             
               <% end %>
               <% end %>
             <tr>            

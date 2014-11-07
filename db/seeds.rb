@@ -34,9 +34,9 @@ StaticSalary.destroy_all
 
 #sekharberi@1989
  @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
- @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
+ #@user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
  @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
- @user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
+ #@user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
 
 
 
@@ -95,18 +95,14 @@ Employee.create(:employee_id => 1, :title=> "Mr", :first_name=>"Vidya Sagar ",:l
 
 
 
-Employee.create(:employee_id => 2, :title=> "Mr", :first_name=>"BalaRaju",:last_name=>"Vankala",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
-:ff_status_id=>FfStatuses[rand(FfStatuses.length)], :job_location_id=>JobLocations[rand(JobLocations.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user1.id, :alternate_email => "ravi.nuni@amzur.com", :devise_id => "85", :shift_id => "1" )
 
 
-Employee.create(:employee_id => 3, :title=> "Miss", :first_name=>"Priyanka",:last_name=>"Muddana",:date_of_birth=>"2014-12-18", :gender=>"female", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"QWERT1234A", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
+Employee.create(:employee_id => 2, :title=> "Miss", :first_name=>"Priyanka",:last_name=>"Muddana",:date_of_birth=>"2014-12-18", :gender=>"female", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"QWERT1234A", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)], :job_location_id=>JobLocations[rand(JobLocations.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user2.id, :alternate_email => "ravi.nuni@amzur.com", :devise_id => "85", :shift_id => "1")
 
 
 
 
-Employee.create(:employee_id => 4, :title=> "Mr", :first_name=>"pattabhi",:last_name=>"ramarao",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
-:avatar=>"gates_print.jpg", :user_id => @user3.id, :alternate_email => "email@mail.com", :devise_id => "85", :shift_id => "1")
 
 
 
