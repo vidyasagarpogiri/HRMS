@@ -215,7 +215,7 @@ class EmployeeAttendenceController < ApplicationController
           
           week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
           
-          sumofworkinghours ="#{week_working_hours_hrs.to_i}.#{week_working_hours_min}".to_f
+          sumofworkinghours ="#{week_working_hours_hrs.to_i.to_s[0]}#{week_working_hours_hrs.to_i.to_s[1]}.#{week_working_hours_min}".to_f
                     #raise sumofworkinghours.inspect
           #attendance_hash_json[:total_week_hours] = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
           attendance_hash_json[:total_week_hours] = sumofworkinghours.round(2)

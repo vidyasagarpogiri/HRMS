@@ -33,7 +33,7 @@ class WelcomeController < ApplicationController
         
     week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
     
-    @sumofworkinghours = "#{week_working_hours_hrs.to_i}.#{week_working_hours_min}".to_f
+    @sumofworkinghours = "#{week_working_hours_hrs.to_i.to_s[0]}#{week_working_hours_hrs.to_i.to_s[1]}.#{week_working_hours_min}".to_f
   
     @working_days = TimeDifference.between(last_week, last_week.beginning_of_week).in_general[:days]
     
