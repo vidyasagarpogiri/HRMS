@@ -36,7 +36,7 @@ class PoliciesController < ApplicationController
   
   def show
     @policy = Policy.find(params[:id]) 
-    @policies = Policy.all
+    @policies = Policy.all.page(params[:page]).per(4)
   end
   
   def update

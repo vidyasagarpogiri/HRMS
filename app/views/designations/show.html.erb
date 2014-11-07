@@ -21,7 +21,7 @@
 		            <% @grades.each do |grade| %>
 		            <tbody>
 			            <tr>
-				            <th class="center"><%= link_to grade.value, grade_path(grade) %></th>
+				            <th class="center"><%= grade.value %></th>
 				            <th><%= grade.employees.count %>
 			            </tr>
 		            </tbody>

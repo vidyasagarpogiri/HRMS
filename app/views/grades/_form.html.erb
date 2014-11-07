@@ -26,8 +26,9 @@
                       <span class="help-block with-errors"></span>
 							    </div>
 							  </div>	
-								  <%= f.submit  'Save', :class => "btn btn-success pull-left" %>
-												 
+							  <ul class="navigation-btns pull-left">
+								  <%= f.submit  'Save', :class => "btn btn-success " %> 
+								  <%= link_to  'Cancel', grades_path(@grade), :class => "btn btn-danger " %> </ul>			 
 										<% end %>
 							</div><!--/.module-body-->
 						</div><!--/.module-->
@@ -36,5 +37,4 @@
 			</div><!--/.row-->
 		</div><!--/.container-->
 	</div><!--/.wrapper-->
-	
 

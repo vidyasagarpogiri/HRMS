@@ -14,7 +14,7 @@
               <li><%= link_to "Delete", policy_path(@policy.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>     
             </ul>
             <% end %><br>
-            <%= raw @policy.details %>           
+            <%= raw @policy.details %> <br> <br>         
             <strong>Attachment: </strong><%= link_to "Show", @policy.document_url, :target => "/blank" %><hr>                       
 					</div><!--/.module-body-->
 				</div><!--/.module-->
@@ -23,7 +23,7 @@
         <div class="module">	
           <div class="box-title">
             <div class="module-head">
-              <h3>All Polices</h3> 
+              <h3>All Policies List</h3> 
             </div>
           </div>                                            
           <div class="module-body">
@@ -36,7 +36,8 @@
               </div>
               <%= link_to "Continue..", policy_path(policy), :class => "pt4" %><br>              
               <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                                           
-           <% end %>						
+           <% end %>	
+           <%= paginate  @policies %> 					
            </div><!--/.module-body-->
   		   </div><!--/.module-->
 	     </div>	<!--/.span4-->			

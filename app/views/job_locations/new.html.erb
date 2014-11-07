@@ -56,9 +56,10 @@
                   <span class="help-block with-errors"></span>
                 </div>
               </div> 								
-                                     
-              <%= submit_tag "Add",:class => "btn btn-success" %>
-              <%= link_to 'Cancel', job_locations_path(@job_locations), :class => "btn btn-danger" %>	
+              <ul class="navigation-btns" style="margin: 10px 0 10px 650px;">                       
+                <li><%= submit_tag "Save",:class => "btn btn-success" %></li>
+                <li><%= link_to 'Cancel', job_locations_path(@job_locations), :class => "btn btn-danger" %></li>
+              </ul>	
               <% end %>							                   
             </div><!--/.module-body-->
           </div><!--/.module-->

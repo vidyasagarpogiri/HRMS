@@ -39,7 +39,7 @@
 				      <% if @allowances.present? %>
 				      <% @allowances.each do |allowance| %>																	
 	             <tr>		 								             
-					       <th><%= allowance.allowance_name %></th> 													   								          								              
+					       <th><%= allowance.allowance_name %></th> 													   								          							              
                  <% if allowance.value.present? %>													
                  <td><%= allowance_value(allowance.value, @salary.basic_salary)  %></td>
                  <% else %>
