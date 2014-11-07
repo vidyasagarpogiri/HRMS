@@ -29,7 +29,7 @@ class EmployeeAttendenceController < ApplicationController
   end
   
   def attendence_log_ws
-   usr = current_user
+   usr = current_user.employee
    usr = Employee.find(params[:emp_id]) if params[:emp_id].present?
    current_date = Time.now
    from_work_time = usr.shift.from_time
@@ -136,7 +136,7 @@ class EmployeeAttendenceController < ApplicationController
     
     last_week = EmployeeAttendence.where(:employee_id=>current_user.id).last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?
     
-    @employeeattendece = EmployeeAttendenceLog.where("time >? and time < ? and employee_id = ? ", last_week.beginning_of_week, last_week.end_of_week,  current_user.id)
+    @employeeattendece = EmployeeAttendenceLog.where("time >? and time < ? and employee_id = ? ", last_week.beginning_of_week, last_week.end_of_week,  current_user.employee.id)
          
     complete_week = last_week.beginning_of_week
     attendance_hash = {"Mon" => {:total_hrs=>0, :logs=>[], :dt=>complete_week.strftime("%d-%m-%Y")}, "Tue" => {:total_hrs=>0, :logs=>[], :dt=>( complete_week + 1.day).strftime("%d-%m-%Y")}, "Wed" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 2.day).strftime("%d-%m-%Y")}, "Thu" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 3.day).strftime("%d-%m-%Y")}, "Fri" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week+ 4.day).strftime("%d-%m-%Y")}, "Sat" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 5.day).strftime("%d-%m-%Y")}, "Sun" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 6.day).strftime("%d-%m-%Y")}}      
@@ -160,9 +160,9 @@ class EmployeeAttendenceController < ApplicationController
       w_day = complete_week + days.day
       
       @emp_employeeattendece =  if(from_work_time > to_work_time)
-        EmployeeAttendenceLog.where("time >? and time < ? and employee_id = ? ", w_day.at_noon, w_day.tomorrow.at_noon,  current_user.id)
+        EmployeeAttendenceLog.where("time >? and time < ? and employee_id = ? ", w_day.at_noon, w_day.tomorrow.at_noon,  current_user.employee.id)
        else
-        EmployeeAttendenceLog.where("time >? and time < ? and employee_id = ? ", w_day.beginning_of_day, w_day.end_of_day,  current_user.id)
+        EmployeeAttendenceLog.where("time >? and time < ? and employee_id = ? ", w_day.beginning_of_day, w_day.end_of_day,  current_user.employee.id)
       end   
       
       @emp_employeeattendece.each do|logs|
@@ -205,30 +205,27 @@ class EmployeeAttendenceController < ApplicationController
           
           week_working_hours_str = sumofworkinghours.to_s.split(".")
           #week_working_hours_hrs = week_working_hours_str[0]
+          week_working_hours_str = week_working_hours_str.split(".")[0]
           week_working_hours_hrs = week_working_hours_str[0].to_f
           #week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f.minutes.to_i.to_s
-          week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f
-          week_working_hours_hrs += week_working_hours_min % 60
-          week_working_hours_min = week_working_hours_min / 60
+          week_working_hours_min = "#{week_working_hours_str[1]}".to_f
+
+          week_working_hours_hrs += (week_working_hours_min/60).to_i
+          week_working_hours_min = (week_working_hours_min.to_f%60).to_i
           
           week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
           
-          sumofworkinghours = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
+          sumofworkinghours ="#{week_working_hours_hrs.to_i}.#{week_working_hours_min}".to_f
                     #raise sumofworkinghours.inspect
           #attendance_hash_json[:total_week_hours] = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
           attendance_hash_json[:total_week_hours] = sumofworkinghours.round(2)
           
-          avg_week_working_hours_str = ( week_working_hours / working_days.to_f).round(2).to_s.split(".")
-          #avg_week_working_hours_hrs = avg_week_working_hours_str[0]
-          avg_week_working_hours_hrs = avg_week_working_hours_str[0].to_f
-          #avg_week_working_hours_min = "0.#{avg_week_working_hours_str[1]}".to_f.minutes.to_i.to_s
-          avg_week_working_hours_min = "0.#{avg_week_working_hours_str[1]}".to_f
-          avg_week_working_hours_hrs += avg_week_working_hours_min % 60
-          avg_week_working_hours_min = avg_week_working_hours_min / 60
+          avg_week_working_hours_str = ( sumofworkinghours / working_days.to_f).round(2)
+
           
           avg_week_working_hours_min = avg_week_working_hours_min.to_s.length==1? "0#{avg_week_working_hours_min}" : "#{avg_week_working_hours_min}"
           
-          attendance_hash_json[:avg_week_hours] = "#{avg_week_working_hours_hrs}.#{avg_week_working_hours_min}".to_f
+          attendance_hash_json[:avg_week_hours] =  avg_week_working_hours_str
           
           
 #--------------------    
