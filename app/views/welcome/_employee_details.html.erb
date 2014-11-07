@@ -17,16 +17,21 @@
       <tr>
         <th>Reporting-to-me</th>
         <td>
-          <% @reportee_employees.each do |emp|%>
-          <tr id="count">
+        <% i = 0%>
+          <% @reportee_employees.each do |emp|%>          
+          <tr >
+            
             <td></td>
             <td><%= emp.full_name %></td>
           </tr>
+          <% i+=1 %>
           <% end %>
         </td>        
       </tr>                       
     </table>
+    <% if i>2 %>
     <i class="glyphicon glyphicon-sort btn" style="margin-left:300px;"></i> <br>
+    <% end %>
   </div><!--/.module-body -->
 </div><!--/.module -->      
                                                            

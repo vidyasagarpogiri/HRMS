@@ -18,8 +18,8 @@
                 </ul> 
               <% end %>             
             <h5>Link: <%= link_to @recruitment.link, @recruitment.link, :target => "/blank" %></h5>
-             <%= raw @recruitment.description %>
-            <h5>Attachment: </h5><%= link_to "Show", @recruitment.file_url, :target => "/blank" %>
+             <%= raw @recruitment.description %> <br> <br>
+            <h5>Attachment: <%= link_to "Show", @recruitment.file_url, :target => "/blank" %> </h5>
                    
                      
 						</div><!--/.module-body-->
