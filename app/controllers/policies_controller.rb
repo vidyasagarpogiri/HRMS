@@ -20,7 +20,7 @@ class PoliciesController < ApplicationController
     if @policy.save
     #raise params.inspect
       Employee.where(status: false).each do |emp|
-      Notification.delay.policy_notification(emp.user,@policy)
+      #Notification.delay.policy_notification(emp.user,@policy)
       end 	
   
       redirect_to policies_path
@@ -36,7 +36,7 @@ class PoliciesController < ApplicationController
   
   def show
     @policy = Policy.find(params[:id]) 
-    @policies = Policy.all
+    @policies = Policy.all.page(params[:page]).per(4)
   end
   
   def update
