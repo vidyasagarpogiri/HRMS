@@ -48,7 +48,7 @@
 							  <% if current_user.employee.present? && current_user.employee.avatar_url.present? %>
                   <%= image_tag current_user.employee.avatar_url, :class => "nav-avatar" %> 
                 <% else %>
-                  <img src="/assets/user.png", class= "nav-avatar"> 
+		  <%= image_tag "user.png", :class => "nav-avatar" %> 
                 <% end %>
 						
 								<b class="caret"></b>

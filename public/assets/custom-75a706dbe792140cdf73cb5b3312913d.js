@@ -1,0 +1,1 @@
+$("document").ready(function(){try{$.each($("i"),function(){$(this).attr("class",$(this).attr("class").replace("glyphicon glyphicon","icon"))}),$.each($("span"),function(){$(this).attr("class",$(this).attr("class").replace("glyphicon glyphicon","icon"))})}catch(c){}$(".modal").hide()});
