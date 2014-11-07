@@ -68,6 +68,7 @@ gem 'time_difference'
 #gem for delayed-job
 gem 'delayed_job_active_record'
 gem 'daemon-spawn'
+gem 'daemons'
 #gem "daemons" -- add this gem in production while deployment
 
 gem 'remotipart', '~> 1.2'
