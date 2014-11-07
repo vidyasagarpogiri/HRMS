@@ -47,8 +47,8 @@
       </div>
   </div>
     
-    	<ul class="navigation-btns pull-left">
-		    <li><button type="submit" class="btn btn-success">Update </button><!--<%# link_to 'Update', bankdetails_update_employee(@employee), :class=>"btn btn-success ", :remote => true %>--></li>
+    	<ul class="navigation-btns " style="margin: 10px 0 10px 650px;">
+		    <li><button type="submit" class="btn btn-success">Save </button><!--<%# link_to 'Update', bankdetails_update_employee(@employee), :class=>"btn btn-success ", :remote => true %>--></li>
 			  <li><%= link_to 'Cancel', bankdetails_show_employee_path(@employee.id), :class=>"btn btn-danger ", :remote => true %></li>									
 	   </ul>		
 	   <% end %>        
