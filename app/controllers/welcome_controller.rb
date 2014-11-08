@@ -38,19 +38,22 @@ class WelcomeController < ApplicationController
     @working_days = TimeDifference.between(last_week, last_week.beginning_of_week).in_general[:days]
     
 
-    all_employees = Employee.where(shift_id: emp_rec.shift_id).map(&:devise_id)
+    #all_employees = Employee.where(shift_id: emp_rec.shift_id).map(&:devise_id)
     
-    all_wk_days = TemporaryAttendenceLog.where(employee_id: all_employees).map(&:date_time)
+    all_wk_days = TemporaryAttendenceLog.where(employee_id: emp_rec.devise_id).map(&:date_time)
 
     all_wk_days = all_wk_days.collect {|x| x.to_date.to_datetime }
     all_wk_days = all_wk_days.uniq
     
-    i=0
+    i = 0
+    j = 0
     (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
-      i+=1 if all_wk_days.include?(dat)
+      i+=1
+      j+=1 if all_wk_days.include?(dat)
     end
     
     @working_days = i
+    @myattendence  = j
     avg_week_working_hours_str = (@sumofworkinghours/@working_days).round(2)
     
     avg_week_working_hours_str = avg_week_working_hours_str.to_s.split(".")
