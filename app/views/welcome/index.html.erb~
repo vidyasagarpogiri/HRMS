@@ -234,8 +234,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>-->
-                <img src="assets/amzur-logo.png" style="height:100px"/>
+                </button>-->                
+                <%= image_tag('amzur-logo.png', height: '100') %>
             </div>
         </div>
         <!-- /.container -->
