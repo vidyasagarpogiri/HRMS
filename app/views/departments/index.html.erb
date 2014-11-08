@@ -25,15 +25,15 @@
                         <div class="media user">  
                           <div class="media-avatar pull-left" href="#">                                 
                             <% if department.department_name == "HR" %>
-                                <img src="/assets/HR.jpg" class="department_image" > 
+			                          <%= image_tag "HR.jpg", :class => "department_image" %>
                             <% elsif department.department_name == "Development"%>
-                              <img src="/assets/dep.jpg" class="department_image" >
+			                         <%= image_tag "dep.jpg", :class => "department_image" %>
                             <% elsif department.department_name == "Business Development"%>
-                              <img src="/assets/accounts.jpg" class="department_image">
+                              <%= image_tag "accounts.jpg", :class => "department_image" %>
                             <% elsif department.department_name == "Accounts"%>
-                              <img src="/assets/bdm.jpg" class="department_image">
+                              <%= image_tag "bdm.jpg", :class => "department_image" %>
                             <% elsif department.department_name == "Staffing"%>
-                              <img src="/assets/us-staffing.png" class="department_image" style="opacity: 0.7">
+                             <%= image_tag "us-staffing.png", :class => "department_image" %>
                             <% else %>  
                               <!--<img src="/assets/user.png" class="department_image">-->
                             <% end %>

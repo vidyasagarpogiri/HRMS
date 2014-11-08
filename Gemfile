@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
-
+gem 'unicorn'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -68,6 +68,7 @@ gem 'time_difference'
 #gem for delayed-job
 gem 'delayed_job_active_record'
 gem 'daemon-spawn'
+gem 'daemons'
 #gem "daemons" -- add this gem in production while deployment
 
 gem 'remotipart', '~> 1.2'
