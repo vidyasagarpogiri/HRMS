@@ -132,9 +132,9 @@ class EmployeeAttendenceController < ApplicationController
   def emp_show_attendance_ws
   
   
-    last_week = EmployeeAttendence.where(:employee_id=>current_user.id).last.log_date
+    last_week = EmployeeAttendence.where(:employee_id=>current_user.employee.id).last.log_date
     
-    last_week = EmployeeAttendence.where(:employee_id=>current_user.id).last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?
+    last_week = EmployeeAttendence.where(:employee_id=>current_user.employee.id).last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?
     
     @employeeattendece = EmployeeAttendenceLog.where("time >? and time < ? and employee_id = ? ", last_week.beginning_of_week, last_week.end_of_week,  current_user.employee.id)
          
@@ -230,10 +230,8 @@ class EmployeeAttendenceController < ApplicationController
           all_wk_days = all_wk_days.uniq
           
           i=0
-          j=0
           (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
-            i+=1 
-            j+=1 if all_wk_days.include?(dat)
+            i+=1 if all_wk_days.include?(dat)
           end
           
           working_days = i

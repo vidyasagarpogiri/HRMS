@@ -20,6 +20,8 @@ class EmployeesController < ApplicationController
   
   def create
     
+    raise params.inspect
+    
      @employee = Employee.create(params_employees)
       
     if @employee.errors.present?

@@ -46,14 +46,11 @@ class WelcomeController < ApplicationController
     all_wk_days = all_wk_days.uniq
     
     i = 0
-    j = 0
     (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
-      i+=1
-      j+=1 if all_wk_days.include?(dat)
+      i+=1 if all_wk_days.include?(dat)
     end
     
     @working_days = i
-    @myattendence  = j
     avg_week_working_hours_str = (@sumofworkinghours/@working_days).round(2)
     
     avg_week_working_hours_str = avg_week_working_hours_str.to_s.split(".")

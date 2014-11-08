@@ -57,7 +57,7 @@ $(function(){
     call_sw();
   });
   $("#next").click(function(){
-    if(i<0){
+    if(i<=0){
        i += 1 ;
       $("#week_num").val(i);
       call_sw();
@@ -68,7 +68,7 @@ $(function(){
 
 function call_sw(){
   $("#attendance_table tr td:not(:first-child)").val("0");
-  $.get( "/employee_attendence/attandence_ws.json?week_no="+$("#week_num").val(), function( data ) {
+  $.getJSON( "/employee_attendence/attandence_ws.json?week_no="+$("#week_num").val(), function( data ) {
     $.each(data, function( key, value ) {
           $("th span").remove();
           $.each(data["dt"], function( dt, v ) {
