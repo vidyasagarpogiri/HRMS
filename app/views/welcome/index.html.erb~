@@ -10,16 +10,14 @@
     <meta name="author" content="">
 
     <title>AmzurHRM</title>
+    
+     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/custom.css" rel="stylesheet">
+ 
 
     <!-- Custom Fonts -->
-    <link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,8 +25,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
-  
+
 
 </head>
 
@@ -45,7 +42,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>-->                
-                <%= image_tag('amzur-logo.png', height: '100') %>
+                <%= image_tag('amzur-logo.png', :style=>'height:100px;') %>
             </div>
         </div>
         <!-- /.container -->
@@ -66,10 +63,11 @@
                         <ul class="list-inline intro-social-buttons" style="display: inline; ">
                           <li>
                           </li>
-                          <li style="">
-                              <div class="button">                              
-                              <i class="fa fa-sign-in fa-fw"></i><%= link_to "Login", user_omniauth_authorize_path(:google_oauth2), :class => "network-name", :style => "text-decoration: none;color:#fff" %>
-                              </div>
+                          <li>                             
+<%= link_to user_omniauth_authorize_path(:google_oauth2), :class => "network-name btn btn-warning btn-lg", :style => "text-decoration: none;color:#fff" do %>
+  <i class="fa fa-sign-in fa-fw"> Login</i>
+<% end %>
+                         
                           </li>
                           <li>
                           </li>
