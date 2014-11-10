@@ -94,22 +94,23 @@ $(function(){
   $("#prev").click(function(){
     i -= 1 ;
     $("#week_no").val(i);
-    call_sw();
+    call_sw();  
   });
   $("#next").click(function(){
-    if(i <=0){
+    if(i <0){
        i += 1 ;
       $("#week_no").val(i);
       call_sw();
     }
+    
   });
-    //$("td:empty").html("0");
+  //$("td:empty").html("0"); 
 });
 
 
 function call_sw(){
   $("th span").remove();
-  $("#attendance_table tr td:not(:first-child)").html("");
+  $("#attendance_table tr td:not(:first-child)").html("0");
   $.getJSON( "/employee_attendence/emp_show_attendance_ws.json?week_no="+$("#week_no").val(), function( data ) {
     $.each(data["week_data"], function( key, value ) {
       $("th."+key).prepend("<span>"+value["dt"]+"</span> ");

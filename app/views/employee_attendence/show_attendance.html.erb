@@ -67,7 +67,7 @@ $(function(){
 
 
 function call_sw(){
-  $("#attendance_table tr td:not(:first-child)").val("0");
+  $("#attendance_table tr td:not(:first-child)").html("0");
   $.getJSON( "/employee_attendence/attandence_ws.json?week_no="+$("#week_num").val(), function( data ) {
     $.each(data, function( key, value ) {
           $("th span").remove();
