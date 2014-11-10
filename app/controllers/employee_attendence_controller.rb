@@ -70,16 +70,16 @@ class EmployeeAttendenceController < ApplicationController
 
    #raise uploader.path.inspect
     #TemporaryAttendenceLog.destroy_all
-    ActiveRecord::Base.connection.execute("TRUNCATE temporary_attendence_logs")
+    ActiveRecord::Base.connection.execute("TRUNCATE temporary_attendence_logs") #destroying temporaryattendancelogs
     bulk_insert = []
     i=0
     CSV.foreach(uploader.path) do |column|
       bulk_insert.push"(#{column[2].to_i}, #{column[3].to_i}, '#{column[4]}')" unless i==0
       i+=1
     end
-    ActiveRecord::Base.connection.execute("INSERT INTO temporary_attendence_logs(`device_id`, `employee_id`, `date_time`) VALUES #{bulk_insert.join(', ')}")
-    
-    
+    ActiveRecord::Base.connection.execute("INSERT INTO temporary_attendence_logs(`device_id`, `employee_id`, `date_time`) VALUES #{bulk_insert.join(', ')}")  
+    #creating temporaryattendancelogs
+        
     @allUserIds = TemporaryAttendenceLog.all.map(&:employee_id).uniq
     @attendanceDates = TemporaryAttendenceLog.all.map(&:date_time).compact
     @attendaceDates = @attendanceDates.collect {|dt| dt.to_datetime.strftime("%d-%m-%Y") }
@@ -110,12 +110,18 @@ class EmployeeAttendenceController < ApplicationController
               if inFlag
                 inTime = inOutTime
                 inFlag = false
-                EmployeeAttendenceLog.create(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: true)
+                #EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: true)
+                emp_logs = EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, time:inOutTime , in_out: true)
+                emp_logs.employee_attendence_id = @emp.id
+                emp_logs.save
               else
                 timeDiff = TimeDifference.between(inTime, inOutTime).in_each_component
                 totalWorkingHours += timeDiff[:hours]
                 inFlag = true
-                EmployeeAttendenceLog.create(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: false)
+                #EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: false)
+                EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, time:inOutTime , in_out: false)
+                emp_logs.employee_attendence_id = @emp.id
+                emp_logs.save
               end
           end
           is_emp_present = true if totalWorkingHours!=0
