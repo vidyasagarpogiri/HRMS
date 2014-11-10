@@ -1,20 +1,12 @@
 
 
-			<div class="module"> 
-			
-			<div class="module-head">
-          <h3> Apply leave</h3>
-      </div> 
-      
-      <div class="module-head">
-          <h3>Leave Form </h3>
-      </div>   
+<div class="module">
+	<div class="module-head">
+      <h3>Leave Form </h3>
+  </div>   
                             
-<div class="module-body">   
-   <%= form_for ([@employe, @leave_history]), :data => {:toggle => "validator"} do |f| %>
-                                   
-     
-     
+  <div class="module-body">   
+     <%= form_for ([@employe, @leave_history]), :data => {:toggle => "validator"} do |f| %>                                             
       <div class="control-group">
 			  <label class="control-label" for="basicinput">Leave Type</label>                                              
 					<div class="controls">
@@ -48,52 +40,51 @@
 			 <span class="help-block with-errors"></span>   
 			</div>
 		</div>
-     <button type="submit" class="btn btn-success"> Apply </button>
-       <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>
+		<ul class="navigation-btns edittwo">                                                                                       
+      <li> <button type="submit" class="btn btn-success"> Apply </button></li>
+      <li><%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %></li>
+    </ul>
    <% end %>
+    
                        
   </div><!--module -body-->
-   
-            </div><!--/.module-->
-	
-                      
-         
-
+</div><!--/.module-->
+	                               
 
 <script>
-           $(function () {
-               $(".leave-form-date").datepicker({
-                   dateFormat: 'dd/mm/yy',
-                   changeMonth: true,
-                   changeYear: true,
-                    minDate: -0,
-                   yearRange: "+0:+1",
-                   onClose: function (selectedDate) {
-                       var date2 = $('.leave-form-date').datepicker('getDate');
-                       date2.setDate(date2.getDate());
-                       $(".leave-to-date").datepicker("option", "minDate", date2);
-                       $(".error1").html('');
-                   }
-               });
+   $(function () {
+       $(".leave-form-date").datepicker({
+           dateFormat: 'dd/mm/yy',
+           changeMonth: true,
+           changeYear: true,
+            minDate: -0,
+           yearRange: "+0:+1",
+           onClose: function (selectedDate) {
+               var date2 = $('.leave-form-date').datepicker('getDate');
+               date2.setDate(date2.getDate());
+               $(".leave-to-date").datepicker("option", "minDate", date2);
+               $(".error1").html('');
+           }
+       });
 
-               $(".leave-to-date").datepicker({
-                   dateFormat: 'dd/mm/yy',
-                    minDate: -0,
-                    yearRange: "0:+1",
-                     changeMonth: true,
-                   changeYear: true, 
-                     onClose: function (selectedDate) {
-                      var date1 = $('.leave-form-date').datepicker('getDate');
-                      if (date1){
-                        
-                      }else{
-                        $("#idnm2").val('');
-                        $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
-                      }
-                     }
-               });
-           });
-        </script>
+       $(".leave-to-date").datepicker({
+           dateFormat: 'dd/mm/yy',
+            minDate: -0,
+            yearRange: "0:+1",
+             changeMonth: true,
+           changeYear: true, 
+             onClose: function (selectedDate) {
+              var date1 = $('.leave-form-date').datepicker('getDate');
+              if (date1){
+                
+              }else{
+                $("#idnm2").val('');
+                $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
+              }
+             }
+       });
+   });
+</script>
             
 
 

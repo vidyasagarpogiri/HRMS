@@ -36,22 +36,18 @@
 										<td> <%= experience.last_designation %> </td>
 									  <td> <%= format_exp_date(experience.from_date) %> </td>
 										<td> <%= format_exp_date(experience.to_date) %> </td>
-                    <td> <%= difference_in_months(experience.from_date,experience.to_date )%> </td>	
-                    
-                     
-                                     <% if current_user.department == Department::HR %>
-													            <td> 
-													              
-                                          <%= link_to 'Edit', edit_employee_experience_path(@employee.id, experience.id), :class => "btn btn-success" %>                      
-                                          <%= link_to "Delete", employee_experience_path(@employee, experience.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>                                        
-                                        
-                                       </td>
-                                     <% end %>
-												            </tr>
-											            </tbody>
-											            <% end %>
-									            </table>                                 
-                              
+                    <td> <%= difference_in_months(experience.from_date,experience.to_date )%> </td>	                                         
+                     <% if current_user.department == Department::HR %>
+				              <td> 				                
+                          <%= link_to 'Edit', edit_employee_experience_path(@employee.id, experience.id), :class => "btn btn-success" %>                      
+                          <%= link_to "Delete", employee_experience_path(@employee, experience.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>                                        
+                        
+                       </td>
+                     <% end %>
+			              </tr>
+		              </tbody>
+		              <% end %>
+              </table>                                                               
 						</div><!--/.module -->
 					</div><!--/.content-->
 				</div><!--/.span12-->

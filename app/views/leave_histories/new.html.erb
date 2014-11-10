@@ -51,9 +51,11 @@
 							  </div>
 						  </div>
             </div>
-          </div>                                                                                       
-          <button type="submit" class="btn btn-success"> Apply </button>
-          <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>
+          </div>
+          <ul class="navigation-btns edittwo">                                                                                       
+            <li><button type="submit" class="btn btn-success"> Apply </button></li>
+            <li><%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %></li>
+          </ul>
           <% end %>                                                                   
           <% else %>  <br>
           <div class="alert alert-success alert-dismissable">
