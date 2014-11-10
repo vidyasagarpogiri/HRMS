@@ -14,7 +14,14 @@ class LeaveHistoriesController < ApplicationController
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
 		@employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
 	end
-
+  
+  def reportees_leaves
+   
+   @reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
+   
+   @employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
+   #raise @employees.inspect
+  end
 
 
   def new
