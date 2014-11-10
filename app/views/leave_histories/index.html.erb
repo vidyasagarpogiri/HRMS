@@ -9,8 +9,8 @@
             </div>
             <% if @employee.department.leave_policy.present? %>
             <% if @employee.reporting_manager? %>
-            <div class="module-body" style="min-height:800px;">
-              <div class="profile-head media">              
+            <div class="module-body" >
+              <div class="profile-head media" style="min-height:800px;">              
                 <div class="media-body">
                    <a class="media-avatar pull-left" href="#">                                 
                      <%= image_tag "leave-view-icon.jpg", :style => "margin-top:50px;height:120px !important;width:120px !important;" %>

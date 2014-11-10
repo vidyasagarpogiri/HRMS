@@ -5,7 +5,7 @@
         <div class="content">
           <div class="module">
             <div class="module-head"> 
-              <h3>Add New Work Shift</h3>
+              <h3>Add Work Shift</h3>
             </div>
             <div class="module-body">
               <%= form_for @shift,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |s| %>
@@ -32,7 +32,7 @@
                   <span class="help-block with-errors"></span>
                 </div>
               </div>
-              <ul class="navigation-btns edit" >
+              <ul class="navigation-btns editthree" >
                 <li><button type="submit" class="btn btn-success">Save</button></li>
                 <li><%= link_to "Cancel", shifts_path,:class => "btn btn-danger" %></li>
               </ul>	
