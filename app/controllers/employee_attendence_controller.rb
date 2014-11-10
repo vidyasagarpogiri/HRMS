@@ -70,7 +70,8 @@ class EmployeeAttendenceController < ApplicationController
 
    #raise uploader.path.inspect
    i=0
-    TemporaryAttendenceLog.destroy_all
+    #TemporaryAttendenceLog.destroy_all
+    ActiveRecord::Base.connection.execute("TRUNCATE temporary_attendence_logs")
     CSV.foreach(uploader.path) do |column|
     #puts "#{column[2]} - #{column[3]} - #{column[4]}" unless i==0
     #if TemporaryAttendenceLog.where(date_time: column[4])
