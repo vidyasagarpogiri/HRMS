@@ -32,8 +32,7 @@
                       <li><a href="#leave_policy" data-toggle="tab">Leave Policy</a></li>
                       <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li> 
                      <% if current_user.employee.is_reporting_manager? %>
-                     <li><a href="#leave_approavals" data-toggle="tab">Leave Approvals</a></li>  
-                      <li><a href="#reportees" data-toggle="tab">Reportees</a></li>
+                       <li><a href="#reportees" data-toggle="tab">Reportees</a></li>
                      <% end %>                                    
                   </ul>                                                                                                                                
                      <div class="profile-tab-content tab-content">  
@@ -71,17 +70,10 @@
                             </div>                                          
                           </div><!--/.tab-pane-list-->                                          
                           
-                <!--leave_approavals PANEL-->             
-                          <div class="tab-pane fade " id="leave_approavals">                                              
-                            <%= render "leave_histories/reported_leaves"%>                  
-                        </div><!--/.tab-pane-list--> 
+               
                         
                  <!--reportees PANEL-->         
-                        <div class="tab-pane fade" id="reportees">
-                          <div class="module">                                              
-                            <%= render "leave_histories/reportees"%>
-                          </div>                  
-                        </div><!--/.tab-pane-list--> 
+                       <!--/.tab-pane-list--> 
                         
                                                                                
                           </div><!--/.profile-tab-content -->                                                                                      

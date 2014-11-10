@@ -100,7 +100,7 @@ Rails.application.routes.draw do
     post 'reject'
   end
  end
- 
+get 'reportees_leaves' => "leave_histories#reportees_leaves"
 get 'reported_leaves' => "leave_histories#reported_leaves"
 get 'reported_employees' => "leave_histories#reported_employees"
 get 'applied_leaves' => "leave_histories#applied_leaves"
