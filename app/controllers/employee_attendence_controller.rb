@@ -69,16 +69,17 @@ class EmployeeAttendenceController < ApplicationController
    uploader.store!(params[:employee_attendence_log_file][:log_file])
 
    #raise uploader.path.inspect
-   i=0
     #TemporaryAttendenceLog.destroy_all
     ActiveRecord::Base.connection.execute("TRUNCATE temporary_attendence_logs")
+    bulk_insert = []
+    i=0
     CSV.foreach(uploader.path) do |column|
-    #puts "#{column[2]} - #{column[3]} - #{column[4]}" unless i==0
-    #if TemporaryAttendenceLog.where(date_time: column[4])
-      TemporaryAttendenceLog.create(device_id: column[2], employee_id: column[3], date_time: column[4]) unless i==0
-    #end
-    i+=1
-    end      
+      bulk_insert.push"(#{column[2].to_i}, #{column[3].to_i}, '#{column[4]}')" unless i==0
+      i+=1
+    end
+    ActiveRecord::Base.connection.execute("INSERT INTO temporary_attendence_logs(`device_id`, `employee_id`, `date_time`) VALUES #{bulk_insert.join(', ')}")
+    
+    
     @allUserIds = TemporaryAttendenceLog.all.map(&:employee_id).uniq
     @attendanceDates = TemporaryAttendenceLog.all.map(&:date_time).compact
     @attendaceDates = @attendanceDates.collect {|dt| dt.to_datetime.strftime("%d-%m-%Y") }
