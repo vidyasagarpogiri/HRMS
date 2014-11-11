@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   end
  
    resources :groups do
-       resources :holiday_calenders
+     resources :holiday_calenders
        member do
         get 'add_employee'
         post 'update_add_employee'

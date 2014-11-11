@@ -21,23 +21,22 @@ class WelcomeController < ApplicationController
     
     emp_rec = Employee.find_by_user_id(current_user.id)
     @myattendence = EmployeeAttendence.where("log_date >? and log_date <= ? and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).where.not(:total_working_hours => 0.0).count.to_s
-    @sumofworkinghours = EmployeeAttendence.where("log_date >? and log_date <= ?  and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours).sum
-
+    @sumofworkinghours = EmployeeAttendence.where("log_date >=? and log_date <= ?  and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours).sum
+    
     week_working_hours_str = @sumofworkinghours.to_s.split(".")
     week_working_hours_str = week_working_hours_str.split(".")[0]
     week_working_hours_hrs = week_working_hours_str[0].to_f
     week_working_hours_min = "#{week_working_hours_str[1]}".to_f
-
+    
     week_working_hours_hrs += (week_working_hours_min/60).to_i
     week_working_hours_min = (week_working_hours_min.to_f%60).to_i
-        
+    
     week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
     
-    @sumofworkinghours = "#{week_working_hours_hrs.to_i.to_s[0]}#{week_working_hours_hrs.to_i.to_s[1]}.#{week_working_hours_min}".to_f
+    @sumofworkinghours = "#{week_working_hours_hrs.to_i}.#{week_working_hours_min.to_i}".to_f
   
     @working_days = TimeDifference.between(last_week, last_week.beginning_of_week).in_general[:days]
     
-
     #all_employees = Employee.where(shift_id: emp_rec.shift_id).map(&:devise_id)
     
     all_wk_days = TemporaryAttendenceLog.where(employee_id: emp_rec.devise_id).map(&:date_time)
@@ -46,10 +45,26 @@ class WelcomeController < ApplicationController
     all_wk_days = all_wk_days.uniq
     
     i = 0
+    j = 0
+    z = 0
     (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
-      i+=1 if all_wk_days.include?(dat)
+      i+=1
+      #raise EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id).inspect
+      if !EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id).empty?
+        j+=1
+        z+=1 if ["Sat","Sun"].include?dat.strftime("%a").to_s
+      end
     end
     
+    if z==0
+      i = 5
+    elsif z==1
+      i = 6
+    elsif z==2
+      i = 7
+    end
+     
+    @myattendence = j
     @working_days = i
     avg_week_working_hours_str = (@sumofworkinghours/@working_days).round(2)
     

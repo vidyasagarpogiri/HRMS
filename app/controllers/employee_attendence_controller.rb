@@ -216,6 +216,7 @@ class EmployeeAttendenceController < ApplicationController
           #week_working_hours_hrs = week_working_hours_str[0]
           week_working_hours_str = week_working_hours_str.split(".")[0]
           week_working_hours_hrs = week_working_hours_str[0].to_f
+          
           #week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f.minutes.to_i.to_s
           week_working_hours_min = "#{week_working_hours_str[1]}".to_f
 
@@ -224,8 +225,21 @@ class EmployeeAttendenceController < ApplicationController
           
           week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
           
-          sumofworkinghours ="#{week_working_hours_hrs.to_i.to_s[0]}#{week_working_hours_hrs.to_i.to_s[1]}.#{week_working_hours_min}".to_f
-                    #raise sumofworkinghours.inspect
+          #sumofworkinghours ="#{week_working_hours_hrs.to_i.to_s}#{week_working_hours_hrs.to_i.to_s[1]}.#{week_working_hours_min}".to_f
+          sumofworkinghours = "#{week_working_hours_hrs.to_i}.#{week_working_hours_min.to_i}".to_f
+          
+          
+          
+=begin          
+          swh = sumofworkinghours.to_s.split(".")
+          swhs = swh[0].
+          swm = "#{swh[1]}"
+          
+          #raise swhs.inspect
+=end         
+          
+          
+          
           #attendance_hash_json[:total_week_hours] = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
           attendance_hash_json[:total_week_hours] = sumofworkinghours.round(2)
           
@@ -261,7 +275,7 @@ class EmployeeAttendenceController < ApplicationController
           
 #--------------------    
     
-    respond_to do |format|
+      respond_to do |format|
       format.json { render json: attendance_hash_json }
     end
   
