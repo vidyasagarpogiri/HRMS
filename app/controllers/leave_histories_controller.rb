@@ -36,7 +36,6 @@ class LeaveHistoriesController < ApplicationController
   
  
   def create
-    raise params.inspect
     @employee = current_user.employee
     if params[:leave_history][:is_halfday] == "full_day"
     @leave_history = current_user.employee.leave_histories.create(params_leave_history)
