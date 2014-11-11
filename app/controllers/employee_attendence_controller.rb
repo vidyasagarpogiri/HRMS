@@ -12,7 +12,7 @@ class EmployeeAttendenceController < ApplicationController
   def attandence_ws
     last_week = EmployeeAttendence.last.log_date 
     last_week = EmployeeAttendence.last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?    
-    @employeeattendece = EmployeeAttendence.where("log_date >? and log_date < ?", last_week.beginning_of_week, last_week.end_of_week)
+    @employeeattendece = EmployeeAttendence.where("log_date >=? and log_date < ?", last_week.beginning_of_week, last_week.end_of_week)
     week_days = last_week.beginning_of_week
     attendance_hash = {"dt"=>{ "Mon"=>week_days.strftime("%d-%m-%Y"), "Tue"=>(week_days + 1.day).strftime("%d-%m-%Y"), "Wed"=>(week_days + 2.day).strftime("%d-%m-%Y"), "Thu"=>(week_days + 3.day).strftime("%d-%m-%Y"), "Fri"=>(week_days + 4.day).strftime("%d-%m-%Y"), "Sat"=>(week_days + 5.day).strftime("%d-%m-%Y"), "Sun"=>(week_days + 6.day).strftime("%d-%m-%Y")}} 
     @employeeattendece.each do|rec|
@@ -223,9 +223,12 @@ class EmployeeAttendenceController < ApplicationController
       
       attendance_hash_json = {}
       attendance_hash_json[:week_data] = attendance_hash
-        
-      sumofworkinghours = calculate_time_diff(week_working_hours.sum)
-      attendance_hash_json[:total_week_hours] = calculate_time_diff(week_working_hours.sum)
+
+      t = week_working_hours.sum
+      mm, ss = t.divmod(60)
+      hh, mm = mm.divmod(60)
+      
+      attendance_hash_json[:total_week_hours] = "#{hh}hr #{mm}min"
       attendance_hash_json[:avg_week_hours] =   calculate_time_diff(week_working_hours.sum / working_days)
 
       respond_to do |format|
@@ -240,6 +243,6 @@ class EmployeeAttendenceController < ApplicationController
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
     return 0 if (hh+mm+ss).to_i == 0
-    return "#{hh.to_i}hr #{mm.to_i}min #{ss.to_i}sec" if (hh+mm+ss).to_i != 0 #[dd,hh, mm, ss]
+    return "#{hh.to_i}hr #{mm.to_i}min" if (hh+mm+ss).to_i != 0 #[dd,hh, mm, ss]
   end
 end

@@ -20,12 +20,12 @@ class WelcomeController < ApplicationController
     last_week = EmployeeAttendence.last.log_date 
     
     emp_rec = Employee.find_by_user_id(current_user.id)
-    @myattendence = EmployeeAttendence.where("log_date >? and log_date <= ? and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours)
+    @myattendence = EmployeeAttendence.where("log_date >=? and log_date <= ? and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours)
     working_days = 0
     attended_days = 0
     attended_on_weekends = 0
     (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
-    raise (last_week.beginning_of_week.to_datetime..last_week.to_datetime).to_a.inspect
+    #raise (last_week.beginning_of_week.to_datetime..last_week.to_datetime).to_a.inspect
       working_days += 1
       if !EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id).empty?
         attended_days += 1
@@ -45,9 +45,13 @@ class WelcomeController < ApplicationController
     @attended_days = attended_days
     @working_days = working_days
     
-    @sumofworkinghours = calculate_time_diff(@myattendence.sum)
-    
-    @avg =  "#{calculate_time_diff(@myattendence.sum/@working_days)}".to_f
+    t = @myattendence.sum
+    mm, ss = t.divmod(60)
+    hh, mm = mm.divmod(60)
+  
+    @sumofworkinghours = "#{hh}hr #{mm}min"
+      
+    @avg =  "#{calculate_time_diff(@myattendence.sum/@working_days)}"
     
     end
    else
@@ -62,6 +66,6 @@ class WelcomeController < ApplicationController
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
     return 0 if (hh+mm+ss).to_i == 0
-    return "#{hh.to_i}hr #{mm.to_i}min #{ss.to_i}sec" if (hh+mm+ss).to_i != 0 #[dd,hh, mm, ss]
+    return "#{hh.to_i}hr #{mm.to_i}min" if (hh+mm+ss).to_i != 0 #[dd,hh, mm, ss]
   end
 end
