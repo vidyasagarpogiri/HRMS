@@ -10,8 +10,8 @@ class GroupsController < ApplicationController
   def new
     
     @group = Group.new
-    @employee = Employee.new
-    @reporting_manager = ReportingManager.new
+   # @employee = Employee.new
+   #@reporting_manager = ReportingManager.new
      
   end
   
@@ -19,10 +19,10 @@ class GroupsController < ApplicationController
   
   def create
     
-    @employee = Employee.find(params[:emp_id]) 
+    #@employee = Employee.find(params[:emp_id]) 
     @group = Group.create(group_params)
-    @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :group_id => @group.id)
-    redirect_to  @group
+    #@reporting_manager = ReportingManager.create(:employee_id => @employee.id, :group_id => @group.id)
+    redirect_to  groups_path
   end
   
   def show
@@ -35,8 +35,8 @@ class GroupsController < ApplicationController
   def edit
      
      @group = Group.find(params[:id])
-     @reporting_manager = ReportingManager.find_by(@group.id)
-     @employee = Employee.find_by(@reporting_manager.id)
+     #@reporting_manager = ReportingManager.find_by(@group.id)
+     #@employee = Employee.find_by(@reporting_manager.id)
      
   end
   
@@ -44,9 +44,9 @@ class GroupsController < ApplicationController
    
     @group = Group.find(params[:id])
     @group.update(group_params)
-    @employee = Employee.find(params[:emp_id])
-    @reporting_manager = ReportingManager.find_by(@group.id)
-    @reporting_manager.update(:employee_id => @employee.id)
+    #@employee = Employee.find(params[:emp_id])
+    #@reporting_manager = ReportingManager.find_by(@group.id)
+    #@reporting_manager.update(:employee_id => @employee.id)
     redirect_to  @group
      
   end

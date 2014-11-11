@@ -1,0 +1,53 @@
+<div class="wrapper">
+ <div class="container">
+	<div class="row">
+    <div class="span12">
+		  <div class="content">
+			  <div class="module">
+				  <div class="module-head">
+					  <h3>Add Group and Policies</h3>
+					</div>
+						<div class="module-body">	
+						<%= form_for(@group) do |f| %>																	
+						  <div class="control-group">   
+						     <label class="control-label" for="basicinput">Group Name</label>
+                 <div class="controls">
+                   <%= f.text_field :group_name,  :class =>"form-control span8", :placeholder => "Enter group name",:required =>true %>
+                  <span class="help-block with-errors"></span>
+	               </div>
+				      </div>		
+				      
+				     
+				      
+				      <ul class="navigation-btns edittwo">								        							
+							 <li><button type="submit" class="btn btn-success">Save </button></li>
+							 <li><%= link_to "Cancel", groups_path,:class => "btn btn-danger" %></li>
+							</ul>
+						  <% end %>
+							</div><!--/.module-body-->
+						</div><!--/.module-->
+					</div><!--/.content-->
+				</div><!--/.span12-->
+			</div><!--/.row-->
+		</div><!--/.container-->
+	</div><!--/.wrapper-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
