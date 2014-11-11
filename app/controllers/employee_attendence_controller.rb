@@ -204,7 +204,7 @@ class EmployeeAttendenceController < ApplicationController
       attended_days = 0
       attended_on_weekends = 0
       (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
-      raise (last_week.beginning_of_week.to_datetime..last_week.to_datetime).to_a.inspect
+      #raise (last_week.beginning_of_week.to_datetime..last_week.to_datetime).to_a.inspect
         working_days += 1
         if !EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id).empty?
           attended_days += 1
