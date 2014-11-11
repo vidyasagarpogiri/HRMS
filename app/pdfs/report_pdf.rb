@@ -107,9 +107,9 @@ class ReportPdf < Prawn::Document
       @d = @d -20
     end 
     
-    @payslip.employee.salary.allowances.where(:is_deductable => true).each do |allowance|
+    @payslip.allowances.where(:is_deductable => true).each do |allowance|
       draw_text "#{allowance.allowance_name}:", :at => [@x+300, @d-20]
-      draw_text "#{(allowance.allowance_value/12).round(2)}", :at => [@x+450, @d-20]
+      draw_text "#{(allowance.total_value/12).round(2)}", :at => [@x+450, @d-20]
       @d = @d -20
     end     
     k = @z<@d ? @z : @d

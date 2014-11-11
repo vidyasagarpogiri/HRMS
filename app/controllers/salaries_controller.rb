@@ -413,7 +413,7 @@ class SalariesController < ApplicationController
         k=[]
         deductable_allowances_array.each do |allowance|
         g= 0
-        payslip.employee.salary.allowances.where(is_deductable: true).each do |p_allowance|
+        payslip.allowances.each do |p_allowance|
           if allowance == p_allowance.allowance_name
             k << (p_allowance.allowance_value/12).round(2)
             g = 1

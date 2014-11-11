@@ -22,9 +22,16 @@
              <%= f.text_area :reason,  :class =>"span8 form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %>  
 					  <span class="help-block with-errors"></span>   
 					</div>
-			</div>                                                                                                         
-                              
-    <% unless (@leave_history.from_date.to_date <= Date.today) %>                                      
+			</div>
+			<div class="row-fluid">
+        <div class="span2">
+           <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
+        </div>
+        <div class="span2">
+           <%= f.radio_button :is_halfday, 'full_day',:class => "rb2" %> &nbspFull Day                            	
+        </div>
+      </div>                                                                                                         
+    <div class="row-fluid full_day">                                      
      <div class="control-group">
 			<label class="control-label" for="basicinput">From</label>
 				<div class="controls">
@@ -32,7 +39,7 @@
 					 <span class="help-block with-errors"></span>   
 				</div>
 		</div> 
-   <% end %>                                      
+                                         
    <div class="control-group">
 		<label class="control-label" for="basicinput">To</label>
 			<div class="controls">
@@ -40,6 +47,28 @@
 			 <span class="help-block with-errors"></span>   
 			</div>
 		</div>
+	</div>
+		<div class="row-fluid half_day">
+            <div class="span4">
+              <div class="control-group">
+							  <label class="control-label" for="basicinput">Date</label>
+							  <div class="controls">
+                 <input type="text" name="leave_date" id = "idnm3" class ="span8 form-control leave-form-date leave-date">
+								   <span class="help-block with-errors"></span>   
+							  </div>
+						  </div>
+            </div>
+            <div class="span4">
+              <div class="control-group">
+							  <label class="control-label" for="basicinput">To</label>
+							  <div class="controls">
+                 <%= f.select :section, options_for_select([['Morning', 'Morning'], ['After Noon', 'After Noon']]), :id => "idnm2", :class => "span8 form-control leave-to-date", :data => {:error => "Please Enter Valid Date"} %>
+								   <span class="help-block with-errors"></span>   
+							  </div>
+						  </div>
+            </div>
+          </div>
+
 		<ul class="navigation-btns edittwo">                                                                                       
       <li> <button type="submit" class="btn btn-success"> Apply </button></li>
       <li><%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %></li>
@@ -66,25 +95,45 @@
                $(".error1").html('');
            }
        });
-
-       $(".leave-to-date").datepicker({
-           dateFormat: 'dd/mm/yy',
-            minDate: -0,
-            yearRange: "0:+1",
-             changeMonth: true,
-           changeYear: true, 
-             onClose: function (selectedDate) {
-              var date1 = $('.leave-form-date').datepicker('getDate');
-              if (date1){
-                
-              }else{
-                $("#idnm2").val('');
-                $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
-              }
-             }
+               $(".leave-to-date").datepicker({
+                   dateFormat: 'dd/mm/yy',
+                    minDate: -0,
+                    yearRange: "0:+1",
+                     changeMonth: true,
+                   changeYear: true, 
+                     onClose: function (selectedDate) {
+                      var date1 = $('.leave-form-date').datepicker('getDate');
+                      if (date1){
+                        
+                      }else{
+                        $("#idnm2").val('');
+                        $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
+                      }
+                     }
+               });
+                <% if @leave_history.is_halfday %>
+                      $('.rb1').prop('checked',true);
+                      $('.leave-date').val('<%= @leave_history.from_date%>');
+                      $('.full_day').hide();
+                      $('.half_day').show();              
+                <% else %>
+                       $('.rb2').prop('checked',true);
+                        $('.half_day').hide();
+                        $('.full_day').show();
+                <% end %>
+           });
+            $(function(){
+              $('.rb1').click(function(){
+                  $('.full_day').hide();
+                  $('.half_day').show();
+              });
+              $('.rb2').click(function(){
+                $('.half_day').hide();
+                $('.full_day').show();
+              });
        });
-   });
-</script>
+        </script>
+
             
 
 
