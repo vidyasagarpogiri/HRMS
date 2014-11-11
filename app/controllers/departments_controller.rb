@@ -19,7 +19,7 @@ class DepartmentsController < ApplicationController
   def show
     @department = Department.find(params[:id])
     @employees = @department.employees
-		@leave_policy = @department.leave_policy 
+		#@leave_policy = @department.leave_policy 
 		@holiday_calenders = @department.holiday_calenders
 		@designations = @department.designations
 		@leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?
@@ -61,7 +61,7 @@ class DepartmentsController < ApplicationController
     #raise params.inspect
     @department = Department.find(params[:id])
     @employees = @department.employees
-    @leave_policy = @department.leave_policy
+    #@leave_policy = @department.leave_policy
     @holiday_calenders = @department.holiday_calenders
     #raise @holiday_calenders.inspect
    end 
@@ -88,9 +88,9 @@ class DepartmentsController < ApplicationController
   
   def holiday_list
      
-		@holidays = current_user.employee.department.holiday_calenders
+		#@holidays = current_user.employee.department.holiday_calenders
 		#raise @holiday.inspect
-		@leave_policy = current_user.employee.department.leave_policy
+		#@leave_policy = current_user.employee.department.leave_policy
 		@department = current_user.employee.department
 	end
   
