@@ -108,8 +108,7 @@ class LeaveHistoriesController < ApplicationController
 		@leave_history.update(:status => LeaveHistory::APPROVED)
 		@leave_type = @leave_history.leave_type
 		Notification.delay.accept_leave(@employee, @leave_history)
-	@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
-	redirect_to reportees_leaves_path
+	  @reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
 	end
 
 	
