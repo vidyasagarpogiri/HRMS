@@ -8,7 +8,7 @@ class LeaveHistoriesController < ApplicationController
 	def index
 		@leave = current_user.employee.department.leave_policy
 		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD')
-		@leave_histories = current_user.employee.leave_histories.where(:status => "HOLD")
+		@leave_histories = current_user.employee.leave_histories
 		@employee = current_user.employee
 		@holiday_calenders = current_user.employee.department.holiday_calenders
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
@@ -109,7 +109,7 @@ class LeaveHistoriesController < ApplicationController
 		@leave_type = @leave_history.leave_type
 		Notification.delay.accept_leave(@employee, @leave_history)
 	  @reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
-	
+
 	end
 
 	
