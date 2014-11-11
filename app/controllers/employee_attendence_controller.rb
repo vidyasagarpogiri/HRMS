@@ -104,8 +104,14 @@ class EmployeeAttendenceController < ApplicationController
         else
         TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day).map(&:date_time)
         end
-        @emp = EmployeeAttendence.find_or_create_by(employee_id: emp_rec.id, log_date: logDate, is_present: is_emp_present, total_working_hours: totalWorkingHours)
-          
+        @emp = if EmployeeAttendence.where(employee_id: emp_rec.id, log_date: logDate).empty?
+         EmployeeAttendence.create(employee_id: emp_rec.id, log_date: logDate, is_present: is_emp_present, total_working_hours: totalWorkingHours)
+        else
+         EmployeeAttendence.where(employee_id: emp_rec.id, log_date: logDate).first
+        end
+        
+        @emp.total_working_hours = 0.0 if @emp.total_working_hours.nil?
+        
           inOutTimingsArray.each do |inOutTime|
               if inFlag
                 inTime = inOutTime
@@ -128,7 +134,8 @@ class EmployeeAttendenceController < ApplicationController
           totalWorkingHours_str = totalWorkingHours.to_s.split(".")
           totalWorkingHours_hrs = totalWorkingHours_str[0]
           totalWorkingHours_min = "0.#{totalWorkingHours_str[1]}".to_f.minutes.to_i
-          @emp.is_present, @emp.total_working_hours = is_emp_present, "#{totalWorkingHours_hrs}.#{totalWorkingHours_min}".to_f
+          @emp.is_present = is_emp_present
+          @emp.total_working_hours += "#{totalWorkingHours_hrs}.#{totalWorkingHours_min}".to_f
           @emp.save
         #puts totalWorkingHours
       end
@@ -232,15 +239,23 @@ class EmployeeAttendenceController < ApplicationController
           
 =begin          
           swh = sumofworkinghours.to_s.split(".")
-          swhs = swh[0].
-          swm = "#{swh[1]}"
-          
-          #raise swhs.inspect
-=end         
-          
-          
-          
+          swhs = swh[0].insert(2,'.')
+          sum_wm = "#{swh[1]}".to_f
+          swhs = swhs.split(".")
+          swhs =  swhs[0].to_f
+          swhs += (sum_wm/60).to_i
+          sum_wm = (sum_wm.to_f%60).to_i
+          #sum_wm = sum_wm.to_s.lenght==1? "0#{sum_wm}" : "#{sum_wm}"
+          sum_wh = "#{swhs.to_i}.#{sum_wm.to_i}".to_f
+          raise sum_wh.inspect
+=end    
+          c_hr = sumofworkinghours.to_s.split(".")[0]
+          c_hr = "#{c_hr[0]}#{c_hr[1]}"  if c_hr.length>2
+          c_hr = "0#{c_hr[0]}#{c_hr[1]}"  if c_hr.length<2
+          sum_wh = "#{c_hr}.#{sumofworkinghours.to_s.split(".")[1]}"
+        
           #attendance_hash_json[:total_week_hours] = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
+          sumofworkinghours = "#{c_hr}.#{sumofworkinghours.to_s.split(".")[1]}".to_f
           attendance_hash_json[:total_week_hours] = sumofworkinghours.round(2)
           
           
