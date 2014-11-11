@@ -108,8 +108,8 @@ class LeaveHistoriesController < ApplicationController
 		@leave_history.update(:status => LeaveHistory::APPROVED)
 		@leave_type = @leave_history.leave_type
 		Notification.delay.accept_leave(@employee, @leave_history)
-	@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
-	redirect_to reportees_leaves_path
+	  @reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
+	
 	end
 
 	
@@ -118,6 +118,7 @@ class LeaveHistoriesController < ApplicationController
 		@leave_history.update(:status => LeaveHistory::REJECTED, :feedback => params[:leave_history][:feedback])
 		Notification.delay.reject_leave(current_user.employee, @leave_history)
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
+		
 	end
 
   def employee_leaves
@@ -132,11 +133,11 @@ class LeaveHistoriesController < ApplicationController
   end
   
   def destroy
-  #raise params.inspect
-  @leave_history = LeaveHistory.find(params[:id])
-  @leave_history.destroy
-  redirect_to leave_histories_path
-  
+    #raise params.inspect
+    @leave_history = LeaveHistory.find(params[:id])
+    @leave_history.destroy
+    redirect_to leave_histories_path
+
   end
 
   def getLeaveForm
