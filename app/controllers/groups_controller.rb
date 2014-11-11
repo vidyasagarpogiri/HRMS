@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
      @employees = @group.employees
      @leave_policy = @group.leave_policy
      #@employee = @group.reporting_manager.employee
-     # @holiday_calenders = @group.holiday_calenders  
+     @holiday_calenders = @group.holiday_calenders  
   end
   
   def edit
