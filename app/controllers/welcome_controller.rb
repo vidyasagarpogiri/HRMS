@@ -45,9 +45,9 @@ class WelcomeController < ApplicationController
     @attended_days = attended_days
     @working_days = working_days
     
-    @sumofworkinghours = calculate_time_diff(@myattendence)
+    @sumofworkinghours = calculate_time_diff(@myattendence.sum)
     
-    @avg =  "#{calculate_time_diff(@myattendence/@working_days)}".to_f
+    @avg =  "#{calculate_time_diff(@myattendence.sum/@working_days)}".to_f
     
     end
    else
