@@ -54,10 +54,13 @@ class EmployeeAttendenceController < ApplicationController
   end
   
   def show_attendance
+    @employees =  Employee.where(:status => false)
+=begin  
    if current_user.department == Department::HR
     @employees =  Employee.where(:status => false)
    elsif current_user.degnation 
-   end  
+   end
+=end     
   end
 
   def new_attendence_log
