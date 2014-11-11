@@ -14,7 +14,14 @@ class LeaveHistoriesController < ApplicationController
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
 		@employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
 	end
-
+  
+  def reportees_leaves
+   
+   @reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
+   
+   @employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
+   #raise @employees.inspect
+  end
 
 
   def new
@@ -103,6 +110,7 @@ class LeaveHistoriesController < ApplicationController
 		@leave_type = @leave_history.leave_type
 		Notification.delay.accept_leave(@employee, @leave_history)
 	@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
+	redirect_to reportees_leaves_path
 	end
 
 	

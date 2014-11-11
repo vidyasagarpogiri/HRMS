@@ -27,7 +27,7 @@
         <td> <%= promotion.grade.value  if promotion.grade.present? %> </td>
         <% if current_user.department == Department::HR %>
         <td>
-          <ul class="navigation-btns pull-left">
+          <ul class="navigation-btns pull-right">
             <li><%= link_to 'Edit', edit_employee_promotion_path(@employee.id, promotion.id), :class => "btn btn-success ", :remote => true %></li>
             <li><%= link_to "Delete", employee_promotion_path(@employee, promotion), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger ", :remote => true %></li>
           </ul>

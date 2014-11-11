@@ -67,16 +67,21 @@ class EmployeeAttendenceController < ApplicationController
   def upload_file    
    uploader = AttendenceLogCsvUploader.new
    uploader.store!(params[:employee_attendence_log_file][:log_file])
+
    #raise uploader.path.inspect
-   i=0
-    @temproray_attachment_log=TemporaryAttendenceLog.destroy_all
+    #TemporaryAttendenceLog.destroy_all
+    ActiveRecord::Base.connection.execute("TRUNCATE temporary_attendence_logs") #destroying temporaryattendancelogs
+    bulk_insert = []
+    i=0
     CSV.foreach(uploader.path) do |column|
-    #puts "#{column[2]} - #{column[3]} - #{column[4]}" unless i==0
-    @temproray_attachment_log=TemporaryAttendenceLog.create(device_id: column[2], employee_id: column[3], date_time: column[4]) unless i==0
-    i+=1
-    end      
+      bulk_insert.push"(#{column[2].to_i}, #{column[3].to_i}, '#{column[4]}')" unless i==0
+      i+=1
+    end
+    ActiveRecord::Base.connection.execute("INSERT INTO temporary_attendence_logs(`device_id`, `employee_id`, `date_time`) VALUES #{bulk_insert.join(', ')}")  
+    #creating temporaryattendancelogs
+        
     @allUserIds = TemporaryAttendenceLog.all.map(&:employee_id).uniq
-    @attendanceDates = TemporaryAttendenceLog.all.map(&:date_time)
+    @attendanceDates = TemporaryAttendenceLog.all.map(&:date_time).compact
     @attendaceDates = @attendanceDates.collect {|dt| dt.to_datetime.strftime("%d-%m-%Y") }
     @attendaceDates = @attendaceDates.uniq
 
@@ -99,18 +104,24 @@ class EmployeeAttendenceController < ApplicationController
         else
         TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day).map(&:date_time)
         end
-          @emp = EmployeeAttendence.create(employee_id: emp_rec.id, log_date: logDate, is_present: is_emp_present, total_working_hours: totalWorkingHours)
+        @emp = EmployeeAttendence.find_or_create_by(employee_id: emp_rec.id, log_date: logDate, is_present: is_emp_present, total_working_hours: totalWorkingHours)
           
           inOutTimingsArray.each do |inOutTime|
               if inFlag
                 inTime = inOutTime
                 inFlag = false
-                EmployeeAttendenceLog.create(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: true)
+                #EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: true)
+                emp_logs = EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, time:inOutTime , in_out: true)
+                emp_logs.employee_attendence_id = @emp.id
+                emp_logs.save
               else
                 timeDiff = TimeDifference.between(inTime, inOutTime).in_each_component
                 totalWorkingHours += timeDiff[:hours]
                 inFlag = true
-                EmployeeAttendenceLog.create(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: false)
+                #EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: false)
+                emp_logs = EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, time:inOutTime , in_out: false)
+                emp_logs.employee_attendence_id = @emp.id
+                emp_logs.save
               end
           end
           is_emp_present = true if totalWorkingHours!=0
@@ -129,14 +140,12 @@ class EmployeeAttendenceController < ApplicationController
   
   end
   
-  def emp_show_attendance_ws
-  
-  
+  def emp_show_attendance_ws    
     last_week = EmployeeAttendence.where(:employee_id=>current_user.employee.id).last.log_date
     
     last_week = EmployeeAttendence.where(:employee_id=>current_user.employee.id).last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?
     
-    @employeeattendece = EmployeeAttendenceLog.where("time >? and time < ? and employee_id = ? ", last_week.beginning_of_week, last_week.end_of_week,  current_user.employee.id)
+   # @employeeattendece = EmployeeAttendenceLog.where("time >? and time < ? and employee_id = ? ", last_week.beginning_of_week, last_week.end_of_week,  current_user.employee.id)
          
     complete_week = last_week.beginning_of_week
     attendance_hash = {"Mon" => {:total_hrs=>0, :logs=>[], :dt=>complete_week.strftime("%d-%m-%Y")}, "Tue" => {:total_hrs=>0, :logs=>[], :dt=>( complete_week + 1.day).strftime("%d-%m-%Y")}, "Wed" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 2.day).strftime("%d-%m-%Y")}, "Thu" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 3.day).strftime("%d-%m-%Y")}, "Fri" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week+ 4.day).strftime("%d-%m-%Y")}, "Sat" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 5.day).strftime("%d-%m-%Y")}, "Sun" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 6.day).strftime("%d-%m-%Y")}}      

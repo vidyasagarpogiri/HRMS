@@ -64,10 +64,9 @@
                           <li>
                           </li>
                           <li>                             
-<%= link_to user_omniauth_authorize_path(:google_oauth2), :class => "network-name btn btn-warning btn-lg", :style => "text-decoration: none;color:#fff" do %>
-  <i class="fa fa-sign-in fa-fw"> Login</i>
-<% end %>
-                         
+                            <%= link_to user_omniauth_authorize_path(:google_oauth2), :class => "network-name btn btn-warning btn-lg", :style => "text-decoration: none;color:#fff" do %>
+                            <i class="fa fa-sign-in fa-fw"> Login</i>
+                            <% end %>     
                           </li>
                           <li>
                           </li>
