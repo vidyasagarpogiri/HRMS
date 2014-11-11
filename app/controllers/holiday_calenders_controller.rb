@@ -4,38 +4,39 @@ class HolidayCalendersController < ApplicationController
  # layout "leave_template"
 def index
       #raise params.inspect
-      @department = Group.find(params[:department_id])
+      @group = Group.find(params[:group_id])
       @holiday_calenders =@department.holiday_calenders
     end
     
     def new
     #raise params.inspect
       @holiday_calender = HolidayCalender.new
-      @department = Department.find(params[:department_id])
+      @group = Group.find(params[:group_id])
       @events = Event.all
     end
     
     def create
       #raise params.inspect
-      @department = Department.find(params[:department_id])
+      @group = Group.find(params[:group_id])
+      #@department = Department.find(params[:department_id])
       #TODO - BalaRaju - Have to modify this condition 
-      @department.holiday_calenders.destroy_all
+      @group.holiday_calenders.destroy_all
       if  params[:event_ids].present? 
         params[:event_ids].each do |event|
           if  params[:mandatory].present?
             if params[:mandatory].include?(event)
             #raise params[:mandatory].inspect
-              @holiday_calender =  @department.holiday_calenders.create( event_id: event, mandatory_or_optional: true)
+              @holiday_calender =  @group.holiday_calenders.create( event_id: event, mandatory_or_optional: true)
        
             else
-              @holiday_calender = @department.holiday_calenders.create( event_id: event, mandatory_or_optional: false)
+              @holiday_calender = @group.holiday_calenders.create( event_id: event, mandatory_or_optional: false)
             end 
          else
-            @holiday_calender = @department.holiday_calenders.create( event_id: event, mandatory_or_optional: false)
+            @holiday_calender = @group.holiday_calenders.create( event_id: event, mandatory_or_optional: false)
          end
         end
     end
-       @holiday_calenders = @department.holiday_calenders
+       @holiday_calenders = @group.holiday_calenders
       # raise @holiday_calenders.inspect
     end
     

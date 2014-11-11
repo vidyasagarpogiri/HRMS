@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   end
  
    resources :groups do
+     resources :leave_policies
      resources :holiday_calenders
        member do
         get 'add_employee'

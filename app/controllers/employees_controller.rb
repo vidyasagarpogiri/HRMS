@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
   
   def create
     
-    raise params.inspect
+    #raise params.inspect
     
      @employee = Employee.create(params_employees)
       
