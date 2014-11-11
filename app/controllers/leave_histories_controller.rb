@@ -6,11 +6,11 @@ class LeaveHistoriesController < ApplicationController
  include ApplicationHelper
 
 	def index
-		@leave = current_user.employee.department.leave_policy
+		@leave = current_user.employee.group.leave_policy
 		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD')
 		@leave_histories = current_user.employee.leave_histories
 		@employee = current_user.employee
-		@holiday_calenders = current_user.employee.department.holiday_calenders
+		@holiday_calenders = current_user.employee.group.holiday_calenders
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
 		@employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
 	end
@@ -40,7 +40,7 @@ class LeaveHistoriesController < ApplicationController
     if params[:leave_history][:is_halfday] == "full_day"
     @leave_history = current_user.employee.leave_histories.create(params_leave_history)
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
-    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, current_user.employee.department)  
+    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, current_user.employee.group)  
     applied_days = total_days - weekend_count 
     @leave_history.update(:days => applied_days) 
     Notification.delay.applyleave(current_user.employee, @leave_history)
@@ -71,7 +71,7 @@ class LeaveHistoriesController < ApplicationController
    if params[:leave_history][:is_halfday] == "full_day"
     @leave_history.update(params_leave_history)
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
-    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, current_user.employee.department)
+    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, current_user.employee.group)
     applied_days = total_days - weekend_count  
     @leave_history.update(:days => applied_days)
     @leave_history.update(:status => LeaveHistory::HOLD)

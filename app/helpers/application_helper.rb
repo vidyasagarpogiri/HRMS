@@ -16,19 +16,20 @@ module ApplicationHelper
     
   end
   
-  def weekends( end_date, start_date, department)
+  def weekends( end_date, start_date, group)
+  #raise group.inspect
    #raise start_date.inspect
     weekends = [0, 6]
-    remaining_days = (start_date .. end_date).to_a - select_holidays(department)
+    remaining_days = (start_date .. end_date).to_a - select_holidays(group)
    holidays = (start_date .. end_date).to_a.length-(remaining_days).length
     result = remaining_days.select{ |k| weekends.include? (k.wday)}.count
    result = result + holidays
   end
   
   
-  def select_holidays(department)
+  def select_holidays(gro)
     a=[]
-    department.events.each do |k|
+    gro.events.each do |k|
     a << k.event_date.to_date
 		#raise a.inspect
   end
@@ -88,10 +89,10 @@ end
   
   if(employee_join.year == Date.current.cwyear)
   
-   a =  ((13-employee_join.month)*employee.department.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.department.leave_policy.present?
+   a =  ((13-employee_join.month)*employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
    else
    
-   a =  (12 * employee.department.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.department.leave_policy.present?
+   a =  (12 * employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
    end
     
   
@@ -105,10 +106,10 @@ end
   def total_leaves(employee)
   employee_join = employee.date_of_join.to_date
   if(employee_join.year == Date.current.cwyear)
-   a =  ((13-employee_join.month)*employee.department.leave_policy.pl_this_year) if employee.department.leave_policy.present?
+   a =  ((13-employee_join.month)*employee.group.leave_policy.pl_this_year) if employee.group.leave_policy.present?
    else
    
-   a =  (12 * employee.department.leave_policy.pl_this_year)  if employee.department.leave_policy.present?
+   a =  (12 * employee.group.leave_policy.pl_this_year)  if employee.group.leave_policy.present?
    end
     
   
@@ -124,19 +125,19 @@ def carry_forward_leaves(employee)
  
   if(employee_join.year <= (Date.current.cwyear-1))
   
-   c =  ((12-employee_join.month)*employee.department.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.department.leave_policy.present?
+   c =  ((12-employee_join.month)*employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
    
-     if  c < employee.department.leave_policy.eligible_carry_forward_leaves && c <= 0
+     if  c < employee.group.leave_policy.eligible_carry_forward_leaves && c <= 0
       return c
-     elsif c >= employee.department.leave_policy.eligible_carry_forward_leaves
-      return employee.department.leave_policy.eligible_carry_forward_leaves
+     elsif c >= employee.group.leave_policy.eligible_carry_forward_leaves
+      return employee.group.leave_policy.eligible_carry_forward_leaves
      end
    else
    
-   c =  (12 * employee.department.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.department.leave_policy.present?
-    if  c < employee.department.leave_policy.eligible_carry_forward_leaves && c <= 0
+   c =  (12 * employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
+    if  c < employee.group.leave_policy.eligible_carry_forward_leaves && c <= 0
       return c
-     elsif c >= employee.department.leave_policy.eligible_carry_forward_leaves
+     elsif c >= employee.group.leave_policy.eligible_carry_forward_leaves
       return 0
      end
    end
@@ -165,8 +166,8 @@ end
   
   def reporting_manager_leaves?
     @reporting_manager = Employee.find(2).reporting_managers.first
-		@department = @reporting_manager.department
-	  @employees = @department.employees	
+		@group = @reporting_manager.group
+	  @employees = @group.employees	
         a=0
     @employees.each do |employee|
   

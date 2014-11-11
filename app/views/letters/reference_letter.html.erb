@@ -1,0 +1,20 @@
+31 January 2014 <br>
+
+This is to certify that <b><%= current_user.employee.full_name %> </b>is a bonafide employee of our Company (Amzur 
+
+Technologies Pvt Ltd) and is working as <b><%= current_user.employee.designation.designation_name if current_user.employee.designation.present? %></b>. We confirm that he/she has been 
+
+working in our company since <%= format_date(current_user.employee.date_of_join
+)%>.
+<br>
+Yours sincerely,
+
+<HR Name>
+
+Human Resources
+
+
+<%= link_to "Save as PDF", "#"%> <br>
+<%= link_to "Send to My Mail", "#"%>
+
+
