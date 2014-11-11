@@ -19,8 +19,13 @@
 											<tbody>	
 												 <%  @leaves.each do |f| %>												
 													<tr class="gradeA">             												 	
-													<td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
-													<td>  <%= pluralize(f.days, 'day') %>  </td>
+													<% if f.is_halfday %>
+			                      <td><%= format_date(f.from_date) %></td>
+			                      <td>half day(<%= f.section %>)</td>               
+			                    <% else %>
+			 	                    <td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
+				                    <td>  <%= pluralize(f.days, 'day') %>  </td>
+				                  <% end %>
 													<td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
 													<td><%=f.leave_type.type_name if f.leave_type.present? %></td>													
 													<td><%=f.status %></td>

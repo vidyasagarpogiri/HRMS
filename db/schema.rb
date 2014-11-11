@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106110959) do
+ActiveRecord::Schema.define(version: 20141110070151) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -323,7 +323,6 @@ ActiveRecord::Schema.define(version: 20141106110959) do
   create_table "leave_histories", force: true do |t|
     t.string   "from_date"
     t.string   "to_date"
-    t.integer  "days"
     t.text     "reason"
     t.text     "feedback"
     t.integer  "leave_type_id"
@@ -332,6 +331,9 @@ ActiveRecord::Schema.define(version: 20141106110959) do
     t.datetime "updated_at"
     t.string   "status"
     t.string   "subject"
+    t.boolean  "is_halfday",               default: false
+    t.float    "days",          limit: 24
+    t.string   "section"
   end
 
   create_table "leave_policies", force: true do |t|

@@ -19,9 +19,10 @@
         <%= image_tag employee.avatar_url, :width => "60px", :height => "60px" %> 
         <% else %>
         <% if employee.gender == "Female" %>
-        <img src="/assets/1.jpg" style ="width:60px;height:60px;"> 
+	   <%= image_tag "1.jpg", :width => "60px", :height => "60px" %> 
+           <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
         <% else %>
-        <img src="/assets/user.png" style ="width:60px;height:60px;">
+	 <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
         <% end %>
         <% end %>
       </td>                           

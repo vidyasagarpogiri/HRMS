@@ -5,12 +5,13 @@
         <div class="content">
           <div class="module">
              <div class="module-head" style="background-color: #82B4E6 ">
-                <h3> Form for CSV Uploading</h3>
+                <h3> CSV Uploading</h3>
               </div>
               <div class="processing"></div>
               <%= form_for(@employee_attendence_log_file, :url=>"/employee_attendence/upload_file", :html => {:multipart => true}) do |f| %>
               <div class="module-body">
-                <%= f.file_field :log_file, :onchange =>"validateFiles(this);",:data => {:error => " Please Choose a CSV file to attach"}, :required => true %><br>
+              <label>Upload Attandance csv file:</label>
+                <%= f.file_field :log_file, :onchange =>"validateFiles(this);",:data => {:error => " Please Choose a CSV file to attach"}, :required => true %>
                 <%= f.submit "Submit", :class => "btn btn-info csv-upload" %>                
               </div><!-- module body-->
               <% end %> 

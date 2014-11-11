@@ -47,5 +47,15 @@ production:
   password: p@ssw0rd
   socket: <%=socket_path%>
 
+qa:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: EMSQa
+  pool: 5
+  username: root
+  password: p@ssw0rd
+  socket: <%=socket_path%>
+
 cucumber:
   <<: *test

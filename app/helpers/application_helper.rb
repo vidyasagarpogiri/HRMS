@@ -71,7 +71,7 @@ end
   
   def total_used_leaves(employee)
     a= employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days")
-    a.to_i
+    a.to_f
   end
   
  
