@@ -1,23 +1,18 @@
-class PoliciesController < ApplicationController
-  
+class PoliciesController < ApplicationController 
   before_filter :role_auth
-
   
   def role_auth
-    actions = role_based_auth(params[:controller], params[:action])
-      unless actions.present?
-        render :text => "You Don`t Have Permission"
-      else
-        @edit_permission = true if actions.include?("edit")
-        @new_permission = true if actions.include?("new")
-        @delete_permission = true  if actions.include?("delete")
-      end
-      
-  end
+   actions = role_based_auth(params[:controller], params[:action])
+   unless actions.present?
+     render :text => "You Don`t Have Permission"
+   else
+     @edit_permission = true if actions.include?("edit")
+     @new_permission = true if actions.include?("new")
+     @delete_permission = true  if actions.include?("delete")
+   end   
+  end     
    
-  
-   
-   public 
+public 
   
   def index
    @policies = Policy.all.page(params[:page]).per(4)
@@ -28,16 +23,11 @@ class PoliciesController < ApplicationController
   end
   
   def create
-  #raise params.inspect
-   @policy = Policy.new(policy_params)
-   #@users = User.all
-  
+   @policy = Policy.new(policy_params) 
     if @policy.save
-    #raise params.inspect
       Employee.where(status: false).each do |emp|
-      Notification.delay.policy_notification(emp.user,@policy)
-      end 	
-  
+        Notification.delay.policy_notification(emp.user,@policy)
+      end 	 
       redirect_to policies_path
     else
        flash.now[:error]
