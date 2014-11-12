@@ -15,6 +15,9 @@ class LettersController < ApplicationController
   end
   
   def address_proof_letter
+    @employee = current_user.employee
+    @address1 = @employee.addresses.where(:address_type=>0).first
+		@address2 = @employee.addresses.where(:address_type=>1).first
     respond_to do |format|
         format.html
         format.pdf do
