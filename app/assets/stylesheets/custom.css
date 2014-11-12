@@ -282,10 +282,24 @@ margin-bottom:20px;
   height: 200px;
   border: 3px solid #55B19A;
   margin-top:100px;margin-left:100px;
-  /* Rotate div */
-  -ms-transform: rotate(45deg); /* IE 9 */
-  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-  transform: rotate(45deg);
+  border-radius: 8px;
+  /* Rotate div 
+  -ms-transform: rotate(45deg);  IE 9 
+  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera 
+  transform: rotate(45deg);*/
+}
+
+.rombus .text{
+   margin-top:80px;
+   margin-left:15px;
+   font-size:16px;  
+   letter-spacing:3px; 
+   text-shadow: 0 -4px 3px rgb(164, 200, 224), 0 3px 4px rgba(0, 0, 0, 0.2);
+   color: red;
+   /* Rotate div 
+  -ms-transform: rotate(-45deg); /* IE 9 
+  -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera 
+  transform: rotate(-45deg); */
 }
 
 

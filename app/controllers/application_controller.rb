@@ -27,7 +27,6 @@ class ApplicationController < ActionController::Base
   
   
   def hr_view
-  raise params.inspect
 	  unless current_user.department == Department::HR
 	    render :text => "You Don`t Have Permission"  
 	  end

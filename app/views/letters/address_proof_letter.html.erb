@@ -8,25 +8,55 @@
                 <h3>Address Proof</h3>        
             </div><!--/.module-head-->
             <div class="module-body">
-            31 January 2014 <br>
-
-          This is to confirm that <Employee Name> is a bonafide employee and is working as <Designation> since <DOJ>, for Amzur Technologies Pvt Ltd and as per the company records the residential address of him is as mentioned below.
-
-            Details as under –
-            Employee Name 
-
-            Present Address
-
-            Permanent Address
-
-            Thanking you,
-
-            <HR Name>
-
-            Human Resources
-
-          <%= link_to "Save as PDF", "#"%> <br>
-          <%= link_to "Send to My Mail", "#"%>
+              <div class="outing">                
+                  <div class="row-fluid">
+                    <div class="span6">
+                      <label>Date: 22-12-14</label>
+                    </div>                      
+                 </div>
+                  <div class="row-fluid" style="margin-left:300px;">
+                    <div class="span6">
+                      <label><u><b>TO WHOMSOEVER IT MAY CONCERN</b></u></label>
+                    </div>                      
+                 </div><br>
+                 <div class="row-fluid">
+                    <div class="span12">
+                      <label><p>This is to certify that <b><%= current_user.employee.full_name %></b>is a bonafide employee and is working as <b><%= current_user.employee.designation.designation_name if current_user.employee.designation.present? %></b> since <b><%= (current_user.employee.date_of_join )%></b>, for Amzur Technologies Pvt Ltd and as per the company records the residential address of him is as mentioned below.</p></label>
+                    </div>                      
+                 </div><br>
+                 <div class="row-fluid">
+                    <div class="span12">
+                      <label>Details as under –</label>
+                      <label> <%= current_user.employee.full_name %></label><br>                      
+                    </div>                      
+                 </div> 
+                 
+                 <div class="row-fluid">
+                   <div class="span6">     
+                     <label> <b>Present Address </b></label>   
+                     <label><%= @address1.line %>, <%= @address1.line1 %></label>
+                     <label><%= @address1.city %>, <%= @address1.state %></label> 
+                     <label><%= @address1.country %>, <%= @address1.zipcode %></label>
+                   </div>
+                   <div class="span6"> 
+                     <label> <b>Permanent Address </b></label> 
+                     <label><%= @address2.line %>, <%= @address2.line1 %></label>
+                     <label><%= @address2.city %>, <%= @address2.state %></label> 
+                     <label><%= @address2.country %>, <%= @address2.zipcode %></label>
+                   </div>                     
+                 </div>  <br>                                                                           
+                 <div class="row-fluid">
+                    <div class="span12">
+                      <label>Thanking you,</label><br>
+                      <label> &lt; HR Name &gt;</label>
+                      <label> Human Resources </label>
+                    </div>                      
+                 </div>
+                 <ul class="navigation-btns editthree">                                                       
+                   <li><%= link_to "Save as PDF ", "#", :class => "btn btn-success" %></li> 
+                   <li><%= link_to " Send to My Mail", "#", :class => "btn btn-success" %></li>
+                 </ul>
+               </div><!--/.outing-->                                                        
             </div><!--/.module-body-->                    
           </div><!--/.module-->                
         </div><!--/.content-->            
@@ -34,3 +64,13 @@
     </div><!--/.row-->    
   </div><!--/.container-->	
 </div><!--/.Wrapper-->
+
+
+<style>
+   .outing{
+   width:1000px;   
+   margin-left:100px;
+   margin-top:50px;
+   }
+     
+</style>
