@@ -8,24 +8,25 @@
                 <h3>Address Proof</h3>        
             </div><!--/.module-head-->
             <div class="module-body">
-           <!-- 31 January 2014 <br>
+            31 January 2014 <br>
 
-          This is to certify that <b><%= current_user.employee.full_name %> </b>is a bonafide employee of our Company (Amzur 
+          This is to confirm that <Employee Name> is a bonafide employee and is working as <Designation> since <DOJ>, for Amzur Technologies Pvt Ltd and as per the company records the residential address of him is as mentioned below.
 
-          Technologies Pvt Ltd) and is working as <b><%= current_user.employee.designation.designation_name if current_user.employee.designation.present? %></b>. We confirm that he/she has been 
+            Details as under –
+            Employee Name 
 
-          working in our company since <%= format_date(current_user.employee.date_of_join
-          )%>.
-          <br>
-          Yours sincerely,
+            Present Address
 
-          <HR Name>
+            Permanent Address
 
-          Human Resources
+            Thanking you,
 
+            <HR Name>
 
-          <%# link_to "Save as PDF", "#"%> <br>
-          <%# link_to "Send to My Mail", "#"%>--> 
+            Human Resources
+
+          <%= link_to "Save as PDF", "#"%> <br>
+          <%= link_to "Send to My Mail", "#"%>
             </div><!--/.module-body-->                    
           </div><!--/.module-->                
         </div><!--/.content-->            
