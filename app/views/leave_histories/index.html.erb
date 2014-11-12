@@ -7,7 +7,7 @@
             <div class="module-head">
               <h3> My Leaves</h3>
             </div>
-            <% if @employee.department.leave_policy.present? %>
+            <% if @employee.group.leave_policy.present? %>
             <% if @employee.reporting_manager? %>
             <div class="module-body" >
               <div class="profile-head media" style="min-height:800px;">              
@@ -83,7 +83,7 @@
                      <% else %><br>                      
                        <div class="alert alert-success alert-dismissable">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                          There is no leave policy configure to your Department. Please Contact HR.  
+                          There is no leave policy configure to your Group. Please Contact HR.  
                        </div>                     
                     <% end %>
                   </div>

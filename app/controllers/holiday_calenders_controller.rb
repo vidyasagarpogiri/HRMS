@@ -3,9 +3,8 @@ class HolidayCalendersController < ApplicationController
   before_filter :other_emp_view
  # layout "leave_template"
 def index
-      #raise params.inspect
       @group = Group.find(params[:group_id])
-      @holiday_calenders =@department.holiday_calenders
+      @holiday_calenders = @group.holiday_calenders
     end
     
     def new
@@ -16,7 +15,6 @@ def index
     end
     
     def create
-      #raise params.inspect
       @group = Group.find(params[:group_id])
       #@department = Department.find(params[:department_id])
       #TODO - BalaRaju - Have to modify this condition 
@@ -37,7 +35,6 @@ def index
         end
     end
        @holiday_calenders = @group.holiday_calenders
-      # raise @holiday_calenders.inspect
     end
     
     def edit

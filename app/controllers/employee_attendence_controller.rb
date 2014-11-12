@@ -62,10 +62,13 @@ class EmployeeAttendenceController < ApplicationController
   end
   
   def show_attendance
+    @employees =  Employee.where(:status => false)
+=begin    
    if current_user.department == Department::HR
     @employees =  Employee.where(:status => false)
    elsif current_user.degnation 
-   end  
+   end
+=end     
   end
 
   def new_attendence_log
@@ -231,9 +234,10 @@ class EmployeeAttendenceController < ApplicationController
       (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
       #raise (last_week.beginning_of_week.to_datetime..last_week.to_datetime).to_a.inspect
         working_days += 1
-        if !EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id).empty?
+        att_day_rec = EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id)
+        if !att_day_rec.empty?
           attended_days += 1
-          attended_on_weekends += 1 if ["Sat","Sun"].include?dat.strftime("%a").to_s
+          attended_on_weekends += 1 if (["Sat","Sun"].include?dat.strftime("%a").to_s) && (att_day_rec.first.is_present?)
         end
       end
 

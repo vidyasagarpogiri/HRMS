@@ -233,6 +233,14 @@ end
   end
  end
 
+
+  resources :letters , :only => :index do 
+    collection do 
+      get 'reference_letter'
+      get 'address_proof_letter'
+      get 'salary_certificate'
+    end
+  end
   #get 'change_designation' => "designations#change_designation"
   
 
