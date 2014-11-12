@@ -1,7 +1,7 @@
 class RoleBasedAuthencation < ActiveRecord::Migration
   def change
       Feature.destroy_all
-      #Creating Feature Table
+      puts "Creating Feature Table"
       Rails.application.eager_load!
       all_controllers = ApplicationController.descendants
       all_controllers.each do |controller|
@@ -9,6 +9,6 @@ class RoleBasedAuthencation < ActiveRecord::Migration
           Feature.create(controller: controller, action: action)
         end
       end
-      #completed Feature Table
+      puts "completed Feature Table"
   end
 end
