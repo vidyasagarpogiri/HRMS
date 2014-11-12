@@ -98,8 +98,8 @@ Event.create(:event_name =>"Pongal", :event_date => "14/01/2014")
 Event.create(:event_name =>"Ugadi", :event_date => "11/04/2014")
 Event.create(:event_name=>"Independence Day", :event_date => "15/08/2014")
 Event.create(:event_name =>"Raksha Bhandan", :event_date => "1/11/2014")
-Event.create(:event_name =>"Vinayaka Chaturthi", :event_date => "3/10/2014")
-Event.create(:event_name =>"Dussehra", :event_date => "10/10/2014")
+Event.create(:event_name =>"Vinayaka Chaturthi", :event_date => "8/11/2014")
+Event.create(:event_name =>"Dussehra", :event_date => "10/11/2014")
 Event.create(:event_name =>"Diwali", :event_date => "14/11/2014")
 Event.create(:event_name =>"Naga Panchami", :event_date => "21/11/2014")
 Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")
@@ -111,6 +111,4 @@ StaticSalary.create(:name => "PF Contribution", :value => 13.61)
 StaticSalary.create(:name => "Esic", :value => 1.75)
 StaticSalary.create(:name => "Esic Contribution", :value => 4.25)
 
-
-LeaveHistory.create(:from_date => "13/10/2014", :to_date => "14/10/2014", :reason => "Not well", :leave_type_id => 1, :employee_id => 1 )
 
