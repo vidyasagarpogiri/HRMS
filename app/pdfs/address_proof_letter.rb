@@ -31,7 +31,7 @@ class AddressProofLetter < Prawn::Document
   end
   
   def text
-    draw_text "This is to confirm that #{@user.employee.full_name} is a bonafide employee and is working as", size: 12, :at => [@x+40, @y-250]
+    draw_text "This is to confirm that  #{@user.employee.title}.#{@user.employee.full_name} is a bonafide employee and is working as", size: 12, :at => [@x+40, @y-250]
     draw_text "#{@user.employee.designation.designation_name if @user.employee.designation.present?} since #{@user.employee.date_of_join}, for Amzur Technologies Pvt Ltd and as per the company", size: 12, :at => [@x+40, @y-270]
     draw_text "records the residential address of him is as mentioned below.", size: 12, :at => [@x+40, @y-290]  
   end
