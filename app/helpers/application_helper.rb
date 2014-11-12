@@ -1,55 +1,50 @@
 module ApplicationHelper
 
-
+# will take datetime as input and will return date in given format
  def format_exp_date(time)
   date = time.to_date if time
    date.strftime("%b, %Y") if time 
-  end
-  
-  
-  def difference_in_months(date1, date2)
+ end
+
+#will calcualte months difference between two dates 
+ def difference_in_months(date1, date2)
     date1 = date1.to_date if date1.present? 
     date2 = date2.to_date if date2.present?
     number_of_months = (date2.year * 12 + date2.month) - (date1.year * 12 + date1.month)
     months = number_of_months.to_i
-    "#{pluralize(months/12, 'year')} #{pluralize(months%12, 'month')}"
-    
-  end
-  
-  def weekends( end_date, start_date, group)
-  #raise group.inspect
-   #raise start_date.inspect
+    "#{pluralize(months/12, 'year')} #{pluralize(months%12, 'month')}"   
+ end
+ 
+ # will take start and end dates,group and return number of days between two dates by excluding holidays of that group and weekends  
+ def weekends( end_date, start_date, group)
     weekends = [0, 6]
     remaining_days = (start_date .. end_date).to_a - select_holidays(group)
-   holidays = (start_date .. end_date).to_a.length-(remaining_days).length
+    holidays = (start_date .. end_date).to_a.length-(remaining_days).length
     result = remaining_days.select{ |k| weekends.include? (k.wday)}.count
-   result = result + holidays
-  end
-  
-  
-  def select_holidays(gro)
-    a=[]
+    result = result + holidays
+ end
+ # this method will return holidys list of a particular group which was passed as a parameter   
+ def select_holidays(gro)
+    holidays_array=[]
     gro.events.each do |k|
-    a << k.event_date.to_date
-		#raise a.inspect
+    holidays_array << k.event_date.to_date
+		end
+    holidays_array
   end
-  a
-end
 
-
+# this method will return date in required format
   def format_date(time)
     time = time.to_date if time
   	time.strftime("%d %b, %Y") if time
 	end
-	
+# this method is for to get date with out year	
 	def format_date_without_year(time)
     time = time.to_date if time
   	time.strftime(" #{time.day.ordinalize} %b") if time
-  	#{time.day.ordinalize}
 	end
 	
-	
-	 def format_date_time(time)
+	# this method retun time or date format by taking a time stamp as parameter
+	def format_date_time(time)
     time.strftime("%d %b, %Y  %I:%M %p") if time
   end
 	
@@ -75,75 +70,48 @@ end
     a.to_f
   end
   
- 
- 
- 
   #leaves for current year according to leave policy
   
-  
-  
-  
-  def total_balance_leaves(employee)
-  
-  employee_join = employee.date_of_join.to_date
-  
-  if(employee_join.year == Date.current.cwyear)
-  
-   a =  ((13-employee_join.month)*employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
+  def total_balance_leaves(employee)  
+   employee_join = employee.date_of_join.to_date
+   if(employee_join.year == Date.current.cwyear)
+    a =  ((13-employee_join.month)*employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
    else
-   
-   a =  (12 * employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
+    a =  (12 * employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
    end
-    
-  
    a 
-   
-  
   end
-
-
   
+   
   def total_leaves(employee)
-  employee_join = employee.date_of_join.to_date
-  if(employee_join.year == Date.current.cwyear)
-   a =  ((13-employee_join.month)*employee.group.leave_policy.pl_this_year) if employee.group.leave_policy.present?
-   else
-   
-   a =  (12 * employee.group.leave_policy.pl_this_year)  if employee.group.leave_policy.present?
-   end
-    
-  
+    employee_join = employee.date_of_join.to_date
+    if(employee_join.year == Date.current.cwyear)
+      a =  ((13-employee_join.month)*employee.group.leave_policy.pl_this_year) if employee.group.leave_policy.present?
+    else
+      a =  (12 * employee.group.leave_policy.pl_this_year)  if employee.group.leave_policy.present?
+   end  
    a 
-   
-  
   end
 # caluculate carry forward leaves from previous year
 
-def carry_forward_leaves(employee)
-  
+  def carry_forward_leaves(employee)
    employee_join = employee.date_of_join.to_date
- 
-  if(employee_join.year <= (Date.current.cwyear-1))
-  
-   c =  ((12-employee_join.month)*employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
-   
-     if  c < employee.group.leave_policy.eligible_carry_forward_leaves && c <= 0
-      return c
-     elsif c >= employee.group.leave_policy.eligible_carry_forward_leaves
-      return employee.group.leave_policy.eligible_carry_forward_leaves
-     end
-   else
-   
-   c =  (12 * employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
-    if  c < employee.group.leave_policy.eligible_carry_forward_leaves && c <= 0
-      return c
-     elsif c >= employee.group.leave_policy.eligible_carry_forward_leaves
-      return 0
-     end
+   if(employee_join.year <= (Date.current.cwyear-1))
+    c =  ((12-employee_join.month)*employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
+   if  c < employee.group.leave_policy.eligible_carry_forward_leaves && c <= 0
+    return c
+   elsif c >= employee.group.leave_policy.eligible_carry_forward_leaves
+    return employee.group.leave_policy.eligible_carry_forward_leaves
    end
-         
-end
-
+   else   
+      c =  (12 * employee.group.leave_policy.pl_this_year) - employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days") if employee.group.leave_policy.present?
+      if  c < employee.group.leave_policy.eligible_carry_forward_leaves && c <= 0
+        return c
+      elsif c >= employee.group.leave_policy.eligible_carry_forward_leaves
+        return 0
+      end
+   end         
+  end
 
 
   def waiting_for_approval(employee)
@@ -158,11 +126,9 @@ end
     end
   end
 
-		def allowance_value(value, salary)
-		#raise value.inspect
-			 (salary)*value/100
-
-		end
+	def allowance_value(value, salary)
+	  (salary)*value/100
+	end
   
   def reporting_manager_leaves?
     @reporting_manager = Employee.find(2).reporting_managers.first
@@ -170,12 +136,10 @@ end
 	  @employees = @group.employees	
         a=0
     @employees.each do |employee|
-  
       if employee.leave_histories.where(:status => "HOLD").present?
         a=1
       end
-    end
-    
+    end 
     if a == 0
       return false
     else
@@ -187,30 +151,27 @@ end
  #-------------- sekhar - method for caluclate other allowance ----------------
   
   def allowance_total(allowances, salary)
-      #raise allowances.inspect
-      total_added_allowances = 0.0
-      total_deductable_allowances = 0.0
-      total_allowance = 0.0
-      allowances.each do |allowance|
-        unless allowance.is_deductable
-          if allowance.value.present?
-            value = (salary.basic_salary * allowance.value)/100
-            total_added_allowances += value
-          else
-            total_added_allowances += allowance.allowance_value
-          end
-        else
-          if allowance.value.present?
-            value = (salary.basic_salary * allowance.value)/100
-            total_deductable_allowances += value
-          else
-            total_deductable_allowances += allowance.allowance_value
-          end
-        end
-      end
-      total_allowance = total_added_allowances - total_deductable_allowances
-      salary_gross = salary.basic_salary + total_allowance + salary.pf + salary.esic
-      remain_allowance = salary.gross_salary - salary_gross
+    total_added_allowances = total_deductable_allowances = total_allowance = 0.0
+    allowances.each do |allowance|
+     unless allowance.is_deductable
+       if allowance.value.present?
+          value = (salary.basic_salary * allowance.value)/100
+          total_added_allowances += value
+       else
+          total_added_allowances += allowance.allowance_value
+       end
+     else
+       if allowance.value.present?
+          value = (salary.basic_salary * allowance.value)/100
+          total_deductable_allowances += value
+       else
+          total_deductable_allowances += allowance.allowance_value
+       end
+     end
+    end
+    total_allowance = total_added_allowances - total_deductable_allowances
+    salary_gross = salary.basic_salary + total_allowance + salary.pf + salary.esic
+    remain_allowance = salary.gross_salary - salary_gross
   end
 #--------- End of allowance caluclation method ------------------  
 

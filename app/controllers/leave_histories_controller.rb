@@ -7,33 +7,27 @@ class LeaveHistoriesController < ApplicationController
 
 	def index
 		@leave = current_user.employee.group.leave_policy
-		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD')
-		@leave_histories = current_user.employee.leave_histories
+		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD').order('created_at DESC')
+		@leave_histories = current_user.employee.leave_histories.order('created_at DESC')
 		@employee = current_user.employee
 		@holiday_calenders = current_user.employee.group.holiday_calenders
-		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
+		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).order('created_at DESC')
 		@employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
 	end
   
-  def reportees_leaves
-   
+  def reportees_leaves   
    @reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).order('created_at DESC')   
    @employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
-   #raise @employees.inspect
   end
-
 
   def new
     @employee = current_user.employee
     @leave_history = LeaveHistory.new
   end
   
-  
   def show
-
   end
   
- 
   def create
     @employee = current_user.employee
     if params[:leave_history][:is_halfday] == "full_day"
@@ -56,13 +50,11 @@ class LeaveHistoriesController < ApplicationController
    #render 'new'
 #	end
   end
-  
-  
+    
   def edit
   #raise params.inspect
    @employee = current_user.employee
-   @leave_history = LeaveHistory.find(params[:id])
-   
+   @leave_history = LeaveHistory.find(params[:id]) 
   end
   
   def update
@@ -82,23 +74,17 @@ class LeaveHistoriesController < ApplicationController
    end
     redirect_to leave_histories_path
   end
-  
-  
+    
   def applied_leaves
 		@leave_histories = LeaveHistory.all.page(params[:page]).per(2)
 	end
 	
-
-	
-	def reported_leaves
-	  #raise params.inspect
+  def reported_leaves
 	  if current_user.employee.reporting_manager.present?
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
 		else
 		redirect_to leave_histories_path
 		end
-    #raise @reported_leaves.inspect
-  
 	end
 		
 	def accept
@@ -108,7 +94,6 @@ class LeaveHistoriesController < ApplicationController
 		@leave_type = @leave_history.leave_type
 		Notification.delay.accept_leave(@employee, @leave_history)
 	  @reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
-
 	end
 
 	
@@ -116,33 +101,25 @@ class LeaveHistoriesController < ApplicationController
 		@leave_history = LeaveHistory.find(params[:id])
 		@leave_history.update(:status => LeaveHistory::REJECTED, :feedback => params[:leave_history][:feedback])
 		Notification.delay.reject_leave(current_user.employee, @leave_history)
-		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
-		
+		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)		
 	end
 
   def employee_leaves
-
     @leaves = LeaveHistory.all
-
-   end
+  end
    
   def reported_employees
     @employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
-
   end
   
   def destroy
-    #raise params.inspect
     @leave_history = LeaveHistory.find(params[:id])
     @leave_history.destroy
     redirect_to leave_histories_path
-
   end
 
   def getLeaveForm
-    #raise params.inspect
-    @leave = LeaveHistory.find(params[:id])
-	 
+    @leave = LeaveHistory.find(params[:id]) 
   end
 
 	private

@@ -90,7 +90,6 @@ class SalariesController < ApplicationController
     @allowances = @salary.allowances
     @salary_increments =@salary.salary_increments
     @salary_percentages = StaticSalary.all
-    #raise @salary_percentages.inspect
   end
 
 	def destroy
@@ -270,9 +269,8 @@ class SalariesController < ApplicationController
 	      @payroll_last  = CompanyPayRollMaster.where(:month => params[:payslip_view_month], :year => @enter_year).first
 	    end	
 	  end
-	  
+# default view of payroll 	  
 	  def payslips_list
-	  #BY DEFULT VIEW
 	    @month = DateTime.now.month-1
 	    @year = DateTime.now.year
 	    if @month == 0
@@ -301,7 +299,6 @@ class SalariesController < ApplicationController
 	   @payslip_special_allowance = (@payslip.employee.salary.special_allowance/12).round(2)
 	   @basic_salary = payslip_basic(((@payslip.employee.salary.basic_salary)/12).round(2), @payslip.working_days, @payslip.no_of_working_days)
 	   @payslip.update(:basic_salary => @basic_salary)
-	   #@payslip.payslip_allowance_update(@payslip)
 	   @gross = @basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance + @payslip.arrears.to_f  #TODO need arrears add to below forumla
 	   if @salary.pf_apply == "true"
 	     @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
@@ -350,7 +347,8 @@ class SalariesController < ApplicationController
       flash[:notice] = "Please Enter Proper Year"
     end
   end
-  
+  #---------------------------------------------------------
+ #------------ for json data of months --------------------- 
   def get_payroll_years
     @years = CompanyPayRollMaster.pluck(:year)
     json_hash = {}
@@ -369,29 +367,23 @@ class SalariesController < ApplicationController
   def exporting_payslips_excel_sheet
     @month = params[:month].to_i
     @year = params[:year].to_i
-
-    @month_name = Date::MONTHNAMES[@month]
-    
+    @month_name = Date::MONTHNAMES[@month]   
     employee_basic_array = ["SL #", "MONTH", "Emp. NAME", "DOJ", "STATUS", "DESIGNATION", "DEPARTMENT"]
     salary_array = ["GROSS", "Per Month", "Actual Per Month", "Actual Days", "Working Days", "BASIC"]
     non_deductable_allowances_array = StaticAllowance.where(is_deductable: false).pluck(:name)
     other_salary_array = ["Spcl Allowance", "Arrears", "Gross Pay"]
     deducations = ["PF", "ESIC", "PT", "TDS"]
     deductable_allowances_array = StaticAllowance.where(is_deductable: true).pluck(:name)
-    netpay_array = ["total_deducations", "NetPay"]
-    
+    netpay_array = ["total_deducations", "NetPay"]   
     total_array = [employee_basic_array, salary_array, non_deductable_allowances_array, other_salary_array, deducations,  deductable_allowances_array, netpay_array]
     total_array.flatten!
-
     @package = Axlsx::Package.new
     @workbook = @package.workbook
     @payslips = Payslip.where(:month => @month, :year => @year)
-    #raise @payslips.inspect
     @workbook.add_worksheet(name: "Payslips") do |sheet|
       sheet.add_row total_array
-      i = 1
-      
-      @payslips.each do |payslip|
+      i = 1      
+    @payslips.each do |payslip|
         a = [i, "#{payslip.month}-#{payslip.year}", payslip.employee.full_name, payslip.employee.date_of_join, payslip.employee.employment_status, payslip.employee.designation.designation_name, payslip.employee.department.department_name, payslip.employee.salary.gross_salary, payslip.employee.salary.gross_salary/12, payslip.gross_salary, payslip.no_of_working_days, payslip.working_days, payslip.basic_salary ]
         b = []
         
@@ -427,26 +419,9 @@ class SalariesController < ApplicationController
         total_values = [a,b, other_salary, other_deducations, k, last_salary_array].flatten!
         sheet.add_row total_values
         i = i+1 
-      end #payslip end
-        
-       
-      end #workbook end
-=begin
-       
-       #sheet.add_row 
-        values_array = [payslip.employee.employee_id, payslip.employee.full_name, payslip.employee.department.department_name, payslip.basic_salary]
-         if payslip.allowances.present?
-          payslip.allowances.each do |allowance|
-           details_array.push allowance.allowance_name
-           values_array.push allowance.total_value
-           sheet.add_row ["#{allowance.allowance_name}", allowance.total_value]
-          end
-         end
-      end  
-=end  
-
+      end #payslip end      
+     end #workbook end
     @package.serialize("#{Rails.root}/public/Payroll/#{@month_name}-#{@year}-payslips.xlsx")
-    #@package.serialize("#{Rails.root}/public/#{@month_name}-#{@year}-payslips.xlsx")
     @mail = current_user.email
     Notification.send_payslip(@mail,@month_name,@year).deliver
     @payroll_status = CompanyPayRollMaster.where(:month => @month_name, :year => @year).first
@@ -508,13 +483,11 @@ class SalariesController < ApplicationController
 
   
   def bankdetails_show
-		#raise params.inspect
 		@bank_details = Employee.find(params[:id])
 		@employee = Employee.find(params[:employee_id])		
 	end	
 	
 	def bankdetails_edit
-		#raise params.inspect
 		@employee = Employee.find(params[:employee_id])
 		@bank_details = Employee.find(params[:id])
   end
@@ -522,7 +495,6 @@ class SalariesController < ApplicationController
 	def bankdetails_update		
 		@employee = Employee.find(params[:employee_id])
 		@bank_details = Employee.find(params[:id])
-    #raise @status.inspect
 		if @bank_details.update(bank_details)
 	     @bank_details = @employee.Employee
 	  end 
