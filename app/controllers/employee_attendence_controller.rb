@@ -228,22 +228,26 @@ class EmployeeAttendenceController < ApplicationController
         end
       end      
       
+      holiday_list =  Event.where(:id=>emp_rec.group.holiday_calenders.map(&:event_id)).map(&:event_date) if emp_rec.group.present?
+      holiday_list = holiday_list.collect{ |holiday| holiday.to_date }
       working_days = 0
       attended_days = 0
       attended_on_weekends = 0
+      holiday_count = 0
       (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
       #raise (last_week.beginning_of_week.to_datetime..last_week.to_datetime).to_a.inspect
         working_days += 1
+        holiday_count += 1 if holiday_list.include?(dat.to_date)
         att_day_rec = EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id)
         if !att_day_rec.empty?
           attended_days += 1
           attended_on_weekends += 1 if (["Sat","Sun"].include?dat.strftime("%a").to_s) && (att_day_rec.first.is_present?)
         end
       end
-
+      
        case attended_on_weekends
         when 0
-          working_days = 5
+          working_days = (5 - holiday_count)
         when 1
           working_days = 6
         when 2
