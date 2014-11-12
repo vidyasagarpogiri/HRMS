@@ -26,8 +26,8 @@ class SalaryCertificate < Prawn::Document
   end
   
   def text
-    draw_text "This is to certify that Mr / Ms.xxx (Emp No. xxx ) , (Designation)  is an employee of Amzur ",  size: 12, :at => [@x+40, @y-110]
-    draw_text "Technologies , since (D.O.J)",  size: 12, :at => [@x+40, @y-130]
+    draw_text "This is to certify that #{@user.employee.title}.#{@user.employee.full_name} (Emp No. #{@user.employee.employee_id} ) , (#{@user.employee.designation.designation_name if @user.employee.designation.present?})  ",  size: 12, :at => [@x+40, @y-110]
+    draw_text " is an employee of Amzur Technologies , since #{@user.employee.date_of_join}",  size: 12, :at => [@x+40, @y-130]
     draw_text "As per our records his / her Salary details in Indian Rupee is as follows :",:at => [@x+40, @y-170]
   end
   
