@@ -227,16 +227,25 @@
 						</div><hr>
 						
 						<div class ="row-fluid">
+						  <div class="span5">		
+								<div class="control-group">
+									<label class="control-label" for="basicinput">Group</label>                                              
+									<div class="controls">
+                   <%= f.collection_select :group_id, Group.all, :id, :group_name, { :prompt => "Please Select" }, { :class => "groups, span12 form-control", :id => "disabledSelect1" } %> 
+                   <span class="help-block with-errors"></span>
+									</div>
+								</div>
+							</div>
 							<div class="span5">	
 								<div class="control-group">
 								<label class="control-label" for="basicinput">Employee Display Picture</label>                                         
 									<div class="controls">
                     <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
-									
                    <span class="help-block with-errors"></span>
 									</div>
 								</div>
-              </div> </hr>
+              
+						</div>
              <ul class="navigation-btns " style="margin: 10px 0 10px 840px;">                    
 					 <button type="submit" class="btn btn-success">Save & Continue</button></ul>
 					 </div>										

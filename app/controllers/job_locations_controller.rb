@@ -16,11 +16,9 @@ class JobLocationsController < ApplicationController
   redirect_to job_locations_path
  end
  
- def edit
- 
+ def edit 
   @job_location = JobLocation.find(params[:id])
   @address = @job_location.address
-  #raise @job_location.inspect
  end
  
  def update
@@ -30,16 +28,11 @@ class JobLocationsController < ApplicationController
  end
  
  def show
- #raise params.inspect
   @job_location = JobLocation.find(params[:id])
-  
-  #raise @job_location.inspect
  end
  
  def destroy
- # raise params.inspect
    @job_location = JobLocation.find(params[:id])
-  # raise @job_location.address.inspect
    @job_location.address.destroy
    @job_location.destroy
    redirect_to job_locations_path

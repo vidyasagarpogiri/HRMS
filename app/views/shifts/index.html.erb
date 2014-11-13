@@ -7,7 +7,7 @@
             <div class="module-head">
               <h3>Work Shift Details</h3>
               <% if current_user.department == Department::HR %>
-              <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a><%= link_to " Add New Work Shift",new_shift_path%></label>
+              <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a><%= link_to " Add Work Shift",new_shift_path%></label>
               <% end %>
             </div>
             <% if @shifts.present? %>                                         
@@ -29,7 +29,7 @@
                     <td><%= shift.to_time %></td>
                     <% if current_user.department == Department::HR %>
                     <td> 
-                      <ul class="navigation-btns pull-left" >
+                      <ul class="navigation-btns pull-right" >
                         <li><%= link_to 'Edit', edit_shift_path(shift.id), :class => "btn btn-success " %></li>
                         <li><%= link_to "Delete",shift_path(shift.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
                       </ul>

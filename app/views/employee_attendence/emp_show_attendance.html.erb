@@ -39,7 +39,7 @@
 									  <tr>	
   									  <th></th>									     
 									    <th class="Mon"><br>Monday</th>									     
-                      <th class="Tue"><br>Thuesday</th>
+                      <th class="Tue"><br>Tuesday</th>
                       <th class="Wed"><br>Wednesday</th>
                       <th class="Thu"><br>Thursday</th>
                       <th class="Fri"><br>Friday</th> 
@@ -94,16 +94,17 @@ $(function(){
   $("#prev").click(function(){
     i -= 1 ;
     $("#week_no").val(i);
-    call_sw();
+    call_sw();  
   });
   $("#next").click(function(){
-    if(i <=0){
+    if(i <0){
        i += 1 ;
       $("#week_no").val(i);
       call_sw();
     }
+    
   });
-    //$("td:empty").html("0");
+  //$("td:empty").html("0"); 
 });
 
 
@@ -118,22 +119,22 @@ function call_sw(){
         $("td."+key).append(vl+"<br/>");
       });
 
-        $("td.Total_"+key).html(value["total_hrs"]+" hr <br/>");
+        $("td.Total_"+key).html(value["total_hrs"]+"<br/>");
    });
    
       tl_val = (data["total_week_hours"]+"").split(".");
       if(tl_val.length==2){
-        $("td#Grand_Total").html(tl_val[0]+" hrs "+ tl_val[1] +"min <br/>");
+        $("td#Grand_Total").html(tl_val[0]+""+ tl_val[1] +"min <br/>");
       } else {
-        $("td#Grand_Total").html(tl_val[0]+" hrs <br/>");
+        $("td#Grand_Total").html(tl_val[0]+"<br/>");
       }
       //$("td#Grand_Total").html(data["total_week_hours"]+"<br/>");
       
       tl_val = (data["avg_week_hours"]+"").split(".");
       if(tl_val.length==2){
-        $("td#Average_Working_Hours").html(tl_val[0]+" hrs "+ tl_val[1] +"min <br/>");
+        $("td#Average_Working_Hours").html(tl_val[0]+""+ tl_val[1] +"min <br/>");
       } else {
-        $("td#Average_Working_Hours").html(tl_val[0]+" hrs <br/>");
+        $("td#Average_Working_Hours").html(tl_val[0]+"<br/>");
       }
       
      $("#avg").html("<b>Average Working Hours</b>");

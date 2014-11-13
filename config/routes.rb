@@ -82,7 +82,8 @@ Rails.application.routes.draw do
   end
  
    resources :groups do
-       resources :holiday_calenders
+     resources :leave_policies
+     resources :holiday_calenders
        member do
         get 'add_employee'
         post 'update_add_employee'
@@ -100,7 +101,7 @@ Rails.application.routes.draw do
     post 'reject'
   end
  end
- 
+get 'reportees_leaves' => "leave_histories#reportees_leaves"
 get 'reported_leaves' => "leave_histories#reported_leaves"
 get 'reported_employees' => "leave_histories#reported_employees"
 get 'applied_leaves' => "leave_histories#applied_leaves"
@@ -232,6 +233,14 @@ end
   end
  end
 
+
+  resources :letters , :only => :index do 
+    collection do 
+      get 'reference_letter'
+      get 'address_proof_letter'
+      get 'salary_certificate'
+    end
+  end
   #get 'change_designation' => "designations#change_designation"
   
 

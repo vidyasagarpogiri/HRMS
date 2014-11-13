@@ -1,43 +1,31 @@
 class EmployeesController < ApplicationController
 
-  layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index, :attachment_edit]
-    
-	 
-	  before_filter :other_emp_view, :except => [:index, :profile]
-
-	  before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]	
-
-	
-
+  layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index, :attachment_edit] 
+	 before_filter :other_emp_view, :except => [:index, :profile]
+	 before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]		
+   before_action :get_employee, only: [:show, :profile, :edit, :update, :exit_form, :attachment_form_new, :attachment_create, :attachment_edit, :attachment_update, :attachment_show, :attachment_destroy, :attachment_index, :bankdetails_form, :bankdetails_create,:bankdetails_show, :bankdetails_edit, :bankdetails_update	]
+  
   def index
     @employees =  Employee.where(:status => false)
   end
 
- 
   def new
     @employee = Employee.new
   end
   
   def create
-    
-    raise params.inspect
-    
-     @employee = Employee.create(params_employees)
-      
+    @employee = Employee.create(params_employees)  
     if @employee.errors.present?
       render 'new'
     else
-     @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
-     
+     @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])     
      @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
      @employee.update(:user_id => @user.id, :status => false)
-      redirect_to profile_path(@employee)
-    end
-    
+     redirect_to profile_path(@employee)
+    end   
   end
 
   def show
-    @employee = Employee.find(params[:id])
     if @employee.reporting_managers.first.present? &&  @employee.reporting_managers.first.manager_id.present? 
       unless @employee.reporting_managers.first.manager_id == 0 
         @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name 
@@ -47,20 +35,15 @@ class EmployeesController < ApplicationController
   end
 
   def profile
-     @employee = Employee.find(params[:id])
      if @employee.educations.present?
      @specialization = @employee.educations.order('year_of_pass DESC').first
      end
   end
   
   def edit
-    @employee = Employee.find(params[:id])
   end
   
-  def update
-   
-    @employee = Employee.find(params[:id])
-  
+  def update    
     if params[:employee].present? 
       @employee.update(params_employees) 
       @report = @employee.reporting_managers 
@@ -70,38 +53,32 @@ class EmployeesController < ApplicationController
         else
           @report = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
         end  
-      @errors = @employee.errors.full_messages
-     
-    end
-         
+      @errors = @employee.errors.full_messages     
+    end         
   end  
 
 	def exit_edit_form
-		@employee = Employee.find(params[:id])
 	end
 
 	def exit_form
-		@employee = Employee.find(params[:id])
 		if !@employee.nil?
 		  redirect_to show_exit_employee_path(@id)
 		end
 	end
 
 	def update_exit_form
-			@employee = Employee.find(params[:id])
 			@employee.update(:date_of_exit=>params[:employee][:date_of_exit],:ff_status_id=> params[:employee][:ff_status_id])
 			redirect_to show_exit_employee_path(@employee.id)
 	end
   
   def attachment_form_new
-   @emp_get_attachements = Employee.find(params[:id]).employee_attachments
+   @emp_get_attachements = @employee.employee_attachments
     @emp_get_attachements = [] if Employee.find(params[:id]).employee_attachments.nil?
     @employee = Employee.find(params[:id])
     @employee_attachments = @employee.employee_attachments.build  
   end
 
-  def attachment_create
-    @employee = Employee.find(params[:id])
+  def attachment_create 
      if params["employee_attachments"].present?
       if params["employee_attachments"]["attachment"].present? 
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
@@ -114,37 +91,24 @@ class EmployeesController < ApplicationController
   end
 	
 	def attachment_edit
-	  #raise params.inspect
-	  @employee = Employee.find(params[:id])
-	  #raise params.inspect
 	  @emp_attachement = EmployeeAttachment.find(params[:attachment_id])
-	  #raise @emp_attachement.inspect
-		#@emp_attachement.update(:attachment=>params[:attachment],:attachment_name=> params[:attachment_name])
 	end
 	
 	 def attachment_update
-	    @employee = Employee.find(params[:id])
 	    @emp_attachement = EmployeeAttachment.find(params[:attachment_id])
 	    @emp_attachement.update(:attachment_name=> params[:employee_attachments][:attachment_name])
 	    redirect_to attachment_show_employee_path(@employee,@employee_attachement)
 	 end
 	
-	def show_exit
-		
-		@employee = Employee.find(params[:id])
-			
+	def show_exit		
+		@employee = Employee.find(params[:id])			
 	end
 
   def attachment_show
-	 #raise params.inspect
-	 @employee = Employee.find(params[:id])
-	 #raise @employee.inspect
-	 @emp_get_attachements = Employee.find(params[:id]).employee_attachments
-	 #raise @emp_get_attachements.inspect
+	 @emp_get_attachements = @employee.employee_attachments
   end
 
   def attachment_destroy
-    @employee = Employee.find(params[:id])
 		@emp_get_attachements = EmployeeAttachment.find(params[:attachment_id])
  		@emp_get_attachements.destroy
      @emp_get_attachments  = @employee.employee_attachments
@@ -166,8 +130,7 @@ class EmployeesController < ApplicationController
     end
 		 @emails = @employee.email_ettiquities
 	end
-	
-	
+		
 	def getAllEmployees  
 	  data = Employee.all.pluck(:id,:first_name, :last_name)
 	  json_data = []
@@ -182,40 +145,30 @@ class EmployeesController < ApplicationController
 	end
 			
 	def attachment_index
-    @employee = Employee.find(params[:id])
     @emp_get_attachments = @employee.employee_attachments	
   end
     	
 	def bankdetails_index
-    @employee = Employee.find(params[:employee_id])
     @bank_details =  @employee.bank_detail
   end
   
   def bankdetails_form
-    @employee = Employee.find(params[:employee_id])
     @bank_details = Employee.new    
   end
   
   def bankdetails_create
-    #raise params.inspect
-    @employee = Employee.find(params[:id])
 		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan], :PFAccountNumber => params[:PFAccountNumber])		
 	end
   
   def bankdetails_show
-		#raise params.inspect
-		#emp_id = params[:employee_id] if params[:employee_id].present?
 		emp_id = params[:id] if params[:id].present?
 		@employee = Employee.find(emp_id)		
 	end	
 	
 	def bankdetails_edit
-		#raise params.inspect		
-		@employee = Employee.find(params[:id])
   end
 	
 	def bankdetails_update	
-	  @employee = Employee.find(params[:id])
 		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan], :PFAccountNumber => params[:PFAccountNumber])		
 	end
 	
@@ -237,6 +190,10 @@ class EmployeesController < ApplicationController
 	
 	def bank_details
     params.require(:bank_details).permit(:bank_name, :account_number, :branch_name, :pan, :PFAccountNumber)
+  end
+  
+  def get_employee
+    @employee = Employee.find(params[:id])
   end
 	
 end

@@ -1,6 +1,9 @@
 class Role < ActiveRecord::Base
   has_many :employees
-  has_many :role_previliges
+ 
   
-  validates :role_name, uniqueness: { case_sensitive: false }
+  has_many :packages
+  has_many :features, through: :packages
+  belongs_to :department
+  belongs_to :designation
 end

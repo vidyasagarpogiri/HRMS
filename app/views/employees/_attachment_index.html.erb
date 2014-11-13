@@ -26,7 +26,7 @@
           <% if current_user.department == Department::HR %>
           <td>
               <%#link_to "Edit",  attachment_edit_employee_path(@employee.id, attachment.id), :class=>"btn btn-success " %>
-              <%= link_to "Delete",  attachment_destory_employee_path(@employee.id, attachment.id), :method => :delete, data: {confirm: "Are You sure?"},:class=>"btn btn-danger ", :remote => true %>
+              <%= link_to "Delete",  attachment_destory_employee_path(@employee.id, attachment.id), :method => :delete, data: {confirm: "Are You sure?"},:class=>"btn btn-danger pull-right ", :remote => true %>
           </td>
           <% end %>                       
            </tr>

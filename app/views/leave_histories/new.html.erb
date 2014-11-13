@@ -31,13 +31,21 @@
              <%= f.text_area :reason,  :class =>"span8 form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %>  
              <span class="help-block with-errors"></span>   
           </div>
-          </div>                               	
+          </div>
           <div class="row-fluid">
+            <div class="span2">
+              <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
+            </div>
+            <div class="span2">
+               <%= f.radio_button :is_halfday, 'full_day',:class => "rb2" %> &nbspFull Day                            	
+            </div>
+          </div>
+          <div class="row-fluid full_day">
             <div class="span4">
               <div class="control-group">
 							  <label class="control-label" for="basicinput">From</label>
 							  <div class="controls">
-                 <%= f.text_field :from_date, :id => "idnm1", :class => "span8 form-control leave-form-date",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
+                 <%= f.text_field :from_date, :id => "idnm1", :class => "span8 form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}%>
 								   <span class="help-block with-errors"></span>   
 							  </div>
 						  </div>
@@ -46,15 +54,42 @@
               <div class="control-group">
 							  <label class="control-label" for="basicinput">To</label>
 							  <div class="controls">
-                 <%= f.text_field :to_date, :id => "idnm2", :class => "span8 form-control leave-to-date", :data => {:error => "Please Enter Valid Date"}, :required => true %>
+                 <%= f.text_field :to_date, :id => "idnm2", :class => "span8 form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"} %>
 								   <span class="help-block with-errors"></span>   
 							  </div>
 						  </div>
             </div>
-          </div>                                                                                       
-          <button type="submit" class="btn btn-success"> Apply </button>
-          <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>
-          <% end %>                                                                   
+          </div>
+          <div class="row-fluid half_day">
+            <div class="span4">
+              <div class="control-group">
+							  <label class="control-label" for="basicinput">Date</label>
+							  <div class="controls">
+                 <input type="text" name="leave_date" id = "idnm3" class ="span8 form-control leave-form-date">
+								   <span class="help-block with-errors"></span>   
+							  </div>
+						  </div>
+            </div>
+            <div class="span4">
+              <div class="control-group">
+							  <label class="control-label" for="basicinput">To</label>
+							  <div class="controls">
+                 <%= f.select :section, options_for_select([['Morning', 'Morning'], ['After Noon', 'After Noon']]), :id => "idnm2", :class => "span8 form-control leave-to-date", :data => {:error => "Please Enter Select Session"} %>
+								   <span class="help-block with-errors"></span>   
+							  </div>
+						  </div>
+            </div>
+          </div>
+          <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
+          <ul class="navigation-btns edittwo">                                                                                       
+            <li><button type="submit" class="btn btn-success apply"> Apply </button></li>
+            <li><%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %></li>
+          </ul>
+          <% end %> 
+          <div class="alert-message alert alert-info alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+               You have crossed the limit of your balace leaves
+          </div>                                                                  
           <% else %>  <br>
           <div class="alert alert-success alert-dismissable">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -102,6 +137,45 @@
            }
      });
   });
+  $(function(){
+    $('.half_day').hide();
+    $(".alert-message").hide();
+    $('.rb1').click(function(){
+      $('.full_day').hide();
+      $('.half_day').show();
+    });
+    $('.rb2').click(function(){
+      $('.half_day').hide();
+      $('.full_day').show();
+    });
+    //script for checking applied leaves is greater than balanced leaves - sekhar
+    $(".idnm2").change(function(){
+      if($(".rb2").prop("checked")){
+       var startDate =$(".idnm1").datepicker("getDate");
+       var endDate =$(".idnm2").datepicker("getDate");
+       var diff = endDate - startDate;// calculating date difference will give value in milliseconds
+       var days = (diff/86400000)+1; // converting milliseconds to days here we are adding 1, becuase it will give the difference of two dates
+       var weeks = Math.floor(days / 7); // calculating how many weeks we have in that days
+       days = days - (weeks * 2); // multiply with 2 will give how many weekends we have in those weeks
+       var startDay = startDate.getDay(); //will give day of that date
+       var endDay = endDate.getDay();
+       if (startDay - endDay > 1) // conditons for calculating days depends on their start and end dates
+         days = days - 2;
+       if (startDay == 0 && endDay != 6) // it checks weather start day is sunday
+            days = days - 1;
+       if (endDay == 6 && startDay != 0) // it checks weather end day is saturday
+            days = days - 1;
+    var total_leaves = parseFloat($("#total_leaves").val());// converting value into float
+    if(total_leaves<days){  // checking weather applied leaves are more than balance leaves
+       $(".alert-message").show(); // it will show an alert message to the user that he crossed his balance leaves
+    }
+    else{
+       $(".alert-message").hide();
+    }
+   }
+ });
+});
+
 </script>
             
 

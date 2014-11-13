@@ -1,45 +1,71 @@
-<div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                
-                    <div class="page-header" >
-                      <h4><%= @group.group_name %></h4>
-                       <div class="pull-right" style="margin-top:-25px;margin-right:110px;">
-                       Reporting Manager : &nbsp<a href="#" style="float:right;margin-top:-10px;"><h4><%= @employee.full_name %></h4></a></div>
-                   </div>
-            <!-- /.row -->
-            <div class="row">
-               <div class="col-lg-12">
-                 <% if @group.leave_policy.nil? %> 
-                 <label style="font-weight:normal;margin-top:-15px;" class="pull-right"> <a><i class="fa fa-plus "></i></a><%= link_to 'Add Leave Policy For This Group', new_group_leave_policy_path(@group)  %></label><br>
-                   <% end %>                                                       
-                 <div id ="leave_policy">
-                   <%=render "leave_policies/index" %>
-                 </div>
-                 
-                 <div id="event_form">                 
-                 <% unless @group.holiday_calenders.present? %>
-                  <label id="new_event" style="font-weight:normal;margin-top:px;" class="pull-right"><a><i class="fa fa-plus "></i></a><%= link_to 'Add Holidays List For This Group', new_group_holiday_calender_path(@group) %></label> 
-                 <% end %><br>
-                 <div id ="holiday_calenders">
-                   <%=render "holiday_calenders/index" %>
-                  </div>
-                </div>
-                  
-                </div>
-                    <!-- /.panel -->
-             </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
- </div>
-        <!-- /#page-wrapper -->
-        
-  <script>
-          $(function(){
-  
-    $("#active").toggleClass("active").children("ul").collapse("toggle");
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                
+      <div class="span12">
+        <div class="content">
+          <div class="module" >
+            <div class="module-body">
+              <div class="profile-head media" style="min-height:700px;">                   
+                <div class="media-body">
+                <div><!-- style="border-radius: 65px; border: 3px solid #55B19A;width:120px;height:120px" -->
+                <%= image_tag "HR.jpg", :style => "height:130px !important;width:130px !important;"%>
+                  <!-- <a class="media-avatar pull-left" href="#" >                       
+                      <%# image_tag "HR.jpg", :style => "height:130px !important;width:160px !important;"%>                                
+                      <%# if @department.department_name == "HR" %>
+                          <%# image_tag "HR.jpg", :style => "height:130px !important;width:160px !important;"%>
+                      <%# elsif @department.department_name == "Development"%>
+                        <%# image_tag "dep.jpg", :style => "height:130px !important;width:160px !important;"%>
+                      <%# elsif @department.department_name == "Business Development"%>
+                      <%# image_tag "accounts.jpg", :style => "height:120px  !important;width:120px !important;"%>
+                      <%# elsif @department.department_name == "Accounts"%>
+                        <%# image_tag "bdm.jpg", :style => "height:120px  !important;width:120px !important;"%>
+                      <%# end %>
+                    </a><br>--></div> 
+                    <div class="media-body">
+                      <div class="pull-right" ><a href="/groups" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Groups</i></a></div> 
+                      <h4>
+                         <%= @group.group_name %> 
+                      </h4>
+                      <p>Employees : <%= @group.employees.count %></p>                      
+                      <!---<p>Manager : Mehar</p> -->
+                    </div><!--/.module-body-->
+                  </div><!--/.module-body-->                                                                         
+                     <ul class="profile-tab nav nav-tabs">
+                        <li class="active"><a href="#employees" data-toggle="tab">Employees</a></li>                        
+                        <li><a href="#leave_policies" data-toggle="tab">Leave Policies</a></li>
+                         <li><a href="#leaves" data-toggle="tab">Leaves</a></li>
+                        <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li>                                    
+                     </ul>                                                                                                                        
+                     <div class="profile-tab-content tab-content">  
+                        <div class="tab-pane fade active in" id="employees">
+                                                              
+                            <%= render "groups/employees"%>           
+                        </div><!--/.tab-pane-list-->                                                        
+              <!--leave_policies PANEL-->                                        
+                        <div class="tab-pane fade " id="leave_policies"> 
+                          <%= render "groups/leave_policies"%>                                         
+                        </div><!--/.tab-pane-list-->
+                        <div class="tab-pane fade" id="leaves">
+                          <%= render "groups/employee_leaves"%> 
+                        </div>
+                        
+            <!--holiday_calender PANEL-->                                       
+                        <div class="tab-pane fade " id="holiday_calender">
+                         <%= render "groups/holiday_calender"%>                                        
+                        </div><!--/.tab-pane-list-->                                                                                             
+                      </div><!--/.profile-tab-content -->                            
+                    </div> <!--/.profile-head-->                       
+                 </div><!--/.module-body-->                     
+              </div><!--/.module-->                
+           </div><!--/.content-->            
+        </div><!--/.span12-->
+     </div><!--/.row-->    
+  </div><!--/.container-->	
+</div><!--/.Wrapper-->
+                    
+                    
 
-          });
-        </script>
+
+
+        
 

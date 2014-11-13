@@ -1,5 +1,7 @@
 class DesignationsController < ApplicationController
-
+  
+  before_action :find_designation, only: [:show, :edit, :update, :destroy, :add_employee, :update_employee]
+ 
   def index
     @designations = Designation.all
     @departments = Department.all
@@ -16,44 +18,40 @@ class DesignationsController < ApplicationController
   end
 
   def show
-
-    @designation = Designation.find(params[:id])
     @employees = @designation.employees
     @grades = @designation.grades
 
   end
 
   def update
-    @designation = Designation.find(params[:id])
     @designation.update(designation_params)
     redirect_to designations_path
   end
   
-  def edit     
-    @designation = Designation.find(params[:id])        
+  def edit            
   end
   
   def destroy
-	  @designation = Designation.find(params[:id])
 		@designation.destroy
 		redirect_to @designation
 	end
 	
   def add_employee
-    @designation = Designation.find(params[:id])
     @employee = Employee.all
   end
-   def update_employee
-    @designation = Designation.find(params[:id])
+  
+  def update_employee
     @employee = Employee.find(params[:employee_id])
     @employee.update(:designation_id => @designation.id)
-    #raise @employee.inspect
     redirect_to @designation
-   end 
+  end 
     
   private
   def designation_params
     params.require(:designation).permit(:designation_name, :email) 
+  end
+  def find_designation
+    @designation = Designation.find(params[:id])
   end
 end
 
