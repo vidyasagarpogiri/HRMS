@@ -31,28 +31,29 @@ class SalaryCertificate < Prawn::Document
     draw_text "As per our records his / her Salary details in Indian Rupee is as follows :",:at => [@x+40, @y-170]
   end
   
-  def salary
-    
+  def salary 
     draw_text "BASIC:", :at => [@x+40, @y-200] #1
     draw_text "#{@user.employee.salary.basic_salary}", :at => [@x+360, @y-200]
     @z = @y-230
-    @user.employee.salary.allowances.each do |allowance|
-      draw_text "#{allowance.allowance_name}", :at => [@x+40, @z]
-      draw_text "#{allowance.total_value}", :at => [@x+360, @z]
-      @z = @z - 30
+    if @user.employee.salary.allowances.present?
+      @user.employee.salary.allowances.each do |allowance|
+        draw_text "#{allowance.allowance_name}", :at => [@x+40, @z]
+        draw_text "#{allowance.total_value}", :at => [@x+360, @z]
+      @z = @z-30
+      end
     end
-    draw_text "ADDITIONAL ALLOWANCE:", :at => [@x+40, @y-320] #5
-    draw_text "#{@user.employee.salary.special_allowance}", :at => [@x+360, @y-320]
-    draw_text "PROVIDENT FUND:", :at => [@x+40, @y-350] #6
-    draw_text "#{@user.employee.salary.pf}", :at => [@x+360, @y-350]
-    draw_text "GRATUITY:", :at => [@x+40, @y-380] #7 
-    draw_text "#{@user.employee.salary.gratuity}", :at => [@x+360, @y-380]
-    draw_text "QPLC:", :at => [@x+40, @y-410] #8
-    draw_text "#{@user.employee.salary.bonus}", :at => [@x+360, @y-410]
-    draw_text "MEDICAL ALLOWANCE:", :at => [@x+40, @y-440] #9
-    draw_text "#{@user.employee.salary.medical_insurance}", :at => [@x+360, @y-440]
-    draw_text "MONTHLY GROSS:",style: :bold, :at => [@x+40, @y-470] #10
-    draw_text "#{@user.employee.salary.gross_salary}", :at => [@x+360, @y-470]        
+    draw_text "ADDITIONAL ALLOWANCE:", :at => [@x+40, @z] #5
+    draw_text "#{@user.employee.salary.special_allowance}", :at => [@x+360, @z]
+    draw_text "PROVIDENT FUND:", :at => [@x+40, @z-30] #6
+    draw_text "#{@user.employee.salary.pf}", :at => [@x+360, @z-30]
+    draw_text "GRATUITY:", :at => [@x+40, @z-60] #7 
+    draw_text "#{@user.employee.salary.gratuity}", :at => [@x+360, @z-60]
+    draw_text "QPLC:", :at => [@x+40, @z-90] #8
+    draw_text "#{@user.employee.salary.bonus}", :at => [@x+360, @z-90]
+    draw_text "MEDICAL ALLOWANCE:", :at => [@x+40, @z-120] #9
+    draw_text "#{@user.employee.salary.medical_insurance}", :at => [@x+360, @z-120]
+    draw_text "MONTHLY GROSS:",style: :bold, :at => [@x+40, @z-150] #10
+    draw_text "#{@user.employee.salary.gross_salary}", :at => [@x+360, @z-150]        
   end
   
   def sign
