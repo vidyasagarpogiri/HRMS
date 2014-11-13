@@ -33,6 +33,11 @@
                      <label><%= @address1.city %>, <%= @address1.state %></label> 
                      <label><%= @address1.country %>, <%= @address1.zipcode %></label>
                    </div>
+                   <% else %>
+                     <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                         Please add Contact details to this Employee.
+                     </div>
                    <% end %>
                    <% if @address2.present? %> 
                    <div class="span6"> 
@@ -41,6 +46,11 @@
                      <label><%= @address2.city %>, <%= @address2.state %></label> 
                      <label><%= @address2.country %>, <%= @address2.zipcode %></label>
                    </div>
+                   <% else %>
+                     <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                         Please add Contact details to this Employee.
+                     </div>   
                    <% end %>                     
                  </div>  <br>                                                                           
                  <div class="row-fluid">

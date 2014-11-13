@@ -318,3 +318,19 @@ color:#82B4E6;
 }
 
 
+ .group{
+  border-radius: 65px; 
+  border: 2px solid #55B19A;
+  width:120px;
+  height:120px
+  }
+  
+  .group .group_name{
+  font-weight:bold;
+  font-size:14px;
+  margin-top:50px;
+  text-align:center;
+  color:#55B19A;
+  text-transform: uppercase;
+  
+  }
