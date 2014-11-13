@@ -10,6 +10,7 @@
         <th>Employee Name</th>
         <th>Department</th>
         <th>Designation</th>
+        <th>Group</th>
         <th>Number of leaves used</th>
       </tr>
      </thead>
@@ -18,7 +19,8 @@
        <tr>             
 					<td><%= emp.full_name %></td>
           <td><%= emp.department.department_name %></td>
-          <td><%= emp.designation.designation_name if emp.designation.present? %></td> 
+          <td><%= emp.designation.designation_name if emp.designation.present? %></td>
+          <td><%= emp.group.group_name %></td> 
           <td><%= total_used_leaves(emp)%> </td>
        </tr>
        <% end %>

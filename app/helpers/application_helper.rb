@@ -127,7 +127,7 @@ module ApplicationHelper
   end
 
 	def allowance_value(value, salary)
-	  (salary)*value/100
+	  (salary*value)/100
 	end
   
   def reporting_manager_leaves?
