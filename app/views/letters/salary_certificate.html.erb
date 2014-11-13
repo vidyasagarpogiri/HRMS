@@ -11,7 +11,7 @@
                 <div class="outing">                
                   <div class="row-fluid">
                     <div class="span6">
-                      <label>Date: 22-12-14</label>
+                      <label>Date: <%= Time.now.to_date %></label>
                     </div>                      
                  </div>
                   <div class="row-fluid" style="margin-left:300px;">
@@ -35,7 +35,7 @@
                         <label>BASIC:</label>
                       </div>
                       <div >
-                        <label>XXX</label>
+                        <label><%= current_user.employee.salary.basic_salary %></label>
                       </div></div>                      
                       <div class="row-fluid">
                         <div class="span6">
@@ -74,7 +74,7 @@
                           <label >PROVIDENT FUND:</label>
                         </div>
                         <div class="">
-                          <label >5654</label>
+                          <label ><%= current_user.employee.salary.pf %></label>
                         </div>
                     </div>                    
                     <div class="row-fluid">
@@ -82,7 +82,7 @@
                           <label >GRATUITY:</label>
                         </div>
                         <div class="">
-                          <label >5654</label>
+                          <label ><%= current_user.employee.salary.gratuity %></label>
                         </div>
                     </div>  
                     <div class="row-fluid">
