@@ -102,9 +102,14 @@ class SalariesController < ApplicationController
 		# code for updation of deductable allowances -sekhar
 		sa = StaticAllowance.find(a)
 		 if sa.is_deductable
-		  Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :is_deductable => true)
+		  Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :is_deductable => true, :total_value => sa.value)
 		 else
-		  Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value)
+		  if sa.percentage.present?
+		    total_value = allowance_value(sa.percentage, @salary.basic_salary).round(2)
+		    Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :total_value => total_value)
+		  else
+		    Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :total_value => sa.value)
+		  end
 		 end
 		end
 		  @other_allowance = allowance_total(@allowances, @salary)
@@ -128,7 +133,12 @@ class SalariesController < ApplicationController
 			  if sa.is_deductable
 		     Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :is_deductable => true)
 		    else
-		     Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value )
+		     if sa.percentage.present?
+		        total_value = allowance_value(sa.percentage, @salary.basic_salary).round(2)
+		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :total_value => total_value)
+		     else
+		        Allowance.create(:salary_id => @salary.id, :allowance_name => sa.name, :value => sa.percentage, :allowance_value => sa.value, :total_value => sa.value)
+		     end
 		    end
 		  end
 		@other_allowance = allowance_total(@allowances, @salary)
