@@ -27,7 +27,7 @@ class AddressProofLetter < Prawn::Document
   end
   
   def subject
-    draw_text "Subject: Address Proof.", size: 15, :at => [@x+40, @y-200]
+    draw_text "Subject: Address Proof.", size: 14, :at => [@x+40, @y-200]
   end
   
   def text
@@ -37,23 +37,22 @@ class AddressProofLetter < Prawn::Document
   end
   
   def details
-    draw_text "Details as under –", :at => [@x+40, @y-340]
-    draw_text "#{@user.employee.full_name} ", style: :bold, :at => [@x+40, @y-360]
-    draw_text "Present Address", style: :bold, :at => [@x+40, @y-400]
-    draw_text "#{@user.employee.addresses.find_by_address_type(true).line}, #{@user.employee.addresses.find_by_address_type(true).line1} ", :at => [@x+40, @y-420]
-    draw_text "#{@user.employee.addresses.find_by_address_type(true).city}, #{@user.employee.addresses.find_by_address_type(true).state} ", :at => [@x+40, @y-440]
-    draw_text "#{@user.employee.addresses.find_by_address_type(true).country}, #{@user.employee.addresses.find_by_address_type(true).zipcode} ", :at => [@x+40, @y-460]
+    draw_text "Present Address", style: :bold, :at => [@x+40, @y-340]
+    draw_text "#{@user.employee.addresses.find_by_address_type(true).line}, #{@user.employee.addresses.find_by_address_type(true).line1} ", :at => [@x+40, @y-360]   
+  
+    draw_text "#{@user.employee.addresses.find_by_address_type(true).city}, #{@user.employee.addresses.find_by_address_type(true).state} ", :at => [@x+40, @y-380]
+    draw_text "#{@user.employee.addresses.find_by_address_type(true).country}, #{@user.employee.addresses.find_by_address_type(true).zipcode} ", :at => [@x+40, @y-400]
     
-    draw_text "Permanent Address", style: :bold, :at => [@x+250, @y-400]
-    draw_text "#{@user.employee.addresses.find_by_address_type(false).line}, #{@user.employee.addresses.find_by_address_type(false).line1} ", :at => [@x+250, @y-420]
-    draw_text "#{@user.employee.addresses.find_by_address_type(false).city}, #{@user.employee.addresses.find_by_address_type(false).state} ", :at => [@x+250, @y-440]
-    draw_text "#{@user.employee.addresses.find_by_address_type(false).country}, #{@user.employee.addresses.find_by_address_type(false).zipcode} ", :at => [@x+250, @y-460]  
+    draw_text "Permanent Address", style: :bold, :at => [@x+250, @y-340]
+    draw_text "#{@user.employee.addresses.find_by_address_type(false).line}, #{@user.employee.addresses.find_by_address_type(false).line1} ", :at => [@x+250, @y-360]
+    draw_text "#{@user.employee.addresses.find_by_address_type(false).city}, #{@user.employee.addresses.find_by_address_type(false).state} ", :at => [@x+250, @y-380]
+    draw_text "#{@user.employee.addresses.find_by_address_type(false).country}, #{@user.employee.addresses.find_by_address_type(false).zipcode} ", :at => [@x+250, @y-400]  
   end
   
   def sign
-    draw_text "Thanking You,", :at => [@x+40, @y-540] 
-    draw_text "<HR Name>", :at => [@x+40, @y-570]
-    draw_text "Human Resources", :at => [@x+40, @y-590]    
+    draw_text "Thanking You,", :at => [@x+40, @y-450] 
+    draw_text "<HR Name>", :at => [@x+40, @y-490]
+    draw_text "Human Resources", :at => [@x+40, @y-510]    
   end
   
   
