@@ -11,7 +11,7 @@ class SalariesController < ApplicationController
   before_action :get_employee, only: [:index, :new, :create, :show, :edit, :update, :destroy, :configure_allowance, :create_allowance, :edit_allowance, :update_allowance, :add_allowance, :configure_pf]
   # before action for finding salary
   before_action :get_salary, only: [:index, :edit, :update, :destroy]
-  before_action :get_salary_details, only: [:configure_allowance, :create_allowance, :edit_allowance, :update_allowance, :add_allowance]
+  before_action :get_salary_details, only: [:configure_pf, :configure_allowance, :create_allowance, :edit_allowance, :update_allowance, :add_allowance]
   
   def new
 		@employee = Employee.find(params[:employee_id])
@@ -147,7 +147,6 @@ class SalariesController < ApplicationController
 	end
 	
 	def configure_pf
-	  @allowances = @salary.allowances
 	  @salary_percentages = StaticSalary.all
 	  # this if-else statement is to check applicability of pf and esic based on their values in the salary record
 	  if params[:Pf] == "on" && params[:Esci] == "on"

@@ -19,7 +19,8 @@ class GroupsController < ApplicationController
   def show   
      @employees = @group.employees
      @leave_policy = @group.leave_policy
-     @holiday_calenders = @group.holiday_calenders  
+     @holiday_calenders = @group.holiday_calenders
+     @leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?  
   end
   
   def edit          
