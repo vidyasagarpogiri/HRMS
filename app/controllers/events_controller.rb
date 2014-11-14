@@ -67,7 +67,7 @@ class EventsController < ApplicationController
   def holiday_notification
      @users = User.all
      @events = Event.all
-        #raise @events.inspect
+        raise @events.inspect 
         Employee.where(status: false).each do |emp|
         Notification.holiday_list(emp.user,@events).deliver
          flash.now[:error]
