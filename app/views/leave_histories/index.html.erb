@@ -7,14 +7,13 @@
             <div class="module-head">
               <h3> My Leaves</h3>
             </div>
-            <% if @employee.department.leave_policy.present? %>
+            <% if @employee.group.leave_policy.present? %>
             <% if @employee.reporting_manager? %>
-            <div class="module-body" style="min-height:800px;">
-              <div class="profile-head media">              
+            <div class="module-body" >
+              <div class="profile-head media" style="min-height:800px;">              
                 <div class="media-body">
                    <a class="media-avatar pull-left" href="#">                                 
-                      <img src="/assets/leave-view-icon.jpg" style="margin-top:50px;height:120px !important;width:120px !important;"> 
-                     
+                     <%= image_tag "leave-view-icon.jpg", :style => "margin-top:50px;height:120px !important;width:120px !important;" %>
                     </a> 
                     <div class="media-body"> 
                       <h4>
@@ -32,10 +31,7 @@
                       <li ><a href="#leaves-history" data-toggle="tab">Leave History</a></li>
                       <li><a href="#leave_policy" data-toggle="tab">Leave Policy</a></li>
                       <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li> 
-                     <% if current_user.employee.is_reporting_manager? %>
-                     <li><a href="#leave_approavals" data-toggle="tab">Leave Approvals</a></li>  
-                      <li><a href="#reportees" data-toggle="tab">Reportees</a></li>
-                     <% end %>                                    
+                                                     
                   </ul>                                                                                                                                
                      <div class="profile-tab-content tab-content">  
                         <div class="tab-pane fade active in" id="waiting-for-approval">
@@ -72,18 +68,9 @@
                             </div>                                          
                           </div><!--/.tab-pane-list-->                                          
                           
-                <!--leave_approavals PANEL-->             
-                          <div class="tab-pane fade " id="leave_approavals">                                              
-                            <%= render "leave_histories/reported_leaves"%>                  
-                        </div><!--/.tab-pane-list--> 
+               
                         
-                 <!--reportees PANEL-->         
-                        <div class="tab-pane fade" id="reportees">
-                          <div class="module">                                              
-                            <%= render "leave_histories/reportees"%>
-                          </div>                  
-                        </div><!--/.tab-pane-list--> 
-                        
+                                  
                                                                                
                           </div><!--/.profile-tab-content -->                                                                                      
                        </div><!--/.profile-head-->                        
@@ -96,7 +83,7 @@
                      <% else %><br>                      
                        <div class="alert alert-success alert-dismissable">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                          There is no leave policy configure to your Department. Please Contact HR.  
+                          There is no leave policy configure to your Group. Please Contact HR.  
                        </div>                     
                     <% end %>
                   </div>

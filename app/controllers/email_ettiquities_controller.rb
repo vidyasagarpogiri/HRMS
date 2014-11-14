@@ -1,41 +1,39 @@
-class EmailEttiquitiesController < ApplicationController
-  
+class EmailEttiquitiesController < ApplicationController  
   # layout "emp_profile_template", only: [:index, :new, :create, :show]
-
-	 before_filter :hr_view,  only: ["new", "edit"]
+	before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view
+  before_action :find_employee, only: [:index, :new, :create, :destroy]
+  before_action :find_email_ettiquitie, only: [:show, :destroy]
+	
 	def index
-		#raise params.inspect
-		@employee = Employee.find(params[:employee_id])
     @emails = @employee.email_ettiquities
   end
 
   def new
-		@employee= Employee.find(params[:employee_id])
-    @email = EmailEttiquitie.new
-		
+    @email = EmailEttiquitie.new		
   end
   
   def create
-		@employee = Employee.find(params[:employee_id])
     @email = EmailEttiquitie.create(:ettiquite => params[:email_ettiquitie][:ettiquite], :dateofsending => Date.today,:employee_id => @employee.id)
     @emails = @employee.email_ettiquities
     @errors = @email.errors.full_messages
   end
-
   
   def show
-    @email= EmailEttiquitie.find(params[:id])
   end
-
   
 	def destroy
-		@employee = Employee.find(params[:employee_id])
-		@email= EmailEttiquitie.find(params[:id])
 		@email.destroy
 		@emails = @employee.email_ettiquities
 	end
 	
+	private
+	def find_employee
+	  @employee = Employee.find(params[:employee_id])
+	end
+	def find_email_ettiquitie
+	  @email= EmailEttiquitie.find(params[:id])
+	end
 
 end
 

@@ -3,19 +3,19 @@
         <div class="row">                
             <div class="span12">
                 <div class="content">
-                    <div class="module">
+                    <div class="module" >
                         <div class="module-body">
-                            <div class="profile-head media">                   
+                            <div class="profile-head media" style="min-height:700px;">                   
                                 <div class="media-body">
                                    <a class="media-avatar pull-left" href="#">                                 
                                       <% if @department.department_name == "HR" %>
-                                          <img src="/assets/HR.jpg" style="height:130px !important;width:160px !important;"> 
+                                          <%= image_tag "HR.jpg", :style => "height:130px !important;width:160px !important;"%>
                                       <% elsif @department.department_name == "Development"%>
-                                        <img src="/assets/dep.jpg" style="height:130px !important;width:160px !important;" >
+                                        <%= image_tag "dep.jpg", :style => "height:130px !important;width:160px !important;"%>
                                       <% elsif @department.department_name == "Business Development"%>
-                                        <img src="/assets/accounts.jpg"style="height:120px !important;width:120px !important;">
+                                      <%= image_tag "accounts.jpg", :style => "height:120px  !important;width:120px !important;"%>
                                       <% elsif @department.department_name == "Accounts"%>
-                                        <img src="/assets/bdm.jpg" style="height:120px !important;width:120px !important;">
+                                        <%= image_tag "bdm.jpg", :style => "height:120px  !important;width:120px !important;"%>
                                       <% end %>
                                     </a><br> 
                                     <div class="media-body">
@@ -32,8 +32,10 @@
                                       <li class="active"><a href="#employees" data-toggle="tab">Employees</a></li>
                                       <li><a href="#leaves" data-toggle="tab">Leaves</a></li>
                                        <li ><a href="#designations" data-toggle="tab">Designations</a></li>
+                                   <!--TODO Commented by pattabhi according  the requirement is changed following components depaends on groups
                                       <li><a href="#leave_policies" data-toggle="tab">Leave Policies</a></li>
                                        <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li>                                    
+                                       -->
                                   </ul>                                                                                                                        
                              <div class="profile-tab-content tab-content">  
                                 <div class="tab-pane fade active in" id="employees">                                              
@@ -50,14 +52,15 @@
                                       <%= render "departments/designations"%>    
                                   </div> <!--/.tab-pane-list-->                                              
                       <!--leave_policies PANEL-->             
-                                 
+                                 <!--@TODO comented by pattabhi as the requirement is changed That leavepolict is dependet on groups
                                   <div class="tab-pane fade " id="leave_policies"> 
-                                    <%= render "departments/leave_policies"%>                                          
-                                  </div><!--/.tab-pane-list-->
-                      <!--holiday_calender PANEL-->             
+                                    <%#= render "departments/leave_policies"%>                                          
+                                  </div>--> <!--/.tab-pane-list-->
                                   
+                      <!--holiday_calender PANEL-->             
+                            <!--@TODO comented by pattabhi as the requirement is changed That leavepolict is dependet on groups      
                                   <div class="tab-pane fade " id="holiday_calender">
-                                    <%= render "departments/holiday_calender"%>                                          
+                                    <%#= render "departments/holiday_calender"%>                                          
                                   </div><!--/.tab-pane-list-->                                                                                             
                             </div><!--/.profile-tab-content -->
                                                                                                                   

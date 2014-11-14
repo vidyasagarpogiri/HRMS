@@ -12,17 +12,23 @@
 							</ul>
 						</li>
 						
-						<li><a href="/employee_attendence/emp_show_attendance">Attendence</a></li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Attendence <b class="caret"></b></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="/employee_attendence/emp_show_attendance"> My Attendance </a></li>	
+								<li><a href="/employee_attendence/show_attendance">Employee Attendance</a></li>														
+							</ul>
+						</li>
 						
 						<li class="dropdown">
-							<!---<a href="#" class="dropdown-toggle" data-toggle="dropdown">Leaves<b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Leaves<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">My Leaves</a></li>
-								<li><a href="#">Apply Leave</a></li>
-								<li><a href="#">Leave Approvals</a></li>
-							
-						  </ul> ----->
-						  <a href="/leave_histories">Leaves</a>
+								<li><a href="/leave_histories">MyLeaves</a></li>
+								<% if current_user.employee.is_reporting_manager? %>
+								      <li><a href="/reportees_leaves">Leave Approvals</a></li>
+                 <% end %>                                    
+								 </ul> 
+						 
 						</li>
 						
 						<li class="dropdown">

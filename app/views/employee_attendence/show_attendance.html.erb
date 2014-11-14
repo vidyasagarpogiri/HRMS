@@ -57,7 +57,7 @@ $(function(){
     call_sw();
   });
   $("#next").click(function(){
-    if(i<0){
+    if(i<=0){
        i += 1 ;
       $("#week_num").val(i);
       call_sw();
@@ -67,8 +67,8 @@ $(function(){
 
 
 function call_sw(){
-  $("#attendance_table tr td:not(:first-child)").val("0");
-  $.get( "/employee_attendence/attandence_ws.json?week_no="+$("#week_num").val(), function( data ) {
+  $("#attendance_table tr td:not(:first-child)").html("0");
+  $.getJSON( "/employee_attendence/attandence_ws.json?week_no="+$("#week_num").val(), function( data ) {
     $.each(data, function( key, value ) {
           $("th span").remove();
           $.each(data["dt"], function( dt, v ) {
@@ -78,11 +78,17 @@ function call_sw(){
       var i=0;          
       $.each(value, function( day, hrs ) {
         day_arr = day.split("|"); 
-        if(hrs!="0"){
-          $("tr#"+key+" ."+day_arr[0]).html(hrs+ " <i class='icon-comment' onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'></i>"); 
+        if(hrs!="0" && hrs.toString().split("hr").length==2){
+          $("tr#"+key+" ."+day_arr[0]).html(hrs+ " <i class='icon-comment' onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'></i>");
         }
         else {
-          $("tr#"+key+" ."+day_arr[0]).text(hrs); 
+          if((day_arr[0]=="Sat" || day_arr[0]=="Sun") && hrs.toString().split("hr").length!=2){
+            $("tr#"+key+" ."+day_arr[0]).text(0); 
+          } else 
+          {
+            $("tr#"+key+" ."+day_arr[0]).text(hrs); 
+          }
+          
         }
         
         i+=1;

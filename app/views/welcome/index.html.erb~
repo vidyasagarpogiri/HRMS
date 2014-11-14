@@ -9,16 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AmzurHRM-landing page</title>
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <title>AmzurHRM</title>
+    
+     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
-  <%= javascript_include_tag 'application' %>
-    <!-- Bootstrap Core CSS -->
  
-    <link type="text/css" href="/assets/business-casual.css" rel="stylesheet">
-    <!-- Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,162 +25,75 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
-    
-<style type="text/css">
 
-.navbar .nav.pull-right {
-margin-left:340px!important;
-}
-
-.navbar .nav>li>a{
-letter-spacing:1px;
-font-size:1.4em;
-font-weight:normal;
-font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-text-transform:uppercase;
-}
-
-.span12 hr{
-    max-width: 400px;
-    border-color: #999999;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-top: 1px solid #eee;
-    margin-left:400px;
-}
-
-.span12 h2{
-text-align:center;
-}
-
-.loginbutton{
-width:200px;
-height:90px;
-background-color:#4DB870;
-opacity:0.7;
-margin-left:150px;
-margin-top:80px;
-border-radius:2px; 
-}
-
-.login{
-font-size:20px;
-padding-top:20px;
-margin-left:60px;
-}
-
-.span4{
-margin-left:20px!important;
-}
-
-</style>
 
 </head>
 
 <body>
 
-<div class="image">
-    <div class="brand">AmzurHRM</div>
-    <div class="address-bar">Admin | Leaves | Time </div>
-     
     <!-- Navigation -->
-      <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-           <div class="container">                                           
-              <div class="nav-collapse collapse navbar-inverse-collapse">                                              
-                <ul class="nav pull-right" style="margin-left:340px!important;float: none;">
-                    <li>
-                        <a href="index.html" >Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="blog.html">Blog</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-              </div><!-- /.nav-collapse -->                    
-            </div>
-          </div><!-- /navbar-inner -->            
-        </div><!-- /navbar -->                                                    
-<br>
-    <div class="container">
-        <div class="row">
-            <div class="box">
-                <div class="span12">
-                    <hr>
-                    <h2 class="intro-text text-center">About
-                        <strong>AmzurHRM</strong>
-                    </h2>                   
-                    <hr>
-                </div>
-                
-                <div class="span5" >
-                <% unless current_user.present? %>
-                  <div class="loginbutton" style=""> 
-                     <div class="login" style="">                     
-                     <h2><strong><%= link_to "Login", user_omniauth_authorize_path(:google_oauth2), :style => "text-decoration:none;color:black" %></strong></h2>
-                     </div>                       
-                  </div> 
-                   <% end %>                   
-                </div>
-               
-                <div class="span6"><br>
-                    <p>AmzurHRM provides a range of features to manage the crucial organization asset - people and a perfect platform for re-engineering and aligning your HR processes along with the organizational goals.</p>
-                    <p>This includes employee information management, employee Leave management, employee Time and Attendance Module  and other HR management tools.</p>
-                    <p>AmzurHRM tries to relate people and work so that the organisation objectives are achieved effectively and efficiently...</p>
-                   
-                </div>
-                <div class="clearfix"></div>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>-->                
+                <%= image_tag('amzur-logo.png', :style=>'height:100px;margin-left: -250px;') %>
             </div>
         </div>
+        <!-- /.container -->
+    </nav>
 
-        <div class="row">
-            <div class="box">
-                <div class="span12">
-                    <hr>
-                    <h2 class="intro-text text-center">Our
-                        <strong>Services</strong>
-                    </h2>
-                    <hr>
+    <!-- Header -->
+    <div class="intro-header">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>MyAmzur</h1>
+                        <h3>Talent Management. Connections. Innovations</h3>
+                        <hr class="intro-divider">
+                        <% unless current_user.present? %>
+                        <ul class="list-inline intro-social-buttons" style="display: inline; ">
+                          <li>
+                          </li>
+                          <li>                             
+                            <%= link_to user_omniauth_authorize_path(:google_oauth2), :class => "network-name btn btn-warning btn-lg", :style => "text-decoration: none;color:#fff" do %>
+                            <i class="fa fa-sign-in fa-fw"> Login</i>
+                            <% end %>     
+                          </li>
+                          <li>
+                          </li>
+                        </ul>
+                       <% end %>  
+                    </div>
                 </div>
-                <div class="span4 text-center">
-                    <img class="img-responsive" src="http://www.evolllution.com/wp-content/uploads/2012/09/Fotolia_43099276_Subscription_Monthly_XXL-copy.jpg" alt="">
-                    <h3>employee management
-                    </h3>
-                </div>
-                <div class="span4 text-center">
-                    <img class="img-responsive" src="http://www.payrollsoftwares.co.in/assets/images/Leave-Management.jpg" alt="" style="height:100%">
-                    <h3>Leave management
-                    </h3>
-                </div>
-                <div class="span4 text-center">
-                    <img class="img-responsive" src="http://www.business-news-watch.com/wp-content/uploads/2013/10/Employee-Time-Tracking.png" alt="">
-                    <h3>Time and Attendance 
-                    </h3>
-                </div>
-                <div class="clearfix"></div>
             </div>
+
         </div>
+        <!-- /.container -->
+
     </div>
-    <!-- /.container -->
+    <!-- /.intro-header -->
 
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p><b>&copy; 2014 AmzurHRm - amzur.com </b>  All rights reserved.</p>
+                <div class="col-lg-12">
+                    <p class="copyright text-muted small">Copyright &copy; 2014 Amzur Technologies, Inc.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-  
-</div>
 </body>
 
 </html>

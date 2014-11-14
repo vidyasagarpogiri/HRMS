@@ -107,9 +107,9 @@ class ReportPdf < Prawn::Document
       @d = @d -20
     end 
     
-    @payslip.employee.salary.allowances.where(:is_deductable => true).each do |allowance|
+    @payslip.allowances.where(:is_deductable => true).each do |allowance|
       draw_text "#{allowance.allowance_name}:", :at => [@x+300, @d-20]
-      draw_text "#{(allowance.allowance_value/12).round(2)}", :at => [@x+450, @d-20]
+      draw_text "#{(allowance.total_value/12).round(2)}", :at => [@x+450, @d-20]
       @d = @d -20
     end     
     k = @z<@d ? @z : @d
@@ -165,7 +165,7 @@ class ReportPdf < Prawn::Document
     end
     fill_color "ffffff"
     font("Times-Roman") do    
-      draw_text "Amzur Technologies (I) Private Limited, 9-29-22, Pioneer Sankar Shantiniketan, Balaji Nagar, Siripuram, ", :at => [@x+20, z-165]
+      draw_text "Amzur Technologies (I) Private Limited, 9-29-22, Pioneer Shankar Shantiniketan, Balaji Nagar, Siripuram, ", :at => [@x+20, z-165]
       draw_text "Visakhaptnam. Tel: +91-891-6451882", :at => [@x+20, z-180]      
     end
   end

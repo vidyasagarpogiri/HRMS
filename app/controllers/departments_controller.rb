@@ -1,8 +1,8 @@
 class DepartmentsController < ApplicationController
  #layout "leave_template", only: [:leaves, :index, :employee_leaves, :holiday_list]
- 
- 
- before_filter :hr_view
+  before_filter :hr_view
+  before_action :find_department, only: [:show, :edit, :department, :add_employee, :update_employee, ]
+
   def index
     @departments = Department.all
   end
@@ -17,86 +17,58 @@ class DepartmentsController < ApplicationController
   end
 
   def show
-    @department = Department.find(params[:id])
     @employees = @department.employees
-		@leave_policy = @department.leave_policy 
-		@holiday_calenders = @department.holiday_calenders
 		@designations = @department.designations
 		@leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?
-		#raise @holiday_calender.inspect
   end
 
   def update
-    @department = Department.find(params[:id])
     @department.update(department_params)
     redirect_to @department
   end
   
-  def edit     
-    @department = Department.find(params[:id])        
+  def edit          
   end
   
   def destroy
-	  @department = Department.find(params[:id])
 		@department.destroy
 		redirect_to @department
 	end
 	
 	def add_employee
-	 
-    @department = Department.find(params[:id])
     @employee = Employee.all
   end
-   def update_employee
-    
-    @department = Department.find(params[:id])
+  
+  def update_employee 
     @employee = Employee.find(params[:employee_id])
     @employee.update(:department_id => @department.id)
-    #raise @employee.inspect
     redirect_to @department
-
-   end
-   
-   def leaves
-    #raise params.inspect
+  end
+=begin
+code not required but for future use   
+  def leaves
     @department = Department.find(params[:id])
     @employees = @department.employees
-    @leave_policy = @department.leave_policy
     @holiday_calenders = @department.holiday_calenders
-    #raise @holiday_calenders.inspect
-   end 
+  end 
    
-   def department_index
-       @departments = Department.all
-   end
-
-   
-  def employee_leaves
-  
+  def employee_leaves  
     @dept = Department.find(params[:id])
-    #raise @dept.inspect
     @employees = @dept.employees
-    #raise @employees.inspect
     @leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?
-   
-    #raise @leaves.flatten.inspect
-              #flatten makes array of arrys into a single array
-    #-------TODO--------#
-    #Here @leaves object is depatrment all Employee leaves of array tpye pasrse it in employee_leaves view page..BY:GPR###
-    #raise @leaves[1][1]['employee_id'].inspect
   end
   
+
   def holiday_list
-     
-		@holidays = current_user.employee.department.holiday_calenders
-		#raise @holiday.inspect
-		@leave_policy = current_user.employee.department.leave_policy
 		@department = current_user.employee.department
 	end
-  
+=end  
 
   private
   def department_params
     params.require(:department).permit(:department_name) 
+  end
+  def find_department
+     @department = Department.find(params[:id])   
   end
 end

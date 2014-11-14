@@ -19,7 +19,7 @@
 								<div class="control-group">
 									<label class="control-label" for="basicinput" data-error ="Please Enter Select value" required>Allowance Value Type</label>
 									<div class="controls allowance_select">
-										 <select name="allowance_type">
+										 <select name="allowance_type" class="span7">
 										    <option value="1">Percentage</option>
 										    <option value="2">value</option>
 										 </select>
@@ -41,7 +41,7 @@
 								  </div>
 								</div><br>
 																	
-								 <ul class="navigation-btns edit">
+								 <ul class="navigation-btns " style="margin-left:730px;">
 								   <li><button type="submit" class="btn btn-success">Save</button></li>
 								   <li><%= link_to 'Cancel', static_allowances_path, :class=>"btn btn-danger" %></li>
 								 </ul><br>

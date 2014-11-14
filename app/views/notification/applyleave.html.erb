@@ -14,7 +14,16 @@ Hello  <%= @employee.reporting_manager %>,
 </tr><tr>
           <th>Leave Type</th>
           <td>:   <%= @leave_history.leave_type.type_name %></td>
-</tr><tr>
+</tr>
+  <% if @leave_history.is_halfday %>
+    <th>Leave Date</th>
+    <td><%= @leave_history.from_date %></td>
+    <th>Leave</th>
+    <td>Half Day</td>
+    <th>Section</th>
+    <td><%= @leave_history.section %></td>
+  <% else %>
+<tr>
           <th>From Date </th>
            <td>:  <%= @leave_history.from_date.to_date.strftime("%d %b, %Y") %></td>
 </tr><tr>
@@ -24,6 +33,7 @@ Hello  <%= @employee.reporting_manager %>,
           <th>Number Of Day(s)</th>
            <td>:  <%= @leave_history.days %></td>
 </tr><tr>
+<% end %>
           <th>Reason </th>
            <td>:  <%= @leave_history.reason %></td>
 </tr>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106110959) do
+ActiveRecord::Schema.define(version: 20141212095628) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -227,6 +227,7 @@ ActiveRecord::Schema.define(version: 20141106110959) do
     t.string   "PFAccountNumber"
     t.integer  "shift_id"
     t.string   "devise_id"
+    t.integer  "group_id"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
@@ -251,6 +252,14 @@ ActiveRecord::Schema.define(version: 20141106110959) do
     t.string   "from_date"
     t.string   "to_date"
     t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "features", force: true do |t|
+    t.string   "controller"
+    t.string   "action"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -323,7 +332,6 @@ ActiveRecord::Schema.define(version: 20141106110959) do
   create_table "leave_histories", force: true do |t|
     t.string   "from_date"
     t.string   "to_date"
-    t.integer  "days"
     t.text     "reason"
     t.text     "feedback"
     t.integer  "leave_type_id"
@@ -332,6 +340,9 @@ ActiveRecord::Schema.define(version: 20141106110959) do
     t.datetime "updated_at"
     t.string   "status"
     t.string   "subject"
+    t.boolean  "is_halfday",               default: false
+    t.float    "days",          limit: 24
+    t.string   "section"
   end
 
   create_table "leave_policies", force: true do |t|
@@ -340,6 +351,7 @@ ActiveRecord::Schema.define(version: 20141106110959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "department_id"
+    t.integer  "group_id"
   end
 
   create_table "leave_types", force: true do |t|
@@ -355,6 +367,13 @@ ActiveRecord::Schema.define(version: 20141106110959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "employee_id"
+  end
+
+  create_table "packages", force: true do |t|
+    t.integer  "role_id"
+    t.integer  "feature_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pay_roll_masters", force: true do |t|
@@ -461,6 +480,8 @@ ActiveRecord::Schema.define(version: 20141106110959) do
     t.string   "role_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "department_id"
+    t.integer  "designation_id"
   end
 
   create_table "salaries", force: true do |t|

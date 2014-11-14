@@ -29,7 +29,7 @@ class Employee < ActiveRecord::Base
   # for investment declartion
   has_many :investment_declarations
 
-
+  belongs_to :department
  	
  	# for file attachments
   has_many :employee_attachments
