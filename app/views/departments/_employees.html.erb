@@ -22,7 +22,7 @@
 	        <td><%= employee.full_name %></td>
 	        <td><%= employee.designation.designation_name if employee.designation.present? %></td>
 	        <td><%= employee.grade.value if employee.grade.present? %></td>
-	        <td><%= employee.group.group_name %></td>
+	        <td><%= employee.group.group_name if employee.group.present? %></td>
 	        <td><%= format_date(employee.date_of_join) %></td>
 	      </tr>
 	      <% end %>

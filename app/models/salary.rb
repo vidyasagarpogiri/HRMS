@@ -32,6 +32,6 @@ class Salary < ActiveRecord::Base
     end
   end
   
-  
+
   
 end
