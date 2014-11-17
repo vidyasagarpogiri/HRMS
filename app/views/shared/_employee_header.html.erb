@@ -35,7 +35,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pay Roll<b class="caret"></b></a>
               <ul class="dropdown-menu">
 						  <% if current_user.department == Department::ACCOUNTS %>
-						    <li><%= link_to 'Pay Slips View', salaries_payslips_list_path %></li>
+						    <li><%= link_to 'Pay Slips View', payroll_path %></li>
 						    <li><a href = "/company_pay_roll_masters">Company Monthly PayRoll</a></li>
 						  <% else %>
 						   <li><a href="/monthly_payslips" >Payslips</a></li>

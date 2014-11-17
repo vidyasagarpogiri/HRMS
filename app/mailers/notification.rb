@@ -80,28 +80,20 @@ class Notification < ActionMailer::Base
     mail(:to => @user.email, :subject => "payslip of #{I18n.t("date.abbr_month_names")[Date.today.month-1]} of Mr. #{@employee.full_name}  ")
    end
     
-   def reference_notification(current_user) # email for reference letter
-   #raise pdf.inspect
-   #@employee = Employee.user @user.employee
-   @employee = current_user
-   @user = current_user
-   #raise @user.employee.inspect
-   #raise attachments.inspect
-   #attachments.inline["ReferenceLetter.pdf"] = File.read("/home/downloads/")
-   #raise user.email.inspect
-   #mail(:to => user.email, :subject => "reference Letter")
-   referenceletter = ReferenceLetter.new(@user)
-   attachments["ReferenceLetter.pdf"] = { :mime_type => 'application/pdf', :content => referenceletter.render }
-  mail(:to => @user.email, :subject => "Amzur Technologies - Reference Letter")
-   end 
+  def reference_notification(current_user, hr_manager) # email for reference letter
+    @user = current_user
+    @hr_manager = hr_manager
+    referenceletter = ReferenceLetter.new(@user, hr_manager)
+    attachments["ReferenceLetter.pdf"] = { :mime_type => 'application/pdf', :content => referenceletter.render }
+    mail(:to => @user.email, :subject => "Amzur Technologies - Reference Letter")
+  end 
     
-   def address_notification(current_user) # email for address proof
-   @employee = current_user
-   @user = current_user
-   addressproofletter = AddressProofLetter.new(@user)
-   attachments["AddressProofLetter.pdf"] = { :mime_type => 'application/pdf', :content => addressproofletter.render }
-  mail(:to => @user.email, :subject => "Amzur Technologies - Address Proof")
-   end 
+  def address_notification(user, hr_manager, present_address, perm_address) # email for address proof
+    @user = user
+    addressproofletter = AddressProofLetter.new(@user, hr_manager, present_address, perm_address)
+    attachments["AddressProofLetter.pdf"] = { :mime_type => 'application/pdf', :content => addressproofletter.render }
+    mail(:to => @user.email, :subject => "Amzur Technologies - Address Proof")
+  end 
 
    def salary_notification(current_user) # email for salary certificate
    @employee = current_user
