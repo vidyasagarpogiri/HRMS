@@ -173,6 +173,11 @@ module ApplicationHelper
     salary_gross = salary.basic_salary + total_allowance + salary.pf + salary.esic
     remain_allowance = salary.gross_salary - salary_gross
   end
+  
+  def allowance_total_by_salary(salary)  #1
+    allowances = salary.allowances
+    allowances.where(is_deductable: false).sum(:total_value)
+  end
 #--------- End of allowance caluclation method ------------------  
 
 
@@ -180,7 +185,7 @@ module ApplicationHelper
 
 # caluclation of basic salary of employee
 
- def basic(salary, percentages)
+ def basic(salary, percentages) #2
       gross = salary.gross_salary
       basic_value = 0
       percentages.each do |per|
@@ -201,13 +206,12 @@ module ApplicationHelper
           break
         end
       end
-      basic_value
+      basic_value.round(2)
   end
 # end
   
 # Caluclation of pf of employee  
   def pf(salary, percentages)
-  #raise salary.inspect
       basic = salary.basic_salary
       pf_value = 0
       percentages.each do |per|
@@ -216,14 +220,14 @@ module ApplicationHelper
           break
         end
       end
-      pf_value
+      pf_value.round(2)
   end
   
  # end
  
  # Caluclation of pf contribution of employee 
  
-  def pf_contribution(salary, percentages)
+=begin  def pf_contribution(salary, percentages)
       basic = salary.basic_salary
       pf_contribution_value = 0
       percentages.each do |per|
@@ -234,7 +238,7 @@ module ApplicationHelper
       end
       pf_contribution_value
   end
-# end
+=end
   
   def esic(salary, percentages)
       #raise salary.inspect
@@ -246,14 +250,14 @@ module ApplicationHelper
           break
         end
       end
-      esic_value
+      esic_value.round(2)
   end
   
 # end
 
 # Caluclation of esic contribution of employee
   
-  def esic_contribution(salary, percentages)
+=begin  def esic_contribution(salary, percentages)
       gross = salary.gross_salary
       esic_contribution_value = 0
       percentages.each do |per|
@@ -265,7 +269,7 @@ module ApplicationHelper
       esic_contribution_value
   end
 
-# end
+=end
 
 #-------------- End of Code ------------------------------------------------------------------
   
