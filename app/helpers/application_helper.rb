@@ -271,6 +271,18 @@ module ApplicationHelper
 
 =end
 
+#calculation of HRA
+def caluclate_hra(salary, percentages)
+   hra_value = 0
+   percentages.each do |per|
+    if per.name == "HRA"
+     hra_value = (basic * per.value)/100
+     break
+    end
+   end
+   hra_value
+  end
+
 #-------------- End of Code ------------------------------------------------------------------
   
 #----------------- sekhar - code for allowances check ------------------------

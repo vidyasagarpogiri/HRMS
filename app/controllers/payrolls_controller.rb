@@ -19,12 +19,12 @@ class PayrollsController < ApplicationController
 	          @employees.each do |employee|
 	            @salary = employee.salary
 	              if @salary.present?
-	                payslip_basic = payslip_basic((@salary.basic_salary)/12, @actual_days, @actual_days) #have to replace first actual days to employee working days
+	                payslip_basic = payslip_basic((@salary.basic_salary)/12, @actual_days, @actual_days)
 	                @payslip = Payslip.create(:no_of_working_days => @actual_days, :working_days => @actual_days, :basic_salary => payslip_basic, :month=> @month, :year => @year, :employee_id => employee.id, :status => "NEW")
 	                #for creating allowances for payslip
 	                @salary.payslip_allowances(@payslip)
 	                @payslip_special_allowance = (@salary.special_allowance/12).round(2)
-	                @gross = @payslip.basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance #TODO need arrears add to below forumla       
+	                @gross = @payslip.basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance       
 	                if @salary.pf_apply == "true"
 	                  @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
 	                else
@@ -36,8 +36,8 @@ class PayrollsController < ApplicationController
 	                  @payslip_esic = nil
 	                end
 	                @total_deducted_allowances_value = deducted_allowances_total(@payslip)
-	                @total_deductions = @payslip_pf.to_f + @payslip_esic.to_f + @total_deducted_allowances_value #TODO need add PT and TDS
-	                @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
+	                @total_deductions = @payslip_pf.to_f + @payslip_esic.to_f + @total_deducted_allowances_value 
+	                @net_pay = @gross - @total_deductions
 	                @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance, :mode => "Bank")
                 end
             end 
@@ -53,10 +53,8 @@ class PayrollsController < ApplicationController
 	    if @month == 0
 	      @month = 12
 	      @year = @year - 1 
-	    end
-	    
-	    @cprm = CompanyPayRollMaster.where(month: Date::MONTHNAMES[@month], year: @year)	
-	    
+	    end    
+	    @cprm = CompanyPayRollMaster.where(month: Date::MONTHNAMES[@month], year: @year)	    
 	    @enter_month = Date::MONTHNAMES.index(params[:payslip_view_month])
       @enter_year = params[:payslip_view_year].to_i 
 	    @years = CompanyPayRollMaster.pluck(:year).uniq	      
@@ -100,7 +98,7 @@ class PayrollsController < ApplicationController
 	   @payslip_special_allowance = (@payslip.employee.salary.special_allowance/12).round(2)
 	   @basic_salary = payslip_basic(((@payslip.employee.salary.basic_salary)/12).round(2), @payslip.working_days, @payslip.no_of_working_days)
 	   @payslip.update(:basic_salary => @basic_salary)
-	   @gross = @basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance + @payslip.arrears.to_f  #TODO need arrears add to below forumla
+	   @gross = @basic_salary + @payslip.payslip_allowances_total_value + @payslip_special_allowance + @payslip.arrears.to_f 
 	   if @salary.pf_apply == "true"
 	     @payslip_pf = payslip_pf_value(@payslip.basic_salary, @salary_percentages)
 	   else
@@ -113,7 +111,7 @@ class PayrollsController < ApplicationController
 	  end
 	  @total_deducted_allowances_value = deducted_allowances_total(@payslip)
 	  @total_deductions = @payslip_pf.to_f + @payslip_esic.to_f + @total_deducted_allowances_value + @payslip.pt.to_f + @payslip.tds.to_f
-	  @net_pay = @gross - @total_deductions #TODO We have to remove all deduable allowances from here. 
+	  @net_pay = @gross - @total_deductions
 	  @payslip.update(total_deductions: @total_deductions, netpay: @net_pay, gross_salary: @gross, pf: @payslip_pf, esic: @payslip_esic, special_allowance: @payslip_special_allowance, mode: @mode)
 	  end
 	  
@@ -271,8 +269,7 @@ class PayrollsController < ApplicationController
 	    file_path = "#{Rails.root}/public/PAYSLIPS/#{payslip.year}/#{payslip.month}"
       unless File.exist?(file_path)
         FileUtils.mkdir_p file_path 
-      end 
-      
+      end      
       respond_to do |format|
         format.html
         format.pdf do

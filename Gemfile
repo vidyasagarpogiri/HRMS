@@ -90,6 +90,10 @@ gem 'prawn'
 # for date picker
 gem 'jquery-timepicker-rails'
 
+# gems for 
+gem 'reek'
+gem 'rubocop'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

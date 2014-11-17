@@ -126,5 +126,6 @@ StaticSalary.create(:name => "PF", :value => 12)
 StaticSalary.create(:name => "PF Contribution", :value => 13.61)
 StaticSalary.create(:name => "Esic", :value => 1.75)
 StaticSalary.create(:name => "Esic Contribution", :value => 4.25)
+StaticSalary.create(:name => "HRA", :value => 25)
 
 

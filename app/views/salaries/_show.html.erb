@@ -39,6 +39,11 @@
         <td>ESCI</td>
         <td><%= esic(@salary, @salary_percentages) %></td>
         <td><input type="checkbox" name="esic"></td>
+       </tr>
+       <tr>
+        <td>HRA</td>
+        <td><%= calculate_hra(@salary, @salary_percentages) %></td>
+        <td><input type="checkbox" name="esic"></td>
        </tr>               
 		 </table><br>
 		 <%= submit_tag "Submit", :class => "btn btn-success pull-right" %> 		   
