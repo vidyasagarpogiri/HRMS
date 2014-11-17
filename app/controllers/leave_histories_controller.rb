@@ -5,11 +5,11 @@ class LeaveHistoriesController < ApplicationController
  include ApplicationHelper
 
 	def index
-		@leave = current_user.employee.group.leave_policy
+		@leave = current_user.employee.group.leave_policy if current_user.employee.group.present?
 		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD').order('created_at DESC')
 		@leave_histories = current_user.employee.leave_histories.order('created_at DESC')
 		@employee = current_user.employee
-		@holiday_calenders = current_user.employee.group.holiday_calenders
+		@holiday_calenders = current_user.employee.group.holiday_calenders if current_user.employee.group.present?
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).order('created_at DESC')
 		@employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
 	end
