@@ -9,7 +9,7 @@
             </div><!--/.module-head-->
             <div class="module-body">
                <div class="outing">                
-                  <div class="row-fluid">
+                  <div class="row-fluid"> 
                     <div class="span6">
                       <label>Date: <%= Time.now.to_date %></label>
                     </div>                      
@@ -35,7 +35,7 @@ Technologies Pvt Ltd) and is working as <b><%= current_user.employee.designation
                  <ul class="navigation-btns editthree">                                                       
                    <li><%= link_to "Save as PDF ", "/letters/reference_letter.pdf", :class => "btn btn-success" %></li> 
                    <li><%= link_to " Send to My Mail", reference_notification_path, :class => "btn btn-success" %></li>
-                   <li><%= link_to " Back", letters_path, :class => "btn btn-danger" %></li>
+                   <li><%= link_to " Cancel", letters_path, :class => "btn btn-danger" %></li>
                  </ul>
                </div><!--/.outing-->                                  
             </div><!--/.module-body-->                    
