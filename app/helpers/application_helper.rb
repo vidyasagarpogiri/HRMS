@@ -271,17 +271,17 @@ module ApplicationHelper
 
 =end
 
-#calculation of HRA
+#will calculate HRA based on basic 
 def caluclate_hra(salary, percentages)
    hra_value = 0
    percentages.each do |per|
     if per.name == "HRA"
-     hra_value = (basic * per.value)/100
+     hra_value = (salary.basic_salary * per.value)/100
      break
     end
    end
    hra_value
-  end
+end
 
 #-------------- End of Code ------------------------------------------------------------------
   

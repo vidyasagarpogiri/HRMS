@@ -12,6 +12,10 @@
 					      <th>Basic</th>
 					      <td><%= @salary.basic_salary %></td>
 				      </tr>
+				      <tr>
+					      <th>HRA</th>
+					      <td><%= @salary.hra %></td>
+				      </tr>
 				      <% if @allowances.present? %>
 				      <% @allowances.each do |allowance| %>																	
 	             <tr>		 								             
