@@ -95,13 +95,12 @@ class Notification < ActionMailer::Base
     mail(:to => @user.email, :subject => "Amzur Technologies - Address Proof")
   end 
 
-   def salary_notification(current_user) # email for salary certificate
-   @employee = current_user
-   @user = current_user
-   salarycertificate = SalaryCertificate.new(@user)
-   attachments["SalaryCertificate.pdf"] = { :mime_type => 'application/pdf', :content => salarycertificate.render }
-  mail(:to => @user.email, :subject => "Amzur Technologies - Salary Certificate")
-   end  
+  def salary_notification(current_user) # email for salary certificate
+    @user = current_user
+    salarycertificate = SalaryCertificate.new(@user)
+    attachments["SalaryCertificate.pdf"] = { :mime_type => 'application/pdf', :content => salarycertificate.render }
+    mail(:to => @user.email, :subject => "Amzur Technologies - Salary Certificate")
+  end  
     
 end
     
