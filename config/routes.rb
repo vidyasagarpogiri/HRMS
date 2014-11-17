@@ -133,8 +133,7 @@ get 'inactive_employees' => "employees#inactive_employees"
 			get 'bankdetails_show'
 			get 'bankdetails_edit'
 			post 'bankdetails_create'
-			post 'bankdetails_update'
-			
+			post 'bankdetails_update'		
 		end
 		
   

@@ -1,7 +1,9 @@
 class PayrollsController < ApplicationController
   include ApplicationHelper
+  before_filter :accountant_view, only: [:pay_roll_generation, :generated_payroll, :payroll, :edit_payroll, :update_payroll, :show_payroll, :exporting_payslips_excel_sheet ]
+  before_filter :payslip_view, only: [:monthly_payslip_view]
   
-   #PAYSLIP GENERATION  this action will generate payslips and display payslips 
+  #PAYSLIP GENERATION  this action will generate payslips and display payslips 
   def pay_roll_generation	
     @month = DateTime.now.month-1
 	  @year = DateTime.now.year
