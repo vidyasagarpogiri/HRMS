@@ -3,11 +3,9 @@ class SalariesController < ApplicationController
   # layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update, :configure_allowance]
 
 	before_filter :hr_view,  only: ["new", "edit"]
-	before_filter :accountant_view, only: [:pay_slips_generation, :generated_payslips, :payslips_list, :edit_payslip, :update_payslip, :show_payslip, :exporting_payslips_excel_sheet ]
   before_action :salary_percentage, only: [:create, :configure_pf, :update, :edit]  
-  before_filter :payslip_view, only: [:monthly_payslip_view]
   # before action for finding employee
-  before_action :get_employee, only: [:index, :new, :create, :show, :edit, :update, :destroy, :configure_allowance, :create_allowance, :edit_allowance, :update_allowance, :add_allowance, :configure_pf]
+  before_action :get_employee, only: [:index, :new, :create, :show, :edit, :update, :destroy, :configure_pf]
   # before action for finding salary
   before_action :get_salary, only: [:index, :edit, :update, :destroy]
   
