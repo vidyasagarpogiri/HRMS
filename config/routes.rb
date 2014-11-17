@@ -243,7 +243,11 @@ end
   end
   #get 'change_designation' => "designations#change_designation"
   
-
+  resources :features , :only => :index do
+    
+  end
+get 'configure' => "features#features_configure"
+post 'create_package' => "features#create_package"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

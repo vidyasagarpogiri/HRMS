@@ -10,11 +10,13 @@ class AddDepartments < ActiveRecord::Migration
     Department.find_by_department_name("Development").designations.create(designation_name: "Junior Developer")
     Department.find_by_department_name("Development").designations.create(designation_name: "Senior Developer")
     
+    Department.find_by_department_name("HR").designations.create(designation_name: "HR Manager")
+    Department.find_by_department_name("HR").designations.create(designation_name: "Senior HR Executive")
     Department.find_by_department_name("HR").designations.create(designation_name: "Junior HR")
-    Department.find_by_department_name("HR").designations.create(designation_name: "Senior HR")
     
+    Department.find_by_department_name("Accounts").designations.create(designation_name: "Financial Manager")
+    Department.find_by_department_name("Accounts").designations.create(designation_name: "Senior Account Executive")
     Department.find_by_department_name("Accounts").designations.create(designation_name: "Junior Accountant")
-    Department.find_by_department_name("Accounts").designations.create(designation_name: "Senior Accountant")
     
     puts "-------Creating Levels----------"
     Designation.all.each do |desg|
@@ -25,3 +27,6 @@ class AddDepartments < ActiveRecord::Migration
     
   end
 end
+
+ 
+ 

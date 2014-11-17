@@ -3,8 +3,8 @@
 <html>
   <body>
   Dear All, 
-  <p>the following are the list of holidays for this year.</p><br>
-  <h3>Holidays List  </h3>
+  <p>the following are the list of holidays for <%= @events.first.event_date.to_date.year%> year.</p><br> 
+  <h3>Holidays List - <%= @events.first.event_date.to_date.year%>  </h3>
   <table border="1">
 
       <thead>
