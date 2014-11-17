@@ -1,0 +1,2 @@
+class PayrollsController < ApplicationController
+end

@@ -1,0 +1,97 @@
+<div class="module">
+  <% if @allowances.present? %>
+    <div class="module-head">
+      <h3>Allowance List</h3>
+    </div>
+    
+    <div class="module-body">
+      <%= form_tag "/employees/#{@employee.id}/salaries/#{@salary.id}/salaries_allowances", method: :post , :remote => true do %>
+        <table class="table table-striped table-hover" id="sample-table-2">
+          <thead>
+            <tr>
+              <th>Allowance</th>
+              <th>percentage</th>
+              <th>value</th>
+              <th>Deductable</th>
+              <th>Applicable</th>
+            <tr/>
+          </thead>
+	
+          <tbody>				
+            <% @allowances.each do |allowance, i| %>
+              <%= fields_for "allowances[]", allowance do |f| %>   
+                <tr>
+                  <td><%= allowance.name %></td>
+                  <% if allowance.percentage.present? %>
+                  <td><%= allowance.percentage %></td>
+                  <td><%= allowance_value(allowance.percentage, @salary.basic_salary) %></td>	   
+                      <% if allowance.is_deductable %>
+                        <td>Deductable</td>
+                      <% else %>
+                        <td>Non-Deductable</td>
+                      <% end %>
+                  <% else %>
+                  <td>---</td>
+                  <td> <%=  allowance.value %></td>
+                     <% if allowance.is_deductable %>
+                        <td>Deductable</td>
+                     <% else %>
+                        <td>Non-Deductable</td>
+                     <% end %>
+                  <% end %>
+                  <td><%= check_box_tag 'allowance_ids[]', allowance.id, checked = false , :class => "check" %></td>
+                </tr>
+              <% end %>
+              <% end %> 
+            <%= hidden_field_tag('gross_sal',@salary.gross_salary) %>
+            <%= hidden_field_tag('basic_sal',@salary.basic_salary) %>
+            <%= hidden_field_tag('pf_val',@salary.pf) %>
+            <%= hidden_field_tag('esic_val',@salary.esic) %>
+          </tbody>          
+        </table>
+      <%= submit_tag "Submit", :class => "btn btn-success pull-right", :id=> "save" %><br/>
+      <% end %> 
+
+    </div>
+    <!--end of Module-Body -->
+    <% else %>
+    <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    You have No Allowances to display.
+    </div>
+  <% end %>  
+     
+</div>
+  <!-- end of module -->
+            
+            
+ <!-- Script for gross calculation -->
+<script>
+$(function(){
+
+   var gross_salary = 0.0;
+   var gross = parseFloat($("#gross_sal").val());
+   var pf = ($("#pf_val").val());
+   var esic = ($("#esic_val").val());
+   var basic = $("#basic_sal").val();
+    $(".check").click(function(){
+      var count = 0.0;
+      for(var i=0;i<$("input:checkbox:checked").parent().parent().length;i++){
+      var status = $($($("input:checkbox:checked")[i]).parent().parent().find("td")[3]).text();
+      if(status == "Non-Deductable")
+      {
+        count += parseFloat($($($("input:checkbox:checked")[i]).parent().parent().find("td")[2]).text());
+      }
+    }
+    gross_salary = parseFloat(basic)+parseFloat(pf)+parseFloat(esic)+count;
+    if(gross_salary > gross)
+    {
+      $("#save").prop("disabled",true)
+    } else {
+      $("#save").prop("disabled",false)
+    }
+  }); 
+  
+   
+});
+</script> 

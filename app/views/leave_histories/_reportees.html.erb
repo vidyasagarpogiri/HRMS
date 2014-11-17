@@ -20,7 +20,7 @@
 					<td><%= emp.full_name %></td>
           <td><%= emp.department.department_name %></td>
           <td><%= emp.designation.designation_name if emp.designation.present? %></td>
-          <td><%= emp.group.group_name %></td> 
+          <td><%= emp.group.group_name if emp.group.present? %></td> 
           <td><%= total_used_leaves(emp)%> </td>
        </tr>
        <% end %>

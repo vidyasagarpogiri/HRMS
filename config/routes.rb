@@ -148,13 +148,21 @@ get 'inactive_employees' => "employees#inactive_employees"
     resources :email_ettiquities
 		resources :promotions
 		resources :salaries do 
-					get 'configure_allowance'
+					
 					post 'create_allowance'
 					get 'edit_allowance'
 					post 'update_allowance'
 					get 'add_allowance'
 					post "/configure" => "salaries#configure_pf"
           resources :allowances
+          resources :salaries_allowances do
+            collection do
+					    get 'edit_allowance'
+					    post 'update_allowance'
+					    get 'add_allowance' 
+            end
+          end
+          resources :payrolls
           resources :insentives
           resources :salary_increments
       end
