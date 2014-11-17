@@ -7,7 +7,7 @@
             <div class="module-head">
               <h3> My Leaves</h3>
             </div>
-            <% if @employee.group.leave_policy.present? %>
+            <% if @employee.group.present? && @employee.group.leave_policy.present? %>
             <% if @employee.reporting_manager? %>
             <div class="module-body" >
               <div class="profile-head media" style="min-height:800px;">              
