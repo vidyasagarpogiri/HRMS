@@ -56,11 +56,8 @@ class LettersController < ApplicationController
   end
   
    def salary_notification  # email for salary certificate
-  #raise params.inspect
     @user = current_user
-    pdf = SalaryCertificate.new(current_user, @hr_manager)
     Notification.salary_notification(@user).deliver
-    #raise Notification.inspect
     redirect_to salary_certificate_letters_path
   end
 

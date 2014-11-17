@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController 
-  #before_filter :hr_view,  only: ["new", "edit"]
-  #before_filter :other_emp_view
-  before_action :get_group, only: [:show, :edit, :update, :add_employee, :update_employee]
+
+   before_filter :hr_view
+   before_action :get_group, only: [:show, :edit, :update, :add_employee, :update_employee]
   
   def index
     @groups = Group.all

@@ -8,10 +8,11 @@
                 <h3>Salary Certificate</h3>        
             </div><!--/.module-head-->
               <div class="module-body">
-                <div class="outing">                
+                <div class="outing">   
+                <% if @salary.present? %>             
                   <div class="row-fluid">
                     <div class="span6">
-                      <label>Date: <%= Time.now.to_date %></label>
+                      <label>Date: <%= format_date(Time.now.to_date) %></label>
                     </div>                      
                  </div>
                   <div class="row-fluid" style="margin-left:300px;">
@@ -21,7 +22,7 @@
                  </div>   <br>
                  <div class="row-fluid">
                     <div class="span12">
-                      <label><p>This is to certify that <b><%= current_user.employee.title %>.<%= current_user.employee.full_name %></b> (Emp No. <%= current_user.employee.employee_id %> ) , <b><%= current_user.employee.designation.designation_name if current_user.employee.designation.present? %></b> is an employee of Amzur Technologies,since <b><%= format_date(current_user.employee.date_of_join )%>. </b></p></label>
+                      <label><p>This is to certify that <b><%= current_user.employee.title %>.<%= current_user.employee.full_name %></b>  <b><%= current_user.employee.designation.designation_name if current_user.employee.designation.present? %></b> is an employee of Amzur Technologies,since <b><%= format_date(current_user.employee.date_of_join )%>. </b></p></label>
                     </div>                      
                  </div> <br>
                  <div class="row-fluid">
@@ -35,7 +36,7 @@
                         <label>BASIC:</label>
                       </div>
                       <div >
-                        <label><%= @salary.basic_salary %></label>
+                        <label><%= (@salary.basic_salary/12).round(2) %></label>
                       </div></div>
                       <% if @salary.allowances.present? %>
                       <% @salary.allowances.each do |allowance| %>
@@ -44,7 +45,7 @@
                           <label><%= allowance.allowance_name %></label>
                         </div>
                         <div class="">
-                          <label ><%= allowance.total_value %></label>
+                          <label ><%= (allowance.total_value/12).round(2) %></label>
                         </div>
                       </div>
                       <% end %> 
@@ -62,7 +63,7 @@
                           <label >ADDITIONAL ALLOWANCE:</label>
                         </div>
                         <div class="">
-                          <label ><%= @salary.special_allowance %></label>
+                          <label ><%= (@salary.special_allowance/12).round(2) %></label>
                         </div>
                     </div>                    
                     <div class="row-fluid">
@@ -70,7 +71,7 @@
                           <label >PROVIDENT FUND:</label>
                         </div>
                         <div class="">
-                          <label ><%= @salary.pf %></label>
+                          <label ><%= (@salary.pf/12).round(2) %></label>
                         </div>
                     </div>                    
                     <div class="row-fluid">
@@ -78,7 +79,7 @@
                           <label >GRATUITY:</label>
                         </div>
                         <div class="">
-                          <label ><%= @salary.gratuity %></label>
+                          <label ><%= (@salary.gratuity/12).round(2) %></label>
                         </div>
                     </div>  
                     <div class="row-fluid">
@@ -86,7 +87,7 @@
                           <label >QPLC:</label>
                         </div>
                         <div class="">
-                          <label ><%= @salary.bonus %></label>
+                          <label ><%= (@salary.bonus/12).round(2) %></label>
                         </div>
                     </div>    
                    <!-- <div class="row-fluid">
@@ -102,14 +103,14 @@
                           <label ><b>MONTHLY GROSS:</b></label>
                         </div>
                         <div class="">
-                          <label ><b><%= @salary.gross_salary%></b></label>
+                          <label ><b><%= (@salary.gross_salary/12).round(2) %></b></label>
                         </div>
                     </div>                                   
                   <br>
                   <div class="row-fluid">
                     <div class="span12">
                       <label><p>This certificate is issued at employee request.</p></label>
-                      <label><p>For Verification of this letter, you can get in touch with (Mail ID)</p></label><br>
+                      <label><p>For Verification of this letter, you can get in touch with (Mail ID): <b>hr@amzur.com</b></p></label><br>
                       <label><p>For Amzur Technologies</p></label><br>
                       <label><p>AUTHORISED SIGNATORY</p></label>
                     </div>                      
@@ -119,6 +120,12 @@
                    <li><%= link_to " Send to My Mail", salary_notification_path, :class => "btn btn-success" %></li>
                    <li><%= link_to " Back", letters_path, :class => "btn btn-info" %></li>
                  </ul>
+                 <% else %>
+                     <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                         Please Contact HR Manager, You don't have Salary Details.
+                     </div>   
+                  <% end %>  
                </div>  <!--/.outing--> 
             </div><!--/.module-body-->                    
           </div><!--/.module-->                

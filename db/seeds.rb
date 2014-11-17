@@ -74,16 +74,16 @@ end
 Groups = Group.all.pluck(:id)
 
 
-Employee.create(:employee_id => 1, :title=> "Mr", :first_name=>"Vidya Sagar ",:last_name=>"Pogiri",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
+Employee.create(:employee_id => 1, :title=> "Mr", :first_name=>"Vidya Sagar ",:last_name=>"Pogiri",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)], :job_location_id=>JobLocations[rand(JobLocations.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user.id, :alternate_email => "ravi.nuni@amzur.com", :group_id => Groups[rand(Groups.length)])
 
 
 
-Employee.create(:employee_id => 2, :title=> "Mr", :first_name=>"Balaraju",:last_name=>"vankala",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
+Employee.create(:employee_id => 2, :title=> "Mr", :first_name=>"Balaraju",:last_name=>"vankala",:date_of_birth=>"2014-12-30", :gender=>"male", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"pan", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)], :job_location_id=>JobLocations[rand(JobLocations.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user1.id, :alternate_email => "ravi.nuni@amzur.com", :group_id => Groups[rand(Groups.length)])
 
 
-Employee.create(:employee_id => 3, :title=> "Miss", :first_name=>"Priyanka",:last_name=>"Muddana",:date_of_birth=>"2014-12-18", :gender=>"female", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"QWERT1234A", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
+Employee.create(:employee_id => 3, :title=> "Miss", :first_name=>"Priyanka",:last_name=>"Muddana",:date_of_birth=>"2014-12-18", :gender=>"female", :marital_status=>"single", :total_experience=>"6.5",:status=>"Active", :mobile_number=>"9876543219",:father_name=>"Father",:pan=>"QWERT1234A", :date_of_confirmation=>"2013-05-09",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],
 :ff_status_id=>FfStatuses[rand(FfStatuses.length)], :job_location_id=>JobLocations[rand(JobLocations.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user2.id, :alternate_email => "ravi.nuni@amzur.com", :group_id => Groups[rand(Groups.length)])
 
 
