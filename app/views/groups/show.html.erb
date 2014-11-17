@@ -7,9 +7,12 @@
             <div class="module-body">
               <div class="profile-head media" style="min-height:700px;">                   
                 <div class="media-body">
-                   <a class="media-avatar pull-left" href="#"> 
-                      <%= image_tag "HR.jpg", :style => "height:130px !important;width:160px !important;"%>                                
-                      <!--<%# if @department.department_name == "HR" %>
+                  <div class="span4 group">
+                    <label class="group_name"><%= @group.group_name %></abel>
+                <!--<%# image_tag "HR.jpg", :style => "height:130px !important;width:130px !important;"%>
+                   <a class="media-avatar pull-left" href="#" >                       
+                      <%# image_tag "HR.jpg", :style => "height:130px !important;width:160px !important;"%>                                
+                      <%# if @department.department_name == "HR" %>
                           <%# image_tag "HR.jpg", :style => "height:130px !important;width:160px !important;"%>
                       <%# elsif @department.department_name == "Development"%>
                         <%# image_tag "dep.jpg", :style => "height:130px !important;width:160px !important;"%>
@@ -17,9 +20,9 @@
                       <%# image_tag "accounts.jpg", :style => "height:120px  !important;width:120px !important;"%>
                       <%# elsif @department.department_name == "Accounts"%>
                         <%# image_tag "bdm.jpg", :style => "height:120px  !important;width:120px !important;"%>
-                      <%# end %>-->
-                    </a><br> 
-                    <div class="media-body">
+                      <%# end %>
+                    </a><br>--></div> 
+                    <div class="media-body span8" style="margin-left:100px;margin-top:30px;">
                       <div class="pull-right" ><a href="/groups" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Groups</i></a></div> 
                       <h4>
                          <%= @group.group_name %> 
@@ -31,6 +34,7 @@
                      <ul class="profile-tab nav nav-tabs">
                         <li class="active"><a href="#employees" data-toggle="tab">Employees</a></li>                        
                         <li><a href="#leave_policies" data-toggle="tab">Leave Policies</a></li>
+                         <li><a href="#leaves" data-toggle="tab">Leaves</a></li>
                         <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li>                                    
                      </ul>                                                                                                                        
                      <div class="profile-tab-content tab-content">  
@@ -42,6 +46,10 @@
                         <div class="tab-pane fade " id="leave_policies"> 
                           <%= render "groups/leave_policies"%>                                         
                         </div><!--/.tab-pane-list-->
+                        <div class="tab-pane fade" id="leaves">
+                          <%= render "groups/employee_leaves"%> 
+                        </div>
+                        
             <!--holiday_calender PANEL-->                                       
                         <div class="tab-pane fade " id="holiday_calender">
                          <%= render "groups/holiday_calender"%>                                        

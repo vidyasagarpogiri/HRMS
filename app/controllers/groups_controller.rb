@@ -1,67 +1,41 @@
-class GroupsController < ApplicationController
-
-   
-   #before_filter :hr_view,  only: ["new", "edit"]
+class GroupsController < ApplicationController 
+  #before_filter :hr_view,  only: ["new", "edit"]
   #before_filter :other_emp_view
+  before_action :get_group, only: [:show, :edit, :update, :add_employee, :update_employee]
+  
   def index
     @groups = Group.all
   end
   
-  def new
-    
-    @group = Group.new
-   # @employee = Employee.new
-   #@reporting_manager = ReportingManager.new
-     
-  end
+  def new  
+    @group = Group.new     
+  end 
   
- 
-  
-  def create
-    
-    #@employee = Employee.find(params[:emp_id]) 
+  def create 
     @group = Group.create(group_params)
-    #@reporting_manager = ReportingManager.create(:employee_id => @employee.id, :group_id => @group.id)
     redirect_to  groups_path
   end
   
-  def show
-     @group = Group.find(params[:id])
-     
+  def show   
      @employees = @group.employees
      @leave_policy = @group.leave_policy
-     #@employee = @group.reporting_manager.employee
-     @holiday_calenders = @group.holiday_calenders  
+     @holiday_calenders = @group.holiday_calenders
+     @leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?  
   end
   
-  def edit
-     
-     @group = Group.find(params[:id])
-     
-     #@reporting_manager = ReportingManager.find_by(@group.id)
-     #@employee = Employee.find_by(@reporting_manager.id)
-     
+  def edit          
   end
   
-  def update
-   
-    @group = Group.find(params[:id])
+  def update  
     @group.update(group_params)
-    #@employee = Employee.find(params[:emp_id])
-    #@reporting_manager = ReportingManager.find_by(@group.id)
-    #@reporting_manager.update(:employee_id => @employee.id)
-    redirect_to  @group
-     
+    redirect_to  @group    
   end
   
   def add_employee
-    @group = Group.find(params[:id])
     @employees = Employee.all    
   end
   
-  def update_add_employee
-      
-      @group = Group.find(params[:id])
+  def update_add_employee      
       @employee = Employee.find(params[:employee_id])      
       @employee.update(:group_id => @group.id)
       redirect_to @group
@@ -78,5 +52,8 @@ class GroupsController < ApplicationController
      params.require(:group).permit(:group_name)     
   end
   
+  def get_group
+    @group = Group.find(params[:id])
+  end
   
 end

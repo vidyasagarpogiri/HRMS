@@ -4,4 +4,6 @@ class Role < ActiveRecord::Base
   
   has_many :packages
   has_many :features, through: :packages
+  belongs_to :department
+  belongs_to :designation
 end

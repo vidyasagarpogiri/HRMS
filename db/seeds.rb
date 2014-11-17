@@ -14,12 +14,11 @@
 
 Address.destroy_all
 JobLocation.destroy_all
-Department.destroy_all
+
 BloodGroup.destroy_all
 FfStatus.destroy_all
-Designation.destroy_all
-Grade.destroy_all
-Role.destroy_all
+
+
 Employee.destroy_all
 #Education.destroy_all
 #Experience.destroy_all
@@ -51,30 +50,9 @@ JobLocation.create( :address_id => addresses[rand(addresses.length)])
 end
 JobLocations = JobLocation.all.pluck(:id)
 
-#-------------------------------------------------------------------------------------#
-["Development", "HR", "Accounts", "Business Development"].each do |dept|
-  Department.create(:department_name => dept ) 
-end
+# We are already created deparment and designations in Migration file
 Departments = Department.all.pluck(:id)
-
-Department.all.each do |dept|
-  
- 
-  ["Junior #{dept.department_name}", "Senior #{dept.department_name}"].each do |desg|
-    designation = Designation.create(:designation_name => desg, :department_id => dept.id ) 
-    
-  
-  end
-  
-end
-
 Designations = Designation.all.pluck(:id)
-
-Designation.all.each do |desg|
-   ["Level1", "Level2", "Level3"].each do |level|
-    Grade.create(:value => level, :designation_id =>  desg.id) 
-  end
-end
 Grades = Grade.all.pluck(:id)
 #-----------------------------------------------------------------------------------------------------#
 
@@ -119,9 +97,9 @@ LeaveTypes = LeaveType.all.pluck(:id)
 Event.create(:event_name =>"Pongal", :event_date => "14/01/2014")
 Event.create(:event_name =>"Ugadi", :event_date => "11/04/2014")
 Event.create(:event_name=>"Independence Day", :event_date => "15/08/2014")
-Event.create(:event_name =>"Raksha Bhandan", :event_date => "23/08/2014")
-Event.create(:event_name =>"Vinayaka Chaturthi", :event_date => "29/08/2014")
-Event.create(:event_name =>"Dussehra", :event_date => "04/10/2014")
+Event.create(:event_name =>"Raksha Bhandan", :event_date => "1/11/2014")
+Event.create(:event_name =>"Vinayaka Chaturthi", :event_date => "8/11/2014")
+Event.create(:event_name =>"Dussehra", :event_date => "10/11/2014")
 Event.create(:event_name =>"Diwali", :event_date => "14/11/2014")
 Event.create(:event_name =>"Naga Panchami", :event_date => "21/11/2014")
 Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")

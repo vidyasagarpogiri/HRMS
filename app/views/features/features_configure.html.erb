@@ -1,0 +1,67 @@
+<div class="wrapper">
+	<div class="container">
+		<div class="row">
+      <div class="span12">
+				<div class="content">
+					<div class="module">
+						<div class="module-head">							
+              <h3>List of Features
+              <%= link_to "Configure", "#", :class => "pull-right"%></h3> 
+            </div> <!-- module head-->
+            
+            <div class="module-body ">
+              <div class="package">
+                <%= form_tag('/configure', :method => :get ) do %>
+                  <%= select_tag "designation", options_from_collection_for_select(Designation.all, "id", "designation_name"), prompt: "Select Role" %>
+                <% a = Feature.all.map(&:controller).flatten.uniq! %>
+                <%= select_tag "controllers", options_for_select(a.collect{|p| ["#{p}", p]}),  prompt: "Select Contoller" %>
+                  <%= submit_tag "Submit" %>
+                <% end %>
+              </div>
+             
+            <h4>Role: <%= @role.department.department_name %> - <%= @role.designation.designation_name %>- <%= current_user.employee.grade.value %></h4> 
+            <% if @controller.present? %>
+              <h4>Controller <%= @controller %></h4>
+            <% end %>
+             <hr>
+              <table  class="table table-bordered table-striped	display" width="98%">
+                <thead>											      
+                  <tr>
+                    <th>Controller</th>
+                    <th>Action</th>
+                   	<th></th>	                 	                  										      		
+                  </tr>
+                </thead>											                  	                                   			
+                <tbody>
+                <%= form_tag ('/create_package') do %>
+                  <% @features.each do |feature| %>
+                  <tr class="gradeA">    
+                    <td><%= feature.controller %></td>
+                    <td><%= feature.action %></td>
+                    <td>
+                      <% if Package.where(role_id: @role.id, feature_id: feature).present? %>  
+                       <%= check_box_tag 'feature_ids[]', feature.id, checked = true, :class => "check_feature" %>
+                      <% else %>
+                         <%= check_box_tag 'new_feature_ids[]', feature.id, checked = false, :class => "check_feature" %>
+                      <% end %>
+                      <%= hidden_field_tag 'role', @role.id %>
+                      <%= hidden_field_tag 'controllers', @controller %>
+                    </td>
+                  </tr>
+                 <% end %>
+                  <%= submit_tag "Submit", :class=>"pull-right"%>
+                <% end %>
+                </tbody>
+              </table>
+              
+            </div> <!--- Module Body--->
+          </div><!--- Module -->
+        </div> <!--- Content -->
+      </div> <!--- Span12---->
+    </div><!----Row---->
+  </div><!----Container--->
+</div><!------Wrapper-->
+
+
+
+  

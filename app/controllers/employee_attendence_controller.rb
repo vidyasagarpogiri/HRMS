@@ -17,10 +17,18 @@ class EmployeeAttendenceController < ApplicationController
     attendance_hash = {"dt"=>{ "Mon"=>week_days.strftime("%d-%m-%Y"), "Tue"=>(week_days + 1.day).strftime("%d-%m-%Y"), "Wed"=>(week_days + 2.day).strftime("%d-%m-%Y"), "Thu"=>(week_days + 3.day).strftime("%d-%m-%Y"), "Fri"=>(week_days + 4.day).strftime("%d-%m-%Y"), "Sat"=>(week_days + 5.day).strftime("%d-%m-%Y"), "Sun"=>(week_days + 6.day).strftime("%d-%m-%Y")}} 
     @employeeattendece.each do|rec|
       if attendance_hash.has_key?(rec.employee_id.to_s)
-        attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
+        if rec.total_working_hours==0.0
+          attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.status
+        else 
+          attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
+        end
       else
         attendance_hash[rec.employee_id.to_s] =  {"Mon" => 0, "Tue" => 0, "Wed" => 0, "Thu" => 0, "Fri" => 0, "Sat" => 0, "Sun" => 0} 
-        attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
+        if rec.total_working_hours==0.0
+          attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.status
+        else 
+          attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
+        end
       end
     end
     respond_to do |format|
@@ -154,6 +162,23 @@ class EmployeeAttendenceController < ApplicationController
         
         @empAttendence.is_present = is_emp_present
         @empAttendence.total_working_hours = totalWorkingHours
+        attedance_status = "Absent"
+        holiday_list = []
+        if !is_emp_present #if not present
+          holiday_list =  Event.where(:id=>emp_rec.group.holiday_calenders.map(&:event_id)).map(&:event_date) if emp_rec.group.present?
+          holiday_list = holiday_list.collect{ |holiday| holiday.to_date }
+          if holiday_list.include?(logDate.to_date)
+            attedance_status = "Holiday"
+          else 
+            leaves = LeaveHistory.where(:employee_id => emp_rec.id)
+            leaves = leaves.collect{ |leave| (leave.from_date.to_date..leave.to_date.to_date).to_a }
+            leaves.flatten!
+            attedance_status ="On Leave" if leaves.include?(logDate.to_date)
+          end
+        end
+        @empAttendence.status = attedance_status
+        #TODO: status : need yo check date is - leave or holiday
+        
         @empAttendence.save 
         
         employeeAttendenceLogs.update_all(employee_attendence_id: @empAttendence.id)
@@ -203,22 +228,26 @@ class EmployeeAttendenceController < ApplicationController
         end
       end      
       
+      holiday_list =  Event.where(:id=>emp_rec.group.holiday_calenders.map(&:event_id)).map(&:event_date) if emp_rec.group.present?
+      holiday_list = holiday_list.collect{ |holiday| holiday.to_date }
       working_days = 0
       attended_days = 0
       attended_on_weekends = 0
+      holiday_count = 0
       (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
       #raise (last_week.beginning_of_week.to_datetime..last_week.to_datetime).to_a.inspect
         working_days += 1
+        holiday_count += 1 if holiday_list.include?(dat.to_date)
         att_day_rec = EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id)
         if !att_day_rec.empty?
           attended_days += 1
           attended_on_weekends += 1 if (["Sat","Sun"].include?dat.strftime("%a").to_s) && (att_day_rec.first.is_present?)
         end
       end
-
+      
        case attended_on_weekends
         when 0
-          working_days = 5
+          working_days = (5 - holiday_count)
         when 1
           working_days = 6
         when 2
