@@ -248,6 +248,11 @@ end
       get 'salary_certificate'
     end
   end
+  
+   get 'reference_notification' => "letters#reference_notification" # email for reference letter
+   get 'address_notification' => "letters#address_notification" # email for address 
+   get 'salary_notification' => "letters#salary_notification" # email for salary certificate
+
   #get 'change_designation' => "designations#change_designation"
   
   resources :features , :only => :index do

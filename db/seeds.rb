@@ -52,7 +52,7 @@ JobLocations = JobLocation.all.pluck(:id)
 
 # We are already created deparment and designations in Migration file
 Departments = Department.all.pluck(:id)
-Designations = Designation.all.pluck(:id)
+
 Grades = Grade.all.pluck(:id)
 #-----------------------------------------------------------------------------------------------------#
 
@@ -92,7 +92,16 @@ Employee.create(:employee_id => 3, :title=> "Miss", :first_name=>"Priyanka",:las
 Employee.create(:employee_id => 4, :title=> "Mr", :first_name=>"pattabhi",:last_name=>"ramarao",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
 :avatar=>"gates_print.jpg", :user_id => @user3.id, :alternate_email => "email@mail.com", :group_id => Groups[rand(Groups.length)])
 
-Employees = Employee.all.pluck(:id)
+employees = Employee.all
+
+#ADDING DESIGNATIONS TO EMPLOYEES
+ 
+(employees).each do |emp|
+ @designation = emp.department.designations
+ emp.update(:designation_id => rand(@designation.length) )
+end
+
+
 
 
 ["Personal Leave", "Carry Forward Leave"].each do |leave|
