@@ -1,0 +1,330 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                                             
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head" style="background-color: #82B4E6 ">
+              <h3>Payslip for <%= Date::MONTHNAMES[@payslip.month] %>,<%= @payslip.year %></h3>
+              <label style="margin-top:-20px;" class = "pull-right"><a href="/monthly_payslips"><i class="icon-circle-arrow-left"></i> Back to Payslips </a></label>
+            </div><br>
+            <div class="module-body">
+                <!-- code for displayin all employees payslips -->
+              <div class="outing"> 
+                <div class="row-fluid">
+                  <div class="span6">
+                    <div class="row-fluid">
+                      <div class="span6">
+                       <label class="label">Month&Year:</label>
+                      </div>
+                      <div class="span6">
+                        <label class="value"><%= Date::MONTHNAMES[@payslip.month] %>,<%= @payslip.year%></label>
+                      </div>
+                    </div>
+                  </div>
+                 <div class="span6">
+                   <div class="row-fluid">
+                    <div class="span6">
+                      <label class="label">Number Of Working Days:</label>
+                    </div>
+                    <div class="span6">
+                      <label class="value"><%= @payslip.working_days %></label>
+                    </div>
+                  </div>
+                </div>
+               </div>
+               <div class="row-fluid">
+                  <div class="span6">
+                    <div class="row-fluid">
+                      <div class="span6">
+                       <label class="label">Employee-id:</label>
+                      </div>
+                      <div class="span6">
+                        <label class="value"><%= @payslip.employee.employee_id %></label>
+                      </div>
+                    </div>
+                  </div>
+                 <div class="span6">
+                   <div class="row-fluid">
+                    <div class="span6">
+                      <label class="label">Department:</label>
+                    </div>
+                    <div class="span6">
+                      <label class="value"><%= @payslip.employee.department.department_name %></label>
+                    </div>
+                  </div>
+                </div>
+               </div>
+               <div class="row-fluid">
+                  <div class="span6">
+                    <div class="row-fluid">
+                      <div class="span6">
+                       <label class="label">Name:</label>
+                      </div>
+                      <div class="span6">
+                        <label class="value"><%= @payslip.employee.full_name %></label>
+                      </div>
+                    </div>
+                  </div>
+                 <div class="span6">
+                   <div class="row-fluid">
+                    <div class="span6">
+                      <label class="label">PF.NO:</label>
+                    </div>
+                    <div class="span6">
+                     <label class="value"><%= @payslip.employee.PFAccountNumber %></label>
+                    </div>
+                  </div>
+                </div>
+               </div>
+               <div class="row-fluid">
+                  <div class="span6">
+                    <div class="row-fluid">
+                      <div class="span6">
+                       <label class="label">Location:</label>
+                      </div>
+                      <div class="span6">
+                        <label class="value"><%= @payslip.employee.job_location.address.city %></label>
+                      </div>
+                    </div>
+                  </div>
+                 <div class="span6">
+                   <div class="row-fluid">
+                    <div class="span6">
+                      <label class="label">PAN NO:</label>
+                    </div>
+                    <div class="span6">
+                     <label class="value"><%= @payslip.employee.pan %></label>
+                    </div>
+                  </div>
+                </div>
+               </div>
+               <div class="row-fluid">
+                  <div class="span6">
+                    <div class="row-fluid">
+                      <div class="span6">
+                       <label class="label">Mode:</label>
+                      </div>
+                      <div class="span6">
+                       <label class="value"><%= @payslip.mode%></label>
+                      </div>
+                    </div>
+                  </div>
+                 <div class="span6">
+                   <div class="row-fluid">
+                    <div class="span6">
+                      <label class="label">A/C NO:</label>
+                    </div>
+                    <div class="span6">
+                     <label class="value"><%= @payslip.employee.account_number%></label>
+                    </div>
+                  </div>
+                </div>
+               </div>
+
+<hr>
+                <div class="head">
+                  <div class="row-fluid">
+                    <div class="sapn6">
+                      <label class="heading">EARNINGS</label>
+                    </div>
+                    <div class="sapn6">
+                      <label class="heading" style="margin-left:70px">DEDUCTIONS</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-fluid">
+                  <div class="span6">
+                  <!-------- Earnings------>
+                    <div class="row-fluid">  
+                      <div class="span6">
+                        <label class="label">Basic</label>
+                      </div>
+                      <div class="span6">
+                        <label class="value"><%= @payslip.basic_salary %></label>
+                      </div>
+                    </div> 
+                  <!--- Allowances --->
+                    <% if @payslip.allowances.present? %>
+                      <% @payslip.allowances.where(is_deductable: false).each do |allowance|%>
+                        <div class="row-fluid">
+                          <div class="span6">
+                           <label class="label"><%= allowance.allowance_name %></label>
+                          </div>
+                          <div class="span6">
+                            <label class="value"><%= allowance.total_value %></label>
+                          </div>
+                        </div>
+                      <% end %>
+                    <% end %>
+                    <% if @payslip.special_allowance.present? %>
+                      <div class="row-fluid"> 
+                        <div class="span6">
+                          <label class="label"> Special Allowance:</label>
+                        </div>
+                        <div class="span6">
+                          <label class="value"><%= @payslip.special_allowance %></label>
+                        </div>
+                      </div>
+                  <% end %>
+                  <% if @payslip.arrears.present? %>
+                    <div class="row-fluid"> 
+                      <div class="span6">
+                        <label class="label">Arrears:</label>
+                      </div>
+                      <div class="span6">
+                        <label class="value"><%= @payslip.arrears %></label>
+                      </div>
+                    </div> 
+                 <% end %> 
+               </div>
+               <div class="span6">
+                  <!---- Dedcuations --->
+
+                  <% if @payslip.tds.present? %>
+                  <div class="row-fluid"> 
+                    <div class="span6">
+                      <label class="label"> TDS:</label>
+                    </div>
+                    <div class="span6">
+                      <label class="value"> <%= @payslip.tds%></label>
+                    </div>
+                  </div>
+                  <% end %>
+                  <% if @payslip.pt.present? %> 
+                  <div class="row-fluid"> 
+                    <div class="span6">
+                      <label class="label">PT:</label>
+                    </div>
+                    <div class="span6">
+                      <label class="value"><%= @payslip.pt %></label>
+                    </div>
+                  </div>
+                  <% end %>
+                  <% if @payslip.pf.present? %>
+                  <div class="row-fluid"> 
+                    <div class="span6">
+                      <label class="label">PF:</label>
+                    </div>
+                    <div class="span6">
+                      <label class="value"><%= @payslip.pf %></label>
+                    </div>
+                  </div>
+                  <% end %>
+                  <% if @payslip.esic.present? %>
+                  <div class="row-fluid"> 
+                    <div class="span6">
+                      <label class="label">ESIC</label>
+                    </div>
+                    <div class="span6">
+                      <label class="value"><%= @payslip.esic %></label>
+                    </div>
+                  </div>
+                 <% end %>
+                 <% if @payslip.employee.salary.allowances.present? %>
+                <% @payslip.employee.salary.allowances.where(:is_deductable => true).each do |allowance|%>
+                  <div class="row-fluid"> 
+                    <div class="span6">
+                      <label class="label"><%= allowance.allowance_name %></label>
+                    </div>
+                    <div class="span6">
+                      <label class="value"><%= (allowance.allowance_value/12).round(2) %></label>
+                    </div>
+                  </div>
+                  <% end %>
+                 <% end %>
+                </div>
+              </div>
+              <hr>
+             <div class="head">
+             <div class="row-fluid">
+              <div class="span6">
+                <div class="row-fluid">
+                  <div class="span6">
+                    <label class="text">TOTAL:</label>
+                  </div>
+                  <div class="span6">
+                    <label class="text"><%= @payslip.gross_salary %></label>
+                  </div>
+                </div>
+              </div>
+              <div class="span6">
+                <div class="row-fluid">
+                  <div class="span6">
+                    <label class="text">TOTAL:</label>
+                  </div>
+                  <div class="span6">
+                    <label class="text"><%= @payslip.total_deductions %></label>
+                  </div>
+                </div>
+              </div>
+             </div>
+            </div>
+             <hr>
+             <div class="head">
+             <div class="row-fluid">
+               <div class="span6">
+                 <div class="row-fluid">
+                  <div class="span6">
+                   <label class="text">NetPay:</label>
+                  </div>
+                  <div class="span6">
+                    <label class="text"><%= @payslip.netpay %>(INR)</label>
+                  </div>
+              </div>
+            </div>
+           </div> 
+          </div>
+               </div> 
+               </div> <%= link_to "Save As PDF", "/monthly_payslip_view/#{@payslip.id}.pdf", :class => "btn btn-info pull-right" %> <br/><br>                                                                            
+            </div><!-- module-body-->
+          </div><!--/.module-->
+        </div><!--/.content-->                    
+      </div><!--/.span9-->                
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
+<style>
+  .label, .value{
+    margin-left:25px;
+    width:150px;
+    height:20px;
+    font-size:15px;
+    font-weight:normal;
+    color:black;
+    text-align:left;
+    background-color:white;
+      font-weight:bold;  
+    }
+    .value{
+    font-weight:normal;
+    }
+   .heading{
+    margin-top:15px;
+    margin-left:25px;
+     width:445px;
+    height:25px;
+    font-size:16px;
+    color:green;
+    float:left;
+    
+   }
+   .head{
+    border:solid 1px balck;
+    background-color:whitesmoke;
+   }
+   .text{
+    margin-top:15px;
+    margin-left:25px;
+    width:250px;
+    height:25px;
+    font-size:16px;
+    color:black;    
+    font-weight:bold; 
+   }
+   .outing{
+   width:1000px;   
+   margin-left:70px;
+   }
+</style>
+
