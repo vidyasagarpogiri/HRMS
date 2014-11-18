@@ -4,6 +4,7 @@
       <div class="span12">
 		    <div class="content">
           <div class="module">
+          <% if @sections.present? %> 
            <% @sections.each do |section| %>
             <div class="module-head">							
               <h3><%= section.section %> Investment Declaration Form <label class="pull-right"><h3>Maximum Limit: <%= section.maximum_limit %></h3></label></h3>
@@ -32,9 +33,16 @@
                 <% end %>
                 <% end %>
                 </tbody>
-              </table>                              
+              </table>
+              <% end %> 
+              <% else %>   
+              <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    No Investments to display.
+              </div>
+             <% end %>                                 
             </div><br>
-            <% end %>                                                                                                                   
+                                                                                                                              
           </div><!--module-->
         </div><!--content-->
 		  </div><!--/.span12-->
