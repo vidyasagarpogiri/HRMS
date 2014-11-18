@@ -68,7 +68,7 @@ end
  end
  end
  
- scheduler.cron '35 17 * * *' do
+ scheduler.cron '0 0 * * *' do
     exit_date = Date.today.strftime("%d/%m/%Y").to_s
     @stauses = FfStatus.where(:date_of_exit == exit_date)
     @stauses.each do |status|
