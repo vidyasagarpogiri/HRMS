@@ -185,7 +185,7 @@ module ApplicationHelper
 
 # caluclation of basic salary of employee
 
- def basic(salary, percentages) #2
+ def calculate_basic(salary, percentages) #2
       gross = salary.gross_salary
       basic_value = 0
       percentages.each do |per|
@@ -211,7 +211,7 @@ module ApplicationHelper
 # end
   
 # Caluclation of pf of employee  
-  def pf(salary, percentages)
+  def calculate_pf(salary, percentages)
       basic = salary.basic_salary
       pf_value = 0
       percentages.each do |per|
@@ -240,7 +240,7 @@ module ApplicationHelper
   end
 =end
   
-  def esic(salary, percentages)
+  def calculate_esic(salary, percentages)
       #raise salary.inspect
       gross = salary.gross_salary
       esic_value = 0
@@ -272,11 +272,11 @@ module ApplicationHelper
 =end
 
 #will calculate HRA based on basic 
-def caluclate_hra(salary, percentages)
+def calculate_hra(salary, percentages)
    hra_value = 0
    percentages.each do |per|
     if per.name == "HRA"
-     hra_value = (salary.basic_salary * per.value)/100
+     hra_value = (salary * per.value)/100
      break
     end
    end
