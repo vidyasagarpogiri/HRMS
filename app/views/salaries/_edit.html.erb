@@ -44,7 +44,7 @@
                 <div class="control-group">
                   <label class="control-label" for="basicinput">HRA</label> 
                   <div class="controls"> 
-                    <%= f.text_field :hra, :class=>"span6 form-control", :value => caluclate_hra(@salary,@salary_percentages), :disabled => true %>  
+                    <%= f.text_field :hra, :class=>"span6 form-control", :value => @salary.hra, :disabled => true %>  
                   </div>
                 </div> 
                 
@@ -52,12 +52,12 @@
                    <% if @salary.pf_apply == "true" %>
                     <label class="control-label" for="basicinput">PF(Applicable)</label> 
                     <div class="controls">
-                      <%= f.text_field :pf, :class=>"span6 form-control", :value => pf(@salary,@salary_percentages), :disabled => true %>
+                      <%= f.text_field :pf, :class=>"span6 form-control", :value => calculate_pf(@salary,@salary_percentages), :disabled => true %>
                       <input type="checkbox" name="pf" class="span2 check_salary" checked = "true">
                    <% else %>
                      <label class="control-label" for="basicinput">PF(Not Applicable)</label> 
                       <div class="controls">
-                      <%= f.text_field :pf, :class=>"span6 form-control", :value => pf(@salary,@salary_percentages), :disabled => true %>
+                      <%= f.text_field :pf, :class=>"span6 form-control", :value => calculate_pf(@salary,@salary_percentages), :disabled => true %>
                       <input type="checkbox" name="pf" class="span2 check_salary">
                    <% end %>  
                     </div>
@@ -67,13 +67,13 @@
                    <% if @salary.esic_apply == "true" %>
                    <label class="control-label" for="basicinput">ESIC(Applicable)</label> 
                     <div class="controls"> 
-                      <%= f.text_field :esic, :class=>"span6 form-control", :value => esic(@salary,@salary_percentages), :disabled => true %>
+                      <%= f.text_field :esic, :class=>"span6 form-control", :value => calculate_esic(@salary,@salary_percentages), :disabled => true %>
                       <input type="checkbox" name="esic" class="span2 check_salary" checked = "true">  
                     </div>
                     <% else %>
                        <label class="control-label" for="basicinput">ESIC(Not Applicable)</label> 
                     <div class="controls"> 
-                      <%= f.text_field :esic, :class=>"span6 form-control", :value => esic(@salary,@salary_percentages), :disabled => true %>
+                      <%= f.text_field :esic, :class=>"span6 form-control", :value => calculate_esic(@salary,@salary_percentages), :disabled => true %>
                       <input type="checkbox" name="esic" class="span2 check_salary" >  
                     </div>
                     <% end %>

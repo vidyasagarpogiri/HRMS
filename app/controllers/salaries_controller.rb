@@ -20,15 +20,14 @@ class SalariesController < ApplicationController
     @salary = @employee.salary
   end 
   def create
-  raise params.inspect 
     @salary = @employee.create_salary(params_salary)
     @salary_percentages = StaticSalary.all
 	  if @salary.errors.present? 
 	    @errors = @salary.errors
 	  else
 	    @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
-	    basic_salary = basic(@salary,@salary_percentages) # it will calls Application Helper
-	    hra = caluclate_hra(@salary, @salary_percentages)
+	    basic_salary = calculate_basic(@salary, @salary_percentages) # it will calls Application Helper
+	    hra = calculate_hra(basic_salary, @salary_percentages)
 	    special_allowance = @salary.gross_salary.to_f - (basic_salary + hra)
 	    @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => basic_salary, :hra => hra, :special_allowance => special_allowance)
     end
@@ -40,10 +39,8 @@ class SalariesController < ApplicationController
   end
   
   def update
-   raise params.inspect 
     @allowances = @salary.allowances
     @salary_percentages =  StaticSalary.all 
-       
     @salary.update(:gross_salary => params[:salary][:gross_salary], :bonus => params[:salary][:bonus], :gratuity => params[:salary][:gratuity], :medical_insurance => params[:salary][:medical_insurance], :basic_salary => basic_value(params[:salary][:gross_salary],@salary_percentages)) 
     @salary = salary_pf_esic_apply(@salary, @salary_percentages, params[:pf], params[:esic], @allowances)
   end
@@ -96,19 +93,16 @@ class SalariesController < ApplicationController
   end
 
   def salary_pf_esic_apply(salary, salary_percentages, pf = nil, esic = nil, allowances = nil)
-     hra = caluclate_hra(salary, salary_percentages)
-     pf_value = pf(salary, salary_percentages)
-     esic_value = esic(salary,salary_percentages)
-     basic_value = basic(salary,salary_percentages)
+     hra = calculate_hra(salary.basic_salary, salary_percentages)
+     pf_value = calculate_pf(salary, salary_percentages)
+     esic_value = calculate_esic(salary,salary_percentages)
+     basic_value = calculate_basic(salary,salary_percentages)
      if pf == "on" && esic == "on"
       salary.update(:pf_apply => "true", :esic_apply => "true", :pf => pf_value, :esic => esic_value, :hra => hra)
-     
 	  elsif pf == "on"
-	    salary.update(:pf_apply => "true", :pf => pf_value, :esic_apply => "false",  :esic => 0.0, :hra => hra)
-	     
+	    salary.update(:pf_apply => "true", :pf => pf_value, :esic_apply => "false",  :esic => 0.0, :hra => hra)	     
 	  elsif esic == "on" 
-	    salary.update(:esic_apply => "true", :esic => esic_value, :pf_apply => "false",  :pf => 0.0, :hra => hra)
-	   
+	    salary.update(:esic_apply => "true", :esic => esic_value, :pf_apply => "false",  :pf => 0.0, :hra => hra)	   
 	  else
 	    salary.update(:pf => 0.0,  :pf_apply => "false", :esic => 0.0,  :esic_apply => "false", :hra => hra)	       
 	  end
