@@ -40,10 +40,8 @@ class SalariesController < ApplicationController
   end
   
   def update
-   raise params.inspect 
     @allowances = @salary.allowances
     @salary_percentages =  StaticSalary.all 
-       
     @salary.update(:gross_salary => params[:salary][:gross_salary], :bonus => params[:salary][:bonus], :gratuity => params[:salary][:gratuity], :medical_insurance => params[:salary][:medical_insurance], :basic_salary => basic_value(params[:salary][:gross_salary],@salary_percentages)) 
     @salary = salary_pf_esic_apply(@salary, @salary_percentages, params[:pf], params[:esic], @allowances)
   end
