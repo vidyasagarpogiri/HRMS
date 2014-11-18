@@ -33,12 +33,16 @@
       <tr>
         <td>PF</td>
         <td><%= pf(@salary, @salary_percentages) %></td>
-        <td><input type="checkbox" name="Pf"></td>
+        <td><input type="checkbox" name="pf"></td>
       </tr> 
       <tr>
         <td>ESCI</td>
         <td><%= esic(@salary, @salary_percentages) %></td>
-        <td><input type="checkbox" name="Esci"></td>
+        <td><input type="checkbox" name="esic"></td>
+       </tr>
+       <tr>
+        <td>HRA</td>
+        <td><%= caluclate_hra(@salary, @salary_percentages) %></td>
        </tr>               
 		 </table><br>
 		 <%= submit_tag "Submit", :class => "btn btn-success pull-right" %> 		   

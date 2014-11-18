@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212095628) do
+ActiveRecord::Schema.define(version: 20141212095629) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -407,6 +407,7 @@ ActiveRecord::Schema.define(version: 20141212095628) do
     t.integer  "year"
     t.string   "status"
     t.string   "mode"
+    t.float    "hra",                limit: 24
   end
 
   create_table "payslips_allowances", force: true do |t|
@@ -500,6 +501,7 @@ ActiveRecord::Schema.define(version: 20141212095628) do
     t.string   "esic_apply"
     t.float    "pf_contribution",   limit: 24
     t.float    "esic_contribution", limit: 24
+    t.float    "hra",               limit: 24
   end
 
   create_table "salaries_allowances", force: true do |t|

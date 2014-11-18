@@ -1,5 +1,4 @@
 
-
 <%= @salary.errors.full_messages.first if @salary.errors.any? %>
 <%= form_for ([@employee, @salary]), :html => {:class=> "edit-salary-form"}, :remote => true do |f| %><br>
 <div class="module-body">

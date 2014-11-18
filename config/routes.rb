@@ -133,8 +133,7 @@ get 'inactive_employees' => "employees#inactive_employees"
 			get 'bankdetails_show'
 			get 'bankdetails_edit'
 			post 'bankdetails_create'
-			post 'bankdetails_update'
-			
+			post 'bankdetails_update'		
 		end
 		
   
@@ -148,21 +147,44 @@ get 'inactive_employees' => "employees#inactive_employees"
     resources :email_ettiquities
 		resources :promotions
 		resources :salaries do 
-					get 'configure_allowance'
+					
 					post 'create_allowance'
 					get 'edit_allowance'
 					post 'update_allowance'
 					get 'add_allowance'
 					post "/configure" => "salaries#configure_pf"
           resources :allowances
-          resources :insentives
-          resources :salary_increments
-      end
+          resources :salaries_allowances do
+            collection do
+					    get 'edit_allowance'
+					    post 'update_allowance'
+					    get 'add_allowance' 
+            end
+          end
+     end
+         
+         
+          
+       
+
     resources :experiences
   resources :addresses 
 end
-
-
+# routes for pay roll generation
+ get 'payroll' => "payrolls#payroll"
+ post 'payrolls' => "payrolls#pay_roll_generation"
+ get 'payroll_view' => "payrolls#generated_payroll"
+ get 'payroll/:id/edit' => 'payrolls#edit_payroll'
+ put 'payroll/:id' => 'payrolls#update_payroll'
+ get 'payroll/:id' => 'payrolls#show_payroll'
+ get "payrolls/exporting_payslips_excel_sheet"
+ get "payrolls/bank_process"
+ get 'monthly_payslips' => "payrolls#employee_monthly_payslips"
+ get 'monthly_payslip_view/:id' => "payrolls#monthly_payslip_view", as: :individual_payslips
+ post 'payrolls/employee_payslips_by_year'
+ get "payrolls/get_payroll_years"
+          
+#-----------------------------------------------------------------------------------------------
 
   #get 'profile/:id/edit' => "profile#edit" 
  # get 'profile/:id' => "profile#edit",  as: :profile
@@ -190,22 +212,6 @@ end
   #resources for static_salaries
   resources :static_salaries
   
-
-  # routes for pay slips generation page- sekhar
-  post 'payslips' => "salaries#pay_slips_generation"
-  get 'payslips_view' => "salaries#generated_payslips"
-  #get 'payslip_form' => "salaries#edit_payslip"
-  get 'payslip/:id/edit' => 'salaries#edit_payslip'
-  put 'payslip/:id' => 'salaries#update_payslip'
-  get 'payslip/:id' => 'salaries#show_payslip'
-  #post 'payslips_monthly_view' => "salaries#monthly_payslips"
-  get 'salaries/payslips_list'
-  get 'monthly_payslips' => "salaries#employee_monthly_payslips"
-  get 'monthly_payslip_view/:id' => "salaries#monthly_payslip_view", as: :individual_payslips
-  post 'salaries/employee_payslips_by_year'
-  get "salaries/exporting_payslips_excel_sheet"
-  get "salaries/get_payroll_years"
-  get "salaries/bank_process"
   #--------------------------------------
   
   
@@ -241,6 +247,11 @@ end
       get 'salary_certificate'
     end
   end
+  
+   get 'reference_notification' => "letters#reference_notification" # email for reference letter
+   get 'address_notification' => "letters#address_notification" # email for address 
+   get 'salary_notification' => "letters#salary_notification" # email for salary certificate
+
   #get 'change_designation' => "designations#change_designation"
   
   resources :features , :only => :index do
