@@ -1,4 +1,4 @@
- <div class="wrapper" >
+<div class="wrapper" >
   <div class="container" >
     <div class="row">                
       <div class="span12">
@@ -6,52 +6,43 @@
           <div class="module">
             <div class="module-head">
               <h3> My Reportee Leaves</h3>
-            </div>
-            
-            
-              <div class="module-body" style="min-height:800px;">
+            </div>                        
+            <div class="module-body" style="min-height:800px;">
               <div class="profile-head media">              
                 <div class="media-body">
-                   <a class="media-avatar pull-left" href="#">                                 
-                     <%= image_tag "leave-view-icon.jpg", :style => "margin-top:50px;height:120px !important;width:120px !important;" %>
-                   </a> 
-                    
-              </div> 
-              
-              <ul class="profile-tab nav nav-tabs">
-                <li class="active"><a href="#applied-leaves" data-toggle="tab">Applied for Approval</a></li>
-                <li><a href="#approved-leaves" data-toggle="tab">Approved Leaves</a></li>
-                <li ><a href="#reportees" data-toggle="tab">Repotees List</a></li>
-              </ul>  
-              <div class="profile-tab-content tab-content"> 
+                  <a class="media-avatar pull-left" href="#">                                 
+                    <%= image_tag "leave-view-icon.jpg", :style => "margin-top:50px;height:120px !important;width:120px !important;" %>
+                  </a>                     
+                </div>                 
+                <ul class="profile-tab nav nav-tabs">
+                  <li class="active"><a href="#applied-leaves" data-toggle="tab">Applied for Approval</a></li>
+                  <li><a href="#approved-leaves" data-toggle="tab">Approved Leaves</a></li>
+                  <li ><a href="#reportees" data-toggle="tab">Repotees List</a></li>
+                </ul>  
+                <div class="profile-tab-content tab-content"> 
                   <div class="tab-pane fade active in" id="applied-leaves">
-                            <div class="module">                                              
-                           <%= render 'shared/applied_leaves'%>                  
-                            </div> 
-                          </div>  
-                          <div class="tab-pane fade" id="approved-leaves">
-                            <div class="module">                                              
-                              <%= render "shared/leaves_list"%>
-                            </div>    
-                         </div><!--/.tab-pane-list--> 
-                                 
-                           
-                           <!--reportees PANEL-->         
-                          <div class="tab-pane fade" id="reportees">
-                            <div class="module">                                              
-                              <%= render "leave_histories/reportees"%>
-                            </div>    
-                         </div><!--/.tab-pane-list--> 
-                       
-                       
-                    </div><!--profile tab-->
-                </div><!--profile head--> 
-                <!--/.content-->
-            </div>
-            <!--/.span9-->
-        </div>
-    </div>
-    <!--/.container-->
-    </div>	
-</div>
+                    <div class="module">                                              
+                     <%= render 'shared/applied_leaves'%>                  
+                    </div> 
+                  </div>  
+                  <div class="tab-pane fade" id="approved-leaves">
+                    <div class="module">                                              
+                      <%= render "shared/leaves_list"%>
+                    </div>    
+                  </div><!--/.tab-pane-list--> 
+                  <!--reportees PANEL-->         
+                  <div class="tab-pane fade" id="reportees">
+                    <div class="module">                                              
+                      <%= render "leave_histories/reportees"%>
+                    </div>    
+                  </div><!--/.tab-pane-list--> 
+                </div><!--profile tab-->
+              </div><!--profile head-->
+            </div><!--/.module-->
+          </div><!--/.module-body-->             
+        </div><!--/.content-->          
+      </div><!--/.span12-->
+    </div><!--/.row-->  
+  </div><!--/.container-->	
+</div><!--/.wrapper-->
 

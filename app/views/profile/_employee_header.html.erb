@@ -1,10 +1,13 @@
  <a href="#" class="media-avatar pull-left">
-  <% if @employee.present? && @employee.avatar_url.present? %>
-    <%= image_tag(@employee.avatar_url) %> 
+   <% if @employee.present? && @employee.avatar_url.present? %>	  
+      <%= image_tag(@employee.avatar_url) %>     
    <% else %>
-      <%= image_tag "user.png"%>
-<% end %>
- 
+     <% if @employee.gender == "Female" %>
+        <%= image_tag "1.jpg", :class=> "nav-avatar" %> 
+     <% else %>
+        <%= image_tag "user.png", :class=> "nav-avatar" %> 
+     <% end %>
+   <% end %>							
 </a><br>
 <div class="media-body">
 <div class="pull-right" ><a href="/employees" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Employees</i></a></div> 
