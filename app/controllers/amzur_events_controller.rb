@@ -16,7 +16,7 @@ class AmzurEventsController < ApplicationController
    @users = User.all
    if @amzurevent.save
     Employee.where(status: false).each do |emp|
-    Notification.delay.event_notification(emp.user,@amzurevent)
+    Notification.event_notification(emp.user,@amzurevent).deliver
     end
     redirect_to amzur_events_path
    else
