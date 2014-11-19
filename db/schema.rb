@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212095629) do
+ActiveRecord::Schema.define(version: 20141212095630) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -408,6 +408,7 @@ ActiveRecord::Schema.define(version: 20141212095629) do
     t.string   "status"
     t.string   "mode"
     t.float    "hra",                limit: 24
+    t.float    "deductible_arrears", limit: 24
   end
 
   create_table "payslips_allowances", force: true do |t|

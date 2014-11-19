@@ -28,7 +28,7 @@ class SalariesAllowancesController < ApplicationController
 		if params[:allowance_ids].present?
 		  @salary = allowance_create_or_update(params[:allowance_ids], @salary) 
 		else
-		  @salary.update(:special_allowance => @salary.gross_salary - (@salary.basic_salary + @salary.pf.to_f + @salary.esic.to_f))
+		  @salary.update(:special_allowance => @salary.gross_salary - (@salary.basic_salary + @salary.pf.to_f + @salary.esic.to_f + @salary.hra.to_f))
 		end 
 		
   end
@@ -44,7 +44,7 @@ class SalariesAllowancesController < ApplicationController
             total_value = allowance_value(staic_allowance.percentage, salary.basic_salary).round(2) if staic_allowance.percentage 
             salary.allowances.create( :allowance_name => staic_allowance.name, :value => staic_allowance.percentage, :allowance_value => staic_allowance.value, :is_deductable => staic_allowance.is_deductable, :total_value => total_value || staic_allowance.value) 
       end    
-		 @salary.update(:special_allowance => @salary.gross_salary - (@salary.basic_salary + @salary.pf.to_f + @salary.esic.to_f + allowance_total_by_salary(salary)))
+		 @salary.update(:special_allowance => salary.gross_salary - (salary.basic_salary + salary.pf.to_f + salary.esic.to_f + salary.hra.to_f + allowance_total_by_salary(salary)))
     salary
   end 
   

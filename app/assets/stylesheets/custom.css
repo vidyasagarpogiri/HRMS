@@ -1,24 +1,20 @@
  .media-avatar {
 /* border: 1px solid rgba(204, 204, 204, 0.5); */
 border: none !important;
-height: 130px !important;
-width: 130px !important;
+height: 100px !important;
+width: 100px !important;
 margin-right: 110px!important;
 overflow:hidden !important;
 border-radius :100% !important;
 }
 
 .media-avatar img {
-height: 130px!important;
-width: 130px !important;
+height: 100px!important;
+width: 100px !important;
 border-radius :100% !important;
 margin: 0px !important;
 }
 
-.department_image{
-height:130px !important;
-width:160px !important;
-}
 .media-body ul li{
 margin-left:-25px !important;
 }
