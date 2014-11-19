@@ -6,11 +6,7 @@ class Payslip < ActiveRecord::Base
   #TODO remove Payslip allowance table
   
   def payslip_allowances_total_value
-    total_allowance_value = 0 
-    allowances.each do |allowance|
-      total_allowance_value += allowance.total_value
-    end
-    (total_allowance_value).round(2)
+    allowances.where(is_deductable: false).sum(:total_value).round(2)
   end
 =begin author - sekhar
    = this code will be modified or removed depends on reqirement 
@@ -46,18 +42,19 @@ class Payslip < ActiveRecord::Base
     employees.each do |employee|
       salary = employee.salary
        payslip_basic = payslip_basic((salary.basic_salary)/12, actual_days, actual_days)
-       payslip = Payslip.create(:no_of_working_days => actual_days, :working_days => actual_days, :basic_salary => payslip_basic, :month=> month, :year => year, :employee_id => employee.id, :status => "NEW")
+       payslip_hra = monthly(salary.hra)
+       payslip = Payslip.create(no_of_working_days: actual_days, working_days: actual_days, basic_salary: payslip_basic, hra: payslip_hra, month: month, year: year, employee_id: employee.id, status: 'NEW')
        # for creating allowances for payslip
 	     salary.payslip_allowances(payslip)
 	     payslip_special_allowance = (salary.special_allowance/12).round(2)
-	     gross = payslip.basic_salary + payslip.payslip_allowances_total_value + payslip_special_allowance
+	     gross = payslip.basic_salary + payslip.hra + payslip.payslip_allowances_total_value + payslip_special_allowance
 	     # method call for calculation pf,esic and total_deductions
 	     payslip_pf_value, payslip_esic_value,total_deducted_allowances_value = caluclate_pf_and_esic_value(payslip,salary_percentages,gross)
 	     total_deductions_value = payslip_pf_value.to_f + payslip_esic_value.to_f + total_deducted_allowances_value 
 	     net_pay = gross - total_deductions_value
-	     payslip.update(total_deductions: total_deductions_value, netpay: net_pay, gross_salary: gross, pf: payslip_pf_value, esic: payslip_esic_value, special_allowance: payslip_special_allowance, :mode => "Bank") 
+	     payslip.update(total_deductions: total_deductions_value, netpay: net_pay, gross_salary: gross, pf: payslip_pf_value, esic: payslip_esic_value, special_allowance: payslip_special_allowance, mode: 'Bank') 
     end
-    payslips = Payslip.where(:month => month ,:year => year)
+    payslips = Payslip.where(month: month, year: year)
   end
 
   # author: sekhar
@@ -68,10 +65,11 @@ class Payslip < ActiveRecord::Base
     basic_salary = payslip_basic(((salary.basic_salary)/12).round(2), payslip.working_days, payslip.no_of_working_days)
 	  payslip.update(:basic_salary => basic_salary)
 	  payslip_special_allowance = (salary.special_allowance/12).round(2)
-	  gross = basic_salary + payslip.payslip_allowances_total_value + payslip_special_allowance + payslip.arrears.to_f 
+	  gross = basic_salary + payslip.hra + payslip.payslip_allowances_total_value + payslip_special_allowance + payslip.arrears.to_f
 	  # method call for calculation pf,esic and total_deductions
 	  payslip_pf_value, payslip_esic_value,total_deducted_allowances_value = caluclate_pf_and_esic_value(payslip,salary_percentages,gross)
 	  total_deductions_value = payslip_pf_value.to_f + payslip_esic_value.to_f + total_deducted_allowances_value + payslip.pt.to_f + payslip.tds.to_f
+	  total_deductions_value +=  payslip.deductible_arrears.to_f 
 	  net_pay = gross - total_deductions_value
 	  payslip.update(total_deductions: total_deductions_value, netpay: net_pay, gross_salary: gross, pf: payslip_pf_value, esic: payslip_esic_value, special_allowance: payslip_special_allowance, mode: mode)
 	  return payslip

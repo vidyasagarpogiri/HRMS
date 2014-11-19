@@ -51,7 +51,7 @@ class PayrollsController < ApplicationController
     @salary = @payslip.employee.salary
     @payslip_allowances = @payslip.allowances
     @salary_percentages = StaticSalary.all
-    @payslip.update(arrears: params[:arrears], pt: params[:pt], tds: params[:tds], working_days: params[:working_days])
+    @payslip.update(arrears: params[:arrears], pt: params[:pt], tds: params[:tds], working_days: params[:working_days], deductible_arrears: params[:deductible_arrears])
     @payslip = Payslip.new.updating_payslip(@payslip, @salary_percentages, @mode)
   end
 
@@ -65,10 +65,10 @@ class PayrollsController < ApplicationController
     @year = params[:year].to_i
     @month_name = Date::MONTHNAMES[@month]
     employee_basic_array = ['SL #', 'MONTH', 'Emp. NAME', 'DOJ', 'STATUS', 'DESIGNATION', 'DEPARTMENT']
-    salary_array = ['GROSS', 'Per Month', 'Actual Per Month', 'Actual Days', 'Working Days', 'BASIC']
+    salary_array = ['GROSS', 'Per Month', 'Actual Per Month', 'Actual Days', 'Working Days', 'BASIC', 'HRA']
     non_deductable_allowances_array = StaticAllowance.where(is_deductable: false).pluck(:name)
     other_salary_array = ['Spcl Allowance', 'Arrears', 'Gross Pay']
-    deducations = ['PF', 'ESIC', 'PT', 'TDS']
+    deducations = ['PF', 'ESIC', 'PT', 'TDS', 'Deductible Arrears']
     deductable_allowances_array = StaticAllowance.where(is_deductable: true).pluck(:name)
     netpay_array = ['total_deducations', 'NetPay']
     total_array = [employee_basic_array, salary_array, non_deductable_allowances_array, other_salary_array, deducations, deductable_allowances_array, netpay_array]
@@ -83,7 +83,7 @@ class PayrollsController < ApplicationController
       @payslips.each do |payslip|
       employee = payslip.employee
       salary = payslip.employee.salary
-        a = [i, "#{payslip.month}-#{payslip.year}", employee.full_name, employee.date_of_join, employee.employment_status, employee.designation.designation_name, employee.department.department_name, salary.gross_salary, salary.gross_salary / 12, payslip.gross_salary, payslip.no_of_working_days, payslip.working_days, payslip.basic_salary]
+        a = [i, "#{payslip.month}-#{payslip.year}", employee.full_name, employee.date_of_join, employee.employment_status, employee.designation.designation_name, employee.department.department_name, salary.gross_salary, salary.gross_salary / 12, payslip.gross_salary, payslip.no_of_working_days, payslip.working_days, payslip.basic_salary, payslip.hra]
         b = []
         non_deductable_allowances_array.each do |allowance|
           c = 0
@@ -96,7 +96,7 @@ class PayrollsController < ApplicationController
           b << 0 if c == 0
         end # non -deductable end
         other_salary = [payslip.special_allowance, payslip.arrears.to_f, payslip.gross_salary]
-        other_deducations = [payslip.pf.to_f, payslip.esic.to_f, payslip.pt.to_f, payslip.tds.to_f]
+        other_deducations = [payslip.pf.to_f, payslip.esic.to_f, payslip.pt.to_f, payslip.tds.to_f, payslip.deductible_arrears.to_f]
         k = []
         deductable_allowances_array.each do |allowance|
           g = 0
