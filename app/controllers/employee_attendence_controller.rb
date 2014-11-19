@@ -241,7 +241,8 @@ class EmployeeAttendenceController < ApplicationController
         att_day_rec = EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id)
         if !att_day_rec.empty?
           attended_days += 1
-          attended_on_weekends += 1 if (["Sat","Sun"].include?dat.strftime("%a").to_s) && (att_day_rec.first.is_present?)
+          #attended_on_weekends += 1 if (["Sat","Sun"].include?dat.strftime("%a").to_s) && (att_day_rec.first.is_present?)
+          attended_on_weekends += 1 if ["Sat","Sun"].include?dat.strftime("%a").to_s
         end
       end
       
@@ -260,8 +261,9 @@ class EmployeeAttendenceController < ApplicationController
       t = week_working_hours.sum
       mm, ss = t.divmod(60)
       hh, mm = mm.divmod(60)
-      
+     
       attendance_hash_json[:total_week_hours] = "#{hh}hr #{mm}min"
+       #raise working_days.inspect
       attendance_hash_json[:avg_week_hours] =   calculate_time_diff(week_working_hours.sum / working_days)
 
       respond_to do |format|
