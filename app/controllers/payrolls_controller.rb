@@ -73,6 +73,7 @@ class PayrollsController < ApplicationController
     netpay_array = ['total_deducations', 'NetPay']
     total_array = [employee_basic_array, salary_array, non_deductable_allowances_array, other_salary_array, deducations, deductable_allowances_array, netpay_array]
     total_array.flatten!
+    
     @package = Axlsx::Package.new
     @workbook = @package.workbook
     @payslips = Payslip.where(month: @month,year: @year)
@@ -138,6 +139,7 @@ class PayrollsController < ApplicationController
         sheet.add_row [payslip.employee.account_number, payslip.employee.full_name, payslip.netpay, Date::MONTHNAMES[payslip.month]]
       end
     end
+    
     # will create and save an excel sheet with given details
     @package.serialize("#{Rails.root}/public/#{@month_name}-#{@year}-bank_statement.xlsx")
     @netpay_total = total_netpay(@payslips)
