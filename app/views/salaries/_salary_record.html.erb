@@ -14,7 +14,7 @@
 				      </tr>
 				      <tr>
 					      <th>HRA</th>
-					      <td><%= @salary.hra %></td>
+					      <td><%= @salary.hra if @salary.hra.present? %></td>
 				      </tr>
 				      <% if @allowances.present? %>
 				      <% @allowances.each do |allowance| %>																	
