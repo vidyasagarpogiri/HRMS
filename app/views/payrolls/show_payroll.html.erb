@@ -144,6 +144,14 @@
                         <label class="value"><%= @payslip.basic_salary %></label>
                       </div>
                     </div> 
+                    <div class="row-fluid">  
+                      <div class="span6">
+                        <label class="label">HRA</label>
+                      </div>
+                      <div class="span6">
+                        <label class="value"><%= @payslip.hra %></label>
+                      </div>
+                    </div> 
                   <!--- Allowances --->
                     <% if @payslip.allowances.present? %>
                       <% @payslip.allowances.where(is_deductable: false).each do |allowance|%>
@@ -233,6 +241,16 @@
                   </div>
                   <% end %>
                  <% end %>
+                 <% if @payslip.deductible_arrears.present? %>
+                  <div class="row-fluid"> 
+                    <div class="span6">
+                      <label class="label">Deductible Arrears</label>
+                    </div>
+                    <div class="span6">
+                      <label class="value"><%= @payslip.deductible_arrears %></label>
+                    </div>
+                  </div>
+                 <% end %>
                 </div>
               </div>
               <hr>
@@ -244,7 +262,7 @@
                     <label class="text">TOTAL:</label>
                   </div>
                   <div class="span6">
-                    <label class="text"><%= @payslip.gross_salary %></label>
+                      <label class="text"><%= @payslip.gross_salary %></label>
                   </div>
                 </div>
               </div>

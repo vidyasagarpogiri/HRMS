@@ -60,9 +60,11 @@ class ReportPdf < Prawn::Document
     draw_text "BASIC:", :at => [@x+50, @y-260] #1
     draw_text "#{@payslip.basic_salary}", :at => [@x+200, @y-260]
     
+    draw_text "HRA:", :at => [@x+50, @y-280]
+    draw_text "#{@payslip.hra}", :at => [@x+200, @y-280]
     
     #non -dedcutable allowances
-    @z = @y-260
+    @z = @y-280
     @payslip.allowances.each do |allowance|
       draw_text "#{allowance.allowance_name}:", :at => [@x+50, @z-20] #2
       draw_text "#{allowance.total_value}", :at => [@x+200, @z-20] 
@@ -109,8 +111,12 @@ class ReportPdf < Prawn::Document
     
     @payslip.allowances.where(:is_deductable => true).each do |allowance|
       draw_text "#{allowance.allowance_name}:", :at => [@x+300, @d-20]
-      draw_text "#{(allowance.total_value/12).round(2)}", :at => [@x+450, @d-20]
+      draw_text "#{(allowance.total_value).round(2)}", :at => [@x+450, @d-20]
       @d = @d -20
+    end
+    if @payslip.deductible_arrears.present?
+      draw_text "Deductible Arrears:", :at => [@x+300, @d-20]
+      draw_text "#{@payslip.deductible_arrears}", :at => [@x+450, @d-20]
     end     
     k = @z<@d ? @z : @d
    total_salary(k)

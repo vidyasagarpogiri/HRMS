@@ -53,9 +53,9 @@
                     <% allowance_total -= allowance.allowance_value %>                  
                 <% else %>
                     <% if allowance.value.present? %>													 
-                    <td><%= allowance_value(allowance.value, @salary.basic_salary)  %></td>
-                    <td><%= monthly(allowance_value(allowance.value, @salary.basic_salary))  %></td>
-                  <% allowance_total += allowance_value(allowance.value, @salary.basic_salary) %>
+                    <td><%= allowance.total_value %></td>
+                    <td><%= monthly(allowance.total_value)  %></td>
+                  <% allowance_total += allowance.total_value %>
                   <% else %>
                     <td><%= allowance.allowance_value %></td>
                     <td><%= monthly(allowance.allowance_value) %></td>
