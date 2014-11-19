@@ -50,7 +50,7 @@ class WelcomeController < ApplicationController
      
     @attended_days = attended_days
     @working_days = working_days
-    
+    #raise @working_days.inspect
     t = @myattendence.sum
     mm, ss = t.divmod(60)
     hh, mm = mm.divmod(60)
