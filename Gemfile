@@ -90,7 +90,7 @@ gem 'prawn'
 # for date picker
 gem 'jquery-timepicker-rails'
 
-# gems for 
+# gems for testing
 gem 'reek'
 gem 'rubocop'
 
