@@ -43,11 +43,11 @@ gem "therubyracer"
 
 gem 'devise_invitable', '~> 1.3.4'
 ##########################
-gem 'factory_girl'
+#gem 'factory_girl'
 gem "devise"
 gem 'omniauth'
 gem "omniauth-google-oauth2"
-
+=begin
 gem "capybara", :group => [:development, :test]
                  group :test do
                    gem "cucumber-rails", :require => false
@@ -55,7 +55,8 @@ gem "capybara", :group => [:development, :test]
                    gem 'factory_girl_rails'   
 										gem 'rspec-rails'
                  end
-
+=end
+gem 'rspec-rails', :group => [:development, :test]
 #gem for avatar upload
 gem 'carrierwave'
 
