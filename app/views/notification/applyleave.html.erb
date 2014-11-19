@@ -14,16 +14,16 @@ Hello  <%= @employee.reporting_manager %>,
 </tr><tr>
           <th>Leave Type</th>
           <td>:   <%= @leave_history.leave_type.type_name %></td>
-</tr>
+</tr><tr>
   <% if @leave_history.is_halfday %>
     <th>Leave Date</th>
-    <td><%= @leave_history.from_date %></td>
-    <th>Leave</th>
-    <td>Half Day</td>
-    <th>Section</th>
-    <td><%= @leave_history.section %></td>
+    <td>:    <%= @leave_history.from_date %></td></tr>
+    <tr><th>Leave</th>
+    <td>:   Half Day</td></tr>
+    <tr><th>Section</th>
+    <td>:    <%= @leave_history.section %></td></tr>
   <% else %>
-<tr>
+</tr><tr>
           <th>From Date </th>
            <td>:  <%= @leave_history.from_date.to_date.strftime("%d %b, %Y") %></td>
 </tr><tr>

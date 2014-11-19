@@ -6,7 +6,7 @@ class Notification < ActionMailer::Base
   def applyleave(employee, leave_history)
     @employee = employee
     @leave_history = leave_history
-    mail(to: @employee.reporting_manager_user, subject: 'Leave Applied By'  '#{@employee.first_name} #{@employee.last_name}')
+    mail(to: @employee.reporting_manager_user, subject: 'Leave Applied By' " #{@employee.first_name} #{@employee.last_name}")
   end
 
   def accept_leave(employee, leave_history)
@@ -23,22 +23,22 @@ class Notification < ActionMailer::Base
 
   def job_notification(user, recruitment)
     @recruitment = recruitment
-    mail(to: user.email, subject: 'Bring Your Buddy - Employee Referral - New Job Opening for #{@recruitment.title}.')
+    mail(to: user.email, subject: 'Bring Your Buddy - Employee Referral - New Job Opening for' " #{@recruitment.title}.")
   end
 
   def announcement_notification(user, announcement)
     @announcement = announcement
-    mail(to: user.email, subject: 'Announcement for #{@announcement.title}')
+    mail(to: user.email, subject: 'Announcement for' " #{@announcement.title}")
   end
 
   def event_notification(user, amzurevent)
     @amzurevent = amzurevent
-    mail(to: user.email, subject: 'Amzur Technologies is conducting a #{@amzurevent.title} Event')
+    mail(to: user.email, subject: 'Amzur Technologies is conducting a'  " #{@amzurevent.title} Event ")
   end
 
   def policy_notification(user, policy)
     @policy = policy
-    mail(to: user.email, subject: '#{@policy.title} Policy')
+    mail(to: user.email, subject: "#{@policy.title}" 'Policy')
   end
 
   def holiday_list(user, events)
@@ -48,7 +48,7 @@ class Notification < ActionMailer::Base
 
   def send_payslip(mail, month_name, year)
     attachments.inline['payroll.xlsx'] = File.read("#{Rails.root}/public/Payroll/#{month_name}-#{year}-payslips.xlsx")
-    mail(to: mail, subject: 'Payroll for #{month_name}-#{year}')
+    mail(to: mail, subject: 'Payroll for'  "#{month_name}-#{year}")
   end
 
   # birth day alert code
@@ -56,7 +56,7 @@ class Notification < ActionMailer::Base
     @user = user
     @employee = employee
     attachments.inline['birthday.jpg'] = File.read("#{Rails.root}/public/assets/birthdaycards/#{rand(6)}.jpg")
-    mail(to: @user.email, subject: 'Happy Birthday To #{@employee.full_name}')
+    mail(to: @user.email, subject: 'Happy Birthday To ' " #{@employee.full_name}")
   end
 
   def send_pdf(payslip, file_path)
