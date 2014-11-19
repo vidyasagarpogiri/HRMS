@@ -36,12 +36,23 @@
               <td><%= @salary.basic_salary %></td>
               <td><%= monthly(@salary.basic_salary) %></td>
             </tr>
+             <tr>
+             <% if @salary.hra.present? %>
+              <th>HRA</th>
+              <td><%= @salary.hra %></td>
+              <td><%= monthly(@salary.hra) %></td>
+            </tr>
+            <% end %>
             <% if @allowances.present? %>
               <% allowance_total = 0.0 %>
 				      <% @allowances.each do |allowance| %>																	
 	             <tr>		 								             
-					       <th><%= allowance.allowance_name %></th> 													   								          								               <% unless allowance.is_deductable %>
-                  <% if allowance.value.present? %>													 
+					       <th><%= allowance.allowance_name %></th> 													   								          								               <% if allowance.is_deductable %>
+                    <td><%= allowance.allowance_value %></td>
+                    <td><%= monthly(allowance.allowance_value) %></td>
+                    <% allowance_total -= allowance.allowance_value %>                  
+                <% else %>
+                    <% if allowance.value.present? %>													 
                     <td><%= allowance_value(allowance.value, @salary.basic_salary)  %></td>
                     <td><%= monthly(allowance_value(allowance.value, @salary.basic_salary))  %></td>
                   <% allowance_total += allowance_value(allowance.value, @salary.basic_salary) %>
@@ -50,10 +61,6 @@
                     <td><%= monthly(allowance.allowance_value) %></td>
                     <% allowance_total += allowance.allowance_value %>
                   <% end %>
-                <% else %>
-                    <td><%= allowance.allowance_value %></td>
-                    <td><%= monthly(allowance.allowance_value) %></td>
-                    <% allowance_total -= allowance.allowance_value %>
                <% end %>
                </tr>
              
@@ -113,25 +120,6 @@
 					    <td><%= @salary.medical_insurance %></td>
 					    <td><%= monthly(@salary.medical_insurance) %></td>
 			      </tr>
-			      <% if @salary.pf_apply == "true" && @salary.esic_apply == "true" %>
-			      <tr>
-					    <th>Employer Contribution</th>
-					    <td><%= @salary.pf_contribution + @salary.esic_contribution %></td>
-					    <td><%= monthly(@salary.pf_contribution + @salary.esic_contribution) %></td>
-			      </tr>
-					  <% elsif @salary.pf_apply == "true" %>
-					    <tr>
-					    <th>Employer Contribution</th>
-					    <td><%= @salary.pf_contribution %></td>
-					    <td><%= monthly(@salary.pf_contribution) %></td>
-			      </tr>
-			      <% else %>
-			        <tr>
-					    <th>Employer Contribution</th>
-					      <td><%= @salary.esic_contribution %></td>
-					      <td><%= monthly(@salary.esic_contribution) %></td>
-			        </tr>
-			      <% end %>
 				    <tr style="color:black;">
 					    <th>CTC</th>
 					    <td><%= @salary.ctc_fixed %></td>
