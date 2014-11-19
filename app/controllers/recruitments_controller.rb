@@ -17,7 +17,7 @@ class RecruitmentsController < ApplicationController
       #raise  params.inspect
       #Notification.job_notification(@users,@recruitment).deliver
       Employee.where(status: false).each do |emp|
-      Notification.job_notification(emp.user,@recruitment).deliver
+      Notification.delay.job_notification(emp.user,@recruitment)
       end 	
        #raise Notification.delay.job_notification(@users,@recruitment).inspect
       redirect_to recruitments_path
