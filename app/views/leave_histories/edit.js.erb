@@ -1,4 +1,4 @@
- 
+<% unless @error.present? %> 
   
  <% if @leave_history.status == "APPROVED" || @leave_history.status == "REJECTED"  %>
   <% if ((@leave_history.from_date.to_date <= Date.today && @leave_history.to_date.to_date >= Date.today) || (@leave_history.to_date.to_date < Date.today)) %>	
@@ -10,4 +10,6 @@
  
 <% if @leave_history.status == "HOLD" %>
    $("#waiting-for-approval").html('<%= j render "leave_histories/edit"%>');
+<% end %>
+
 <% end %>

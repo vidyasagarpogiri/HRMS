@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html>
   <body>
-  Dear All, 
-  <p>the following are the list of holidays for <%= @events.first.event_date.to_date.year%> year.</p><br> 
+  Dear All,<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The following are the list of holidays for <%= @group.group_name %> for <%= @events.first.event_date.to_date.year%> year. <br> 
   <h3>Holidays List - <%= @events.first.event_date.to_date.year%>  </h3>
   <table border="1">
 
@@ -18,10 +18,11 @@
       <tr>
        
           <td><%= event.event_name %></td>           
-          <td><%= event.event_date %></td> 
+          <td><%= event.event_date.to_date.strftime("%d %b, %Y") %></td> 
           
      <% end %>     
       </tr>                   
   </table>
   </body>
 </html>
+

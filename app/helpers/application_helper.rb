@@ -60,11 +60,11 @@ module ApplicationHelper
     leaves_array
   end
  
- 
+ # returns remaining leaves of employee deducting after approval form employee leaves
   def remaining_leaves(employee, leave_type)
      employee.leave_histories.where(leave_type_id: leave_type).sum("days")
   end
-  
+ # returs total leaves used by employee  
   def total_used_leaves(employee)
     a= employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days")
     a.to_f
@@ -82,7 +82,7 @@ module ApplicationHelper
    a 
   end
   
-   
+ # leaves are caliculated based on the joining day 
   def total_leaves(employee)
     employee_join = employee.date_of_join.to_date
     if(employee_join.year == Date.current.cwyear)

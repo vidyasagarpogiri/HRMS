@@ -6,5 +6,3 @@ class Recruitment < ActiveRecord::Base
   
   validates :link, presence: true
 end
-
-

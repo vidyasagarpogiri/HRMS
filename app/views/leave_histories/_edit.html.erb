@@ -4,7 +4,12 @@
 	<div class="module-head">
       <h3>Leave Form </h3>
   </div>   
-                            
+          <% if @error.present? %>
+             <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+               <%= @error%>
+            </div>
+          <% end %>              
   <div class="module-body">   
      <%= form_for ([@employe, @leave_history]), :data => {:toggle => "validator"} do |f| %>                                             
       <div class="control-group">

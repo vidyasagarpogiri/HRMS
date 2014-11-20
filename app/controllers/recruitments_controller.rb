@@ -10,14 +10,14 @@ class RecruitmentsController < ApplicationController
   
   def create
   #raise params.inspect
-   @recruitment = Recruitment.create(recruitment_params)
-   @users = User.all
+   @recruitment = Recruitment.new(recruitment_params)
+
   
-    if @recruitment.present?
+    if @recruitment.save
       #raise  params.inspect
       #Notification.job_notification(@users,@recruitment).deliver
       Employee.where(status: false).each do |emp|
-      Notification.delay.job_notification(emp.user,@recruitment)
+        Notification.delay.job_notification(emp.user,@recruitment)
       end 	
        #raise Notification.delay.job_notification(@users,@recruitment).inspect
       redirect_to recruitments_path
