@@ -1,6 +1,6 @@
         <div class="module">
 		      <div class="module-head">							
-             <h3> Holiday calender &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <%= link_to 'Send As Email', holiday_notification_group_path(@group), :class => "btn btn-danger pull-right" %> </h3>
+             <h3> Holiday calender &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <% if @holiday_calenders.present? %> <%= link_to 'Send As Email', holiday_notification_group_path(@group), :class => "btn btn-info pull-right" %><% end %> </h3>
 		          <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add Holidays",  new_group_holiday_calender_path(@group), :remote => true %>
 
 		         </label> 
