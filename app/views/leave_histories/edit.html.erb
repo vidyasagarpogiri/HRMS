@@ -80,12 +80,6 @@
           <button type="submit" class="btn btn-success"> Apply </button>
           <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>
           <% end %>                                                                   
-          <% else %>  <br>
-          <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-               You have no reporting manager. Please contact your Administrator
-          </div>
-          <% end %>
         </div>
 <!--module -body-->
    
@@ -100,39 +94,85 @@
 
 
 <script>
-           $(function () {
-               $(".leave-form-date").datepicker({
-                   dateFormat: 'dd/mm/yy',
-                   changeMonth: true,
-                   changeYear: true,
-                    minDate: -0,
-                   yearRange: "+0:+1",
-                   onClose: function (selectedDate) {
-                       var date2 = $('.leave-form-date').datepicker('getDate');
-                       date2.setDate(date2.getDate());
-                       $(".leave-to-date").datepicker("option", "minDate", date2);
-                       $(".error1").html('');
-                   }
-               });
+  $(function () {
+    $(".leave-form-date").datepicker({
+      dateFormat: 'dd/mm/yy',
+      changeMonth: true,
+      changeYear: true,
+      minDate: -0,
+      yearRange: "+0:+1",
+      onClose: function (selectedDate) {
+        var date2 = $('.leave-form-date').datepicker('getDate');
+        date2.setDate(date2.getDate());
+        $(".leave-to-date").datepicker("option", "minDate", date2);
+        $(".error1").html('');
+      }
+    });
+    $(".leave-to-date").datepicker({
+      dateFormat: 'dd/mm/yy',
+      minDate: -0,
+      yearRange: "0:+1",
+      changeMonth: true,
+      changeYear: true, 
+      onClose: function (selectedDate) {
+      var date1 = $('.leave-form-date').datepicker('getDate');
+        if (date1){
 
-               $(".leave-to-date").datepicker({
-                   dateFormat: 'dd/mm/yy',
-                    minDate: -0,
-                    yearRange: "0:+1",
-                     changeMonth: true,
-                   changeYear: true, 
-                     onClose: function (selectedDate) {
-                      var date1 = $('.leave-form-date').datepicker('getDate');
-                      if (date1){
-                        
-                      }else{
-                        $("#idnm2").val('');
-                        $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
-                      }
-                     }
-               });
-           });
-        </script>
+        }else{
+        $("#idnm2").val('');
+        $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
+        }
+      }
+    });
+    <% if @leave_history.is_halfday %>
+      $('.rb1').prop('checked',true);
+      $('.leave-date').val('<%= @leave_history.from_date%>');
+      $('.full_day').hide();
+      $('.half_day').show();              
+    <% else %>
+      $('.rb2').prop('checked',true);
+      $('.half_day').hide();
+      $('.full_day').show();
+    <% end %>
+ });
+  $(function(){
+    $(".alert-message").hide();
+    $('.rb1').click(function(){
+      $('.full_day').hide();
+      $('.half_day').show();
+    });
+    $('.rb2').click(function(){
+      $('.half_day').hide();
+      $('.full_day').show();
+    });
+//script for checking applied leaves is greater than balanced leaves - sekhar
+    $(".idnm2").change(function(){
+      if($(".rb2").prop("checked")){  
+        var startDate =$(".idnm1").datepicker("getDate");
+        var endDate =$(".idnm2").datepicker("getDate");
+        var diff = endDate - startDate;// calculating date difference will give value in milliseconds
+        var days = (diff/86400000)+1; // converting milliseconds to days here we are adding 1, becuase it will give the difference of two dates
+        var weeks = Math.floor(days / 7); // calculating how many weeks we have in that days
+        days = days - (weeks * 2); // multiply with 2 will give how many weekends we have in those weeks
+        var startDay = startDate.getDay(); //will give day of that date
+        var endDay = endDate.getDay();
+        if (startDay - endDay > 1) // conditons for calculating days depends on their start and end dates
+          days = days - 2;
+        if (startDay == 0 && endDay != 6) // it checks weather start day is sunday
+          days = days - 1;
+        if (endDay == 6 && startDay != 0) // it checks weather end day is saturday
+          days = days - 1;
+        var total_leaves = parseFloat($("#total_leaves").val());// converting value into float
+        if(total_leaves<days){  // checking weather applied leaves are more than balance leaves
+          $(".alert-message").show(); // it will show an alert message to the user that he crossed his balance leaves
+        }
+        else{
+          $(".alert-message").hide();
+        }
+      }
+    });
+  });
+</script>
             
 
 
