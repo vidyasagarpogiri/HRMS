@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :events 
   get 'getAllEmployees' => 'employees#getAllEmployees'
-  get 'holiday_notification' => "events#holiday_notification" 
+  #get 'holiday_notification' => "events#holiday_notification" 
 
   #devise_for :users
 
@@ -87,6 +87,7 @@ Rails.application.routes.draw do
        member do
         get 'add_employee'
         post 'update_add_employee'
+        get 'holiday_notification'
        end
 			#collection do
 				#get 'holiday_list'

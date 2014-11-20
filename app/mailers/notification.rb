@@ -41,9 +41,10 @@ class Notification < ActionMailer::Base
     mail(to: user.email, subject: "#{@policy.title}" 'Policy')
   end
 
-  def holiday_list(user, events)
+  def holiday_list(user, events, group)
     @events = events
-    mail(to: user.email, subject: 'Holidays List')
+    @group = group
+    mail(to: user.email, subject: 'Holidays List - ' "#{@events.first.event_date.to_date.year}")
   end
 
   def send_payslip(mail, month_name, year)
