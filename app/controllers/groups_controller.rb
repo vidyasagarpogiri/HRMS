@@ -47,6 +47,16 @@ class GroupsController < ApplicationController
 		@group = current_user.employee.group
 	end
   
+  def holiday_notification
+    @group= Group.find(params[:id])
+    @events = @group.holiday_calenders.map(&:event)
+    @employees = @group.employees.where(status: false)
+    @employees.each do |emp|
+    Notification.holiday_list(emp.user,@events,@group).deliver
+    end
+   redirect_to @group
+  end
+  
   private
   def group_params
      params.require(:group).permit(:group_name)     

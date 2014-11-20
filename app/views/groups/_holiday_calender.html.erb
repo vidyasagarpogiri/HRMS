@@ -1,7 +1,9 @@
         <div class="module">
 		      <div class="module-head">							
-             <h3> Holiday calender</h3>
-		          <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add Holidays",  new_group_holiday_calender_path(@group), :remote => true %></label> 
+             <h3> Holiday calender &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <%= link_to 'Send As Email', holiday_notification_group_path(@group), :class => "btn btn-danger pull-right" %> </h3>
+		          <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add Holidays",  new_group_holiday_calender_path(@group), :remote => true %>
+
+		         </label> 
           </div>		   	         
 		        <div class="module-body">   
 		          <% if @holiday_calenders.present? %> 
@@ -32,3 +34,4 @@
 						  <% end %>		        		     		    
 		      </div><!--module -body-->                                                                                
      </div><!--/.module -->
+
