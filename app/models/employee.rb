@@ -50,6 +50,10 @@ class Employee < ActiveRecord::Base
 	validates :blood_group_id, presence: true
 	validates :date_of_join, presence: true
 	validates :alternate_email, presence: true
+	validates :bank_name, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only  letters" }
+	validates :branch_name, format: { with: /\A[a-zA-Z]+\z/, message: "Plese Enter only  letters" }
+	validates :account_number, numericality: true
+	
   #validates :employment_status, presence: true 
 
 	#validates :avatar, presence: true
