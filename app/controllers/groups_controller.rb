@@ -20,6 +20,7 @@ class GroupsController < ApplicationController
      @employees = @group.employees
      @leave_policy = @group.leave_policy
      @holiday_calenders = @group.holiday_calenders
+     #TODO - Here emplee leave history has to shown in order of the upcoming leaves by @ Pattabhi
      @leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?  
   end
   
@@ -46,6 +47,16 @@ class GroupsController < ApplicationController
 		@leave_policy = current_user.employee.group.leave_policy
 		@group = current_user.employee.group
 	end
+  
+  def holiday_notification
+    @group= Group.find(params[:id])
+    @events = @group.holiday_calenders.map(&:event)
+    @employees = @group.employees.where(status: false)
+    @employees.each do |emp|
+    Notification.holiday_list(emp.user,@events,@group).deliver
+    end
+   redirect_to @group
+  end
   
   private
   def group_params

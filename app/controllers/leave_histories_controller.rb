@@ -28,8 +28,25 @@ class LeaveHistoriesController < ApplicationController
   end
   
   def create
+  #raise params.inspect
     @employee = current_user.employee
-    if params[:leave_history][:is_halfday] == "full_day"
+    
+    flag = 0
+    @leaves = LeaveHistory.where(employee_id: @employee.id).collect{|leave| (leave.from_date.to_date..leave.to_date.to_date).to_a}.flatten!
+    (params[:leave_history][:from_date].to_date..params[:leave_history][:to_date].to_date).each do |date|
+     if @leaves.present? && @leaves.include?(date)
+        flag = 1
+        @applied_date = date
+        break
+     end
+    end
+    
+    if flag == 1
+      @leave_history = LeaveHistory.new
+      render "new", :locals => { :@error => "Alredy You Applied on #{format_date(@applied_date)}" }
+      
+		else 
+		   if params[:leave_history][:is_halfday] == "full_day"
     @leave_history = current_user.employee.leave_histories.create(params_leave_history)
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, current_user.employee.group)  
@@ -42,6 +59,7 @@ class LeaveHistoriesController < ApplicationController
       Notification.delay.applyleave(current_user.employee, @leave_history)
     end
 		redirect_to leave_histories_path
+		end
   end
     
   def edit
@@ -51,6 +69,7 @@ class LeaveHistoriesController < ApplicationController
   
   def update
    @leave_history = LeaveHistory.find(params[:id])
+   
    if params[:leave_history][:is_halfday] == "full_day"
     @leave_history.update(params_leave_history)
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0

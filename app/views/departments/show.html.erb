@@ -9,13 +9,13 @@
                                 <div class="media-body">
                                    <a class="media-avatar pull-left" href="#">                                 
                                       <% if @department.department_name == "HR" %>
-                                          <%= image_tag "HR.jpg", :style => "height:130px !important;width:160px !important;"%>
+                                          <%= image_tag "HR.jpg" %>
                                       <% elsif @department.department_name == "Development"%>
-                                        <%= image_tag "dep.jpg", :style => "height:130px !important;width:160px !important;"%>
+                                        <%= image_tag "dep.jpg" %>
                                       <% elsif @department.department_name == "Business Development"%>
-                                      <%= image_tag "accounts.jpg", :style => "height:120px  !important;width:120px !important;"%>
+                                      <%= image_tag "accounts.jpg" %>
                                       <% elsif @department.department_name == "Accounts"%>
-                                        <%= image_tag "bdm.jpg", :style => "height:120px  !important;width:120px !important;"%>
+                                        <%= image_tag "bdm.jpg" %>
                                       <% end %>
                                     </a><br> 
                                     <div class="media-body">

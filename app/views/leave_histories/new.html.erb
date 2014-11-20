@@ -1,3 +1,4 @@
+
 <div class="wrapper">
  <div class="container">
    <div class="row">                
@@ -13,7 +14,19 @@
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 Your Have No remaining leaves Please confirm before apply
             </div>
-          <% end %>                 
+          <% end %>
+          <% if @error.present? %>
+             <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+               <%= @error%>
+            </div>
+          <% end %>
+          <% if flash[:error].present? %>
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <%= flash[:error] %>
+            </div>
+          <% end %>             
           <div class="module-body">         
            <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %>                          
           <div class="control-group">
@@ -45,7 +58,7 @@
               <div class="control-group">
 							  <label class="control-label" for="basicinput">From</label>
 							  <div class="controls">
-                 <%= f.text_field :from_date, :id => "idnm1", :class => "span8 form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}%>
+                 <%= f.text_field :from_date, :id => "idnm1", :class => "span8 form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
 								   <span class="help-block with-errors"></span>   
 							  </div>
 						  </div>
@@ -54,7 +67,7 @@
               <div class="control-group">
 							  <label class="control-label" for="basicinput">To</label>
 							  <div class="controls">
-                 <%= f.text_field :to_date, :id => "idnm2", :class => "span8 form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"} %>
+                 <%= f.text_field :to_date, :id => "idnm2", :class => "span8 form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"}, :required => true  %>
 								   <span class="help-block with-errors"></span>   
 							  </div>
 						  </div>
@@ -65,14 +78,14 @@
               <div class="control-group">
 							  <label class="control-label" for="basicinput">Date</label>
 							  <div class="controls">
-                 <input type="text" name="leave_date" id = "idnm3" class ="span8 form-control leave-form-date">
+                 <input type="text" name="leave_date" id = "idnm3" class ="span8 form-control leave-date">
 								   <span class="help-block with-errors"></span>   
 							  </div>
 						  </div>
             </div>
             <div class="span4">
               <div class="control-group">
-							  <label class="control-label" for="basicinput">To</label>
+							  <label class="control-label" for="basicinput"></label>
 							  <div class="controls">
                  <%= f.select :section, options_for_select([['Morning', 'Morning'], ['After Noon', 'After Noon']]), :id => "idnm2", :class => "span8 form-control leave-to-date", :data => {:error => "Please Enter Select Session"} %>
 								   <span class="help-block with-errors"></span>   
@@ -136,6 +149,13 @@
             }
            }
      });
+     $(".leave-date").datepicker({
+       dateFormat: 'dd/mm/yy',
+          minDate: -0,
+          yearRange: "0:+1",
+           changeMonth: true,
+         changeYear: true
+     });
   });
   $(function(){
     $('.half_day').hide();
@@ -148,6 +168,12 @@
       $('.half_day').hide();
       $('.full_day').show();
     });
+     $(".leave-date").change(function(){
+        var date = $('.leave-date').datepicker('getDate');
+        date.setDate(date.getDate());
+        $(".leave-form-date").datepicker('setDate', date);
+        $(".leave-to-date").datepicker('setDate', date);
+     });
     //script for checking applied leaves is greater than balanced leaves - sekhar
     $(".idnm2").change(function(){
       if($(".rb2").prop("checked")){

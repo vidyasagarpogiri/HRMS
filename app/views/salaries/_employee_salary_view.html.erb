@@ -48,22 +48,15 @@
 				      <% @allowances.each do |allowance| %>																	
 	             <tr>		 								             
 					       <th><%= allowance.allowance_name %></th> 													   								          								               <% if allowance.is_deductable %>
-                    <td><%= allowance.allowance_value %></td>
-                    <td><%= monthly(allowance.allowance_value) %></td>
-                    <% allowance_total -= allowance.allowance_value %>                  
+                    <td><%= allowance.total_value %></td>
+                    <td><%= monthly(allowance.total_value) %></td>
+                    <% allowance_total -= allowance.total_value %>                  
                 <% else %>
-                    <% if allowance.value.present? %>													 
-                    <td><%= allowance_value(allowance.value, @salary.basic_salary)  %></td>
-                    <td><%= monthly(allowance_value(allowance.value, @salary.basic_salary))  %></td>
-                  <% allowance_total += allowance_value(allowance.value, @salary.basic_salary) %>
-                  <% else %>
-                    <td><%= allowance.allowance_value %></td>
-                    <td><%= monthly(allowance.allowance_value) %></td>
-                    <% allowance_total += allowance.allowance_value %>
+                    <td><%= allowance.total_value %></td>
+                    <td><%= monthly(allowance.total_value) %></td>
+                    <% allowance_total += allowance.total_value %>
                   <% end %>
-               <% end %>
-               </tr>
-             
+               </tr>             
               <% end %>
               <% end %>
             <tr>            
@@ -109,17 +102,20 @@
 		          <td><%= total_compensation %> </td>
 		          <td><%= monthly(total_compensation)%> </td>				      
 					  </tr>
-					  
+					   <% if @salary.bonus.present? %>
 					   <tr>
 					    <th>Bonus</th>
 					    <td><%= @salary.bonus %></td>
 					    <td><%= monthly(@salary.bonus) %></td>
 				    </tr>
+				    <% end %>
+				    <% if @salary.medical_insurance.present? %>
 				    <tr>
 					    <th>Medical Insurance</th>
 					    <td><%= @salary.medical_insurance %></td>
 					    <td><%= monthly(@salary.medical_insurance) %></td>
 			      </tr>
+			      <% end %>
 				    <tr style="color:black;">
 					    <th>CTC</th>
 					    <td><%= @salary.ctc_fixed %></td>

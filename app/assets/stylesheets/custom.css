@@ -1,24 +1,20 @@
  .media-avatar {
 /* border: 1px solid rgba(204, 204, 204, 0.5); */
 border: none !important;
-height: 130px !important;
-width: 130px !important;
+height: 100px !important;
+width: 100px !important;
 margin-right: 110px!important;
 overflow:hidden !important;
 border-radius :100% !important;
 }
 
 .media-avatar img {
-height: 130px!important;
-width: 130px !important;
+height: 100px!important;
+width: 100px !important;
 border-radius :100% !important;
 margin: 0px !important;
 }
 
-.department_image{
-height:130px !important;
-width:160px !important;
-}
 .media-body ul li{
 margin-left:-25px !important;
 }
@@ -294,6 +290,7 @@ margin-bottom:20px;
    font-size:16px;  
    letter-spacing:3px;
    border-top: 1px solid #AEAEAE;
+   text-align:center;
    
    /*text-shadow: 0 -4px 3px rgb(164, 200, 224), 0 3px 4px rgba(0, 0, 0, 0.2);
    color: red;
@@ -313,22 +310,17 @@ font-size:50px;
 color:#82B4E6;
 }
 
-.rombus .text span{
-  padding-left: 20px;
-}
-
-
  .group{
   border-radius: 65px; 
   border: 2px solid #55B19A;
-  width:120px;
-  height:120px
+  width:100px;
+  height:100px
   }
   
   .group .group_name{
   font-weight:bold;
-  font-size:14px;
-  margin-top:50px;
+  font-size:13px;
+  margin-top:40px;
   text-align:center;
   color:#55B19A;
   text-transform: capitalize;   

@@ -27,13 +27,13 @@
                     <div class="span5"> 
                     <a class="media-avatar pull-left" href="#">                                               
                       <% if employee.present? && employee.avatar_url.present? %>
-                      <%= image_tag employee.avatar_url %> 
+                        <%= image_tag employee.avatar_url, :width => "60px", :height => "60px" %> 
                       <% else %>
-                      <!--<%# if employee.gender == "Male" %>-->
-                      <img src="/assets/user.png" stle="width:70px;height:20px;"> 
-                      <!--<%# else %>
-                      <img src="/assets/1.jpg" stle="width:70px;height:20px;">
-                      <%# end %>-->
+                        <% if employee.gender == "Female" %>
+                          <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+                        <% else %>
+	                        <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+                        <% end %>
                       <% end %>                                               
                     </a>
                     <div class="media-body">

@@ -102,13 +102,13 @@ class SalariesController < ApplicationController
     else
       salary.update(pf: 0.0, pf_apply: 'false', esic: 0.0, esic_apply: 'false', hra: hra)
     end
-    ctc_fixed = salary.gross_salary.to_f + salary.bonus.to_f + salary.gratuity.to_f + salary.medical_insurance.to_f
+    ctc_fixed = salary.gross_salary.to_f + salary.bonus.to_f+ salary.gratuity.to_f + salary.medical_insurance.to_f
     if allowances.present?
-      special_allowance = allowance_total(allowances, salary)
+      special_allowance = salary.gross_salary.to_f - ( basic_value + salary.esic + salary.pf + salary.hra + allowance_total_by_salary(salary))
     else
-      special_allowance = salary.gross_salary.to_f - (basic_value + salary.esic + salary.pf + hra)
+      special_allowance = salary.gross_salary.to_f - ( basic_value + salary.esic + salary.pf + hra)
     end
-    # special_allowance = @salary.gross_salary.to_f - (basic_value + hra)
+    #special_allowance = @salary.gross_salary.to_f - (basic_value + hra)
     salary.update(ctc_fixed: ctc_fixed, basic_salary: basic_value, special_allowance: special_allowance)
     salary
   end
