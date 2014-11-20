@@ -59,8 +59,6 @@ class Employee < ActiveRecord::Base
 	#validates :avatar, presence: true
 	#after_create :add_leaves
 	#after_update :update_leaves
-
-
   #Employment_Status = []
 
  def reporting_manager
