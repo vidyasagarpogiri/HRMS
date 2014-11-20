@@ -157,7 +157,10 @@ class EmployeesController < ApplicationController
   end
   
   def bankdetails_create
-		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan], :PFAccountNumber => params[:PFAccountNumber])		
+		@bank_details = @employee.update(:bank_name => params[:bank_name], :branch_name => params[:branch_name], :account_number => params[:account_number] , :pan => params[:pan], :PFAccountNumber => params[:PFAccountNumber])	
+		if @employee.errors.present?
+      render 'bankdetails_form'	
+    end
 	end
   
   def bankdetails_show

@@ -1,47 +1,53 @@
-  <div class="module">
-		<div class="module-head">							
-      <h3>Leaves </h3>         
-    </div>
-    <div class="module-body">	  
-   <% if @leaves.present? %>                  
-    <table class="table table-striped table-bordered table-condensed">
-				<thead>
-					<tr>
-					  <th width="80px">Full Name</th>
-						<th width="80px">Date</th>
-						<th width="80px">No of Days</th>													
-						<th width="80px">Leaves Type</th>
-						<th> Reason </th>
-						<th width="100px">Leaves Balance</th>													
-						<th width="60px">Status</th>
-						<th width="120px">Reporting Manger</th>													
-					</tr>
-				</thead>		
-			  <% @leaves.each do |f| %>		
-        <tbody>												
-					<tr>               
-					  <td> <%= f.employee.full_name %></td>
-				    <td> <%= format_date(f.from_date) %> to <%= format_date(f.to_date) %>  </td>
-					  <td> <center><%= f.days %> </center></td>
-					  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
-					  <td> <%= f.reason %> </td> 
-					  <td><center> <%= total_balance_leaves(f.employee) %> </center></td>												  
-					  <td> <%= f.status %> </td>
-					  <td> <%= f.employee.reporting_manager%></td>
-					</tr>
-       </tbody>
-	     <% end %>	
-		</table>
-        <div class="pagination ">                       
-            <%# paginate @leaves %>                       
-        </div>
-         
-			<% else %>
-      <div class="alert alert-success alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              You have No Leaves Requests 
-      </div>                                   
-			<% end %>										
- </div>
-     </div>  
+<div class="module">
+	<div class="module-head">							
+    <h3>Leaves </h3>         
+  </div>
+  <div class="module-body">	  
+    <% if @leaves.present? %>                  
+    <table cellpadding="0" cellspacing="0" border="0" class="datatable-leaves table  table-striped	 display" width="100%">
+      <thead>
+        <tr>
+          <th width="80px">Full Name</th>
+	        <th width="80px">Date</th>
+	        <th width="80px">No of Days</th>													
+	        <th width="80px">Leaves Type</th>
+	        <th> Reason </th>
+	        <th width="100px">Leaves Balance</th>													
+	        <th width="60px">Status</th>
+	        <th width="120px">Reporting Manger</th>													
+        </tr>
+      </thead>		
+      <% @leaves.each do |f| %>		
+      <tbody>												
+        <tr class="gradeA">               
+          <td> <%= f.employee.full_name %></td>
+          <td> <%= format_date(f.from_date) %> to <%= format_date(f.to_date) %>  </td>
+          <td> <center><%= f.days %> </center></td>
+          <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
+          <td> <%= f.reason %> </td> 
+          <td><center> <%= total_balance_leaves(f.employee) %> </center></td>												  
+          <td> <%= f.status %> </td>
+          <td> <%= f.employee.reporting_manager%></td>
+        </tr>
+      </tbody>
+      <% end %>	
+	  </table>            
+		<% else %>
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          You have No Leaves Requests 
+    </div>                                   
+		<% end %>										
+  </div>
+</div>
+     
+<script>
+	$(document).ready(function() {
+		$('.datatable-leaves').dataTable();
+		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
+		$('.dataTables_paginate > a').wrapInner('<span />');
+		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+	} );
+</script>       
  

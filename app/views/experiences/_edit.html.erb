@@ -10,7 +10,7 @@
 			         <div class="control-group">
                   <label class="control-label" for="basicinput">Company Name</label>
                       <div class="controls">
-                        <%= f.text_field :previous_company, :class => "span8 form-control", :placeholder =>"Enter Company Name", :data => {:error => "Please enter Company Name"}, :required => true, :pattern => '[a-zA-Z0-9/s ]*' %>
+                        <%= f.text_field :previous_company, :class => "span8 form-control", :placeholder =>"Enter Company Name", :data => {:error => "Please enter valid Company Name"}, :required => true, :pattern => '[a-zA-Z0-9/s ]*' %>
                          <span class="help-block with-errors"></span>
                       </div>
 								</div>
@@ -18,7 +18,7 @@
 <div class="control-group">
                   <label class="control-label" for="basicinput">Designation</label>
                       <div class="controls">
-                        <%= f.text_field :last_designation, :class => "span8 form-control", :placeholder =>"Enter Designation", :data => {:error => "Please Enter Designation"}, :required => true, :pattern => '[a-zA-Z/./s ]*' %>
+                        <%= f.text_field :last_designation, :class => "span8 form-control", :placeholder =>"Enter Designation", :data => {:error => "Please Enter valid Designation"}, :required => true, :pattern => '[a-zA-Z/./s ]*' %>
                          <span class="help-block with-errors"></span>
                       </div>
 								</div>
