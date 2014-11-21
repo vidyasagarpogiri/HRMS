@@ -14,7 +14,7 @@ class TaxBracketsController < ApplicationController
     if @tax_bracket.save
       redirect_to tax_brackets_path 
     else
-      render "new"
+      render "new", :locals => { :@custom_error => "Upper limit must be greater than lower limit" }
     end
   end
   
@@ -27,7 +27,7 @@ class TaxBracketsController < ApplicationController
     if @tax_bracket.update(params_tax_bracket)
       redirect_to tax_brackets_path 
     else
-      render "edit"
+      render "edit", :locals => { :@custom_error => "Upper limit must be greater than lower limit" }
     end
   end
   

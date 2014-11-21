@@ -9,6 +9,12 @@
             </div>
             
             <div class="module-body">
+              <% if @custom_error.present? %>
+                 <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <%= @custom_error %>
+                  </div>
+              <% end %>
               <%= form_for @tax_bracket, :html => {:class=>"form-horizontal row-fluid new_tax_form"} do |tax| %>
               
 						    <div class="control-group">   
@@ -54,7 +60,7 @@
 					         		
 					  <ul class="navigation-btns pull-left" >
 					    <li><button type="submit" class="btn btn-success">Save</button></li>
-					    <li><%= link_to "Cancel", "#",:class => "btn btn-danger" %></li>
+					    <li><%= link_to "Cancel", tax_brackets_path,:class => "btn btn-danger" %></li>
 					  </ul>	
 						<% end %>
             </div> <!--Module Body -->
