@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212095630) do
+ActiveRecord::Schema.define(version: 20141121102056) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -551,6 +551,16 @@ ActiveRecord::Schema.define(version: 20141212095630) do
   create_table "static_salaries", force: true do |t|
     t.string   "name"
     t.float    "value",      limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tax_brackets", force: true do |t|
+    t.string   "bracket"
+    t.float    "lower_limit",    limit: 24
+    t.float    "upper_limit",    limit: 24
+    t.integer  "tax_percentage"
+    t.float    "min_tax",        limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
   end

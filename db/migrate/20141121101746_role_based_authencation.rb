@@ -1,5 +1,5 @@
 class RoleBasedAuthencation < ActiveRecord::Migration
-  def change
+ def change
       Feature.destroy_all
       puts "Creating Feature Table"
       Rails.application.eager_load!
