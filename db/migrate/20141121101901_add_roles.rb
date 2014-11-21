@@ -1,4 +1,4 @@
-class AddingRoles < ActiveRecord::Migration
+class AddRoles < ActiveRecord::Migration
   def change
     puts "Creating Roles"
     Designation.all.each do |desg|
