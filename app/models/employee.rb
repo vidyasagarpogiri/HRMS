@@ -38,7 +38,7 @@ class Employee < ActiveRecord::Base
   has_many :leave_histories  
   has_many :educations
   has_many :emergency_contacts
-  
+  has_many :statuses # for employee status, employee may have more than one status so we have kept has_many relationship
   
 	validates :employee_id, presence: true 
 	validates :first_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }

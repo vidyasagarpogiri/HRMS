@@ -115,6 +115,10 @@ get 'inactive_employees' => "employees#inactive_employees"
 		resources :ff_statuses 
     resources :leaves
 	  resources :emergency_contacts
+	  resources :statuses do
+	  resources :comments
+	  resources :likes
+	  end
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'
