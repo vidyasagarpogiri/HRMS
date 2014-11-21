@@ -28,5 +28,3 @@ class AddDepartments < ActiveRecord::Migration
   end
 end
 
- 
- 

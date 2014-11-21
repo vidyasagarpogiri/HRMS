@@ -260,6 +260,9 @@ end
   end
 get 'configure' => "features#features_configure"
 post 'create_package' => "features#create_package"
+
+
+  resources :tax_brackets
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
