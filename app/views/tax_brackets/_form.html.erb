@@ -1,0 +1,71 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+               <h3> New Tax Bracket</h3>
+            </div>
+            
+            <div class="module-body">
+              <%= form_for @tax_bracket, :html => {:class=>"form-horizontal row-fluid new_tax_form"} do |tax| %>
+              
+						    <div class="control-group">   
+						      <label class="control-label" for="basicinput">Bracket Name</label>
+                    <div class="controls">
+                      <%= tax.text_field :bracket, :class => "span8 form-control", :placeholder =>"Enter Bracket Name"%>
+                    <span class="help-block with-errors"></span>
+					        </div>
+						    </div>
+						    
+						    <div class="control-group">   
+						      <label class="control-label" for="basicinput">Lower Limit</label>
+                    <div class="controls">
+                      <%= tax.text_field :lower_limit, :class => "span8 form-control", :placeholder =>"Enter Lower Limit",  :data => {:error => "Please Enter Lower Limit"},  :pattern =>'[0-9]*\.[0-9]+|[0-9]+', :required => true %>
+                    <span class="help-block with-errors"></span>
+					        </div>
+						    </div>
+						    
+						    <div class="control-group">   
+						      <label class="control-label" for="basicinput">Upper Limit</label>
+                    <div class="controls">
+                      <%= tax.text_field :upper_limit, :class => "span8 form-control", :placeholder =>"Enter Upper Limit",  :data => {:error => "Please Enter Upper Limit"},  :pattern =>'[0-9]*\.[0-9]+|[0-9]+', :required => true  %>
+                    <span class="help-block with-errors"></span>
+					        </div>
+						    </div>
+						    
+						    <div class="control-group">   
+						      <label class="control-label" for="basicinput">Tax Percentage</label>
+                    <div class="controls">
+                      <%= tax.text_field :tax_percentage, :class => "span8 form-control", :placeholder =>"Enter Tax Percentage",  :data => {:error => "Please Enter Tax Percentages"},  :pattern =>'[0-9]*\.[0-9]+|[0-9]+', :required => true  %>
+                    <span class="help-block with-errors"></span>
+					        </div>
+						    </div>
+						    
+						    <div class="control-group">   
+						      <label class="control-label" for="basicinput">Minimum Tax</label>
+                    <div class="controls">
+                      <%= tax.text_field :min_tax, :class => "span8 form-control", :placeholder =>"Enter Minimum Tax",  :data => {:error => "Please Enter Minimum Tax"},  :pattern =>'[0-9]*\.[0-9]+|[0-9]+', :required => true  %>
+                    <span class="help-block with-errors"></span>
+					        </div>
+						    </div>
+							      
+					         		
+					  <ul class="navigation-btns pull-left" >
+					    <li><button type="submit" class="btn btn-success">Save</button></li>
+					    <li><%= link_to "Cancel", "#",:class => "btn btn-danger" %></li>
+					  </ul>	
+						<% end %>
+            </div> <!--Module Body -->
+          </div><!---Module -->
+        </div><!---Content--->
+      </div> <!-- span12 -->
+    </div> <!-- Row -->
+  </div><!---Container --->
+</div><!---Wrapper---->
+
+<script>
+  $(".new_tax_form").validator();
+</script>   
+    
