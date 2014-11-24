@@ -572,7 +572,7 @@ ActiveRecord::Schema.define(version: 20141121103447) do
     t.string   "bracket"
     t.float    "lower_limit",    limit: 24
     t.float    "upper_limit",    limit: 24
-    t.integer  "tax_percentage"
+    t.float    "tax_percentage", limit: 24
     t.float    "min_tax",        limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
