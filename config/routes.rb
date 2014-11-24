@@ -135,8 +135,13 @@ get 'inactive_employees' => "employees#inactive_employees"
 			get 'bankdetails_show'
 			get 'bankdetails_edit'
 			post 'bankdetails_create'
-			post 'bankdetails_update'		
+			post 'bankdetails_update'	
+			get 'employee_self_description_show'
+			get 'employee_self_description_form'
+			patch 'employee_self_description_create'	
 		end
+		
+   
 		
   
   resources :educations do
@@ -266,6 +271,7 @@ post 'create_package' => "features#create_package"
   resources :tax_brackets
   
   resources :projects
+ get "/getAllSkills" => "employees#getAllSkills" 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

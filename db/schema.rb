@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121103447) do
+ActiveRecord::Schema.define(version: 20141124122423) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -191,6 +191,13 @@ ActiveRecord::Schema.define(version: 20141121103447) do
     t.string   "status"
   end
 
+  create_table "employee_skills", force: true do |t|
+    t.integer  "skill_id"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "employees", force: true do |t|
     t.string   "employee_id"
     t.string   "title"
@@ -228,6 +235,8 @@ ActiveRecord::Schema.define(version: 20141121103447) do
     t.integer  "shift_id"
     t.string   "devise_id"
     t.integer  "group_id"
+    t.text     "self_description"
+    t.text     "interests"
   end
 
   add_index "employees", ["blood_group_id"], name: "index_employees_on_blood_group_id", using: :btree
@@ -552,6 +561,12 @@ ActiveRecord::Schema.define(version: 20141121103447) do
     t.datetime "updated_at"
   end
 
+  create_table "skills", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "static_allowances", force: true do |t|
     t.string   "name"
     t.float    "percentage",    limit: 24
@@ -572,7 +587,7 @@ ActiveRecord::Schema.define(version: 20141121103447) do
     t.string   "bracket"
     t.float    "lower_limit",    limit: 24
     t.float    "upper_limit",    limit: 24
-    t.float    "tax_percentage", limit: 24
+    t.integer  "tax_percentage"
     t.float    "min_tax",        limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
