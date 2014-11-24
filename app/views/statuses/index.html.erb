@@ -1,61 +1,69 @@
 <div class="wrapper">
-  <div class="container">
-    <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>Status Details</h3>
-              <%# if current_user.department == Department::HR %>
-              <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a><%= link_to " Add New Status",new_employee_status_path%></label>
-              <%# end %>
-            </div>
-            <% if @statuses.present? %>                                         
-            <div class="module-body">                     
-              <table class="table table-striped table-bordered table-condensed" id="sample-table-2">     
-                <thead>											      
-                  <tr>
-                    <th> Status</th>
-                    <th> From Time</th>	
-                    <th> To Time</th>
-                    <th> Actions</th>														            									      		
-                  </tr>
-                  </thead>
-                <% @statuses.each do |s| %>  
-                <tbody>
-                  <tr>               
-                    <td class="center"><%=s.status %></td>
-                    <td><%# shift.from_time %></td>
-                    <td><%# shift.to_time %></td>
-                    <%# if current_user.department == Department::HR %>
+ <div class="container">
+	<div class="row">
+    <div class="span12">
+		  <div class="content">
+		  <%= render "statuses/form"%>
+		  <%# render "comments/index"%>
+			  <div class="module">
+				  <div class="module-head">
+					  <h3>Employees Wall </h3>
+					    <%# if current_user.department == Department::HR %>                                
+					  <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class=""></i></a> <%# link_to 'New Job',  new_recruitment_path %></label>
+					<%# end %>  
+				  </div>	
+			    <div class="module-body">
+		        <% if @statuses.present? %> 
+            <% @statuses.each do |s| %> <%# link_to "hiii #{image_tag(yourimagepath)}", "link_path" %>
+            <div class="row-fluid">
+  <div class="span1"><%= link_to image_tag(s.employee.avatar_url,size: "60x20") %></div>
+  <div class="span8"><b><%= s.status %></b> </div>
+  <div class="span2"><h7>Posted By: <%=link_to s.employee.first_name,profile_path(s.employee.id) %> <br>
+  <%=time_ago_in_words(s.created_at)%> ago</h7> 
+  
+  <% if current_user.employee.id == s.employee.id %>
                     <td> 
-                      <ul class="navigation-btns pull-right" >
-                        <li><%# link_to 'Edit', edit_shift_path(shift.id), :class => "btn btn-success " %></li>
-                        <li><%# link_to "Delete",shift_path(shift.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
+                      <ul class="navigation-btns " >
+                        <li><%= link_to 'Show', status_path(s.id), :class => "btn btn-info " %></li>
+                        <li><%# link_to 'Edit', edit_status_path(s.id), :class => "btn btn-success " %></li>
+                        <li><%= link_to "Delete",status_path(s.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
                       </ul>
                     </td>
-                  <% #end %>
-                  </tr>
-                </tbody>
+                    
+                 
                 <% end %>
-              </table>
-            <% else %> 
-            <div class="module-body">                                           
-              <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  No Status to display.
-              </div>
-            </div>
-            <% end %>
-            </div><!--module-body -->    																																											                               
-          </div><!-- /.module-->									      				                                      
-        </div><!--/.content-->                    
-      </div><!--/.span12-->                
-    </div><!--/.row-->
-  </div><!--/.container-->
+                
+  </div>
+   <div class="span8">
+   <h5><%= s.comments.count %> Comments   
+   <%= s.likes_count %> Likes , 
+   <% if s.likes.where(:employee_id => current_user.employee.id).first %>  
+   <%= 'You Liked'%> </span> </h5>
+  <% else %> 
+   <%= link_to 'Like', add_like_status_path(s.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
+   <% end %>
+  <% s.comments.each do |comm| %> 
+                <p><%= link_to image_tag(comm.employee.avatar_url,size: "20x20") %> <b> <%= comm.employee.full_name %> </b><%= time_ago_in_words(comm.created_at)%> ago </p>
+                <p><%= comm.comment %></p>
+                <br>
+                <% end %> 
+                </div>
+    </div>
+ <%= render "comments/form", :status => s%>
+             
+  <hr><% end %>
+   <% end %>                                                                                                                             
+        
+     
+       
+                   
+						</div><!--/.module-body-->
+					</div><!--/.module-->
+				</div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
 </div><!--/.wrapper-->
+	
 
 
-                       
-                       
-               

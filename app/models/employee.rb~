@@ -39,7 +39,8 @@ class Employee < ActiveRecord::Base
   has_many :educations
   has_many :emergency_contacts
   has_many :statuses # for employee status, employee may have more than one status so we have kept has_many relationship
-  
+  has_many :comments # for employee status comments
+  has_one :like # one status will have one like for one employee
 	validates :employee_id, presence: true 
 	validates :first_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
 	validates :last_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }

@@ -1,32 +1,87 @@
 class StatusesController < ApplicationController
   
   def index 
-    #@employee = Employee.find(params[:employee_id])
-    @statuses = Status.all
+  
+    #raise params.inspect
+    #@sta = Status.find(params[:id]) 
+    @statuses = Status.all.order('created_at DESC')
+    @status = Status.new
+    @comment = Comment.new
+    #@st = Status.find(params[:status_id]) 
+    #raise @statuses.inspect
+    
+   
+    #raise  @comments.inspect
   end
   
-  def new
-  #raise params.inspect
+  def new 
    @status = Status.new
+ 
   end
   
   def create
-  @employee = Employee.find(params[:employee_id])
-    raise params.inspect
-    @status = Status.new(status_params)
-      if @status.save          
-        
-      else
-        render "new"
+  @employee = Employee.all
+    @status = current_user.employee.statuses.new(status_params)
+      if @status.save  
+     
+      #Employee.where(status: false).each do |emp|
+      #raise @user.inspect
+      #Notification.status_notification(@emp, @status).deliver
+    #raise @emp.inspect
+    #end
+     redirect_to statuses_path
+   else
+     render "new"
+   end
+   end
+  
+  def add_like
+    #raise params.inspect
+    @like = Like.create(is_like: true, employee_id: params[:employee_id], status_id: params[:id])
+    #raise @like.inspect
+    #@like = Like.create(like_params)
+    #raise params.inspect
+    @like.save
+      count = @like.status.likes_count
+      @like.status.update :likes_count => count+1
+    #@like = count+1
+    redirect_to statuses_path
+  end
+  
+  def edit     
+  #raise params.inspect
+    @status = Status.find(params[:id])        
+  end
+  
+  def update
+    @status = Status.find(params[:id])
+    if @status.update(status_params)     
+      redirect_to statuses_path
+        else
+      render "edit"
       end
   end
-
-
+  
+  
+  def destroy
+    @status = Status.find(params[:id])    
+    @status.destroy
+    redirect_to statuses_path
+   end
+  
+  def show
+    @status = Status.find(params[:id])
+    @comments = @status.comments
+    @comment = Comment.new
+      
+  end
+  
   private
   
   def status_params
     params.require(:status).permit(:status)
-  end  
+  end 
+ 
 end
 
 
@@ -50,52 +105,3 @@ end
 
 
 
-=begin
-      
-  def new
-  #raise params.inspect
-  @teacher = Teacher.find(params[:teacher_id])
-  @student = Student.new
-  end
-  
-  def create
-  @teacher = Teacher.find(params[:teacher_id])
-  @student = @teacher.students.create(student_params)
-  @student.save
-  redirect_to teacher_students_path(@teacher)
-  end
-  
-  def show
-  #raise params.inspect
-  @teacher = Teacher.find(params[:teacher_id])
-  @student = Student.find(params[:id])
-  end
-  
-  def edit
-  #raise params.inspect
-  @teacher = Teacher.find(params[:teacher_id])
-  @student = Student.find(params[:id])
-  
-  end
-  
-  def update
-  @teacher = Teacher.find(params[:teacher_id])
-  @student = Student.find(params[:id])
-  @student.update(student_params)
-  redirect_to teacher_students_path(@teacher)
-  end
-  
-  def destroy
-  @student = Student.find(params[:id])
-  @student.destroy
-  redirect_to teacher_students_path
-  end
-   
-  private
-  
-  def student_params
-  params.require(:student).permit(:name, :roll, :leave)
-  end
-  
-end
-=end

@@ -115,10 +115,10 @@ get 'inactive_employees' => "employees#inactive_employees"
 		resources :ff_statuses 
     resources :leaves
 	  resources :emergency_contacts
-	  resources :statuses do
-	  resources :comments
-	  resources :likes
-	  end
+	  #resources :statuses do
+	  #resources :comments
+	  #resources :likes
+	  #end
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'
@@ -267,6 +267,13 @@ post 'create_package' => "features#create_package"
 
 
   resources :tax_brackets
+  # for employee status
+  resources :statuses do
+    resources :comments 
+    member do
+      post "add_like"
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
