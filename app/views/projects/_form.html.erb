@@ -1,0 +1,125 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+              <h3>Project Form</h3>
+            </div>
+            
+            
+            <div class="module-body">
+              <%= form_for @project,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Project Title</label>
+                  <div class="controls">
+                  <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Project Title", :data => {:error => "Please Enter valid Project Code"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+              
+              
+                <div class="control-group">
+										<label class="control-label" for="basicinput">Start Date</label>
+										<div class="controls">
+                     <%= f.text_field :start_date, :class => "span8 from form-control",:placeholder => "Select Project Start Date", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
+											 <span class="help-block with-errors"></span>   
+										</div>
+									</div>
+	
+	
+	
+	
+		            <div class="control-group">
+										<label class="control-label" for="basicinput">End Date </label>
+										<div class="controls">
+                     <%= f.text_field :end_date, :class => "span8 to form-control", :id => "basicinput",:placeholder => "Select Project End Date", :data => {:error => "Please Enter valid Relieving Date"}, :required => true %>
+											 <span class="help-block with-errors"></span>   
+										</div>
+									</div>
+              
+               <div class="control-group">
+                <label class="control-label" for="basicinput">Description</label>
+                <div class="controls">
+                  <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Project Description", :data => {:error => "Please Enter Project Description"}, :required => true, :style => "margin: 0px 0px 10px; width: 650px; height: 221px;" %>
+                  <span class="help-block with-errors"></span>   
+                </div>
+              </div>
+              
+              
+              
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Taskes Performed</label>
+                  <div class="controls">
+                  <%= f.text_area :tasks_performed, :class => "span8 form-control", :placeholder =>"Enter Tasks Performed", :data => {:error => "Please Enter valid Tasks"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+              
+              
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Roles</label>
+                  <div class="controls">
+                  <%= f.text_field :roles, :class => "span8 form-control", :placeholder =>"Enter roles Performed", :data => {:error => "Please Enter valid Tasks"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+              
+              
+              <div class="control-group">
+                <label class="control-label" for="basicinput">key Skills Used</label>
+                  <div class="controls">
+                  <%= f.text_field :skills, :class => "span8 form-control", :placeholder =>"Enter key Skills Used", :data => {:error => "Please Enter valid skills comma seperated"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+             
+              <ul class="navigation-btns editthree" >
+                <li><button type="submit" class="btn btn-success">Save</button></li>
+                <li><%= link_to "Cancel", projects_path,:class => "btn btn-danger" %></li>
+              </ul>	
+              
+              <% end %>
+            
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
+
+
+ <script>    
+$(function() {
+    $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
+  });
+</script>
+
+        <script>
+           $(function () {
+               $(".from").datepicker({
+                   dateFormat: 'dd/mm/yy',
+                   changeMonth: true,
+                   changeYear: true,
+                    maxDate: -0,
+                   yearRange: "-100:+0",
+                   onClose: function (selectedDate) {
+                       var date2 = $('.from').datepicker('getDate');
+                       date2.setDate(date2.getDate());
+                       $(".to").datepicker("option", "minDate", date2);
+                   }
+               });
+
+               $(".to").datepicker({
+                   dateFormat: 'dd/mm/yy',
+                    maxDate: -0,
+                    yearRange: "-100:+0",
+                     changeMonth: true,
+                   changeYear: true
+               });
+           });
+        </script>
+        
+

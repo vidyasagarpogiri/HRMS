@@ -38,6 +38,7 @@ class Employee < ActiveRecord::Base
   has_many :leave_histories  
   has_many :educations
   has_many :emergency_contacts
+  has_many :projects
   
   #for photo_album
   has_many :albums
