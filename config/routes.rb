@@ -112,6 +112,7 @@ post 'accept' => "leave_histories#accept"
 get 'employee_leaves' => "leave_histories#employee_leaves"
 get 'inactive_employees' => "employees#inactive_employees"
  resources :employees do
+    
 		resources :ff_statuses 
     resources :leaves
 	  resources :emergency_contacts
@@ -263,6 +264,8 @@ post 'create_package' => "features#create_package"
 
 
   resources :tax_brackets
+  
+  resources :projects
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
