@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20141124122423) do
+=======
+
+ActiveRecord::Schema.define(version: 20141124121909) do
+
+>>>>>>> dd253358a8544e8f7f284dfa1a8665356c1cfdda
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -72,6 +78,14 @@ ActiveRecord::Schema.define(version: 20141124122423) do
     t.integer  "image_gallery_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.text     "comment"
+    t.string   "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "company_pay_roll_masters", force: true do |t|
@@ -378,6 +392,14 @@ ActiveRecord::Schema.define(version: 20141124122423) do
     t.integer  "employee_id"
   end
 
+  create_table "likes", force: true do |t|
+    t.boolean  "is_like"
+    t.integer  "employee_id"
+    t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "packages", force: true do |t|
     t.integer  "role_id"
     t.integer  "feature_id"
@@ -581,6 +603,14 @@ ActiveRecord::Schema.define(version: 20141124122423) do
     t.float    "value",      limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "statuses", force: true do |t|
+    t.text     "status"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "likes_count", default: 0
   end
 
   create_table "tax_brackets", force: true do |t|

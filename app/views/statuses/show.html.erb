@@ -1,0 +1,33 @@
+<div class="wrapper">
+	<div class="container">
+		<div class="row">     			
+			<div class="span8">	
+			  <div class="module">
+          <div class="module-head">
+			      <h3>Status Details</h3>			      
+	        </div>			
+		      <div class="module-body">	       
+            <h4><%= @status.status %></h4>
+                   
+                             
+					</div><!--/.module-body-->
+					
+					 <h5><% @comments.each do |com| %></h4> 
+                <h5>Comment:<%=com.comment %> <br>  
+                <% end %>
+					<%= render "comments/form", :status => @status%>
+				</div><!--/.module-->
+			</div>	<!--/.span8-->				
+			<div class="span4">	
+        <div class="module">	
+                                                     
+          <div class="module-body">
+           	
+           <%#paginate  @policies %> 					
+           </div><!--/.module-body-->
+  		   </div><!--/.module-->
+	     </div>	<!--/.span4-->			
+     </div><!--/.row-->		
+  </div><!--/.container-->	
+</div><!--/.Wrapper-->	
+
