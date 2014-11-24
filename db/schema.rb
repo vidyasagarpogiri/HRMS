@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121102056) do
+ActiveRecord::Schema.define(version: 20141121103958) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20141121102056) do
     t.integer  "employee_id"
     t.boolean  "address_type", default: false
     t.boolean  "is_permanent"
+  end
+
+  create_table "albums", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "allowances", force: true do |t|
@@ -415,6 +423,13 @@ ActiveRecord::Schema.define(version: 20141121102056) do
     t.integer  "allowance_id"
     t.integer  "payslip_id"
     t.boolean  "is_deductable", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photos", force: true do |t|
+    t.string   "album"
+    t.integer  "album_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

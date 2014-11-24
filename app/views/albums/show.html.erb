@@ -1,0 +1,12 @@
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<% @photos.each do |photo| %>
+  <%= image_tag photo.album_url %>
+  <%= link_to "Edit Album", edit_photo_path(p) %>
+<% end %>
+
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>

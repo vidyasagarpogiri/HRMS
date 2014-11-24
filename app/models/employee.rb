@@ -39,6 +39,8 @@ class Employee < ActiveRecord::Base
   has_many :educations
   has_many :emergency_contacts
   
+  #for photo_album
+  has_many :albums
   
 	validates :employee_id, presence: true 
 	validates :first_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
