@@ -263,6 +263,8 @@ post 'create_package' => "features#create_package"
 
 
   resources :tax_brackets
+  resources :tax_exemptions
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

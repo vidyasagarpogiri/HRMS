@@ -34,6 +34,6 @@ class TaxBracketsController < ApplicationController
   private
   
   def params_tax_bracket
-    params.require(:tax_bracket).permit(:bracket, :lower_limit, :upper_limit, :tax_percentage, :min_tax) 
+    params.require(:tax_bracket).permit(:bracket, :exemption_limit) 
   end
 end

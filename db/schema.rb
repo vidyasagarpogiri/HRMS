@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121102056) do
+ActiveRecord::Schema.define(version: 20141121135843) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -561,6 +561,13 @@ ActiveRecord::Schema.define(version: 20141121102056) do
     t.float    "upper_limit",    limit: 24
     t.float    "tax_percentage", limit: 24
     t.float    "min_tax",        limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tax_exemptions", force: true do |t|
+    t.string   "gender"
+    t.float    "exemption_limit", limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
   end
