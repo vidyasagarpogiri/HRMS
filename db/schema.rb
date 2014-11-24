@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121103958) do
+ActiveRecord::Schema.define(version: 20141124052021) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -428,7 +428,7 @@ ActiveRecord::Schema.define(version: 20141121103958) do
   end
 
   create_table "photos", force: true do |t|
-    t.string   "album"
+    t.string   "image"
     t.integer  "album_id"
     t.datetime "created_at"
     t.datetime "updated_at"

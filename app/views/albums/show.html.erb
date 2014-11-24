@@ -1,12 +1,35 @@
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
 
-<% @photos.each do |photo| %>
-  <%= image_tag photo.album_url %>
-  <%= link_to "Edit Album", edit_photo_path(p) %>
-<% end %>
 
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
+
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                
+      <div class="span12">
+        <div class="content">         
+				  <div class="module">
+					  <div class="module-head">
+						  <h3>Album</h3>						  
+					  </div>
+					  <div class="module-body">
+						  <p>
+                <strong>Title:</strong>
+                <%= @album.title %>
+              </p>
+
+              <% @photos.each do |photo| %>
+                <%= image_tag photo.image_url, :width =>"200", :height => "200" %>
+                <%# link_to "Edit Album", edit_photo_path(photo) %>
+              <% end %>
+
+              <ul class="navigation-btns edit" >
+							  <li><%= link_to 'Edit', edit_album_path(@album), :class=>"btn btn-success" %> </li>
+							  <li><%= link_to 'Cancel',  albums_path, :class=>"btn btn-danger" %></li>
+							</ul>             
+								
+						</div><!--.module-body-->
+					</div><!--/.module -->
+		    </div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->

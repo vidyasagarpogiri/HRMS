@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-
+  
   def update
     respond_to do |format|
       if @photo.update(photo_params)
@@ -7,5 +7,11 @@ class PhotosController < ApplicationController
       end 
     end
   end
-
+  
+  private
+  def photo_params
+    params.require(:photo).permit(:album_id, :image)  
+  end
 end
+
+

@@ -1,3 +1,4 @@
+
 <div class="wrapper">
   <div class="container">
     <div class="row">                
@@ -8,16 +9,17 @@
 						  <h3>Album</h3>
 						  <label style="font-weight:normal;margin-top:-10px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "New Album", new_album_path %></label>   
 					  </div>
-					   <div class="module-body">
-						  <% @albums.each do |album| %>
-						     <%= album.title %>
-						     <%= album.description %>
-						     <% album.photos.each do |photo| %>
-						      <%= image_tag photo.image_url, :width =>"200", :height => "200" %>                  
-						     <% end %> 
-						     <%= link_to "Show Album", album_path(album), :class=>"btn btn-info" %>	<br>			     
-						  <% end %>
-						  						   
+					  <div class="module-body">
+						  <%= image_tag @photo.image %>
+              <%= form_for(@photo) do |f| %>
+                <div class="field">
+                  <%= f.label :album %><br>
+                  <%= f.file_field :image %>
+                </div>
+                <div class="actions">
+                  <%= f.submit %>
+                </div>
+              <% end %>								
 						</div><!--.module-body-->
 					</div><!--/.module -->
 		    </div><!--/.content-->
@@ -25,6 +27,3 @@
 		</div><!--/.row-->
 	</div><!--/.container-->
 </div><!--/.wrapper-->
-
-
-

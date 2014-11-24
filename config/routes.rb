@@ -266,6 +266,7 @@ post 'create_package' => "features#create_package"
   
   # routes for Album
   resources :albums
+  resources :photos
   
   
   # Example of regular route:
