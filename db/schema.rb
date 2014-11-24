@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20141124121909) do
+
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -443,6 +445,19 @@ ActiveRecord::Schema.define(version: 20141124121909) do
     t.datetime "updated_at"
   end
 
+  create_table "projects", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "roles"
+    t.text     "tasks_performed"
+    t.text     "skills"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "employee_id"
+  end
+
   create_table "promotions", force: true do |t|
     t.string   "date_of_promotion"
     t.datetime "created_at"
@@ -583,7 +598,7 @@ ActiveRecord::Schema.define(version: 20141124121909) do
     t.string   "bracket"
     t.float    "lower_limit",    limit: 24
     t.float    "upper_limit",    limit: 24
-    t.integer  "tax_percentage"
+    t.float    "tax_percentage", limit: 24
     t.float    "min_tax",        limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
