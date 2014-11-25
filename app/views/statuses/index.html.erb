@@ -14,6 +14,7 @@
 		        <% if @statuses.present? %> 
             <% @statuses.each do |s| %> 
             <div class="row-fluid">
+
             <div class="span1"><%= link_to image_tag(s.employee.avatar_url,size: "60x20") %></div>
             <div class="span9"><b><%=link_to s.status , status_path(s.id) %></b> </div>
             <div class="span2"><h7>Posted By: <%=link_to s.employee.first_name,profile_path(s.employee.id) %> <br> 
@@ -27,6 +28,7 @@
               <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-trash"></i></a><%= link_to "Delete", status_path(s.id), method: :delete, data: {confirm: "Are You sure?"} %></label></li>
                          
           </ul>
+
                  
           </div>
                 

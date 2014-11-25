@@ -293,6 +293,17 @@ post 'create_package' => "features#create_package"
   end
 
   
+
+  # routes for Album
+  resources :albums do
+    resources :photos 
+    member do
+     get "add_more_photos_form"
+     post "add_more_photos"
+    end
+  end
+  
+
   resources :projects
 
  get "/getAllSkills" => "employees#getAllSkills" 
