@@ -1,0 +1,44 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+              <h3>Appraisal Cycles List</h3>
+            </div>
+            <div class="module-body">
+            <table border="0" class="table  table-striped">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Department</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Period</th>
+                  <th>Employee Dead Line Date</th>
+                  <th>Manager Dead Line Date</th>
+                  <th>Employee Discussion Dead Line</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <% @appraisal_cycles.each do |appraisal_cycle| %>
+                <tr>
+                <td><%= appraisal_cycle.title %></td>
+                <td><%= appraisal_cycle.department.department_name %></td>
+                <td><%= appraisal_cycle.start_date %></td>
+                <td><%= appraisal_cycle.end_date %></td>
+                <td><%= appraisal_cycle.period %></td>
+                <td><%= appraisal_cycle.employee_dead_line %></td>
+                <td><%= appraisal_cycle.manager_dead_line %></td>
+                <td><%= appraisal_cycle.discussion_dead_line %></td>
+                <td><%= appraisal_cycle.status %></td>
+              <% end %>
+            </table>
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
