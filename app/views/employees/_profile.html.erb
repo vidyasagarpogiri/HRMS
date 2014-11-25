@@ -104,15 +104,16 @@
               <% @skills.each do |skill| %>
               <input value="<%= skill.name %>" class="btn btn-success span1" style="color:black" disabled>
             <% end %>
-            <%else%>
+            
+            </label>                
+            </div>
+          </div>
+          <%else%>
             <div class="alert alert-success alert-dismissable">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                    No Skills Added
               </div>
             <%end%>
-            </label>                
-            </div>
-          </div>
      </div>
          
      <!--END OF   SELF DESCRIPTION -->
