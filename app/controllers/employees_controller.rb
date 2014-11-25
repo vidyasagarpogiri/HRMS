@@ -200,7 +200,8 @@ class EmployeesController < ApplicationController
   end
   
   def employee_self_description_create
-    @employee = Employee.find(params[:id])   
+    @employee = Employee.find(params[:id])
+    @employee.skills.destroy_all   
     skills = params[:hidden_skill].split (", ")    
     skills = skills.uniq
     skills.each do |skill|
