@@ -46,13 +46,14 @@ class PayrollsController < ApplicationController
   end
 
   def update_payroll
+  #raise params.inspect
     @mode = params[:mode_value]
     @payslip = Payslip.find(params[:id])
     @salary = @payslip.employee.salary
     @payslip_allowances = @payslip.allowances
     @salary_percentages = StaticSalary.all
-    @payslip.update(arrears: params[:arrears], pt: params[:pt], tds: params[:tds], working_days: params[:working_days], deductible_arrears: params[:deductible_arrears])
-    @payslip = Payslip.new.updating_payslip(@payslip, @salary_percentages, @mode)
+    @payslip.update(arrears: params[:arrears], pt: params[:pt],  working_days: params[:working_days], deductible_arrears: params[:deductible_arrears])
+    @payslip = Payslip.new.updating_payslip(@payslip, @salary_percentages, @mode, params[:tds])
   end
 
   def show_payroll

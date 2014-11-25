@@ -11,10 +11,16 @@ class InvestmentDeclarationsController < ApplicationController
 
     @declarations = current_user.employee.investment_declarations
     @sections = @declarations.map(&:general_investment).map(&:section_declaration).uniq
+  
   #adding data to payroll master table @pattabhi  
-    if current_user.employee.salary.present? && !current_user.employee.pay_roll_masters.present? 
+    pay_roll_master = current_user.employee.pay_roll_masters
+    salary =  current_user.employee.salary
+    if salary.present? && !pay_roll_master.present? 
        @payroll = PayRollMaster.create(:employee_id => current_user.employee.id, :assesment_year => Date.today, :total_income => current_user.employee.salary.ctc_fixed, :total_savings => @declarations.sum(:yearly_value) )
-    end   
+    elsif current_user.employee.salary.present? && current_user.employee.pay_roll_masters.present? 
+      @payroll = pay_roll_master.first.update(:total_savings => @declarations.sum(:yearly_value))
+    end
+    
   end
   
   def edit
