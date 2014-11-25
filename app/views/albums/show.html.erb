@@ -7,21 +7,21 @@
 					  <div class="module-head">
 						  <h3><%= @album.title %></h3>
 						  <% if current_user.employee.id == @id %>
-						    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add more photos", add_more_photos_form_album_path(@album)%></label>	
+						    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "editt", add_more_photos_form_album_path(@album)%></label>	
 						  <% end %>
 					  </div>
 					  <div class="module-body">
 					    <p> <strong>Album Name: </strong><%= @album.title %></p>           
 					    <div class="image-container">                              
                 <ul class="row" style="margin-left:0px;">
-                 <% @photos.each do |photo| %>
+                  <% @photos.each do |photo| %>
                   <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 image-outing">
                     <% if current_user.employee.id == @id %>
-                      <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"delete" %>
+                      <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"delete", :title => "remove photo " %>
                       <% end %>
                     <%= image_tag photo.image_url, :class=>"img-responsive" %>
                   </li>
-                 <% end %>    
+                  <% end %>    
                 </ul>                
               </div>
 
@@ -29,8 +29,7 @@
 					      <% if current_user.employee.id == @id %>
 							    <li><%= link_to 'Edit', edit_album_path(@album), :class=>"btn btn-success" %> </li>
 							  <% end %>  
-							    <li><a href="/albums" class="btn btn-info"><i class="icon-more-windows" style="background-color:white;color:black"></i> Gallery</a>
-							    <%# link_to 'Back to Gallery',  albums_path, :class=>"btn btn-info" %></li>							  
+							    <li><%= link_to 'Gallery',  albums_path, :class=>"btn btn-info" %></li>							  
 							</ul> <br><br>                         							
 						</div><!--.module-body-->
 					</div><!--/.module -->
@@ -49,7 +48,13 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
   
+<script>
+  $(function() {
+    $( document ).tooltip();
+  });
+</script>
   
+
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="dist/js/bootstrap.min.js"></script>  
 <script>
@@ -159,15 +164,15 @@ border: solid 1px #FFCCCC;
   width: 33.33333333%;
 }
 
-ul {         
+.image-container ul {         
     padding:0 0 0 0;
     margin:0 0 0 0;
 }
-ul li {     
+.image-container ul li {     
     list-style:none;
     margin-bottom:25px;           
 }
-ul li img {
+.image-container ul li img {
     cursor: pointer;
     padding:10px;
 }

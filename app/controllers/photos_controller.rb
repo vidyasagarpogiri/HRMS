@@ -1,26 +1,15 @@
-class PhotosController < ApplicationController
- 
- def edit
-  #raise params.inspect
-  @photo = Photo.find(params[:id])
-  #raise @photo.inspect    
- end
- 
- 
+class PhotosController < ApplicationController   
+  #author :Priyanka
+  #Controller for updating and deleting Photos
   
+    
  def update
  raise params.inspect
    if @photo.update(photo_params)
      format.html { redirect_to @photo.album, notice: "Album's photo was successfully updated." }
    end 
  end
- 
-  def show
-    @photo = Photo.find(params[:id])
-    @album = @photo.album
-    #raise @photo.inspect
-  end
- 
+
   def destroy
     @album = Album.find(params[:album_id])
     @photo = Photo.find(params[:id])

@@ -30,8 +30,8 @@
 						  <div class="control-group">
 						    <label class="control-label" for="basicinput">Upload Images</label>
 						    <div class="controls">
-						       <%= photo.file_field :image, :multiple => true, name: "photos[image][]", :id => "image-input" %>                             
-                    <span class="help-block with-errors"></span>
+						       <%= photo.file_field :image, :onchange =>"validateFiles(this);", :multiple => true, name: "photos[image][]", :id => "image-input", :required => true %>
+                   <span class="help-block with-errors"></span>
 						    </div>
 						  </div>
 						  <% end %>	
@@ -80,4 +80,34 @@ function previewImages(){
     
     
 }
+</script>
+
+<script>
+ function validateFiles(inputFile) {
+  var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
+  var extErrorMessage = "Only file with extension: .jpg, .jpeg, .gif, .png is allowed";
+  var allowedExtension = ["jpg", "JPEG", "jpeg", "gif", "GIF",  "png", "PNG",  ]; 
+  
+  var extName;
+  var maxFileSize = $(inputFile).data('max-file-size');
+  var sizeExceeded = false;
+  var extError = false;
+  
+  $.each(inputFile.files, function() {
+    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+    extName = this.name.split('.').pop();
+    if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+  });
+  if (sizeExceeded) {
+    window.alert(maxExceededMessage);
+    $(inputFile).val('');
+  };
+  
+  if (extError) {
+    window.alert(extErrorMessage);
+    $(inputFile).val('');
+  };
+}
+
+
 </script>

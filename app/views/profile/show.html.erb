@@ -70,7 +70,7 @@
                            
                            <!--employee  Personal description -->
                                     <div class="tab-pane fade " id="self_description">
-                                      <%= render "employees/employee_self_description_show" %>                                            
+                                      <%= render "employees/employee_self_description_show", :skills => @skills %>                                            
                                     </div>
                            
                           <!--exit_info PANEL--> 
@@ -78,7 +78,9 @@
                                       <%= render "ff_statuses/index" %>                                            
                                       </div>
                           
-                                </div><!--/.tab-pane-list-->                                                                                      
+                                </div><!--/.tab-pane-list--> 
+                                
+                                                                                                                     
                               </div>
                             <!--/.module-body-->
                         </div>
