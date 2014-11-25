@@ -30,8 +30,8 @@
 						  <div class="control-group">
 						    <label class="control-label" for="basicinput">Upload Images</label>
 						    <div class="controls">
-						       <%= photo.file_field :image, :onchange =>"validateFiles(this);", :multiple => true, name: "photos[image][]", :id => "image-input" %>                             
-                    <span class="help-block with-errors"></span>
+						       <%= photo.file_field :image, :onchange =>"validateFiles(this);", :multiple => true, name: "photos[image][]", :id => "image-input", :required => true %>
+                   <span class="help-block with-errors"></span>
 						    </div>
 						  </div>
 						  <% end %>	
