@@ -39,11 +39,15 @@ class AlbumsController < ApplicationController
    #raise @photos.inspect
   end
   
-   def update           
-    @employee = current_user.employee.id
-    @album = Album.find(params[:id])
-    @photo = @album.photos.find(params[:id])
-  end  
+   def update 
+   #raise params[:album][:title].inspect
+             
+     @employee = current_user.employee.id
+     @album = Album.find(params[:id])
+     #raise @album.inspect
+     @album.update(:title => params[:album][:title], :description => params[:album][:decription])
+     redirect_to @album
+   end  
   
  def destroy
     #raise params.inspect
