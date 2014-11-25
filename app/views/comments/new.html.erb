@@ -1,0 +1,23 @@
+          <div class="module">
+            <div class="module-head"> 
+              <h6>Write A New Status To Wall</h6>
+            </div>
+            <div class="module-body">
+              <%= form_for([@status,@comment])  do |c| %>
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Status:</label>
+                <div class="controls">
+                  <%= c.text_area :comment, :class => "span8 form-control ", :placeholder =>"Enter Comment", :data => {:error => "Please Enter Comment"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+              
+                <ul class="navigation-btns editthree" >
+                <li><button type="submit" class="btn btn-success">Comment</button></li>
+                <li><%# link_to "Cancel", statuses_path,:class => "btn btn-danger" %></li>
+              </ul>	
+              <% end %>
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        
+
