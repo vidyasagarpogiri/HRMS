@@ -5,31 +5,33 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-						  <h3>Album</h3>
-						  <label style="margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add more photos", add_more_photos_form_album_path(@album)%></label>	
-						  				  
+						  <h3><%= @album.title %></h3>
+						  <% if current_user.employee.id == @id %>
+						    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add more photos", add_more_photos_form_album_path(@album)%></label>	
+						  <% end %>
 					  </div>
 					  <div class="module-body">
-					    <p> <strong>Album Name: </strong><%= @album.title %> </p>
-               <div class="image-container">
-                <% @photos.each do |photo| %>
+					    <p> <strong>Album Name: </strong><%= @album.title %></p>           
+					    <div class="image-container">                              
                 <ul class="row" style="margin-left:0px;">
-                  <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4"><%= image_tag photo.image_url, :width =>"100", :height => "100" %></li>                    
-                </ul>
-                <% end %>
+                 <% @photos.each do |photo| %>
+                  <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 image-outing">
+                    <% if current_user.employee.id == @id %>
+                      <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"delete" %>
+                      <% end %>
+                    <%= image_tag photo.image_url, :class=>"img-responsive" %>
+                  </li>
+                 <% end %>    
+                </ul>                
               </div>
 
-
-             <!-- <%# @photos.each do |photo| %>
-                <%# image_tag photo.image_url, :width =>"100", :height => "100" %>
-                <%# link_to "Delete", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>-->
-              
-
-              <ul class="navigation-btns edit" >
-							  <li><%= link_to 'Edit', edit_album_path(@album), :class=>"btn btn-success" %> </li>
-							  <li><%= link_to 'Cancel',  albums_path, :class=>"btn btn-danger" %></li>
-							</ul>             
-								
+              <ul class="navigation-btns pull-left" >
+					      <% if current_user.employee.id == @id %>
+							    <li><%= link_to 'Edit', edit_album_path(@album), :class=>"btn btn-success" %> </li>
+							  <% end %>  
+							    <li><a href="/albums" class="btn btn-info"><i class="icon-more-windows" style="background-color:white;color:black"></i> Gallery</a>
+							    <%# link_to 'Back to Gallery',  albums_path, :class=>"btn btn-info" %></li>							  
+							</ul> <br><br>                         							
 						</div><!--.module-body-->
 					</div><!--/.module -->
 		    </div><!--/.content-->
@@ -38,10 +40,10 @@
 	</div><!--/.container-->
 </div><!--/.wrapper-->
 
- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:400px;opacity:">
-    <div class="modal-dialog" style="opacity:">
-      <div class="modal-content" style="opacity:">         
-        <div class="modal-body" style="opacity:">                
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:400px;opacity:;height:550px;width:1000px;">
+    <div class="modal-dialog" style="height:500px;width:900px;">
+      <div class="modal-content" style="height:500px;width:900px;">         
+        <div class="modal-body" style="height:500px;width:900px;">                
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -50,23 +52,89 @@
   
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="dist/js/bootstrap.min.js"></script>  
-<script> 
-  $(document).ready(function(){
-           $('li img').on('click',function(){
+<script>
+        $(document).ready(function(){        
+          $('li img').on('click',function(){
                 var src = $(this).attr('src');
                 var img = '<img src="' + src + '" class="img-responsive"/>';
+ 
+                //Start of new code
+                var index = $(this).parent('li').index();                   
+                var html = '';
+                html += img;                
+                html += '<div style="height:25px;clear:both;display:block;">';
+                html += '<a class="controls next" href="'+ (index+2) + '">next &raquo;</a>';
+                html += '<a class="controls previous" href="' + (index) + '">&laquo; prev</a>';
+                html += '</div>';
+                //End of new code
+ 
                 $('#myModal').modal();
                 $('#myModal').on('shown.bs.modal', function(){
-                    $('#myModal .modal-body').html(img);
-                });
+                    $('#myModal .modal-body').html(html);
+                })
                 $('#myModal').on('hidden.bs.modal', function(){
                     $('#myModal .modal-body').html('');
                 });
-           });  
-        }) 
- </script> 
+           });
 
+        
+        })
+        
+        
+        //new code
+        $(document).on('click', 'a.controls', function(){
+            var index = $(this).attr('href');
+            var src = $('ul.row li:nth-child('+ index +') img').attr('src');             
+            
+            $('.modal-body img').attr('src', src);
+            
+            var newPrevIndex = parseInt(index) - 1; 
+            var newNextIndex = parseInt(newPrevIndex) + 2; 
+            
+            if($(this).hasClass('previous')){               
+                $(this).attr('href', newPrevIndex); 
+                $('a.next').attr('href', newNextIndex);
+            }else{
+                $(this).attr('href', newNextIndex); 
+                $('a.previous').attr('href', newPrevIndex);
+            }
+            
+            var total = $('ul.row li').length + 1; 
+            //hide next button
+            if(total === newNextIndex){
+                $('a.next').hide();
+            }else{
+                $('a.next').show()
+            }            
+            //hide previous button
+            if(newPrevIndex === 0){
+                $('a.previous').hide();
+            }else{
+                $('a.previous').show()
+            }
+            
+            
+            return false;
+        });
+        
+         
+        
+    </script>
 <style>
+
+.image-outing{
+border:solid 1px #D6EBFF;
+padding:15px;
+margin-left:10px;
+}
+
+.delete{
+color:red;
+font-weight:bold;
+font-size:14px;
+padding:5px;
+border: solid 1px #FFCCCC;
+}
 
 .col-lg-2 {
     width: 16.66666667%;
@@ -101,6 +169,29 @@ ul li {
 }
 ul li img {
     cursor: pointer;
+    padding:10px;
+}
+.modal-backdrop.in {
+
+opacity: .1!important;
+}
+
+.img-responsive {
+display: block;
+height: auto;
+max-width: 100%;
+}
+
+.controls{          
+    width:50px;
+    display:block;
+    font-size:11px;
+    padding-top:8px;
+    font-weight:bold;          
+}
+.next {
+    float:right;
+    text-align:right;
 }
 
 @media (min-width: 768px) {

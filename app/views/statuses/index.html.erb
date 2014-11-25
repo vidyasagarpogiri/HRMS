@@ -16,12 +16,12 @@
 		        <% if @statuses.present? %> 
             <% @statuses.each do |s| %> <%# link_to "hiii #{image_tag(yourimagepath)}", "link_path" %>
             <div class="row-fluid">
-  <div class="span1"><%= link_to image_tag(s.employee.avatar_url,size: "60x20") %></div>
-  <div class="span8"><b><%= s.status %></b> </div>
-  <div class="span2"><h7>Posted By: <%=link_to s.employee.first_name,profile_path(s.employee.id) %> <br>
-  <%=time_ago_in_words(s.created_at)%> ago</h7> 
-  
-  <% if current_user.employee.id == s.employee.id %>
+              <div class="span1"><%= link_to image_tag(s.employee.avatar_url,size: "60x20") %></div>
+              <div class="span8"><b><%= s.status %></b> </div>
+              <div class="span2"><h7>Posted By: <%=link_to s.employee.first_name,profile_path(s.employee.id) %> <br>
+              <%=time_ago_in_words(s.created_at)%> ago</h7> 
+              
+              <% if current_user.employee.id == s.employee.id %>
                     <td> 
                       <ul class="navigation-btns " >
                         <li><%= link_to 'Show', status_path(s.id), :class => "btn btn-info " %></li>

@@ -36,10 +36,9 @@ BloodGroup.create(:blood_group_name => bloodgrp )
 end
 BloodGroups = BloodGroup.all.pluck(:id)
 
-Department.create(:department_name => "HR")
 
 
-Employee.create(:employee_id => 1, :title=> "Mr", :first_name=>"Sekhar",:last_name=>"Beri",:date_of_birth=>"2014-12-30", :gender=>"male",:mobile_number=>"9876543219",:father_name=>"Adinarayana",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>1,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user.id, :alternate_email => "balaraju.vankala@gmail.com")
+Employee.create(:employee_id => 1, :title=> "Mr", :first_name=>"Sekhar",:last_name=>"Beri",:date_of_birth=>"2014-12-30", :gender=>"male",:mobile_number=>"9876543219",:father_name=>"Adinarayana",:date_of_join=>"2014-03-03",:image_url=> "image",:department_id =>2,:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:avatar=>"406929_2668579486846_928068538_n.jpg", :user_id => @user.id, :alternate_email => "balaraju.vankala@gmail.com")
 
 Employees = Employee.all.pluck(:id)
 

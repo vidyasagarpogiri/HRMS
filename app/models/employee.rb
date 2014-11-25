@@ -39,6 +39,7 @@ class Employee < ActiveRecord::Base
   has_many :leave_histories  
   has_many :educations
   has_many :emergency_contacts
+  has_many :appraisals
 
   has_many :statuses # for employee status, employee may have more than one status so we have kept has_many relationship
   has_many :comments # for employee status comments

@@ -274,6 +274,15 @@ post 'create_package' => "features#create_package"
 
   resources :tax_brackets
 
+  
+  # Routes for apprisal_cycle
+  resources :appraisal_cycles
+  
+  #routes for goals
+   resources :goals
+  #routes for review_elements
+    resources :review_elements
+
   # for employee status
   resources :statuses do
     resources :comments 

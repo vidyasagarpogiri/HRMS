@@ -25,6 +25,8 @@ class AlbumsController < ApplicationController
   def show
    @album = Album.find(params[:id])
    @photos = @album.photos
+   @id = @album.employee_id
+   #raise @id.inspect
   end
   
   def edit

@@ -1,0 +1,48 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+              <h3>New Goal</h3>
+            </div>
+            <div class="module-body">
+              <%= form_for @goal, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}  do |g| %>
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Title</label>
+                    <div class="controls">
+                      <%= g.text_field :title %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Department</label>
+                    <div class="controls">
+                      <%= g.text_area :description, { :class => "departments, span9 form-control", :id => "disabledSelect1" } %> 
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Start Date</label>
+                    <div class="controls">
+                      <%= g.text_field :start_date, :class => "date-picker" %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">End Date</label>
+                    <div class="controls">
+                      <%= g.text_field :end_date, :class => "date-picker" %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+              <%= g.submit 'Create Goal', :class => 'btn btn-success pull-right' %>
+              <% end %><br/>
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
