@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20141124122423) do
-
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -676,7 +674,7 @@ ActiveRecord::Schema.define(version: 20141124122423) do
     t.string   "bracket"
     t.float    "lower_limit",    limit: 24
     t.float    "upper_limit",    limit: 24
-    t.float    "tax_percentage", limit: 24
+    t.integer  "tax_percentage"
     t.float    "min_tax",        limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
