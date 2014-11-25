@@ -116,6 +116,10 @@ get 'inactive_employees' => "employees#inactive_employees"
 		resources :ff_statuses 
     resources :leaves
 	  resources :emergency_contacts
+	  #resources :statuses do
+	  #resources :comments
+	  #resources :likes
+	  #end
 		member do
 			get 'exit_form'
 			get 'exit_edit_form'
@@ -135,8 +139,13 @@ get 'inactive_employees' => "employees#inactive_employees"
 			get 'bankdetails_show'
 			get 'bankdetails_edit'
 			post 'bankdetails_create'
-			post 'bankdetails_update'		
+			post 'bankdetails_update'	
+			get 'employee_self_description_show'
+			get 'employee_self_description_form'
+			patch 'employee_self_description_create'	
 		end
+		
+   
 		
   
   resources :educations do
@@ -264,6 +273,15 @@ post 'create_package' => "features#create_package"
 
 
   resources :tax_brackets
+
+  # for employee status
+  resources :statuses do
+    resources :comments 
+    member do
+      post "add_like"
+    end
+  end
+
   
 
   # routes for Album
@@ -276,6 +294,9 @@ post 'create_package' => "features#create_package"
   resources :photos
 
   resources :projects
+
+ get "/getAllSkills" => "employees#getAllSkills" 
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -91,4 +91,13 @@ class Notification < ActionMailer::Base
     attachments['SalaryCertificate.pdf'] = { mime_type: 'application/pdf', content: salarycertificate.render }
     mail(to: @user.email, subject: 'Amzur Technologies - Salary Certificate')
   end
+  
+  #def status_notification(@emp, @status)
+ #@user = user
+  #@emp = employee
+  #raise @employee.inspect
+  #raise @user.inspect
+  # mail(to: @employee.user.email, subject: 'Status')
+ #raise status.inspect
+ # end
 end

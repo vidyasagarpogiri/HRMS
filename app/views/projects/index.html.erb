@@ -12,17 +12,42 @@
 				      <div class="module-body">
 				      <% if @projects.present? %>
 				       <% @projects.each do |project| %>
-				       <h5><%= project.title %></h5> 
-				       <ul class="navigation-btns pull-right" style="margin-top:-20px">
-                    <li><%= link_to 'Edit', edit_project_path(project), :class => "btn btn-success " %></li>
-                    <li><%= link_to "Delete", project_path(project.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>     
-                  </ul> 
-                  
-                 <label class="desc">Description:</label><%= project.description %>
-                 <label>Tasks Performed:<%= project.tasks_performed %></label>
-                 Roles:<%= project.roles %>
-                 skills:<%= project.skills %>
-				       <%end%>
+         <div class ="row-fluid">
+          
+          <div class="span5">		
+              <div class="control-group">
+                <label class="control-label" for="basicinput"><strong>Project Tille: </strong> <%= project.title %></label>                
+              </div>
+            </div>
+            
+            
+          <div class="span5">		
+              <div class="control-group">
+                <label class="control-label" for="basicinput"><strong>Key Skills used: </strong> <%= project.skills %></label>                
+              </div>
+            </div>
+            
+            
+          <div class="span5">		
+              <div class="control-group">
+                <label class="control-label" for="basicinput"><strong>Start Date: </strong> <%= project.start_date %></label>                
+              </div>
+            </div>
+            
+            <div class="span5">		
+              <div class="control-group">
+                <label class="control-label" for="basicinput"><strong>Start Date: </strong> <%= project.end_date %></label>                
+              </div>
+            </div>
+            <div class="span8">		
+              <div class="control-group">
+                <label class="control-label" for="basicinput"><strong>Description: </strong> <%= raw(project.description) %></label>                
+              </div>
+            </div><br>
+            
+         </div>
+         
+         <% end %>
 				      <%else%>
 				      <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

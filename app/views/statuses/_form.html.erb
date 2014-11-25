@@ -1,0 +1,23 @@
+          <div class="module">
+            <div class="module-head"> 
+              <h3>Write A New Status To Wall</h3>
+            </div>
+            <div class="module-body">
+              <%= form_for @status,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |s| %>
+              <div class="control-group">
+                <label class="control-label" for="basicinput">Status:</label>
+                <div class="controls">
+                  <%= s.text_area :status, :class => "span8 form-control ", :placeholder =>"What's On Your Mind", :data => {:error => "Please Enter Status"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
+              
+                <ul class="navigation-btns editthree" >
+                <li><button type="submit" class="btn btn-success">Post To Wall</button></li>
+                <li><%= link_to "Cancel", statuses_path,:class => "btn btn-danger" %></li>
+              </ul>	
+              <% end %>
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        
+
