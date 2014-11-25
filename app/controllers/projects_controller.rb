@@ -8,18 +8,14 @@ class ProjectsController < ApplicationController
   
   def new
    @project = Project.new
+   @employee = current_user.employee
   
   end
   
   def create
-  #raise params.inspect\
   @employee = current_user.employee
   @project = @employee.projects.create(project_params)
-    if @project.present?
-     redirect_to projects_path
-    else
-     render "new"
-    end 
+  @projects = @employee.projects
   end
   
   def edit
@@ -32,20 +28,15 @@ class ProjectsController < ApplicationController
     @employee = current_user.employee
      @project = Project.find(params[:id])
      @project.update(project_params)
-     
-     if @project.present?
-     redirect_to projects_path
-    else
-     render "edit"
-    end 
-     
+     @projects = @employee.projects
+    
   end
   
   def destroy
   #raise params.inspect
     @project =  Project.find(params[:id])
     @project.destroy
-    redirect_to projects_path
+    @projects = @employee.projects
   end
   
   
