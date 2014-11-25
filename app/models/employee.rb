@@ -1,4 +1,5 @@
 class Employee < ActiveRecord::Base
+  include Bootsy::Container
 	mount_uploader :avatar, AvatarUploader
   belongs_to :department
   belongs_to :blood_group
@@ -38,12 +39,18 @@ class Employee < ActiveRecord::Base
   has_many :leave_histories  
   has_many :educations
   has_many :emergency_contacts
+  has_many :appraisals
 
   has_many :statuses # for employee status, employee may have more than one status so we have kept has_many relationship
   has_many :comments # for employee status comments
   has_one :like # one status will have one like for one employee
 
   has_many :projects
+  
+  
+
+  has_many :employee_skills
+  has_many :skills, :through => :employee_skills
   
   
 

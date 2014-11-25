@@ -17,7 +17,9 @@
                                     <li><a href="#salary" data-toggle="tab">Salary</a></li>
                                     <li><a href="#promotions" data-toggle="tab">Promotions</a></li>
                                     <li><a href="#attachments" data-toggle="tab">Attachments</a></li>
-                                    <li><a href="#email_etiquette" data-toggle="tab">Email Etiquette</a></li>
+                                    <li><a href="#projects" data-toggle="tab">Projects</a></li>
+                                    <li><a href="#self_description" data-toggle="tab">Self Description</a></li>
+                                    
                                     <% if current_user.department == Department::HR %>
                                     <li><a href="#exit_info" data-toggle="tab">Exit Info</a></li>
                                     <% end %>
@@ -60,10 +62,19 @@
                           <!--email_etiquette PANEL-->             
                                       <div class="tab-pane fade " id="email_etiquette">
                                       <%= render "email_ettiquities/index" %>                                            
-                                      </div> 
-                          <!--exit_info PANEL-->   
-                                    
-                                      <div class="tab-pane fade " id="exit_info">
+                                      </div>
+                           <!--employee projects-->
+                                    <div class="tab-pane fade " id="projects">
+                                      <%= render "projects/index" %>                                            
+                                    </div>
+                           
+                           <!--employee  Personal description -->
+                                    <div class="tab-pane fade " id="self_description">
+                                      <%= render "employees/employee_self_description_show" %>                                            
+                                    </div>
+                           
+                          <!--exit_info PANEL--> 
+                                    <div class="tab-pane fade " id="exit_info">
                                       <%= render "ff_statuses/index" %>                                            
                                       </div>
                           

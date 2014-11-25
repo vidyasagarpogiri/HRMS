@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
 
   layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index, :attachment_edit] 
-	 before_filter :other_emp_view, :except => [:index, :profile]
+	 before_filter :other_emp_view, :except => [:index, :profile, :getAllSkills]
 	 before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]		
    before_action :get_employee, only: [:show, :profile, :edit, :update, :exit_form, :attachment_form_new, :attachment_create, :attachment_edit, :attachment_update, :attachment_show, :attachment_destroy, :attachment_index, :bankdetails_form, :bankdetails_create,:bankdetails_show, :bankdetails_edit, :bankdetails_update	]
   
@@ -35,8 +35,13 @@ class EmployeesController < ApplicationController
   end
 
   def profile
+  #raise @employee.inspect
      if @employee.educations.present?
-     @specialization = @employee.educations.order('year_of_pass DESC').first
+      @specialization = @employee.educations.order('year_of_pass DESC').first
+     end
+     if @employee.projects.present?
+       @projects = @employee.projects
+      # raise @projects.inspect
      end
   end
   
@@ -180,6 +185,43 @@ class EmployeesController < ApplicationController
     @employees =  Employee.where(:status => true).page(params[:page]).per(4)
 	end
 	
+	  # employee Self-description 
+  
+  def employee_self_description_show
+    
+    @employee = current_user.employee
+   # raise @employee.self_description.inspect
+  end
+    
+  def employee_self_description_form
+    @employee = current_user.employee
+    
+  end
+  
+  def employee_self_description_create
+  #raise params.inspect
+   # raise params[:post][:self_description].inspect
+    #raise params[:hidden_skill].inspect
+    
+    @employee = Employee.find(params[:id])
+    
+    @skills = params[:hidden_skill].split (", ")
+    
+    @skills.each do |skill|
+      skill_id = Skill.find_by_name(skill)
+      raise skill_id.inspect
+      EmployeeSkill.create(:employeed_id => current_user.employee.id, :skill_id => skill_id.id)
+    end
+    @employee.update(:self_description => params[:post][:self_description], :interests => params[:interests])
+    
+  end
+	
+	
+		def getAllSkills 
+      skill=Skill.where("name LIKE ?", "%#{params[:term]}%").map(&:name)
+      render json:skill
+	  end
+	
   private   
  
   def params_employees
@@ -198,6 +240,11 @@ class EmployeesController < ApplicationController
   def get_employee
     @employee = Employee.find(params[:id])
   end
+  
+  
+  
+  
+
 	
 end
 

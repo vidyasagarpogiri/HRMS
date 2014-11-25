@@ -1,0 +1,17 @@
+
+          <div class="module">
+            <div class="module-head">
+				      <h3>My Projects</h3>
+				       <% if current_user.employee == @employee %>
+				      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add/Edit',  employee_self_description_form_employee_path(current_user.employee.id), :remote => true %></label>
+				        <% end %>
+				     </div> 
+				      
+				     <div class="module-body">
+				     <strong>Self Description:</strong> <%= raw @employee.self_description %><br>
+				     <strong>Personal Interests:</strong>&nbsp<%=@employee.interests %>
+     
+              </div>
+              
+				    </div><!--/.module-->
+

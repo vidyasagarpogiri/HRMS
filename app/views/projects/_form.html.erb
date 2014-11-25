@@ -1,8 +1,4 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
+
           <div class="module">
             <div class="module-head">
               <h3>Project Form</h3>
@@ -10,7 +6,7 @@
             
             
             <div class="module-body">
-              <%= form_for @project,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+              <%= form_for @project,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"}, :remote=> true do |f| %>
               <div class="control-group">
                 <label class="control-label" for="basicinput">Project Title</label>
                   <div class="controls">
@@ -76,19 +72,15 @@
               </div>
              
               <ul class="navigation-btns editthree" >
-                <li><button type="submit" class="btn btn-success">Save</button></li>
-                <li><%= link_to "Cancel", projects_path,:class => "btn btn-danger" %></li>
+                <li><button type="submit" class="btn btn-success" data-remote="true">Save</button></li>
+                <li><%= link_to "Cancel", projects_path,:class => "btn btn-danger",  :remote => true %></li>
               </ul>	
               
               <% end %>
             
             </div><!--/.module-body-->
           </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+  
 
 
  <script>    
