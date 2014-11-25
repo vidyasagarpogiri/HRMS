@@ -3,7 +3,6 @@ class LeaveHistoriesController < ApplicationController
 # before_filter :other_emp_view
  	
  include ApplicationHelper
-
 	def index
 		@leave = current_user.employee.group.leave_policy if current_user.employee.group.present?
 		@leaves = current_user.employee.leave_histories.where(:status => 'HOLD').order('created_at DESC')
@@ -22,6 +21,7 @@ class LeaveHistoriesController < ApplicationController
   def new
     @employee = current_user.employee
     @leave_history = LeaveHistory.new
+    @leaves = LeaveHistory.where(employee_id: @employee.id).collect{|leave| (leave.from_date.to_date..leave.to_date.to_date).to_a}.flatten!
   end
   
   def show
