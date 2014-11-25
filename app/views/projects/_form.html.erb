@@ -16,23 +16,23 @@
               </div>
               
               
-                <div class="control-group">
+                <div class="control-group ">
+                  <div class="span6">
 										<label class="control-label" for="basicinput">Start Date</label>
-										<div class="controls">
+										<div class="controls span8 " >
                      <%= f.text_field :start_date, :class => "span8 from form-control",:placeholder => "Select Project Start Date", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
 											 <span class="help-block with-errors"></span>   
 										</div>
-									</div>
-	
-	
-	
-	
-		            <div class="control-group">
-										<label class="control-label" for="basicinput">End Date </label>
-										<div class="controls">
+								  </div>
+								  
+								   <div class="span6" style="margin-left:-160px;">
+		  							<label class="control-label" for="basicinput">End Date </label>
+										<div class="controls span8 ">
                      <%= f.text_field :end_date, :class => "span8 to form-control", :id => "basicinput",:placeholder => "Select Project End Date", :data => {:error => "Please Enter valid Relieving Date"}, :required => true %>
 											 <span class="help-block with-errors"></span>   
 										</div>
+										 </div>
+								 
 									</div>
               
                <div class="control-group">

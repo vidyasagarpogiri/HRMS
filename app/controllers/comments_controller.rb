@@ -25,10 +25,11 @@ class CommentsController < ApplicationController
     #raise params.inspect
     #@employee = current_user.employee
     @status = Status.find(params[:status_id]) 
-    @comments = Comment.order('created_at ASC')
+    @comments = Comment.order('created_at ASC').limit(3)
+    @like = Like.all 
     #raise @comments.inspect
   end
-  
+
    def create
    #raise params.inspect
     @employee = current_user.employee
@@ -36,7 +37,11 @@ class CommentsController < ApplicationController
     @comment = @status.comments.create(comment_params)
     @comment.save
     #raise @comment.inspect
-    redirect_to statuses_path
+    #raise @comment.inspect
+    #Notification.comment_notification(@employee, @comment, @status).deliver
+    #raise Notification.inspect
+    #end
+    redirect_to status_path(@status.id)
   end
   
   def new
