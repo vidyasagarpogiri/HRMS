@@ -1,6 +1,3 @@
-
-
-
 <div class="wrapper">
   <div class="container">
     <div class="row">                
@@ -8,7 +5,8 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-						  <h3>Album</h3>						  
+						  <h3>Album</h3>	
+						  <%= link_to "Add more photos", add_more_photos_form_album_path(@album)%>					  
 					  </div>
 					  <div class="module-body">
 						  <p>
@@ -17,8 +15,8 @@
               </p>
 
               <% @photos.each do |photo| %>
-                <%= image_tag photo.image_url, :width =>"200", :height => "200" %>
-                <%# link_to "Edit Album", edit_photo_path(photo) %>
+                <%= image_tag photo.image_url, :width =>"100", :height => "100" %>
+                <%= link_to "Delete", album_path(@album), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
               <% end %>
 
               <ul class="navigation-btns edit" >

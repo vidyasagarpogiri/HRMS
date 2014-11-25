@@ -1,12 +1,27 @@
 class PhotosController < ApplicationController
+ 
+ def edit
+  #raise params.inspect
+  @photo = Photo.find(params[:id])
+  #raise @photo.inspect    
+ end
+ 
+ 
   
-  def update
-    if @photo.update(photo_params)
-      format.html { redirect_to @photo.album, notice: 'photo was successfully updated.' }
-    end
-  end
+ def update
+ raise params.inspect
+   if @photo.update(photo_params)
+     format.html { redirect_to @photo.album, notice: "Album's photo was successfully updated." }
+   end 
+ end
+ 
+ def show
+  @photo = Photo.find(params[:id])
+  @album = @photo.album
+  #raise @photo.inspect
+ end
   
-  private
+ private
   def photo_params
     params.require(:photo).permit(:album_id, :image)  
   end

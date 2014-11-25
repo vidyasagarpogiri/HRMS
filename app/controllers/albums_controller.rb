@@ -9,8 +9,9 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @employee = current_user.employee.id  
-    @album = Album.new(album_params)    
+     raise params.inspect   
+    @employee = current_user.employee
+    @album = @employee.albums.create(album_params)    
      if @album.save
       params[:photos][:image].each do |a|
           @photo = @album.photos.create(:image => a, :album_id => @album.id)
@@ -23,30 +24,42 @@ class AlbumsController < ApplicationController
    
   def show
    @album = Album.find(params[:id])
-   @photos = @album.photos.all
+   @photos = @album.photos
   end
   
   def edit
    @album = Album.find(params[:id])
-   @photos = @album.photos.all
+   @photos = @album.photos
   end
   
-   def update             
+   def update          
     @employee = current_user.employee.id
     @album = Album.find(params[:id])
     @photo = @album.photos.find(params[:id])
   end  
   
-  def destroy
-		@album.destroy
-		@album.photos.destroy
-		redirect_to @album
-	end
+ def destroy
+    @album.photos.destroy
+    redirect_to album_path 
+  end
 
+  def add_more_photos_form
+    @album = Album.find(params[:id]) 
+    @photo = @album.photos.build      
+  end
+  
+  def add_more_photos
+  #raise params.inspect
+  @album = Album.find(params[:id]) 
+    params[:photos][:image].each do |a|
+          @photo = @album.photos.create(:image => a, :album_id => @album.id)
+    end
+     redirect_to @album 
+  end
   private
 
   def album_params
-    params.require(:album).permit(:title, :description, @employee, photos_attributes: [:id, :album_id, :image])
+    params.require(:album).permit(:title, :description, photos_attributes: [:id, :album_id, :image])
   end 
  
 end

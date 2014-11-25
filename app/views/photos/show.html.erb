@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                
+      <div class="span12">
+        <div class="content">         
+				  <div class="module">
+					  <div class="module-head">
+						  <h3>Modified Photo</h3>	
+						  <%= link_to "Add Album", album_path(@album)%>					  
+					  </div>
+					  <div class="module-body">
+						  <p>
+                <strong>Title:</strong>
+                <%= @album.title %>
+              </p>
+					  </div>					  
+					</div><!--/.module -->
+		    </div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->

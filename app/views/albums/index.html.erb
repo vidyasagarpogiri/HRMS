@@ -8,7 +8,8 @@
 						  <h3>Album</h3>
 						  <label style="font-weight:normal;margin-top:-10px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "New Album", new_album_path %></label>   
 					  </div>
-					   <div class="module-body">
+					  <div class="module-body">
+					   
 						  <% @albums.each do |album| %>
 					     <%= album.title %>
 					     <%= album.description %>
