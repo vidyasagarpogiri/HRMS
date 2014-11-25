@@ -4,15 +4,14 @@ class StatusesController < ApplicationController
   
     #raise params.inspect
     #@sta = Status.find(params[:id]) 
-    @statuses = Status.all.order('created_at DESC')
+    @statuses = Status.all.order('created_at DESC').page(params[:page]).per(2)
     @status = Status.new
     @comment = Comment.new
-    #@st = Status.find(params[:status_id]) 
-    #raise @statuses.inspect
-    
-   
-    #raise  @comments.inspect
-  end
+   # @comments = Comment.all.page(params[:page]).per(2)
+    #raise @comments.inspect
+    #@comments = Comment.limit(4)
+    end
+  
   
   def new 
    @status = Status.new
@@ -20,7 +19,6 @@ class StatusesController < ApplicationController
   end
   
   def create
-  @employee = Employee.all
     @status = current_user.employee.statuses.new(status_params)
       if @status.save  
      
@@ -41,15 +39,22 @@ class StatusesController < ApplicationController
     #raise @like.inspect
     #@like = Like.create(like_params)
     #raise params.inspect
-    @like.save
-      count = @like.status.likes_count
-      @like.status.update :likes_count => count+1
-    #@like = count+1
+    count = @like.status.likes_count
+    @like.status.update :likes_count => count+1
+    #raise @like.inspect
+    #Notification.like_notification(@like).deliver 
     redirect_to statuses_path
   end
-  
+=begin 
+  def remove_like
+    #raise params.inspect
+    @like = Like.update(is_like: false, employee_id: params[:employee_id], status_id: params[:id])
+      count = @like.status.likes_count
+      @like.status.update :likes_count => count-1
+    redirect_to statuses_path
+  end
+=end  
   def edit     
-  #raise params.inspect
     @status = Status.find(params[:id])        
   end
   
@@ -70,6 +75,7 @@ class StatusesController < ApplicationController
    end
   
   def show
+    @employee = Employee.all
     @status = Status.find(params[:id])
     @comments = @status.comments
     @comment = Comment.new
