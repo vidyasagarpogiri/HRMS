@@ -11,8 +11,7 @@
                 <div class="control-group">
                 <label class="control-label" for="basicinput">Description</label>
                 <div class="controls">
-                                   
-                   <%= text_area_tag 'self_description', @employee.self_description, style: 'margin: 0px 0px 10px; width: 650px; height: 221px;', required: true%>
+                  <%= text_area_tag 'self_description', @employee.self_description, style: 'margin: 0px 0px 10px; width: 650px; height: 221px;', required: true%>
                   <span class="help-block with-errors"></span>   
                 </div>
               </div>
@@ -35,8 +34,10 @@
                    <span id="advanced_search_box"></span>
                 </div>
               </div>
+              
+              <label class="control-label" for="basicinput">Existing Skill</label>
               <% @skills.each do |skill|%>
-                <%= skill %>
+                <input value="<%= skill %>" class="btn btn-success span1" style="color:black" disabled>
               <% end %>
               <ul class="navigation-btns" style="margin: 10px 0 10px 720px;">
 		           <li><button type="submit" class="btn btn-success" data-remote="true"> Save </button></li>
