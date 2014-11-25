@@ -15,11 +15,19 @@ class PhotosController < ApplicationController
    end 
  end
  
- def show
-  @photo = Photo.find(params[:id])
-  @album = @photo.album
-  #raise @photo.inspect
- end
+  def show
+    @photo = Photo.find(params[:id])
+    @album = @photo.album
+    #raise @photo.inspect
+  end
+ 
+  def destroy
+    @album = Album.find(params[:album_id])
+    @photo = Photo.find(params[:id])
+    @photo.destroy
+    flash[:notice] = "Successfully deleted photo"
+    redirect_to album_path(@album)
+  end
   
  private
   def photo_params

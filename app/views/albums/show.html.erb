@@ -5,19 +5,25 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-						  <h3>Album</h3>	
-						  <%= link_to "Add more photos", add_more_photos_form_album_path(@album)%>					  
+						  <h3>Album</h3>
+						  <label style="margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add more photos", add_more_photos_form_album_path(@album)%></label>	
+						  				  
 					  </div>
 					  <div class="module-body">
-						  <p>
-                <strong>Title:</strong>
-                <%= @album.title %>
-              </p>
+					    <p> <strong>Album Name: </strong><%= @album.title %> </p>
+               <div class="image-container">
+                <% @photos.each do |photo| %>
+                <ul class="row" style="margin-left:0px;">
+                  <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4"><%= image_tag photo.image_url, :width =>"100", :height => "100" %></li>                    
+                </ul>
+                <% end %>
+              </div>
 
-              <% @photos.each do |photo| %>
-                <%= image_tag photo.image_url, :width =>"100", :height => "100" %>
-                <%= link_to "Delete", album_path(@album), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
-              <% end %>
+
+             <!-- <%# @photos.each do |photo| %>
+                <%# image_tag photo.image_url, :width =>"100", :height => "100" %>
+                <%# link_to "Delete", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>-->
+              
 
               <ul class="navigation-btns edit" >
 							  <li><%= link_to 'Edit', edit_album_path(@album), :class=>"btn btn-success" %> </li>
@@ -31,3 +37,97 @@
 		</div><!--/.row-->
 	</div><!--/.container-->
 </div><!--/.wrapper-->
+
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:400px;opacity:">
+    <div class="modal-dialog" style="opacity:">
+      <div class="modal-content" style="opacity:">         
+        <div class="modal-body" style="opacity:">                
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  
+  
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>  
+<script> 
+  $(document).ready(function(){
+           $('li img').on('click',function(){
+                var src = $(this).attr('src');
+                var img = '<img src="' + src + '" class="img-responsive"/>';
+                $('#myModal').modal();
+                $('#myModal').on('shown.bs.modal', function(){
+                    $('#myModal .modal-body').html(img);
+                });
+                $('#myModal').on('hidden.bs.modal', function(){
+                    $('#myModal .modal-body').html('');
+                });
+           });  
+        }) 
+ </script> 
+
+<style>
+
+.col-lg-2 {
+    width: 16.66666667%;
+  }
+  
+  .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-sm-3 {
+    width: 25%;
+  }
+  
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+  float: left;
+}
+
+.col-xs-4 {
+  width: 33.33333333%;
+}
+
+ul {         
+    padding:0 0 0 0;
+    margin:0 0 0 0;
+}
+ul li {     
+    list-style:none;
+    margin-bottom:25px;           
+}
+ul li img {
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+    float: left;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: left;
+  }
+}  
+
+@media (min-width: 1200px) {
+  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+    float: left;
+  }
+}    
+
+</style>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

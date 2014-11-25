@@ -9,7 +9,7 @@ class AlbumsController < ApplicationController
   end
 
   def create
-     raise params.inspect   
+     #raise params.inspect   
     @employee = current_user.employee
     @album = @employee.albums.create(album_params)    
      if @album.save
@@ -39,8 +39,10 @@ class AlbumsController < ApplicationController
   end  
   
  def destroy
-    @album.photos.destroy
-    redirect_to album_path 
+    #raise params.inspect
+    @album.destroy
+  
+    
   end
 
   def add_more_photos_form
