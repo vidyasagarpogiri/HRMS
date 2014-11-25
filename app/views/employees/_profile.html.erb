@@ -72,17 +72,24 @@
            <h3>Self Description </h3>
          </div><br>
          <div class ="row-fluid">  
-         <div class="span12">		
-              <div class="control-group">
-         <label class="control-label" for="basicinput"><strong>Employee Self Description: </strong> <%= raw(@employee.self_description) %></label>                
-              </div>
-            </div>
            <div class="span12">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Employee Personal Interests: </strong> <%= @employee.interests %></label>                
-              </div>
+            <div class="control-group">
+              <label class="control-label" for="basicinput"><strong>Employee Self Description: </strong> <%= raw(@employee.self_description) %></label>                
             </div>
-         </div>
+          </div>
+         <div class="span12">		
+            <div class="control-group">
+              <label class="control-label" for="basicinput"><strong>Employee Personal Interests: </strong> <%= @employee.interests %></label>                
+            </div>
+          </div>
+         <div class="span12">		
+            <div class="control-group">
+              <label class="control-label" for="basicinput"><strong>Employee Skills: </strong> <% @skills.each do |skill| %>
+              <input value="<%= skill.name %>" class="btn btn-success span1" style="color:black" disabled>
+            <% end %></label>                
+            </div>
+          </div>
+     </div>
          
      <!--END OF   SELF DESCRIPTION -->
          

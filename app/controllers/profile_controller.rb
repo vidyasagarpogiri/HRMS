@@ -35,6 +35,7 @@ class ProfileController < ApplicationController
     @emp_get_attachments = @employee.employee_attachments
     @projects = @employee.projects
     @skills = @employee.skills.map(&:name).uniq
+    #@raise @skills.inspect
   end
   
 end

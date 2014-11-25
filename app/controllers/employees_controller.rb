@@ -7,6 +7,8 @@ class EmployeesController < ApplicationController
   
   def index
     @employees =  Employee.where(:status => false)
+    #@skills = current_user.employee.skills.map(&:name)
+    #raise @skills.inspect
   end
 
   def new
@@ -43,6 +45,12 @@ class EmployeesController < ApplicationController
        @projects = @employee.projects
       # raise @projects.inspect
      end
+     
+      if @employee.skills.present?
+       @skills = @employee.skills
+      # raise @projects.inspect
+     end
+     
   end
   
   def edit
