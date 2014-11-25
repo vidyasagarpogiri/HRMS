@@ -278,15 +278,36 @@ post 'create_package' => "features#create_package"
   
 
 
+  
+  # Routes for apprisal_cycle
+  resources :appraisal_cycles
+  
+  #routes for goals
+   resources :goals
+  #routes for review_elements
+    resources :review_elements
+
   # for employee status
   resources :statuses do
     resources :comments 
     member do
       post "add_like"
+      post "remove_like"
     end
   end
 
   
+
+  # routes for Album
+  resources :albums do
+    resources :photos 
+    member do
+     get "add_more_photos_form"
+     post "add_more_photos"
+    end
+  end
+  
+
   resources :projects
 
  get "/getAllSkills" => "employees#getAllSkills" 

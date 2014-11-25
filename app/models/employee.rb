@@ -39,6 +39,7 @@ class Employee < ActiveRecord::Base
   has_many :leave_histories  
   has_many :educations
   has_many :emergency_contacts
+  has_many :appraisals
 
   has_many :statuses # for employee status, employee may have more than one status so we have kept has_many relationship
   has_many :comments # for employee status comments
@@ -46,6 +47,8 @@ class Employee < ActiveRecord::Base
 
   has_many :projects
   
+  #for photo_album
+  has_many :albums
   
 
   has_many :employee_skills
@@ -72,8 +75,6 @@ class Employee < ActiveRecord::Base
 	#validates :avatar, presence: true
 	#after_create :add_leaves
 	#after_update :update_leaves
-
-
   #Employment_Status = []
 
  def reporting_manager

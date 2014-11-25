@@ -7,6 +7,8 @@ class EmployeesController < ApplicationController
   
   def index
     @employees =  Employee.where(:status => false)
+    #@skills = current_user.employee.skills.map(&:name)
+    #raise @skills.inspect
   end
 
   def new
@@ -43,6 +45,12 @@ class EmployeesController < ApplicationController
        @projects = @employee.projects
       # raise @projects.inspect
      end
+     
+      if @employee.skills.present?
+       @skills = @employee.skills
+      # raise @projects.inspect
+     end
+     
   end
   
   def edit
@@ -190,30 +198,28 @@ class EmployeesController < ApplicationController
   def employee_self_description_show
     
     @employee = current_user.employee
+    @skills = @employee.skills.map(&:name).uniq
    # raise @employee.self_description.inspect
   end
     
   def employee_self_description_form
     @employee = current_user.employee
-    
+    @skills = @employee.skills.map(&:name)   
   end
   
   def employee_self_description_create
-  #raise params.inspect
-   # raise params[:post][:self_description].inspect
-    #raise params[:hidden_skill].inspect
-    
     @employee = Employee.find(params[:id])
-    
-    @skills = params[:hidden_skill].split (", ")
-    
-    @skills.each do |skill|
+    skills_exist = @employee.skills.map(&:name)  
+    skills = params[:hidden_skill].split (", ")    
+    all_skills = (skills + skills_exist).uniq
+    #raise all_skills.inspect
+    all_skills.each do |skill|
       skill_id = Skill.find_by_name(skill)
-      raise skill_id.inspect
-      EmployeeSkill.create(:employeed_id => current_user.employee.id, :skill_id => skill_id.id)
+      #raise skill_id.inspect
+      EmployeeSkill.create(:employee_id => current_user.employee.id, :skill_id => skill_id.id)
     end
-    @employee.update(:self_description => params[:post][:self_description], :interests => params[:interests])
-    redirect_to employee_self_description_show_employee_path(@employee)  
+    @employee.update(:self_description => params[:self_description], :interests => params[:interests])
+    @skills = @employee.skills.map(&:name).uniq 
   end
 	
 	

@@ -1,19 +1,18 @@
 
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
           <div class="module">
             <div class="module-head">
 				      <h3>My Projects</h3>
-				      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'New Project',  new_project_path %></label>
+				      <% if current_user.employee == @employee %>
+ 				      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'New Project',  new_project_path, :remote => true %></label>
+ 				      <% end %>
 				     </div> 
 				      <div class="module-body">
 				      <% if @projects.present? %>
 				       <% @projects.each do |project| %>
          <div class ="row-fluid">
-          
+          <% if current_user.employee == @employee %>
+ 				      <label style="" class = "pull-right"> <%= link_to 'Edit',  edit_project_path(project), :class => "btn btn-success", :remote => true %></label>
+ 				      <% end %>
           <div class="span5">		
               <div class="control-group">
                 <label class="control-label" for="basicinput"><strong>Project Tille: </strong> <%= project.title %></label>                
@@ -44,6 +43,11 @@
                 <label class="control-label" for="basicinput"><strong>Description: </strong> <%= raw(project.description) %></label>                
               </div>
             </div><br>
+            <div class="span8">		
+              <div class="control-group">
+                <label class="control-label" for="basicinput"><strong>Tasks Performed: </strong> <%= project.tasks_performed %></label>                
+              </div>
+            </div><br>
             
          </div>
          
@@ -56,9 +60,5 @@
             <% end %> 	           
 						</div><!--/.module-body-->
 					</div><!--/.module-->
-				</div><!--/.content-->
-			</div><!--/.span12-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
+		
 	

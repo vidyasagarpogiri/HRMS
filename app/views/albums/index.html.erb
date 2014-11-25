@@ -1,0 +1,115 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                
+      <div class="span12">
+        <div class="content">         
+				  <div class="module">
+					  <div class="module-head">
+						  <h3>Album</h3>
+						  <label style="margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "New Album", new_album_path %></label>   
+					  </div>
+					  <div class="module-body">
+					  	<% if @albums.present? %>				   
+						    <% @albums.each do |album| %>
+					       <%= album.title %>
+					       <%= album.description %>
+					       <%= link_to "Show Album", album_path(album), :class=>"btn btn-info" %>	<br><hr>
+					       <div class="image-container"> 
+					       <ul class="row" style="margin-left:0px;">
+                   <% album.photos.each do |photo| %>
+                    <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4"><%= image_tag photo.image_url, :width => "100px;", :height => "100px", :class=>"img-responsive" %></li>
+                   <% end %>    
+                  </ul>
+					       </div>					  					     			     
+						    <% end %>						     
+						  	<% else %>
+						  	   <div class="alert alert-success alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        No Albums to display.Be the first to create!!
+                   </div>					   
+						  	<% end %>
+						</div><!--.module-body-->
+					</div><!--/.module -->
+		    </div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->
+<style>
+.col-lg-2 {
+    width: 16.66666667%;
+  }
+  
+  .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-sm-3 {
+    width: 25%;
+  }
+  
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+  float: left;
+}
+
+.col-xs-4 {
+  width: 33.33333333%;
+}
+
+.image-container ul {         
+    padding:0 0 0 0;
+    margin:0 0 0 0;
+}
+.image-container ul li {     
+    list-style:none;
+    margin-bottom:25px;           
+}
+.image-containerul li img {
+    cursor: pointer;
+}
+.modal-backdrop.in {
+
+opacity: .1!important;
+}
+
+.img-responsive {
+display: block;
+height: auto;
+max-width: 100%;
+}
+
+.controls{          
+    width:50px;
+    display:block;
+    font-size:11px;
+    padding-top:8px;
+    font-weight:bold;          
+}
+.next {
+    float:right;
+    text-align:right;
+}
+
+@media (min-width: 768px) {
+  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+    float: left;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: left;
+  }
+}  
+
+@media (min-width: 1200px) {
+  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+    float: left;
+  }
+}    
+</style>
+
+

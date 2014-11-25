@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20141124134916) do
+
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -25,6 +27,14 @@ ActiveRecord::Schema.define(version: 20141124134916) do
     t.integer  "employee_id"
     t.boolean  "address_type", default: false
     t.boolean  "is_permanent"
+  end
+
+  create_table "albums", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "allowances", force: true do |t|
@@ -50,6 +60,34 @@ ActiveRecord::Schema.define(version: 20141124134916) do
   create_table "announcements", force: true do |t|
     t.string   "title"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "appraisal_cycles", force: true do |t|
+    t.string   "title"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "period"
+    t.date     "employee_dead_line"
+    t.date     "manager_dead_line"
+    t.date     "discussion_dead_line"
+    t.string   "status"
+    t.integer  "department_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "appraisals", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "review_period"
+    t.string   "over_all_rating"
+    t.integer  "manager_id"
+    t.integer  "employee_id"
+    t.integer  "department_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -298,6 +336,15 @@ ActiveRecord::Schema.define(version: 20141124134916) do
     t.datetime "updated_at"
   end
 
+  create_table "goals", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "grades", force: true do |t|
     t.string   "value"
     t.datetime "created_at"
@@ -450,6 +497,13 @@ ActiveRecord::Schema.define(version: 20141124134916) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", force: true do |t|
+    t.string   "image"
+    t.integer  "album_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "policies", force: true do |t|
     t.string   "title"
     t.text     "details"
@@ -509,6 +563,17 @@ ActiveRecord::Schema.define(version: 20141124134916) do
     t.datetime "updated_at"
     t.integer  "group_id"
     t.integer  "manager_id"
+  end
+
+  create_table "review_elements", force: true do |t|
+    t.string   "review_element"
+    t.string   "performance_indicator"
+    t.string   "employee_assesment"
+    t.string   "employee_rating"
+    t.string   "manager_feedback"
+    t.string   "manager_rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "role_previliges", force: true do |t|
