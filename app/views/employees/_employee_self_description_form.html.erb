@@ -11,9 +11,8 @@
                 <div class="control-group">
                 <label class="control-label" for="basicinput">Description</label>
                 <div class="controls">
-                  <%#= bootsy_area :self_description, :class => "span8 form-control", :placeholder =>"Enter Project Description", :data => {:error => "Please Enter Project Description"}, :required => true, :style => "margin: 0px 0px 10px; width: 650px; height: 221px;" %>
-                  
-                   <%= bootsy_area 'post','self_description', class: 'form-control', value: raw(@employee.self_description), style: 'margin: 0px 0px 10px; width: 650px; height: 221px;', required: true%>
+                                   
+                   <%= text_area_tag 'self_description', @employee.self_description, style: 'margin: 0px 0px 10px; width: 650px; height: 221px;', required: true%>
                   <span class="help-block with-errors"></span>   
                 </div>
               </div>
@@ -21,7 +20,7 @@
               <div class="control-group">
                 <label class="control-label" for="basicinput">Personal Interests</label>
                   <div class="controls">
-                  <%= text_area_tag  'interests', " ", value: @employee.interests, :style => "width: 650px;"	 %>
+                  <%= text_area_tag  'interests', @employee.interests, :style => "width: 650px;", required: true%>
                   <span class="help-block with-errors"></span>
                 </div>
               </div>
@@ -30,7 +29,7 @@
               <div class="control-group">
                 <label class="control-label" for="basicinput">Personal Skill</label>
                 <div class="controls">
-             <input type="text"  class = "term_skill span7 form-control", name= "skills" , place_holder = "Enter Reporting Manager Name" data-error="Please Enter valid Employee Reporting Manager" required>
+             <input type="text"  class = "term_skill span7 form-control", name= "skills" , place_holder = "Enter Reporting Manager Name" data-error="Please Enter valid Skill" required>
                   <input type="hidden" name="hidden_skill" class="hidden_skill">
                    <span class="help-block with-errors"></span>
                    <span id="advanced_search_box"></span>
@@ -39,7 +38,7 @@
               
               <ul class="navigation-btns" style="margin: 10px 0 10px 720px;">
 		           <li><button type="submit" class="btn btn-success" data-remote="true"> Save </button></li>
-			         <li> <%= link_to 'Cancel',employee_self_description_show_employee_path(@employee), :class=>"btn btn-danger", :remote => true %></li>									
+			         <li> <%= link_to 'Cancel', employee_self_description_show_employee_path(@employee), :class=>"btn btn-danger", :remote => true %></li>									
 	           </ul>	
             
             <%end%>
@@ -67,7 +66,7 @@
         focus: function( event, ui ) {
         $(".term_skill").val("");
         if ($(".hidden_skill").val() == ""){
-          $(".hidden_skill").val(ui.item.id);
+          $(".hidden_skill").val(ui.item.label);
         }
         else{
           var skills = $(".hidden_skill").val()+", "+ui.item.label;
