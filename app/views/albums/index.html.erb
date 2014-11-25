@@ -14,12 +14,13 @@
 					     <%= album.title %>
 					     <%= album.description %>
 					     <%= link_to "Show Album", album_path(album), :class=>"btn btn-info" %>	<br><hr>
+					     <div class="image-container"> 
 					     <ul class="row" style="margin-left:0px;">
                  <% album.photos.each do |photo| %>
                   <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4"><%= image_tag photo.image_url, :width => "100px;", :height => "100px", :class=>"img-responsive" %></li>
                  <% end %>    
                 </ul>
-					     
+					     </div>
 					  
 					     			     
 						  <% end %>
@@ -55,15 +56,15 @@
   width: 33.33333333%;
 }
 
-ul {         
+.image-container ul {         
     padding:0 0 0 0;
     margin:0 0 0 0;
 }
-ul li {     
+.image-container ul li {     
     list-style:none;
     margin-bottom:25px;           
 }
-ul li img {
+.image-containerul li img {
     cursor: pointer;
 }
 .modal-backdrop.in {

@@ -1,14 +1,18 @@
 class AlbumsController < ApplicationController 
-  def index
+  #author :Priyanka
+  #Controller for creating and editing Albums
+
+  
+  def index  #Index method for displaying all albums
     @albums = Album.all
   end
    
-  def new 
+  def new   #New method creates a object for new album
     @album = Album.new  
     @photo = @album.photos.build      
   end
 
-  def create
+  def create  #Create method for creating album and respective photos record
      #raise params.inspect   
     @employee = current_user.employee
     @album = @employee.albums.create(album_params)    
@@ -22,19 +26,20 @@ class AlbumsController < ApplicationController
      end  
   end  
    
-  def show
+  def show  #Show method for displaying perticular album based on its id
    @album = Album.find(params[:id])
    @photos = @album.photos
    @id = @album.employee_id
    #raise @id.inspect
   end
   
-  def edit
+  def edit  
    @album = Album.find(params[:id])
-   @photos = @album.photos
+   @photos = @album.photos.count
+   #raise @photos.inspect
   end
   
-   def update          
+   def update           
     @employee = current_user.employee.id
     @album = Album.find(params[:id])
     @photo = @album.photos.find(params[:id])
@@ -47,7 +52,7 @@ class AlbumsController < ApplicationController
     
   end
 
-  def add_more_photos_form
+  def add_more_photos_form #method for adding new photos for a album based on its id
     @album = Album.find(params[:id]) 
     @photo = @album.photos.build      
   end
