@@ -201,10 +201,11 @@ class EmployeesController < ApplicationController
   
   def employee_self_description_create
     @employee = Employee.find(params[:id])
-    @employee.skills.destroy_all   
+    skills_exist = @employee.skills.map(&:name)  
     skills = params[:hidden_skill].split (", ")    
-    skills = skills.uniq
-    skills.each do |skill|
+    all_skills = (skills + skills_exist).uniq
+    #raise all_skills.inspect
+    all_skills.each do |skill|
       skill_id = Skill.find_by_name(skill)
       #raise skill_id.inspect
       EmployeeSkill.create(:employee_id => current_user.employee.id, :skill_id => skill_id.id)
