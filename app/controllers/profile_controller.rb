@@ -34,6 +34,7 @@ class ProfileController < ApplicationController
     @emergency = @employee.emergency_contacts
     @emp_get_attachments = @employee.employee_attachments
     @projects = @employee.projects
+    @skills = @employee.skills.map(&:name).uniq
   end
   
 end

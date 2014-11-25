@@ -190,30 +190,26 @@ class EmployeesController < ApplicationController
   def employee_self_description_show
     
     @employee = current_user.employee
+    @skills = @employee.skills.map(&:name).uniq
    # raise @employee.self_description.inspect
   end
     
   def employee_self_description_form
     @employee = current_user.employee
-    
+    @skills = @employee.skills.map(&:name)   
   end
   
   def employee_self_description_create
-  #raise params.inspect
-   # raise params[:post][:self_description].inspect
-    #raise params[:hidden_skill].inspect
-    
-    @employee = Employee.find(params[:id])
-    
-    @skills = params[:hidden_skill].split (", ")
-    
-    @skills.each do |skill|
+    @employee = Employee.find(params[:id])   
+    skills = params[:hidden_skill].split (", ")    
+    skills = skills.uniq
+    skills.each do |skill|
       skill_id = Skill.find_by_name(skill)
-      raise skill_id.inspect
-      EmployeeSkill.create(:employeed_id => current_user.employee.id, :skill_id => skill_id.id)
+      #raise skill_id.inspect
+      EmployeeSkill.create(:employee_id => current_user.employee.id, :skill_id => skill_id.id)
     end
-    @employee.update(:self_description => params[:post][:self_description], :interests => params[:interests])
-    
+    @employee.update(:self_description => params[:self_description], :interests => params[:interests])
+    @skills = @employee.skills.map(&:name).uniq 
   end
 	
 	
