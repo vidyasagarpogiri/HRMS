@@ -288,6 +288,7 @@ post 'create_package' => "features#create_package"
     resources :comments 
     member do
       post "add_like"
+      post "remove_like"
     end
   end
 

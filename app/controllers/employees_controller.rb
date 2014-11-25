@@ -213,7 +213,7 @@ class EmployeesController < ApplicationController
       EmployeeSkill.create(:employeed_id => current_user.employee.id, :skill_id => skill_id.id)
     end
     @employee.update(:self_description => params[:post][:self_description], :interests => params[:interests])
-    redirect_to employee_self_description_show_employee_path(@employee)  
+    
   end
 	
 	

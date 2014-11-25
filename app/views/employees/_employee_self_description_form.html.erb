@@ -1,14 +1,11 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
+
           <div class="module">
             <div class="module-head">
               <h3>My Self Description</h3>
             </div>
             <div class="module-body">
-             <%= form_tag  employee_self_description_create_employee_path(@employee), method: :patch do %>
+           
+             <%= form_tag  employee_self_description_create_employee_path(@employee), :remote => true, method: :patch do %>
              
              
                 <div class="control-group">
@@ -41,18 +38,14 @@
               </div>
               
               <ul class="navigation-btns" style="margin: 10px 0 10px 720px;">
-		           <li><button type="submit" class="btn btn-success"> Save </button></li>
-			         <li> <%= link_to 'Cancel',employee_self_description_show_employee_path(@employee.id), :class=>"btn btn-danger "%></li>									
+		           <li><button type="submit" class="btn btn-success" data-remote="true"> Save </button></li>
+			         <li> <%= link_to 'Cancel',employee_self_description_show_employee_path(@employee), :class=>"btn btn-danger", :remote => true %></li>									
 	           </ul>	
             
             <%end%>
             </div><!--/.module-body-->
           </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+
 
 
 
