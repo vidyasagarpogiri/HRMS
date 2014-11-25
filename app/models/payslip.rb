@@ -8,6 +8,10 @@ class Payslip < ActiveRecord::Base
   def payslip_allowances_total_value
     allowances.where(is_deductable: false).sum(:total_value).round(2)
   end
+  
+  def check_tds
+    tds = TdsCalculation.new(9345, 2)
+  end
   # begin author - sekhar
   # this code will be modified or removed depends on reqirement
   # untill don`t touch this code
@@ -48,11 +52,14 @@ end
       salary.payslip_allowances(payslip)
       payslip_special_allowance = (salary.special_allowance/12).round(2)
       gross = payslip.basic_salary + payslip.hra + payslip.payslip_allowances_total_value + payslip_special_allowance
+      
+      new_tds = TdsCalculation.new(gross, employee.id)
+      tds = new_tds.tds_for_this_month
       # method call for calculation pf,esic and total_deductions
       payslip_pf_value, payslip_esic_value,total_deducted_allowances_value = caluclate_pf_and_esic_value(payslip, salary_percentages,gross)
-      total_deductions_value = payslip_pf_value.to_f + payslip_esic_value.to_f + total_deducted_allowances_value
+      total_deductions_value = payslip_pf_value.to_f + payslip_esic_value.to_f + total_deducted_allowances_value + tds.to_f
       net_pay = gross - total_deductions_value
-      payslip.update(total_deductions: total_deductions_value, netpay: net_pay, gross_salary: gross, pf: payslip_pf_value, esic: payslip_esic_value, special_allowance: payslip_special_allowance, mode: 'Bank')
+      payslip.update(total_deductions: total_deductions_value, netpay: net_pay, gross_salary: gross, pf: payslip_pf_value, esic: payslip_esic_value, special_allowance: payslip_special_allowance, mode: 'Bank', tds: tds)
     end
     payslips = Payslip.where(month: month, year: year)
   end

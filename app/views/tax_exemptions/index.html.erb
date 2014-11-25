@@ -5,7 +5,7 @@
         <div class="content">
           <div class="module">
             <div class="module-head">
-               <h3>Tax Brackets</h3>
+               <h3>Tax Exemptions</h3>
                <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to "New TaxExemption", new_tax_exemption_path %></label> 
             </div>
             
@@ -27,7 +27,7 @@
 							          <td>
                           <% if current_user.department == Department::HR %>
 							              <ul class="navigation-btns  pull-left" >
-							                <li> <%= link_to 'Edit', "#", :class => "btn btn-success" %></li>
+							                <li> <%= link_to 'Edit', edit_tax_exemption_path(tax), :class => "btn btn-success" %></li>
 							                <li><%= link_to 'Delete', "#", method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger" %></li>
 										        </ul> 
 										      <% end %>
