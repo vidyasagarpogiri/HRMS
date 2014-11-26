@@ -198,7 +198,7 @@ class EmployeesController < ApplicationController
   def employee_self_description_show
     
     @employee = current_user.employee
-    @skills = @employee.skills.map(&:name).uniq
+    @skills = @employee.skills.map(&:name)
    # raise @employee.self_description.inspect
   end
     
@@ -215,7 +215,7 @@ class EmployeesController < ApplicationController
     new_skills.each do |skill|
       skill_id = Skill.find_by_name(skill)
       #raise skill_id.inspect
-      EmployeeSkill.create(:employee_id => current_user.employee.id, :skill_id => skill_id.id)
+     @employee.skills << skill_id
     end
     @employee.update(:self_description => params[:self_description], :interests => params[:interests])
     @skills = @employee.skills.map(&:name).uniq 
