@@ -79,14 +79,10 @@ end
     gross = basic_salary + hra + payslip.payslip_allowances_total_value + payslip_special_allowance + payslip.arrears.to_f
     #tds = tds.to_f
     #Calling Tds 
+    @tds = params_tds.to_f
     unless payslip.gross_salary.to_i == gross.to_i
      tds =  TdsCalculation.new(gross, payslip.employee, payslip.tds)
      @tds = tds.tds_for_this_month
-    end
-    
-    unless payslip.tds.to_i == params_tds.to_i
-      tds =  TdsCalculation.new(gross, payslip.employee, payslip.tds, params_tds)
-      @tds =  tds.only_tds_modification
     end
    
    # raise payslip.inspect
