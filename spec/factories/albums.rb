@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :album do
-    title "MyString"
-description "MyText"
-employee_id 1
-  end
-
+    title "Myalbum"
+    description "B'day party pics"
+    employee_id 1
+  end   
 end

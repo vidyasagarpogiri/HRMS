@@ -7,7 +7,7 @@
 					  <div class="module-head">
 						  <h3><%= @album.title %></h3>
 						  <% if current_user.employee.id == @id %>
-						    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "editt", add_more_photos_form_album_path(@album)%></label>	
+						    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add photos", add_more_photos_form_album_path(@album)%></label>	
 						  <% end %>
 					  </div>
 					  <div class="module-body">

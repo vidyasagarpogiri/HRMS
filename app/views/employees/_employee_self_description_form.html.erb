@@ -28,7 +28,7 @@
               <div class="control-group">
                 <label class="control-label" for="basicinput">Personal Skill</label>
                 <div class="controls">
-             <input type="text"  class = "term_skill span7 form-control", name= "skills" , place_holder = "Enter Reporting Manager Name" data-error="Please Enter valid Skill" required>
+             <input type="text"  class = "term_skill span7 form-control", name= "skills" , place_holder = "Enter Reporting Manager Name" data-error="Please Enter valid Skill" >
                   <input type="hidden" name="hidden_skill" class="hidden_skill">
                    <span class="help-block with-errors"></span>
                    <span id="advanced_search_box"></span>
@@ -69,14 +69,21 @@
         $(".term_skill").val("");
         if ($(".hidden_skill").val() == ""){
           $(".hidden_skill").val(ui.item.label);
+          span = get_box(ui.item.label);
+          $('#advanced_search_box').append(span);
         }
         else{
+        var hidden_skill_array = $(".hidden_skill").val().split(", ");
+        var contain_skill_or_not = (hidden_skill_array.indexOf(ui.item.label) > -1);
+         if (contain_skill_or_not == false){
           var skills = $(".hidden_skill").val()+", "+ui.item.label;
           $(".hidden_skill").val(skills)
+           span = get_box(ui.item.label);
+          $('#advanced_search_box').append(span);
+          }
         }
         //alert($( ".term_skill" ).val());
-         span = get_box(ui.item.label);
-         $('#advanced_search_box').append(span);
+         $("#search_form").submit();
         return false;
         }
         });
@@ -98,3 +105,7 @@ function remove_skill(text){
 
   });
   </script>
+  
+  
+  
+ 
