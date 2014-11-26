@@ -106,7 +106,7 @@
             <div class="control-group">
               <label class="control-label" for="basicinput"><strong>Employee Skills: </strong>
               <% @skills.each do |skill| %>
-              <input value="<%= skill.name %>" class="btn btn-success span1" style="color:black" disabled>
+              <input value="<%= skill.name %>" class="btn btn-success span2" style="color:black" disabled>
             <% end %>
             
             </label>                
@@ -129,51 +129,58 @@
          <div class="module-head">
            <h3> Projects</h3>
          </div><br>
-         <% if @employee.projects.present? %>
-         <% @projects.each do |project| %>
-         <div class ="row-fluid">
-          
-          <div class="span5">		
-              <div class="control-group">
+          <% if @projects.present? %>
+				       <% @projects.each do |project| %>
+           <div class ="row-fluid ">          
+            <div class="span12" style="margin-left:20px;">		
+              <div class="control-group span4">
                 <label class="control-label" for="basicinput"><strong>Project Tille: </strong> <%= project.title %></label>                
+              </div>
+         	
+              <div class="control-group span4">
+                <label class="control-label" for="basicinput"><strong>Start Date: </strong> <%= project.start_date %></label>                
+              </div>
+      		
+              <div class="control-group span4">
+                <label class="control-label" for="basicinput"><strong>End Date: </strong> <%= project.end_date %></label>                
               </div>
             </div>
             
+                                   
+            <div class="span11">		
+              <div class="control-group">
+                <label class="control-label" for="basicinput"><strong>Description: </strong> <%= project.description %></label>                
+              </div>
+            </div>
             
-          <div class="span5">		
+            <div class="span4">		
+              <div class="control-group">
+                <label class="control-label" for="basicinput"><strong>Roles: </strong> <%= project.roles %></label>                
+              </div>
+            </div>
+            
+            <div class="span4">		
               <div class="control-group">
                 <label class="control-label" for="basicinput"><strong>Key Skills used: </strong> <%= project.skills %></label>                
               </div>
             </div>
-            
-            
-          <div class="span5">		
+          
+            <div class="span12">		
               <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Start Date </strong> <%= project.start_date %></label>                
-              </div>
+                <label class="control-label" for="basicinput"><strong>Tasks Performed: </strong> <%= project.tasks_performed %></label>                
+              </div><br>
+             
             </div>
-            
-            <div class="span5">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>End Date </strong> <%= project.end_date %></label>                
-              </div>
-            </div>
-             <div class="span12">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Description </strong> <%= raw(project.description) %></label>                
-              </div>
-            </div>
-            <br>
-            
+      			                 
          </div>
          
-         <% end %>
-         <% else %>
-         <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                   No Projects Added
+         <% end %><br>
+				      <%else%>
+				      <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  No Projects to display.
               </div>
-         <%end%>
+            <% end %> 	           
          
      <!-- END OF EMPLOYEE PROJECTS SECTION -->
      
