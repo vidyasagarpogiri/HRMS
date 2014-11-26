@@ -43,7 +43,13 @@
                 </div>
               </div>
               
-              
+                <div class="control-group">
+                <label class="control-label" for="basicinput">Roles</label>
+                  <div class="controls">
+                  <%= f.text_field :roles, :class => "span8 form-control", :placeholder =>"Enter roles Performed", :data => {:error => "Please Enter valid Tasks"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
               
               <div class="control-group">
                 <label class="control-label" for="basicinput">Taskes Performed</label>
@@ -53,14 +59,6 @@
                 </div>
               </div>
               
-              
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Roles</label>
-                  <div class="controls">
-                  <%= f.text_field :roles, :class => "span8 form-control", :placeholder =>"Enter roles Performed", :data => {:error => "Please Enter valid Tasks"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
               
               
               <div class="control-group">
