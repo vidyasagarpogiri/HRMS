@@ -16,9 +16,9 @@ class InvestmentDeclarationsController < ApplicationController
     pay_roll_master = current_user.employee.pay_roll_masters
     salary =  current_user.employee.salary
     if salary.present? && !pay_roll_master.present? 
-       @payroll = PayRollMaster.create(:employee_id => current_user.employee.id, :assesment_year => Date.today, :total_income => current_user.employee.salary.ctc_fixed, :total_savings => @declarations.sum(:yearly_value) )
-    elsif current_user.employee.salary.present? && current_user.employee.pay_roll_masters.present? 
-      @payroll = pay_roll_master.first.update(:total_savings => @declarations.sum(:yearly_value))
+       @payroll = PayRollMaster.create(employee_id: current_user.employee.id, assesment_year: Date.today.year, total_savings: @declarations.sum(:yearly_value) )
+    elsif current_user.employee.salary.present? && pay_roll_master.present? 
+      @payroll = pay_roll_master.first.update(total_savings: @declarations.sum(:yearly_value))
     end
     
   end

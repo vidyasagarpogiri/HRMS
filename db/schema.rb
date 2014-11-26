@@ -447,18 +447,13 @@ ActiveRecord::Schema.define(version: 20141124134916) do
   end
 
   create_table "pay_roll_masters", force: true do |t|
-    t.date     "assesment_year"
-    t.float    "total_income",          limit: 24
-    t.float    "total_savings",         limit: 24
-    t.float    "total_tds",             limit: 24
+    t.integer  "assesment_year"
+    t.float    "total_income",   limit: 24
+    t.float    "total_savings",  limit: 24
+    t.float    "total_tds",      limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "employee_id"
-    t.float    "net_taxable_income",    limit: 24
-    t.float    "income_tax",            limit: 24
-    t.float    "education_cess",        limit: 24
-    t.float    "higher_education_cess", limit: 24
-    t.float    "total_tax",             limit: 24
     t.string   "status"
   end
 
