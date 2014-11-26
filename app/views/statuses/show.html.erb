@@ -36,7 +36,7 @@
           
            	
            <%#paginate  @policies %> 					
-         
+          
   		   </div><!--/.module-->
 	    		
      </div><!--/.row-->		
@@ -44,18 +44,17 @@
 </div><!--/.Wrapper-->	
 
 <!-- Small modal -->
-
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
+    <h4 class="modal-title" id="myModalLabel">Likes List</h4>
       <% @employees.each do |emp| %> 
-					 <%= emp.first_name %>,
+					 <%= emp.first_name %> <br>
 					  <% end %>
-					   <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					  <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> 
       </div>
     </div>
-    
   </div>
 </div>
 
