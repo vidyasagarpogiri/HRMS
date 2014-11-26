@@ -24,8 +24,7 @@
            
             <ul class="navigation-btns">        
              <li><label style#"font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class#"icon-ok"></i></a><%# link_to "Show", status_path(s.id) %></label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              <label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-edit"></i></a><%= link_to "Edit", edit_status_path(s.id) %></label>
-              <label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-trash"></i></a><%= link_to "Delete", status_path(s.id), method: :delete, data: {confirm: "Are You sure?"} %></label></li>
+               <label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-trash"></i></a><%= link_to "Delete", status_path(s.id), method: :delete, data: {confirm: "Are You sure?"} %></label></li>
                          
           </ul>
           <% end %>
