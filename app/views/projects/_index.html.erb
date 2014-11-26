@@ -10,8 +10,9 @@
 				      <% if @projects.present? %>
 				       <% @projects.each do |project| %>
          <div class ="row-fluid">
-          <% if current_user.employee == @employee %>
+          <% if current_user.employee == project.employee %>
  				      <label style="" class = "pull-right"> <%= link_to 'Edit',  edit_project_path(project), :class => "btn btn-success", :remote => true %></label>
+ 				       <label style="" class = "pull-right"><%= link_to "Delete", project_path(project.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger ", :remote => true %></label>
  				      <% end %>
           <div class="span5">		
               <div class="control-group">
@@ -47,7 +48,7 @@
               <div class="control-group">
                 <label class="control-label" for="basicinput"><strong>Tasks Performed: </strong> <%= project.tasks_performed %></label>                
               </div>
-            </div><br>
+            </div><hr>
             
          </div>
          

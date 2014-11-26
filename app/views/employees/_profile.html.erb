@@ -80,11 +80,13 @@
             </div>
           </div>
           <%else%>
-          <div class="alert alert-success alert-dismissable">
+            <div class="alert alert-success alert-dismissable">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                    There is No self Description
               </div>
-           <%end%>
+           <% end %>
+         
+         
            <% if(@employee.interests != nil) %>
          <div class="span12">		
             <div class="control-group">
@@ -97,6 +99,8 @@
                    There Are No Self Interests
               </div>
            <%end%>
+           
+           
            <% if @employee.skills.present? %>
           <div class="span12">		
             <div class="control-group">
@@ -114,7 +118,10 @@
                    No Skills Added
               </div>
             <%end%>
+     
+     
      </div>
+     
          
      <!--END OF   SELF DESCRIPTION -->
          
