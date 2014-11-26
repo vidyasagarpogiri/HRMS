@@ -47,7 +47,6 @@ RSpec.describe AlbumsController, :type => :controller do
     end
   end
   
-  decscribe "Get edit" do
-  end
+  
 
 end
