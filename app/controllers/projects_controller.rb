@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   
   def new
    @project = Project.new
-   @employee = current_user.employee
+  
   
   end
   
@@ -36,7 +36,8 @@ class ProjectsController < ApplicationController
   #raise params.inspect
     @project =  Project.find(params[:id])
     @project.destroy
-    @projects = @employee.projects
+     @projects = current_user.employee.projects
+     @employee = current_user.employee
   end
   
   

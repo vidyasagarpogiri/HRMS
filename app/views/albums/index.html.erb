@@ -5,22 +5,41 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-						  <h3>Album</h3>
+						  <h3>Gallery</h3>
 						  <label style="margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "New Album", new_album_path %></label>   
 					  </div>
 					  <div class="module-body">
 					  	<% if @albums.present? %>				   
 						    <% @albums.each do |album| %>
-					       <%= album.title %>
-					       <%= album.description %>
-					       <%= link_to "Show Album", album_path(album), :class=>"btn btn-info" %>	<br><hr>
-					       <div class="image-container"> 
-					       <ul class="row" style="margin-left:0px;">
-                   <% album.photos.each do |photo| %>
-                    <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4"><%= image_tag photo.image_url, :width => "100px;", :height => "100px", :class=>"img-responsive" %></li>
-                   <% end %>    
-                  </ul>
-					       </div>					  					     			     
+						    
+						    <div class ="row-fluid cube ">  
+                  <div class="span3">		
+                    <div class="control-group">
+                      <label class="control-label" for="basicinput"><strong>Album Title: </strong> <%= album.title %></label>                
+                    </div>
+                  </div>
+                  <div class="span6">		
+                    <div class="control-group">
+                      <label class="control-label" for="basicinput"><strong>Description: </strong> <%= album.description %></label>                
+                    </div>
+                  </div>	<br>				       
+					       
+					       
+					       <div class="image-container"><br> 
+					         <label class="control-label" for="basicinput"><strong>All Photos</strong></label>
+					         <ul class="row" id="test">
+					         <% i = 0%>
+                     <% album.photos.each do |photo| %>
+                      <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4" ><%= image_tag photo.image_url, :width => "100px;", :height => "100px", :class=>"img-responsive" %></li>
+                      <% i+=1 %>
+                     <% end %>    
+                    </ul>
+                    <% if i>2 %>
+                      <%= link_to "view Album", album_path(album), :class=>"btn btn-info" %>	<br>
+                    <% end %>
+                    <br><hr>
+					       </div>
+					       </div>				  					     			     
 						    <% end %>						     
 						  	<% else %>
 						  	   <div class="alert alert-success alert-dismissable">
@@ -57,6 +76,17 @@
 
 .col-xs-4 {
   width: 33.33333333%;
+
+}
+
+.image-container{
+width:500px;
+}
+
+.cube{
+border:solid 1px;
+width:49%;
+float:right;
 }
 
 .image-container ul {         
@@ -65,9 +95,10 @@
 }
 .image-container ul li {     
     list-style:none;
-    margin-bottom:25px;           
+    margin-bottom:25px; 
+    width:100px;          
 }
-.image-containerul li img {
+.image-container ul li img {
     cursor: pointer;
 }
 .modal-backdrop.in {
@@ -111,5 +142,13 @@ max-width: 100%;
   }
 }    
 </style>
+
+<script type="text/javascript">
+  $("#test li:nth-child(n+4)").hide()
+    $('.btn').click(function(){  
+       $(".btn").show();
+      $("#test li:nth-child(n+4)").toggle()
+  });
+</script>
 
 
