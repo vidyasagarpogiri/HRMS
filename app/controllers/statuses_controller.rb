@@ -71,6 +71,7 @@ class StatusesController < ApplicationController
 
   def destroy
     @status = Status.find(params[:id])
+    @status.comments.destroy_all
     @status.destroy
     redirect_to statuses_path
   end
