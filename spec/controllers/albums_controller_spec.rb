@@ -2,51 +2,41 @@ require 'rails_helper'
 
 RSpec.describe AlbumsController, :type => :controller do
 
-  let(:album_attributes){
-    {title: "Album1", description: "Just demo"}
-  }
+  before(:each) do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    employee = FactoryGirl.create(:employee)
+    user = employee.user
+    sign_in user
+  end    
   
-  let(:invalid_album_attributes){
-    {title: nil, description: "Just demo"}
-  }
-  
-  describe "GET index" do
-    it "List of all Albums @albums" do
-      album = Album.create!(album_attributes)
-      album1 = Album.create!(invalid_album_attributes)
-      get :index,{}
-      expect(assigns(:albums)).to eq([album,album1])
+  describe "GET #index" do 
+  	it "Generates an array of albums" do
+    	album1 = FactoryGirl.create(:album) 
+      album2 = FactoryGirl.create(:album) 
+      album3 = FactoryGirl.create(:album)  
+      get :index, {}
+      expect(assigns(:albums)).to eq([album1, album2, album3]) 
     end
-  end
-  
+	end		
+	    
   describe "GET new" do  
     it "Creates a new album object" do
       get :new,{}
       expect(assigns(:album)).to be_a_new(Album)
-    end
-  end
+    end    
+  end  
   
   describe "Post create" do
     describe "with valid attributes" do
       it "creates a valid album" do
         expect{
-          Post :create, {:album => album_attributes }
+          Post :create, {album: FactoryGirl.attributes_for(:album) }
         }.to change(Album, :count). by(1)
       end
-    end
-    
-    describe "with invalid attributes" do
-      it "create Album with in valid attributes" do       
-        Post :create, {:album => invalid_album_attributes }
-        expect(assigns(:album)).to eq([Album])
+      it "re-directing to created Album" do
+        Post :create, {album: FactoryGirl.attributes_for(:album) }
+        expect(response).to redirect-template(albums_path)
       end
-      it "re-directing to new template" do
-        Post :create, {:album => invalid_album_attributes }
-        expect(response).to redirect-template("new")
-      end
-    end
-  end
-  
-  
-
+    end       
+  end    
 end
