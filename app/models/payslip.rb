@@ -52,7 +52,7 @@ end
       payslip = Payslip.create(no_of_working_days: actual_days, working_days: actual_days, basic_salary: payslip_basic, hra: payslip_hra, month: month, year: year, employee_id: employee.id, status: 'NEW')
       # for creating allowances for payslip
       salary.payslip_allowances(payslip)
-      payslip_special_allowance = (salary.special_allowance/12).round(2)
+      payslip_special_allowance = payslip_special_allowances((salary.special_allowance/12).round(2), actual_days, actual_days)
       gross = payslip.basic_salary + payslip.hra + payslip.payslip_allowances_total_value + payslip_special_allowance
       
       new_tds = TdsCalculation.new(gross, employee.id)

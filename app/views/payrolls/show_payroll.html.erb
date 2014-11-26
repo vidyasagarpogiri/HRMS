@@ -236,7 +236,7 @@
                       <label class="label"><%= allowance.allowance_name %></label>
                     </div>
                     <div class="span6">
-                      <label class="value"><%= (allowance.allowance_value/12).round(2) %></label>
+                      <label class="value"><%= (allowance.total_value.to_f/12).round(2) %></label>
                     </div>
                   </div>
                   <% end %>
