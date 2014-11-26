@@ -140,6 +140,7 @@ get 'inactive_employees' => "employees#inactive_employees"
 			get 'bankdetails_edit'
 			post 'bankdetails_create'
 			post 'bankdetails_update'	
+			
 			get 'employee_self_description_show'
 			get 'employee_self_description_form'
 			patch 'employee_self_description_create'	
@@ -273,6 +274,9 @@ post 'create_package' => "features#create_package"
 
 
   resources :tax_brackets
+  resources :tax_exemptions
+  
+
 
   
   # Routes for apprisal_cycle
@@ -307,6 +311,7 @@ post 'create_package' => "features#create_package"
   resources :projects
 
  get "/getAllSkills" => "employees#getAllSkills" 
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

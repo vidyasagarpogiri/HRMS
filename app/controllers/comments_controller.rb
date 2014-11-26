@@ -38,10 +38,10 @@ class CommentsController < ApplicationController
     @comment.save
     #raise @comment.inspect
     #raise @comment.inspect
-    #Notification.comment_notification(@employee, @comment, @status).deliver
+    # Notification.comment_notification(@employee, @comment, @status).deliver
     #raise Notification.inspect
     #end
-    redirect_to status_path(@status.id)
+    redirect_to statuses_path
   end
   
   def new

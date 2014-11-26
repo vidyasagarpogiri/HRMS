@@ -4,24 +4,26 @@
 			<div class="span12">	
 			  <div class="module">
           <div class="module-head">
-			      <h3>Status Details</h3>	
-			      </div>
-			      <div class="pull-right" ><a href="/statuses" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Employee Wall</i></a></div>  
+			      <h3>Status Details
+			     
+			      <div class="pull-right" ><a href="/statuses" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Employee Wall</i></a></div>   </h3>	</div>
 			        <div class="module-body">	       
             <h4><%= @status.status %></h4>                   
 					</div><!--/.module-body-->
-				
-					<h5><%= @status.comments.count %> Comments , 
-					<%=link_to @status.likes_count %> Likes <%#raise @status.likes.second.employee.inspect %>   
-            <% if @status.likes.where(:employee_id => current_user.employee.id).first %>  
-          <%= link_to 'You Liked', remove_like_status_path(@status.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
+				    
+					<h5>Comments (<%= @status.comments.count %>)  , 
+					 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Likes List</button>
+					  <%= link_to 'Likes' %>
+					  (<%=link_to @status.likes_count %>), <%#raise @status.likes.second.employee.inspect %>   
+            <% if @status.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
+          <%= link_to 'UnLike', remove_like_status_path(@status.id, :employee_id => current_user.employee), :method => "post" %> </span>  </h5>
             <% else %> 
           <%= link_to 'Like', add_like_status_path(@status.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
            <% end %>
            
 					 <h5><% @comments.each do |com| %></h5> 
-					 <p><%= link_to image_tag(com.employee.avatar_url,size: "20x20") %> <b> <%= com.employee.full_name %> </b><%= time_ago_in_words(com.created_at)%> ago </p>
-           <p><%=com.comment %> </p>  
+					 <p><%= link_to image_tag(com.employee.avatar_url,size: "20x20") %> <b> <%= com.employee.full_name %> </b><%=com.comment %> </p>
+					  <p><%= time_ago_in_words(com.created_at)%> ago </p>  
            <% end %>
            
 					<%= render "comments/form", :status => @status%>
@@ -34,7 +36,7 @@
           
            	
            <%#paginate  @policies %> 					
-         
+          
   		   </div><!--/.module-->
 	    		
      </div><!--/.row-->		
@@ -42,12 +44,18 @@
 </div><!--/.Wrapper-->	
 
 <!-- Small modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-      ...
+    <h4 class="modal-title" id="myModalLabel">Likes List</h4>
+      <% @employees.each do |emp| %> 
+					 <%= emp.first_name %> <br>
+					  <% end %>
+					  <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> 
+      </div>
     </div>
   </div>
 </div>
+
+

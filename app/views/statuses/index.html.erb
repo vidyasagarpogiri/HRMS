@@ -8,47 +8,54 @@
 			  <div class="module">
 				  <div class="module-head">
 					  <h3>Employees Wall </h3>
-			
-				  </div>	
+			    </div>	
+			    
 			    <div class="module-body">
 		        <% if @statuses.present? %> 
             <% @statuses.each do |s| %> 
-            <div class="row-fluid">
+              <div class="row-fluid">
 
-            <div class="span1"><%= link_to image_tag(s.employee.avatar_url,size: "60x20") %></div>
-            <div class="span9"><b><%=link_to s.status , status_path(s.id) %></b> </div>
-            <div class="span2"><h7>Posted By: <%=link_to s.employee.first_name,profile_path(s.employee.id) %> <br> 
-            <%=time_ago_in_words(s.created_at)%> ago</h7> 
+               <div class="span1"><%= link_to image_tag(s.employee.avatar_url,size: "60x20") %></div>
+               <div class="span9"><b><%=link_to s.status , status_path(s.id) %></b> </div>
+               <div class="span2"><h7>Posted By: <%=link_to s.employee.first_name,profile_path(s.employee.id) %><br>  
+               <%=time_ago_in_words(s.created_at)%> ago</div>
   
-            <% if current_user.employee.id == s.employee.id %><br><br>
+               <% if current_user.employee.id == s.employee.id %><br><br>
            
             <ul class="navigation-btns">        
-             <li><label style#"font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class#"icon-ok"></i></a><%# link_to "Show", status_path(s.id) %></label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-edit"></i></a><%= link_to "Edit", edit_status_path(s.id) %></label>
-              <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-trash"></i></a><%= link_to "Delete", status_path(s.id), method: :delete, data: {confirm: "Are You sure?"} %></label></li>
+             <li><label style#"font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class#"icon-ok"></i></a><%# link_to "Show", status_path(s.id) %></label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+               <label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-trash"></i></a><%= link_to "Delete", status_path(s.id), method: :delete, data: {confirm: "Are You sure?"} %></label></li>
                          
           </ul>
-
+          <% end %>
                  
-          </div>
+          
                 
               <div class="span8">
-              <h5><%= s.comments.count %> Comments   
-              <%= s.likes_count %> Likes , 
-              <% if s.likes.where(:employee_id => current_user.employee.id).first %>  
-              <%= 'You Liked'%> </span> </h5>
+              <hr>
+              <h5>Comments(<%= s.comments.count %>),
+              Likes(<%= s.likes_count %>), 
+              <% if s.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
+                <%= link_to 'Unlike', remove_like_status_path(s.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
               <% else %> 
-              <%= link_to 'Like', add_like_status_path(s.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
+                <%= link_to 'Like', add_like_status_path(s.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
               <% end %>
+              <% if s.comments.count > 3 %>
+              <%= link_to "Show Previous Comments", status_path(s.id) %>
+              <% else %>
+              <% end %> 
+                
+              <hr>
               <% s.comments.limit(3).each do |comm| %> 
-                <p><%= link_to image_tag(comm.employee.avatar_url,size: "20x20") %> <b> <%= comm.employee.full_name %> </b><%= time_ago_in_words(comm.created_at)%> ago </p>
-                <p><%= comm.comment %></p>
-                  <br>
+                <p><%= link_to image_tag(comm.employee.avatar_url,size: "20x20") %> <b> <%= comm.employee.full_name %> </b><%= comm.comment %></p>
+                <p> <%= time_ago_in_words(comm.created_at)%> ago </p>
+                  <hr>
                     <% end %> 
                 </div>
                 </div>
+                <hr>
               <%= render "comments/form", :status => s%>
-                 <% end %>      
+                       
               <hr><% end %>
               <% else %>
               <div class="module-body">                                           
@@ -57,12 +64,13 @@
                   No Statuses to display.
               </div>
             </div>
+            </div>
+            <% end %>
             
-            
-           <% end %>                                                                                                                             
+                                                                                                                                        
       
             <%= paginate @statuses %>       
-                   
+               </div>    
 						</div><!--/.module-body-->
 					</div><!--/.module-->
 				</div><!--/.content-->
