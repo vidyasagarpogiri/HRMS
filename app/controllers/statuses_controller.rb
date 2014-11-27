@@ -1,6 +1,6 @@
 # This controller is for employee status
 class StatusesController < ApplicationController
-  def index
+  def index # New method creates a object for new album
     # raise params.inspect
     # @sta = Status.find(params[:id])
     @statuses = Status.all.order('created_at DESC').page(params[:page]).per(3)
