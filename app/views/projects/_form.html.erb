@@ -38,12 +38,18 @@
                <div class="control-group">
                 <label class="control-label" for="basicinput">Description</label>
                 <div class="controls">
-                  <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Project Description", :data => {:error => "Please Enter Project Description"}, :required => true, :style => "margin: 0px 0px 10px; width: 650px; height: 221px;" %>
+                  <%= f.text_area :description, :class => "span8 form-control", :placeholder =>"Enter Project Description", :data => {:error => "Please Enter Project Description"}, :required => true, :style => "margin: 0px 0px 10px; width: 620px; height: 180px;" %>
                   <span class="help-block with-errors"></span>   
                 </div>
               </div>
               
-              
+                <div class="control-group">
+                <label class="control-label" for="basicinput">Roles</label>
+                  <div class="controls">
+                  <%= f.text_field :roles, :class => "span8 form-control", :placeholder =>"Enter roles Performed", :data => {:error => "Please Enter valid Tasks"}, :required => true %>
+                  <span class="help-block with-errors"></span>
+                </div>
+              </div>
               
               <div class="control-group">
                 <label class="control-label" for="basicinput">Taskes Performed</label>
@@ -53,14 +59,6 @@
                 </div>
               </div>
               
-              
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Roles</label>
-                  <div class="controls">
-                  <%= f.text_field :roles, :class => "span8 form-control", :placeholder =>"Enter roles Performed", :data => {:error => "Please Enter valid Tasks"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
               
               
               <div class="control-group">

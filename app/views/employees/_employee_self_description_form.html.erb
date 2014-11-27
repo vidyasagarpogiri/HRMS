@@ -69,14 +69,21 @@
         $(".term_skill").val("");
         if ($(".hidden_skill").val() == ""){
           $(".hidden_skill").val(ui.item.label);
+          span = get_box(ui.item.label);
+          $('#advanced_search_box').append(span);
         }
         else{
+        var hidden_skill_array = $(".hidden_skill").val().split(", ");
+        var contain_skill_or_not = (hidden_skill_array.indexOf(ui.item.label) > -1);
+         if (contain_skill_or_not == false){
           var skills = $(".hidden_skill").val()+", "+ui.item.label;
           $(".hidden_skill").val(skills)
+           span = get_box(ui.item.label);
+          $('#advanced_search_box').append(span);
+          }
         }
         //alert($( ".term_skill" ).val());
-         span = get_box(ui.item.label);
-         $('#advanced_search_box').append(span);
+         $("#search_form").submit();
         return false;
         }
         });
@@ -98,3 +105,7 @@ function remove_skill(text){
 
   });
   </script>
+  
+  
+  
+ 
