@@ -1,41 +1,43 @@
 <div class="wrapper">
- <div class="container">
-	<div class="row">
-    <div class="span12">
-		  <div class="content">
-		  <%= render "statuses/form"%>
-
-			  <div class="module">
-				  <div class="module-head">
-					  <h3>Employees Wall </h3>
-			    </div>	
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+		    <div class="content">
+			    <div class="module">
+				    <div class="module-head">
+					    <h3>Employees Wall </h3>
+					    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><%= link_to "Create A New Post", "#", :class => "new_post" %></label>      </div>	
 			    
-			    <div class="module-body">
-		        <% if @statuses.present? %> 
-            <% @statuses.each do |s| %> 
-              <div class="row-fluid">
-
-               <div class="span1"><%= link_to image_tag(s.employee.avatar_url,size: "60x20") %></div>
-               <div class="span9"><b><%=link_to s.status , status_path(s.id) %></b> </div>
-               <div class="span2"><h7>Posted By: <%=link_to s.employee.first_name,profile_path(s.employee.id) %><br>  
-               <%=time_ago_in_words(s.created_at)%> ago</div>
-  
-               <% if current_user.employee.id == s.employee.id %><br><br>
-           
-            <ul class="navigation-btns">        
-             <li><label style#"font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class#"icon-ok"></i></a><%# link_to "Show", status_path(s.id) %></label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-               <label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-trash"></i></a><%= link_to "Delete", status_path(s.id), method: :delete, data: {confirm: "Are You sure?"} %></label></li>
-                         
-          </ul>
-          <% end %>
-                 
-          
-                
-              <div class="span8">
-              <hr>
-              <h5>Comments(<%= s.comments.count %>),
-              Likes(<%= s.likes_count %>), 
-              <% if s.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
+			      <div class="module-body">
+			        <div class="new_status">
+			          <%= render "statuses/form"%>
+			        </div>
+		          <% if @statuses.present? %> 
+                <% @statuses.each do |s| %> 
+                  <div class="row-fluid">
+                    <div class="span1"><%= link_to image_tag(s.employee.avatar_url,size: "60x20") %></div>
+                    <div class="span9"><b><%=link_to s.status , status_path(s.id) %></b> </div>
+                    <div class="span2">
+                      Posted By: <%=link_to s.employee.first_name,profile_path(s.employee.id) %><br>  
+                      <%=time_ago_in_words(s.created_at)%> ago
+                    </div>
+                    
+                    <% if current_user.employee.id == s.employee.id %><br><br>
+                      <ul class="navigation-btns">        
+                        <li>
+                          <label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-trash"></i></a>
+                            <%= link_to "Delete", status_path(s.id), method: :delete, data: {confirm: "Are You sure?"} %>
+                          </label>
+                        </li>
+                      </ul>
+                    <% end %>
+                  </div>
+                  
+                  <div class="row-fluid">
+                    <div class="span8"><hr>
+                      <h5>Comments(<%= s.comments.count %>),Likes(<%= s.likes_count %>), 
+              
+                      <% if s.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
                 <%= link_to 'Unlike', remove_like_status_path(s.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
               <% else %> 
                 <%= link_to 'Like', add_like_status_path(s.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
@@ -54,7 +56,7 @@
                 </div>
                 </div>
                 <hr>
-              <%= render "comments/form", :status => s%>
+              
                        
               <hr><% end %>
               <% else %>
@@ -79,5 +81,11 @@
 	</div><!--/.container-->
 </div><!--/.wrapper-->
 	
+	<script>
+	  $(".new_status").hide();
+	 $(".new_post").click(function(){
+	  $(".new_status").toggle();
+	 }); 
+	</script>
 
 
