@@ -73,8 +73,22 @@ RSpec.describe StatusesController, :type => :controller do
       end
     end
     end
-    
- 
+  
+  describe "GET index# show" do
+    it "assigns all statuses as @statuses" do
+      status = Status.create!(valid_status_attributes)
+      status1 = Status.create!(valid_status_attributes)
+      get :index, {}
+      expect(assigns(:statuses)).to eq([status, status1])
+    end
+    it "show one status" do
+      status = FactoryGirl.create(:status)
+      get :show, id:status.id
+      expect(assigns(:status)).to eq(status)  
+    end
+   end
+   
+  
   describe "POST #Create" do
     before :each do
      @status = FactoryGirl.attributes_for(:status, status: "helllooo", employee_id: 1) 
@@ -112,7 +126,7 @@ RSpec.describe StatusesController, :type => :controller do
       end
     end 
   
-  describe "POST #create like" do 
+    describe "POST #create like" do 
     context "Add like  status  with invalid attributes" do
       it "creates a new status" do
         expect {
@@ -131,7 +145,7 @@ RSpec.describe StatusesController, :type => :controller do
         end
       end
     end
-    
+      
   describe "POST #create like" do 
     context "Add like  status  with invalid attributes" do
       it "creates a new status" do
@@ -151,6 +165,32 @@ RSpec.describe StatusesController, :type => :controller do
         end
       end
     end
+    
+    describe "POST #create un-like" do 
+    context "Add like  status  with valid attributes" do
+      it "creates a new status" do
+        expect {
+          post :create, {status:  FactoryGirl.attributes_for(:status)}
+        }.to change(Status, :count).by(1)
+      end 
+      
+      it "redirects to the status create" do
+         post :create, {status:  FactoryGirl.attributes_for(:status)}
+         expect(response).to redirect_to(statuses_path)
+      end
+      it "post like" do
+      expect{
+       post :add_like, {status_id: status.id, like: FactoryGirl.attributes_for(:like, is_like: true, employee_id: 1, status_id: status.id)}
+       }
+        end
+        it "post unlike" do
+      expect{
+       post :remove_like, {status_id: status.id, like: FactoryGirl.attributes_for(:like, is_like: false, employee_id: 1, status_id: status.id)}
+       }
+        end
+      end
+    end
+    
       
 end
 
