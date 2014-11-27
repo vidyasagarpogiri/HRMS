@@ -1,8 +1,8 @@
 # This model is for status like
 class Like < ActiveRecord::Base
-  belongs_to :employee
-  belongs_to :status
-  validates :employee_id, presence: true
-  validates :is_like, inclusion:  { in:  [true, false] }
-  validates :status_id, presence: true
+  belongs_to :employee # like will be liked by employee
+  belongs_to :status # status will have a like
+  validates :employee_id, presence: true # validation for employee
+  validates :is_like, inclusion:  { in:  [true, false] } # validation for like
+  validates :status_id, presence: true # validation for status
 end
