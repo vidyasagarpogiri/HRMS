@@ -16,7 +16,7 @@ class AlbumsController < ApplicationController
     @album = @employee.albums.new(album_params)
     if @album.save
       params[:photos][:image].each do |photoimage|
-        @photo = @album.photos.create(:image => photoimage, :album_id => @album.id)
+        @photo = @album.photos.create(:image => photoimage)
       end
     redirect_to @album
     else
@@ -60,7 +60,7 @@ class AlbumsController < ApplicationController
     # raise params.inspect
     @album = Album.find(params[:id])
     params[:photos][:image].each do |photoimage|
-      @photo = @album.photos.create(:image => photoimage, album_id: '@album.id')
+      @photo = @album.photos.create(:image => photoimage)
     end
     redirect_to @album
   end
