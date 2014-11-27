@@ -10,30 +10,55 @@
 						    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add photos", add_more_photos_form_album_path(@album)%></label>	
 						  <% end %>
 					  </div>
-					  <div class="module-body">
-					  <div>
-					    <p> <strong>Album Name: </strong><%= @album.title %></p>           
-					    <div class="slider slider-for">                                              
-                  <% @photos.each do |photo| %>                  
-                    <!--<% if current_user.employee.id == @id %>                    
-                      <%# link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"delete", :title => "remove photo " %>
-                    <% end %>-->                    
-                    <div style="text-align:center;"><a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="300px" height="300" ></a></div>
-                  <% end %>                                 
+					  <div class="module-body span12" style="background-color: #fff;margin-left:2px;width:1149px">
+					    <div class="span4" style="padding:2px;border:solid 1px #eee;width:60px;margin-top:10px;margin-left:10px;">
+                <% if @album.present? && @album.employee.avatar_url.present? %>
+                  <%= image_tag @album.employee.avatar_url, :width => "60px", :height => "60px" %>
+                <% else %>
+                  <% if @album.employee.gender == "Female" %>
+                      <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+                    <% else %>
+                      <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+                    <% end %>
+                <% end %>
               </div>
               
-              <div class="slider slider-nav">
-                <% @photos.each do |photo| %>  
-                  <div><img src="<%= photo.image %>" width="100px" height="100"></div>
-                <% end %> 
-              </div>
-
-              <ul class="navigation-btns pull-left" >
+              <div style="padding:2px;margin-left:100px;margin-top:10px">
+                <strong>
+                  <%= @album.employee.first_name %> <%= @album.employee.last_name %>
+                </strong> added new 
+                <strong>
+                  <%= @album.title %>
+                </strong> Aldum
+                
+                <ul class="navigation-btns pull-right" >
 					      <% if current_user.employee.id == @id %>
 							    <li><%= link_to 'Edit', edit_album_path(@album), :class=>"btn btn-success" %> </li>
 							  <% end %>  
 							    <li><%= link_to 'Gallery',  albums_path, :class=>"btn btn-info" %></li>							  
 							</ul> 
+              </div> 
+                            
+              <div class="" style="width:900px;border:solid 1px #eee;margin-top:100px;margin-left:150px;">                      
+					      <div class="slider slider-for" style="margin-top:50px;margin-left:300px;">                                              
+                  <% @photos.each do |photo| %>                                                                           
+                    <div>
+                      <% if current_user.employee.id == @id %>                    
+                       <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"delete", :title => "remove photo " %>
+                      <% end %>  
+                      <a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="400px" height="300"></a>                     
+                    </div>
+                  <% end %>                                 
+                </div>
+              </div><br>
+					            					   
+              <div class="slider slider-nav">
+                <% @photos.each do |photo| %>                   
+                  <div><img src="<%= photo.image %>" width="100px" height="100"></div>
+                <% end %> 
+              </div>
+
+              <br>
 						</div>	                 							
 						</div><!--.module-body-->
 					</div><!--/.module -->
@@ -71,6 +96,13 @@
   });
   </script>
   
-
-
+<style>
+.delete{
+color:#fff;
+background-color:red;
+padding:5px;
+margin-left:450px;
+font-weight:bold;
+}
+</style>
 
