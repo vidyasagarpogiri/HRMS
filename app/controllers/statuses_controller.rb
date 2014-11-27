@@ -1,14 +1,10 @@
 # This controller is for employee status
 class StatusesController < ApplicationController
-  def index
-    # raise params.inspect
-    # @sta = Status.find(params[:id])
+  
+  def index # New method creates a object for new album
     @statuses = Status.all.order('created_at DESC').page(params[:page]).per(3)
     @status = Status.new
     @comment = Comment.new
-    # @comments = Comment.all.page(params[:page]).per(2)
-    # raise @comments.inspect
-    # @comments = Comment.limit(4)
   end
 
   def new
@@ -18,11 +14,6 @@ class StatusesController < ApplicationController
   def create
     @status = current_user.employee.statuses.new(status_params)
     if @status.save
-      # Employee.where(status: false).each do |emp|
-      # raise @user.inspect
-      # Notification.delay.status_notification(@emp, @status) # email notification for like
-      # raise @emp.inspect
-      # end
       redirect_to statuses_path
     else
       render 'new'
@@ -38,7 +29,6 @@ class StatusesController < ApplicationController
     end
     count = @like.status.likes_count
     @like.status.update likes_count: count + 1
-    # Notification.delay.like_notification(@like) # email notification for like
     redirect_to statuses_path
   end
 
@@ -51,6 +41,7 @@ class StatusesController < ApplicationController
     redirect_to statuses_path
   end
 
+  # Present we are not using this one.
   def edit
     @status = Status.find(params[:id])
   end
@@ -66,14 +57,11 @@ class StatusesController < ApplicationController
 
   def destroy
     @status = Status.find(params[:id])
-    @status.likes.destroy_all
-    @status.comments.destroy_all
     @status.destroy
     redirect_to statuses_path
   end
 
   def show
-    @employee = Employee.all
     @status = Status.find(params[:id])
     @comments = @status.comments
     @comment = Comment.new

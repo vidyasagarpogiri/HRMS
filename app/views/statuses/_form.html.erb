@@ -1,8 +1,4 @@
-          <div class="module">
-            <div class="module-head"> 
-              <h3>Write A New Status To Wall</h3>
-            </div>
-            <div class="module-body">
+
               <%= form_for @status,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |s| %>
               <div class="control-group">
                 <label class="control-label" for="basicinput">Status:</label>
@@ -17,7 +13,5 @@
                 <li><%= link_to "Cancel", statuses_path,:class => "btn btn-danger" %></li>
               </ul>	
               <% end %>
-            </div><!--/.module-body-->
-          </div><!--/.module-->
-        
+      <hr><br>
 

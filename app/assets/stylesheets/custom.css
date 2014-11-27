@@ -326,3 +326,9 @@ color:#82B4E6;
   text-transform: capitalize;   
   }
    
+   
+.module-body .show{
+  background-color: #fff;
+  margin-left:2px;
+  width:1149px
+}   
