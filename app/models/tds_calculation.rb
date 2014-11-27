@@ -30,14 +30,14 @@ class TdsCalculation
   end
   
   def tds_for_this_month
-    @month = DateTime.now.month - 1
-    @remaining_months = if @month <  4
-      4 - @month
+    month = DateTime.now.month - 1
+    remaining_months = if month <  4
+      4 - month
     else
-      16 - @month 
+      16 - month 
     end
     old_tds =  @pay_roll_master.present? ? @pay_roll_master.first.total_tds : 0.0
-    @tds = (tax - old_tds)/@remaining_months
+    @tds = (tax - old_tds)/remaining_months
   end
 
   
