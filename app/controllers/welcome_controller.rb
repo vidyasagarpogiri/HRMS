@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
     @welcome_recruitments = Recruitment.where(:status => "open").page(params[:page3]).per(2)
     @employee = current_user.employee
     @welcome_albums = Album.all.page(params[:page3]).per(2)   
-    #@photos = @welcome_albums.photos.count
+    @photos = @welcome_albums.photos
     #raise @welcome_albums .inspect
     
     

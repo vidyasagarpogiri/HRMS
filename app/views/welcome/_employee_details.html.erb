@@ -7,7 +7,7 @@
     <div class="" style="border:solid 1px #eee;">
       <div class="span4" style="padding:2px;border:solid 1px #eee;width:60px;margin-left:-8px"><%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %></div>
       <div style="padding:2px;margin-left:90px;margin-top:10px"><strong><%= album.employee.first_name %> <%= album.employee.last_name %></strong> added new Album</div><br>
-      <div style="padding:2px;margin-left:90px;margin-top:10px"><%= album.title %></div>
+      <div style="padding:2px;margin-left:90px;margin-top:10px" ><%# album.title %></div>
     </div><br>                      
     <% end %>
   </div>
