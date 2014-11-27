@@ -1,5 +1,5 @@
 <!--Author: Priyanka
-    -->
+    employee dashboard-->
 <div class="module">
   <div class="module-head">							
     <h3>Wat's New</h3>   
@@ -7,7 +7,7 @@
   <div class="module-body exp">    
     <% @welcome_albums.each do |album| %>
     <div class="" style="border:solid 1px #eee;">
-      <div class="span4" style="padding:2px;border:solid 1px #eee;width:60px;margin-left:10px;margin-top:10px">
+      <div class="album-employee-image" style="margin-top:10px">
         <% if album.present? && album.employee.avatar_url.present? %>
           <%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %>
         <% else %>
@@ -18,42 +18,33 @@
             <% end %>
         <% end %>
       </div>      
-      <div style="padding:2px;margin-left:90px;margin-top:10px">
+      <div class="album-employee-details" >
         <strong>
           <%= album.employee.first_name %> <%= album.employee.last_name %>
         </strong> added  <strong><%= pluralize(album.photos.count, 'photo') %></strong> to
         <strong>
-          <%= album.title %>
+          <a href="<%= album_path(album) %>"><%= album.title %></a>
         </strong> Aldum
       </div>
+      
       <% if album.photos.present?%> 
       <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
         <% album.photos.each do |photo| %>
           <div style="width:400px;height:250px;overflow:hidden;">
-            <a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="300px" height="200" ></a>
+            <a class="group1" href="<%= photo.image %>"><img src="<%= photo.image %>" width="300px" height="200" ></a>
           </div>            
         <% end %>
       </div>
-      <% else %>
-        <% if current_user.employee.id == @id %>
-          <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              You hav deleted all Photos from this Album.Add now!!
-          </div>
-        <% else %>
-          <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <strong><%= album.employee.first_name %> <%= album.employee.last_name %></strong> removed Photos from Album.
-          </div>
-        <% end %>    
-      <% end %>
       <div class="slider slider-nav">
         <% album.photos.each do |photo| %> 
-          <div width="110px!important"><img src="<%= photo.image %>" width="100px" height="100"></div>
+          <div ><img src="<%= photo.image %>" width="100px" height="100"></div>
         <% end %> 
       </div>     
+     
+      <% end %>      
     </div><br>                      
     <% end %>
+    <%= paginate @welcome_albums, :param_name => 'page4' %> 
   </div>
 </div>  
 
@@ -175,5 +166,5 @@
       
   
   });
-</script>
+  </script>
 
