@@ -10,9 +10,9 @@
 			        <div class="module-body">	       
             <h4><%= @status.status %></h4>                   
 					</div><!--/.module-body-->
-				    
+				   
 					<h5>Comments (<%= @status.comments.count %>)  , 
-					 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Likes List</button>
+					  <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Likes List</button>
 					  <%= link_to 'Likes' %>
 					  (<%=link_to @status.likes_count %>), <%#raise @status.likes.second.employee.inspect %>   
             <% if @status.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
