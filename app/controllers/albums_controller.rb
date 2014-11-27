@@ -11,9 +11,9 @@ class AlbumsController < ApplicationController
   end
 
   def create  # Create method for creating album and respective photos record
-    # raise params.inspect
+    #raise album_params.inspect
     @employee = current_user.employee
-    @album = @employee.albums.create(album_params)
+    @album = @employee.albums.new(album_params)
     if @album.save
       params[:photos][:image].each do |photoimage|
         @photo = @album.photos.create(:image => photoimage, :album_id => @album.id)
@@ -68,6 +68,6 @@ class AlbumsController < ApplicationController
   private
 
   def album_params
-    params.require(:album).permit(:title, :description, photos_attributes: [:id, :album_id, :image])
+    params.require(:album).permit(:title, :description)
   end
 end

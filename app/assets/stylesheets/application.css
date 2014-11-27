@@ -15,4 +15,8 @@
  *= require bootsy
  *= require jquery.timepicker.css
  */
+ 
+  @import "jquery.colorbox-example3";
+  @import "slick";
+ 
 

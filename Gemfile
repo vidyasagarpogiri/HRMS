@@ -104,6 +104,11 @@ gem 'jquery-timepicker-rails'
 gem 'reek'
 gem 'rubocop'
 
+# gems for images sliding
+gem 'slick_rails'
+gem 'jquery-colorbox-rails'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
