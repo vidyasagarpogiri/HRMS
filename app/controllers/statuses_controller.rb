@@ -30,19 +30,14 @@ class StatusesController < ApplicationController
   end
 
   def add_like
-    # raise params.inspect
     @like = Like.where(employee_id: params[:employee_id], status_id: params[:id]).first
     if @like
       @like.update is_like: true
     else
       @like = Like.create(is_like: true, employee_id: params[:employee_id], status_id: params[:id])
     end
-    # raise @like.inspect
-    # @like = Like.create(like_params)
-    # raise params.inspect
     count = @like.status.likes_count
     @like.status.update likes_count: count + 1
-    # raise @like.inspect
     # Notification.delay.like_notification(@like) # email notification for like
     redirect_to statuses_path
   end
@@ -71,6 +66,7 @@ class StatusesController < ApplicationController
 
   def destroy
     @status = Status.find(params[:id])
+    @status.likes.destroy_all
     @status.comments.destroy_all
     @status.destroy
     redirect_to statuses_path
