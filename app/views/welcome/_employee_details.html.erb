@@ -15,27 +15,41 @@
 	            <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
             <% end %>
         <% end %>
-      </div>
-      
+      </div>      
       <div style="padding:2px;margin-left:90px;margin-top:10px">
         <strong>
           <%= album.employee.first_name %> <%= album.employee.last_name %>
-        </strong> added new 
+        </strong> added  <strong><%= pluralize(album.photos.count, 'photo') %></strong> to
         <strong>
           <%= album.title %>
         </strong> Aldum
       </div>
-      
-       <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
-          <% album.photos.each do |photo| %>
-            <div style="width:400px;height:250px;overflow:hidden;"><a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="300px" height="200" ></a></div>            
-         <% end %>
-       </div>
-        <div class="slider slider-nav">
-          <% album.photos.each do |photo| %> 
-            <div width="110px!important"><img src="<%= photo.image %>" width="100px" height="100"></div>
-          <% end %> 
-        </div>     
+      <% if album.photos.present?%> 
+      <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
+        <% album.photos.each do |photo| %>
+          <div style="width:400px;height:250px;overflow:hidden;">
+            <a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="300px" height="200" ></a>
+          </div>            
+        <% end %>
+      </div>
+      <% else %>
+        <% if current_user.employee.id == @id %>
+          <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              You hav deleted all Photos from this Album.Add now!!
+          </div>
+        <% else %>
+          <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <strong><%= album.employee.first_name %> <%= album.employee.last_name %></strong> removed Photos from Album.
+          </div>
+        <% end %>    
+      <% end %>
+      <div class="slider slider-nav">
+        <% album.photos.each do |photo| %> 
+          <div width="110px!important"><img src="<%= photo.image %>" width="100px" height="100"></div>
+        <% end %> 
+      </div>     
     </div><br>                      
     <% end %>
   </div>

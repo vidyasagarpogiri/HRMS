@@ -8,46 +8,62 @@
 						  <h3>Gallery</h3>
 						  <label style="margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "New Album", new_album_path %></label>   
 					  </div>
-            <div class="module-body span12" style="background-color: #fff;margin-left:2px;width:1149px">
+            <div class="module-body show" >
               <% if @albums.present? %>
               <div class="row-fluid">	                           	   
-                  <% @albums.each do |album| %>              							                    
-		              <div class="span6" style="border:solid px;margin-left:0px;margin-right:5px;">						      
-		                <div class="span4" style="padding:2px;border:solid 1px #eee;width:60px;margin-top:10px;margin-left:10px;">
-                      <% if album.present? && album.employee.avatar_url.present? %>
-                        <%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %>
+                <% @albums.each do |album| %>              							                    
+                <div class="span6" style="border:solid px;margin-left:0px;margin-right:5px;">						      
+                  <div class="span4" style="padding:2px;border:solid 1px #eee;width:60px;margin-top:10px;margin-left:10px;">
+                    <% if album.present? && album.employee.avatar_url.present? %>
+                      <%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %>
+                    <% else %>
+                      <% if album.employee.gender == "Female" %>
+                        <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
                       <% else %>
-                        <% if album.employee.gender == "Female" %>
-                          <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
-                        <% else %>
-                          <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
-                        <% end %>
+                        <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
                       <% end %>
-                    </div>
-                  
-                    <div style="padding:2px;margin-left:50px;margin-top:10px">
-                      <strong>
-                        <%= album.employee.first_name %> <%= album.employee.last_name %>
-                      </strong> added new 
-                      <strong>
-                        <%= album.title %>
-                      </strong> Aldum
-                    </div> 
-                               		       					       					       
-                   <div class="image-container" style="margin-top:50px;"> 
-                      <div style="width:400px;height:250px;overflow:hidden;" ><a href="<%= album_path(album) %>" title ="click to view Album"><%= image_tag album.photos.first.image_url, :class => "photo-style" %></a></div><br>                                    
-                     <%# link_to "view Album", album_path(album), :class=>"btn btn-info" %>                             
-                   </div>	
-                 </div><bn>
-               <% end %>	              
-          	 </div>		     			     				   				    					     
-				  	<% else %>
-				  	   <div class="alert alert-success alert-dismissable">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    No Albums to display.Be the first to create!!
-               </div>					   
-				  	<% end %>
-						</div><!--.module-body-->
+                    <% end %>
+                  </div>
+                  <div style="padding:2px;margin-left:80px;margin-top:10px">
+                    <strong>
+                      <%= album.employee.first_name %> <%= album.employee.last_name %>
+                    </strong> added new <strong><%= pluralize(album.photos.count, 'photo') %>
+                    <strong> to
+                      <%= album.title %>
+                    </strong> Aldum
+                  </div> 
+                  <div class="image-container" style="margin-top:50px;height:250px"> 
+                    <% if album.photos.present? %>            		       					       					                        
+                    <div style="width:400px;height:250px;overflow:hidden;" >
+                      <a href="<%= album_path(album) %>" title ="click to view Album">
+                        <%= image_tag album.photos.first.image_url, :class => "photo-style" %>
+                      </a>
+                    </div>                                   
+                    <%# link_to "view Album", album_path(album), :class=>"btn btn-info" %>
+                    <% else %>
+                      <% if current_user.employee.id == album.employee.id %>
+                        <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            You hav deleted all Photos from this Album.Add now!!
+                        </div>
+                      <% else %>
+                        <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong><%= album.employee.first_name %> <%= album.employee.last_name %></strong> removed Photos from Album.
+                        </div>
+                      <% end %>    
+                    <% end %>
+                  </div>	
+                </div><br>
+                <% end %>	              
+              </div>		     			     				   				    					     
+              <% else %>
+              <div class="alert alert-success alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              No Albums to display.Be the first to create!!
+              </div>					   
+              <% end %>
+            </div><!--.module-body-->
 					</div><!--/.module -->
 		    </div><!--/.content-->
 			</div><!--/.span12-->
