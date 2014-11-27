@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
   def index
     # raise params.inspect
     # @employee = current_user.employee
-   # @status = Status.find(params[:status_id])
+    # @status = Status.find(params[:status_id])
     @comments = Comment.order('created_at ASC').limit(3)
-    #@like = Like.all
+    # @like = Like.all
     # raise @comments.inspect
   end
 
@@ -15,15 +15,12 @@ class CommentsController < ApplicationController
     @status = Status.find(params[:status_id])
     @comment = @status.comments.create(comment_params)
     if @comment.save
-    # raise @comment.inspect
-    # raise @comment.inspect
-    # Notification.comment_notification(@employee, @comment, @status).deliver
-    # raise Notification.inspect
-    # end
-    redirect_to statuses_path
+      # Notification.comment_notification(@employee, @comment, @status).deliver
+      # raise Notification.inspect
+      redirect_to statuses_path
     else
       render 'new'
-    end    
+    end
   end
 
   def new
@@ -33,9 +30,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-  raise params.inspect
   end
-  
+
   private
 
   def comment_params
