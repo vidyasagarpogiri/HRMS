@@ -44,9 +44,9 @@ RSpec.describe ProjectsController, :type => :controller do
 
   describe "PUT #update" do
     before :each do
-     @updated_project = FactoryGirl.attributes_for(:project, title: "eTeki") 
+     @updated_project = FactoryGirl.attributes_for(:project, title: "eTeki", employee_id: 1) 
      @project  = FactoryGirl.create(:project)
-     @invalid_project = FactoryGirl.attributes_for(:project, employee_id: nil) 
+     @invalid_project = FactoryGirl.attributes_for(:project, employee_id: 1) 
     end 
      context "with valid attributes" do
      it "changes @project's attributes" do
@@ -54,31 +54,31 @@ RSpec.describe ProjectsController, :type => :controller do
         xhr :put, :update, {id: @project, project: @updated_project}
         expect(assigns(:project)).to eq(@project)
       end
-      
       it "Redirects to index path" do
         xhr :put, :update, {id: @project, project: @updated_project}
        
       end
-      
       it "Redirects to index path" do
        xhr :put, :update, {id: @project, project: @updated_project}
         @project.reload
         expect(@project.title).to eq("eTeki")
       end
-     
-     end
+    end
+    
      context "with invalid attributes" do
       it "does not change @project's attributes" do 
         xhr :put, :update, {id: @project, project: @invalid_project}
         @project.reload
-        expect(@project.employee_id).to eq(nil)
+        expect(@project.employee_id).to eq(1)
       end
       it "render to edit page" do 
         xhr :put, :update, {id: @project, project: @invalid_project}
        end
      end
+    
+    
     end
-       
+      
     describe "DESTORY delete" do 
     before(:each) do
        @project  = FactoryGirl.create(:project)
@@ -93,7 +93,7 @@ RSpec.describe ProjectsController, :type => :controller do
       
     end
   end 
-  
+
 end
 
 
