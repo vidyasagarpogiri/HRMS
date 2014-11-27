@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :like do
-    is_like false
-employee_id 1
-status_id 1
+  factory :like do |l|
+    l.is_like false
+    l.employee_id 1
+    l.association :status, factory: :status
   end
 
 end
