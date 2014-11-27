@@ -5,8 +5,8 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-						  <h3>Gallery</h3>
-						  <label style="margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "New Album", new_album_path %></label>   
+              <h3>Gallery</h3>
+              <label style="margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "New Album", new_album_path %></label>
 					  </div>
             <div class="module-body show" >
               <% if @albums.present? %>
@@ -28,8 +28,9 @@
                     <strong>
                       <%= album.employee.first_name %> <%= album.employee.last_name %>
                     </strong> added new <strong><%= pluralize(album.photos.count, 'photo') %>
-                    <strong> to
-                      <%= album.title %>
+                    </strong> to
+                    <strong>
+                      <a href="<%= album_path(album) %>"><%= album.title %></a>
                     </strong> Aldum
                   </div> 
                   <div class="image-container" style="margin-top:50px;height:250px"> 
@@ -58,10 +59,10 @@
                 <% end %>	              
               </div>		     			     				   				    					     
               <% else %>
-              <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              No Albums to display.Be the first to create!!
-              </div>					   
+                <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  No Albums to display.Be the first to create!!
+                </div>					   
               <% end %>
             </div><!--.module-body-->
 					</div><!--/.module -->
