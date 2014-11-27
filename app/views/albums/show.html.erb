@@ -10,27 +10,56 @@
 						    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add photos", add_more_photos_form_album_path(@album)%></label>	
 						  <% end %>
 					  </div>
-					  <div class="module-body">
-					    <p> <strong>Album Name: </strong><%= @album.title %></p>           
-					    <div class="image-container">                              
-                <ul class="row" style="margin-left:0px;">
-                  <% @photos.each do |photo| %>
-                  <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 image-outing">
-                    <% if current_user.employee.id == @id %>
-                      <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"delete", :title => "remove photo " %>
-                      <% end %>
-                    <%= image_tag photo.image_url, :class=>"img-responsive" %>
-                  </li>
-                  <% end %>    
-                </ul>                
+					  <div class="module-body span12" style="background-color: #fff;margin-left:2px;width:1149px">
+					    <div class="span4" style="padding:2px;border:solid 1px #eee;width:60px;margin-top:10px;margin-left:10px;">
+                <% if @album.present? && @album.employee.avatar_url.present? %>
+                  <%= image_tag @album.employee.avatar_url, :width => "60px", :height => "60px" %>
+                <% else %>
+                  <% if @album.employee.gender == "Female" %>
+                      <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+                    <% else %>
+                      <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+                    <% end %>
+                <% end %>
               </div>
-
-              <ul class="navigation-btns pull-left" >
+              
+              <div style="padding:2px;margin-left:100px;margin-top:10px">
+                <strong>
+                  <%= @album.employee.first_name %> <%= @album.employee.last_name %>
+                </strong> added new 
+                <strong>
+                  <%= @album.title %>
+                </strong> Aldum
+                
+                <ul class="navigation-btns pull-right" >
 					      <% if current_user.employee.id == @id %>
 							    <li><%= link_to 'Edit', edit_album_path(@album), :class=>"btn btn-success" %> </li>
 							  <% end %>  
 							    <li><%= link_to 'Gallery',  albums_path, :class=>"btn btn-info" %></li>							  
-							</ul> <br><br>                         							
+							</ul> 
+              </div> 
+                            
+              <div class="" style="width:900px;border:solid 1px #eee;margin-top:100px;margin-left:150px;">                      
+					      <div class="slider slider-for" style="margin-top:50px;margin-left:300px;">                                              
+                  <% @photos.each do |photo| %>                                                                           
+                    <div>
+                      <% if current_user.employee.id == @id %>                    
+                       <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"delete", :title => "remove photo " %>
+                      <% end %>  
+                      <a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="400px" height="300"></a>                     
+                    </div>
+                  <% end %>                                 
+                </div>
+              </div><br>
+					            					   
+              <div class="slider slider-nav">
+                <% @photos.each do |photo| %>                   
+                  <div><img src="<%= photo.image %>" width="100px" height="100"></div>
+                <% end %> 
+              </div>
+
+              <br>
+						</div>	                 							
 						</div><!--.module-body-->
 					</div><!--/.module -->
 		    </div><!--/.content-->
@@ -39,191 +68,41 @@
 	</div><!--/.container-->
 </div><!--/.wrapper-->
 
- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:400px;opacity:;height:550px;width:1000px;">
-    <div class="modal-dialog" style="height:500px;width:900px;">
-      <div class="modal-content" style="height:500px;width:900px;">         
-        <div class="modal-body" style="height:500px;width:900px;">                
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-  
 <script>
   $(function() {
     $( document ).tooltip();
   });
-</script>
+
+    $(function() {
+  $(".group1").colorbox({rel:'group1', transition:"none", width:"75%", height:"75%"});
   
-
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="dist/js/bootstrap.min.js"></script>  
-<script>
-        $(document).ready(function(){        
-          $('li img').on('click',function(){
-                var src = $(this).attr('src');
-                var img = '<img src="' + src + '" class="img-responsive"/>';
- 
-                //Start of new code
-                var index = $(this).parent('li').index();                   
-                var html = '';
-                html += img;                
-                html += '<div style="height:25px;clear:both;display:block;">';
-                html += '<a class="controls next" href="'+ (index+2) + '">next &raquo;</a>';
-                html += '<a class="controls previous" href="' + (index) + '">&laquo; prev</a>';
-                html += '</div>';
-                //End of new code
- 
-                $('#myModal').modal();
-                $('#myModal').on('shown.bs.modal', function(){
-                    $('#myModal .modal-body').html(html);
-                })
-                $('#myModal').on('hidden.bs.modal', function(){
-                    $('#myModal .modal-body').html('');
-                });
-           });
-
-        
-        })
-        
-        
-        //new code
-        $(document).on('click', 'a.controls', function(){
-            var index = $(this).attr('href');
-            var src = $('ul.row li:nth-child('+ index +') img').attr('src');             
-            
-            $('.modal-body img').attr('src', src);
-            
-            var newPrevIndex = parseInt(index) - 1; 
-            var newNextIndex = parseInt(newPrevIndex) + 2; 
-            
-            if($(this).hasClass('previous')){               
-                $(this).attr('href', newPrevIndex); 
-                $('a.next').attr('href', newNextIndex);
-            }else{
-                $(this).attr('href', newNextIndex); 
-                $('a.previous').attr('href', newPrevIndex);
-            }
-            
-            var total = $('ul.row li').length + 1; 
-            //hide next button
-            if(total === newNextIndex){
-                $('a.next').hide();
-            }else{
-                $('a.next').show()
-            }            
-            //hide previous button
-            if(newPrevIndex === 0){
-                $('a.previous').hide();
-            }else{
-                $('a.previous').show()
-            }
-            
-            
-            return false;
-        });
-        
-         
-        
-    </script>
+   $('.slider-for').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: '.slider-nav'
+  });
+  $('.slider-nav').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      asNavFor: '.slider-for',
+      dots: true,
+      centerMode: true,
+      focusOnSelect: true
+  });
+      
+  
+  });
+  </script>
+  
 <style>
-
-.image-outing{
-border:solid 1px #D6EBFF;
-padding:15px;
-margin-left:10px;
-}
-
 .delete{
-color:red;
-font-weight:bold;
-font-size:14px;
+color:#fff;
+background-color:red;
 padding:5px;
-border: solid 1px #FFCCCC;
+margin-left:450px;
+font-weight:bold;
 }
-
-.col-lg-2 {
-    width: 16.66666667%;
-  }
-  
-  .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
-  position: relative;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.col-sm-3 {
-    width: 25%;
-  }
-  
-.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
-  float: left;
-}
-
-.col-xs-4 {
-  width: 33.33333333%;
-}
-
-.image-container ul {         
-    padding:0 0 0 0;
-    margin:0 0 0 0;
-}
-.image-container ul li {     
-    list-style:none;
-    margin-bottom:25px;           
-}
-.image-container ul li img {
-    cursor: pointer;
-    padding:10px;
-}
-.modal-backdrop.in {
-
-opacity: .1!important;
-}
-
-.img-responsive {
-display: block;
-height: auto;
-max-width: 100%;
-}
-
-.controls{          
-    width:50px;
-    display:block;
-    font-size:11px;
-    padding-top:8px;
-    font-weight:bold;          
-}
-.next {
-    float:right;
-    text-align:right;
-}
-
-@media (min-width: 768px) {
-  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
-    float: left;
-  }
-}
-
-@media (min-width: 992px) {
-  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
-    float: left;
-  }
-}  
-
-@media (min-width: 1200px) {
-  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
-    float: left;
-  }
-}    
-
 </style>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

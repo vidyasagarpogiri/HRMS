@@ -12,13 +12,13 @@ class InvestmentDeclarationsController < ApplicationController
     @declarations = current_user.employee.investment_declarations
     @sections = @declarations.map(&:general_investment).map(&:section_declaration).uniq
   
-  #adding data to payroll master table @pattabhi  
+  #adding data to payroll master table @pattabhi 
+    sum_of_declarations = InvestmentDeclaration.sum_of_declation(current_user.employee) 
     pay_roll_master = current_user.employee.pay_roll_masters
-    salary =  current_user.employee.salary
-    if salary.present? && !pay_roll_master.present? 
-       @payroll = PayRollMaster.create(employee_id: current_user.employee.id, assesment_year: Date.today.year, total_savings: @declarations.sum(:yearly_value) )
-    elsif current_user.employee.salary.present? && pay_roll_master.present? 
-      @payroll = pay_roll_master.first.update(total_savings: @declarations.sum(:yearly_value))
+    if pay_roll_master.present? 
+      @payroll = pay_roll_master.first.update(total_savings: sum_of_declarations)   
+    else 
+      @payroll = PayRollMaster.create(employee_id: current_user.employee.id, assesment_year: Date.today.year, total_savings: sum_of_declarations )
     end
     
   end
@@ -32,11 +32,10 @@ class InvestmentDeclarationsController < ApplicationController
     @declaration.update(:general_investment_id =>  @declaration.general_investment_id, :yearly_value => params[:investment_declaration][:yearly_value], :employee_id => current_user.employee.id)
      
      #payroll master update of current user @pattabhi
+     sum_of_declarations = InvestmentDeclaration.sum_of_declation(current_user.employee) 
      @declarations = current_user.employee.investment_declarations
-      if current_user.employee.salary.present?
-       @payroll = current_user.employee.pay_roll_masters.first
-       @payroll.update(:total_savings => @declarations.sum(:yearly_value) )
-     end
+     @payroll = current_user.employee.pay_roll_masters.first
+     @payroll.update(total_savings: sum_of_declarations )
      redirect_to investment_declarations_path
   end
   

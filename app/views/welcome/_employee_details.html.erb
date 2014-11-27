@@ -1,6 +1,48 @@
 <div class="module">
- <%= render 'employees/my_info'%>
-</div><!--/.module --> 
+  <div class="module-head">							
+    <h3>Wat's New</h3>   
+  </div>
+  <div class="module-body exp">    
+    <% @welcome_albums.each do |album| %>
+    <div class="" style="border:solid 1px #eee;">
+      <div class="span4" style="padding:2px;border:solid 1px #eee;width:60px;margin-left:10px;margin-top:10px">
+        <% if album.present? && album.employee.avatar_url.present? %>
+          <%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %>
+        <% else %>
+          <% if album.employee.gender == "Female" %>
+              <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+            <% else %>
+	            <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+            <% end %>
+        <% end %>
+      </div>
+      
+      <div style="padding:2px;margin-left:90px;margin-top:10px">
+        <strong>
+          <%= album.employee.first_name %> <%= album.employee.last_name %>
+        </strong> added new 
+        <strong>
+          <%= album.title %>
+        </strong> Aldum
+      </div>
+      
+       <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
+          <% album.photos.each do |photo| %>
+            <div ><a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="300px" height="200" ></a></div>            
+         <% end %>
+       </div>
+        <div class="slider slider-nav">
+          <% album.photos.each do |photo| %> 
+            <div width="110px!important"><img src="<%= photo.image %>" width="100px" height="100"></div>
+          <% end %> 
+        </div>     
+    </div><br>                      
+    <% end %>
+  </div>
+</div>  
+
+ 
+
 
 
 <div class="module">
@@ -88,6 +130,34 @@
     $('.btn').click(function(){  
        $(".btn").show();
       $("#test tr:nth-child(n+5)").toggle()
+  });
+</script>
+
+<script>
+  $(function() {
+    $( document ).tooltip();
+  });
+
+    $(function() {
+  $(".group1").colorbox({rel:'group1', transition:"none", width:"75%", height:"75%"});
+  
+   $('.slider-for').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: '.slider-nav'
+  });
+  $('.slider-nav').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      asNavFor: '.slider-for',
+      dots: true,
+      centerMode: true,
+      focusOnSelect: true
+  });
+      
+  
   });
 </script>
 
