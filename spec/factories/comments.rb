@@ -1,7 +1,9 @@
 FactoryGirl.define do
-  factory :comment do
-    comment "MyText"
-status_id "MyString"
+  factory :comment do |c|
+    c.comment "MyText"
+    c.employee_id 1
+    c.association :status, factory: :status
+    #f.association :user, factory: :user
   end
 
 end

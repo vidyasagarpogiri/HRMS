@@ -28,15 +28,13 @@ RSpec.describe AlbumsController, :type => :controller do
   
   describe "Post create" do
     describe "with valid attributes" do
-      it "creates a valid album" do
+      it "creates a valid album" do       
         expect{
-          Post :create, {album: FactoryGirl.attributes_for(:album) }
+          post :create, {album: FactoryGirl.attributes_for(:album), photos: {image: {image: "Hello.jpg", album_id: 1}} }
         }.to change(Album, :count). by(1)
-      end
-      it "re-directing to created Album" do
-        Post :create, {album: FactoryGirl.attributes_for(:album) }
-        expect(response).to redirect-template(albums_path)
-      end
+      end      
     end       
   end    
 end
+
+
