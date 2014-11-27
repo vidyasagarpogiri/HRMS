@@ -28,7 +28,7 @@
       
        <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
           <% album.photos.each do |photo| %>
-            <div ><a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="300px" height="200" ></a></div>            
+            <div style="width:400px;height:250px;overflow:hidden;"><a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="300px" height="200" ></a></div>            
          <% end %>
        </div>
         <div class="slider slider-nav">
