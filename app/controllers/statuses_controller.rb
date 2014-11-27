@@ -1,17 +1,17 @@
-# This controller is for employee status
+# This controller is for employee status # Author: Vidya Sagar Pogiri
 class StatusesController < ApplicationController
   
-  def index # New method creates a object for new album
-    @statuses = Status.all.order('created_at DESC').page(params[:page]).per(3)
+  def index # for displaying all statuses 
+    @statuses = Status.all.page(params[:page]).per(3)
     @status = Status.new
     @comment = Comment.new
   end
 
-  def new
+  def new # for creating a object for new status
     @status = Status.new
   end
 
-  def create
+  def create # creates New status record 
     @status = current_user.employee.statuses.new(status_params)
     if @status.save
       redirect_to statuses_path
@@ -20,7 +20,7 @@ class StatusesController < ApplicationController
     end
   end
 
-  def add_like
+  def add_like # creates like to the status
     @like = Like.where(employee_id: params[:employee_id], status_id: params[:id]).first
     if @like
       @like.update is_like: true
@@ -29,24 +29,26 @@ class StatusesController < ApplicationController
     end
     count = @like.status.likes_count
     @like.status.update likes_count: count + 1
+    @like.status.update(updated_at: Time.now)
     redirect_to statuses_path
   end
 
-  def remove_like
+  def remove_like # destroys like to the status
     # raise params.inspect
     @like = Like.where(employee_id: params[:employee_id], status_id: params[:id]).first
     @like.update is_like: false
     count = @like.status.likes_count
     @like.status.update likes_count: count - 1
+    @like.status.update(updated_at: Time.now)
     redirect_to statuses_path
   end
 
   # Present we are not using this one.
-  def edit
+  def edit # Edits the status
     @status = Status.find(params[:id])
   end
 
-  def update
+  def update # Updates the status
     @status = Status.find(params[:id])
     if @status.update(status_params)
       redirect_to statuses_path
@@ -55,13 +57,13 @@ class StatusesController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy # Deletes the status
     @status = Status.find(params[:id])
     @status.destroy
     redirect_to statuses_path
   end
 
-  def show
+  def show # Dsiplays the status in a show page
     @status = Status.find(params[:id])
     @comments = @status.comments
     @comment = Comment.new
@@ -70,7 +72,7 @@ class StatusesController < ApplicationController
 
   private
 
-  def status_params
+  def status_params # New method creates a obje
     params.require(:status).permit(:status)
   end
 end
