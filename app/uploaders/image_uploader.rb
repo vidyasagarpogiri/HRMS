@@ -1,3 +1,5 @@
+# Author :Priyanka
+# Uploader file for multiple image uploading for photo"s album
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base

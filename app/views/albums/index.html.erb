@@ -1,3 +1,5 @@
+<!-- Author :Priyanka
+ View for displaying all existing album along with its first images. You can view the whole album by clicking on image or on album name -->
 <div class="wrapper">
   <div class="container">
     <div class="row">                
@@ -11,7 +13,8 @@
             <div class="module-body show" >
               <% if @albums.present? %>
               <div class="row-fluid">	                           	   
-                <% @albums.each do |album| %>              							                    
+                <% @albums.each do |album| %> 
+                <!-- Displaying details of empolyee by whome album wae created -->             							                    
                 <div class="span6" style="border:solid px;margin-left:0px;margin-right:5px;">						      
                   <div class="album-employee-image">
                     <% if album.present? && album.employee.avatar_url.present? %>
@@ -32,7 +35,8 @@
                     <strong>
                       <a href="<%= album_path(album) %>"><%= album.title %></a>
                     </strong> Aldum
-                  </div> 
+                  </div>
+                  <!-- Displaying first image of the album-->
                   <div class="image-container" > 
                     <% if album.photos.present? %>            		       					       					                        
                     <div class="image-row">
@@ -43,11 +47,13 @@
                     <%# link_to "view Album", album_path(album), :class=>"btn btn-info" %>
                     <% else %>
                       <% if current_user.employee.id == album.employee.id %>
+                      <!-- Displaying this alert if current user created the album and images are deleted from that album -->
                         <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             You hav deleted all Photos from this Album.Add now!!
                         </div>
                       <% else %>
+                        <!-- Displaying this alert along with the name of owner of album if images are deleted from that album -->
                         <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <strong><%= album.employee.first_name %> <%= album.employee.last_name %></strong> removed Photos from Album.

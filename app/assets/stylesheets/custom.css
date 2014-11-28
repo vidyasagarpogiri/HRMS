@@ -374,4 +374,16 @@ color:#82B4E6;
     margin-left:450px;
     font-weight:bold;
     }
+  /* Script for showing added images in the form befor actually uploading into model */
   
+  .preview-area img{
+    overflow:hidden;
+    width:150px;
+    height:150px;
+  }
+  
+  .new-image-border{
+    border:2px solid cyan;
+    padding:5px;
+    margin-left: 10px;
+  }
