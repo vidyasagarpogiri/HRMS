@@ -327,8 +327,63 @@ color:#82B4E6;
   }
    
    
+ /* css for Album module */   
 .module-body .show{
   background-color: #fff;
   margin-left:2px;
   width:1149px
-}   
+}  
+
+ .album-employee-image{
+    padding:2px;
+    border:solid 1px #eee;
+    width:60px;
+    margin-top:0px;
+    margin-left:10px;
+  } 
+  
+  .album-employee-details{
+    padding:2px;
+    margin-left:100px;
+    margin-top:-50px
+  }
+  
+  .image-showbox{
+    width:900px;
+    border:solid 1px #eee;
+    margin-top:100px;
+    margin-left:120px;
+    background-color:#FCF9FF;
+  }
+  
+  .image-container{
+    margin-top:50px;
+    height:250px;
+  }
+  
+  .image-container .image-row{
+    width:400px;
+    height:250px;
+    overflow:hidden;
+  }
+  
+  .image-delete{
+    color:red;
+    background-color:red;
+    padding:5px;
+    margin-left:450px;
+    font-weight:bold;
+    }
+  /* Script for showing added images in the form befor actually uploading into model */
+  
+  .preview-area img{
+    overflow:hidden;
+    width:150px;
+    height:150px;
+  }
+  
+  .new-image-border{
+    border:2px solid cyan;
+    padding:5px;
+    margin-left: 10px;
+  }

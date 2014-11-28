@@ -2,7 +2,7 @@
 # Controller for creating and editing Albums
 class AlbumsController < ApplicationController
   def index  # Index method for displaying all album
-    @albums = Album.all
+    @albums = Album.all.order('created_at DESC')
   end
    
   def new   # New method creates a object for new album

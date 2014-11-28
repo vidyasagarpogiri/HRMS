@@ -1,3 +1,5 @@
+# Author :Priyanka
+# model for album where we can specify validations and relations.
 class Album < ActiveRecord::Base
   belongs_to :employee # Album belongs to an employee
   has_many :photos # One album can hav multiple photos

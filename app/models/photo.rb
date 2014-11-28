@@ -1,3 +1,5 @@
+# Author :Priyanka
+# model for photos where we can specify validations and relations.
 class Photo < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 	belongs_to	:album # Photo belongs to Album
