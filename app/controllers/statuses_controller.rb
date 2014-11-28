@@ -40,6 +40,7 @@ class StatusesController < ApplicationController
     count = @like.status.likes_count
     @like.status.update likes_count: count - 1
     @like.status.update(updated_at: Time.now)
+    @like.destroy
     redirect_to statuses_path
   end
 
