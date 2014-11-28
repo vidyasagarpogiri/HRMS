@@ -72,7 +72,10 @@
                       <p><%= time_ago_in_words(comm.created_at)%> ago </p><hr>
                       <% end %> 
                     </div>
-                </div><hr><hr>
+                    
+                   
+                </div>
+                 <%= render "comments/form", :status => s %>
                <% end %>
                 <% else %>
                   <div class="module-body">                                           

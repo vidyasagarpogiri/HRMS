@@ -58,7 +58,7 @@ gem "capybara", :group => [:development, :test]
 =end
 group :development, :test do 
   gem 'rspec-rails' 
-  gem 'factory_girl_rails' 
+   gem 'factory_girl_rails', :require => false
 end 
 group :test do 
   gem 'faker' 

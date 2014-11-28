@@ -1,4 +1,4 @@
-# This model is for comments of status
+# This model is for comments of status # Author: Vidya Sagar Pogiri
 class Comment < ActiveRecord::Base
   belongs_to :status # Comments belongs to status
   belongs_to :employee # comments will be posted by employee
