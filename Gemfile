@@ -108,7 +108,7 @@ gem 'rubocop'
 gem 'slick_rails'
 gem 'jquery-colorbox-rails'
 
-# gem for Calendar view
+# gem for Calendar views
 gem 'icalendar'
 
 
