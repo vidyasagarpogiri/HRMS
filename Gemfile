@@ -108,8 +108,8 @@ gem 'rubocop'
 gem 'slick_rails'
 gem 'jquery-colorbox-rails'
 
-# gem for Calendar views
-gem 'icalendar'
+# gem for Calendar views for mailers
+#gem 'icalendar'
 
 
 # Use Capistrano for deployment
