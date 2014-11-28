@@ -1,4 +1,4 @@
-# This model is for status like
+# This model is for status like # Author: Vidya Sagar Pogiri
 class Like < ActiveRecord::Base
   belongs_to :employee # like will be liked by employee
   belongs_to :status # status will have a like

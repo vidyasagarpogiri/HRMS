@@ -1,6 +1,6 @@
-# this controller is for status comments
+# this controller is for status comments # Author: Vidya Sagar Pogiri
 class CommentsController < ApplicationController
-  def index
+  def index 
     @comments = Comment.order('created_at ASC').limit(3)
   end
 
@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @employee = current_user.employee
     @status = Status.find(params[:status_id])
     @comment = @status.comments.create(comment_params)
+    @status.update(updated_at: Time.now)
     if @comment.save
       redirect_to statuses_path
     else
