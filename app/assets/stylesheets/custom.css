@@ -368,12 +368,13 @@ color:#82B4E6;
   }
   
   .image-delete{
-    color:red;
-    background-color:red;
-    padding:5px;
-    margin-left:450px;
+    color:#eee;
+    background-color:#AD3333;
+    padding:5px;   
+    margin-left:410px;
     font-weight:bold;
-    }
+  }
+  
   /* Script for showing added images in the form befor actually uploading into model */
   
   .preview-area img{
