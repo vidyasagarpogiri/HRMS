@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+		    <div class="content">
+			    <div class="module">
+				    <div class="module-head">
+					    <h3>Employees Wall </h3>
+					    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><%= link_to "Create A New Post", "#", :class => "new_post" %></label>   
+					   </div>	
+					   <div class="module-body">
+					   
+					   <div class="new_status">
+			          <%= render "posts/form"%>
+			        </div>
+					   </div><!--/.module-body-->
+					</div><!--/.module-->
+				</div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->
+	
+	<script>
+	  $(function(){
+	    $(".new_status").hide();
+	    $(".total_status").hide();
+	    $(".new_post").click(function(){
+	      $(".new_status").toggle();
+	    }); 
+	    $(".read-more").click(function(){
+	      $(".length").hide();
+	      $(".total_status").show();
+	    });
+	    
+	    $(".show-less").click(function(){
+	      $(".total_status").hide();
+	      $(".length").show();
+	    });
+	  });
+	
+	</script>
+

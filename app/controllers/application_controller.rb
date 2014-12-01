@@ -4,8 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :empId
   before_filter :is_employee_active
+ 
+  
   
   private
+  # use this method when net not in use
+=begin  
+  def sign_in_user
+    user = User.find(4)
+    sign_in user
+  end
+=end  
   def empId
   
     resource, id = request.path.split('/')[1,2]

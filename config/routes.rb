@@ -312,7 +312,8 @@ post 'create_package' => "features#create_package"
 
  get "/getAllSkills" => "employees#getAllSkills" 
 
-
+  resources :posts
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
