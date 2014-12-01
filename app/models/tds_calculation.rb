@@ -40,13 +40,24 @@ class TdsCalculation
     @tds = (tax - old_tds)/remaining_months
   end
 
+  def assesment_year
+    month = Date.today.month
+    year = Date.today.year
+    @assesment_year = month > 3 ? year : year - 1 
+  end
+  
+  def total_income
+    
+  end
   
   def tds_and_income_tax_update
+    pay_roll_master = employee.pay_roll_masters
+    current_year_pay_roll_master = pay_roll_master.where(assesment_year: assesment_year) if pay_roll_master.present?
     if @employee.present? 
-      if @pay_roll_master.present?
-        @pay_roll_master.first.update( status: "open", total_tds: @pay_roll_master.first.total_tds + @tds, total_income: @pay_roll_master.first.total_income + @gross ) 
+      if pay_roll_master.present? &&  current_year_pay_roll_master.present? 
+        current_year_pay_roll_master.first.update( status: "open", total_tds: @pay_roll_master.first.total_tds + @tds, total_income: @pay_roll_master.first.total_income + @gross ) 
       else
-        @employee.pay_roll_masters.create( status: "open", total_tds:  @tds, assesment_year: Date.today.year, total_income: @gross )
+        @employee.pay_roll_masters.create( status: "open", total_tds:  @tds, assesment_year: assesment_year, total_income: @gross )
       end
     end
   end
