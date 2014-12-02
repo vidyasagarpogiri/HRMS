@@ -244,12 +244,6 @@ class EmployeesController < ApplicationController
   
   def get_employee
     @employee = Employee.find(params[:id])
-  end
-  
-  
-  
-  
-
-	
+  end        	
 end
 

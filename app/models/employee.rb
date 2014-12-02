@@ -102,9 +102,9 @@ class Employee < ActiveRecord::Base
   def is_reporting_manager?
     
    if ReportingManager.where(:manager_id => id).present?
-    return true
+     return true
    else
-   return false
+     return false
    end
    
   end
@@ -115,6 +115,17 @@ class Employee < ActiveRecord::Base
 	
 	def reporting_managerId
     ReportingManager.find_by_employee_id(id).manager_id
+	end
+	
+	def reportees_employees
+	  repotees_ids = ReportingManager.where(:manager_id => id).pluck(:employee_id)	  
+	  employees = Employee.where(:id => repotees_ids)
+	  #@leaves = LeaveHistory.where(:employee_id => @repotees_ids).pluck(:from_date, :to_date)	 
+    #@names = Employee.where(:employee_id => @id).pluck(:first_name)
+	end
+	
+	def department_leaves
+	  
 	end
 
 end
