@@ -111,7 +111,6 @@ GEM
     hitimes (1.2.2)
     htmlentities (4.3.2)
     i18n (0.6.11)
-    icalendar (2.2.0)
     jbuilder (2.2.5)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -339,7 +338,6 @@ DEPENDENCIES
   factory_girl_rails
   faker
   guard-rspec
-  icalendar
   jbuilder (~> 2.0)
   jquery-colorbox-rails
   jquery-rails

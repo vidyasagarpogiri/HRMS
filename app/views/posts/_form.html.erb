@@ -19,20 +19,18 @@
                <div class="control-group">
                <label class="control-label" for="basicinput">Add Category:</label>
                 <div class="controls">
-                 <%= p.text_field :category, :class => "span8 form-control ", :placeholder =>"What's On Your Mind", :data => {:error => "Please Enter Category"}, :required => true %>
+                  <%= p.text_field :category, :class => "span8 form-control ", :placeholder =>"Add Category", :data => {:error => "Please Enter Status"}, :required => true %>
                  <span class="help-block with-errors"></span>
                 </div>
               </div>
               
-              
-               <div class="control-group">
+                <div class="control-group">
                <label class="control-label" for="basicinput">Add Tags:</label>
                 <div class="controls">
-                  <%=p.text_field :tags, :class => "span8 form-control ", :placeholder =>"Add tags", :data => {:error => "Please Enter Tags"}, :required => true %>
+                  <%= p.text_field :tags, :class => "span8 form-control ", :placeholder =>"Add Tags", :data => {:error => "Please Enter Status"}, :required => true %>
                  <span class="help-block with-errors"></span>
                 </div>
               </div>
-              
                           
                 <ul class="navigation-btns editthree" >
                 <li><button type="submit" class="btn btn-success">Post </button></li>
@@ -40,4 +38,4 @@
               </ul>	
               <% end %>
      
-  
+ 

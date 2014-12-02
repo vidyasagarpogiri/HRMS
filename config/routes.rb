@@ -312,7 +312,17 @@ post 'create_package' => "features#create_package"
 
  get "/getAllSkills" => "employees#getAllSkills" 
 
-  resources :posts
+  resources :posts do
+    member do
+      get "add_comment_form" 
+      post "add_like"
+      post "remove_like"
+    end
+    collection do
+      post "add_comments"
+    end
+  end
+  
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
