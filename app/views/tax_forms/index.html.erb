@@ -1,0 +1,55 @@
+<div class="wrapper">
+  <div class="container">
+	  <div class="row">
+      <div class="span12">
+		    <div class="content">
+          <div class="module">
+              <div class="module-head">							
+                <h3> Form 16 </h3>
+              </div>            
+              
+              <div class="module-body">	
+                <div class="row-fluid">
+                  <div class="span6">
+                    <%= form_tag( payrolls_employee_payslips_by_year_path,  :class => "form-horizontal", :remote => true) do %>
+                      <label><strong>Select Month to View payslip :&nbsp&nbsp </strong><br>
+                      <select name="payslip_view_year" class="payroll_year">
+                        <option value=0>-select year-</option>
+                        <% @tax_forms.each do |year| %>
+                          <option value="<%= year %>"><%= year %></option>
+                        <% end %>             
+                      </select> 
+                      <input type="submit" class="btn btn-success" value="View">                
+                    <% end %>  
+                  </div>
+                </div></br>				                                                                      
+                <table class="table table-striped table-bordered table-condensed" >
+                  <thead>											      
+                    <tr>
+                      <th width="280px;">Year </th>	
+                      <th width="280px">Total Income</th>	
+                      <th width="280px"> Total Savings</th>	
+                      <th width="280px"> Total TDS</th>										            									      		
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @tax_forms.each do |tax_form| %>
+                      <tr>
+                        <td><%= link_to tax_form.assesment_year, tax_form_path(tax_form) %></td>
+                        <td><%= tax_form.total_income %></td>
+                        <td><%= tax_form.total_savings %></td>
+                        <td><%= tax_form.total_tds %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              </div><br>
+          
+                                                                                                                 
+          </div><!--module-->
+        </div><!--content-->
+		  </div><!--/.span12-->
+	  </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->  
