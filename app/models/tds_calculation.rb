@@ -62,6 +62,23 @@ class TdsCalculation
     end
   end
 
+
+  # This Method for Tax From View 
+  
+  def tax_form_view(tax_form)
+    unless tax_form.assesment_year == assesment_year
+      @net_taxble_income = tax_form.total_income - tax_form.total_savings
+      t = TaxBracket.where("lower_limit < ? && upper_limit > ?", @net_taxble_income, @net_taxble_income).first
+      if t.present?
+        @income_tax = t.min_tax + ((@net_taxble_income - t.lower_limit)*(t.tax_percentage/100))
+        @education_cess = (@income_tax * 2)/100
+        @higher_education_cess = (@income_tax)/100
+        @total_tax = @income_tax + @education_cess + @higher_education_cess
+        @total_tax.to_f
+      end
+    #@income 
+    end
+    return @net_taxble_income, @income_tax, @education_cess, @higher_education_cess, @total_tax
+  end
+
 end
-
-

@@ -112,6 +112,8 @@ gem 'jquery-colorbox-rails'
 #gem 'icalendar'
 
 
+#For Calender
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

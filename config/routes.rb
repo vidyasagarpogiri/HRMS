@@ -310,9 +310,11 @@ post 'create_package' => "features#create_package"
 
   resources :projects
 
- get "/getAllSkills" => "employees#getAllSkills" 
-  resources :tax_forms
+  get "/getAllSkills" => "employees#getAllSkills" 
+  
+  resources :tax_forms, :only => :index 
 
+  get "my_tax_from/:assesment_year" => "tax_forms#show", as: :tax_form
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
