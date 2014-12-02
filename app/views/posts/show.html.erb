@@ -1,0 +1,90 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+		    <div class="content">
+			    <div class="module">
+				    <div class="module-head">
+					    <h3>All posts </h3>
+					    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><%= link_to "Back To Posts", posts_path %></label>
+					     <% if current_user.employee.id == @post.employee.id %>
+					    
+					    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><%= link_to "Edit Post", edit_post_path(@post.id) %></label> 
+					    
+					    
+					    
+					    <% end %>  
+					 </div>	
+					     <div class="module-body">
+					     
+					     
+					     <div class="row-fluid" style="border:solid 1px #eee;padding:10px;margin-top:10px;width:1100px">
+                
+                <div class="span12" style="margin-left:20px;">		
+                  <div class="control-group span8">
+                    <label class="control-label" for="basicinput"> <strong><%= @post.title %></strong></label>                
+                  </div>
+
+                  <div class="control-group span2">
+                    <label class="control-label" for="basicinput"><strong>Created </strong> <%= format_date(@post.created_at) %></label>                
+                  </div>
+                 <div class="control-group span2">
+                    <label class="control-label" for="basicinput"><strong>Categoty </strong> <%= @post.category %></label>                
+                  </div>
+                 </div>
+                 
+                 <div class="span11">		
+                  <div class="control-group">
+                  <label class="control-label" for="basicinput"><strong>Content </strong></label>
+                    <label class="control-label" for="basicinput"> <%= raw(@post.content)%></label>                
+                  </div>
+                </div>
+                
+                
+                <div class="span12" style="margin-left:20px;">
+                   <div class="control-group span8">
+                    <label class="control-label" for="basicinput"> <strong> <%= @post.tags %></strong></label>                
+                  </div>
+                  <div class="control-group span4">
+                   <label class="control-label" for="basicinput"><i>by:</i> <strong><%= @post.employee.full_name %></strong></label>                
+                  </div>
+                  </div> 
+                <div class="span11">		
+                  <div class="control-group">
+                  <label class="control-label" for="basicinput"> <strong> All Comments</strong></label>
+                   <% @post.comments.each do |c| %>
+                   <label class="control-label" for="basicinput"> <%= c.comment %></label>
+                    <label class="control-label" for="basicinput"><i>by:</i> <strong><%= c.employee.full_name %></strong></label>
+                   <% end %>               
+                  </div>
+                </div>
+                
+                 <div class="span12" style="margin-left:20px;">
+                
+                  <%= render "posts/add_comment_form", :post => @post.id %>
+              
+                 </div> 
+                <div class="row-fluid">
+                    <div class="span8"><hr>
+                      <h5>Likes(<%= @post.likes_count %>) . Comments(<%=@post.comments.count %>) 
+              
+                      <% if @post.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
+                        <%= link_to 'Unlike', remove_like_post_path(@post.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
+                      <% else %> 
+                        <%= link_to 'Like',  add_like_post_path(@post.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
+                      <% end %>
+                      
+                      
+                    </div>
+                   </div> 
+  
+                </div>
+					   					    
+                
+					   </div><!--/.module-body-->
+					</div><!--/.module-->
+				</div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->

@@ -2,8 +2,6 @@ class PostsController < ApplicationController
 
   def index
    @posts = Post.all
-   @post = Post.new
-   @comment = Comment.new
   end
   
   def new
@@ -33,6 +31,12 @@ class PostsController < ApplicationController
       render 'edit'
     end
   end
+  
+  def show
+    @post = Post.find(params[:id])
+    @comment = Comment.new
+  end
+  
   
   def add_comment_form
     @comment = @post.comments.new
