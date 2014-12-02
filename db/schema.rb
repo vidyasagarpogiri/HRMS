@@ -382,6 +382,7 @@ ActiveRecord::Schema.define(version: 20141201132353) do
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "assesment_year"
   end
 
   create_table "job_locations", force: true do |t|

@@ -15,6 +15,7 @@
  *= require_self
  *= require bootsy
  *= require jquery.timepicker.css
+ *= require fullcalendar
  */
  
   @import "jquery.colorbox-example3";
