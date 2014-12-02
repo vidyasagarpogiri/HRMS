@@ -18,6 +18,7 @@
 //= require jquery.timepicker.js
 //= require jquery.colorbox
 //= require slick
+
 //= require_tree .
 
 

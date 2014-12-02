@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 
   def create
     @employee = current_user.employee
-    @status = Status.find(params[:status_id])
+    #@status = Status.find(params[:status_id])
     @comment = @status.comments.create(comment_params)
     @status.update(updated_at: Time.now)
     if @comment.save
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 
   def new
     @employee = current_user.employee
-    @status = Status.find(params[:status_id])
+   # @status = Status.find(params[:status_id])
     @comment = Comment.new
   end
 
