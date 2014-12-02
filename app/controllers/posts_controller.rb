@@ -74,8 +74,7 @@ class PostsController < ApplicationController
     @post.update likes_count: count + 1
     @post.update(updated_at: Time.now)
     redirect_to posts_path
-    
-   end
+  end
   
   
   def remove_like

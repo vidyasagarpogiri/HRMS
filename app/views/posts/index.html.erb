@@ -72,7 +72,7 @@
                   
                   <div class="row-fluid">
                     <div class="span8"><hr>
-                      <h5>Likes(<%= s.likes_count %>) . Comments(<%= p.comments.count %>) 
+                      <h5>Likes(<%= p.likes_count %>) . Comments(<%= p.comments.count %>) 
               
                       <% if p.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
                         <%= link_to 'Unlike', remove_like_post_path(p.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
