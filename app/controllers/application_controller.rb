@@ -3,9 +3,16 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :empId
+  #before_filter :sign_in_user
   before_filter :is_employee_active
   
   private
+  
+  #def sign_in_user
+  #  user = User.find(1)
+  #  sign_in user
+  #end
+  
   def empId
   
     resource, id = request.path.split('/')[1,2]

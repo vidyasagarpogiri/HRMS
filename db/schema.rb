@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126112846) do
+ActiveRecord::Schema.define(version: 20141128110519) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -727,5 +727,22 @@ ActiveRecord::Schema.define(version: 20141126112846) do
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "workgroups", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "workgroupicon"
+    t.integer  "admin_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workgroups_employees", force: true do |t|
+    t.integer  "employee_id"
+    t.integer  "workgroup_id"
+    t.boolean  "is_moderator"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
