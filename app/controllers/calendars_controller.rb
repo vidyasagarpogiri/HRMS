@@ -24,8 +24,7 @@ class CalendarsController < ApplicationController
     respond_to do |format| 
       format.html # reporting_manager_calendar.html.erb     
       format.json do
-        render :json =>  @leaves.map{|leave| {:title => leave.reason, :start => leave.from_date.to_date, :end => leave.to_date.to_date}}
-        #render :json => {:employees => @employees.map{|emp| {:title => emp.first_name}}, :leaves => @leaves.map{|leave| {:start => leave.from_date.to_date}}}
+        render :json =>  @leaves.map{|leave| {:title => leave.employee.full_name, :start => leave.from_date.to_date, :end => leave.to_date.to_date}}        
       end
     end      
   end
@@ -36,17 +35,20 @@ class CalendarsController < ApplicationController
   end
     
   def department_leaves_calendar    
-    #@department = Department.find(params[:dept].to_i) 
-    #raise @department.inspect    
-    @department_employees = Employee.all.where(:department_id => 2)
-    #@department_leaves = @all_leaves.all.where(:employee_id => "@department_employees.employee_id".to_i)   
-    @employees = Employee.all    
+    #@department = Department.find(params[:dept].to_i)    
+    @department_employees = Employee.all.where(:department_id => 2).pluck(:id)    
+    @department_leaves = LeaveHistory.where(:employee_id => @department_employees, :status => "APPROVED") 
+    #raise @department_leaves.inspect
+    respond_to do |format| 
+      format.html # reporting_manager_calendar.html.erb     
+      format.json do
+        render :json =>  @department_leaves.map{|leave| {:title => leave.employee.full_name, :start => leave.from_date.to_date, :end => leave.to_date.to_date}}        
+      end
+    end          
   end         
  
   def department_calendar
-    #@department = Department.find(params[:dept_id].to_i)
-    #raise @department.inspect
-    
+    #@department = Department.find(params[:dept_id].to_i)   
     @group_employees = Employee.where(:department_id => :department_id).pluck(:group_id).uniq
     @group_holiday_calender = HolidayCalender.where(:group_id => @group_employees).pluck(:event_id).uniq    
     @department_events = Event.where(:id => @group_holiday_calender)
@@ -64,7 +66,7 @@ class CalendarsController < ApplicationController
      respond_to do |format| 
       format.html # reporting_manager_calendar.html.erb 
       format.json do 
-        render :json => @all_leaves.map { |leave| {:title => leave.reason, :start => leave.from_date.to_date , :end => leave.to_date.to_date} }
+        render :json => @all_leaves.map { |leave| {:title => leave.employee.full_name, :start => leave.from_date.to_date , :end => leave.to_date.to_date} }
       end
     end       
   end
