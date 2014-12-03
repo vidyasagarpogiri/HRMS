@@ -6,9 +6,14 @@
 				  <div class="module">
 					  <div class="module-head">
               <h3> <%= @workgroup.name %> </h3>
-              <div class="pull-right" ><a href="/workgroups" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Workgroups</i></a></div>   
+              <div class="pull-right" >
+              <label style="font-weight:normal;margin-top:-20px" class = "pull-right" >
+              <a href="/workgroups"><i class="icon-circle-arrow-left"> Back to Workgroups</i></a> </label> 
               <label style="font-weight:normal;margin-top:-20px" class = "pull-right" ><a><i class="icon-plus-sign "></i></a><%= link_to " Add Moderator",add_moderator_workgroup_path %> </label> 
-              <a href="#myModal" role="button" class="btn" data-toggle="modal">Add Members</a>     
+              <label style="font-weight:normal;margin-top:-20px" class = "pull-right" >
+                <a href="#myModal" role="button" class="btn" data-toggle="modal">Add Members</a>
+              </label>
+              </div>    
             </div>
             
             <h5>Group Admin : <%= @employee.full_name %> </h5>

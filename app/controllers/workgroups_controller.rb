@@ -1,10 +1,9 @@
 # This controller is for workgroups # Author: Vidya Sagar Pogiris
 class WorkgroupsController < ApplicationController
+  
   def index
     @workgroups = Workgroup.all.page(params[:page]).per(6)  
     @employee = current_user.employee
-    #@employee = Workgroup.admin_id
-    #raise @employee.inspect
   end
   
   def new
@@ -12,8 +11,7 @@ class WorkgroupsController < ApplicationController
   end
   
   def create 
-  #raise params.inspect
-    @workgroup = Workgroup.create(params_workgroup)
+    @workgroup = Workgroup.new(params_workgroup)
     if @workgroup.save
       redirect_to workgroups_path
     else

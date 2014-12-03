@@ -7,28 +7,19 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-              <h3>Department Calendar</h3>              
+              <h3>Department Events</h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'Department Leaves',  calendars_department_leaves_calendar_path %></label>              
 					  </div>
 					  <div class="module-body">
-					    <div id='calendar'>
-								<div class="control-group">
+					    <div class="control-group">
 									<label class="control-label" for="basicinput">Department:</label>
 									<div class="controls">
                     <%= select_tag "department", options_from_collection_for_select(Department.all, "id", "department_name"), class: "department-id" %>
                     <span class="help-block with-errors"></span> 
 									</div>
 						    </div><hr>	
-						    <% if @department.present? %>
-						      <div id="department">
-						    	  <%= render 'department_leaves' %>	
-						    	</div>			    					        
-					      <% else %>
-					        <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    No Information to display ,Please select Department.
-                  </div>
-					      <% end %>
-					     </div>
+					    <div id='calendar'>														   
+					    </div>
 	          </div><!--.module-body-->
 					</div><!--/.module -->
 		    </div><!--/.content-->
@@ -37,6 +28,13 @@
 	</div><!--/.container-->
 </div><!--/.wrapper-->
 
+<style>
+  #calendar {
+  max-width: 900px;
+  margin: 0 auto;
+}
+</style>
+
 <script>
  
  $('#department').change(function() {
@@ -44,10 +42,24 @@
   $.ajax({
       type: "get",
       url: "/calendars/department_calendar",
-      data: { 'department_id': index } 
+      data: { 'dept_id': index } 
   }); 
 });
 </script>
 
 
-
+<script>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+          events: '/calendars/department_calendar.json',
+            
+          eventBackgroundColor: '#FFFFD1',
+          eventTextColor: 'black'                                                  
+     });
+});
+</script>

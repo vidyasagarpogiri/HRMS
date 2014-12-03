@@ -144,7 +144,7 @@ get 'inactive_employees' => "employees#inactive_employees"
 			get 'employee_self_description_show'
 			get 'employee_self_description_form'
 			patch 'employee_self_description_create'
-			get 'my_workgroups'	# for employee work groups
+			
 		end
 		
    
@@ -314,10 +314,15 @@ post 'create_package' => "features#create_package"
   # routes for Calendar
   #resources :calendars
   get "/calendars/reporting_manager_calendar" => 'calendars#reporting_manager_calendar'
+  get "/calendars/reportees_leaves_calendar" => 'calendars#reportees_leaves_calendar'
   get "/calendars/workgroup_calendar" => 'calendars#workgroup_calendar'
   #get "/calendars/department_calendar" => 'calendars#department_calendar'
   get "/calendars/company_calendar" => 'calendars#company_calendar'
+  get "/calendars/company_leaves_calendar" => 'calendars#company_leaves_calendar'
   match '/calendars/department_calendar' => 'calendars#department_calendar', via: [:get,:post]
+  match '/calendars/department_leaves_calendar' => 'calendars#department_leaves_calendar', via: [:get,:post]
+  
+  
   #match '/auto-links' => 'main#auto_links', via: [:get, :post]
   
   resources :projects
@@ -341,7 +346,7 @@ post 'create_package' => "features#create_package"
      delete "destroy_member/:employee_id" => 'workgroups#destroy_member', as: :destroy_member # for destroying member from work group
     end
   end
-
+  get 'my_workgroups'	=> "employees#my_workgroups"
 
   resources :posts do
     member do

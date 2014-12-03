@@ -7,35 +7,12 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-              <h3>Company Calendar</h3>              
+              <h3>All Events</h3> 
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'All Leaves',  calendars_company_leaves_calendar_path %></label>              
 					  </div>
 					  <div class="module-body">
 					    <div id='calendar'>	
-					      <label><strong>Leaves:</strong></label>
-					      <% if @all_leaves.present? %>
-					        <% @all_leaves.each do |leave| %>
-					          <%= leave.employee.full_name %>	from	
-					          <%= leave.from_date %> to
-					          <%= leave.to_date %>
-					        <% end %>
-				        <% else %>
-			            <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    No Leaves to display.
-                  </div>
-				        <% end %>	
-				        <label><strong>Holdays:</strong></label>
-				        <% if @all_holidays.present? %>
-				          <% @all_holidays.each do |holiday| %>
-				            <%= holiday.event_name %>
-				            <%= holiday.event_date %><br>
-				          <% end %>
-				        <% else %>
-			            <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    No Events to display.
-                  </div>
-				        <% end %>			      
+					      
 					    </div>
 	          </div><!--.module-body-->
 					</div><!--/.module -->
@@ -44,3 +21,29 @@
 		</div><!--/.row-->
 	</div><!--/.container-->
 </div><!--/.wrapper-->
+
+
+
+<style>
+  #calendar {
+  max-width: 900px;
+  margin: 0 auto;
+}
+</style>
+<script>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+          events: '/calendars/company_calendar.json',
+            
+          eventBackgroundColor: '#FFFFD1',
+          eventTextColor: 'black'                                             
+     
+     });
+});
+</script>
+

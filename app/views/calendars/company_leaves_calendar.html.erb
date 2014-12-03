@@ -1,0 +1,45 @@
+<!-- Author :Priyanka
+ View for displaying all existing album along with its first images. You can view the whole album by clicking on image or on album name -->
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                
+      <div class="span12">
+        <div class="content">         
+				  <div class="module">
+					  <div class="module-head">
+              <h3>All Leaves</h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'All Events',  calendars_company_calendar_path %></label>              
+					  </div>
+					  <div class="module-body">
+					    <div id='calendar'>						     					        					     					          
+					    </div>					      					      					      					   
+	          </div><!--.module-body-->
+					</div><!--/.module -->
+		    </div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->
+
+<style>
+  #calendar {
+  max-width: 900px;
+  margin: 0 auto;
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+          events: '/calendars/company_leaves_calendar.json',
+            
+          eventBackgroundColor: '#FFFFD1',
+          eventTextColor: 'black'                                                  
+     });
+});
+</script>

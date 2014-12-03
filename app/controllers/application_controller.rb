@@ -88,4 +88,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  def sign_in_user
+    user = User.find(3)
+    sign_in user
+  end
+
+
 end

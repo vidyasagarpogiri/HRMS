@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
 
   def index
-   @posts = Post.all
+   @search = Post.search do
+    fulltext params[:search]
+  end
+  @posts = @search.results
+  # @posts = Post.all
   end
   
   def new
