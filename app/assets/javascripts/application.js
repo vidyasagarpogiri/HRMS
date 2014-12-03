@@ -18,7 +18,8 @@
 //= require jquery.timepicker.js
 //= require jquery.colorbox
 //= require slick
-
+//= require moment
+//= require fullcalendar
 //= require_tree .
 
 

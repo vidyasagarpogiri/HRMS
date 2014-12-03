@@ -7,8 +7,8 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-              <h3>Department Events</h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'Department Leaves',  calendars_department_leaves_calendar_path %></label>              
+              <h3>Department Leaves Calendar</h3>
+               <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'Department Events',  calendars_department_calendar_path %></label>               
 					  </div>
 					  <div class="module-body">
 					    <div class="control-group">
@@ -41,7 +41,7 @@
  var index =$( "#department" ).val();
   $.ajax({
       type: "get",
-      url: "/calendars/department_calendar",
+      url: "/calendars/department_leaves_calendar",
       data: { 'dept_id': index } 
   }); 
 });
@@ -56,7 +56,7 @@ $(document).ready(function() {
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
     },
-          events: '/calendars/department_calendar.json',
+          events: '/calendars/department_leaves_calendar.json',
             
           eventBackgroundColor: '#FFFFD1',
           eventTextColor: 'black'                                                  

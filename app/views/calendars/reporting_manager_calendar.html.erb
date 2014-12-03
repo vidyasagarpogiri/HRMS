@@ -7,38 +7,12 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-              <h3>Reportees Calendar</h3>              
+              <h3>Reportees events Calendar</h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'Reportees Leaves',  calendars_reportees_leaves_calendar_path %></label>              
 					  </div>
 					  <div class="module-body">
-					    <div id='calendar'>	
-					      <label><strong>Holidays</strong></label>
-					      <% if @holidays.present? %>
-					        <% @holidays.each do |holiday|%>
-					         
-					        <% end %>
-					      <% else %>
-                  <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    No Holidays to display.
-                  </div>
-					      <% end %>					      					   
-					      <label><strong>Reportee Leaves:</strong></label>
-					      <% if @reportee_employees.present? %>
-					        <% @reportee_employees.each do |reportee_employee|%>					          
-					          <% if reportee_employee.leave_histories.present? %>					          
-					            <% reportee_employee.leave_histories.each do |employee_record| %>
-					            <label>Reportee Name: <%= reportee_employee.full_name %></label>
-					              <%= employee_record.from_date %> to <%= employee_record.to_date %>
-					            <% end %>					         
-					          <% end %>			          
-					        <% end %>
-					      <% else %>
-                  <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    You have No Reportees.
-                  </div>
-					      <% end %>					      
-					    </div>
+					    <div id='calendar'>						     					        					     					          
+					    </div>					      					      					      					   
 	          </div><!--.module-body-->
 					</div><!--/.module -->
 		    </div><!--/.content-->
@@ -47,10 +21,28 @@
 	</div><!--/.container-->
 </div><!--/.wrapper-->
 
+<style>
+  #calendar {
+  max-width: 900px;
+  margin: 0 auto;
+}
+</style>
+
 <script>
-  <%= javascript_tag do %>
-  $(document).ready(function() {
-  $('#calendar').fullCalendar()
-  });
-  <% end %>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+          events: '/calendars/reporting_manager_calendar.json',
+            
+          eventBackgroundColor: '#FFFFD1',
+          eventTextColor: 'black'                                                  
+     });
+});
 </script>
+
+
+   
