@@ -13,7 +13,7 @@
 						  <% end %>
 					  </div>
 					  <div class="module-body show">
-					    <div class="album-employee-image" >
+					    <div class="album-employee-image span2" >
                 <% if @album.present? && @album.employee.avatar_url.present? %>
                   <%= image_tag @album.employee.avatar_url, :width => "60px", :height => "60px" %>
                 <% else %>
@@ -24,9 +24,9 @@
                     <% end %>
                 <% end %>
               </div>              
-              <div class="album-employee-details">
-                <strong>
-                  <%= @album.employee.first_name %> <%= @album.employee.last_name %>
+              <div class="album-employee-details" style="margin-left:100px;">
+                <strong><br>
+                 <%= @album.employee.first_name %> <%= @album.employee.last_name %>
                 </strong> added new 
                 <strong>
                   <%= @album.title %>
