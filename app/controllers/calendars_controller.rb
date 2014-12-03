@@ -18,12 +18,16 @@ class CalendarsController < ApplicationController
   
   def reportees_leaves_calendar
     @reportee_employees = current_user.employee.reportees_employees
-    #raise @reportee_employees.pluck(:employee_id).inspect    
-    #@reportee_name = @reportee_employees.pluck(:first_name)
     @leaves = LeaveHistory.where(:employee_id => (@reportee_employees.pluck(:employee_id)), :status => "APPROVED")
-    @name = Employee.where(:employee_id => (@leaves.pluck(:employee_id)))
-    @record = @leaves + @name #if (@leaves.pluck(:employee_id)).to_i == @name.pluck(:employee_id).to_i    
-    #raise @name.pluck(:employee_id).to_i.inspect       
+    @employees = Employee.where(:employee_id => (@leaves.pluck(:employee_id)))
+    #raise @leaves.inspect    
+    respond_to do |format| 
+      format.html # reporting_manager_calendar.html.erb     
+      format.json do
+        render :json =>  @leaves.map{|leave| {:title => leave.reason, :start => leave.from_date.to_date, :end => leave.to_date.to_date}}
+        #render :json => {:employees => @employees.map{|emp| {:title => emp.first_name}}, :leaves => @leaves.map{|leave| {:start => leave.from_date.to_date}}}
+      end
+    end      
   end
   
   def workgroup_calendar
@@ -33,11 +37,8 @@ class CalendarsController < ApplicationController
     
   def department_leaves_calendar    
     #@department = Department.find(params[:dept].to_i) 
-    #raise @department.inspect
-    #@all_departments = Department.all
+    #raise @department.inspect    
     @department_employees = Employee.all.where(:department_id => 2)
-    #@id = @department_employees.id
-    #@id = @department_employees.employee_id
     #@department_leaves = @all_leaves.all.where(:employee_id => "@department_employees.employee_id".to_i)   
     @employees = Employee.all    
   end         
@@ -63,7 +64,7 @@ class CalendarsController < ApplicationController
      respond_to do |format| 
       format.html # reporting_manager_calendar.html.erb 
       format.json do 
-        #render :json => @all_leaves.map { |event| {:title => event.event_name, :start => event.event_date.to_date} }
+        render :json => @all_leaves.map { |leave| {:title => leave.reason, :start => leave.from_date.to_date , :end => leave.to_date.to_date} }
       end
     end       
   end
