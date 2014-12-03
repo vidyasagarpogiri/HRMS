@@ -3,11 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :empId
+  #before_filter :sign_in_user
   before_filter :is_employee_active
  
   
   
   private
+
   # use this method when net not in use
 =begin  
   def sign_in_user
@@ -15,6 +17,7 @@ class ApplicationController < ActionController::Base
     sign_in user
   end
 =end  
+
   def empId
   
     resource, id = request.path.split('/')[1,2]
@@ -84,10 +87,5 @@ class ApplicationController < ActionController::Base
       role.features.where(controller: controller).map(&:action)
     end
   end
-=begin
-  def sign_in_user
-    user = User.find(3)
-    sign_in user
-  end
-=end
+
 end

@@ -10,7 +10,7 @@ RSpec.describe TdsCalculation, :type => :model do
     FactoryGirl.create(:high_tax_bracket)
     FactoryGirl.create(:very_high_tax_bracket)
     @employee =  FactoryGirl.create(:employee) 
-    @employee.investment_declarations.create(FactoryGirl.attributes_for(:investment_declaration))
+    FactoryGirl.create(:investment_declaration, employee_id: @employee.id)
   end
    
    let(:gross) { 10000 }
@@ -44,7 +44,7 @@ RSpec.describe TdsCalculation, :type => :model do
     it "Calling This Month TDS" do
       tds = TdsCalculation.new(30000, @employee.id)
       this_month_tax = tds.tds_for_this_month
-      expect(this_month_tax).to eq(1029.9828333333332)
+      expect(this_month_tax).to eq(1235.9794)
     end
     
     it "Form 16 Update" do 
