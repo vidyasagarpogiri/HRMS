@@ -5,7 +5,7 @@ class CreateAppraisals < ActiveRecord::Migration
       t.text :description
       t.date :start_date
       t.date :end_date
-      t.integer :review_period
+      t.string :review_period
       t.string :over_all_rating
       t.integer :manager_id
       t.integer :employee_id

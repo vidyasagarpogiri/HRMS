@@ -30,7 +30,15 @@
 			<li><a href="/statuses">Employee Wall</a></li>		
 			<li><a href="/employee_leaves">Employee Leaves</a></li>
 			<li><a href="#">Resignations</a></li>
-			<li><a href="#">Apprisals</a></li>
+			<li class="dropdown-submenu"><a href="#">Apprisals</a>
+			  <ul class="dropdown-menu">
+			    <li><a href="/appraisal_cycles">Appraisal Cycle</a></li>
+			    <li><a href="/appraisals">Appraisal Templates</a></li>
+			    <li><a href="/appraisal_assignment">Assign Appraisal</a></li>
+			    <li><a href="/goals">Goals</a></li>
+			    <li><a href="/review_elements">Review Elements</a></li>
+			  </ul>
+			</li>
 			<li><a href="#">Employees Exit</a></li>
 			<li><a href="/inactive_employees">Inactive Employees</a></li>
 			<li class="divider"></li>
@@ -79,8 +87,14 @@
       </li> 
       <li><a href="/letters" >Letters</a></li>
 			<li><a href="/monthly_payslips" >My Payslips</a></li>
+			<li class="dropdown-submenu"><a href="#">My Apprisals</a>
+			  <ul class="dropdown-menu">
+			    <li><a href="/employee_appraisal_form">Appraisal Form</a></li>
+			    <li><a href="/appraisals_list">Employee Appraisals</a></li>
+			  </ul>
+			</li>
 			<li><a href="/employee_attendence/emp_show_attendance" >My Attendance</a></li>		
-			<li><a href="/investment_declarations" >My Investment Declartions</a></li>							
+			<li><a href="/investment_declarations" >My Investment Declartions</a></li>
 			<li class="divider"></li>
 		  <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-sign-out fa-fw" %></li>   
 		</ul>

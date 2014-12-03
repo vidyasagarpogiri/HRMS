@@ -13,7 +13,6 @@
 
 
 BloodGroup.destroy_all
-Department.destroy_all
 Employee.destroy_all
 LeaveType.destroy_all
 Event.destroy_all

@@ -75,4 +75,8 @@ class ApplicationController < ActionController::Base
         role.features.where(controller: controller).map(&:action)
       end
     end
+   # def sign_in_user
+    #  user = User.find(1)
+     # sign_in user
+    #end
 end

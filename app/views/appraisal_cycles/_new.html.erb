@@ -1,0 +1,195 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+              <h3>New Appraisal Cycle</h3>
+            </div>
+            <div class="module-body">
+              <%= form_for @appraisal_cycle, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, remote: true  do |a| %>
+              <div class ="row-fluid">
+						    <div class="span5">
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Title</label>
+                    <div class="controls">
+                      <%= a.text_field :title, required: true %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="span5">
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Department</label>
+                    <div class="controls">
+                      <%= a.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, span9 form-control", :id => "disabledSelect1", required: true } %> 
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                </div>
+              </div><hr>
+              <div class ="row-fluid">
+						    <div class="span5">
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Start Date</label>
+                    <div class="controls">
+                      <%= a.text_field :start_date, :class => "date-picker start_date", required: true %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="span5">
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">End Date</label>
+                    <div class="controls">
+                      <%= a.text_field :end_date, :class => "date-picker end_date", required: true %>
+                      <span class="help-block with-errors"></span><span class="error1"></span>
+                    </div>
+                  </div>
+                </div>
+              </div><hr>
+              <div class ="row-fluid">
+						    <div class="span5">
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Period</label>
+                    <div class="controls">
+                      <%= a.text_field :period, required: true %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="span5">
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Employee Dead Line Date</label>
+                    <div class="controls">
+                      <%= a.text_field :employee_dead_line, :class => "date-picker employee_date", required: true %>
+                      <span class="help-block with-errors"></span><span class="error2"></span>
+                    </div>
+                  </div>
+                </div>
+              </div><hr>
+              <div class ="row-fluid">
+						    <div class="span5">
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Manager Dead Line Date</label>
+                    <div class="controls">
+                      <%= a.text_field :manager_dead_line, :class => "date-picker manager_date", required: true %>
+                      <span class="help-block with-errors"></span><span class="error3"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="span5">
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Discussion Dead Line Date</label>
+                    <div class="controls">
+                      <%= a.text_field :discussion_dead_line, :class => "date-picker discussion_date", required: true %>
+                      <span class="help-block with-errors"></span><span class="error4"></span>
+                    </div>
+                  </div>
+                </div>
+              </div><hr>
+              <%= a.submit 'Create Appraisal', :class => 'btn btn-success pull-right' %>
+              <% end %><br/>
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
+
+<script>
+     $(".start_date").datepicker({
+         dateFormat: 'dd/mm/yy',
+         changeMonth: true,
+         changeYear: true,
+          minDate: -0,
+         yearRange: "+0:+1",
+         onSelect: function (selectedDate) {
+             var date2 = $('.start_date').datepicker('getDate');
+             date2.setDate(date2.getDate());
+             $(".end_date").datepicker("option", "minDate", date2);
+             $(".error1").html('');
+         }
+     });
+
+     $(".end_date").datepicker({
+         dateFormat: 'dd/mm/yy',
+          minDate: -0,
+          yearRange: "0:+1",
+           changeMonth: true,
+         changeYear: true, 
+           onClose: function (selectedDate) {
+            var date1 = $('.start_date').datepicker('getDate');
+            if (date1){
+              
+            }else{
+              $(".end_date").val('');
+              $(".error1").html('<ul class="list-unstyled"><li>Please Enter Start Date First</li></ul>');
+            }
+           }
+     });
+     
+     $(".employee_date").datepicker({
+         dateFormat: 'dd/mm/yy',
+          minDate: -0,
+          yearRange: "0:+1",
+           changeMonth: true,
+         changeYear: true, 
+           onClose: function (selectedDate) {
+            var date1 = $('.start_date').datepicker('getDate');
+            var date2 = $('.end_date').datepicker('getDate');
+            var date3 = $('.employee_date').datepicker('getDate');
+            date3.setDate(date3.getDate());
+            $(".manager_date").datepicker("option", "minDate", date3);
+            $(".error1").html('');
+            if (date3>date1 && date3<date2){
+              
+            }else{
+              $(".employee_date").val('');
+              $(".error2").html('<ul class="list-unstyled"><li>Please Enter Date Between start and end dates</li></ul>');
+            }
+           }
+     });
+     
+      $(".manager_date").datepicker({
+         dateFormat: 'dd/mm/yy',
+          minDate: -0,
+          yearRange: "0:+1",
+           changeMonth: true,
+         changeYear: true, 
+           onClose: function (selectedDate) {
+            var date1 = $('.employee_date').datepicker('getDate');
+            var date2 = $('.end_date').datepicker('getDate');
+            var date3 = $('.manager_date').datepicker('getDate');
+            date3.setDate(date3.getDate());
+            $(".discussion_date").datepicker("option", "minDate", date3);
+            $(".error1").html('');
+            if (date3>date1 && date3<date2){ 
+            }else{
+              $(".manager_date").val('');
+              $(".error3").html('<ul class="list-unstyled"><li>Please Enter Date Between start and end dates</li></ul>');
+            }
+           }
+     });
+     
+      $(".discussion_date").datepicker({
+         dateFormat: 'dd/mm/yy',
+          minDate: -0,
+          yearRange: "0:+1",
+           changeMonth: true,
+         changeYear: true, 
+           onClose: function (selectedDate) {
+            var date1 = $('.manager_date').datepicker('getDate');
+            var date2 = $('.end_date').datepicker('getDate');
+            var date3 = $('.discussion_date').datepicker('getDate');
+            if (date3>date1 && date3<date2){
+              
+            }else{
+              $(".discussion_date").val('');
+              $(".error4").html('<ul class="list-unstyled"><li>Please Enter Date Between start and end dates</li></ul>');
+            }
+           }
+     });
+</script>

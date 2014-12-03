@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+              <h3>Appraisals List For <%= @appraisal_cycle.title %></h3>
+            </div>
+            <div class="module-body">
+            <table border="0" class="table  table-striped">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Department</th>
+                  <th>Review Form</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Period</th>
+                </tr>
+              </thead>
+              <% @appraisals.each do |employee_appraisal| %>
+                <tr>
+                <td><%= link_to employee_appraisal.employee.full_name, "/hr_manager_view/#{employee_appraisal.employee.id}" %></td>
+                <td><%= employee_appraisal.employee.department.department_name %></td>
+                <td><%= employee_appraisal.appraisal.title %></td>
+                <td><%= employee_appraisal.appraisal.start_date.strftime("%d %b, %Y") %></td>
+                <td><%= employee_appraisal.appraisal.end_date.strftime("%d %b, %Y") %></td>
+                <td><%= employee_appraisal.appraisal.review_period %></td>
+              <% end %>
+            </table>
+            </div><!--/.module-body-->
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper--

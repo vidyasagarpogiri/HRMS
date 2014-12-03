@@ -1,0 +1,71 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+              <h3>Appraisal Template</h3>
+            </div>
+            
+            <div class="module-body">
+            <% if @appraisal.present? %>
+             <%= form_tag "/manager_feedback/#{@employee.id}", :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, method: :post  do %>
+                <%= render "appraisals/appraisal_form"%>
+             <div class ="row-fluid">
+						    <div class="span5">
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Over All Rating</label>
+                    <div class="controls">
+                       <%= select_tag :over_all_rating, options_for_select([['Exceptional', 'Exceptional'], ['Highly Effective', 'Highly Effective'], ['Proficient', 'Proficient'], ['Needs Improvement','Needs Improvement'], ['Unacceptable', 'Unacceptable'], ['Not Applicable','Not Applicable']]), required: true %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row-fluid">
+             <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Review Element</th>
+                    <th>Performance Indicator</th>
+                    <th>Employee Assesment</th>
+                    <th>Employee Rating</th>
+                    <th>Manager Feedback</th>
+                    <th>Manager Rating</th>
+                  </tr>
+               </thead>
+               <tbody>
+              <% if @review_elements.present? %>
+                <% @review_elements.each do |review_element, i| %>
+                  <%= fields_for "reviews[]", review_element do |f| %>
+                    <tr>
+                      <td><%= review_element.review_element %></td>
+                      <td><%= review_element.performance_indicator %></td>
+                      <% if current_user.employee.is_reporting_manager? %>
+                        <td><%= text_field_tag :employee_assesment, review_element.employee_assesment, disabled: "true" %></td>
+                        <td><%= text_field_tag :employee_rating, review_element.employee_rating, disabled: "true" %></td>
+                        <td><%= text_field_tag 'manager_feedback[]', review_element.manager_feedback %></td>
+                        <td><%= select_tag 'manager_rating[]', options_for_select([['Exceptional', 'Exceptional'], ['Highly Effective', 'Highly Effective'], ['Proficient', 'Proficient'], ['Needs Improvement','Needs Improvement'], ['Unacceptable', 'Unacceptable'], ['Not Applicable','Not Applicable']]) %></td>
+                        <%= hidden_field_tag 'review_id[]', review_element.id%>
+                      <% end %>
+                    </tr>
+                   <% end %>
+                  <% end %>
+                <% end %>
+              </tbody>
+             </table>
+             </div>
+              <%= submit_tag 'Submit', :class => 'btn btn-success pull-right' %>
+              <% end %><br/>
+           <% else %>
+            you dont have any appraisal templates
+           <% end %>
+            </div><!--/.module-body-->
+           
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper--

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124103248) do
+ActiveRecord::Schema.define(version: 20141202105801) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20141124103248) do
     t.string   "title"
     t.date     "start_date"
     t.date     "end_date"
-    t.integer  "period"
+    t.string   "period"
     t.date     "employee_dead_line"
     t.date     "manager_dead_line"
     t.date     "discussion_dead_line"
@@ -73,11 +73,27 @@ ActiveRecord::Schema.define(version: 20141124103248) do
     t.text     "description"
     t.date     "start_date"
     t.date     "end_date"
-    t.integer  "review_period"
+    t.string   "review_period"
     t.string   "over_all_rating"
     t.integer  "manager_id"
     t.integer  "employee_id"
     t.integer  "department_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status"
+    t.boolean  "is_assign",       default: false
+  end
+
+  create_table "appraisals_goals", force: true do |t|
+    t.integer  "appraisal_id"
+    t.integer  "goal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "appraisals_reviews", force: true do |t|
+    t.integer  "appraisal_id"
+    t.integer  "review_element_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -141,6 +157,7 @@ ActiveRecord::Schema.define(version: 20141124103248) do
     t.string   "department_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "appraisal_id"
   end
 
   create_table "designations", force: true do |t|
@@ -283,6 +300,38 @@ ActiveRecord::Schema.define(version: 20141124103248) do
   add_index "employees", ["role_id"], name: "index_employees_on_role_id", using: :btree
   add_index "employees", ["salary_id"], name: "index_employees_on_salary_id", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
+
+  create_table "employees_appraisal_lists", force: true do |t|
+    t.integer  "employee_id"
+    t.integer  "appraisal_id"
+    t.boolean  "is_assign",          default: false
+    t.string   "status"
+    t.string   "overall_rating"
+    t.integer  "appraisal_cycle_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employees_appraisals", force: true do |t|
+    t.integer  "employee_id"
+    t.integer  "appraisal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employees_reviews", force: true do |t|
+    t.string   "review_element"
+    t.string   "performance_indicator"
+    t.string   "employee_assesment"
+    t.string   "employee_rating"
+    t.string   "manager_feedback"
+    t.string   "manager_rating"
+    t.integer  "employee_id"
+    t.integer  "appraisal_id"
+    t.integer  "appraisal_cycle_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", force: true do |t|
     t.string   "event_name"
@@ -659,7 +708,7 @@ ActiveRecord::Schema.define(version: 20141124103248) do
     t.string   "bracket"
     t.float    "lower_limit",    limit: 24
     t.float    "upper_limit",    limit: 24
-    t.integer  "tax_percentage"
+    t.float    "tax_percentage", limit: 24
     t.float    "min_tax",        limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"

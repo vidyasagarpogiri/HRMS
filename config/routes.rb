@@ -277,12 +277,15 @@ post 'create_package' => "features#create_package"
   
   # Routes for apprisal_cycle
   resources :appraisal_cycles
-  
+  post "appraisal_cycles/status_update"
   #routes for goals
    resources :goals
   #routes for review_elements
     resources :review_elements
-
+  #routes for appraisals
+    resources :appraisals
+    
+    get 'getEmployees' => 'appraisals#getEmployees'
   # for employee status
   resources :statuses do
     resources :comments 
@@ -295,7 +298,22 @@ post 'create_package' => "features#create_package"
   resources :projects
 
  get "/getAllSkills" => "employees#getAllSkills" 
-
+ 
+ #routes for appraisal template
+  get "/appraisal_form" => "appraisals#new_template"
+  post "appraisals/create_appraisal_template"
+  get "/appraisal_assignment" => "appraisals#assign_appraisal"
+  post "appraisals/create_appraisal"
+  get "/employee_appraisal_form" => "appraisals#employee_appraisal_form"
+  post "appraisals/create_employee_appraisal"
+  get "/appraisals_list" => "appraisals#employee_appraisals"
+  get "/manager_view/:id" => "appraisals#manager_view"
+  post "/manager_feedback/:id" => "appraisals#manager_feedback"
+  #get "/all_employee_appraisals" => "appraisals#all_employee_appraisals"
+  get "/hr_manager_view/:id" => "appraisals#hr_manager_view"
+  get "/my_appraisals" => "appraisals#indivisual_appraisals"
+  get "/appraisal_view/:id" => "appraisals#appraisal_view"
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
