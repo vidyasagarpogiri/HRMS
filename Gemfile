@@ -111,9 +111,9 @@ gem 'jquery-colorbox-rails'
 
 #gen for text search
 
-gem 'sunspot_rails'
-gem 'sunspot_solr'
-gem 'progress_bar'
+#gem 'sunspot_rails'
+#gem 'sunspot_solr'
+#gem 'progress_bar'
 
 #gem for Calender view
 
