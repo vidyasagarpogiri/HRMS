@@ -290,10 +290,13 @@ post 'create_package' => "features#create_package"
 
   # for employee status
   resources :statuses do
-    resources :comments 
-    member do
+     member do
+      get "add_comment_form" 
       post "add_like"
       post "remove_like"
+    end
+     collection do
+      post "add_comments"
     end
   end
 

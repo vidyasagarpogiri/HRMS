@@ -1,7 +1,7 @@
 # This controller is for workgroups # Author: Vidya Sagar Pogiris
 class WorkgroupsController < ApplicationController
   def index
-    @workgroups = Workgroup.all
+    @workgroups = Workgroup.all.page(params[:page]).per(6)  
     @employee = current_user.employee
     #@employee = Workgroup.admin_id
     #raise @employee.inspect

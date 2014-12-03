@@ -64,19 +64,18 @@
                       <% end %>
                       
                       <% if s.comments.count > 3 %>
-                        <%= link_to "Show Previous Comments", status_path(s.id) %>
+                        <%=link_to "Show Previous Comments", status_path(s.id) %>
                           <% else %>
-                      <% end %><hr>
-                      
-                      <% s.comments.limit(3).each do |comm| %> 
-                      <p><%= link_to image_tag(comm.employee.avatar_url,size: "20x20") %> <b> <%= comm.employee.full_name %> </b><%= comm.comment %></p>
+                      <%end %><hr>
+                     <% s.comments.limit(3).each do |comm| %> 
+                      <p><%= link_to image_tag(comm.employee.avatar_url,size: "20x20") %> <b> <%= comm.employee.full_name %> </b><%=comm.comment %></p>
                       <p><%= time_ago_in_words(comm.created_at)%> ago </p><hr>
                       <% end %> 
                     </div>
                     
                    
                 </div>
-                 <%= render "comments/form", :status => s %>
+                 <%= render "statuses/add_comment_form",  :status => s.id%>
                <% end %>
                 <% else %>
                   <div class="module-body">                                           
