@@ -109,13 +109,14 @@ gem 'slick_rails'
 gem 'jquery-colorbox-rails'
 
 #gem for Calender view
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
 
 # gem for Calendar views for mailers
 #gem 'icalendar'
 
 
+#For Calender
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

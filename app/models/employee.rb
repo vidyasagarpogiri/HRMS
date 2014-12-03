@@ -50,6 +50,14 @@ class Employee < ActiveRecord::Base
   #for photo_album
   has_many :albums
   
+  #for work groups
+  has_many :workgroups_employees 
+  has_many :workgroups,  through: :workgroups_employees
+
+  
+  #for posts
+  has_many :posts
+
 
   has_many :employee_skills
   has_many :skills, :through => :employee_skills

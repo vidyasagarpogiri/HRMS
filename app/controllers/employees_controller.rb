@@ -226,7 +226,14 @@ class EmployeesController < ApplicationController
       skill=Skill.where("name LIKE ?", "%#{params[:term]}%").map(&:name)
       render json:skill
 	  end
-	
+	  
+	  def my_workgroups # for work groups of employee
+	     @employee = current_user.employee 
+	     workgroups = @employee.workgroups # workgroups in which current employee is a member 
+	     workgroups1 = Workgroup.where(admin_id: @employee.id) # workgroups which are created by current employee
+	     @workgroups=(workgroups+workgroups1).uniq # total work groups of current employee    
+	  end
+	  
   private   
  
   def params_employees

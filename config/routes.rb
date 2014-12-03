@@ -143,7 +143,8 @@ get 'inactive_employees' => "employees#inactive_employees"
 			
 			get 'employee_self_description_show'
 			get 'employee_self_description_form'
-			patch 'employee_self_description_create'	
+			patch 'employee_self_description_create'
+			get 'my_workgroups'	# for employee work groups
 		end
 		
    
@@ -323,7 +324,38 @@ post 'create_package' => "features#create_package"
   
   resources :projects
 
+
+  
+  resources :tax_forms, :only => :index 
+
+  get "my_tax_from/:assesment_year" => "tax_forms#show", as: :tax_form
+
  get "/getAllSkills" => "employees#getAllSkills" 
+
+  
+  # for work groups Author:Vidya Sagar
+  resources :workgroups do 
+   member do
+     get "add_moderator"
+     get "add_members"
+     post "added_moderators" 
+     post "added_members"
+     delete "destroy_member/:employee_id" => 'workgroups#destroy_member', as: :destroy_member # for destroying member from work group
+    end
+  end
+
+
+  resources :posts do
+    member do
+      get "add_comment_form" 
+      post "add_like"
+      post "remove_like"
+    end
+    collection do
+      post "add_comments"
+    end
+  end
+  
 
 
   # Example of regular route:

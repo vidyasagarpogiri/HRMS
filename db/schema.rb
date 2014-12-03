@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126112846) do
+ActiveRecord::Schema.define(version: 20141201132353) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -112,7 +112,8 @@ ActiveRecord::Schema.define(version: 20141126112846) do
 
   create_table "comments", force: true do |t|
     t.text     "comment"
-    t.integer  "status_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "employee_id"
@@ -381,6 +382,7 @@ ActiveRecord::Schema.define(version: 20141126112846) do
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "assesment_year"
   end
 
   create_table "job_locations", force: true do |t|
@@ -432,9 +434,10 @@ ActiveRecord::Schema.define(version: 20141126112846) do
   end
 
   create_table "likes", force: true do |t|
+    t.integer  "likeable_id"
+    t.string   "likeable_type"
     t.boolean  "is_like"
     t.integer  "employee_id"
-    t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -503,6 +506,17 @@ ActiveRecord::Schema.define(version: 20141126112846) do
     t.string   "document"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "tags"
+    t.integer  "employee_id"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "likes_count"
   end
 
   create_table "projects", force: true do |t|
@@ -727,5 +741,22 @@ ActiveRecord::Schema.define(version: 20141126112846) do
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "workgroups", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "workgroupicon"
+    t.integer  "admin_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workgroups_employees", force: true do |t|
+    t.integer  "employee_id"
+    t.integer  "workgroup_id"
+    t.boolean  "is_moderator"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

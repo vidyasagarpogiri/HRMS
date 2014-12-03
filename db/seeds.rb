@@ -129,3 +129,22 @@ StaticSalary.create(:name => "Esic Contribution", :value => 4.25)
 StaticSalary.create(:name => "HRA", :value => 25)
 
 
+#Tax Brackets
+
+TaxBracket.create(bracket: "Low Level", lower_limit: 0, upper_limit: 250000, tax_percentage: 0, min_tax: 0) 
+TaxBracket.create(bracket: "Medium Level", lower_limit: 250001, upper_limit: 500000, tax_percentage: 10, min_tax: 0) 
+TaxBracket.create(bracket: "High Level", lower_limit: 500001, upper_limit: 1000000, tax_percentage: 20, min_tax: 25000) 
+TaxBracket.create(bracket: "Very High Level", lower_limit: 1000001, upper_limit: 12500000000, tax_percentage: 30, min_tax: 125000) 
+
+
+SectionDeclaration.create(section: "80C", maximum_limit: 25000)
+SectionDeclaration.create(section: "80D", maximum_limit: 25000)
+
+GeneralInvestment.create(title: "Life Insurance Premiums", description: "Need Documents", section_declaration_id: 1) 
+GeneralInvestment.create(title: "Home Loan Principal Repayment", description: "Need Documents", section_declaration_id: 1) 
+GeneralInvestment.create(title: "Provident Fund", description: "Need Documents", section_declaration_id: 1) 
+GeneralInvestment.create(title: "Medical Insurance", description: "Need Documents", section_declaration_id: 2) 
+
+
+
+

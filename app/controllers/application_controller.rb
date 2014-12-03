@@ -2,10 +2,22 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :empId, :sign_in_user
+  before_filter :empId
+  #before_filter :sign_in_user
   before_filter :is_employee_active
+ 
+  
   
   private
+
+  # use this method when net not in use
+=begin  
+  def sign_in_user
+    user = User.find(4)
+    sign_in user
+  end
+=end  
+
   def empId
   
     resource, id = request.path.split('/')[1,2]
@@ -76,9 +88,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   def sign_in_user
     user = User.find(3)
     sign_in user
   end
+
 
 end
