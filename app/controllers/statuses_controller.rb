@@ -104,7 +104,7 @@ class StatusesController < ApplicationController
 
   def show # Dsiplays the status in a show page
     @status = Status.find(params[:id])
-    @comments = @status.comments.order('created_at ASC').limit(3) 
+    @comments = @status.comments.order('created_at ASC')
     #raise @comments.inspect
     @comment = Comment.new
     #raise @comment.inspect

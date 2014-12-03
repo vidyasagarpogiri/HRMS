@@ -37,7 +37,11 @@
 				              <% end %>
 				            </th>
 				            <th class="center">
+				            <% if WorkgroupsEmployee.where(is_moderator: true, employee_id: em.id, workgroup_id: @workgroup.id).present? %>
+				                <%= check_box_tag 'employee_ids[]', em.id, checked = true%> 
+                    <% else %>
                          <%= check_box_tag 'employee_ids[]', em.id %> 
+                    <% end %>
 				            </th>
 				         </tr>
 				            <% #raise WorkgroupsEmployee.where(is_moderator: true).inspect %>
