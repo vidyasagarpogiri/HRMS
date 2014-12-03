@@ -12,7 +12,7 @@ class TdsCalculation
   end
   
   def total_savings
-    @employee.investment_declarations.sum(:yearly_value)
+    InvestmentDeclaration.sum_of_declation(@employee, assesment_year)
   end
   
   def tax
@@ -36,8 +36,9 @@ class TdsCalculation
     else
       16 - month 
     end
-    old_tds =  @pay_roll_master.present? ? @pay_roll_master.first.total_tds : 0.0
+    old_tds =  @pay_roll_master.present? ? (@pay_roll_master.where(assesment_year: assesment_year).present? ? @pay_roll_master.where(assesment_year: assesment_year).first.total_tds.to_f : 0.0 ) : 0.0
     @tds = (tax - old_tds.to_f)/remaining_months
+   @tds
   end
 
   def assesment_year
@@ -46,20 +47,17 @@ class TdsCalculation
     @assesment_year = month > 3 ? year : year - 1 
   end
   
-  def total_income
-    
-  end
+
   
   def tds_and_income_tax_update
     pay_roll_master = @employee.pay_roll_masters
     current_year_pay_roll_master = pay_roll_master.where(assesment_year: assesment_year) if pay_roll_master.present?
-    if @employee.present? 
       if pay_roll_master.present? &&  current_year_pay_roll_master.present? 
-        current_year_pay_roll_master.first.update( status: "open", total_tds: @pay_roll_master.first.total_tds.to_f + @tds, total_income: @pay_roll_master.first.total_income.to_f + @gross ) 
+       payroll = current_year_pay_roll_master.first
+        current_year_pay_roll_master.first.update( status: "open", total_tds: payroll.total_tds.to_f + @tds, total_income: payroll.total_income.to_f + @gross ) 
       else
         @employee.pay_roll_masters.create( status: "open", total_tds:  @tds, assesment_year: assesment_year, total_income: @gross )
       end
-    end
   end
 
 
