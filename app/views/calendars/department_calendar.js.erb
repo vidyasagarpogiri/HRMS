@@ -1,0 +1,3 @@
+<% if @department.present? %>
+  $("#department").html('<%= j render "calendars/department_calendar" %>');
+<% end %>

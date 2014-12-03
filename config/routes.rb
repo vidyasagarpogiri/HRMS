@@ -308,10 +308,25 @@ post 'create_package' => "features#create_package"
     end
   end
   
-
+  # routes for Calendar
+  #resources :calendars
+  get "/calendars/reporting_manager_calendar" => 'calendars#reporting_manager_calendar'
+  get "/calendars/workgroup_calendar" => 'calendars#workgroup_calendar'
+  #get "/calendars/department_calendar" => 'calendars#department_calendar'
+  get "/calendars/company_calendar" => 'calendars#company_calendar'
+  match '/calendars/department_calendar' => 'calendars#department_calendar', via: [:get,:post]
+  #match '/auto-links' => 'main#auto_links', via: [:get, :post]
+  
   resources :projects
 
+
+  
+  resources :tax_forms, :only => :index 
+
+  get "my_tax_from/:assesment_year" => "tax_forms#show", as: :tax_form
+
  get "/getAllSkills" => "employees#getAllSkills" 
+
   
   # for work groups Author:Vidya Sagar
   resources :workgroups do 
@@ -323,6 +338,21 @@ post 'create_package' => "features#create_package"
      delete "destroy_member/:employee_id" => 'workgroups#destroy_member', as: :destroy_member # for destroying member from work group
     end
   end
+
+
+  resources :posts do
+    member do
+      get "add_comment_form" 
+      post "add_like"
+      post "remove_like"
+    end
+    collection do
+      post "add_comments"
+    end
+  end
+  
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

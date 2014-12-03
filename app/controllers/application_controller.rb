@@ -5,14 +5,19 @@ class ApplicationController < ActionController::Base
   before_filter :empId
   #before_filter :sign_in_user
   before_filter :is_employee_active
+ 
+  
   
   private
-  
-  #def sign_in_user
-  #  user = User.find(1)
-  #  sign_in user
-  #end
-  
+
+  # use this method when net not in use
+=begin  
+  def sign_in_user
+    user = User.find(4)
+    sign_in user
+  end
+=end  
+
   def empId
   
     resource, id = request.path.split('/')[1,2]
@@ -74,12 +79,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
-    def role_based_auth(controller, action)
-      controller = "#{controller}_controller".camelize.constantize
-      feature = Feature.where(controller: controller, action: action)
-      role = Role.where(:department_id => current_user.employee.department_id, :designation_id => current_user.employee.designation_id).first
-      if Package.where(feature_id: feature, role_id: role).present?
-        role.features.where(controller: controller).map(&:action)
-      end
+  def role_based_auth(controller, action)
+    controller = "#{controller}_controller".camelize.constantize
+    feature = Feature.where(controller: controller, action: action)
+    role = Role.where(:department_id => current_user.employee.department_id, :designation_id => current_user.employee.designation_id).first
+    if Package.where(feature_id: feature, role_id: role).present?
+      role.features.where(controller: controller).map(&:action)
     end
+  end
+
 end
