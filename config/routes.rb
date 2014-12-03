@@ -311,10 +311,15 @@ post 'create_package' => "features#create_package"
   # routes for Calendar
   #resources :calendars
   get "/calendars/reporting_manager_calendar" => 'calendars#reporting_manager_calendar'
+  get "/calendars/reportees_leaves_calendar" => 'calendars#reportees_leaves_calendar'
   get "/calendars/workgroup_calendar" => 'calendars#workgroup_calendar'
   #get "/calendars/department_calendar" => 'calendars#department_calendar'
   get "/calendars/company_calendar" => 'calendars#company_calendar'
+  get "/calendars/company_leaves_calendar" => 'calendars#company_leaves_calendar'
   match '/calendars/department_calendar' => 'calendars#department_calendar', via: [:get,:post]
+  match '/calendars/department_leaves_calendar' => 'calendars#department_leaves_calendar', via: [:get,:post]
+  
+  
   #match '/auto-links' => 'main#auto_links', via: [:get, :post]
   
   resources :projects

@@ -117,7 +117,6 @@ gem 'progress_bar'
 
 #gem for Calender view
 
-
 # gem for Calendar views for mailers
 #gem 'icalendar'
 

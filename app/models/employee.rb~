@@ -132,8 +132,11 @@ class Employee < ActiveRecord::Base
     #@names = Employee.where(:employee_id => @id).pluck(:first_name)
 	end
 	
-	def department_leaves
-	  
+	def reportees_leaves
+	  @reportee_employees = current_user.employee.reportees_employees
+    #raise @reportee_employees.pluck(:employee_id).inspect    
+    #@reportee_name = @reportee_employees.pluck(:first_name)
+    @leaves = LeaveHistory.where(:employee_id => (@reportee_employees.pluck(:employee_id)), :status => "APPROVED")
 	end
 
 end
