@@ -81,7 +81,7 @@
                 <% if @payroll_last.status == CompanyPayRollMaster::PROCESSING %><br>
                 <ul class="navigation-btns pull-right">
                    <li><%= link_to "Save&Process", payrolls_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success save-process" %></li>
-                  <li><%= link_to "Generate To Bank", payrolls_bank_process_path(:month => @month, :year => @year), :class => "btn btn-success" %></li> 
+                  <li><%= link_to "Generate To Bank", payrolls_bank_process_path(:month => @month, :year => @year), :class => "btn btn-success generate_bank" %></li> 
                 </ul> 
                 
                  <% end %><br> 
@@ -138,17 +138,23 @@
  this script contains a change function and it  will submit form every time when a change occurs in fields
  which are reside in div elements which have  given class attributes
 */
-
+</script>
+<script>
   $(function(){
-
-    
      $(".last-month-payroll").click(function(){
       var $lastMonthPayrollModal = $('.processing');
       $lastMonthPayrollModal.modal('show');
-     
     });
     
+    $(".save-process").click(function(){
+      var $saveAndProcessModal = $('.processing');
+      $saveAndProcessModal.modal('show');
+    });
     
+    $(".generate_bank").click(function(){
+      var $generateBankModal = $('.processing');
+      $generateBankModal.modal('show');
+    });
     
 });
 </script>

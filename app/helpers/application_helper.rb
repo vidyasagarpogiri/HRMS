@@ -383,6 +383,12 @@ end
       esic_value.round(2)
   end
   
+  def payslip_special_allowances(spcl_allowance, working_days, actual_days)
+     (spcl_allowance*working_days)/(actual_days) 
+  end
+  
+
+  
   def deducted_allowances_total(payslip)
     allowance_deducted_total = 0.0
     allowances = payslip.allowances.where(:is_deductable => true)

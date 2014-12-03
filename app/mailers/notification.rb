@@ -92,12 +92,23 @@ class Notification < ActionMailer::Base
     mail(to: @user.email, subject: 'Amzur Technologies - Salary Certificate')
   end
   
-  #def status_notification(@emp, @status)
- #@user = user
-  #@emp = employee
-  #raise @employee.inspect
-  #raise @user.inspect
-  # mail(to: @employee.user.email, subject: 'Status')
- #raise status.inspect
- # end
+  def comment_notification(employee, comment, status) # for send emails when an employee comments on the status
+  @comment = comment
+  @emp = employee
+  @status = status
+  #raise status.inspect
+  #raise @comment.inspect
+  mail(to: @status.employee.user.email, subject: "#{@emp.first_name}  #{@emp.last_name} " ' Commented on your status '  " #{@status.status}")
+# raise  @status.employee.user.email.inspect
+  end
+  
+  def like_notification(like) # for send emails when an employee likes the status
+  @like = like
+  #raise @like.status.employee.user.email.inspect
+  #raise status.inspect
+  #raise @comment.inspect
+  mail(to: @like.status.employee.user.email, subject: "#{@like.employee.first_name}  #{@like.employee.last_name} " ' Liked your status '  " #{@like.status.status}")
+# raise  @status.employee.user.email.inspect
+  end
+  
 end

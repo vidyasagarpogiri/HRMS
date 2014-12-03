@@ -1,25 +1,17 @@
 class InvestmentDeclarationsController < ApplicationController
   
-  def index
-
- 
-    @general_investments = GeneralInvestment.all
-    g_ids = @general_investments.map(&:id)
-    i_ids =  current_user.employee.investment_declarations.map(&:general_investment_id)
-    remaining_ids = g_ids-i_ids
-    remaining_ids.each do |id|
-     current_user.employee.investment_declarations.create(general_investment_id: id, yearly_value: 0)
-    end
-
-    @declarations = current_user.employee.investment_declarations
+  before_filter :find_assesment_year 
+  
+  def index 
+    employee = current_user.employee
+    InvestmentDeclaration.create_new_investment(employee, @assesment_year)
+    
+    @declarations = employee.investment_declarations.where(assesment_year: @assesment_year)
     @sections = @declarations.map(&:general_investment).map(&:section_declaration).uniq
-    #raise @sections.inspect
-  #adding data to payroll master table @pattabhi  
-  if current_user.employee.salary.present?
-    unless current_user.employee.pay_roll_masters.present? 
-       @payroll = PayRollMaster.create(:employee_id => current_user.employee.id, :assesment_year => Date.today, :total_income => current_user.employee.salary.ctc_fixed, :total_savings => @declarations.sum(:yearly_value) )
-    end
- end   
+    
+    @sum_of_declarations = InvestmentDeclaration.sum_of_declation(employee, @assesment_year) 
+    PayRollMaster.form_16_create_or_update(employee, @assesment_year, @sum_of_declarations)
+    
   end
   
   def edit
@@ -27,21 +19,24 @@ class InvestmentDeclarationsController < ApplicationController
   end
   
   def update
+    employee = current_user.employee
     @declaration = InvestmentDeclaration.find(params[:id])
-   
-     @declaration.update(:general_investment_id =>  @declaration.general_investment_id, :yearly_value => params[:investment_declaration][:yearly_value], :employee_id => current_user.employee.id)
-     
-     #payroll master update of current user @pattabhi
-     @declarations = current_user.employee.investment_declarations
-      if current_user.employee.salary.present?
-     @payroll = current_user.employee.pay_roll_masters.first
-     
-     @payroll.update(:total_savings => @declarations.sum(:yearly_value) )
-     
-     end
-     redirect_to investment_declarations_path
+    @declaration.update(:general_investment_id =>  @declaration.general_investment_id, 
+                        :yearly_value => params[:investment_declaration][:yearly_value], 
+                        :employee_id => employee.id)
+    @sum_of_declarations = InvestmentDeclaration.sum_of_declation(employee, @assesment_year) 
+    @declarations = employee.investment_declarations.where(assesment_year: @assesment_year)
+    PayRollMaster.form_16_create_or_update(employee, @assesment_year, @sum_of_declarations)
+    redirect_to investment_declarations_path
+  end
+  
+  private 
+  
+  def find_assesment_year
+    month = Date.today.month
+    year = Date.today.year
+    @assesment_year = month > 3 ? year : year - 1 
   end
   
 end
- 
 

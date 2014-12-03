@@ -1,0 +1,119 @@
+<!-- Author :Priyanka
+ View for displaying all existing album along with its first images. You can view the whole album by clicking on image or on album name -->
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                
+      <div class="span12">
+        <div class="content">         
+				  <div class="module">
+					  <div class="module-head">
+              <h3>Gallery</h3>
+              <label style="margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "New Album", new_album_path %></label>
+					  </div>
+            <div class="module-body show" >
+              <% if @albums.present? %>
+              <div class="row-fluid">	                           	   
+                <% @albums.each do |album| %> 
+                <!-- Displaying details of empolyee by whome album wae created -->             							                    
+                <div class="span6" style="border:solid px;margin-left:0px;margin-right:5px;">						      
+                  <div class="album-employee-image">
+                    <% if album.present? && album.employee.avatar_url.present? %>
+                      <%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %>
+                    <% else %>
+                      <% if album.employee.gender == "Female" %>
+                        <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+                      <% else %>
+                        <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="album-employee-details" >
+                    <strong>
+                      <%= album.employee.first_name %> <%= album.employee.last_name %>
+                    </strong> added new <strong><%= pluralize(album.photos.count, 'photo') %>
+                    </strong> to
+                    <strong>
+                      <a href="<%= album_path(album) %>"><%= album.title %></a>
+                    </strong> Aldum
+                  </div>
+                  <!-- Displaying first image of the album-->
+                  <div class="image-container" > 
+                    <% if album.photos.present? %>            		       					       					                        
+                    <div class="image-row">
+                      <a href="<%= album_path(album) %>" title ="click to view Album">
+                        <%= image_tag album.photos.first.image_url, :class => "photo-style" %>
+                      </a>
+                    </div>                                   
+                    <%# link_to "view Album", album_path(album), :class=>"btn btn-info" %>
+                    <% else %>
+                      <% if current_user.employee.id == album.employee.id %>
+                      <!-- Displaying this alert if current user created the album and images are deleted from that album -->
+                        <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            You hav deleted all Photos from this Album.Add now!!
+                        </div>
+                      <% else %>
+                        <!-- Displaying this alert along with the name of owner of album if images are deleted from that album -->
+                        <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong><%= album.employee.first_name %> <%= album.employee.last_name %></strong> removed Photos from Album.
+                        </div>
+                      <% end %>    
+                    <% end %>
+                  </div>	
+                </div><br>
+                <% end %>	              
+              </div>		     			     				   				    					     
+              <% else %>
+                <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  No Albums to display.Be the first to create!!
+                </div>					   
+              <% end %>
+              <%# paginate @albums, :param_name => 'page' %> 
+            </div><!--.module-body-->
+					</div><!--/.module -->
+		    </div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->
+
+
+<style>
+  .photo-style{
+    margin-left:10px;
+    border:dotted 1px #82B4E6;
+    padding:5px;
+    overflow:hidden;
+  }
+</style>
+
+<script>
+  $(function() {
+    $( document ).tooltip();
+  });
+
+    $(function() {
+  $(".group1").colorbox({rel:'group1', transition:"none", width:"75%", height:"75%"});
+  
+   $('.slider-for').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: '.slider-nav'
+  });
+  $('.slider-nav').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      asNavFor: '.slider-for',
+      dots: true,
+      centerMode: true,
+      focusOnSelect: true
+  });
+      
+  
+  });
+  </script>
+  

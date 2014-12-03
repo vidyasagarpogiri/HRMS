@@ -58,7 +58,7 @@ gem "capybara", :group => [:development, :test]
 =end
 group :development, :test do 
   gem 'rspec-rails' 
-  gem 'factory_girl_rails' 
+   gem 'factory_girl_rails', :require => false
 end 
 group :test do 
   gem 'faker' 
@@ -104,6 +104,19 @@ gem 'jquery-timepicker-rails'
 gem 'reek'
 gem 'rubocop'
 
+# gems for images sliding
+gem 'slick_rails'
+gem 'jquery-colorbox-rails'
+
+#gem for Calender view
+
+# gem for Calendar views for mailers
+#gem 'icalendar'
+
+
+#For Calender
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

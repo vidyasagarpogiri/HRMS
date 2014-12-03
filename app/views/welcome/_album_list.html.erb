@@ -1,0 +1,27 @@
+<div class="module">	
+  <div class="box-title">   		 
+    <div class="module-head">
+      <h3>New Posts</h3>  
+    </div>                                            
+  </div>
+    <div class="module-body">	
+      <% if @welcome_albums.present? %>	  
+        <% @welcome_albums.each do |welcome_album| %>
+
+     <div class="control-group">
+        <a href="#"><strong><%= welcome_album.title %> </strong> </a> by  <a href="#"><strong><%= welcome_album.employee_id %> </strong></a>
+     </div>
+     <% end %>
+     <div id="paginator">
+        <%= paginate @welcome_albums, :remote => true, :param_name => 'page3' %>
+     </div>                                               					
+  <% else %>
+
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        There are no events
+    </div>
+ 
+  <% end %>	
+  </div><!--module-body-->
+</div><!--module-->

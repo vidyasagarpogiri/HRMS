@@ -140,9 +140,11 @@ get 'inactive_employees' => "employees#inactive_employees"
 			get 'bankdetails_edit'
 			post 'bankdetails_create'
 			post 'bankdetails_update'	
+			
 			get 'employee_self_description_show'
 			get 'employee_self_description_form'
-			patch 'employee_self_description_create'	
+			patch 'employee_self_description_create'
+			get 'my_workgroups'	# for employee work groups
 		end
 		
    
@@ -273,6 +275,9 @@ post 'create_package' => "features#create_package"
 
 
   resources :tax_brackets
+  resources :tax_exemptions
+  
+
 
   
   # Routes for apprisal_cycle
@@ -291,11 +296,42 @@ post 'create_package' => "features#create_package"
     resources :comments 
     member do
       post "add_like"
+      post "remove_like"
     end
   end
 
   
+
+  # routes for Album
+  resources :albums do
+    resources :photos 
+    member do
+     get "add_more_photos_form"
+     post "add_more_photos"
+    end
+  end
+  
+  # routes for Calendar
+  #resources :calendars
+  get "/calendars/reporting_manager_calendar" => 'calendars#reporting_manager_calendar'
+  get "/calendars/reportees_leaves_calendar" => 'calendars#reportees_leaves_calendar'
+  get "/calendars/workgroup_calendar" => 'calendars#workgroup_calendar'
+  #get "/calendars/department_calendar" => 'calendars#department_calendar'
+  get "/calendars/company_calendar" => 'calendars#company_calendar'
+  get "/calendars/company_leaves_calendar" => 'calendars#company_leaves_calendar'
+  match '/calendars/department_calendar' => 'calendars#department_calendar', via: [:get,:post]
+  match '/calendars/department_leaves_calendar' => 'calendars#department_leaves_calendar', via: [:get,:post]
+  
+  
+  #match '/auto-links' => 'main#auto_links', via: [:get, :post]
+  
   resources :projects
+
+
+  
+  resources :tax_forms, :only => :index 
+
+  get "my_tax_from/:assesment_year" => "tax_forms#show", as: :tax_form
 
  get "/getAllSkills" => "employees#getAllSkills" 
  
@@ -313,7 +349,31 @@ post 'create_package' => "features#create_package"
   get "/hr_manager_view/:id" => "appraisals#hr_manager_view"
   get "/my_appraisals" => "appraisals#indivisual_appraisals"
   get "/appraisal_view/:id" => "appraisals#appraisal_view"
+
   
+  # for work groups Author:Vidya Sagar
+  resources :workgroups do 
+   member do
+     get "add_moderator"
+     get "add_members"
+     post "added_moderators" 
+     post "added_members"
+     delete "destroy_member/:employee_id" => 'workgroups#destroy_member', as: :destroy_member # for destroying member from work group
+    end
+  end
+
+
+  resources :posts do
+    member do
+      get "add_comment_form" 
+      post "add_like"
+      post "remove_like"
+    end
+    collection do
+      post "add_comments"
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,0 +1,32 @@
+<div class="module">
+   <div class="module-head">
+      <h3>Self Description</h3>
+       <% if current_user.employee == @employee %>
+      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add/Edit',  employee_self_description_form_employee_path(current_user.employee.id), :remote => true %></label>
+       <% end %>
+    </div> 
+				      
+   <div class="module-body">
+    <div class ="row-fluid">
+	     <div class="span10">		
+          <div class="control-group">
+            <label class="control-label" for="basicinput"><strong>About Me: </strong><br> <%= raw @employee.self_description %></label>                
+          </div>
+        </div>
+	     <div class="span10">		
+          <div class="control-group">
+            <label class="control-label" for="basicinput"><strong>Personal Interests:</strong><br> <%=@employee.interests %></label>                
+          </div>
+        </div>  
+          <div class="span10">		
+          <div class="control-group">
+            <label class="control-label" for="basicinput"><strong>Skills:</strong></label>                
+            <% @skills.each do |skill| %>
+              <input value="<%= skill %>" class="btn btn-success span2" style="color:black" disabled>
+            <% end %>
+          </div>
+       </div>
+		</div>
+   </div>
+</div><!--/.module-->
+

@@ -1,0 +1,105 @@
+<!-- Author :Priyanka
+ Form for creating new album along with its images. -->
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+		    <div class="content">
+			    <div class="module">
+				    <div class="module-head">
+					    <h3>New Album</h3>
+						</div>					 
+					  <div class="module-body">
+							<%= form_for @album, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+		          <div class="control-group">
+                <label class="control-label" for="basicinput">Title</label>
+                  <div class="controls">
+                    <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title for Album", :data => {:error => "Please Enter Title for Album"}, :required =>true  %>                             
+                    <span class="help-block with-errors"></span>
+                  </div>
+							</div>
+						  
+						  <div class="control-group">
+						    <label class="control-label" for="basicinput">Description</label>
+						    <div class="controls">
+						       <%= f.text_area :description, :class => "span8 form-control", :placeholder =>"Enter description Name", :data => {:error => "Please Enter  description name"} %>                             
+                    <span class="help-block with-errors"></span>
+						    </div>
+						  </div>
+						  
+						  <%= f.fields_for :photos do |photo| %>
+						  <div class="control-group">
+						    <label class="control-label" for="basicinput">Upload Images</label>
+						    <div class="controls">
+						       <%= photo.file_field :image, :onchange =>"validateFiles(this);", :multiple => true, name: "photos[image][]", :id => "image-input", :required => true %>
+                   <span class="help-block with-errors"></span>
+						    </div>
+						  </div>
+						  <% end %>	
+						  <div class="preview-area"></div><br><br>
+						  <ul class="navigation-btns pull-left">
+							  <li><%= f.submit  'Save', :class => "btn btn-success " %></li> 
+							  <li><%= link_to  'Cancel', albums_path(@album), :class => "btn btn-danger " %></li>
+						 </ul>			 
+						<% end %>
+						</div><!--/.module-body-->
+					</div><!--/.module-->
+				</div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->
+
+
+<!--Script for showing added images in the form befor actually uploading into model-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+var inputLocalFont = document.getElementById("image-input");
+inputLocalFont.addEventListener("change",previewImages,false);
+
+function previewImages(){
+    var fileList = this.files;
+    
+    var anyWindow = window.URL || window.webkitURL;
+
+        for(var i = 0; i < fileList.length; i++){
+          var objectUrl = anyWindow.createObjectURL(fileList[i]);
+          $('.preview-area').append('<img  class="new-image-border" src="' + objectUrl + '" />');
+          window.URL.revokeObjectURL(fileList[i]);
+        }
+    
+    
+}
+</script>
+
+
+<!--Script to validate added images in the form befor actually uploading into model-->
+<script>
+ function validateFiles(inputFile) {
+  var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
+  var extErrorMessage = "Only file with extension: .jpg, .jpeg, .gif, .png is allowed";
+  var allowedExtension = ["jpg", "JPEG", "jpeg", "gif", "GIF",  "png", "PNG",  ]; 
+  
+  var extName;
+  var maxFileSize = $(inputFile).data('max-file-size');
+  var sizeExceeded = false;
+  var extError = false;
+  
+  $.each(inputFile.files, function() {
+    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
+    extName = this.name.split('.').pop();
+    if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+  });
+  if (sizeExceeded) {
+    window.alert(maxExceededMessage);
+    $(inputFile).val('');
+  };
+  
+  if (extError) {
+    window.alert(extErrorMessage);
+    $(inputFile).val('');
+  };
+}
+
+
+</script>

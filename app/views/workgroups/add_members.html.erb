@@ -1,0 +1,68 @@
+	<div class="wrapper">
+	<div class="container">
+		<div class="row">	
+			<div class="span12">
+				<div class="content">
+					<div class="module">
+						<div class="module-head">
+							<h3>Employee Details</h3>
+						</div>
+						
+						<div class="module-body ">	
+						  
+		     <%= form_tag("/workgroups/#{@workgroup.id}/added_members") do %>
+		      
+                  <div class ="row-fluid">
+						  <div class="span5">		
+								<div class="control-group">
+									<label class="control-label" for="basicinput"> Add Member</label>
+									<div class="controls">
+                   <input type="text" id="member" class ="span12 form-control", name= "member" , place_holder = "Enter Member Name" data-error="Please Enter valid Employee Name" required>
+                   <input type="hidden" id="member_id"  name= "member_id"> 
+                   <span class="help-block with-errors"></span> 
+									</div>
+								</div>
+							</div>         
+						 	  </div>  
+					     		 
+             <ul class="navigation-btns">                    
+					 <button type="submit" class="btn btn-success pull-left">Add Member</button></ul>
+					 </div>										
+						<% end %>
+						</div><!--/.module-body-->
+					</div><!--/.module-->
+				</div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->
+
+		
+    		    
+
+<script>
+  $(function() {
+  var availableTags = [];
+  $.get( "/getAllEmployees.json", function( data ) {
+      $.each( data, function( key, val ) {
+       availableTags.push(val);
+       //alert(val["id"]+" - "+val["value"]);
+      });
+  });
+  
+       $( "#member" ).autocomplete({
+        minLength: 2,
+        source: availableTags,
+        focus: function( event, ui ) {
+        $( "#member" ).val( ui.item.value );
+        return false;
+        },
+        select: function( event, ui ) {
+        $( "#member" ).val( ui.item.value );
+        $( "#member_id" ).val( ui.item.id );
+        return false;
+        }
+        })
+  });
+  </script>
+  

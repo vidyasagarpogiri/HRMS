@@ -7,6 +7,7 @@ FactoryGirl.define do
     roles "MyString"
     tasks_performed "MyText"
     skills "MyText"
+    employee_id 1
   end
 
 end

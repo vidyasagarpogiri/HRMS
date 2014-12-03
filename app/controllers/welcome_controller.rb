@@ -11,7 +11,11 @@ class WelcomeController < ApplicationController
     @welcome_announcements = Announcement.all.page(params[:page2]).per(2)
     @welcome_recruitments = Recruitment.where(:status => "open").page(params[:page3]).per(2)
     @employee = current_user.employee
-
+    @welcome_albums = Album.all.order('created_at DESC').page(params[:page4]).per(1)   
+    @photos = Photo.all
+    #raise @photos .inspect
+    
+    
     @reportee_employees = ReportingManager.where(:manager_id => @employee.id).map(&:employee)
     #TODO We have to find latest leave based on date . not by created at. #balaraju
     #@latest_leave = @employee.leave_histories.where(:status => "APPROVED").order(created_at: :desc).first

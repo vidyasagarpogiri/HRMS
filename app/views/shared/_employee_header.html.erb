@@ -5,7 +5,8 @@
 			<li><%= link_to 'Policies',policies_path %></li>
 			<li><a href="/employees">Employees</a></li>
 			<li><a href="/statuses">Employee Wall</a></li>
-			
+			<li><a href="/albums">Gallery</a></li>
+			<li><a href="/posts">Posts</a></li>
 			<!-----<li><a href="#">Holidays</a></li> ------->
 			<li><%# link_to 'Announcement',announcements_path %></li>
 			<li><%# link_to 'Events',amzur_events_path %></li>
@@ -87,6 +88,7 @@
 			  </ul>
 			</li>
 			<li><%= link_to ' My Self Description', employee_self_description_show_employee_path(current_user.employee), :class => "fa fa-user fa-fw" %></a></li>
+			<li><%= link_to "My Work Groups", my_workgroups_employee_path(current_user.employee) %></a></li>
 			<li><%= link_to "My Letters", letters_path(current_user.employee) %></a></li>
 			<% if current_user.department == Department::HR %>
 			  <li><a href="#">Edit Profile</a></li>

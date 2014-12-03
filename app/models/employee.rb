@@ -43,11 +43,21 @@ class Employee < ActiveRecord::Base
 
   has_many :statuses # for employee status, employee may have more than one status so we have kept has_many relationship
   has_many :comments # for employee status comments
-  has_one :like # one status will have one like for one employee
+  has_many :likes # one status will have one like for one employee
 
   has_many :projects
   
+  #for photo_album
+  has_many :albums
   
+  #for work groups
+  has_many :workgroups_employees 
+  has_many :workgroups,  through: :workgroups_employees
+
+  
+  #for posts
+  has_many :posts
+
 
   has_many :employee_skills
   has_many :skills, :through => :employee_skills
@@ -76,8 +86,6 @@ class Employee < ActiveRecord::Base
 	#validates :avatar, presence: true
 	#after_create :add_leaves
 	#after_update :update_leaves
-
-
   #Employment_Status = []
 
  def reporting_manager
@@ -105,9 +113,9 @@ class Employee < ActiveRecord::Base
   def is_reporting_manager?
     
    if ReportingManager.where(:manager_id => id).present?
-    return true
+     return true
    else
-   return false
+     return false
    end
    
   end
@@ -118,6 +126,20 @@ class Employee < ActiveRecord::Base
 	
 	def reporting_managerId
     ReportingManager.find_by_employee_id(id).manager_id
+	end
+	
+	def reportees_employees
+	  repotees_ids = ReportingManager.where(:manager_id => id).pluck(:employee_id)	  
+	  employees = Employee.where(:id => repotees_ids)
+	  #@leaves = LeaveHistory.where(:employee_id => @repotees_ids).pluck(:from_date, :to_date)	 
+    #@names = Employee.where(:employee_id => @id).pluck(:first_name)
+	end
+	
+	def reportees_leaves
+	  @reportee_employees = current_user.employee.reportees_employees
+    #raise @reportee_employees.pluck(:employee_id).inspect    
+    #@reportee_name = @reportee_employees.pluck(:first_name)
+    @leaves = LeaveHistory.where(:employee_id => (@reportee_employees.pluck(:employee_id)), :status => "APPROVED")
 	end
 
 end

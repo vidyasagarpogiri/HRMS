@@ -7,6 +7,8 @@ class EmployeesController < ApplicationController
   
   def index
     @employees =  Employee.where(:status => false)
+    #@skills = current_user.employee.skills.map(&:name)
+    #raise @skills.inspect
   end
 
   def new
@@ -43,6 +45,12 @@ class EmployeesController < ApplicationController
        @projects = @employee.projects
       # raise @projects.inspect
      end
+     
+      if @employee.skills.present?
+       @skills = @employee.skills
+      # raise @projects.inspect
+     end
+     
   end
   
   def edit
@@ -190,30 +198,27 @@ class EmployeesController < ApplicationController
   def employee_self_description_show
     
     @employee = current_user.employee
+    @skills = @employee.skills.map(&:name)
    # raise @employee.self_description.inspect
   end
     
   def employee_self_description_form
     @employee = current_user.employee
-    
+    @skills = @employee.skills.map(&:name)   
   end
   
   def employee_self_description_create
-  #raise params.inspect
-   # raise params[:post][:self_description].inspect
-    #raise params[:hidden_skill].inspect
-    
     @employee = Employee.find(params[:id])
-    
-    @skills = params[:hidden_skill].split (", ")
-    
-    @skills.each do |skill|
+    skills_exist = @employee.skills.map(&:name) 
+    skills = params[:hidden_skill].split(", ").uniq 
+    new_skills = skills - (skills&skills_exist)
+    new_skills.each do |skill|
       skill_id = Skill.find_by_name(skill)
-      raise skill_id.inspect
-      EmployeeSkill.create(:employeed_id => current_user.employee.id, :skill_id => skill_id.id)
+      #raise skill_id.inspect
+     @employee.skills << skill_id
     end
-    @employee.update(:self_description => params[:post][:self_description], :interests => params[:interests])
-    redirect_to employee_self_description_show_employee_path(@employee)  
+    @employee.update(:self_description => params[:self_description], :interests => params[:interests])
+    @skills = @employee.skills.map(&:name).uniq 
   end
 	
 	
@@ -221,7 +226,14 @@ class EmployeesController < ApplicationController
       skill=Skill.where("name LIKE ?", "%#{params[:term]}%").map(&:name)
       render json:skill
 	  end
-	
+	  
+	  def my_workgroups # for work groups of employee
+	     @employee = current_user.employee 
+	     workgroups = @employee.workgroups # workgroups in which current employee is a member 
+	     workgroups1 = Workgroup.where(admin_id: @employee.id) # workgroups which are created by current employee
+	     @workgroups=(workgroups+workgroups1).uniq # total work groups of current employee    
+	  end
+	  
   private   
  
   def params_employees
@@ -239,12 +251,6 @@ class EmployeesController < ApplicationController
   
   def get_employee
     @employee = Employee.find(params[:id])
-  end
-  
-  
-  
-  
-
-	
+  end        	
 end
 

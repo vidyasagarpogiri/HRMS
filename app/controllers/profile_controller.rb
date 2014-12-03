@@ -33,6 +33,9 @@ class ProfileController < ApplicationController
     @report = @employee.reporting_managers.first
     @emergency = @employee.emergency_contacts
     @emp_get_attachments = @employee.employee_attachments
+    @projects = @employee.projects
+    @skills = @employee.skills.map(&:name)
+    #@raise @skills.inspect
   end
   
 end

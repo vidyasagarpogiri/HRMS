@@ -46,13 +46,14 @@ class PayrollsController < ApplicationController
   end
 
   def update_payroll
+  #raise params.inspect
     @mode = params[:mode_value]
     @payslip = Payslip.find(params[:id])
     @salary = @payslip.employee.salary
     @payslip_allowances = @payslip.allowances
     @salary_percentages = StaticSalary.all
-    @payslip.update(arrears: params[:arrears], pt: params[:pt], tds: params[:tds], working_days: params[:working_days], deductible_arrears: params[:deductible_arrears])
-    @payslip = Payslip.new.updating_payslip(@payslip, @salary_percentages, @mode)
+    @payslip.update(arrears: params[:arrears], pt: params[:pt],  working_days: params[:working_days], deductible_arrears: params[:deductible_arrears])
+    @payslip = Payslip.new.updating_payslip(@payslip, @salary_percentages, @mode, params[:tds])
   end
 
   def show_payroll
@@ -82,8 +83,10 @@ class PayrollsController < ApplicationController
       i = 1
       @payslips.each do |payslip|
       employee = payslip.employee
+      designation = employee.designation.present? ? employee.designation.designation_name : " "
+      department = employee.department.present? ? employee.department.department_name: " "
       salary = payslip.employee.salary
-        a = [i, "#{payslip.month}-#{payslip.year}", employee.full_name, employee.date_of_join, employee.employment_status, employee.designation.designation_name, employee.department.department_name, salary.gross_salary, salary.gross_salary / 12, payslip.gross_salary, payslip.no_of_working_days, payslip.working_days, payslip.basic_salary, payslip.hra]
+        a = [i, "#{payslip.month}-#{payslip.year}", employee.full_name, employee.date_of_join, employee.employment_status,  designation, department, salary.gross_salary, salary.gross_salary / 12, payslip.gross_salary, payslip.no_of_working_days, payslip.working_days, payslip.basic_salary, payslip.hra]
         b = []
         non_deductable_allowances_array.each do |allowance|
           c = 0
@@ -102,7 +105,7 @@ class PayrollsController < ApplicationController
           g = 0
           payslip.allowances.each do |p_allowance|
             if allowance == p_allowance.allowance_name
-              k << (p_allowance.allowance_value / 12).round(2)
+              k << (p_allowance.total_value ).round(2)
               g = 1
             end
           end
@@ -137,6 +140,8 @@ class PayrollsController < ApplicationController
       sheet.add_row ['Account Number', 'Employee_name', 'Netpay', 'Month'] # will add a row to the sheet
       @payslips.each do |payslip|
         sheet.add_row [payslip.employee.account_number, payslip.employee.full_name, payslip.netpay, Date::MONTHNAMES[payslip.month]]
+        tds = TdsCalculation .new(payslip.gross_salary, payslip.employee, payslip.tds)
+        tds.tds_and_income_tax_update
       end
     end
     

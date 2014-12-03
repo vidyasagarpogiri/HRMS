@@ -164,7 +164,13 @@
 <br/>
 <%= link_to 'View PayRoll', "/payroll/#{@payslip.id}", :class => "btn btn-success pull-right" %><br/>
 <% end %>
-  
+ 
+ 
+  <script>
+    $(function(){
+      $('.mode_option').val('<%= @payslip.mode %>');   
+    });
+  </script>
           
              
 

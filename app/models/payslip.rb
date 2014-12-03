@@ -8,6 +8,10 @@ class Payslip < ActiveRecord::Base
   def payslip_allowances_total_value
     allowances.where(is_deductable: false).sum(:total_value).round(2)
   end
+  
+  def check_tds
+    tds = TdsCalculation.new(9345, 2)
+  end
   # begin author - sekhar
   # this code will be modified or removed depends on reqirement
   # untill don`t touch this code
@@ -37,6 +41,8 @@ end
   # author: sekhar
   # date: 18/11/2014
   # * This method is to generate payslips and return all generated payslips
+  #BalaRaju #TODO We have to update spcl allowane and HRA have to depends on Basic and number of days
+  
   def generating_payslips(salary_percentages, employees, month, year)
     actual_days = Time.days_in_month(month, year)
     employees.each do |employee|
@@ -46,13 +52,16 @@ end
       payslip = Payslip.create(no_of_working_days: actual_days, working_days: actual_days, basic_salary: payslip_basic, hra: payslip_hra, month: month, year: year, employee_id: employee.id, status: 'NEW')
       # for creating allowances for payslip
       salary.payslip_allowances(payslip)
-      payslip_special_allowance = (salary.special_allowance/12).round(2)
+      payslip_special_allowance = payslip_special_allowances((salary.special_allowance/12).round(2), actual_days, actual_days)
       gross = payslip.basic_salary + payslip.hra + payslip.payslip_allowances_total_value + payslip_special_allowance
+      
+      new_tds = TdsCalculation.new(gross, employee.id)
+      tds = new_tds.tds_for_this_month
       # method call for calculation pf,esic and total_deductions
       payslip_pf_value, payslip_esic_value,total_deducted_allowances_value = caluclate_pf_and_esic_value(payslip, salary_percentages,gross)
-      total_deductions_value = payslip_pf_value.to_f + payslip_esic_value.to_f + total_deducted_allowances_value
+      total_deductions_value = payslip_pf_value.to_f + payslip_esic_value.to_f + total_deducted_allowances_value + tds.to_f
       net_pay = gross - total_deductions_value
-      payslip.update(total_deductions: total_deductions_value, netpay: net_pay, gross_salary: gross, pf: payslip_pf_value, esic: payslip_esic_value, special_allowance: payslip_special_allowance, mode: 'Bank')
+      payslip.update(total_deductions: total_deductions_value, netpay: net_pay, gross_salary: gross, pf: payslip_pf_value, esic: payslip_esic_value, special_allowance: payslip_special_allowance, mode: 'Bank', tds: tds)
     end
     payslips = Payslip.where(month: month, year: year)
   end
@@ -60,19 +69,30 @@ end
   # author: sekhar
   # date: 18/11/2014
   # * This method is to update payslip and return payslip to controller
-  def updating_payslip(payslip, salary_percentages, mode)
+  #author :BalaRaju, date: 25/11/2014 modiifed spcl allowances and HRA, calling tds 
+  def updating_payslip(payslip, salary_percentages, mode, params_tds)
     salary = payslip.employee.salary
     basic_salary = payslip_basic(((salary.basic_salary)/12).round(2), payslip.working_days, payslip.no_of_working_days)
     payslip.update(:basic_salary => basic_salary)
-    payslip_special_allowance = (salary.special_allowance/12).round(2)
-    gross = basic_salary + payslip.hra + payslip.payslip_allowances_total_value + payslip_special_allowance + payslip.arrears.to_f
+    payslip_special_allowance = payslip_special_allowances((salary.special_allowance/12).round(2), payslip.working_days, payslip.no_of_working_days)
+    hra = calculate_hra(basic_salary, StaticSalary.all)
+    gross = basic_salary + hra + payslip.payslip_allowances_total_value + payslip_special_allowance + payslip.arrears.to_f
+    #tds = tds.to_f
+    #Calling Tds 
+    @tds = params_tds.to_f
+    unless payslip.gross_salary.to_i == gross.to_i
+     tds =  TdsCalculation.new(gross, payslip.employee, payslip.tds)
+     @tds = tds.tds_for_this_month
+    end
+   
+   # raise payslip.inspect
     # method call for calculation pf,esic and total_deductions
     payslip_pf_value, payslip_esic_value,total_deducted_allowances_value = caluclate_pf_and_esic_value(payslip, salary_percentages, gross)
-    total_deductions_value = payslip_pf_value.to_f + payslip_esic_value.to_f + total_deducted_allowances_value + payslip.pt.to_f + payslip.tds.to_f
+    total_deductions_value = payslip_pf_value.to_f + payslip_esic_value.to_f + total_deducted_allowances_value + payslip.pt.to_f + @tds.to_f
     total_deductions_value +=  payslip.deductible_arrears.to_f
     net_pay = gross - total_deductions_value
-    payslip.update(total_deductions: total_deductions_value, netpay: net_pay, gross_salary: gross, pf: payslip_pf_value, esic: payslip_esic_value, special_allowance: payslip_special_allowance, mode: mode)
-    payslip
+    payslip.update(total_deductions: total_deductions_value.to_f.round(2), netpay: net_pay, gross_salary: gross, pf: payslip_pf_value, esic: payslip_esic_value, special_allowance: payslip_special_allowance, mode: mode, tds: @tds.to_f.round(2), hra: hra)
+   payslip
   end
 
   # author: sekhar
