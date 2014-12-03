@@ -9,8 +9,10 @@ class PostsController < ApplicationController
   end
   
   def create
- # raise params.inspect
-   @post = current_user.employee.posts.new(post_params)
+   
+   @post = current_user.employee.posts.new(post_params) 
+   @post.update(:tags => params[:hidden_tags].chop)
+  
     if @post.save
       redirect_to posts_path
     else
@@ -97,7 +99,7 @@ class PostsController < ApplicationController
   private
 
   def post_params # New method creates a obje
-    params.require(:post).permit(:title, :content, :tags, :category)
+    params.require(:post).permit(:title, :content, :category)
   end
 end
 
