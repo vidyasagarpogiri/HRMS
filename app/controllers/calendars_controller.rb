@@ -30,8 +30,29 @@ class CalendarsController < ApplicationController
   end
   
   def workgroup_calendar
-    #@department_leaves = LeaveHistory.where(:department_id => 2)
-    #raise @department_leaves.inspect
+    #@workgroup_id = Workgroup.find(params[:id].to_i)
+    @group_employees = WorkgroupsEmployee.where(:workgroup_id => 1).pluck(:employee_id) #TODO pass @workgroup_id to :workgroup_id for dynamic values
+    @group_holiday_calender = HolidayCalender.where(:group_id => @group_employees).map(&:event_id).uniq
+    @group_events = Event.where(:id => @group_holiday_calender)
+    respond_to do |format| 
+      format.html # reporting_manager_calendar.html.erb 
+      format.json do 
+        render :json => @group_events.map { |event| {:title => event.event_name, :start => event.event_date.to_date} }
+      end
+    end    
+    #raise @group_holiday_calender.inspect
+  end
+  
+  def workgroup_leaves_calendar
+     #@workgroup_id = Workgroup.find(params[:id].to_i)
+     @group_employees = WorkgroupsEmployee.where(:workgroup_id => 1).pluck(:employee_id) #TODO pass @workgroup_id to :workgroup_id for dynamic values
+     @group_leaves = LeaveHistory.where(:employee_id => @group_employees, :status => "APPROVED")
+     respond_to do |format| 
+      format.html # reporting_manager_calendar.html.erb 
+      format.json do 
+        render :json => @group_leaves.map { |event| {:title => leave.employee.full_name, :start => leave.from_date.to_date, :end => leave.to_date.to_date}}
+      end
+    end
   end
     
   def department_leaves_calendar    
