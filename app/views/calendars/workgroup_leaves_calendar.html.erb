@@ -7,14 +7,14 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-              <h3>Workgroup Events</h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'Workgroup Leaves',  calendars_workgroup_leaves_calendar_path %></label>              
+              <h3>Workgroup Leaves</h3>
+               <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'Workgroup Events',  calendars_workgroup_calendar_path %></label>               
 					  </div>
 					  <div class="module-body">
 					    <div class="control-group">
-									<label class="control-label" for="basicinput">Workgroup:</label>
+									<label class="control-label" for="basicinput">Workgroups:</label>
 									<div class="controls">
-                    <%= select_tag "workgroup", options_from_collection_for_select(Workgroup.all, "id", "name"), class: "workgroup-id" %>
+                    <%= select_tag "workgroup", options_from_collection_for_select(Workgroup.all, "id", "name"), class: "department-id" %>
                     <span class="help-block with-errors"></span> 
 									</div>
 						    </div><hr>	
@@ -37,11 +37,11 @@
 
 <script>
  
- $('.workgroup-id').change(function() {
- var index =$( ".workgroup-id" ).val();
+ $('#department').change(function() {
+ var index =$( "#department" ).val();
   $.ajax({
       type: "get",
-      url: "/calendars/workgroup_calendar",
+      url: "/calendars/workgroup_leaves_calendar",
       data: { 'id': index } 
   }); 
 });
@@ -56,7 +56,7 @@ $(document).ready(function() {
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
     },
-          events: '/calendars/workgroup_calendar.json',
+          events: '/calendars/workgroup_leaves_calendar.json',
             
           eventBackgroundColor: '#FFFFD1',
           eventTextColor: 'black'                                                  
