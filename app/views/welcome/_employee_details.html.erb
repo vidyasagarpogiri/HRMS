@@ -2,12 +2,12 @@
     employee dashboard-->
 <div class="module">
   <div class="module-head">							
-    <h3>Wat's New</h3>   
+    <h3>What's New</h3>   
   </div>
   <div class="module-body exp">    
     <% @welcome_albums.each do |album| %>
     <div class="" style="border:solid 1px #eee;">
-      <div class="album-employee-image" style="margin-top:10px">
+      <div class="album-employee-image span4" style="margin-top:10px">
         <% if album.present? && album.employee.avatar_url.present? %>
           <%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %>
         <% else %>
@@ -17,7 +17,7 @@
 	            <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
             <% end %>
         <% end %>
-      </div>      
+      </div>     
       <div class="album-employee-details" >
         <strong>
           <%= album.employee.first_name %> <%= album.employee.last_name %>
