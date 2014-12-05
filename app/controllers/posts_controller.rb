@@ -13,7 +13,6 @@ class PostsController < ApplicationController
   end
   
   def create
-   
    @post = current_user.employee.posts.new(post_params) 
    @post.update(:tags => params[:hidden_tags].chop)
   
@@ -31,6 +30,7 @@ class PostsController < ApplicationController
   
    def update # Updates the status
     @post = Post.find(params[:id])
+    @post.update(:tags => params[:hidden_tags].chop)
     if @post.update(post_params)
       redirect_to posts_path
     else
@@ -99,7 +99,14 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
   
-  
+  def destroy
+  #raise params.inspect
+    @post =  Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
+    # @posts = current_user.employee.projects
+    # @employee = current_user.employee
+  end
   private
 
   def post_params # New method creates a obje
