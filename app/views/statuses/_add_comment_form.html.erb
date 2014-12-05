@@ -1,0 +1,17 @@
+  <%= form_tag add_comments_statuses_path, method: :post do %>
+  
+  
+    <div class="control-group">
+      
+        <div class="controls">
+        <%= text_area_tag  'comment', " ", :style => "width: 650px;", required: true%>
+        <span class="help-block with-errors"></span>
+      </div>
+    </div>
+     <input type="hidden" value="<%= status %>" name="status_id">
+     <ul class="navigation-btns " style="margin: 10px 0 10px 550px;">
+       <li><button type="submit" class="btn btn-success"> Comment </button></li>
+    									
+     </ul>
+  <% end %>
+  

@@ -7,6 +7,7 @@
             <div class="module-head">
               <h3>My Work Groups</h3>
                 <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a><%= link_to " Add New Work Group",new_workgroup_path%></label>
+                <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-circle-arrow-left"></i></a><%= link_to " Back To Workgroups Index",workgroups_path%></label>
              </div>
             <% if @workgroups.present? %>                                         
             <div class="module-body">                     
@@ -24,19 +25,19 @@
                 <tbody>
                   <tr> 
                     <td class="center"><%= image_tag(workgroup.workgroupicon,size: "60x20") %></td>          
-                    <td><%= workgroup.name if workgroup.name.present? %></td>
+                    <td><%= link_to workgroup.name,workgroup_path(workgroup) if workgroup.name.present? %></td>
                     <td><%= workgroup.description %></td>
                     <td><%= workgroup.admin_name %></td> 
                     
                     <td> 
-                    <%#if current_user.employee.id == workgroup.admin_id %>
+                    <% if current_user.employee.id == workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: workgroup.id ).present?%>
                       <ul class="navigation-btns pull-right" >
-                        <li><%# link_to 'Show', workgroup_path(workgroup), :class => "btn btn-info " %></li>
-                        <li><%# link_to 'Edit', edit_workgroup_path(workgroup.id), :class => "btn btn-success " %></li>
+                        <li><%= link_to 'Show', workgroup_path(workgroup), :class => "btn btn-info " %></li>
+                        <li><%= link_to 'Edit', edit_workgroup_path(workgroup.id), :class => "btn btn-success " %></li>
                         <li><%# link_to "Delete",workgroup_path(workgroup.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>                     
                       </ul>
                     </td>
-                  <%# end %>
+                  <% end %>
                   </tr>
                 </tbody>
                 <% end %>

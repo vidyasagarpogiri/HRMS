@@ -6,8 +6,8 @@
 				  <div class="module">
 					  <div class="module-head">
               <h3> <%= @workgroup.name %> </h3>
-              <div class="pull-right" ><%= link_to 'Back',workgroup_path(@workgroup), :class => "btn btn-info " %></div>  
-                  
+              <div class="pull-right" ></div>  
+                   <label style="font-weight:normal;margin-top:-20px" class = "pull-right" ><a><i class="icon-circle-arrow-left "></i></a><%= link_to  'Back',workgroup_path(@workgroup) %> </label> 
             </div>
             <%= form_tag("/workgroups/#{@workgroup.id}/added_moderators") do %>
         
@@ -37,7 +37,13 @@
 				              <% end %>
 				            </th>
 				            <th class="center">
+				            <% if WorkgroupsEmployee.where(is_moderator: true, employee_id: em.id, workgroup_id: @workgroup.id).present? %>
+				                <%= check_box_tag 'employee_ids[]', em.id, checked = true%>
+				                <% elsif em.id == @workgroup.admin_id %> 
+				                <%# check_box_tag %>
+                    <% else%>
                          <%= check_box_tag 'employee_ids[]', em.id %> 
+                    <% end %>
 				            </th>
 				         </tr>
 				            <% #raise WorkgroupsEmployee.where(is_moderator: true).inspect %>
@@ -45,24 +51,19 @@
                      <ul class="navigation-btns  pull-right" >
                         <li><%# link_to 'Edit', :class => "btn btn-success " %></li>
                         <li><%# link_to "Delete",shift_path(shift.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-                     </ul>
-                    
+                     </ul>  
                   <% end %>
-				           <% else %>  
+				          <% else %>  
 							    <div class="alert alert-success alert-dismissable">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                      </button>
                           No Employees to display
-                  </div> 
-                                                    
-						  <% end %>
-						  	
+                  </div>                                             
+						  <% end %> 
 		            </tbody>
-                
-	            </table>
-	            <ul class="navigation-btns  pull-right" >
-	              <li><%= submit_tag 'Submit', :class => "btn btn-success " %></li>
-	            </ul> 
-	            <% end %>                                                
+                </table>
+	            <% end %> <br>
+	              <%= submit_tag 'Submit', :class => "btn btn-success pull-right" %><br/><br/>
             </div><!--module body-->
           </div><!--/.module -->
         </div><!--/.content-->
