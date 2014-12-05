@@ -344,10 +344,11 @@ post 'create_package' => "features#create_package"
      post "added_moderators" 
      post "added_members"
      delete "destroy_member/:employee_id" => 'workgroups#destroy_member', as: :destroy_member # for destroying member from work group
+     get "get_employees"
     end
   end
   get 'my_workgroups'	=> "employees#my_workgroups"
-
+  #get "/get_employees" => "workgroups#get_employees"
   resources :posts do
     member do
       get "add_comment_form" 
