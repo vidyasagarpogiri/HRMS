@@ -2,7 +2,7 @@
 class WorkgroupsController < ApplicationController
   
   def index
-    @workgroups = Workgroup.all
+    @workgroups = Workgroup.all.page(params[:page]).per(6)  
     @employee = current_user.employee
   end
   
@@ -21,9 +21,10 @@ class WorkgroupsController < ApplicationController
   
   def show
     @workgroup = Workgroup.find(params[:id])
+    @admin = Employee.find_by(:employee_id => @workgroup.admin_id )
+    #raise @admin.first_name.inspect
     @employees = @workgroup.employees
     @employee = current_user.employee
-
   end
   
   def edit
@@ -58,12 +59,9 @@ class WorkgroupsController < ApplicationController
   end
   
   def added_members
-  #raise params.inspect
     @employee = Employee.find(params[:member_id])
     @workgroup = Workgroup.find(params[:id])
-    unless @workgroup.employees.map(&:employee_id).include?(@employee.id.to_s)
-      WorkgroupsEmployee.create(employee_id: @employee.id, workgroup_id: @workgroup.id)
-    end
+    WorkgroupsEmployee.create(employee_id: @employee.id, workgroup_id: @workgroup.id)
     redirect_to @workgroup
   end
   
@@ -94,6 +92,20 @@ class WorkgroupsController < ApplicationController
     #raise @selectedemployee.inspect
     @selectedemployee.destroy
     redirect_to @workgroup
+  end
+  
+  def get_employees
+    @workgroup = Workgroup.find(params[:id])
+    workgroup_employees = @workgroup.employees 
+    total_employees = Employee.where(status: false)
+    employees = total_employees - workgroup_employees
+    json_data = []
+    employees.each do|val|
+	    json_data << {"id"=>val.id, "value" => "#{val.first_name} #{val.last_name}" }
+	  end
+    respond_to do |format|
+      format.json { render json: json_data }
+    end
   end
   
   private

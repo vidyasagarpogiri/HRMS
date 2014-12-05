@@ -59,7 +59,7 @@
            </p> 
             
            <% end %>
-           <%= render "comments/form", :status => @status%>
+           <%= render "statuses/add_comment_form",  :status => @status.id%>
 					
 				  </div><!--/.module-->
 			  </div>	<!--/.span8-->	
@@ -77,9 +77,9 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
     <h4 class="modal-title" id="myModalLabel">Likes List</h4>
-      <% @employees.each do |emp| %> 
-					 <%= emp.first_name %> <br>
-					  <% end %>
+      <%# @employees.each do |emp| %> 
+					 <%# emp.first_name %> <br>
+					  <%# end %>
 					  <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> 
       </div>

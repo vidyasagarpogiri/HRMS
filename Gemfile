@@ -115,7 +115,9 @@ gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'progress_bar'
 
+
 gem 'sunspot_matchers' # gem for rspec test using solrsearch
+
 
 #gem for Calender view
 
