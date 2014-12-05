@@ -29,8 +29,8 @@ class CalendarsController < ApplicationController
   end
   
   def workgroup_calendar
-    #@workgroup_id = Workgroup.find(params[:id].to_i)
-    @group_employees = WorkgroupsEmployee.where(:workgroup_id => 1).pluck(:employee_id) #TODO pass @workgroup_id to :workgroup_id for dynamic values
+    #@workgroup = Workgroup.find(params[:id].to_i)
+    @group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id)#TODO pass @workgroup_id to :workgroup_id for dynamic values    
     @group_holiday_calender = HolidayCalender.where(:group_id => @group_employees).map(&:event_id).uniq
     @group_events = Event.where(:id => @group_holiday_calender)
     respond_to do |format| 
@@ -43,8 +43,8 @@ class CalendarsController < ApplicationController
   end
   
   def workgroup_leaves_calendar
-     #@workgroup_id = Workgroup.find(params[:id].to_i)
-     @group_employees = WorkgroupsEmployee.where(:workgroup_id => 1).pluck(:employee_id) #TODO pass @workgroup_id to :workgroup_id for dynamic values
+     #@workgroup = Workgroup.find(params[:id].to_i)
+     @group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id) #TODO pass @workgroup_id to :workgroup_id for dynamic values
      @group_leaves = LeaveHistory.where(:employee_id => @group_employees, :status => "APPROVED")
      #raise @group_employees.inspect
      respond_to do |format| 
