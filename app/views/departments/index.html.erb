@@ -23,7 +23,7 @@
                           </div>
                         </div>
                         <div class="media user">  
-                          <div class="media-avatar pull-left span4" href="#">                                 
+                          <div class="media-avatar pull-left">                                 
                             <% if department.department_name == "HR" %>
 			                          <%= image_tag "HR.jpg" %>
                             <% elsif department.department_name == "Development"%>
@@ -38,7 +38,7 @@
                               <!--<img src="/assets/user.png" class="department_image">-->
                             <% end %>
                           </div>     
-                          <div class="media-body span6" style="margin-left:-45px;">
+                          <div class="media-body span6" style="margin-left:-80px;">
                             <div class="style">
                               <h5 class="media-title">
                                   <%= link_to department.department_name, department_path(department) %>
