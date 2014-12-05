@@ -26,7 +26,9 @@
                     <td class="center"><%= image_tag(workgroup.workgroupicon,size: "60x20") %></td>          
                     <td><%= link_to workgroup.name,workgroup_path(workgroup) if workgroup.name.present? %></td>
                     <td><%= workgroup.description %></td>
+                    <% if workgroup.admin_id.present?%>
                     <td><%= Employee.find(workgroup.admin_id).full_name %></td> 
+                    <% end %>
                     <td> 
                     <% if current_user.employee.id == workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: workgroup.id ).present?%>
                       <ul class="navigation-btns" >

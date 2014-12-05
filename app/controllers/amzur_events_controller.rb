@@ -1,6 +1,6 @@
 class AmzurEventsController < ApplicationController
 
-  before_filter :hr_view,  only: ["new", "edit"]
+  #before_filter :hr_view,  only: ["new", "edit"]
   before_action :find_event, only: [:edit, :show, :update, :destroy]
   
   def index
