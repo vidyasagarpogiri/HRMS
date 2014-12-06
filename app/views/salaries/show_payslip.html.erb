@@ -120,10 +120,10 @@
                   </div>
                 </div>
                </div>
-
+<hr>
      <div class="row-fluid">
                 <div class="span6">
-                 <label class="heading head">EARNINGS</label>
+                 <label class="heading head" >EARNINGS</label><hr>
                   <!-------- Earnings------>
                   <div class="row-fluid">  
                     <div class="span6">
@@ -169,7 +169,7 @@
                </div>
                <div class="span6">
                   <!---- Dedcuations --->
-                    <label class="heading head">DEDUCTIONS</label>
+                    <label class="heading head">DEDUCTIONS</label><hr>
                   <% if @payslip.tds.present? %>
                   <div class="row-fluid"> 
                     <div class="span6">
@@ -224,6 +224,7 @@
                  <% end %>
                 </div>
               </div>
+              <hr>
              <div class="head">
              <div class="row-fluid">
               <div class="span6">
@@ -242,13 +243,13 @@
                     <label class="text">TOTAL:</label>
                   </div>
                   <div class="span6">
-                    <label class="text"><%= @payslip.gross_salary %></label>
+                    <label class="text"><%= @payslip.total_deductions %></label>
                   </div>
                 </div>
               </div>
              </div>
             </div><br/>
-             
+             <hr>
              <div class="head">
              <div class="row-fluid">
                <div class="span6">
@@ -288,7 +289,7 @@
     width:500px;
     height:40px;
     font-size:16px;
-    color:black;
+    color:green;
     float:left;
    }
    .head{

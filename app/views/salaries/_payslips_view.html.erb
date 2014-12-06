@@ -75,7 +75,7 @@
 
                 <% if @payroll_last.present? %>             
                 <% if @payroll_last.status == CompanyPayRollMaster::GENERATED %><br>
-                  <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right" %>
+                  <%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right save-process" %>
                 <% end %>
                 
                 <% if @payroll_last.status == CompanyPayRollMaster::PROCESSING %><br>
@@ -157,13 +157,27 @@
     });
 
     $(".save-process").click(function(){
-      var $modal = $('.processing');
-      $modal.modal('show');
+      var $saveProcessModal = $('.processing');
+      $saveProcessModal.modal('show');
+     
     });
     
-
+     $(".last-month-payroll").click(function(){
+      var $lastMonthPayrollModal = $('.processing');
+      $lastMonthPayrollModal.modal('show');
+     
+    });
+    
+    
     
 });
+</script>
+
+<script>
+$(function(){
+  $('.processing').hide();
+});
+
 </script>
 
 
