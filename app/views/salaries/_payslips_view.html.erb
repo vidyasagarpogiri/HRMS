@@ -126,7 +126,7 @@
   $(function(){
     $(".payroll_year").change(function(){
       var year = $(this).val();
-      $.getJSON("http://localhost:3000/salaries/get_payroll_years.json?yr="+ year, function(data){
+      $.getJSON("http://myhost.com:3000/salaries/get_payroll_years.json?yr="+ year, function(data){
         $.each( data, function(key, val) {
           $(".payroll_month").append( "<option>" + val  + "</option>" );
         });
