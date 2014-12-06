@@ -27,11 +27,11 @@
                 </div>              
                 <div class="span6">  <br> 
                   <% unless @cprm.present? %>     
-                    <%= link_to "Generate Last Month PayRoll", payslips_path, :class => "btn btn-success pull-right", method: :post, :remote => true %> 
+                    <%= link_to "Generate Last Month PayRoll", payslips_path, :class => "btn btn-success pull-right last-month-payroll", method: :post, :remote => true %> 
                   <% end %>               
                </div>
              </div></br>
-             
+             <div class="processing"></div>
                <% if @payslips.present? %>                 
                 <!-- code for displayin all employees payslips -->  
                 <div class="employee_payslip">             
@@ -80,7 +80,7 @@
                 
                 <% if @payroll_last.status == CompanyPayRollMaster::PROCESSING %><br>
                 <ul class="navigation-btns pull-right">
-                   <li><%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success" %></li>
+                   <li><%= link_to "Save&Process", salaries_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success save-process" %></li>
                   <li><%= link_to "Generate To Bank", salaries_bank_process_path(:month => @month, :year => @year), :class => "btn btn-success" %></li> 
                 </ul> 
                 
@@ -155,7 +155,15 @@
     $(".mode_option").change(function(){
       $(".payslip-form").submit();
     });
- 
-  });
+
+    $(".save-process").click(function(){
+      var $modal = $('.processing');
+      $modal.modal('show');
+    });
+    
+
+    
+});
 </script>
+
 
