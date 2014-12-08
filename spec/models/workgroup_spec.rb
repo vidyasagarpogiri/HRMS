@@ -20,7 +20,7 @@ RSpec.describe Workgroup, :type => :model do
       expect(FactoryGirl.build(:workgroup, name: "test",description: "MyText",admin_id: nil)).to_not be_valid
     end
     
-    it "Is valid without description" do
+    it "Is invalid without description" do
       expect(FactoryGirl.build(:workgroup, name: "test",description: nil,admin_id: 1)).to_not be_valid
     end
     

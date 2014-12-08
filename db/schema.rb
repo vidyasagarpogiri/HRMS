@@ -755,7 +755,7 @@ ActiveRecord::Schema.define(version: 20141205110553) do
   create_table "workgroups_employees", force: true do |t|
     t.integer  "employee_id"
     t.integer  "workgroup_id"
-    t.boolean  "is_moderator"
+    t.boolean  "is_moderator", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

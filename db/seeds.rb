@@ -36,9 +36,10 @@ StaticSalary.destroy_all
  @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
  @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
  @user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
-
-
-
+ 
+ (1..20).each do |i|
+  User.invite!(email: "sample_user_#{i}@amzur.com", skip_invitation: true)
+ end
 
 
 Address.create(:line1 => "BAY STREET",:line => "GUL END",:city => "Tampa",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
@@ -91,6 +92,26 @@ Employee.create(:employee_id => 3, :title=> "Miss", :first_name=>"Priyanka",:las
 
 Employee.create(:employee_id => 4, :title=> "Mr", :first_name=>"pattabhi",:last_name=>"ramarao",:date_of_birth=>"2005-05-03", :gender=>"female", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
 :avatar=>"gates_print.jpg", :user_id => @user3.id, :alternate_email => "email@mail.com", :group_id => Groups[rand(Groups.length)])
+
+
+Employee.create(:employee_id => 5, :title=> "Mr", :first_name=>"Bala",:last_name=>"Nemani",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:avatar=>"gates_print.jpg", :user_id => 5, :alternate_email => "email@mail.com", :group_id => Groups[rand(Groups.length)])
+
+Employee.create(:employee_id => 6, :title=> "Mr", :first_name=>"Meher",:last_name=>"Goru",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:avatar=>"gates_print.jpg", :user_id => 6, :alternate_email => "email@mail.com", :group_id => Groups[rand(Groups.length)])
+
+Employee.create(:employee_id => 7, :title=> "Mr", :first_name=>"Ravi",:last_name=>"Nuni",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:avatar=>"gates_print.jpg", :user_id => 7, :alternate_email => "email@mail.com", :group_id => Groups[rand(Groups.length)])
+
+Employee.create(:employee_id => 8, :title=> "Mr", :first_name=>"Shankar Rao",:last_name=>"Piriya",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:avatar=>"gates_print.jpg", :user_id => 8, :alternate_email => "email@mail.com", :group_id => Groups[rand(Groups.length)])
+
+Employee.create(:employee_id => 9, :title=> "Mr", :first_name=>"Abdul",:last_name=>"Rahaman",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:avatar=>"gates_print.jpg", :user_id => 9, :alternate_email => "email@mail.com", :group_id => Groups[rand(Groups.length)])
+
+Employee.create(:employee_id => 10, :title=> "Mr", :first_name=>"Anjum",:last_name=>"Anjum",:date_of_birth=>"2005-05-03", :gender=>"male", :marital_status=>"single", :total_experience=>"1",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:status=>"Active", :mobile_number=>"7894567485",:father_name=>"Father",:pan=>"pannumber", :date_of_confirmation=>"2006-15-12",:date_of_join=>"2006-11-03",:image_url=> "image",:department_id =>Departments[rand(Departments.length)],:blood_group_id=> BloodGroups[rand(BloodGroups.length)],:ff_status_id=>FfStatuses[rand(FfStatuses.length)],:grade_id=>Grades[rand(Grades.length)], :role_id=>2,:job_location_id=>JobLocations[rand(JobLocations.length)],
+:avatar=>"gates_print.jpg", :user_id => 10, :alternate_email => "email@mail.com", :group_id => Groups[rand(Groups.length)])
+
 
 employees = Employee.all
 

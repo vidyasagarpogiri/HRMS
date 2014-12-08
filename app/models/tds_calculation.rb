@@ -17,7 +17,7 @@ class TdsCalculation
   
   def tax
     tax_income = net_taxble_income
-    t = TaxBracket.where("lower_limit < ? && upper_limit > ?", tax_income, tax_income).first
+    t = TaxBracket.where("lower_limit <= ? && upper_limit >= ?", tax_income, tax_income).first
     if t.present?
       income_tax = t.min_tax + ((tax_income - t.lower_limit)*(t.tax_percentage/100))
       education_cess = (income_tax * 2)/100

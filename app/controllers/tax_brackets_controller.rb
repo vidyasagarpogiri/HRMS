@@ -1,6 +1,6 @@
 # We are using Tax Bracket Controller for TDS Calucaltions 
 class TaxBracketsController < ApplicationController
-
+  
   def index
     @tax_brackets = TaxBracket.all
   end
@@ -29,6 +29,10 @@ class TaxBracketsController < ApplicationController
     else
       render "edit", :locals => { :@custom_error => "Upper limit must be greater than lower limit" }
     end
+  end
+  
+  def show
+       
   end
   
   private
