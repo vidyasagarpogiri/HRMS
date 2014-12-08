@@ -6,9 +6,9 @@
           <div class="module">
             <div class="module-head">
 				      <h3>Events Details</h3>
-				      <% if current_user.department == Department::HR %>  
+				      
 				      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add Event',  new_amzur_event_path %></label>
-				      <% end %>
+				     
 		        </div>			
 			      <div class="module-body">
 		          <% if @amzurevent.present? %>    
