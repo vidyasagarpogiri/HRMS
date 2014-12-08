@@ -10,7 +10,7 @@
 						
 						<div class="module-body ">	
 						  
-		     <%= form_tag("/workgroups/#{@workgroup.id}/added_members") do %>
+		     <%= form_tag({("/workgroups/#{@workgroup.id}/added_members")}, {:autocomplete => :"on"}) do %> 
 		      
                   <div class ="row-fluid">
 						  <div class="span5">		

@@ -5,7 +5,7 @@ RSpec.describe Comment, :type => :model do
   describe "Checking Comments validations" do
     
     it "Create Comments With Valid Attributes" do
-      expect(FactoryGirl.create(:comment)).to be_valid
+      expect(FactoryGirl.create(:comment, commentable_id: 1,commentable_type: 'Status', employee_id: 1)).to be_valid
     end
    
     it "Is invalid without status_id " do
@@ -34,3 +34,4 @@ RSpec.describe Comment, :type => :model do
     
 end
 end
+#comment: text, commentable_id: integer, commentable_type: string, created_at: datetime, updated_at: datetime, employee_id: integer

@@ -24,15 +24,17 @@
                 <tbody>
                   <tr> 
                     <td class="center"><%= image_tag(workgroup.workgroupicon,size: "60x20") %></td>          
-                    <td><%= workgroup.name if workgroup.name.present? %></td>
+                    <td><%= link_to workgroup.name,workgroup_path(workgroup) if workgroup.name.present? %></td>
                     <td><%= workgroup.description %></td>
+                    <% if workgroup.admin_id.present?%>
                     <td><%= Employee.find(workgroup.admin_id).full_name %></td> 
+                    <% end %>
                     <td> 
                     <% if current_user.employee.id == workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: workgroup.id ).present?%>
                       <ul class="navigation-btns" >
                         <li><%= link_to 'Show', workgroup_path(workgroup), :class => "btn btn-info " %></li>
                         <li><%= link_to 'Edit', edit_workgroup_path(workgroup.id), :class => "btn btn-success " %></li>
-                        <li><%= link_to "Delete",workgroup_path(workgroup.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>                     
+                        <li><%# link_to "Delete",workgroup_path(workgroup.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>                     
                       </ul>
                        <% end %>
                     </td>
@@ -49,6 +51,7 @@
               </div>
             </div>
             <% end %>
+            <%= paginate @workgroups %> 
             </div><!--module-body -->    																																											                               
           </div><!-- /.module-->									      				                                      
         </div><!--/.content-->                    

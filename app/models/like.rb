@@ -5,5 +5,5 @@ class Like < ActiveRecord::Base
   belongs_to :status # status will have a like
   validates :employee_id, presence: true # validation for employee
   validates :is_like, inclusion:  { in:  [true, false] } # validation for like
-  #validates :status_id, presence: true # validation for status
+  # validates :status_id, presence: true # validation for status
 end

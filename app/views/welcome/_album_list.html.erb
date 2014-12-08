@@ -4,12 +4,13 @@
       <h3>New Posts</h3>  
     </div>                                            
   </div>
-    <div class="module-body">	
-      <% if @welcome_albums.present? %>	  
-        <% @welcome_albums.each do |welcome_album| %>
-
-     <div class="control-group">
-        <a href="#"><strong><%= welcome_album.title %> </strong> </a> by  <a href="#"><strong><%= welcome_album.employee_id %> </strong></a>
+  <div class="module-body">	
+    <% if @welcome_albums.present? %>	  
+      <% @welcome_albums.each do |welcome_album| %>
+     <div class="control-group" style="min-height:50px;">
+        <strong><%= welcome_album.employee.full_name %></strong>&nbsp;added 
+        <strong><%= pluralize(welcome_album.photos.count, 'photo') %></strong> to
+        <strong><a href="<%= album_path(welcome_album) %>"><%= welcome_album.title %></a></strong>
      </div>
      <% end %>
      <div id="paginator">
