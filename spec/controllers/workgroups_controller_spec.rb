@@ -121,7 +121,7 @@ RSpec.describe WorkgroupsController, :type => :controller do
      let(:valid_member_workgroup_attributes) {
     {name: "ROR Team", description:"ROR", admin_id: 1}
     }
-    context "Add members to workgroup  with valid attributes" do
+    context "Add members to workgroup" do
       it "creates a new workgroup" do
         expect {
           post :create, {workgroup:  FactoryGirl.attributes_for(:workgroup)}
@@ -144,7 +144,7 @@ RSpec.describe WorkgroupsController, :type => :controller do
      let(:valid_member_workgroup_attributes) {
     {name: "ROR Team", description:"ROR", admin_id: 1}
     }
-    context "Add moderator to workgroup  with valid attributes" do
+    context "Add moderator to workgroup " do
       it "creates a new workgroup" do
         expect {
           post :create, {workgroup:  FactoryGirl.attributes_for(:workgroup)}
@@ -166,6 +166,64 @@ RSpec.describe WorkgroupsController, :type => :controller do
       end 
     end
   end
+  
+  describe "destroy_member_workgroup # GET" do 
+  
+     let(:valid_member_workgroup_attributes) {
+    {name: "ROR Team", description:"ROR", admin_id: 1}
+    }
+    
+    context "Destroying member in workgroup" do
+      it "creates a new workgroup" do
+        expect {
+          post :create, {workgroup:  FactoryGirl.attributes_for(:workgroup)}
+        }.to change(Workgroup, :count).by(1)
+      end 
+      
+      it "redirects to the workgroups index" do
+         post :create, {workgroup:  FactoryGirl.attributes_for(:workgroup)}
+         expect(response).to redirect_to(workgroups_path)
+      end
+      
+      it "Adds the employee as member to the workgroup" do
+      workgroup = Workgroup.create!(valid_workgroup_attributes) 
+         get :add_members, {id: workgroup.id}    
+      end 
+      
+      it "destroys the requested member" do 
+      expect{ delete :destroy_member, {id: employee_id}}
+      end    
+    end 
+ end
+  
+  describe "destroy_moderator_workgroup # GET" do 
+  
+     let(:valid_member_workgroup_attributes) {
+    {name: "ROR Team", description:"ROR", admin_id: 1}
+    }
+    
+    context "Destroying moderator in workgroup" do
+      it "creates a new workgroup" do
+        expect {
+          post :create, {workgroup:  FactoryGirl.attributes_for(:workgroup)}
+        }.to change(Workgroup, :count).by(1)
+      end 
+      
+      it "redirects to the workgroups index" do
+         post :create, {workgroup:  FactoryGirl.attributes_for(:workgroup)}
+         expect(response).to redirect_to(workgroups_path)
+      end
+      
+      it "Adds the employee as member to the workgroup" do
+      workgroup = Workgroup.create!(valid_workgroup_attributes) 
+         get :add_members, {id: workgroup.id}    
+      end 
+      
+      it "destroys the requested moderator" do 
+      expect{ delete :destroy_member, {id: employee_id}}
+      end    
+    end 
+ end
 
   
 end

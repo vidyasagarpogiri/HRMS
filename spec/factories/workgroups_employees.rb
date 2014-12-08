@@ -3,7 +3,7 @@ FactoryGirl.define do
     w.employee_id 1
     w.workgroup_id 1
     w.is_moderator false
-    w.association :workgroup, factory: :workgroup
+    #w.association :workgroup, factory: :workgroup
   end
 
 end
