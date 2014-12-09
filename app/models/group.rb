@@ -4,5 +4,7 @@ class Group < ActiveRecord::Base
   has_many :holiday_calenders
   has_many :events, :through => :holiday_calenders
   
+  has_many :amzur_events, as: :eventable
+  
 
 end

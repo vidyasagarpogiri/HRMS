@@ -7,6 +7,9 @@ class Department < ActiveRecord::Base
   has_many :roles
   has_many :appraisal_cycles
   has_many :appraisals
+  
+  
+  has_many :amzur_events, as: :eventable
   #TODO since there is a problem in relation with employ and department i have commented this - vidyasagar
   #has_many :employees, :through => :reporting_managers
   
