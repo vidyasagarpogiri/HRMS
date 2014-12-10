@@ -5,7 +5,7 @@
         <div class="content">
           <div class="module">
             <div class="module-head">
-              <h3>Event Details</h3>
+              <h3>Event Form</h3>
             </div>
             <div class="module-body">
               <%= form_for @amzurevent, :html => {:class=>"form-horizontal row-fluid event_form"} do |f| %>
@@ -41,9 +41,9 @@
               
               
               
+               <div class="control-group">
               
-              
-              
+              <div class="controls">
               <div id ="departments">             
                 <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name"), prompt: "Please Select" %>
               </div>
@@ -57,13 +57,16 @@
                   <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name"), prompt: "Please Select" %>
               </div>
               
+               </div>
               
+              </div>
               
-              
-              
-              
-              
-                       
+              <div class="control-group">
+                <label class="control-label" for="amzur_event_held_on">Select to Send Mail  </label>
+                <div class="controls">
+              <%= f.check_box :is_send_mail %>
+                </div>
+              </div>        
               <div class="control-group">
                 <label class="control-label" for="amzur_event_held_on">Event Date </label>
                 <div class="controls">
