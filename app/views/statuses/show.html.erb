@@ -36,14 +36,24 @@
 					    <h5>Comments (<%= @status.comments.count %>)  , 
 					    <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Likes List</button>
 					    <%= 'Likes' %>
-					    (<%= @status.likes_count %>), <%#raise @status.likes.second.employee.inspect %>   
+					    (<%= @status.likes_count %>),   
                 <% if @status.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
                   <%= link_to 'UnLike', remove_like_status_path(@status.id, :employee_id => current_user.employee), :method => "post" %> </span>  </h5>
                 <% else %> 
                   <%= link_to 'Like', add_like_status_path(@status.id, :employee_id => current_user.employee), :method => "post" %></span> 
                   , <%= time_ago_in_words(@status.created_at)%> ago </h5>
                 <% end %>
-            </div>
+           </div>
+            
+           <% if current_user.employee.id == @status.employee.id %><br><br>
+                      <ul class="navigation-btns">        
+                        <li>
+                          <label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-trash"></i></a>
+                            <%= link_to "Delete", status_path(@status.id), method: :delete, data: {confirm: "Are You sure?"} %>
+                          </label>
+                        </li>
+                      </ul>
+                    <% end %>             
            </div><hr>
            
 					 <h5>
@@ -77,9 +87,18 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
     <h4 class="modal-title" id="myModalLabel">Likes List</h4>
-      <%# @employees.each do |emp| %> 
-					 <%# emp.first_name %> <br>
-					  <%# end %>
+     <% if @employees.present? %>
+      <% @employees.each do |emp| %> 
+					 <%= emp.first_name %> <br>
+					  <% end %>
+		 <%else%>
+		   <div class="module-body">                                           
+         <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                No Employees to display.
+         </div>
+       </div>
+     <%end%>
 					  <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> 
       </div>
