@@ -1,5 +1,6 @@
 # This model belongs to workgroup # Author: Vidya Sagar Pogiri
 class Workgroup < ActiveRecord::Base
+
   
    has_many :amzur_events, as: :eventable
    has_many :announcements, as: :announceable
@@ -12,6 +13,7 @@ class Workgroup < ActiveRecord::Base
    validates :admin_id, presence: true
    # to get admin name of workgroup
    def admin_name
+
     Employee.find(admin_id).full_name
-   end
+  end
 end
