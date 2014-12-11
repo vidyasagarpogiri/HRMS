@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
       feature = Feature.where(controller: controller, action: action)
       role = Role.where(:department_id => current_user.employee.department_id, :designation_id => current_user.employee.designation_id).first
       if Package.where(feature_id: feature, role_id: role).present?
-        role.features.map(&:action)
+        role.features.where(controller: controller).map(&:action)
       end
     end
 end

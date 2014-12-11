@@ -8,19 +8,12 @@ class PoliciesController < ApplicationController
       unless actions.present?
         render :text => "You Don`t Have Permission"
       else
-        if actions.include?("edit")
-          @edit_permission = true 
-        end 
-        
-        if actions.include?("new")
-          @new_permission = true 
-        end 
-        
-        if actions.include?("delete")
-          @delete_permission = true
-        end  
+        @edit_permission = true if actions.include?("edit")
+        @new_permission = true if actions.include?("new")
+        @delete_permission = true  if actions.include?("delete")
       end
-   end
+      
+  end
    
   
    
