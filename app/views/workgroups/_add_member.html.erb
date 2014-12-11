@@ -14,6 +14,7 @@
 			</div>         
 		 </div>  		     		 
       <ul class="navigation-btns">                    
-			<button type="submit" class="btn btn-success pull-left">Add Member</button></ul>
+			<button type="submit" class="btn btn-success pull-left">Add Member</button> &nbsp;&nbsp;&nbsp;
+			<%= link_to "Cancel", workgroup_path(@workgroup.id),:class => "btn btn-danger" %> </ul>
 	  </div>										
   <% end %>

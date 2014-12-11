@@ -96,7 +96,7 @@ class WorkgroupsController < ApplicationController
   def get_employees
     @workgroup = Workgroup.find(params[:id])
     workgroup_employees = @workgroup.employees 
-    total_employees = Employee.where(status: false)
+    total_employees = Employee.where(status: false) - [Employee.find(@workgroup.admin_id)]
     employees = total_employees - workgroup_employees
     json_data = []
     employees.each do|val|
