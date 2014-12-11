@@ -4,6 +4,10 @@ class WorkgroupsController < ApplicationController
   def index
     @workgroups = Workgroup.all.page(params[:page]).per(6)  
     @employee = current_user.employee
+    respond_to do |format|
+      format.html
+      format.json { render json: @workgroups }
+    end
   end
   
   def new
