@@ -40,8 +40,14 @@
              </div>
                                                
              <div class="control-group span8">
-               <label class="control-label" for="basicinput"> <strong> <%= p.tags %></strong></label>                
-             </div>
+               <label class="control-label" for="basicinput"> 
+             <p class="pull-left">
+                <% p.tags.split(",").each do|tag| %>
+                  <span class="label label-info"><i class=" icon-tag"></i> <%=  tag %></span>
+                <% end %>
+              </p></label>
+              </div>
+             
              <div class="control-group span4">
                <label class="control-label" for="basicinput"><i>by:</i> <strong><%= p.employee.full_name %></strong> &nbsp; on <strong> <%= format_date(p.created_at) %></strong></label> 
             </div> 
