@@ -67,7 +67,6 @@ class LeaveHistoriesController < ApplicationController
   end
   
   def update
-  raise params.inspect
    @leave_history = LeaveHistory.find(params[:id])
    if params[:leave_history][:is_halfday] == "full_day"
     @leave_history.update(params_leave_history)
