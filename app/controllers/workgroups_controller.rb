@@ -4,6 +4,10 @@ class WorkgroupsController < ApplicationController
   def index
     @workgroups = Workgroup.all.page(params[:page]).per(6)  
     @employee = current_user.employee
+    respond_to do |format|
+      format.html
+      format.json { render json: @workgroups }
+    end
   end
   
   def new
@@ -22,7 +26,6 @@ class WorkgroupsController < ApplicationController
   def show
     @workgroup = Workgroup.find(params[:id])
     @admin = Employee.find_by(:employee_id => @workgroup.admin_id )
-    #raise @admin.first_name.inspect
     @employees = @workgroup.employees
     @employee = current_user.employee
   end
@@ -49,10 +52,8 @@ class WorkgroupsController < ApplicationController
   def add_members
     @workgroup = Workgroup.find(params[:id])
     @employee_id = @workgroup.admin_id
-    #raise @employee_id.inspect
     @employees = Employee.all
     #@employee_ids = WorkgroupsEmployee.where(workgroup_id: @workgroup.id).pluck(:employee_id)
-    #raise @employee_ids.inspect
   end
   
    def add_moderator
@@ -77,7 +78,6 @@ class WorkgroupsController < ApplicationController
         params[:employee_ids].each do |emp| 
         employee = Employee.find(emp)
         employee_workgroup = WorkgroupsEmployee.where(employee_id: emp, workgroup_id: @workgroup.id).each do |empwor|
-        #raise employee_workgroup.inspect
         empwor.update(is_moderator: true)
         end 
     end
@@ -86,12 +86,9 @@ class WorkgroupsController < ApplicationController
   end
   
   def destroy_member
-    #raise params.inspect
     @workgroup = Workgroup.find(params[:id])
     @employee = Employee.find(params[:employee_id])
-    #WorkgroupsEmployee.last.id
     @selectedemployee = WorkgroupsEmployee.find_by(workgroup_id: @workgroup.id ,employee_id: @employee.id)
-    #raise @selectedemployee.inspect
     @selectedemployee.destroy
     redirect_to @workgroup
   end

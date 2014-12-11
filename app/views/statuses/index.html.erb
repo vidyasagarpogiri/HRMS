@@ -23,7 +23,7 @@
                         <% if s.employee.gender == "Female" %>
                           <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
                         <% else %>
-                          <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+                          <%= image_tag("user.png", :width => "60px", :height => "60px") %> 
                         <% end %>
                       <% end %>
                     </div>
@@ -66,14 +66,18 @@
                       <% if s.comments.count > 3 %>
                         <%=link_to "Show Previous Comments", status_path(s.id) %>
                           <% else %>
-                      <%end %><hr>
+                      <%end %><hr> 
                      <% s.comments.limit(3).each do |comm| %> 
-                      <p><% if comm.employee.gender == "Female" %>
+                       <% if comm.employee.avatar_url.present? %> 
+                            <%= image_tag(comm.employee.avatar_url,size: "60x20") %>
+                          <% else %>
+                             <% if comm.employee.gender == "Female" %>
                             <%= image_tag("1.jpg", :style => "width:20px;height:20px;") %> 
                          <% else %>
-                            <%= link_to image_tag(comm.employee.avatar_url,size: "30x30") %> 
+                            <%= image_tag("user.png", size: "30x30") %> 
                          <% end %> 
-                          <b> 
+                         <% end %>
+                          <b>   
                             <%= comm.employee.full_name %> 
                           </b>
                             <%=comm.comment %>

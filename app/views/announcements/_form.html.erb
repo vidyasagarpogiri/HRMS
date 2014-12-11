@@ -5,7 +5,7 @@
 		    <div class="content">
 			    <div class="module">
 				    <div class="module-head">
-					    <h3>Announcement Details</h3>
+					    <h3>Announcement Form</h3>
 						</div>
 				    <div class="module-body">						
               <%= form_for @announcement,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>				
@@ -22,7 +22,55 @@
 								  <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter Announcement  Description"}, :required => true,:style => "margin: 0px 0px 10px; width: 640px; height: 221px;" %>
 								  <span class="help-block with-errors"></span>   
 								</div>
-							</div>							
+							</div>
+							
+							
+							
+							<div class="control-group">
+              <label class="control-label" for="announcement_title">Select </label>
+              <div class="controls">
+              <select  name="announceable_type" multiple="multiple" class="announcement">
+                <option value="all">All</option>
+                <option value="Department">Department</option>
+                <option value="Group">Group</option>
+                <option value="Workgroup">WorkGroup</option>
+              </select>
+              </div> 
+              </div>
+              
+              
+              
+              
+              
+               <div class="control-group">
+              
+              <div class="controls">
+              <div id ="departments">             
+                <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name"), prompt: "Please Select" %>
+              </div>
+              
+              <div id="groups">
+                  <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name"), prompt: "Please Select" %>
+                  
+              </div>
+              
+              <div id="workgroups">
+                  <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name"), prompt: "Please Select" %>
+              </div>
+              
+               </div>
+              
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label" for="amzur_event_held_on">Select to Send Mail </label>
+                <div class="controls">
+              <%= f.check_box :is_send_mail %>
+                </div>
+              </div> 
+              
+							
+														
 						 <ul class="navigation-btns editthree" >
 							  <li><button type="submit" class="btn btn-success">Save</button></li>
 							  <li><%= link_to "Cancel", announcements_path,:class => "btn btn-danger" %></li>
@@ -37,4 +85,61 @@
 </div><!--/.wrapper-->
 	
 
+
+
+<script>
+    $(function() {
+    $(".event_form").validator();
+});
+</script> 
+<script>
+ $(".date-picker").datepicker({
+         dateFormat: 'dd/mm/yy',
+         changeMonth: true,
+         changeYear: true,
+          minDate: -0,
+         yearRange: "+0:+1",         
+     });
+</script>
+
+
+
+<script>
+  $(function(){
+          $("#departments").hide();
+          $("#groups").hide();
+          $("#workgroups").hide();
+  
+  $(".announcement").change(function () {
+    var str = $( ".announcement" ).val();  
+    console.log(str);
+    switch (str[0]) { 
+    case 'Group': 
+           console.log(str);
+          $("#departments").hide();
+          $("#groups").show();
+          $("#workgroups").hide();
+        break;
+    case 'Department':
+    console.log(str); 
+        $("#departments").show();
+          $("#groups").hide();
+          $("#workgroups").hide();
+        break;
+    case 'Workgroup': 
+    console.log(str);
+        $("#departments").hide();
+          $("#groups").hide();
+          $("#workgroups").show();
+        break;      
+    case 'all': 
+    console.log(str);
+         $("#departments").hide();
+          $("#groups").hide();
+          $("#workgroups").hide();
+    }
+    
+  });
+});
+</script>
 

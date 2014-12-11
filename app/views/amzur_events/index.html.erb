@@ -5,16 +5,16 @@
         <div class="content">
           <div class="module">
             <div class="module-head">
-				      <h3>Events Details</h3>
+				      <h3>Events Created By Me</h3>
 				      
 				      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add Event',  new_amzur_event_path %></label>
 				     
 		        </div>			
 			      <div class="module-body">
-		          <% if @amzurevent.present? %>    
-              <% @amzurevent.each do |amzurevent| %>
+		          <% if @empevents.present? %>    
+              <% @empevents.each do |amzurevent| %>
               <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
-              <% if current_user.department == Department::HR %>         
+              <% if current_user.employee.id                                                                                                                        == amzurevent.employee_id %>         
                 <ul class="navigation-btns pull-right" style="margin-top:-20px">
                   <li><%= link_to 'Edit', edit_amzur_event_path(amzurevent), :class => "btn btn-success " %></li>
                   <li><%= link_to "Delete", amzur_event_path(amzurevent.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
@@ -33,6 +33,84 @@
             <% end %> 
             <%= paginate  @amzurevent %>     	           
 						</div><!--/.module-body-->
+						
+						
+						
+						   <div class="module-head">
+				          <h3>My Department Events</h3>
+		           </div>
+		           
+		            <div class="module-body">
+		          <% if @empevents.present? %>    
+              <% @emp_dept_events.each do |amzurevent| %>
+              <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
+                          
+              <label class="desc">
+                <%= raw amzurevent.description %>
+              </label>              
+              <%= link_to "Continue..", amzur_event_path(amzurevent), :class => "pt4" %><br><hr>                       
+              <% end %>
+              <% else %>     
+              <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    No Events to display.
+              </div>
+            <% end %> 
+            <%= paginate  @amzurevent %>     	           
+						</div><!--/.module-body-->
+						
+						
+						
+						   <div class="module-head">
+				          <h3>My Group Events</h3>
+		           </div>
+		           
+		            <div class="module-body">
+		          <% if @empevents.present? %>    
+              <% @emp_group_events.each do |amzurevent| %>
+              <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
+                          
+              <label class="desc">
+                <%= raw amzurevent.description %>
+              </label>              
+              <%= link_to "Continue..", amzur_event_path(amzurevent), :class => "pt4" %><br><hr>                       
+              <% end %>
+              <% else %>     
+              <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    No Events to display.
+              </div>
+            <% end %> 
+            <%= paginate  @amzurevent %>     	           
+						</div><!--/.module-body-->
+						
+						
+						
+						
+						   <div class="module-head">
+				          <h3>My WorkGroup Events</h3>
+		           </div>
+		           
+		            <div class="module-body">
+		          <% if @empevents.present? %>    
+              <% @emp_workgroup_events.each do |amzurevent| %>
+              <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
+                          
+              <label class="desc">
+                <%= raw amzurevent.description %>
+              </label>              
+              <%= link_to "Continue..", amzur_event_path(amzurevent), :class => "pt4" %><br><hr>                       
+              <% end %>
+              <% else %>     
+              <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    No Events to display.
+              </div>
+            <% end %> 
+            <%= paginate  @amzurevent %>     	           
+						</div><!--/.module-body-->
+						
+						
 					</div><!--/.module-->
 				</div><!--/.content-->
 			</div><!--/.span12-->
