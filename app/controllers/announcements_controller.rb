@@ -4,6 +4,10 @@ before_action :find_announcement, only: [:edit, :update, :destroy]
  
   def index
    @announcements = Announcement.all.page(params[:page]).per(5)
+   
+  #@dept_announcemnets = current_user.employee.department.announcemnets
+  #@group_announcemnets = current_user.employee.group.announcemnets
+  #@workgroup_announcemnets =current_user.employee.workgroups.map(&:announcemnets).flatten
   end
   
   def new
