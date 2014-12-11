@@ -68,14 +68,21 @@ class CalendarsController < ApplicationController
     end          
   end         
  
-  def department_calendar
-    #@department = Department.find(params[:dept_id].to_i)   
-    @group_employees = Employee.where(:department_id => 2).pluck(:group_id).uniq
+  def department_calendar  
+    @employees = if params[:department].present? 
+      @department = Department.find(params[:department])
+      Employee.where(:department_id => params[:department] )
+    else
+      Employee.all
+    end
+    
+    @group_employees = @employees.pluck(:group_id).uniq 
+    
     @group_holiday_calender = HolidayCalender.where(:group_id => @group_employees).pluck(:event_id).uniq    
     @department_events = Event.where(:id => @group_holiday_calender)
-    #raise @department_events.inspect
      respond_to do |format| 
       format.html # reporting_manager_calendar.html.erb 
+      format.js
       format.json do 
         render :json => @department_events.map { |event| {:title => event.event_name, :start => event.event_date.to_date} }
       end

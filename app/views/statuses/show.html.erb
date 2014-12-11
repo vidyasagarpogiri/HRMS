@@ -33,10 +33,10 @@
                     
               
            <div class="span10">      
-					    <h5>Comments (<%= @status.comments.count %>)  , 
+					    <h5>Comments (<%= @status.comments.count %>) ,
 					    <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Likes List</button>
 					    <%= 'Likes' %>
-					    (<%= @status.likes_count %>),   
+					    (<%= @status.likes_count %>) . <%= time_ago_in_words(@status.created_at)%> ago    
                 <% if @status.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
                   <%= link_to 'UnLike', remove_like_status_path(@status.id, :employee_id => current_user.employee), :method => "post" %> </span>  </h5>
                 <% else %> 
