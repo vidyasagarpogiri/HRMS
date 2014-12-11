@@ -1,8 +1,30 @@
 class PoliciesController < ApplicationController
   
-   before_filter :hr_view,  only: ["new", "edit"]
+  before_filter :role_auth
+
   
- 
+  def role_auth
+    actions = role_based_auth(params[:controller], params[:action])
+      unless actions.present?
+        render :text => "You Don`t Have Permission"
+      else
+        if actions.include?("edit")
+          @edit_permission = true 
+        end 
+        
+        if actions.include?("new")
+          @new_permission = true 
+        end 
+        
+        if actions.include?("delete")
+          @delete_permission = true
+        end  
+      end
+   end
+   
+  
+   
+   public 
   
   def index
    @policies = Policy.all.page(params[:page]).per(4)
