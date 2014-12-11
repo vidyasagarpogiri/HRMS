@@ -38,7 +38,7 @@
 			            </th>           
 			            <th class="center">
 			              <% if em.id == @workgroup.admin_id %> 
-			                admin  
+			                Admin  
 			              <% elsif WorkgroupsEmployee.where(is_moderator: true, employee_id: em.id, workgroup_id: @workgroup.id).present? %>
 			                Moderator
 			              <% else %>
