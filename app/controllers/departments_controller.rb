@@ -5,6 +5,10 @@ class DepartmentsController < ApplicationController
 
   def index
     @departments = Department.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @departments }
+    end
   end
 
   def new
@@ -44,6 +48,8 @@ class DepartmentsController < ApplicationController
     @employee.update(:department_id => @department.id)
     redirect_to @department
   end
+  
+
 =begin
 code not required but for future use   
   def leaves

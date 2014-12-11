@@ -22,13 +22,11 @@ class StatusesController < ApplicationController
   end
 
   def add_like # like will be created on the selected status
-   # raise params.inspect
     @status = Status.find(params[:id])
     # @employee = current_user.employee
     @like = @status.likes.create(:employee_id => params[:employee_id])
     if (@status.likes_count == nil) 
      @status.update(:likes_count => 0)
-     #raise @post.likes_count.inspect
     end
     if @like
       @like.update is_like: true

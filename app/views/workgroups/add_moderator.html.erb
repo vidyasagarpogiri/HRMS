@@ -63,7 +63,11 @@
 		            </tbody>
                 </table>
 	            <% end %> <br>
-	              <%= submit_tag 'Submit', :class => "btn btn-success pull-right" %><br/><br/>
+	              <%= link_to 'Cancel', workgroup_path(@workgroup), :class => "btn btn-danger pull-right" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	              
+	              <%= submit_tag 'Submit', :class => "btn btn-success pull-right" %>
+	              <br/><br/>
+	            
             </div><!--module body-->
           </div><!--/.module -->
         </div><!--/.content-->
