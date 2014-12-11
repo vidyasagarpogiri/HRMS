@@ -104,7 +104,7 @@ class EmployeeAttendenceController < ApplicationController
         else
         TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day).map(&:date_time)
         end
-        @emp = EmployeeAttendence.create(employee_id: emp_rec.id, log_date: logDate, is_present: is_emp_present, total_working_hours: totalWorkingHours)
+        @emp = EmployeeAttendence.find_or_create_by(employee_id: emp_rec.id, log_date: logDate, is_present: is_emp_present, total_working_hours: totalWorkingHours)
           
           inOutTimingsArray.each do |inOutTime|
               if inFlag
@@ -119,7 +119,7 @@ class EmployeeAttendenceController < ApplicationController
                 totalWorkingHours += timeDiff[:hours]
                 inFlag = true
                 #EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: false)
-                EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, time:inOutTime , in_out: false)
+                emp_logs = EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, time:inOutTime , in_out: false)
                 emp_logs.employee_attendence_id = @emp.id
                 emp_logs.save
               end

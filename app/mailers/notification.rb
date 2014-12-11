@@ -3,7 +3,6 @@ class Notification < ActionMailer::Base
   default from: "from@example.com"
   
   def applyleave(employee, leave_history)
- 
    @employee = employee
    @leave_history = leave_history
    #raise @employee.reporting_manager.inspect

@@ -8,7 +8,4 @@ class Group < ActiveRecord::Base
   def reporting_manager_full_name
    reporting_manager.employee.full_name if reporting_manager.present?
   end
-  
-  
-  
 end

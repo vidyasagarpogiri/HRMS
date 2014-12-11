@@ -71,7 +71,7 @@ end
   
   def total_used_leaves(employee)
     a= employee.leave_histories.where(status: LeaveHistory::APPROVED).sum("days")
-    a.to_i
+    a.to_f
   end
   
  
@@ -407,13 +407,11 @@ end
   
   def deducted_allowances_total(payslip)
     allowance_deducted_total = 0.0
-    allowances = payslip.employee.salary.allowances
+    allowances = payslip.allowances.where(:is_deductable => true)
     allowances.each do |allowance|
-      if allowance.is_deductable
-        allowance_deducted_total += (allowance.allowance_value)/12
-      end
+        allowance_deducted_total += allowance.total_value
     end
-    allowance_deducted_total.round(2)
+    allowance_deducted_total
   end
   
   def value_deductable(allowance, emp_allowances)
