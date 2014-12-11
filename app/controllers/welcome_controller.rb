@@ -20,49 +20,38 @@ class WelcomeController < ApplicationController
     last_week = EmployeeAttendence.last.log_date 
     
     emp_rec = Employee.find_by_user_id(current_user.id)
-    @myattendence = EmployeeAttendence.where("log_date >? and log_date <= ? and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).where.not(:total_working_hours => 0.0).count.to_s
-    @sumofworkinghours = EmployeeAttendence.where("log_date >? and log_date <= ?  and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours).sum
-
-    week_working_hours_str = @sumofworkinghours.to_s.split(".")
-    week_working_hours_str = week_working_hours_str.split(".")[0]
-    week_working_hours_hrs = week_working_hours_str[0].to_f
-    week_working_hours_min = "#{week_working_hours_str[1]}".to_f
-
-    week_working_hours_hrs += (week_working_hours_min/60).to_i
-    week_working_hours_min = (week_working_hours_min.to_f%60).to_i
-        
-    week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
-    
-    @sumofworkinghours = "#{week_working_hours_hrs.to_i.to_s[0]}#{week_working_hours_hrs.to_i.to_s[1]}.#{week_working_hours_min}".to_f
-  
-    @working_days = TimeDifference.between(last_week, last_week.beginning_of_week).in_general[:days]
-    
-
-    #all_employees = Employee.where(shift_id: emp_rec.shift_id).map(&:devise_id)
-    
-    all_wk_days = TemporaryAttendenceLog.where(employee_id: emp_rec.devise_id).map(&:date_time)
-
-    all_wk_days = all_wk_days.collect {|x| x.to_date.to_datetime }
-    all_wk_days = all_wk_days.uniq
-    
-    i = 0
+    @myattendence = EmployeeAttendence.where("log_date >=? and log_date <= ? and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours)
+    working_days = 0
+    attended_days = 0
+    attended_on_weekends = 0
     (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
-      i+=1 if all_wk_days.include?(dat)
+    #raise (last_week.beginning_of_week.to_datetime..last_week.to_datetime).to_a.inspect
+      working_days += 1
+      if !EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id).empty?
+        attended_days += 1
+        attended_on_weekends += 1 if ["Sat","Sun"].include?dat.strftime("%a").to_s
+      end
     end
-    
-    @working_days = i
-    avg_week_working_hours_str = (@sumofworkinghours/@working_days).round(2)
-    
-    avg_week_working_hours_str = avg_week_working_hours_str.to_s.split(".")
-    avg_week_working_hours_hrs = avg_week_working_hours_str[0].to_f
-    avg_week_working_hours_min = "#{avg_week_working_hours_str[1]}".to_f
 
-    avg_week_working_hours_hrs += (avg_week_working_hours_min/60).to_i
-    avg_week_working_hours_min = (avg_week_working_hours_min.to_f%60)
-
-    avg_week_working_hours_min = avg_week_working_hours_min.to_s.length==1? "0#{avg_week_working_hours_min}" : "#{avg_week_working_hours_min}"
-          
-    @avg =  "#{avg_week_working_hours_hrs.to_i}.#{avg_week_working_hours_min.to_i}".to_f
+     case attended_on_weekends
+      when 0
+        working_days = 5
+      when 1
+        working_days = 6
+      when 2
+        working_days = 7
+     end
+     
+    @attended_days = attended_days
+    @working_days = working_days
+    
+    t = @myattendence.sum
+    mm, ss = t.divmod(60)
+    hh, mm = mm.divmod(60)
+  
+    @sumofworkinghours = "#{hh}hr #{mm}min"
+      
+    @avg =  "#{calculate_time_diff(@myattendence.sum/@working_days)}"
     
     end
    else
@@ -70,4 +59,13 @@ class WelcomeController < ApplicationController
    end
   end  
     
+  private 
+  def calculate_time_diff(time_in_min)  
+    t = time_in_min
+    mm, ss = t.divmod(60)
+    hh, mm = mm.divmod(60)
+    dd, hh = hh.divmod(24)
+    return 0 if (hh+mm+ss).to_i == 0
+    return "#{hh.to_i}hr #{mm.to_i}min" if (hh+mm+ss).to_i != 0 #[dd,hh, mm, ss]
+  end
 end

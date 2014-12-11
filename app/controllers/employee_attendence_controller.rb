@@ -12,15 +12,15 @@ class EmployeeAttendenceController < ApplicationController
   def attandence_ws
     last_week = EmployeeAttendence.last.log_date 
     last_week = EmployeeAttendence.last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?    
-    @employeeattendece = EmployeeAttendence.where("log_date >? and log_date < ?", last_week.beginning_of_week, last_week.end_of_week)
+    @employeeattendece = EmployeeAttendence.where("log_date >=? and log_date < ?", last_week.beginning_of_week, last_week.end_of_week)
     week_days = last_week.beginning_of_week
     attendance_hash = {"dt"=>{ "Mon"=>week_days.strftime("%d-%m-%Y"), "Tue"=>(week_days + 1.day).strftime("%d-%m-%Y"), "Wed"=>(week_days + 2.day).strftime("%d-%m-%Y"), "Thu"=>(week_days + 3.day).strftime("%d-%m-%Y"), "Fri"=>(week_days + 4.day).strftime("%d-%m-%Y"), "Sat"=>(week_days + 5.day).strftime("%d-%m-%Y"), "Sun"=>(week_days + 6.day).strftime("%d-%m-%Y")}} 
     @employeeattendece.each do|rec|
       if attendance_hash.has_key?(rec.employee_id.to_s)
-        attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.total_working_hours 
+        attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
       else
         attendance_hash[rec.employee_id.to_s] =  {"Mon" => 0, "Tue" => 0, "Wed" => 0, "Thu" => 0, "Fri" => 0, "Sat" => 0, "Sun" => 0} 
-        attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.total_working_hours 
+        attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
       end
     end
     respond_to do |format|
@@ -45,7 +45,7 @@ class EmployeeAttendenceController < ApplicationController
     end
     
     in_out_timings = @employee_attendence_logs.pluck("time, in_out")
-    in_out_timings = in_out_timings.collect { |dt| dt[0] = dt[0].strftime("%H:%M"); dt  }
+    in_out_timings = in_out_timings.collect { |dt| dt[0] = dt[0].strftime("%H:%M:%S"); dt  }
     in_out_timings_json = {}
     in_out_timings_json = {:logs=> in_out_timings, :dt=>[log_date]}
     respond_to do |format|
@@ -86,14 +86,11 @@ class EmployeeAttendenceController < ApplicationController
     @attendaceDates = @attendaceDates.uniq
 
     @employee_devise_ids = Employee.where(:status=>false).map(&:devise_id).compact.uniq
-    #@allUserIds.each do|deviceUserId|
     @employee_devise_ids.each do|deviceUserId|
       @attendaceDates.each do|logDate|
       
         inFlag = true
         inTime = 0
-        totalWorkingHours = 0
-        is_emp_present = false
         
         emp_rec = Employee.find_by_devise_id(deviceUserId)
         from_work_time = emp_rec.shift.from_time
@@ -104,35 +101,63 @@ class EmployeeAttendenceController < ApplicationController
         else
         TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day).map(&:date_time)
         end
-        @emp = EmployeeAttendence.find_or_create_by(employee_id: emp_rec.id, log_date: logDate, is_present: is_emp_present, total_working_hours: totalWorkingHours)
-          
+        
           inOutTimingsArray.each do |inOutTime|
               if inFlag
                 inTime = inOutTime
                 inFlag = false
-                #EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: true)
-                emp_logs = EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, time:inOutTime , in_out: true)
-                emp_logs.employee_attendence_id = @emp.id
-                emp_logs.save
+                EmployeeAttendenceLog.find_or_create_by(devise_id: deviceUserId, employee_id: emp_rec.id, time:inOutTime , in_out: true)
               else
-                timeDiff = TimeDifference.between(inTime, inOutTime).in_each_component
-                totalWorkingHours += timeDiff[:hours]
                 inFlag = true
-                #EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, employee_attendence_id: @emp.id, time:inOutTime , in_out: false)
-                emp_logs = EmployeeAttendenceLog.find_or_create_by(employee_id: emp_rec.id, time:inOutTime , in_out: false)
-                emp_logs.employee_attendence_id = @emp.id
-                emp_logs.save
+                EmployeeAttendenceLog.find_or_create_by(devise_id: deviceUserId, employee_id: emp_rec.id, time:inOutTime , in_out: false)
               end
           end
-          is_emp_present = true if totalWorkingHours!=0
-          totalWorkingHours_str = totalWorkingHours.to_s.split(".")
-          totalWorkingHours_hrs = totalWorkingHours_str[0]
-          totalWorkingHours_min = "0.#{totalWorkingHours_str[1]}".to_f.minutes.to_i
-          @emp.is_present, @emp.total_working_hours = is_emp_present, "#{totalWorkingHours_hrs}.#{totalWorkingHours_min}".to_f
-          @emp.save
-        #puts totalWorkingHours
       end
     end
+    
+    @employee_devise_ids.each do|deviceUserId|
+      @attendaceDates.each do|logDate|
+        emp_rec = Employee.find_by_devise_id(deviceUserId)
+        from_work_time = emp_rec.shift.from_time
+        to_work_time = emp_rec.shift.to_time
+        
+        employeeAttendenceLogs =  if(from_work_time > to_work_time)
+        EmployeeAttendenceLog.where("devise_id=? and employee_id = ? and time >= ? and time < ?", deviceUserId, emp_rec.id, logDate.to_datetime.at_noon, logDate.to_datetime.tomorrow.at_noon)
+        else
+        EmployeeAttendenceLog.where("devise_id=? and employee_id = ? and time >= ? and time < ?", deviceUserId, emp_rec.id, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day)
+        end
+
+#        raise worked_hours.inspect
+
+        totalWorkingHours = 0.0
+        is_emp_present = false
+        
+        worked_hours = employeeAttendenceLogs.map(&:time)
+        worked_hours.each_with_index do|w_hr, index|
+          break if worked_hours.count == index+1
+          if index.even?
+            totalWorkingHours += worked_hours[index+1] - worked_hours[index]
+          end
+        end
+#        raise totalWorkingHours.inspect
+        
+        is_emp_present = true if totalWorkingHours.to_f != 0.0 
+        
+        @empAttendence = if EmployeeAttendence.where(employee_id: emp_rec.id, log_date: logDate.to_date).empty?
+         EmployeeAttendence.create(employee_id: emp_rec.id, log_date: logDate)
+        else
+         EmployeeAttendence.where(employee_id: emp_rec.id, log_date: logDate.to_date).first
+        end
+        
+        @empAttendence.is_present = is_emp_present
+        @empAttendence.total_working_hours = totalWorkingHours
+        @empAttendence.save 
+        
+        employeeAttendenceLogs.update_all(employee_attendence_id: @empAttendence.id)
+        
+      end
+    end  
+      
     redirect_to "/employee_attendence/show_attendance"
   end
   
@@ -144,27 +169,15 @@ class EmployeeAttendenceController < ApplicationController
     last_week = EmployeeAttendence.where(:employee_id=>current_user.employee.id).last.log_date
     
     last_week = EmployeeAttendence.where(:employee_id=>current_user.employee.id).last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?
-    
-   # @employeeattendece = EmployeeAttendenceLog.where("time >? and time < ? and employee_id = ? ", last_week.beginning_of_week, last_week.end_of_week,  current_user.employee.id)
          
     complete_week = last_week.beginning_of_week
     attendance_hash = {"Mon" => {:total_hrs=>0, :logs=>[], :dt=>complete_week.strftime("%d-%m-%Y")}, "Tue" => {:total_hrs=>0, :logs=>[], :dt=>( complete_week + 1.day).strftime("%d-%m-%Y")}, "Wed" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 2.day).strftime("%d-%m-%Y")}, "Thu" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 3.day).strftime("%d-%m-%Y")}, "Fri" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week+ 4.day).strftime("%d-%m-%Y")}, "Sat" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 5.day).strftime("%d-%m-%Y")}, "Sun" => {:total_hrs=>0, :logs=>[], :dt=>(complete_week + 6.day).strftime("%d-%m-%Y")}}      
- 
-=begin   
-    @employeeattendece.each do|logs|
-      lg ="out"
-      lg ="in" if logs.in_out
-      attendance_hash[logs.time.strftime("%a").to_s][:logs] << "#{logs.time.strftime("%H:%M")} #{lg}"
-      attendance_hash[logs.time.strftime("%a").to_s][:total_hrs] = EmployeeAttendence.where(:employee_id=>current_user.id, :log_date=>logs.time.strftime("%Y-%m-%d")).first.total_working_hours
-    end
-=end
 
-#---------------         
     emp_rec = Employee.find_by_user_id(current_user.id)
     from_work_time = emp_rec.shift.from_time
     to_work_time = emp_rec.shift.to_time
-    week_working_hours = 0.0
-
+    week_working_hours = []
+      
     (0..6).each do|days|
       w_day = complete_week + days.day
       
@@ -177,93 +190,59 @@ class EmployeeAttendenceController < ApplicationController
       @emp_employeeattendece.each do|logs|
         lg ="out"
         lg ="in" if logs.in_out
-        attendance_hash[w_day.strftime("%a").to_s][:logs] << "#{logs.time.strftime("%H:%M")} #{lg}"
-        attendance_hash[w_day.strftime("%a").to_s][:total_hrs] = EmployeeAttendence.where(:employee_id=>emp_rec.id, :log_date=>w_day.strftime("%Y-%m-%d")).first.total_working_hours
+        attendance_hash[w_day.strftime("%a").to_s][:logs] << "#{logs.time.strftime("%H:%M:%S")} #{lg}"
       end
       
-      week_working_hours_str = attendance_hash[w_day.strftime("%a").to_s][:total_hrs].to_s.split(".")
-      #week_working_hours_hrs = week_working_hours_str[0]
-      week_working_hours_hrs = week_working_hours_str[0].to_f
-      #week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f.minutes.to_i.to_s
-      week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f
-      week_working_hours_hrs += week_working_hours_min % 60
-      week_working_hours_min = week_working_hours_min / 60
+        emp_att = EmployeeAttendence.where(:employee_id=>emp_rec.id, :log_date=>w_day.strftime("%Y-%m-%d"))
+        if emp_att.first.present?
+          attendance_hash[w_day.strftime("%a").to_s][:total_hrs] = calculate_time_diff(EmployeeAttendence.where(:employee_id=>emp_rec.id, :log_date=>w_day.strftime("%Y-%m-%d")).first.total_working_hours)
+          week_working_hours << EmployeeAttendence.where(:employee_id=>emp_rec.id, :log_date=>w_day.strftime("%Y-%m-%d")).first.total_working_hours
+        end
+      end      
       
-      week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
-      
-      attendance_hash[w_day.strftime("%a").to_s][:total_hrs] = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
-    
-      
-    end
-    
-      attendance_hash.each do|wrk_day, wrk_hrs|
-        week_working_hours +=wrk_hrs[:total_hrs]
+      working_days = 0
+      attended_days = 0
+      attended_on_weekends = 0
+      (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
+      #raise (last_week.beginning_of_week.to_datetime..last_week.to_datetime).to_a.inspect
+        working_days += 1
+        if !EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id).empty?
+          attended_days += 1
+          attended_on_weekends += 1 if ["Sat","Sun"].include?dat.strftime("%a").to_s
+        end
       end
-          working_days = TimeDifference.between(last_week, last_week.beginning_of_week).in_general[:days]
+
+       case attended_on_weekends
+        when 0
+          working_days = 5
+        when 1
+          working_days = 6
+        when 2
+          working_days = 7
+       end
       
-          week_working_hours_str = week_working_hours.to_s.split(".")
-          week_working_hours_hrs = week_working_hours_str[0]
-          week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f.minutes.to_i.to_s
-          
-          week_working_hours_min = week_working_hours_min.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
+      attendance_hash_json = {}
+      attendance_hash_json[:week_data] = attendance_hash
+
+      t = week_working_hours.sum
+      mm, ss = t.divmod(60)
+      hh, mm = mm.divmod(60)
       
-          attendance_hash_json = {}
-          attendance_hash_json[:week_data] = attendance_hash
-          
-          sumofworkinghours = EmployeeAttendence.where("log_date >=? and log_date <= ?  and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours).sum
-          
-          week_working_hours_str = sumofworkinghours.to_s.split(".")
-          #week_working_hours_hrs = week_working_hours_str[0]
-          week_working_hours_str = week_working_hours_str.split(".")[0]
-          week_working_hours_hrs = week_working_hours_str[0].to_f
-          #week_working_hours_min = "0.#{week_working_hours_str[1]}".to_f.minutes.to_i.to_s
-          week_working_hours_min = "#{week_working_hours_str[1]}".to_f
+      attendance_hash_json[:total_week_hours] = "#{hh}hr #{mm}min"
+      attendance_hash_json[:avg_week_hours] =   calculate_time_diff(week_working_hours.sum / working_days)
 
-          week_working_hours_hrs += (week_working_hours_min/60).to_i
-          week_working_hours_min = (week_working_hours_min.to_f%60).to_i
-          
-          week_working_hours_min = week_working_hours_min.to_s.length==1? "0#{week_working_hours_min}" : "#{week_working_hours_min}" 
-          
-          sumofworkinghours ="#{week_working_hours_hrs.to_i.to_s[0]}#{week_working_hours_hrs.to_i.to_s[1]}.#{week_working_hours_min}".to_f
-                    #raise sumofworkinghours.inspect
-          #attendance_hash_json[:total_week_hours] = "#{week_working_hours_hrs}.#{week_working_hours_min}".to_f
-          attendance_hash_json[:total_week_hours] = sumofworkinghours.round(2)
-          
-          
-          #all_employees = Employee.where(shift_id: emp_rec.shift_id).map(&:devise_id)
-    
-          #all_wk_days = TemporaryAttendenceLog.where(employee_id: all_employees).map(&:date_time)
-          all_wk_days = TemporaryAttendenceLog.where(employee_id: emp_rec.devise_id).map(&:date_time)
-
-          all_wk_days = all_wk_days.collect {|x| x.to_date.to_datetime }
-          all_wk_days = all_wk_days.uniq
-          
-          i=0
-          (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
-            i+=1 if all_wk_days.include?(dat)
-          end
-          
-          working_days = i
-          
-          avg_week_working_hours_str = ( sumofworkinghours / working_days.to_f).round(2)
-          
-          avg_week_working_hours_str = avg_week_working_hours_str.to_s.split(".")
-          avg_week_working_hours_hrs = avg_week_working_hours_str[0].to_f
-          avg_week_working_hours_min = "#{avg_week_working_hours_str[1]}".to_f
-
-          avg_week_working_hours_hrs += (avg_week_working_hours_min/60).to_i
-          avg_week_working_hours_min = (avg_week_working_hours_min.to_f%60)
-
-          avg_week_working_hours_min = avg_week_working_hours_min.to_s.length==1? "0#{avg_week_working_hours_min}" : "#{avg_week_working_hours_min}"
-          
-          attendance_hash_json[:avg_week_hours] =  "#{avg_week_working_hours_hrs.to_i}.#{avg_week_working_hours_min.to_i}".to_f
-          
-          
-#--------------------    
-    
-    respond_to do |format|
-      format.json { render json: attendance_hash_json }
-    end
-  
+      respond_to do |format|
+       format.json { render json: attendance_hash_json }
+      end
   end  
+  
+  private 
+  def calculate_time_diff(time_in_min)  
+    t = time_in_min
+    mm, ss = t.divmod(60)
+    hh, mm = mm.divmod(60)
+    dd, hh = hh.divmod(24)
+    return 0 if (hh+mm+ss).to_i == 0
+    return "#{hh.to_i}hr #{mm.to_i}min" if (hh+mm+ss).to_i != 0 #[dd,hh, mm, ss]
+  end
 end

@@ -2,10 +2,10 @@
 
 			 <div class="module">
 				  <div class="module-head">
-           <h3> New Leave Policy For : <%= @department.department_name %></h3>
+           <h3> New Leave Policy For : <%= @group.group_name %></h3>
          </div>                      
          <div class="module-body">
-          <%= form_for ([@department, @leave_policy]), :html => {:class=>"form-horizontal row-fluid edit-leave_policy-form"}, :remote => true do |f| %> 
+          <%= form_for ([@group, @leave_policy]), :html => {:class=>"form-horizontal row-fluid edit-leave_policy-form"}, :remote => true do |f| %> 
             <div class="control-group">   
 							 <label class="control-label" for="basicinput">Leaves per Month</label>
                   <div class="controls">
