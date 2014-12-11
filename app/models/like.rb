@@ -1,5 +1,6 @@
 # This model is for status like # Author: Vidya Sagar Pogiri
 class Like < ActiveRecord::Base
+  # like belongs to status,posts,photos so polymorphic relation
   belongs_to :likeable, polymorphic: true
   belongs_to :employee # like will be liked by employee
   belongs_to :status # status will have a like
