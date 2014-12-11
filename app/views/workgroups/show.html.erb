@@ -27,8 +27,7 @@
 		            <tr>
 			            <th class="center">Employee Name</th>
 			            <th>Role </th>
-			            <th> Actions </th>
-			            
+			            <th> Actions </th>        
 			          </tr>
 	            </thead>
 	             <% @employees.each do |em| %> 
@@ -50,10 +49,9 @@
 			            <% unless em.id == @workgroup.admin_id %>
 			             <% if current_user.employee.id == @workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: @workgroup.id ).present? %>
 			             <%= link_to "Delete",destroy_member_workgroup_path(@workgroup.id,em.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger "%>  
-			            <% else %>
-			                       
+			            <% else %>          
 			            <% end %>
-			           <% end %>
+			            <% end %>
 			            </th>
 			        </tr>
               <% end %>

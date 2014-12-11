@@ -1,32 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <!-- Hide this line for IE (needed for Firefox and others) -->
-  <![if !IE]>
-  <link rel="icon" href="/assets/favicon.jpg" type="image/x-icon" />
-  <![endif]>
-  <!-- This is needed for IE -->
-  <link rel="shortcut icon" href="/assets/favicon.jpg" />
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>AmzurHRM</title>
-
-  <!-- css for slick-->
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.15/slick.css"/>
-  <!-- Bootstrap Core CSS -->
-
-
-
-
-  
-  <!--script for loading ------
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
- <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <head>
+    <!-- Hide this line for IE (needed for Firefox and others) -->
+    <![if !IE]>
+      <link rel="icon" href="/assets/favicon.jpg" type="image/x-icon" />
+    <![endif]>
+    <!-- This is needed for IE -->
+    <link rel="shortcut icon" href="/assets/favicon.jpg" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>AmzurHRM</title>
+    <!-- css for slick-->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.15/slick.css"/>
+    <!-- Bootstrap Core CSS -->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application' %>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
   
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,18 +28,24 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
- <%= csrf_meta_tags %>
-</head>
+    <%= csrf_meta_tags %>
+  </head>
 
-
-<html>
-  <head>
-    
-
-    </head>
   <body>
-  <div class="wrapper">
-  <%= yield %>
-</div>
+    <%= render "shared/ui_header"%>
+      <div class="wrapper">
+		    <div class="container">
+		      <h3>Select Department: </h3>
+          <%= form_tag('/organization', method: :get, remote: true) do %>
+            <%= select_tag "department", options_from_collection_for_select(Department.all, "id", "department_name"), class: "department-id", :prompt=>"Organization" %>
+          <% end %>
+		    </div>
+        <%= yield %>
+    </div>
+    <div class="footer">
+		  <div class="container">			 
+			  <b class="copyright">&copy; 2014 AmzurHRM - amzur.com </b> All rights reserved.
+			</div>
+	  </div>
   </body>
 </html>

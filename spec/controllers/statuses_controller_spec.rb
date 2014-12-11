@@ -189,8 +189,7 @@ RSpec.describe StatusesController, :type => :controller do
        }
         end
       end
-    end
-    
+    end   
       
 end
 
