@@ -1,6 +1,6 @@
 class AmzurEventsController < ApplicationController
 
-  before_filter :hr_view,  only: ["new", "edit"]
+  #before_filter :hr_view,  only: ["new", "edit"]
   before_action :find_event, only: [:edit, :show, :update, :destroy]
   
   def index
@@ -12,11 +12,11 @@ class AmzurEventsController < ApplicationController
   end
   
   def create
-   @amzurevent = AmzurEvent.new(amzurevent_params)
+   @amzurevent = current_user.employee.amzur_events.new(amzurevent_params)
    @users = User.all
    if @amzurevent.save
     Employee.where(status: false).each do |emp|
-    Notification.delay.event_notification(emp.user,@amzurevent)
+    #Notification.delay.event_notification(emp.user,@amzurevent)
     end
     redirect_to amzur_events_path
    else
@@ -29,7 +29,8 @@ class AmzurEventsController < ApplicationController
   end
   
   def show
-    @event = AmzurEvent.all.page(params[:page]).per(5)
+    @employee =curremt_user.employee
+    @event = @employee.amzur_events.page(params[:page]).per(5)
   end
   
   def update

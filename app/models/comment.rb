@@ -1,5 +1,6 @@
 # This model is for comments of status # Author: Vidya Sagar Pogiri
 class Comment < ActiveRecord::Base
+  # comment belongs to status,posts,photos so polymorphic relation
   belongs_to :commentable, polymorphic: true
   belongs_to :employee # comments will be posted by employee
   default_scope { order('created_at DESC') }

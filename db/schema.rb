@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201132353) do
+ActiveRecord::Schema.define(version: 20141205110553) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20141201132353) do
     t.string   "held_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "employee_id"
   end
 
   create_table "announcements", force: true do |t|
@@ -754,7 +755,7 @@ ActiveRecord::Schema.define(version: 20141201132353) do
   create_table "workgroups_employees", force: true do |t|
     t.integer  "employee_id"
     t.integer  "workgroup_id"
-    t.boolean  "is_moderator"
+    t.boolean  "is_moderator", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

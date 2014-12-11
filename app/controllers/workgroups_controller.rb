@@ -33,8 +33,11 @@ class WorkgroupsController < ApplicationController
   
   def update
     @workgroup = Workgroup.find(params[:id])
-    @workgroup.update(params_workgroup)
+    if @workgroup.update(params_workgroup)
     redirect_to workgroups_path
+    else
+    render 'edit'
+  end
   end
   
   def destroy
@@ -66,7 +69,6 @@ class WorkgroupsController < ApplicationController
   end
   
   def added_moderators 
- 
     @workgroup = Workgroup.find(params[:id])
     WorkgroupsEmployee.where(workgroup_id: @workgroup.id).each do |work| 
     work.update(is_moderator: false)

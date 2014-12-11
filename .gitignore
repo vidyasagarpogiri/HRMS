@@ -66,6 +66,7 @@ public/system/photos
 public/system/files
 solr/data
 solr/data/*
+solr/development/*
 solr/pids
 public/uploads
 public/uploads/*

@@ -1,10 +1,10 @@
-  <%= form_tag add_comments_statuses_path, method: :post do %>
+  <%= form_tag add_comments_statuses_path, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"}, method: :post do %>
   
   
     <div class="control-group">
       
         <div class="controls">
-        <%= text_area_tag  'comment', " ", :style => "width: 650px;", required: true%>
+        <%= text_area_tag  'comment', " ", :style => "width: 650px;",:placeholder =>"Comment",:data => {:error => "Please Enter Comment"}, required: true %>
         <span class="help-block with-errors"></span>
       </div>
     </div>
@@ -14,4 +14,5 @@
     									
      </ul>
   <% end %>
+  
   

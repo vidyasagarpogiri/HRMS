@@ -1,0 +1,36 @@
+
+    <div id="draw_chart">
+      <%= render "/organization/chart" %>
+    </div>
+
+
+
+<script>
+  $(function(){
+    $("#department").change(function(){
+      $(this).closest('form').submit();
+    });
+  }); 
+</script>
+
+
+  <script>
+    $( document ).ready(function(){ 
+    $(".google-visualization-orgchart-table").on("click", "td", function(){
+      var textWithDesg = $(this).html();
+      var fullNameArray = textWithDesg.split("<");
+      var fullName = fullNameArray[0];
+      alert(fullName);
+   });
+  });
+
+  
+</script>
+
+<style>
+  table{ 
+  border-collapse: separate;
+  }
+  
+
+</style>

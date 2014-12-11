@@ -5,7 +5,7 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-              <h3> <%= @workgroup.name %> </h3>
+              <h3> Work Group Name:<%= @workgroup.name.upcase %> </h3>
               <div class="pull-right" ></div>  
                    <label style="font-weight:normal;margin-top:-20px" class = "pull-right" ><a><i class="icon-circle-arrow-left "></i></a><%= link_to  'Back',workgroup_path(@workgroup) %> </label> 
             </div>

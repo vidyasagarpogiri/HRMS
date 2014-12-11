@@ -361,7 +361,7 @@ post 'create_package' => "features#create_package"
     end
   end
   
-
+  resources :organization
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

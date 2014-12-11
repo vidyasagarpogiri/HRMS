@@ -3,7 +3,7 @@ class CreateWorkgroupsEmployees < ActiveRecord::Migration
     create_table :workgroups_employees do |t|
       t.integer :employee_id
       t.integer :workgroup_id
-      t.boolean :is_moderator
+      t.boolean :is_moderator, :default => false
 
       t.timestamps
     end

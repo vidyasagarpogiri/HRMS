@@ -1,8 +1,9 @@
 FactoryGirl.define do
-  factory :workgroups_employee do
-    employee_id 1
-workgroup_id 1
-is_moderator false
+  factory :workgroups_employee do |w|
+    w.employee_id 1
+    w.workgroup_id 1
+    w.is_moderator false
+    #w.association :workgroup, factory: :workgroup
   end
 
 end

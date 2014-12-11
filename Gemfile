@@ -113,7 +113,7 @@ gem 'jquery-colorbox-rails'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
-gem 'progress_bar'
+
 
 
 gem 'sunspot_matchers' # gem for rspec test using solrsearch
@@ -131,7 +131,7 @@ gem 'momentjs-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-
+gem "google_visualr", ">= 2.1"
 
 
 # Use debugger
