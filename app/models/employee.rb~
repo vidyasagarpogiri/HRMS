@@ -57,6 +57,8 @@ class Employee < ActiveRecord::Base
   
   #for posts
   has_many :posts
+  
+  has_many :amzur_event
 
 
   has_many :employee_skills

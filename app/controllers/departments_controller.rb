@@ -5,6 +5,10 @@ class DepartmentsController < ApplicationController
 
   def index
     @departments = Department.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @departments }
+    end
   end
 
   def new

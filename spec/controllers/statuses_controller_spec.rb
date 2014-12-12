@@ -178,29 +178,66 @@ RSpec.describe StatusesController, :type => :controller do
          post :create, {status:  FactoryGirl.attributes_for(:status)}
          expect(response).to redirect_to(statuses_path)
       end
-      it "post like" do
+      it "Add like to status" do
       expect{
        post :add_like, {status_id: status.id, like: FactoryGirl.attributes_for(:like, is_like: true, employee_id: 1, status_id: status.id)}
        }
         end
-        it "post unlike" do
+        it "Add unlike to status" do
       expect{
        post :remove_like, {status_id: status.id, like: FactoryGirl.attributes_for(:like, is_like: false, employee_id: 1, status_id: status.id)}
        }
         end
       end
     end
-    
+  
+  describe "POST # Add Comment" do 
+    context "Add comment to  status  with valid attributes" do
+      it "creates a new status" do
+        expect {
+          post :create, {status:  FactoryGirl.attributes_for(:status)}
+        }.to change(Status, :count).by(1)
+      end 
       
+      it "redirects to status index" do
+         post :create, {status:  FactoryGirl.attributes_for(:status)}
+         expect(response).to redirect_to(statuses_path)
+      end
+      it "Add comment to status" do
+      expect{
+       post :add_comments, {status_id: status.id, comment: FactoryGirl.attributes_for(:comment, comment: "test",commentable_id: 1, employee_id: 1)}
+       }
+        end 
+        it "Comment is saved to the status" do
+      post :create, {status:  FactoryGirl.attributes_for(:status)}
+      expect(response).to redirect_to(statuses_path)
+        end  
+      end
+    end
+    
+
+   describe "POST # Add Comment" do 
+    context "Add comment to  status  with in-valid attributes" do
+      it "creates a new status" do
+        expect {
+          post :create, {status:  FactoryGirl.attributes_for(:status)}
+        }.to change(Status, :count).by(1)
+      end 
+      
+      it "redirects to status index" do
+         post :create, {status:  FactoryGirl.attributes_for(:status)}
+         expect(response).to redirect_to(statuses_path)
+      end
+      it "Add comment to status with invalid attributes" do
+      expect{
+       post :add_comments, {status_id: status.id, comment: FactoryGirl.attributes_for(:comment, comment: nil,commentable_id: nil, employee_id: nil)}
+       }
+        end 
+      it "redirects to status index" do
+      post :create, {status:  FactoryGirl.attributes_for(:status)}
+      expect(response).to redirect_to(statuses_path)
+      end 
+      end
+    end
+       
 end
-
-
-
-
-
-
-
-
-
-
-

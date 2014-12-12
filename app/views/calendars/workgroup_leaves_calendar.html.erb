@@ -1,0 +1,62 @@
+<!-- Author :Priyanka
+ View for displaying all existing Leaves and Events according to Department -->
+<div class="wrapper">
+  <div class="container">
+    <div class="row">                
+      <div class="span12">
+        <div class="content">         
+				  <div class="module">
+					  <div class="module-head">
+              <h3>Workgroup Leaves</h3>
+               <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'Workgroup Events',  calendars_workgroup_calendar_path %></label>               
+					  </div>
+					  <div class="module-body">
+					    <div class="control-group">
+									<label class="control-label" for="basicinput">Workgroups:</label>
+									<div class="controls">
+                    <%= select_tag "workgroup", options_from_collection_for_select(Workgroup.all, "id", "name"), class: "department-id" %>
+                    <span class="help-block with-errors"></span> 
+									</div>
+						    </div><hr>	
+					    <div id='calendar'>														   
+					    </div>
+	          </div><!--.module-body-->
+					</div><!--/.module -->
+		    </div><!--/.content-->
+			</div><!--/.span12-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</div><!--/.wrapper-->
+
+<style>
+  #calendar {
+  max-width: 900px;
+  margin: 0 auto;
+}
+</style>
+
+<script>
+ 
+ $('#department').change(function() {
+ var index =$( "#department" ).val();
+  $.ajax({
+      type: "get",
+      url: "/calendars/workgroup_leaves_calendar",
+      data: { 'id': index } 
+  }); 
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+          events: '/calendars/workgroup_leaves_calendar.json'                                                             
+     });
+});
+</script>

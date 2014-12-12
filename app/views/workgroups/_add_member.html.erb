@@ -1,19 +1,20 @@
- <%= form_tag("/workgroups/#{@workgroup.id}/added_members") do %>
-		      
-                  <div class ="row-fluid">
-						  <div class="span5">		
-								<div class="control-group">
-									<label class="control-label" for="basicinput"> Add Member</label>
-									<div class="controls">
-                   <input type="text" id="member" class ="span12 form-control", name= "member" , place_holder = "Enter Member Name" data-error="Please Enter valid Employee Name" required>
-                   <input type="hidden" id="member_id"  name= "member_id"> 
-                   <span class="help-block with-errors"></span> 
-									</div>
-								</div>
-							</div>         
-						 	  </div>  
-					     		 
-             <ul class="navigation-btns">                    
-					 <button type="submit" class="btn btn-success pull-left">Add Member</button></ul>
-					 </div>										
-						<% end %>
+  <%= form_tag("/workgroups/#{@workgroup.id}/added_members") do %>		      
+    <div class ="row-fluid">
+		  <div class="span5">		
+			  <div class="control-group">
+				  <label class="control-label" for="basicinput"> 
+				    Add Member
+				  </label>
+				    <div class="controls">
+          <input type="text" id="member" class ="span12 form-control", name= "member" , place_holder = "Enter Member Name" data-error="Please Enter valid Employee Name" required>
+          <input type="hidden" id="member_id"  name= "member_id"> 
+            <span class="help-block with-errors"></span> 
+				    </div>
+			  </div>
+			</div>         
+		 </div>  		     		 
+      <ul class="navigation-btns">                    
+			<button type="submit" class="btn btn-success pull-left">Add Member</button> &nbsp;&nbsp;&nbsp;
+			<%= link_to "Cancel", workgroup_path(@workgroup.id),:class => "btn btn-danger" %> </ul>
+	  </div>										
+  <% end %>

@@ -1,5 +1,5 @@
 <!-- Author :Priyanka
- View for displaying all existing Leaves and Events according to Workgroup -->
+ View for displaying all existing Leaves and Events according to Department -->
 <div class="wrapper">
   <div class="container">
     <div class="row">                
@@ -7,10 +7,18 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-              <h3>Workgroup Calendar</h3>              
+              <h3>Workgroup Events</h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'Workgroup Leaves',  calendars_workgroup_leaves_calendar_path %></label>              
 					  </div>
 					  <div class="module-body">
-					    <div id='calendar'>	
+					    <div class="control-group">
+									<label class="control-label" for="basicinput">Workgroup:</label>
+									<div class="controls">
+                    <%= select_tag "workgroup", options_from_collection_for_select(Workgroup.all, "id", "name"), class: "workgroup-id" %>
+                    <span class="help-block with-errors"></span> 
+									</div>
+						    </div><hr>	
+					    <div id='calendar'>														   
 					    </div>
 	          </div><!--.module-body-->
 					</div><!--/.module -->
@@ -19,14 +27,39 @@
 		</div><!--/.row-->
 	</div><!--/.container-->
 </div><!--/.wrapper-->
+
+<style>
+  #calendar {
+  max-width: 900px;
+  margin: 0 auto;
+}
+</style>
+
+<script>
+ 
+ $('.workgroup-id').change(function() {
+ var index =$( ".workgroup-id" ).val();
+  $.ajax({
+      type: "get",
+      url: "/calendars/workgroup_calendar",
+      data: { 'id': index } 
+  }); 
+});
+</script>
+
+
 <script>
 $(document).ready(function() {
-
-    // page is now ready, initialize the calendar...
-
     $('#calendar').fullCalendar({
-        // put your options and callbacks here
-    })
-
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+          events: '/calendars/workgroup_calendar.json',
+            
+          eventBackgroundColor: '#FFFFD1',
+          eventTextColor: 'black'                                                  
+     });
 });
 </script>

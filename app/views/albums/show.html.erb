@@ -9,11 +9,11 @@
 					  <div class="module-head">
 						  <h3><%= @album.title %></h3>
 						  <% if current_user.employee.id == @id %>
-						    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add photos", add_more_photos_form_album_path(@album)%></label>	
+						    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add more photos", add_more_photos_form_album_path(@album)%></label>	
 						  <% end %>
 					  </div>
 					  <div class="module-body show">
-					    <div class="album-employee-image" >
+					    <div class="album-employee-image span2" >
                 <% if @album.present? && @album.employee.avatar_url.present? %>
                   <%= image_tag @album.employee.avatar_url, :width => "60px", :height => "60px" %>
                 <% else %>
@@ -26,7 +26,7 @@
               </div>              
               <div class="album-employee-details">
                 <strong>
-                  <%= @album.employee.first_name %> <%= @album.employee.last_name %>
+                 <%= @album.employee.first_name %> <%= @album.employee.last_name %>
                 </strong> added new 
                 <strong>
                   <%= @album.title %>
@@ -36,7 +36,7 @@
 							    <li><%= link_to 'Edit', edit_album_path(@album), :class=>"btn btn-success" %> </li>
 							  <% end %>  
 							    <li><%= link_to 'Gallery',  albums_path, :class=>"btn btn-info" %></li>							  
-							</ul> 
+							  </ul> 
               </div>               
               <% if @photos.present?%>             
               <div class="image-showbox">                      
@@ -44,7 +44,7 @@
                   <% @photos.each do |photo| %>                                                                           
                   <div>
                     <% if current_user.employee.id == @id %>                    
-                    <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"image-delete", :title => "delete photo " %>
+                    <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"image-delete pull-right", :title => "delete photo " %>
                     <% end %>  
                     <a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="400px" height="300"></a>                     
                   </div>

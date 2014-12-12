@@ -144,7 +144,7 @@ get 'inactive_employees' => "employees#inactive_employees"
 			get 'employee_self_description_show'
 			get 'employee_self_description_form'
 			patch 'employee_self_description_create'
-			get 'my_workgroups'	# for employee work groups
+			
 		end
 		
    
@@ -292,10 +292,13 @@ post 'create_package' => "features#create_package"
     get 'getEmployees' => 'appraisals#getEmployees'
   # for employee status
   resources :statuses do
-    resources :comments 
-    member do
+     member do
+      get "add_comment_form" 
       post "add_like"
       post "remove_like"
+    end
+     collection do
+      post "add_comments"
     end
   end
 
@@ -315,6 +318,7 @@ post 'create_package' => "features#create_package"
   get "/calendars/reporting_manager_calendar" => 'calendars#reporting_manager_calendar'
   get "/calendars/reportees_leaves_calendar" => 'calendars#reportees_leaves_calendar'
   get "/calendars/workgroup_calendar" => 'calendars#workgroup_calendar'
+  get "/calendars/workgroup_leaves_calendar" => 'calendars#workgroup_leaves_calendar'
   #get "/calendars/department_calendar" => 'calendars#department_calendar'
   get "/calendars/company_calendar" => 'calendars#company_calendar'
   get "/calendars/company_leaves_calendar" => 'calendars#company_leaves_calendar'
@@ -362,10 +366,11 @@ post 'create_package' => "features#create_package"
      post "added_moderators" 
      post "added_members"
      delete "destroy_member/:employee_id" => 'workgroups#destroy_member', as: :destroy_member # for destroying member from work group
+     get "get_employees"
     end
   end
-
-
+  get 'my_workgroups'	=> "employees#my_workgroups"
+  #get "/get_employees" => "workgroups#get_employees"
   resources :posts do
     member do
       get "add_comment_form" 
@@ -375,7 +380,8 @@ post 'create_package' => "features#create_package"
     collection do
       post "add_comments"
     end
-  end
+  end 
+  resources :organization
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
