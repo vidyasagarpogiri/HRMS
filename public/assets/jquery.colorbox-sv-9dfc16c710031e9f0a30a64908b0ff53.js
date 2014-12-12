@@ -1,0 +1,1 @@
+jQuery.extend(jQuery.colorbox.settings,{current:"Bild {current} av {total}",previous:"F\xf6reg\xe5ende",next:"N\xe4sta",close:"St\xe4ng",xhrError:"Inneh\xe5llet kunde inte laddas.",imgError:"Den h\xe4r bilden kunde inte laddas.",slideshowStart:"Starta bildspel",slideshowStop:"Stoppa bildspel"});

@@ -1,0 +1,1 @@
+jQuery(function(){Bootsy.translations["pt-BR"]={alertUnsaved:"As suas modifica\xe7\xf5es ainda n\xe3o foram gravadas.",error:"Algo deu errado. Por favor, tente novamente."}});
