@@ -50,7 +50,9 @@
 			  <ul class="dropdown-menu">
 			    <li><a href="/appraisal_cycles">Appraisal Cycle</a></li>
 			    <li><a href="/appraisals">Appraisal Templates</a></li>
+			    <% if current_user.employee.is_reporting_manager? %>
 			    <li><a href=" /assign_employee_appraisals">Assign Appraisal</a></li>
+			    <% end %>
 			    <li><a href="/goals">Goals</a></li>
 			    <li><a href="/review_elements">Review Elements</a></li>
 			  </ul>

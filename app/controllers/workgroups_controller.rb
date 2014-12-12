@@ -36,7 +36,7 @@ class WorkgroupsController < ApplicationController
   
   def update
     @workgroup = Workgroup.find(params[:id])
-    if @workgroup.update(params_workgroup)
+    if @workgroup.update(:name => params[:workgroup][:name],:description => params[:workgroup][:description],:workgroupicon => params[:workgroup][:workgroupicon])  
     redirect_to workgroups_path
     else
     render 'edit'
