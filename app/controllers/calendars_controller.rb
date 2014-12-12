@@ -52,9 +52,14 @@ class CalendarsController < ApplicationController
   end
   
   def workgroup_leaves_calendar
-     #@workgroup = Workgroup.find(params[:id].to_i)
-     @group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id) #TODO pass @workgroup_id to :workgroup_id for dynamic values
-     @group_leaves = LeaveHistory.where(:employee_id => @group_employees, :status => "APPROVED")
+     @employees = if params[:workgroup].present? 
+      @workgroup = Workgroup.find(params[:workgroup])
+      Employee.where(:workgroup_id => params[:workgroup] )
+    else
+      Employee.all
+    end
+     #@group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id) #TODO pass @workgroup_id to :workgroup_id for dynamic values
+     @group_leaves = LeaveHistory.where(:employee_id => @employees, :status => "APPROVED")
      #raise @group_employees.inspect
      respond_to do |format| 
       format.html # reporting_manager_calendar.html.erb
