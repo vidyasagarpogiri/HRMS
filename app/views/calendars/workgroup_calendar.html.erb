@@ -14,11 +14,14 @@
 					    <div class="control-group">
 									<label class="control-label" for="basicinput">Workgroup:</label>
 									<div class="controls">
-                    <%= select_tag "workgroup", options_from_collection_for_select(Workgroup.all, "id", "name"), class: "workgroup-id" %>
+									  <%= form_tag('/calendars/workgroup_calendar', method: :get, remote: true) do %>
+                      <%= select_tag "workgroup", options_from_collection_for_select(Workgroup.all, "id", "name"), class: "workgroup-id", :prompt=>"Organization" %>
+                    <% end %>                      
                     <span class="help-block with-errors"></span> 
 									</div>
 						    </div><hr>	
-					    <div id='calendar'>														   
+					    <div class='calendar-partial'>
+					      <%= render 'calendars/workgroup_partial'%>														   
 					    </div>
 	          </div><!--.module-body-->
 					</div><!--/.module -->
@@ -36,30 +39,10 @@
 </style>
 
 <script>
- 
- $('.workgroup-id').change(function() {
- var index =$( ".workgroup-id" ).val();
-  $.ajax({
-      type: "get",
-      url: "/calendars/workgroup_calendar",
-      data: { 'id': index } 
+  $(function(){
+    $("#workgroup").change(function(){
+      $(this).closest('form').submit();
+    });
   }); 
-});
 </script>
 
-
-<script>
-$(document).ready(function() {
-    $('#calendar').fullCalendar({
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-    },
-          events: '/calendars/workgroup_calendar.json',
-            
-          eventBackgroundColor: '#FFFFD1',
-          eventTextColor: 'black'                                                  
-     });
-});
-</script>
