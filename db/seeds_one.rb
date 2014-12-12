@@ -14,9 +14,15 @@
 
 Address.destroy_all
 JobLocation.destroy_all
+
 BloodGroup.destroy_all
 FfStatus.destroy_all
+
+
 Employee.destroy_all
+#Education.destroy_all
+#Experience.destroy_all
+#Promotion.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
 Group.destroy_all
