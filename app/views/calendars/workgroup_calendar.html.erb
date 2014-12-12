@@ -20,7 +20,7 @@
                     <span class="help-block with-errors"></span> 
 									</div>
 						    </div><hr>	
-					    <div class='calendar-partial'>
+					    <div class='workgroup-partial'>
 					      <%= render 'calendars/workgroup_partial'%>														   
 					    </div>
 	          </div><!--.module-body-->
@@ -42,6 +42,7 @@
   $(function(){
     $("#workgroup").change(function(){
       $(this).closest('form').submit();
+     
     });
   }); 
 </script>
