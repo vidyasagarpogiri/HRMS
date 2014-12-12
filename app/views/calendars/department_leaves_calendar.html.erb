@@ -14,11 +14,14 @@
 					    <div class="control-group">
 									<label class="control-label" for="basicinput">Department:</label>
 									<div class="controls">
-                    <%= select_tag "department", options_from_collection_for_select(Department.all, "id", "department_name"), class: "department-id" %>
+									  <%= form_tag('/calendars/department_leaves_calendar', method: :get, remote: true) do %>
+                      <%= select_tag "department", options_from_collection_for_select(Department.all, "id", "department_name"), class: "department-id", :prompt=>"Organization" %>
+                    <% end %>                      
                     <span class="help-block with-errors"></span> 
 									</div>
 						    </div><hr>	
-					    <div id='calendar'>														   
+					    <div class='calendar-leaves-partial'>
+					      <%= render 'calendars/calendar_leaves_partial'%>														   
 					    </div>
 	          </div><!--.module-body-->
 					</div><!--/.module -->
@@ -36,30 +39,10 @@
 </style>
 
 <script>
- 
- $('#department').change(function() {
- var index =$( "#department" ).val();
-  $.ajax({
-      type: "get",
-      url: "/calendars/department_leaves_calendar",
-      data: { 'dept_id': index } 
+  $(function(){
+    $("#department").change(function(){
+      $(this).closest('form').submit();
+    });
   }); 
-});
 </script>
 
-
-<script>
-$(document).ready(function() {
-    $('#calendar').fullCalendar({
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-    },
-          events: '/calendars/department_leaves_calendar.json',
-            
-          eventBackgroundColor: '#FFFFD1',
-          eventTextColor: 'black'                                                  
-     });
-});
-</script>
