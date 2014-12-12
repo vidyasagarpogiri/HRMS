@@ -1,28 +1,21 @@
 <div class="module-head">
-              <h3>Appraisal Template</h3>
-            </div>
-            <div class="module-body">
-              <%= form_tag appraisals_create_appraisal_path, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, method: :post, remote: true  do  %>
-              <div class ="row-fluid">
-                <div class="span5">
-                  <div class="control-group">   
-                    <label class="control-label" for="basicinput">Appraisal</label>
-                    <div class="controls">
-                     <%= select_tag "appraisal", options_from_collection_for_select(@appraisals, :id, :title), prompt: "Please Select", required: true %>
-                      <span class="help-block with-errors"></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="span5">
-                  <div class="control-group">   
-                    <label class="control-label" for="basicinput">Employee</label>
-                    <div class="controls">
-                      <%= select_tag "employee", options_from_collection_for_select(@employees, :id, :full_name), prompt: "Please Select", required: true%>
-                      <span class="help-block with-errors"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <%= submit_tag 'Assign Appraisal', :class => 'btn btn-success pull-right' %>
-            <% end %><br/>
-            </div><!--/.module-body-->
+  <h3>Appraisal Template</h3>
+</div>
+<div class="module-body">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Appraisal Template</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.full_name %></td>
+          <td><%= select_tag "appraisal", options_from_collection_for_select(@appraisals, :id, :title), prompt: "Please Select", required: true %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div><!--/.module-body-->

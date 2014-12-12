@@ -5,8 +5,8 @@
         <div class="content">
           <div class="module">
             <div class="module-head">
-              <h3>Appraisals List</h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-arrow-left"></i></a> <%= link_to 'back', appraisal_cycle_path(@employee_appraisal.appraisal_cycle_id) %></label>
+              <h3>Appraisal For <%= @employee_appraisal.appraisal_cycle.title %></h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"></a><%= link_to 'Back To List', my_appraisals_path %></label>
             </div>
               <%= render "appraisals/appraisal_view_partial" %>
           </div><!--/.module-->
@@ -14,5 +14,4 @@
       </div><!--/.span12-->
     </div><!--/.row-->
   </div><!--/.container-->
-</div><!--/.wrapper->
-
+</div><!--/.wrapper-

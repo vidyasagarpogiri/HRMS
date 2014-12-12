@@ -3,7 +3,7 @@
                   <div class="control-group">   
                     <label class="control-label" for="basicinput">Title</label>
                     <div class="controls">
-                      <%= text_field_tag :title, @appraisal.title, class: "span7", disabled: "true" %>
+                      <%= text_field_tag :title, @employee_appraisal.title, class: "span8", disabled: "true" %>
                       <span class="help-block with-errors"></span>
                     </div>
                   </div>
@@ -12,7 +12,7 @@
                   <div class="control-group">   
                     <label class="control-label" for="basicinput">Description</label>
                     <div class="controls">
-                      <%= text_area_tag :description, @appraisal.description, :class => "span7", disabled: "true"%>
+                      <%= text_area_tag :description, @employee_appraisal.description, :class => "span8", disabled: "true"%>
                       <span class="help-block with-errors"></span>
                     </div>
                   </div>
@@ -22,7 +22,7 @@
                   <div class="control-group">   
                     <label class="control-label" for="basicinput">Start Date</label>
                     <div class="controls">
-                      <%= text_field_tag :start_date, @appraisal.start_date.strftime("%d %b, %Y"), disabled: "true"%>
+                      <%= text_field_tag :start_date, @employee_appraisal.start_date.strftime("%d %b, %Y"), disabled: "true"%>
                       <span class="help-block with-errors"></span>
                     </div>
                   </div>
@@ -31,7 +31,7 @@
                   <div class="control-group">   
                     <label class="control-label" for="basicinput">End Date</label>
                     <div class="controls">
-                      <%= text_field_tag :end_date, @appraisal.end_date.strftime("%d %b, %Y"), disabled: "true" %>
+                      <%= text_field_tag :end_date, @employee_appraisal.end_date.strftime("%d %b, %Y"), disabled: "true" %>
                       <span class="help-block with-errors"></span>
                     </div>
                   </div>
@@ -42,7 +42,7 @@
                   <div class="control-group">   
                     <label class="control-label" for="basicinput">Period</label>
                     <div class="controls">
-                      <%= text_field_tag :review_period, @appraisal.review_period, disabled: "true" %>
+                      <%= text_field_tag :review_period, @employee_appraisal.review_period, disabled: "true" %>
                       <span class="help-block with-errors"></span>
                     </div>
                   </div>

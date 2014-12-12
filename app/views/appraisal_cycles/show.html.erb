@@ -6,6 +6,7 @@
           <div class="module">
             <div class="module-head">
               <h3>Appraisals List For <%= @appraisal_cycle.title %></h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-arrow-left"></i></a> <%= link_to 'Back', appraisal_cycles_path %></label>
             </div>
             <div class="module-body">
             <table border="0" class="table  table-striped">
@@ -14,19 +15,26 @@
                   <th>Employee</th>
                   <th>Department</th>
                   <th>Review Form</th>
-                  <th>Start Date</th>
+                 <!-- <th>Start Date</th>
                   <th>End Date</th>
-                  <th>Period</th>
+                  <th>Period</th> -->
+                  <th>status</th>
                 </tr>
               </thead>
               <% @appraisals.each do |employee_appraisal| %>
                 <tr>
-                <td><%= link_to employee_appraisal.employee.full_name, "/hr_manager_view/#{employee_appraisal.employee.id}" %></td>
+                <%# if employee_appraisal.status == Appraisal::HR %>
+                  <td><%= link_to employee_appraisal.employee.full_name, "/hr_manager_view/#{employee_appraisal.id}" %></td>
+                <% #else %>
+             <!--     <td><%# link_to employee_appraisal.employee.full_name, "/employee_appraisal_view/#{employee_appraisal.id}" %></td> -->
+                <% #end %>
                 <td><%= employee_appraisal.employee.department.department_name %></td>
-                <td><%= employee_appraisal.appraisal.title %></td>
-                <td><%= employee_appraisal.appraisal.start_date.strftime("%d %b, %Y") %></td>
-                <td><%= employee_appraisal.appraisal.end_date.strftime("%d %b, %Y") %></td>
-                <td><%= employee_appraisal.appraisal.review_period %></td>
+                <td><%= Appraisal.find(employee_appraisal.appraisal_id).title %></td>
+               <!-- <td><%# employee_appraisal.appraisal.start_date.strftime("%d %b, %Y") %></td>
+                <td><%# employee_appraisal.appraisal.end_date.strftime("%d %b, %Y") %></td>
+                <td><%# employee_appraisal.appraisal.review_period %></td> -->
+                <td><%= employee_appraisal.status %></td>
+                <%= hidden_field_tag('appraisal_cycle_id', employee_appraisal.appraisal_cycle_id) %>
               <% end %>
             </table>
             </div><!--/.module-body-->

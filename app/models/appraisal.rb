@@ -1,4 +1,6 @@
 class Appraisal < ActiveRecord::Base
+  validates :title, presence: true
+  validates :title, uniqueness: true
   belongs_to :department
   belongs_to :employee
   has_many :goals, through: :appraisals_goals
@@ -15,6 +17,10 @@ class Appraisal < ActiveRecord::Base
   MANAGER = "With Manager"
   HR = "With HR"
   CLOSE = "close"
+  
+  def check_appraisal_reviews(review)
+    true if appraisals_reviews.map(&:review_element_id).include?(review.id)
+  end
   
   #author : sekhar 
   # this will retrun appraisals array for which their status is close
@@ -46,9 +52,8 @@ class Appraisal < ActiveRecord::Base
     reported_employees_ids.each do |emp| 
       employee = Employee.find(emp)
       employee_appraisal = EmployeesAppraisalList.where(status: Appraisal::MANAGER, employee_id: employee.id).first
-      appraisal = Appraisal.find(employee_appraisal.appraisal_id) if employee_appraisal.present? 
       employees << employee # push each employee into employees array
-      appraisals << appraisal if appraisal.present? # to push each appraisal into appraisals array
+      appraisals << employee_appraisal if employee_appraisal.present? # to push each appraisal into appraisals array
     end
     return employees, appraisals
   end

@@ -15,19 +15,21 @@
                   <th>Start Date</th>
                   <th>End Date</th>
                   <th>Period</th>
+                  <th>Status</th>
                   <th>Appraisal Cycle</th>
                 </tr>
               </thead>
-              <% if @appraisals.present? %>
-              <% @appraisals.each do |appraisal| %>
+              <% if @employee_appraisals.present? %>
+              <% @employee_appraisals.each do |appraisal| %>
                 <% i = 0 %>
                 <tr>
-                <td><%= link_to appraisal.title, "/appraisal_view/#{appraisal.id}" %></td>
+                <td><%= link_to appraisal.title, "/employee_appraisal_view/#{appraisal.id}" %></td>
                 <td><%= appraisal.description %></td>
                 <td><%= appraisal.start_date.strftime("%d %b, %Y") %></td>
                 <td><%= appraisal.end_date.strftime("%d %b, %Y") %></td>
                 <td><%= appraisal.review_period %></td>
-                <td><%= @appraisal_cycles[i].title %></td>
+                <td><%= appraisal.status%></td>
+                <td><%= appraisal.appraisal_cycle.title %></td>
               <% end %>
              <% end %>
              </tbody>

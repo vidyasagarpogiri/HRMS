@@ -1,6 +1,7 @@
 
             <div class="module-head">
               <h3>New Review Element</h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-arrow-left"></i></a> <%= link_to 'back', review_elements_path %></label>
             </div>
             <div class="module-body">
               <%= form_for @review_element, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, remote: true  do |review| %>

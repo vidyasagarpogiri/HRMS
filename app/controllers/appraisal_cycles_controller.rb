@@ -26,11 +26,7 @@ class AppraisalCyclesController < ApplicationController
   
   def show
     @appraisal_cycle = AppraisalCycle.find(params[:id])
-    if @appraisal_cycle.status == AppraisalCycle::CLOSE
-      @appraisals = @appraisal_cycle.employees_appraisal_lists.where(status: Appraisal::CLOSE)
-    else
-      @appraisals = @appraisal_cycle.employees_appraisal_lists.where(status: Appraisal::HR)
-    end
+    @appraisals = @appraisal_cycle.employees_appraisal_lists 
   end
   
   private

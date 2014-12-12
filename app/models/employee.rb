@@ -141,5 +141,9 @@ class Employee < ActiveRecord::Base
     #@reportee_name = @reportee_employees.pluck(:first_name)
     @leaves = LeaveHistory.where(:employee_id => (@reportee_employees.pluck(:employee_id)), :status => "APPROVED")
 	end
+	
+	def check_appraisal
+	  true if EmployeesAppraisal.all.map(&:employee_id).include?(id)
+	end
 
 end

@@ -1,27 +1,30 @@
 <div class="module-head">
-              <h3>Appraisals List</h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'New Appraisal Template',  appraisal_form_path, remote: true %></label>
-            </div>
-            <div class="module-body">
-            <table border="0" class="table  table-striped">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Department</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Period</th>
-                </tr>
-              </thead>
-              <tbody>
-              <% @appraisals.each do |appraisal| %>
-                <tr>
-                <td><%= appraisal.title if appraisal.title.present? %></td>
-                <td><%= appraisal.description if appraisal.description.present? %></td>
-                <td><%= appraisal.start_date.strftime("%d %b, %Y") if appraisal.start_date.present? %></td>
-                <td><%= appraisal.end_date.strftime("%d %b, %Y") if appraisal.end_date.present? %></td>
-                <td><%= appraisal.review_period if appraisal.review_period.present? %></td>
-              <% end %>
-              </tbody>
-            </table>
-            </div><!--/.module-body-->
+  <h3>Appraisals List</h3>
+  <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'New Appraisal Template',  new_appraisal_path, remote: true %></label>
+</div>
+<div class="module-body">
+<% if @appraisals.present? %>
+<table border="0" class="table  table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @appraisals.each do |appraisal| %>
+    <tr>
+    <td><%= appraisal.title %></td>
+    <td><%= appraisal.description %></td>
+    <td><%= link_to 'edit', edit_appraisal_path(appraisal), remote: true %></td>
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        Appraisal Templates Not Created Yet 
+    </div>
+<% end %>
+</div><!--/.module-body-->

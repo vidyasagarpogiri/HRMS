@@ -5,7 +5,7 @@
         <div class="content">
           <div class="module">
             <div class="module-head">
-              <h3>Employee Appraisals List</h3>
+              <h3>Reportees Appraisals List</h3>
             </div>
               <table class="table  table-striped">
               <thead>
@@ -19,9 +19,13 @@
               <% @employees.each do |employee| %>
                 <% i = 0 %>
                 <tr>
-                  <td><%=  employee.full_name %></td>
+                <% if employee.employees_appraisal_lists.where(status: Appraisal::MANAGER).first.present?%>
+                  <td><%= link_to employee.full_name, "/manager_view/#{employee.id}" %></td>
+                <% else %>
+                  <td><%= link_to employee.full_name, "/manager_appraisal_view/#{employee.id}" %></td>
+                <% end %>
                 <% if employee.employees_appraisal_lists.where(status: Appraisal::MANAGER).first.present? %>
-                  <td><%= link_to @appraisals[i].title, "/manager_view/#{employee.id}"%></td>
+                  <td><%= @appraisals[i].title %></td>
                 <% elsif employee.employees_appraisal_lists.where(status: Appraisal::HR).present? %>
                   <td>Form submitted to HR </td>
                 <% else %>

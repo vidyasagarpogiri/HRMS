@@ -6,6 +6,7 @@
           <div class="module">
             <div class="module-head">
               <h3>New Appraisal Cycle</h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-arrow-left"></i></a> <%= link_to 'Back', appraisal_cycles_path %></label>
             </div>
             <div class="module-body">
               <%= form_for @appraisal_cycle, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, remote: true  do |a| %>
@@ -116,12 +117,14 @@
 
      $(".end_date").datepicker({
          dateFormat: 'dd/mm/yy',
-          minDate: -0,
+          minDate: $('.start_date').datepicker('getDate'),
           yearRange: "0:+1",
            changeMonth: true,
          changeYear: true, 
            onClose: function (selectedDate) {
             var date1 = $('.start_date').datepicker('getDate');
+            $(".employee_date").datepicker("option", "minDate", $('.start_date').datepicker('getDate'));
+            $(".employee_date").datepicker("option", "maxDate", $('.end_date').datepicker('getDate'));
             if (date1){
               
             }else{
@@ -143,6 +146,7 @@
             var date3 = $('.employee_date').datepicker('getDate');
             date3.setDate(date3.getDate());
             $(".manager_date").datepicker("option", "minDate", date3);
+            $(".manager_date").datepicker("option", "maxDate", date2);
             $(".error1").html('');
             if (date3>date1 && date3<date2){
               
@@ -165,6 +169,7 @@
             var date3 = $('.manager_date').datepicker('getDate');
             date3.setDate(date3.getDate());
             $(".discussion_date").datepicker("option", "minDate", date3);
+            $(".discussion_date").datepicker("option", "maxDate", date2);
             $(".error1").html('');
             if (date3>date1 && date3<date2){ 
             }else{
