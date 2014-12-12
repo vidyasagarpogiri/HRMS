@@ -25,7 +25,8 @@ class WorkgroupsController < ApplicationController
   
   def show
     @workgroup = Workgroup.find(params[:id])
-    @admin = Employee.find_by(:employee_id => @workgroup.admin_id )
+    @admin = Employee.find(@workgroup.admin_id)
+    #raise @admin.inspect
     @employees = @workgroup.employees
     @employee = current_user.employee
   end
@@ -36,7 +37,7 @@ class WorkgroupsController < ApplicationController
   
   def update
     @workgroup = Workgroup.find(params[:id])
-    if @workgroup.update(params_workgroup)
+    if @workgroup.update(:name => params[:workgroup][:name],:description => params[:workgroup][:description],:workgroupicon => params[:workgroup][:workgroupicon])  
     redirect_to workgroups_path
     else
     render 'edit'
