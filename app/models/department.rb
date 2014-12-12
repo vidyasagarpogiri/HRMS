@@ -4,7 +4,7 @@ class Department < ActiveRecord::Base
   has_many :designations
   has_many :promotions
   has_many :grades
- 
+  has_many :roles
   #TODO since there is a problem in relation with employ and department i have commented this - vidyasagar
   #has_many :employees, :through => :reporting_managers
   

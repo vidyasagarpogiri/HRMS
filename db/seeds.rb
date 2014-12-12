@@ -18,7 +18,7 @@ JobLocation.destroy_all
 BloodGroup.destroy_all
 FfStatus.destroy_all
 
-Role.destroy_all
+
 Employee.destroy_all
 #Education.destroy_all
 #Experience.destroy_all
