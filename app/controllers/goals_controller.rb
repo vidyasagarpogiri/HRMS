@@ -1,11 +1,16 @@
 class GoalsController < ApplicationController
   
+  def index
+    @goals = Goal.all
+  end
+  
   def new
     @goal = Goal.new
   end
   
   def create
     @goal = Goal.create(goal_params)
+    redirect_to goals_path
   end
   
   private

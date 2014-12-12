@@ -38,7 +38,7 @@ RSpec.describe AppraisalCyclesController, :type => :controller do
     end
     context "with invalid attributes" do
         it "re-renders the 'new' template" do 
-          post :create, appraisal_cycle: {title: "eTeki12", start_date: nil,  end_date: nil, period: nil, employee_dead_line: nil, manager_dead_line: nil, discussion_dead_line: nil, status: nil, department_id: nil }
+          post :create, appraisal_cycle: {title: nil, start_date: nil,  end_date: nil, period: nil, employee_dead_line: nil, manager_dead_line: nil, discussion_dead_line: nil, status: nil, department_id: nil }
           expect(response).to render_template('new')
         end
     end

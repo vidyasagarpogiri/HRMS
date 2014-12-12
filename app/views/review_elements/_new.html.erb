@@ -1,0 +1,52 @@
+
+            <div class="module-head">
+              <h3>New Review Element</h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-arrow-left"></i></a> <%= link_to 'back', review_elements_path %></label>
+            </div>
+            <div class="module-body">
+              <%= form_for @review_element, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, remote: true  do |review| %>
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Title</label>
+                    <div class="controls">
+                      <%= review.text_field :review_element, required: true %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Performance Indicator</label>
+                    <div class="controls">
+                      <%= review.text_field :performance_indicator, required: true %> 
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+               <!--   <div class="control-group">   
+                    <label class="control-label" for="basicinput">Employee Assesment</label>
+                    <div class="controls">
+                      <%# review.text_field :employee_assesment %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Employee Rating</label>
+                    <div class="controls">
+                      <%# review.text_field :employee_rating %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Manager Feedback</label>
+                    <div class="controls">
+                      <%# review.text_field :manager_feedback %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div>
+                  <div class="control-group">   
+                    <label class="control-label" for="basicinput">Manager Rating</label>
+                    <div class="controls">
+                      <%#review.text_field :manager_rating  %>
+                      <span class="help-block with-errors"></span>
+                    </div>
+                  </div> -->
+              <%= review.submit 'Create Review Element', :class => 'btn btn-success pull-right' %>
+              <% end %><br/>
+            </div><!--/.module-body-->

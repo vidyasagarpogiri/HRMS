@@ -1,0 +1,21 @@
+<div class="module-head">
+  <h3>Appraisal Template</h3>
+</div>
+<div class="module-body">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Appraisal Template</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.full_name %></td>
+          <td><%= select_tag "appraisal", options_from_collection_for_select(@appraisals, :id, :title), prompt: "Please Select", required: true %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div><!--/.module-body-->

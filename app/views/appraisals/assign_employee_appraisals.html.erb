@@ -1,0 +1,68 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+           <div class="appraisal-list">
+            <div class="module-head">
+              <h3>Appraisal Template</h3>
+            </div>
+            <div class="module-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Employee</th>
+                    <th>Appraisal Template</th>
+                    <th>Edit Here</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @employees.each do |employee| %>
+                    <tr>
+                      <td><%= employee.full_name %></td>
+                      <% if employee.check_appraisal %>
+                        <td><%=employee.appraisals.first.title %></td>
+                      <% else %>
+                        <td>No Appraisal Template </td>
+                      <% end %>
+                      <td><a href="#myModal" class="appraisal-edit" data-toggle="modal" value="<%= employee.id %>">Edit Appraisal</a></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div><!--/.module-body-->
+          </div>
+          <div class="edit-appraisal"></div>
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
+
+<div class="modal fade format-color" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Edit Appraisal</h4>
+      </div>
+      <div class="modal-body">
+        <%= render "appraisals/assign_appraisal" %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+  $(function(){
+    var emp = parseInt($(".appraisal-edit").attr("value"));
+    $(".appraisal-edit").click({id: emp}, check_appraisal);
+    function check_appraisal(arg){
+      $("#employee").val(arg.data.id);
+    }
+  });
+</script>
+

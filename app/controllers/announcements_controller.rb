@@ -1,6 +1,6 @@
 class AnnouncementsController < ApplicationController
 before_filter :hr_view,  only: ["new", "edit"]
-before_action :find_announcement, only: [:edit, :update, :destroy]
+before_action :find_announcement, only: [:edit, :update, :destroy, :show]
  
   def index
    @announcements = Announcement.all.page(params[:page]).per(5)

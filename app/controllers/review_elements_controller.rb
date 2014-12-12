@@ -1,11 +1,16 @@
 class ReviewElementsController < ApplicationController
-
+  
+  def index
+    @review_elements = ReviewElement.all
+  end
+  
   def new
     @review_element = ReviewElement.new
   end
   
   def create
     @review_element = ReviewElement.create(review_element_params)
+    @review_elements = ReviewElement.all
   end
   
   private
