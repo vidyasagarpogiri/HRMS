@@ -14,11 +14,10 @@
 
 Address.destroy_all
 JobLocation.destroy_all
-Department.destroy_all
+
 BloodGroup.destroy_all
 FfStatus.destroy_all
-Designation.destroy_all
-Grade.destroy_all
+
 Role.destroy_all
 Employee.destroy_all
 #Education.destroy_all
@@ -51,30 +50,9 @@ JobLocation.create( :address_id => addresses[rand(addresses.length)])
 end
 JobLocations = JobLocation.all.pluck(:id)
 
-#-------------------------------------------------------------------------------------#
-["Development", "HR", "Accounts", "Business Development"].each do |dept|
-  Department.create(:department_name => dept ) 
-end
+# We are already created deparment and designations in Migration file
 Departments = Department.all.pluck(:id)
-
-Department.all.each do |dept|
-  
- 
-  ["Junior #{dept.department_name}", "Senior #{dept.department_name}"].each do |desg|
-    designation = Designation.create(:designation_name => desg, :department_id => dept.id ) 
-    
-  
-  end
-  
-end
-
 Designations = Designation.all.pluck(:id)
-
-Designation.all.each do |desg|
-   ["Level1", "Level2", "Level3"].each do |level|
-    Grade.create(:value => level, :designation_id =>  desg.id) 
-  end
-end
 Grades = Grade.all.pluck(:id)
 #-----------------------------------------------------------------------------------------------------#
 
