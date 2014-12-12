@@ -165,7 +165,7 @@ class ReportPdf < Prawn::Document
     end
     fill_color "ffffff"
     font("Times-Roman") do    
-      draw_text "Amzur Technologies (I) Private Limited, 9-29-22, Pioneer Sankar Shantiniketan, Balaji Nagar, Siripuram, ", :at => [@x+20, z-165]
+      draw_text "Amzur Technologies (I) Private Limited, 9-29-22, Pioneer Shankar Shantiniketan, Balaji Nagar, Siripuram, ", :at => [@x+20, z-165]
       draw_text "Visakhaptnam. Tel: +91-891-6451882", :at => [@x+20, z-180]      
     end
   end
