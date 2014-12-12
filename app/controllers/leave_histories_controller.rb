@@ -17,8 +17,7 @@ class LeaveHistoriesController < ApplicationController
   
   def reportees_leaves
    
-   @reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
-   
+   @reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).order('created_at DESC')   
    @employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
    #raise @employees.inspect
   end
