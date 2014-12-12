@@ -32,11 +32,9 @@ class AddressesController < ApplicationController
 
   
   def show
-   #raise params.ispect
   end
   
   def edit
-    #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @address = Address.find(params[:id])
     
@@ -60,7 +58,6 @@ class AddressesController < ApplicationController
     if @employee.present_address_id == @address.id
 			@employee.update(:present_address_id => nil)
 			@address.destroy
-		#raise params.inspect
 		else
 			@address.destroy
 			@employee.update(:permanent_address_id => nil)
