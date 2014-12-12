@@ -1,0 +1,22 @@
+<div class="module">
+  <div class="module-head">
+    <h3>Department Appraisal</h3>
+    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to "Change Review Template",edit_department_path(@department), remote: true %></label>
+  </div>
+  <div class="module-body">
+  <% if @appraisal.present? %>
+    <table class="table">
+      <thead>
+        <th>Department</th>
+        <th>Review Template</th>
+      </thead>
+      <tbody>
+        <td><%= @department.department_name %></td>
+        <td><%= @appraisal.title %></td>
+      </tbody>
+    </table>
+  <% else %>
+    this department did not have any appraisal template
+  <% end %>   						 									        							
+	</div><!--/.module-body-->
+</div>

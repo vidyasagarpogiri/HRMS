@@ -19,16 +19,17 @@ FfStatus.destroy_all
 Employee.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all
-Group.destroy_all
-Allowance.destroy_all
-Event.destroy_all 
-StaticSalary.destroy_all
+Event.destroy_all
+StaticSalary.destroy_all 
+
 
 
 
 #sekharberi@1989
 @user = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
+
  
+
 
 
 ["O+ve", "O-ve", "A+ve", "A+-e", "B+ve", "B-ve", "AB+ve", "AB-ve"].each do |bloodgrp|
@@ -85,3 +86,4 @@ GeneralInvestment.create(title: "Life Insurance Premiums", description: "Need Do
 GeneralInvestment.create(title: "Home Loan Principal Repayment", description: "Need Documents", section_declaration_id: 1) 
 GeneralInvestment.create(title: "Provident Fund", description: "Need Documents", section_declaration_id: 1) 
 GeneralInvestment.create(title: "Medical Insurance", description: "Need Documents", section_declaration_id: 2) 
+
