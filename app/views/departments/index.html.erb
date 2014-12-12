@@ -25,7 +25,7 @@
                         <div class="media user">  
                           <div class="media-avatar pull-left">                                 
                             <% if department.department_name == "HR" %>
-			                          <%= image_tag "HR.jpg" %>
+			                         <%= image_tag "HR.jpg" %>
                             <% elsif department.department_name == "Development"%>
 			                         <%= image_tag "dep.jpg" %>
                             <% elsif department.department_name == "Business Development"%>
@@ -35,7 +35,11 @@
                             <% elsif department.department_name == "Staffing"%>
                              <%= image_tag "us-staffing.png" %>
                             <% else %>  
-                              <!--<img src="/assets/user.png" class="department_image">-->
+                              <div class="media user" style="padding:0px;">  
+                                <div class="group" >
+                                 <label class=" group_name" ><%= department.department_name %></abel>                           
+                                </div>                                     
+                            </div>
                             <% end %>
                           </div>     
                           <div class="media-body span6" style="margin-left:-80px;">
