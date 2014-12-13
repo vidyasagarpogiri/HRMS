@@ -1,7 +1,7 @@
 class SalaryCertificate < Prawn::Document
-  def initialize(user)
+  def initialize(user )
     super()
-    @user = user
+    @user = user 
     @y = 700
     @x = 0
     logo
@@ -32,26 +32,27 @@ class SalaryCertificate < Prawn::Document
   end
   
   def salary
+    
     draw_text "BASIC:", :at => [@x+40, @y-200] #1
-    draw_text "XXX", :at => [@x+360, @y-200]
-    draw_text "HOUSE RENT ALLOWANCE:", :at => [@x+40, @y-230] #2
-    draw_text "XXX", :at => [@x+360, @y-230]
-    draw_text "CONVEYANCE ALLOWANCE:", :at => [@x+40, @y-260] #3
-    draw_text "XXX", :at => [@x+360, @y-260]
-    draw_text "AMZUR BENEFITS PLAN:", :at => [@x+40, @y-290] #4
-    draw_text "XXX", :at => [@x+360, @y-290]
+    draw_text "#{@user.employee.salary.basic_salary}", :at => [@x+360, @y-200]
+    @z = @y-230
+    @user.employee.salary.allowances.each do |allowance|
+      draw_text "#{allowance.allowance_name}", :at => [@x+40, @z]
+      draw_text "#{allowance.total_value}", :at => [@x+360, @z]
+      @z = @z - 30
+    end
     draw_text "ADDITIONAL ALLOWANCE:", :at => [@x+40, @y-320] #5
-    draw_text "XXX", :at => [@x+360, @y-320]
+    draw_text "#{@user.employee.salary.special_allowance}", :at => [@x+360, @y-320]
     draw_text "PROVIDENT FUND:", :at => [@x+40, @y-350] #6
-    draw_text "XXX", :at => [@x+360, @y-350]
-    draw_text "GRATUITY:", :at => [@x+40, @y-380] #7
-    draw_text "XXX", :at => [@x+360, @y-380]
+    draw_text "#{@user.employee.salary.pf}", :at => [@x+360, @y-350]
+    draw_text "GRATUITY:", :at => [@x+40, @y-380] #7 
+    draw_text "#{@user.employee.salary.gratuity}", :at => [@x+360, @y-380]
     draw_text "QPLC:", :at => [@x+40, @y-410] #8
-    draw_text "XXX", :at => [@x+360, @y-410]
+    draw_text "#{@user.employee.salary.bonus}", :at => [@x+360, @y-410]
     draw_text "MEDICAL ALLOWANCE:", :at => [@x+40, @y-440] #9
-    draw_text "XXX", :at => [@x+360, @y-440]
+    draw_text "#{@user.employee.salary.medical_insurance}", :at => [@x+360, @y-440]
     draw_text "MONTHLY GROSS:",style: :bold, :at => [@x+40, @y-470] #10
-    draw_text "XXX", :at => [@x+360, @y-470]        
+    draw_text "#{@user.employee.salary.gross_salary}", :at => [@x+360, @y-470]        
   end
   
   def sign

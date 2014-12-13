@@ -28,6 +28,7 @@ class LettersController < ApplicationController
   end
   
   def salary_certificate
+   @salary = current_user.employee.salary
     respond_to do |format|
       format.html
       format.pdf do

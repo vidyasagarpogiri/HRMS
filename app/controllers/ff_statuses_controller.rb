@@ -13,9 +13,9 @@ class FfStatusesController < ApplicationController
 	end
 	
 	def create
-		@status = FfStatus.new(status_params)
-		if @status.save
-		  @employee.update(:ff_status_id => @status.id, :status => true, :employment_status => 'F&F')
+		@status = FfStatus.create(status_params)
+		if @status.date_of_exit.to_date <= Date.today
+		  @employee.update(:ff_status_id => @status.id, :employment_status => 'F&F')
 		  @status = @employee.ff_status
 	  end
 	end

@@ -7,7 +7,8 @@
             <div class="module-body">
               <div class="profile-head media" style="min-height:700px;">                   
                 <div class="media-body">
-                <div style="border-radius: 65px; border: 3px solid #55B19A;width:120px;height:120px">
+                <div><!-- style="border-radius: 65px; border: 3px solid #55B19A;width:120px;height:120px" -->
+                <%= image_tag "HR.jpg", :style => "height:130px !important;width:130px !important;"%>
                   <!-- <a class="media-avatar pull-left" href="#" >                       
                       <%# image_tag "HR.jpg", :style => "height:130px !important;width:160px !important;"%>                                
                       <%# if @department.department_name == "HR" %>
@@ -32,6 +33,7 @@
                      <ul class="profile-tab nav nav-tabs">
                         <li class="active"><a href="#employees" data-toggle="tab">Employees</a></li>                        
                         <li><a href="#leave_policies" data-toggle="tab">Leave Policies</a></li>
+                         <li><a href="#leaves" data-toggle="tab">Leaves</a></li>
                         <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li>                                    
                      </ul>                                                                                                                        
                      <div class="profile-tab-content tab-content">  
@@ -43,6 +45,10 @@
                         <div class="tab-pane fade " id="leave_policies"> 
                           <%= render "groups/leave_policies"%>                                         
                         </div><!--/.tab-pane-list-->
+                        <div class="tab-pane fade" id="leaves">
+                          <%= render "groups/employee_leaves"%> 
+                        </div>
+                        
             <!--holiday_calender PANEL-->                                       
                         <div class="tab-pane fade " id="holiday_calender">
                          <%= render "groups/holiday_calender"%>                                        
