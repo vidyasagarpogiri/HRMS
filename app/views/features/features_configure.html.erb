@@ -33,17 +33,27 @@
                   </tr>
                 </thead>											                  	                                   			
                 <tbody>
+                <%= form_tag ('/create_package') do %>
                   <% @features.each do |feature| %>
                   <tr class="gradeA">    
                     <td><%= feature.controller %></td>
                     <td><%= feature.action %></td>
-                    <td><%= check_box_tag 'accept'%></td>
+                    <td>
+                      <% if Package.where(role_id: @role.id, feature_id: feature).present? %>  
+                       <%= check_box_tag 'feature_ids[]', feature.id, checked = true, :class => "check_feature" %>
+                      <% else %>
+                         <%= check_box_tag 'new_feature_ids[]', feature.id, checked = false, :class => "check_feature" %>
+                      <% end %>
+                      <%= hidden_field_tag 'role', @role.id %>
+                      <%= hidden_field_tag 'controllers', @controller %>
+                    </td>
                   </tr>
                  <% end %>
-                
+                  <%= submit_tag "Submit", :class=>"pull-right"%>
+                <% end %>
                 </tbody>
               </table>
-               <%= submit_tag "Submit", :class=>"pull-right"%>
+              
             </div> <!--- Module Body--->
           </div><!--- Module -->
         </div> <!--- Content -->
