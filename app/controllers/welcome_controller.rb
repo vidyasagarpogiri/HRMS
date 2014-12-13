@@ -20,13 +20,19 @@ class WelcomeController < ApplicationController
     last_week = EmployeeAttendence.last.log_date 
     
     emp_rec = Employee.find_by_user_id(current_user.id)
+        
+    holiday_list =  Event.where(:id=>emp_rec.group.holiday_calenders.map(&:event_id)).map(&:event_date) if emp_rec.group.present?
+    holiday_list = holiday_list.collect{ |holiday| holiday.to_date }
+    
     @myattendence = EmployeeAttendence.where("log_date >=? and log_date <= ? and employee_id = ? ", last_week.beginning_of_week, last_week, emp_rec.id).map(&:total_working_hours)
     working_days = 0
     attended_days = 0
     attended_on_weekends = 0
+    holiday_count = 0
     (last_week.beginning_of_week.to_datetime..last_week.to_datetime).each do|dat|
     #raise (last_week.beginning_of_week.to_datetime..last_week.to_datetime).to_a.inspect
       working_days += 1
+      holiday_count += 1 if holiday_list.include?(dat.to_date)
       if !EmployeeAttendence.where(log_date: dat.strftime("%Y-%m-%d"), employee_id: emp_rec.id).empty?
         attended_days += 1
         attended_on_weekends += 1 if ["Sat","Sun"].include?dat.strftime("%a").to_s
@@ -35,7 +41,7 @@ class WelcomeController < ApplicationController
 
      case attended_on_weekends
       when 0
-        working_days = 5
+        working_days = (5 - holiday_count)
       when 1
         working_days = 6
       when 2

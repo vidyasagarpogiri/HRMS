@@ -1,6 +1,5 @@
 class StaticAllowancesController < ApplicationController
-   before_action :find_allowance, only: [:show, :edit, :update, :destroy]
- 
+ before_action :get_allowance, only: [:show, :edit, :update, :destroy]
  
  def index
   @allowances = StaticAllowance.all
@@ -12,7 +11,6 @@ class StaticAllowancesController < ApplicationController
  end
  
  def create
-  #raise params.inspect
   value = params[:value].to_f
   if params[:allowance_type].to_i == 1
     @allowance = StaticAllowance.create(:name => params[:static_allowance][:name], :percentage => value, :is_deductable => params[:static_allowance][:is_deductable])
@@ -22,8 +20,7 @@ class StaticAllowancesController < ApplicationController
   redirect_to static_allowances_path
  end
  
- def show
-    
+ def show    
  end
  
  def edit
@@ -46,7 +43,7 @@ class StaticAllowancesController < ApplicationController
  
  private
  
-  def find_allowance
+  def get_allowance
     @allowance = StaticAllowance.find(params[:id])
   end
   

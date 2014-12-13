@@ -1,12 +1,12 @@
 class GradesController < ApplicationController
 
-   before_filter :hr_view,  only: ["new", "edit"]
+  before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view
+  before_action :get_grade, only: [:show, :update, :edit, :destroy, :add_employees, :update_employee]
+  
   def index
     @grades = Grade.all
-    @designations = Designation.all
-    #raise @designations.inspect
-    
+    @designations = Designation.all    
   end
 
   def new
@@ -20,43 +20,38 @@ class GradesController < ApplicationController
   end
 
   def show
-    @grade = Grade.find(params[:id])
     @employees = @grade.employees
-
   end
 
   def update
-    @grade = Grade.find(params[:id])
     @grade.update(grade_params)
     redirect_to grades_path 
   end
   
-  def edit     
-    @grade = Grade.find(params[:id])        
+  def edit            
   end
   
   def destroy
-	  @grade = Grade.find(params[:id])
 		@grade.destroy
 		redirect_to @grade
 	end
 	
-   def add_employee
-    @grade = Grade.find(params[:id])
+  def add_employee
     @employee = Employee.all
   end
+  
    def update_employee
-    #raise params.inspect
-    @grade = Grade.find(params[:id])
     @employee = Employee.find(params[:employee_id])
     @employee.update(:grade_id => @grade.id)
-    #raise @employee.inspect
     redirect_to @grade
    end 
   
   private
   def grade_params
     params.require(:grade).permit(:value) 
+  end
+  def get_grade
+    @grade = Grade.find(params[:id])
   end
 end
 
