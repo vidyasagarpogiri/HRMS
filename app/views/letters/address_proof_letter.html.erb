@@ -23,27 +23,35 @@
                     <div class="span12">
                       <label><p>This is to certify that <b><%= current_user.employee.title %>.<%= current_user.employee.full_name %></b>is a bonafide employee and is working as <b><%= current_user.employee.designation.designation_name if current_user.employee.designation.present? %></b> since <b><%= (current_user.employee.date_of_join )%></b>, for Amzur Technologies Pvt Ltd and as per the company records the residential address of him is as mentioned below.</p></label>
                     </div>                      
-                 </div><br>
+                 </div><br>               
+                  
                  <div class="row-fluid">
-                    <div class="span12">
-                      <label>Details as under –</label>
-                      <label> <%= current_user.employee.full_name %></label><br>                      
-                    </div>                      
-                 </div> 
-                 
-                 <div class="row-fluid">
+                  <% if @address1.present? %>
                    <div class="span6">     
                      <label> <b>Present Address </b></label>   
                      <label><%= @address1.line %>, <%= @address1.line1 %></label>
                      <label><%= @address1.city %>, <%= @address1.state %></label> 
                      <label><%= @address1.country %>, <%= @address1.zipcode %></label>
                    </div>
+                   <% else %>
+                     <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                         Please add Contact details to this Employee.
+                     </div>
+                   <% end %>
+                   <% if @address2.present? %> 
                    <div class="span6"> 
                      <label> <b>Permanent Address </b></label> 
                      <label><%= @address2.line %>, <%= @address2.line1 %></label>
                      <label><%= @address2.city %>, <%= @address2.state %></label> 
                      <label><%= @address2.country %>, <%= @address2.zipcode %></label>
-                   </div>                     
+                   </div>
+                   <% else %>
+                     <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                         Please add Contact details to this Employee.
+                     </div>   
+                   <% end %>                     
                  </div>  <br>                                                                           
                  <div class="row-fluid">
                     <div class="span12">

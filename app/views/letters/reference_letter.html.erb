@@ -21,8 +21,8 @@
                  </div><br>
                  <div class="row-fluid">
                     <div class="span12">
-                      <label><p>This is to certify that <b><%= current_user.employee.title %>.<%= current_user.employee.full_name %></b>is a bonafide employee of our Company (Amzur 
-Technologies Pvt Ltd) and is working as <b><%= current_user.employee.designation.designation_name if current_user.employee.designation.present? %></b>. We confirm that he/she has been working in our company since<b><%= format_date(current_user.employee.date_of_join )%></b>.</p></label>
+                      <label><p>This is to certify that <b><%= current_user.employee.title %>.<%= current_user.employee.full_name %></b> is a bonafide employee of our Company (Amzur 
+Technologies Pvt Ltd) and is working as <b><%= current_user.employee.designation.designation_name if current_user.employee.designation.present? %></b>. We confirm that he/she has been working in our company since <b><%= format_date(current_user.employee.date_of_join )%></b>.</p></label>
                     </div>                      
                  </div><br>
                  <div class="row-fluid">

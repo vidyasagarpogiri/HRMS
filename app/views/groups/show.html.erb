@@ -7,9 +7,10 @@
             <div class="module-body">
               <div class="profile-head media" style="min-height:700px;">                   
                 <div class="media-body">
-                <div><!-- style="border-radius: 65px; border: 3px solid #55B19A;width:120px;height:120px" -->
-                <%= image_tag "HR.jpg", :style => "height:130px !important;width:130px !important;"%>
-                  <!-- <a class="media-avatar pull-left" href="#" >                       
+                  <div class="span4 group">
+                    <label class="group_name"><%= @group.group_name %></abel>
+                <!--<%# image_tag "HR.jpg", :style => "height:130px !important;width:130px !important;"%>
+                   <a class="media-avatar pull-left" href="#" >                       
                       <%# image_tag "HR.jpg", :style => "height:130px !important;width:160px !important;"%>                                
                       <%# if @department.department_name == "HR" %>
                           <%# image_tag "HR.jpg", :style => "height:130px !important;width:160px !important;"%>
@@ -21,7 +22,7 @@
                         <%# image_tag "bdm.jpg", :style => "height:120px  !important;width:120px !important;"%>
                       <%# end %>
                     </a><br>--></div> 
-                    <div class="media-body">
+                    <div class="media-body span8" style="margin-left:100px;margin-top:30px;">
                       <div class="pull-right" ><a href="/groups" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Groups</i></a></div> 
                       <h4>
                          <%= @group.group_name %> 
