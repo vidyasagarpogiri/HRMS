@@ -1,0 +1,1 @@
+jQuery.extend(jQuery.colorbox.settings,{current:"Imagem {current} de {total}",previous:"Anterior",next:"Pr\xf3xima",close:"Fechar",slideshowStart:"iniciar apresenta\xe7\xe3o de slides",slideshowStop:"parar apresenta\xe7\xe3o de slides",xhrError:"Erro ao carregar o conte\xfado.",imgError:"Erro ao carregar a imagem."});

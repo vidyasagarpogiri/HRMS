@@ -26,7 +26,6 @@ class WorkgroupsController < ApplicationController
   def show
     @workgroup = Workgroup.find(params[:id])
     @admin = Employee.find(@workgroup.admin_id)
-    #raise @admin.inspect
     @employees = @workgroup.employees
     @employee = current_user.employee
   end
