@@ -73,7 +73,7 @@ code not required but for future use
 
   private
   def department_params
-    params.require(:department).permit(:department_name, :appraisal_id) 
+    params.require(:department).permit(:department_name) 
   end
   def find_department
      @department = Department.find(params[:id])   
