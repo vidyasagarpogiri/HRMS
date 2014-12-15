@@ -140,7 +140,7 @@
 									 <div class="control-group">
 										  <label class="control-label" for="basicinput">Gender</label>
 										  <div class="controls">
-                       <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']]), {}, :class=> "span8 form-control", :id=>"disabledSelect") %> 
+                       <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']], :selected => f.object.gender), {}, :class=> "span8 form-control", :id=>"disabledSelect") %> 
                        <span class="help-block with-errors"></span>
 										  </div>
 									  </div>
