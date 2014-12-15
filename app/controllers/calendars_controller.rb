@@ -58,9 +58,10 @@ class CalendarsController < ApplicationController
     else
       Employee.all
     end
+     #raise @employees.inspect
      #@group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id) #TODO pass @workgroup_id to :workgroup_id for dynamic values
      @group_leaves = LeaveHistory.where(:employee_id => @employees, :status => "APPROVED")
-     #raise @group_employees.inspect
+     
      respond_to do |format| 
       format.html # reporting_manager_calendar.html.erb
       format.js
