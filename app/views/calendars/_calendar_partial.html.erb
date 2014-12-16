@@ -10,10 +10,7 @@ $(document).ready(function() {
         right: 'month,agendaWeek,agendaDay'
     },
           <% department_id = @department.id if @department.present?  %>
-          events: '/calendars/department_calendar.json?department=<%= department_id%>',
-           
-          eventBackgroundColor: '#FFFFD1',
-          eventTextColor: 'black'                                                  
+          events: '/calendars/department_calendar.json?department=<%= department_id%>'                                                 
      });
 });
 </script>
