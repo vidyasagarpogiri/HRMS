@@ -1,4 +1,4 @@
-# This controller is for workgroups # Author: Vidya Sagar Pogiris
+# This controller is for workgroups # Author: Vidya Sagar Pogiri
 class WorkgroupsController < ApplicationController
   
   def index
