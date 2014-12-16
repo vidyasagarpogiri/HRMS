@@ -1,0 +1,1 @@
+jQuery.extend(jQuery.colorbox.settings,{current:"{current}/{total}",previous:"eelmine",next:"j\xe4rgmine",close:"sulge",xhrError:"Sisu ei \xf5nnestunud laadida.",imgError:"Pilti ei \xf5nnestunud laadida.",slideshowStart:"K\xe4ivita slaidid",slideshowStop:"Peata slaidid"});

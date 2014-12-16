@@ -3,11 +3,11 @@
 
 <head>
   <!-- Hide this line for IE (needed for Firefox and others) -->
-  <![if !IE]>
-  <link rel="icon" href="/assets/favicon.jpg" type="image/x-icon" />
+  <![if !IE]> 
+  <%= favicon_link_tag 'favicon.png', rel: 'icon', type: 'image/x-icon' %>
   <![endif]>
   <!-- This is needed for IE -->
-  <link rel="shortcut icon" href="/assets/favicon.jpg" />
+  <%= favicon_link_tag 'favicon.png', rel: 'shortcut icon' %>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">

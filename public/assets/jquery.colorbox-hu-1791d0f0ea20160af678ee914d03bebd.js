@@ -1,0 +1,1 @@
+jQuery.extend(jQuery.colorbox.settings,{current:"{current}/{total} k\xe9p",previous:"El\u0151z\u0151",next:"K\xf6vetkez\u0151",close:"Bez\xe1r",xhrError:"A tartalmat nem siker\xfclt bet\xf6lteni.",imgError:"A k\xe9pet nem siker\xfclt bet\xf6lteni.",slideshowStart:"Diavet\xedt\xe9s ind\xedt\xe1sa",slideshowStop:"Diavet\xedt\xe9s le\xe1ll\xedt\xe1sa"});
