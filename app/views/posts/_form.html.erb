@@ -42,13 +42,25 @@
                         
                         <input id="s" type="text">
                        <input type="hidden" name="hidden_tags" class="hidden_tags">
-                        <span id="advanced_search_box"></span><br/><br/>
-                       <br><br>
-                        
-                        
+                        <span id="advanced_search_box"></span><br><br>
+                        <% if @post.tags.present?%>
+                        <p class="pull-left">
+                          <% @post.tags.split(",").each do|tag| %>
+                            <span class="label label-info"><i class=" icon-tag"></i> <%=  tag %></span>
+                          <% end %>
+                        </p>
+                        <%end%>
+                       
                        <span class="help-block with-errors"></span>
                       </div>
                     </div>
+                    
+                  
+                   
+                    
+                    
+                    
+                    
                           
                 <ul class="navigation-btns editthree" >
                 <li><button type="submit" class="btn btn-success">Post </button></li>
