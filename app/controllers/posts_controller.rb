@@ -54,7 +54,7 @@ before_filter :edit_view, only: ['edit']
    @employee = current_user.employee
    @comment =  @post.comments.new(:comment => params[:comment], :employee_id => @employee.id)
    if @comment.save
-      redirect_to posts_path
+      redirect_to post_path(@post.id)
    else
     render "add_comment_form"
     
