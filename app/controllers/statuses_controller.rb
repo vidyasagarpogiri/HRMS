@@ -1,5 +1,6 @@
 # This controller is for employee status # Author: Vidya Sagar Pogiri
 class StatusesController < ApplicationController
+  before_filter :admin_view,  only: ["edit"]
   
   def index # for displaying all statuses
     @statuses = Status.all.order('updated_at DESC').page(params[:page]).per(3)
@@ -99,4 +100,13 @@ class StatusesController < ApplicationController
   def status_params # method for passing parameters 
     params.require(:status).permit(:status)
   end
+  
+   def admin_view # method for editing only admin of that status
+  @status = Status.find(params[:id])
+  #raise current_user.employee.employee_id.inspect
+	  unless current_user.employee.id == @status.employee_id
+	    render :text => "You Don`t Have Permission"  
+	  end
+	end
+	
 end
