@@ -1,11 +1,13 @@
 # This controller is for workgroups # Author: Vidya Sagar Pogiri
 class WorkgroupsController < ApplicationController
+  before_filter :admin_view,  only: ["edit"]
   
   def index
-    @workgroups = Workgroup.all.page(params[:page]).per(6)  
+    @workgroups = Workgroup.all.page(params[:page]).per(6)
     @employee = current_user.employee
     respond_to do |format|
       format.html
+      format.js
       format.json { render json: @workgroups }
     end
   end
@@ -112,4 +114,12 @@ class WorkgroupsController < ApplicationController
   def params_workgroup 
     params.require(:workgroup).permit(:name, :description, :workgroupicon).merge(:admin_id => current_user.employee.id)
   end
+  
+  def admin_view # method for editing only admin/moderator of that group
+  @workgroup = Workgroup.find(params[:id])
+  #raise current_user.employee.inspect
+	  unless current_user.employee.id == @workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: @workgroup.id ).present?
+	    render :text => "You Don`t Have Permission"  
+	  end
+	end 
 end

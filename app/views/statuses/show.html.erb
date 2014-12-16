@@ -61,7 +61,11 @@
 					 </h5> 
 					 
 					 <p>
-					  <%= link_to image_tag(com.employee.avatar_url,size: "20x20") %> <b> <%= com.employee.full_name %> </b><%=com.comment %> 
+					  <% if com.employee.gender == "Female" %>
+              <%= image_tag("1.jpg", :style => "width:20px;height:20px;") %> 
+            <% else %>
+              <%= image_tag "user.png", :width => "20px", :height => "20px" %> 
+            <% end %> <b> <%= com.employee.full_name %> </b><%=com.comment %> 
 					 </p>
 					 
 					 <p>
