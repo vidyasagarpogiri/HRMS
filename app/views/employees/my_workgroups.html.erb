@@ -6,8 +6,8 @@
           <div class="module">
             <div class="module-head">
               <h3>My Work Groups</h3>
-                <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a><%= link_to " Add New Work Group",new_workgroup_path%></label>
-                <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-circle-arrow-left"></i></a><%= link_to " Back To Workgroups Index",workgroups_path%></label>
+                <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a><%= link_to " New Work Group",new_workgroup_path%></label>
+                <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-circle-arrow-left"></i></a><%= link_to " All Workgroups ",workgroups_path%></label>
              </div>
             <% if @workgroups.present? %>                                         
             <div class="module-body">                     
