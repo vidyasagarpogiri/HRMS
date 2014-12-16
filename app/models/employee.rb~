@@ -58,14 +58,17 @@ class Employee < ActiveRecord::Base
   #for posts
   has_many :posts
   
-  has_many :amzur_event
+  has_many :amzur_events
 
 
   has_many :employee_skills
   has_many :skills, :through => :employee_skills
   
+  has_many :appraisals, through: :employees_appraisals
+  has_many :employees_appraisals
+  has_many :employees_reviews
+  has_many :employees_appraisal_lists
   
-
 	validates :employee_id, presence: true 
 	validates :first_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
 	validates :last_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
@@ -139,6 +142,10 @@ class Employee < ActiveRecord::Base
     #raise @reportee_employees.pluck(:employee_id).inspect    
     #@reportee_name = @reportee_employees.pluck(:first_name)
     @leaves = LeaveHistory.where(:employee_id => (@reportee_employees.pluck(:employee_id)), :status => "APPROVED")
+	end
+	
+	def check_appraisal
+	  true if EmployeesAppraisal.all.map(&:employee_id).include?(id)
 	end
 
 end

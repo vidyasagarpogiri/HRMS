@@ -1,0 +1,18 @@
+
+<%= form_tag appraisals_create_appraisal_path, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, method: :post do  %>
+  <table class="table">
+
+    <tbody>
+        <tr>
+           <td>Select Appraisal Template</td> 
+          <td><%= select_tag "appraisal", options_from_collection_for_select(@appraisals, :id, :title), prompt: "Please Select", required: true %></td>
+          <%= hidden_field_tag :employee %>
+        </tr> 
+    </tbody>
+  </table>
+  <%= submit_tag 'Assign', class: "btn btn-success pull-right"%>
+<% end %>
+
+<script>
+
+</script>

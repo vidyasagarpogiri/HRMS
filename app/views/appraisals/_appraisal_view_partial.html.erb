@@ -1,0 +1,131 @@
+<div class="module-body">
+<% if @employee_appraisal.present? %>
+    <div class ="row-fluid">
+      <div class="control-group">   
+        <label class="control-label" for="basicinput">Title</label>
+        <div class="controls">
+          <%= text_field_tag :title, @employee_appraisal.title, class: "span8", disabled: "true" %>
+          <span class="help-block with-errors"></span>
+        </div>
+      </div>
+  </div>
+  <div class="row-fluid">
+      <div class="control-group">   
+        <label class="control-label" for="basicinput">Description</label>
+        <div class="controls">
+          <%= text_area_tag :description, @employee_appraisal.description, :class => "span8", disabled: "true"%>
+          <span class="help-block with-errors"></span>
+        </div>
+      </div>
+  </div>
+  <div class ="row-fluid">
+    <div class="span5">
+      <div class="control-group">   
+        <label class="control-label" for="basicinput">Start Date</label>
+        <div class="controls">
+          <%= text_field_tag :start_date, @employee_appraisal.start_date.strftime("%d %b, %Y"), disabled: "true"%>
+          <span class="help-block with-errors"></span>
+        </div>
+      </div>
+    </div>
+    <div class="span5">
+      <div class="control-group">   
+        <label class="control-label" for="basicinput">End Date</label>
+        <div class="controls">
+          <%= text_field_tag :end_date, @employee_appraisal.end_date.strftime("%d %b, %Y"), disabled: "true" %>
+          <span class="help-block with-errors"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class ="row-fluid">
+    <div class="span5">
+      <div class="control-group">   
+        <label class="control-label" for="basicinput">Period</label>
+        <div class="controls">
+          <%= text_field_tag :review_period, @employee_appraisal.review_period, disabled: "true" %>
+          <span class="help-block with-errors"></span>
+        </div>
+      </div>
+    </div>
+    <div class="span5">
+      <div class="control-group">   
+        <label class="control-label" for="basicinput">Department</label>
+        <div class="controls">
+          <%= text_field_tag :department, @employee.department.department_name, disabled: "true" %>
+          <span class="help-block with-errors"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class ="row-fluid">
+    <div class="span5">
+      <div class="control-group">   
+        <label class="control-label" for="basicinput">Employee</label>
+        <div class="controls">
+          <%= text_field_tag :employee_name, @employee.full_name, disabled: "true" %>
+        </div>
+      </div>
+    </div>
+    <div class="span5">
+      <div class="control-group">   
+        <label class="control-label" for="basicinput">Manager</label>
+        <div class="controls">
+         <%= text_field_tag :manager_name, @employee.reporting_manager, disabled: "true" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class ="row-fluid">
+    <div class="span5">
+      <div class="control-group">   
+        <label class="control-label" for="basicinput">Over All Rating</label>
+        <div class="controls">
+            <%= text_field_tag :over_all_rating, @employee_appraisal.overall_rating, disabled: "true" %>
+        </div>
+      </div>
+    </div>
+  </div> 
+   <div class ="row-fluid">
+      <div class="control-group">   
+        <label class="control-label" for="basicinput">Discussion Notes</label>
+        <div class="controls">
+            <%= text_area_tag :discussion_notes, @employee_appraisal.discussion_notes , :class => "span8", disabled: true %>
+          <span class="help-block with-errors"></span>
+        </div>
+      </div>
+  </div>
+ <div class="row-fluid">
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Review Element</th>
+        <th>Performance Indicator</th>
+        <th>Employee Assesment</th>
+        <th>Employee Rating</th>
+        <th>Manager Feedback</th>
+        <th>Manager Rating</th>
+      </tr>
+   </thead>
+   <tbody>
+  <% if @review_elements.present? %>
+    <% @review_elements.each do |review_element| %>
+        <tr>
+          <td><%= review_element.review_element %></td>
+          <td><%= review_element.performance_indicator %></td>
+          <td><%= text_field_tag :employee_assesment, review_element.employee_assesment, disabled: "true" %></td>
+          <td><%= text_field_tag :employee_rating, review_element.employee_rating, disabled: "true" %></td>
+          <td><%= text_field_tag :manager_feedback, review_element.manager_feedback, disabled: "true" %></td>
+          <td><%= text_field_tag :manager_rating, review_element.manager_rating, disabled: "true" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+ </table>
+ </div>
+<% else %>
+ Appraisal Form not submited to HR
+<% end %>
+</div><!--/.module-body-->
+
+-

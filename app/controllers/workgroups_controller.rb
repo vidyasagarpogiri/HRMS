@@ -1,4 +1,4 @@
-# This controller is for workgroups # Author: Vidya Sagar Pogiris
+# This controller is for workgroups # Author: Vidya Sagar Pogiri
 class WorkgroupsController < ApplicationController
   
   def index
@@ -25,7 +25,7 @@ class WorkgroupsController < ApplicationController
   
   def show
     @workgroup = Workgroup.find(params[:id])
-    @admin = Employee.find_by(:employee_id => @workgroup.admin_id )
+    @admin = Employee.find(@workgroup.admin_id)
     @employees = @workgroup.employees
     @employee = current_user.employee
   end
@@ -36,7 +36,7 @@ class WorkgroupsController < ApplicationController
   
   def update
     @workgroup = Workgroup.find(params[:id])
-    if @workgroup.update(params_workgroup)
+    if @workgroup.update(:name => params[:workgroup][:name],:description => params[:workgroup][:description],:workgroupicon => params[:workgroup][:workgroupicon])  
     redirect_to workgroups_path
     else
     render 'edit'
@@ -96,7 +96,7 @@ class WorkgroupsController < ApplicationController
   def get_employees
     @workgroup = Workgroup.find(params[:id])
     workgroup_employees = @workgroup.employees 
-    total_employees = Employee.where(status: false)
+    total_employees = Employee.where(status: false) - [Employee.find(@workgroup.admin_id)]
     employees = total_employees - workgroup_employees
     json_data = []
     employees.each do|val|

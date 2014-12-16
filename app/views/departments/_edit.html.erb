@@ -1,0 +1,36 @@
+<div class="module">
+<div class="module-head">
+					<h3>Add Appraisal Template</h3>
+						</div>
+							<div class="module-body">							
+							<%= form_for @department, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"}, remote: true do |dep| %>						
+							  <div class="control-group">   
+							   <label class="control-label" for="basicinput">Department</label>
+                   <div class="controls">
+                      <%= dep.text_field :department_name, disabled: true %>
+                    <span class="help-block with-errors"></span>
+		               </div>
+					       </div>
+					       <div class="control-group">   
+							   <label class="control-label" for="basicinput">Appraisal Template</label>
+                   <div class="controls">
+                      <%= dep.collection_select :appraisal_id, Appraisal.all, :id, :title, :prompt => "Please Select", :class => "form-control"%>
+                    <span class="help-block with-errors"></span>
+		               </div>
+					       </div>									        							
+								 <button type="submit" class="btn btn-success editthree">Save </button>
+								   <%= link_to "Cancel", departments_path,:class => "btn btn-danger "%>							 
+						  <% end %>
+							</div><!--/.module-body-->
+</div>
+            
+         <script>
+          $(function(){
+  
+    $("#active").toggleClass("active").children("ul").collapse("toggle");
+
+          });
+        </script>
+            
+                    
+                    

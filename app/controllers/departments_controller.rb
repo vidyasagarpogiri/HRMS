@@ -1,7 +1,7 @@
 class DepartmentsController < ApplicationController
  #layout "leave_template", only: [:leaves, :index, :employee_leaves, :holiday_list]
   before_filter :hr_view
-  before_action :find_department, only: [:show, :edit, :department, :add_employee, :update_employee, ]
+  before_action :find_department, only: [:show, :edit, :department, :add_employee, :update_employee, :update ]
 
   def index
     @departments = Department.all
@@ -24,14 +24,16 @@ class DepartmentsController < ApplicationController
     @employees = @department.employees
 		@designations = @department.designations
 		@leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?
+		@appraisal = Appraisal.find(@department.appraisal_id) if @department.appraisal_id.present?
   end
 
-  def update
-    @department.update(department_params)
-    redirect_to @department
+  def edit          
+    # this action using for adding appraisal template to department - sekhar 
   end
   
-  def edit          
+  def update
+    @department.update(appraisal_id: params[:department][:appraisal_id])
+    @appraisal = Appraisal.find(@department.appraisal_id)
   end
   
   def destroy
@@ -48,7 +50,6 @@ class DepartmentsController < ApplicationController
     @employee.update(:department_id => @department.id)
     redirect_to @department
   end
-  
 
 =begin
 code not required but for future use   

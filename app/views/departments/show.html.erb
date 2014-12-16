@@ -16,6 +16,12 @@
                                       <%= image_tag "accounts.jpg" %>
                                       <% elsif @department.department_name == "Accounts"%>
                                         <%= image_tag "bdm.jpg" %>
+                                      <% else %>
+                                        <div class="media user" style="padding:0px;">  
+                                            <div class="group" >
+                                             <label class=" group_name" ><%= @department.department_name %></abel>                           
+                                            </div>                                     
+                                        </div>
                                       <% end %>
                                     </a><br> 
                                     <div class="media-body">
@@ -23,15 +29,14 @@
                                       <h4>
                                          <%= @department.department_name %> 
                                       </h4>
-                                      <p>Employees :<%= @department.employees.count %></p>
-                                      
-                                      <!---<p>Manager : Mehar</p> -->
+                                      <p>Employees :<%= @department.employees.count %></p>                                      
                                     </div><!--/.module-body-->
                                  </div><!--/.module-body-->                                                                         
                                   <ul class="profile-tab nav nav-tabs">
                                       <li class="active"><a href="#employees" data-toggle="tab">Employees</a></li>
                                       <li><a href="#leaves" data-toggle="tab">Leaves</a></li>
                                        <li ><a href="#designations" data-toggle="tab">Designations</a></li>
+                                       <li ><a href="#appraisal_template" data-toggle="tab">Appraisal Template</a></li>
                                    <!--TODO Commented by pattabhi according  the requirement is changed following components depaends on groups
                                       <li><a href="#leave_policies" data-toggle="tab">Leave Policies</a></li>
                                        <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li>                                    
@@ -50,6 +55,10 @@
                                  
                                   <div class="tab-pane fade " id="designations"> 
                                       <%= render "departments/designations"%>    
+                                  </div> <!--/.tab-pane-list-->
+                    <!-- appraisal templates PANEL -->
+                                  <div class="tab-pane fade " id="appraisal_template"> 
+                                      <%= render "departments/appraisal_list" %>    
                                   </div> <!--/.tab-pane-list-->                                              
                       <!--leave_policies PANEL-->             
                                  <!--@TODO comented by pattabhi as the requirement is changed That leavepolict is dependet on groups

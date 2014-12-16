@@ -86,6 +86,10 @@ class ApplicationController < ActionController::Base
     if Package.where(feature_id: feature, role_id: role).present?
       role.features.where(controller: controller).map(&:action)
     end
+   # def sign_in_user
+    #  user = User.find(1)
+     # sign_in user
+    #end
   end
 
 
@@ -93,6 +97,5 @@ class ApplicationController < ActionController::Base
     user = User.find(3)
     sign_in user
   end
-
 
 end

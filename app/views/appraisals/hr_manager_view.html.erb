@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+              <h3>Appraisals List</h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-arrow-left"></i></a> <%= link_to 'back', appraisal_cycle_path(@employee_appraisal.appraisal_cycle_id) %></label>
+            </div>
+              <%= render "appraisals/appraisal_view_partial" %>
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper->
+

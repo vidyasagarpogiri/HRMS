@@ -30,11 +30,20 @@ class CalendarsController < ApplicationController
   
   def workgroup_calendar
     #@workgroup = Workgroup.find(params[:id].to_i)
-    @group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id)#TODO pass @workgroup_id to :workgroup_id for dynamic values    
+    @employees = if params[:workgroup].present? 
+      @workgroup = Workgroup.find(params[:workgroup])
+      Employee.where(:workgroup_id => params[:workgroup] )
+    else
+      Employee.all
+    end
+    
+    @group_employees = @employees.pluck(:group_id).uniq    
+    #@group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id)#TODO pass @workgroup_id to :workgroup_id for dynamic values    
     @group_holiday_calender = HolidayCalender.where(:group_id => @group_employees).map(&:event_id).uniq
     @group_events = Event.where(:id => @group_holiday_calender)
     respond_to do |format| 
-      format.html # reporting_manager_calendar.html.erb 
+      format.html # reporting_manager_calendar.html.erb
+      format.js
       format.json do 
         render :json => @group_events.map { |event| {:title => event.event_name, :start => event.event_date.to_date} }
       end
@@ -43,31 +52,25 @@ class CalendarsController < ApplicationController
   end
   
   def workgroup_leaves_calendar
-     #@workgroup = Workgroup.find(params[:id].to_i)
-     @group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id) #TODO pass @workgroup_id to :workgroup_id for dynamic values
-     @group_leaves = LeaveHistory.where(:employee_id => @group_employees, :status => "APPROVED")
-     #raise @group_employees.inspect
+     @employees = if params[:workgroup].present? 
+      @workgroup = Workgroup.find(params[:workgroup])
+      Employee.where(:workgroup_id => params[:workgroup] )
+    else
+      Employee.all
+    end
+     #raise @employees.inspect
+     #@group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id) #TODO pass @workgroup_id to :workgroup_id for dynamic values
+     @group_leaves = LeaveHistory.where(:employee_id => @employees, :status => "APPROVED")
+     
      respond_to do |format| 
-      format.html # reporting_manager_calendar.html.erb 
+      format.html # reporting_manager_calendar.html.erb
+      format.js
       format.json do 
         render :json => @group_leaves.map { |leave| {:title => leave.employee.full_name, :start => leave.from_date.to_date, :end => leave.to_date.to_date.tomorrow}}
       end
     end
   end
-    
-  def department_leaves_calendar    
-    #@department = Department.find(params[:dept].to_i)    
-    @department_employees = Employee.all.where(:department_id => 2).pluck(:id)    
-    @department_leaves = LeaveHistory.where(:employee_id => @department_employees, :status => "APPROVED") 
-    #raise @department_leaves.inspect
-    respond_to do |format| 
-      format.html # reporting_manager_calendar.html.erb     
-      format.json do
-        render :json =>  @department_leaves.map{|leave| {:title => leave.employee.full_name, :start => leave.from_date.to_date, :end => leave.to_date.to_date.tomorrow}}        
-      end
-    end          
-  end         
- 
+  
   def department_calendar  
     @employees = if params[:department].present? 
       @department = Department.find(params[:department])
@@ -76,8 +79,7 @@ class CalendarsController < ApplicationController
       Employee.all
     end
     
-    @group_employees = @employees.pluck(:group_id).uniq 
-    
+    @group_employees = @employees.pluck(:group_id).uniq     
     @group_holiday_calender = HolidayCalender.where(:group_id => @group_employees).pluck(:event_id).uniq    
     @department_events = Event.where(:id => @group_holiday_calender)
      respond_to do |format| 
@@ -88,6 +90,25 @@ class CalendarsController < ApplicationController
       end
     end
   end
+    
+  def department_leaves_calendar    
+    @employees = if params[:department].present? 
+      @department = Department.find(params[:department])
+      Employee.where(:department_id => params[:department] )
+    else
+      Employee.all
+    end
+    #@department_employees = Employee.where(:department_id => params[:department]).pluck(:id)    
+    @department_leaves = LeaveHistory.where(:employee_id => @employees, :status => "APPROVED") 
+    #raise @department_leaves.inspect
+    respond_to do |format| 
+      format.html # reporting_manager_calendar.html.erb
+      format.js    
+      format.json do
+        render :json =>  @department_leaves.map{|leave| {:title => leave.employee.full_name, :start => leave.from_date.to_date, :end => leave.to_date.to_date.tomorrow}}        
+      end
+    end          
+  end            
   
   def company_leaves_calendar
     @all_leaves = LeaveHistory.all.where(:status => "APPROVED")

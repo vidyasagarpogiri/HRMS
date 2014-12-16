@@ -282,12 +282,14 @@ post 'create_package' => "features#create_package"
   
   # Routes for apprisal_cycle
   resources :appraisal_cycles
-  
+  post "appraisal_cycles/status_update"
   #routes for goals
    resources :goals
   #routes for review_elements
     resources :review_elements
 
+    
+    get 'getEmployees' => 'appraisals#getEmployees'
   # for employee status
   resources :statuses do
      member do
@@ -335,6 +337,25 @@ post 'create_package' => "features#create_package"
   get "my_tax_from/:assesment_year" => "tax_forms#show", as: :tax_form
 
  get "/getAllSkills" => "employees#getAllSkills" 
+ 
+  #routes for appraisals
+  resources :appraisals
+  get "/appraisal_assignment" => "appraisals#assign_appraisal"
+  post "appraisals/create_appraisal"
+  get "/employee_appraisal_form" => "appraisals#employee_appraisal_form"
+  post "appraisals/create_employee_appraisal"
+  get "/appraisals_list" => "appraisals#employee_appraisals"
+  get "/manager_view/:id" => "appraisals#manager_view"
+  post "/manager_feedback/:id" => "appraisals#manager_feedback"
+  get "/hr_manager_view/:id" => "appraisals#hr_manager_view"
+  get "/my_appraisals" => "appraisals#indivisual_appraisals"
+  get "/appraisal_view/:id" => "appraisals#appraisal_view"
+  get "/employee_appraisal_view/:id" => "appraisals#employee_appraisal_view"
+  get 'assign_employee_appraisals' => "appraisals#assign_employee_appraisals"
+  get '/manager_appraisal_view/:id' => "appraisals#manager_appraisal_view"
+  get "/reportees" => "appraisals#reportees"
+  get '/reportee_appraisals/:id' => "appraisals#reportee_appraisals"
+  get "/reportee_appraisal_view/:id" => "appraisals#reportee_appraisal_view"
 
   
   # for work groups Author:Vidya Sagar
@@ -359,8 +380,7 @@ post 'create_package' => "features#create_package"
     collection do
       post "add_comments"
     end
-  end
-  
+  end 
   resources :organization
 
   # Example of regular route:

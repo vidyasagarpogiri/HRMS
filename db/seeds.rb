@@ -166,6 +166,3 @@ GeneralInvestment.create(title: "Home Loan Principal Repayment", description: "N
 GeneralInvestment.create(title: "Provident Fund", description: "Need Documents", section_declaration_id: 1) 
 GeneralInvestment.create(title: "Medical Insurance", description: "Need Documents", section_declaration_id: 2) 
 
-
-
-
