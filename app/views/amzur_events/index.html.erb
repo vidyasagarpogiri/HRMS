@@ -31,42 +31,37 @@
                     No Events to display.
               </div>
             <% end %> 
-            <%= paginate  @amzurevent %>     	           
+              <%= paginate  @amzurevent %>     	           
 						</div><!--/.module-body-->
 						
-						
-						
-						   <div class="module-head">
-				          <h3>My Department Events</h3>
-		           </div>
-		           
-		            <div class="module-body">
-		          <% if @empevents.present? %>    
+					  <div class="module-head">
+              <h3>My Department Events</h3>
+            </div>
+            <div class="module-body">	
+            <% if @emp_dept_events.present? %>                             	           
               <% @emp_dept_events.each do |amzurevent| %>
-              <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
-                          
-              <label class="desc">
-                <%= raw amzurevent.description %>
-              </label>              
-              <%= link_to "Continue..", amzur_event_path(amzurevent), :class => "pt4" %><br><hr>                       
+                <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div>                           
+                <label class="desc">
+                  <%= raw amzurevent.description %>
+                </label>              
+                <%= link_to "Continue..", amzur_event_path(amzurevent), :class => "pt4" %><br><hr>                       
               <% end %>
-              <% else %>     
+              <% else %><br>     
               <div class="alert alert-success alert-dismissable">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     No Events to display.
-              </div>
-            <% end %> 
-            <%= paginate  @amzurevent %>     	           
-						</div><!--/.module-body-->
+              </div>               
+              <%= paginate  @amzurevent %>
+              <% end %>	     	           
+						  </div><!--/.module-body-->
 						
-						
-						
+																							
 						   <div class="module-head">
 				          <h3>My Group Events</h3>
 		           </div>
 		           
-		            <div class="module-body">
-		          <% if @empevents.present? %>    
+		           <div class="module-body">
+		          <% if @emp_group_events.present? %>    
               <% @emp_group_events.each do |amzurevent| %>
               <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
                           
@@ -92,7 +87,7 @@
 		           </div>
 		           
 		            <div class="module-body">
-		          <% if @empevents.present? %>    
+		          <% if @emp_workgroup_events.present? %>    
               <% @emp_workgroup_events.each do |amzurevent| %>
               <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
                           

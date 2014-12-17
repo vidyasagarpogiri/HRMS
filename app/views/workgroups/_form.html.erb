@@ -31,7 +31,7 @@
                   <%= w.file_field :workgroupicon,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
                   Existing/Default Work Group Icon: <% if @workgroup.workgroupicon.present? %> <%= image_tag @workgroup.workgroupicon, size: "40x20" %>
                   <% else %>
-                   <%= image_tag("workgroup_icon.png",size: "40x20") %>
+                    <%= image_tag "workgroup.png", :width => "40px", :height => "20px" %> 
                   <% end %> 
                   <span class="help-block with-errors"></span>
                 </div>
