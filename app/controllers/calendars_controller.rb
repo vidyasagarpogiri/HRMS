@@ -2,8 +2,7 @@
 # Calendar view for Leaves and Holidays
 class CalendarsController < ApplicationController
 
-  def reporting_manager_calendar 
-    #@reportee_employees = current_user.employee.reportees_employees
+  def reporting_manager_calendar   
     @reportee_employees_groups = current_user.employee.reportees_employees.pluck(:group_id).uniq    
     @events = HolidayCalender.where(:group_id => @reportee_employees_groups).pluck(:event_id).uniq
     @event_records = Event.where(:id => @events)#.pluck(:event_name, :event_date)
