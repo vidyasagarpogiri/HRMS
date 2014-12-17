@@ -37,10 +37,7 @@
                       <div class="control-group">
                      <label class="control-label" for="basicinput">Add Tags:</label>
                       <div class="controls">
-                 
-                        <%#= p.text_field :tags, :class => "span8 form-control ", :placeholder =>"Add Tags", :data => {:error => "Please Enter Status"}, :required => true %>
-                        
-                        <input id="s" type="text">
+                     <input id="s" type="text">
                        <input type="hidden" name="hidden_tags" class="hidden_tags">
                         <span id="advanced_search_box"></span><br><br>
                         <% if @post.tags.present?%>
@@ -55,17 +52,11 @@
                       </div>
                     </div>
                     
-                  
-                   
-                    
-                    
-                    
-                    
-                          
                 <ul class="navigation-btns editthree" >
                 <li><button type="submit" class="btn btn-success">Post </button></li>
                 <li><%= link_to "Cancel", posts_path, :class => "btn btn-danger" %></li>
               </ul>	
+              <input type="hidden" name="total_tags" class="total_tags">
               <% end %>
           </div>
           </div><!--/.module-->
@@ -80,22 +71,28 @@
 
 <script>
 $(function(){
-var tags= "";
+    var tags= "";
+    var total_tags="";
+    var present_tags = "<%= @post.tags %>";
+    console.log(present_tags);
 $("#s").keypress(function(e) {
     if(e.which == 13) {
     var tag = $("#s").val();
     //var all_tags  = tag+ ","+ $("#s").val()
-    console.log(tag);
     span = get_box(tag);
     $('#advanced_search_box').append(span);
     tags = tags+ tag + "," ;
     $("#s").val("");
     $(".hidden_tags").val(tags); 
+    total_tags = tags + present_tags
+    console.log(total_tags);
+    $(".total_tags").val(total_tags);
     e.preventDefault();
     return false;
      
     }
-});
+});  
+   
 });
 
  function get_box(text){
