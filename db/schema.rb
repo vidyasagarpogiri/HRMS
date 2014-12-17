@@ -51,6 +51,9 @@ ActiveRecord::Schema.define(version: 20141205110553) do
     t.string   "title"
     t.text     "description"
     t.string   "held_on"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.boolean  "is_send_mail"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "employee_id"
@@ -59,6 +62,9 @@ ActiveRecord::Schema.define(version: 20141205110553) do
   create_table "announcements", force: true do |t|
     t.string   "title"
     t.text     "description"
+    t.integer  "announceable_id"
+    t.string   "announceable_type"
+    t.boolean  "is_send_mail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -803,7 +809,7 @@ ActiveRecord::Schema.define(version: 20141205110553) do
   create_table "workgroups_employees", force: true do |t|
     t.integer  "employee_id"
     t.integer  "workgroup_id"
-    t.boolean  "is_moderator"
+    t.boolean  "is_moderator", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -26,7 +26,7 @@ StaticSalary.destroy_all
 
 
 #sekharberi@1989
-@user = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
+@user = User.invite!(:email =>  "sekhar.beri@amzur.com", :skip_invitation => true)
 
  
 

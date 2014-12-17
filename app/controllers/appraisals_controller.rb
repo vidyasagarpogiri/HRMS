@@ -17,6 +17,7 @@ class AppraisalsController < ApplicationController
     @review_elements = ReviewElement.all
     @goals = Goal.all
   end
+  
   def create
     @appraisal = Appraisal.create(appraisal_params)
     review_elements = params[:review_element_ids]
@@ -45,8 +46,7 @@ class AppraisalsController < ApplicationController
   end
   
   # action to display appraisal form for employees
-  def assign_appraisal
-  
+  def assign_appraisal 
     @appraisals = Appraisal.all
   end
   
@@ -64,9 +64,9 @@ class AppraisalsController < ApplicationController
   # this will display appraisal form for employee
   def employee_appraisal_form
     @employee_appraisal = @employee.employees_appraisal_lists.where(status: Appraisal::EMPLOYEE).first
-    appraisal = Appraisal.find(@employee_appraisal.appraisal_id) if @employee_appraisal.present?
+    appraisal = @employee_appraisal.appraisal if @employee_appraisal.present?
     @review_elements = appraisal.review_elements if appraisal.present?
-    @goals = @appraisal.goals if @appraisal.present?
+    #@goals = @appraisal.goals if @appraisal.present?
   end
   
   # In this we will create employee appraisals details and reviews entered by employee
