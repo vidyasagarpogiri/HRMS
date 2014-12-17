@@ -1,197 +1,147 @@
-       <div class="media user" style="background-color:#fff;">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" style="color:red;">&times;</span><span class="sr-only" style="color:red;"> Close</span></button><br>
-            <a href="#" class="media-avatar pull-left">
-              <% if @employee.present? && @employee.avatar_url.present? %>
-                <%= image_tag(@employee.avatar_url) %> 
-               <% else %>
-                 <img src="/assets/user.png"> 
-              <% end %></a>                                                       
-              <div class="media-body">
-                <h4>
-                <%= @employee.title %>.<%= @employee.full_name %>
-                </h4>              
-                <div class="profile-details muted">
-                  <i class="icon-suitcase"></i>  <%= @employee.designation.designation_name if @employee.designation.present? %><br>
-                  <i class="icon-phone"></i> <%= @employee.mobile_number %><br>
-                  <i class="icon-envelope-alt shaded"> </i> <%= @employee.user.email %><br>
-                  <i class="icon-map-marker"></i> <%= @employee.job_location.address.city %><br>
-                </div>        
-            </div><hr>
-         </div>                  
+<div class="media user" style="background-color:#fff;">
+  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" style="color:red;">&times;</span><span class="sr-only" style="color:red;"> Close</span></button><br>
+  <a href="#" class="media-avatar pull-left">
+  <% if @employee.present? && @employee.avatar_url.present? %>
+  <%= image_tag(@employee.avatar_url) %> 
+  <% else %>
+  <img src="/assets/user.png"> 
+  <% end %></a>                                                       
+  <div class="media-body">
+    <h4>
+    <%= @employee.title %>.<%= @employee.full_name %>
+    </h4>              
+    <div class="profile-details muted">
+      <i class="icon-suitcase"></i>  <%= @employee.designation.designation_name if @employee.designation.present? %><br>
+      <i class="icon-phone"></i> <%= @employee.mobile_number %><br>
+      <i class="icon-envelope-alt shaded"> </i> <%= @employee.user.email %><br>
+      <i class="icon-map-marker"></i> <%= @employee.job_location.address.city %><br>
+    </div>        
+  </div><hr>
+</div>                  
+<div class="modal-body" style="background-color:#fff;">
+  <div class="module-head">
+    <h3> Basic Info</h3>
+  </div><br>
+  <div class ="row-fluid">          
+    <div class="span5">	
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Amzur Experience : </strong>  <%= difference_in_months(@employee.date_of_join,Date.today) %></label>  
       </div>
-      <br>
-      <div class="modal-body" style="background-color:#fff;">
-        <div class="module-head">
-           <h3> Basic Info</h3>
-        </div><br>
-         <div class ="row-fluid">          
-            <div class="span5">	
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Amzur Experience : </strong>  <%= difference_in_months(@employee.date_of_join,Date.today) %></label>  
-              </div>
-            </div>        
-            <div class="span5">	
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Date Of Birth: </strong> <%= format_date_without_year(@employee.date_of_birth) %></label>  
-              </div>
-            </div>
-         </div>
-         
-         <div class ="row-fluid">
-            <div class="span5">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Blood Group: </strong> <%= @employee.blood_group.blood_group_name%> </label>
-              </div>
-            </div>
-         </div> 
-         
-         <div class="module-head">
-           <h3> Emergency Contact</h3>
-         </div><br>
-         
-         <div class ="row-fluid">  
-            <% if @employee.emergency_contacts.present? %>
-           
-            <div class="span5">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Name: </strong> <%= @employee.emergency_contacts.first.name %></label>                
-              </div>
-            </div>
-            
-            
-            <div class="span5">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Contact Number: </strong> <%= @employee.emergency_contacts.first.mobile1 %></label>                
-              </div>
-            </div>  
-                      
-           <% end %>
-         </div>
-     <!--EMPLOYEE SELF DESCRIPTION MODIFIED BY @pattabhi Dated 24th-Nov-14  -->   
-       
-          <div class="module-head">
-           <h3>Self Description </h3>
-         </div><br>
-         <div class ="row-fluid">
-          <% if(@employee.self_description != nil) %>  
-           <div class="span12">		
-            <div class="control-group">
-              <label class="control-label" for="basicinput"><strong>Employee Self Description: </strong> <%= raw(@employee.self_description) %></label>                
-            </div>
-          </div>
-          <%else%>
-            <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                   There is No self Description
-              </div>
-           <% end %>
-         
-         
-           <% if(@employee.interests != nil) %>
-         <div class="span12">		
-            <div class="control-group">
-              <label class="control-label" for="basicinput"><strong>Employee Personal Interests: </strong> <%= @employee.interests %></label>                
-            </div>
-          </div>
-          <%else%>
-          <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                   There Are No Self Interests
-              </div>
-           <%end%>
-           
-           
-           
-          <div class="span12">		
-            <div class="control-group">
-              <label class="control-label" for="basicinput"><strong>Employee Skills: </strong>
-              <% if @employee.skills.present? %>
-              <% @skills.each do |skill| %>
-              <input value="<%= skill.name %>" class="btn btn-success span2" style="color:black" disabled>
-            <% end %>
-            
-            </label>                
-            </div>
-          </div>
-          <%else%>
-            <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                   No Skills Added
-              </div>
-            <%end%>
-     
-     
-     </div>
-     
-         
-     <!--END OF   SELF DESCRIPTION -->
-         
-    <!-- Employee project section modified by @pattabhi Dated 24th-nOV-14--> 
-         <div class="module-head">
-           <h3> Projects</h3>
-         </div><br>
-          <% if @projects.present? %>
-				       <% @projects.each do |project| %>
-           <div class ="row-fluid ">          
-            <div class="span12" style="margin-left:20px;">		
-              <div class="control-group span4">
-                <label class="control-label" for="basicinput"><strong>Project Tille: </strong> <%= project.title %></label>                
-              </div>
-         	
-              <div class="control-group span4">
-                <label class="control-label" for="basicinput"><strong>Start Date: </strong> <%= project.start_date %></label>                
-              </div>
-      		
-              <div class="control-group span4">
-                <label class="control-label" for="basicinput"><strong>End Date: </strong> <%= project.end_date %></label>                
-              </div>
-            </div>
-            
-                                   
-            <div class="span11">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Description: </strong> <%= project.description %></label>                
-              </div>
-            </div>
-            
-            <div class="span4">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Roles: </strong> <%= project.roles %></label>                
-              </div>
-            </div>
-            
-            <div class="span4">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Key Skills used: </strong> <%= project.skills %></label>                
-              </div>
-            </div>
-          
-            <div class="span12">		
-              <div class="control-group">
-                <label class="control-label" for="basicinput"><strong>Tasks Performed: </strong> <%= project.tasks_performed %></label>                
-              </div><br>
-             
-            </div>
-      			                 
-         </div>
-         
-         <% end %><br>
-				      <%else%>
-				      <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  No Projects to display.
-              </div>
-            <% end %> 	           
-         
-     <!-- END OF EMPLOYEE PROJECTS SECTION -->
-     
-     
-       </div><!- -->
+    </div>        
+    <div class="span5">	
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Date Of Birth: </strong> <%= format_date_without_year(@employee.date_of_birth) %></label>  
+      </div>
+    </div>
+  </div>
+  <div class ="row-fluid">
+    <div class="span5">		
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Blood Group: </strong> <%= @employee.blood_group.blood_group_name%> </label>
+      </div>
+    </div>
+  </div>  
+  <% if @employee.emergency_contacts.present? %>
+  <div class="module-head">
+    <h3> Emergency Contact</h3>
+  </div><br>
+  <div class ="row-fluid">  
+    <div class="span5">		
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Name: </strong> <%= @employee.emergency_contacts.first.name %></label>                
+      </div>
+    </div>
+    <div class="span5">		
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Contact Number: </strong> <%= @employee.emergency_contacts.first.mobile1 %></label>                
+      </div>
     </div>  
-  </div> 
- </div>     
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+  <% end %>
+  </div>
+  <!--EMPLOYEE SELF DESCRIPTION MODIFIED BY @pattabhi Dated 24th-Nov-14  -->   
+  <div class="module-head">
+    <h3>Self Description </h3>
+  </div><br>
+  <div class ="row-fluid">
+  <% if(@employee.self_description != nil) %>  
+    <div class="span12">		
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Employee Self Description: </strong> <%= raw(@employee.self_description) %></label>                
       </div>
+    </div>
+  <%else%>
+  <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    There is No self Description
+  </div>
+  <% end %>
+  <% if(@employee.interests != nil) %>
+  <div class="control-group">
+    <label class="control-label" for="basicinput"><strong>Employee Personal Interests: </strong> <%= @employee.interests %></label>                
+  </div>
+  <%else%>
+  <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    There Are No Self Interests
+  </div>
+  <%end%>
+  <div class="control-group">
+    <label class="control-label" for="basicinput"><strong>Employee Skills: </strong>
+    <% if @employee.skills.present? %>
+    <% @skills.each do |skill| %>
+      <input value="<%= skill.name %>" class="btn btn-success span2" style="color:black" disabled>
+    <% end %>
+    </label>                
+  </div>
+  <%else%>
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      No Skills Added
+    </div>
+  <%end%>
+  </div>
+  <!--END OF   SELF DESCRIPTION -->
+  <!-- Employee project section modified by @pattabhi Dated 24th-nOV-14-->   
+  <% if @projects.present? %>
+    <div class="module-head">
+      <h3> Projects</h3>
+    </div><br>
+    <% @projects.each do |project| %>
+    <div class ="row-fluid ">          
+      <div class="span12" >		
+        <div class="control-group span4">
+          <label class="control-label" for="basicinput"><strong>Project Tille: </strong> <%= project.title %></label>                
+        </div>
+        <div class="control-group span4">
+          <label class="control-label" for="basicinput"><strong>Start Date: </strong> <%= project.start_date %></label>                
+        </div>
+        <div class="control-group span4">
+          <label class="control-label" for="basicinput"><strong>End Date: </strong> <%= project.end_date %></label>                
+        </div>
+      </div>      	
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Description: </strong> <%= project.description %></label>                
+      </div>       
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Roles: </strong> <%= project.roles %></label>                
+      </div>   		
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Key Skills used: </strong> <%= project.skills %></label>                
+      </div>    		
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Tasks Performed: </strong> <%= project.tasks_performed %></label>                
+      </div><br>     
+    </div>
+    <% end %><br>
+  <%else%>
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      No Projects to display.
+    </div>
+  <% end %> 	           
+  <!-- END OF EMPLOYEE PROJECTS SECTION --> 
+</div>     
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+  <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+</div>

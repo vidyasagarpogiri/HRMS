@@ -14,7 +14,7 @@ before_filter :edit_view, only: ['edit']
   
   def create
    @post = current_user.employee.posts.new(post_params) 
-   @post.update(:tags => params[:hidden_tags].chop)
+   @post.update(:tags => params[:total_tags])
   
     if @post.save
       redirect_to posts_path
@@ -24,13 +24,14 @@ before_filter :edit_view, only: ['edit']
   end
   
   
-  def edit # Edits the status
+  def edit # Edits the Post
     @post = Post.find(params[:id])
   end
   
-   def update # Updates the status
+   def update # Updates the Post
+   #raise params.inspect
     @post = Post.find(params[:id])
-    @post.update(:tags => params[:hidden_tags].chop)
+    @post.update(:tags => params[:total_tags].chop)
     if @post.update(post_params)
       redirect_to posts_path
     else

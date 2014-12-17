@@ -37,7 +37,7 @@ RSpec.describe WorkgroupsController, :type => :controller do
     end
   end
   
-   describe "POST # Create new_workgroup " do 
+  describe "POST # Create new_workgroup " do 
     context "Create workgroup  with valid attributes" do
       it "creates a new workgroup" do
         expect {
@@ -50,7 +50,7 @@ RSpec.describe WorkgroupsController, :type => :controller do
          expect(response).to redirect_to(workgroups_path)
       end
     end
-    end
+  end
   
   describe "POST # Create new_workgroup" do 
     context "Create workgroup  with invalid attributes" do
@@ -80,9 +80,9 @@ RSpec.describe WorkgroupsController, :type => :controller do
   
   describe "PUT # workgroups update " do
     before :each do
-     @updated_workgroup = FactoryGirl.attributes_for(:workgroup, name: "Development") 
-     @workgroup  = FactoryGirl.create(:workgroup)
-     @invalid_workgroup = FactoryGirl.attributes_for(:workgroup, description: nil) 
+      @updated_workgroup = FactoryGirl.attributes_for(:workgroup, name: "Development") 
+      @workgroup  = FactoryGirl.create(:workgroup)
+      @invalid_workgroup = FactoryGirl.attributes_for(:workgroup, description: nil) 
     end 
     context "with valid attributes" do
       it "changes @workgroup's attributes" do
