@@ -15,7 +15,7 @@
 									<label class="control-label" for="basicinput">Workgroups:</label>
 									<div class="controls">                    
                     <%= form_tag('/calendars/workgroup_leaves_calendar', method: :get, remote: true) do %>
-                     <%= select_tag "workgroup", options_from_collection_for_select(Workgroup.all, "id", "name"), class: "department-id", :prompt=>"Organization" %>
+                     <%= select_tag "workgroup", options_from_collection_for_select(Workgroup.all, "id", "name"), class: "workgroup-id", :prompt=>"Organization" %>
                     <% end %>  
                     <span class="help-block with-errors"></span> 
 									</div>

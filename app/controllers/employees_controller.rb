@@ -137,7 +137,7 @@ class EmployeesController < ApplicationController
 		@promotions = @employee.promotions
 		@salary = @employee.salary
 	  if @salary.present?
-		  @allowances = @salary.allowances
+		  @allowances = @salary.allowances  
 		  @insentives = @salary.insentives
 		  @increments = @salary.salary_increments
     end

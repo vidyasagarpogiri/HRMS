@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+before_filter :edit_view, only: ['edit']
   def index
    @search = Post.search do
     fulltext params[:search]
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
    @employee = current_user.employee
    @comment =  @post.comments.new(:comment => params[:comment], :employee_id => @employee.id)
    if @comment.save
-      redirect_to posts_path
+      redirect_to post_path(@post.id)
    else
     render "add_comment_form"
     
@@ -112,6 +112,14 @@ class PostsController < ApplicationController
   def post_params # New method creates a obje
     params.require(:post).permit(:title, :content, :category)
   end
+  
+  def edit_view
+  @post = Post.find(params[:id])
+ #raise WorkgroupsEmployee.last.inspect
+    unless current_user.employee == @post.employee
+     render :text => "You Don`t Have Permission"  
+    end  
+   end
 end
 
 

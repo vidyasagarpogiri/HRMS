@@ -16,11 +16,11 @@
     </div>
 
     <div class="control-group span4">
-      <label class="control-label" for="basicinput"><strong>Start Date: </strong> <%= project.start_date %></label>                
+      <label class="control-label" for="basicinput"><strong>Start Date: </strong> <%= format_date(project.start_date) %></label>                
     </div>
 
     <div class="control-group span4">
-      <label class="control-label" for="basicinput"><strong>End Date: </strong> <%= project.end_date %></label>                
+      <label class="control-label" for="basicinput"><strong>End Date: </strong><%if project.end_date.nil?%> In Progress <%else%> <%= format_date(project.end_date) %><%end%></label>                
     </div>
   </div>
   
