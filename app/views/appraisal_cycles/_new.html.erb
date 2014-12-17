@@ -24,7 +24,7 @@
                   <div class="control-group">   
                     <label class="control-label" for="basicinput">Department</label>
                     <div class="controls">
-                      <%= a.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, span9 form-control", :id => "disabledSelect1", required: true } %> 
+                      <%= a.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, span9 form-control", required: true } %> 
                       <span class="help-block with-errors"></span>
                     </div>
                   </div>
