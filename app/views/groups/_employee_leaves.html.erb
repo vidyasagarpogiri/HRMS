@@ -17,8 +17,9 @@
 				  <th width="120px">Reporting Manger</th>													
 			  </tr>
 		  </thead>		
-	    <% @leaves.each do |f| %>		
-      <tbody>												
+	    	
+      <tbody>	
+        <% @leaves.each do |f| %>												
 			  <tr class="gradeA">               
 			    <td width="180px;"> <%= f.employee.full_name %></td>
 		      <td> <%= format_date(f.from_date) %> to <%= format_date(f.to_date) %>  </td>
@@ -29,8 +30,9 @@
 			    <td> <%= f.status %> </td>
 			    <td> <%= f.employee.reporting_manager%></td>
 			  </tr>
+			  <% end %>
      </tbody>
-     <% end %>	
+     	
 	  </table>      
 		<% else %>
     <div class="alert alert-success alert-dismissable">
