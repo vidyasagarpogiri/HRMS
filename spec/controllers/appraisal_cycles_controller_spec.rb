@@ -2,47 +2,48 @@ require 'rails_helper'
 
 RSpec.describe AppraisalCyclesController, :type => :controller do
   
-   before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      employee = FactoryGirl.create(:employee)
-      user = employee.user
-      sign_in user
-    end
+  before(:each) do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    employee = FactoryGirl.create(:employee)
+    user = employee.user
+    sign_in user
+  end
   
-  describe "GET #index" do 
-  	it "populates an array of recruitments" do
-    	appraisal_cycle1 = FactoryGirl.create(:appraisal_cycle) 
-      appraisal_cycle2 = FactoryGirl.create(:appraisal_cycle) 
-      appraisal_cycle3 = FactoryGirl.create(:appraisal_cycle) 
-      get :index, {}
-      expect(assigns(:appraisal_cycles)).to eq([appraisal_cycle1, appraisal_cycle2, appraisal_cycle3]) 
+  describe 'GET #index' do
+    it 'display list of appraisal_cycles' do
+      review_cycle1 = FactoryGirl.create(:appraisal_cycle)
+      review_cycle2 = FactoryGirl.create(:appraisal_cycle)
+      get :index
+      expect(assigns(:appraisal_cycles)).to match_array([review_cycle1, review_cycle2])
     end
-	end
-
-  describe "GET #new" do
-    it "redirect to new page " do
-      get :new, {}
+  end
+  
+  describe 'GET #new' do
+    it 'has create a new instance of appraisal_cycle' do
+      xhr :get, :new, {}
       expect(assigns(:appraisal_cycle)).to be_a_new(AppraisalCycle)
     end
   end
-
-  describe "POST #create" do
-    context "with valid attributes" do
-      it "When we create a new record" do
-        expect{ post :create, appraisal_cycle: FactoryGirl.attributes_for(:appraisal_cycle)}.to change(AppraisalCycle,:count).by(1) 
-      end
-      it "After create redirect to index page" do
-        post :create, appraisal_cycle: FactoryGirl.attributes_for(:appraisal_cycle)
-        expect(response).to redirect_to(appraisal_cycles_path) 
-      end
+  
+  describe 'POST #create' do
+    it 'has create a new record and change its count by 1' do
+      expect{
+        xhr :post, :create, appraisal_cycle: FactoryGirl.attributes_for(:appraisal_cycle)
+      }.to change(AppraisalCycle, :count).by(1)
     end
-    context "with invalid attributes" do
-        it "re-renders the 'new' template" do 
-          post :create, appraisal_cycle: {title: nil, start_date: nil,  end_date: nil, period: nil, employee_dead_line: nil, manager_dead_line: nil, discussion_dead_line: nil, status: nil, department_id: nil }
-          expect(response).to render_template('new')
-        end
+    
+    it 'when resource has found' do
+      xhr :post, :create, appraisal_cycle: FactoryGirl.attributes_for(:appraisal_cycle)
+      expect(response.status).to eq(200)
     end
-
   end
-
+  
+  describe 'GET #show' do
+    it 'assigns the requested contact to @appraisal_cycle' do
+      appraisal_cycle = FactoryGirl.create(:appraisal_cycle)
+      get :show, id: appraisal_cycle
+      expect(assigns(:appraisal_cycle)).to eq(appraisal_cycle)
+    end
+    
+  end
 end

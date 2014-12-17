@@ -41,7 +41,15 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
+<<<<<<< HEAD
+  
+
+  config.include Devise::TestHelpers, :type => :controller
+
+
+=======
   config.include Devise::TestHelpers, :type => :controller # for rspec testing
+>>>>>>> 6069bb78d4c30dc6571c778c4b8f26e93b392597
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

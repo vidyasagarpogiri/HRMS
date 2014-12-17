@@ -47,6 +47,7 @@
 			            </th>
 			            <th>
 			            <% unless em.id == @workgroup.admin_id %>
+			            <%# raise WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee, workgroup_id: @workgroup.id ).inspect%>
 			             <% if current_user.employee.id == @workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: @workgroup.id ).present? %>
 			             <%= link_to "Delete",destroy_member_workgroup_path(@workgroup.id,em.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger "%>  
 			            <% else %>          

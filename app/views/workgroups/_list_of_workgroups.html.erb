@@ -17,7 +17,7 @@
                      <% if workgroup.workgroupicon.present? %>
                         <%= image_tag workgroup.workgroupicon, size: "60x20" %>
                      <% else %>
-                        <%= image_tag("workgroup_icon.png",size: "60x20") %> 
+                        <%= image_tag "workgroup_icon.png", size: "60x20" %> 
                      <% end %>
                     </td>          
                     <td><%= link_to workgroup.name,workgroup_path(workgroup) if workgroup.name.present? %></td>

@@ -5,7 +5,7 @@
 			  <div class="module">
           <div class="module-head">
 			      <h3>Status Details
-			          <div class="pull-right" ><a href="/statuses" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Employee Wall</i></a></div>  
+			          <div class="pull-right" ><a href="/statuses" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Employee Wall</i></a></div>  
 			      </h3>	
 			      </div>
 			        <div class="module-body">
@@ -34,14 +34,16 @@
               
            <div class="span10">      
 					    <h5>Comments (<%= @status.comments.count %>) ,
-					    <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Likes List</button>
+					    <button type="button" class="btn btn-primary btn-small" data-toggle="modal" data-target="#myModal">
+                Likes List
+              </button>
 					    <%= 'Likes' %>
 					    (<%= @status.likes_count %>) . <%= time_ago_in_words(@status.created_at)%> ago    
                 <% if @status.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
                   <%= link_to 'UnLike', remove_like_status_path(@status.id, :employee_id => current_user.employee), :method => "post" %> </span>  </h5>
                 <% else %> 
                   <%= link_to 'Like', add_like_status_path(@status.id, :employee_id => current_user.employee), :method => "post" %></span> 
-                  , <%= time_ago_in_words(@status.created_at)%> ago </h5>
+                  
                 <% end %>
            </div>
             
@@ -86,29 +88,33 @@
       </div><!--/.container-->	
   </div><!--/.Wrapper-->	
 
-<!-- Small modal -->
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="height: 180px; width: 200px;">
-  <div class="modal-dialog modal-sm">
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
-    <h4 class="modal-title" id="myModalLabel">Likes List</h4>
-     <% if @employees.present? %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Likes List</h4>
+      </div>
+       <div class="modal-body">
+         <% if @employees.present? %>
       <% @employees.each do |emp| %> 
-					 <%= emp.first_name %> <br>
+					 <b><%= emp.full_name %></b> <br>
 					  <% end %>
 		 <%else%>
-		   <div class="module-body">                                           
-         <div class="alert alert-success alert-dismissable">
+      <div class="modal-body">
+      <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 No Employees to display.
          </div>
        </div>
      <%end%>
-					  <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> 
-      </div>
-    </div>
+     </div>
+     </div>
   </div>
 </div>
-
-
 
