@@ -18,7 +18,7 @@
               </div>
               
               <div class="control-group">
-                <label class="control-label" for="basicinput">Description</label>
+                <label class="control-label" for="basicinput">Work Group Description</label>
                 <div class="controls">
                   <%= w.text_area :description, :class => "span8 form-control time-picker", :placeholder =>"Enter Description ", :data => {:error => "Please Enter Description  "}, :required => true %>
                   <span class="help-block with-errors"></span>
@@ -26,9 +26,13 @@
               </div>
               
               <div class="control-group">
-                <label class="control-label" for="basicinput">Group Icon</label>                                         
+                <label class="control-label" for="basicinput">Work Group Icon</label>                                         
                 <div class="controls">
                   <%= w.file_field :workgroupicon,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
+                  Existing/Default Work Group Icon: <% if @workgroup.workgroupicon.present? %> <%= image_tag @workgroup.workgroupicon, size: "40x20" %>
+                  <% else %>
+                   <%= image_tag("workgroup_icon.png",size: "40x20") %>
+                  <% end %> 
                   <span class="help-block with-errors"></span>
                 </div>
               </div>
