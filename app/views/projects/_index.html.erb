@@ -10,7 +10,7 @@
     <% if @projects.present? %>
      <% @projects.each do |project| %>
  <div class ="row-fluid " style="border:solid 1px #eee;padding:10px;margin-top:10px;width:1100px">          
-  <div class="span12" style="margin-left:20px;">		
+  <div class="span11" style="margin-left:30px;">		
     <div class="control-group span4">
       <label class="control-label" for="basicinput"><strong>Project Tille: </strong> <%= project.title %></label>                
     </div>
@@ -19,7 +19,7 @@
       <label class="control-label" for="basicinput"><strong>Start Date: </strong> <%= project.start_date %></label>                
     </div>
 
-    <div class="control-group span4">
+    <div class="control-group span3">
       <label class="control-label" for="basicinput"><strong>End Date: </strong> <%= project.end_date %></label>                
     </div>
   </div>
