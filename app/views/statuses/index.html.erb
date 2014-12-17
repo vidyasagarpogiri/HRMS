@@ -69,10 +69,10 @@
                       <%end %><hr> 
                      <% s.comments.limit(3).each do |comm| %> 
                        <% if comm.employee.avatar_url.present? %> 
-                            <%= image_tag(comm.employee.avatar_url,size: "60x20") %>
+                            <%= image_tag(comm.employee.avatar_url,size: "30x30") %>
                           <% else %>
                              <% if comm.employee.gender == "Female" %>
-                            <%= image_tag("1.jpg", :style => "width:20px;height:20px;") %> 
+                            <%= image_tag("1.jpg", :style => "width:30px;height:30px;") %> 
                          <% else %>
                             <%= image_tag("user.png", size: "30x30") %> 
                          <% end %> 
