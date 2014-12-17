@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
 =end  
 
   def empId
-  
     resource, id = request.path.split('/')[1,2]
     @id= id
     if resource == "employees" && id.present?
@@ -86,15 +85,15 @@ class ApplicationController < ActionController::Base
     if Package.where(feature_id: feature, role_id: role).present?
       role.features.where(controller: controller).map(&:action)
     end
-   # def sign_in_user
-    #  user = User.find(1)
+   #def sign_in_user
+      #user = User.find(1)
      # sign_in user
     #end
   end
 
 
   def sign_in_user
-    user = User.find(3)
+    user = User.find(1)
     sign_in user
   end
 

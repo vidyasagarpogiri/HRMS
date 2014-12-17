@@ -22,7 +22,7 @@
                     <tr>
                       <td><%= employee.full_name %></td>
                       <% if employee.check_appraisal %>
-                        <td><%=employee.appraisals.first.title %></td>
+                        <td><%= employee.appraisals.first.title %></td>
                       <% else %>
                         <td>No Appraisal Template </td>
                       <% end %>

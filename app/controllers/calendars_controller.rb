@@ -31,9 +31,9 @@ class CalendarsController < ApplicationController
   def workgroup_calendar   
     @employees = if params[:workgroup].present? 
       @workgroup = Workgroup.find(params[:workgroup])
-      Employee.where(:workgroup_id => params[:workgroup] )
+      WorkgroupsEmployee.where(:workgroup_id => params[:workgroup] ).map(&:employee_id).uniq
     else
-      Employee.all
+      Employee.all.map(&:employee_id).uniq
     end         
     #@group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id)#TODO pass @workgroup_id to :workgroup_id for dynamic values    
     @group_holiday_calender = HolidayCalender.where(:group_id => @employees).map(&:event_id).uniq
@@ -50,12 +50,14 @@ class CalendarsController < ApplicationController
   def workgroup_leaves_calendar
     @employees = if params[:workgroup].present? 
       @workgroup = Workgroup.find(params[:workgroup])
-      Employee.where(:workgroup_id => params[:workgroup] )
+      WorkgroupsEmployee.where(:workgroup_id => params[:workgroup] ).map(&:employee_id).uniq #<< Employee.where(:id => @workgroup.admin_id)
     else
-      Employee.all
+      Employee.all.map(&:employee_id).uniq
     end     
-     @group_leaves = LeaveHistory.where(:employee_id => @employees, :status => "APPROVED")     
-     respond_to do |format| 
+    #raise @employees.inspect 
+    @group_leaves = LeaveHistory.where(:employee_id => @employees, :status => "APPROVED") 
+    #raise @group_leaves.inspect    
+    respond_to do |format| 
       format.html 
       format.js
       format.json do 
