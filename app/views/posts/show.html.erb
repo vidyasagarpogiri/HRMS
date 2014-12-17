@@ -41,10 +41,14 @@
                 </div>
                 
                 
-                <div class="span12" style="margin-left:20px;">
-                   <div class="control-group span8">
-                    <label class="control-label" for="basicinput"> <strong> <%= @post.tags %></strong></label>                
-                  </div>
+                  <div class="control-group span8">
+               <label class="control-label" for="basicinput"> 
+             <p class="pull-left">
+                <% @post.tags.split(",").each do|tag| %>
+                  <span class="label label-info"><i class=" icon-tag"></i> <%=  tag %></span>
+                <% end %>
+              </p></label>
+              </div>
                   <div class="control-group span4">
                    <label class="control-label" for="basicinput"><i>by:</i> <strong><%= @post.employee.full_name %></strong></label>                
                   </div>
