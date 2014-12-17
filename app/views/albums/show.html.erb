@@ -46,7 +46,7 @@
                     <% if current_user.employee.id == @id %>                    
                     <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"image-delete pull-right", :title => "delete photo " %>
                     <% end %>  
-                    <a class="group1" href="<%= photo.image %>" ><img src="<%= photo.image %>" width="400px" height="300"></a>                     
+                    <a class="group1" href="<%= photo.image %>" ><%= image_tag photo.image, size: "400x300" %></a>                                         
                   </div>
                   <% end %>                                 
                 </div>
@@ -54,7 +54,7 @@
 					            					   
               <div class="slider slider-nav">
                 <% @photos.each do |photo| %>                   
-                  <div><img src="<%= photo.image %>" width="100px" height="100"></div>
+                  <div><%= image_tag photo.image, size: "100x100" %></div>
                 <% end %> 
               </div> <br>
               <% else %>
