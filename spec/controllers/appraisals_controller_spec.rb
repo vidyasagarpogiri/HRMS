@@ -13,4 +13,11 @@ RSpec.describe AppraisalsController, :type => :controller do
       appraisal_template1 = FactotyGirl.create(:appraisal)
       appraisal_template1 = FactotyGirl.create(:appraisal)
     end
+    
+    describe "GET #new" do
+      it "redirect to new page " do
+        xhr :get, :new, {}
+        expect(assigns(:appraisal)).to be_a_new(Appraisal)
+      end
+    end
 end

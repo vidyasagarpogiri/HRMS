@@ -13,7 +13,7 @@
       <div class="control-group">   
         <label class="control-label" for="basicinput">Description</label>
         <div class="controls">
-          <%= text_area_tag :description, @employee_appraisal.description, :class => "span8", disabled: "true"%>
+          <%= text_area_tag :description, @employee_appraisal.description, :class => "span8", disabled: "true", size: "50x12" %>
           <span class="help-block with-errors"></span>
         </div>
       </div>
@@ -90,11 +90,11 @@
       <div class="control-group">   
         <label class="control-label" for="basicinput">Discussion Notes</label>
         <div class="controls">
-            <%= text_area_tag :discussion_notes, @employee_appraisal.discussion_notes , :class => "span8", disabled: true %>
+            <%= text_area_tag :discussion_notes, @employee_appraisal.discussion_notes , :class => "span8", disabled: true, size: "50x5" %>
           <span class="help-block with-errors"></span>
         </div>
       </div>
-  </div>
+  </div><hr/>
  <div class="row-fluid">
  <table class="table table-striped">
     <thead>
