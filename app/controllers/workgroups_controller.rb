@@ -3,7 +3,7 @@ class WorkgroupsController < ApplicationController
   before_filter :admin_view,  only: ["edit"]
   
   def index
-    @workgroups = Workgroup.all.page(params[:page]).per(6)
+    @workgroups = Workgroup.all.page(params[:page]).per(10)
     @employee = current_user.employee
     respond_to do |format|
       format.html
