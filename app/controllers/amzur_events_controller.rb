@@ -1,5 +1,5 @@
 class AmzurEventsController < ApplicationController
-
+  before_filter :edit_view, only: ['edit']
   #before_filter :hr_view,  only: ["new", "edit"]
   before_action :find_event, only: [:edit, :show, :update, :destroy]
   
@@ -201,5 +201,13 @@ class AmzurEventsController < ApplicationController
   def find_event
     @amzurevent = AmzurEvent.find(params[:id])
   end
+  
+   def edit_view
+  @event = AmzurEvent.find(params[:id])
+ #raise WorkgroupsEmployee.last.inspect
+    unless current_user.employee == @event.employee
+     render :text => "You Don`t Have Permission"  
+    end  
+   end
   
 end
