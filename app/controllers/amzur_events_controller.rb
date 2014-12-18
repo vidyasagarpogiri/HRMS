@@ -98,9 +98,19 @@ class AmzurEventsController < ApplicationController
   
   def edit
    @amzurevent = AmzurEvent.find(params[:id])
-   @departments = Department.all
-   @groups =Group.all
-   @workgroups =Workgroup.all   
+   case @amzurevent.eventable_type
+     when "Department"
+     @evantable = @amzurevent.eventable_type.classify.constantize.find(@amzurevent.eventable_id).department_name 
+     when "Group"
+     @evantable = @amzurevent.eventable_type.classify.constantize.find(@amzurevent.eventable_id).group_name
+     
+     when "Workgroup"
+     @evantable = @amzurevent.eventable_type.classify.constantize.find(@amzurevent.eventable_id).name
+    end
+   
+   #@departments = Department.all
+   #@groups =Group.all
+   #@workgroups =Workgroup.all   
   end
   
   def show
@@ -112,62 +122,8 @@ class AmzurEventsController < ApplicationController
   #################
   def update
   
- # raise params.inspect
-  case params[:eventable_type] 
-    
-    when "Group"
-    
-        @amzurevent = AmzurEvent.find(params[:id])
-        @amzurevent.update(:title =>params[:amzur_event][:title], :description=>params[:amzur_event][:description], :held_on=>params[:amzur_event][:held_on], :eventable_type=> params[:eventable_type],  :eventable_id => params[:group_id], :is_send_mail=>params[:amzur_event][:is_send_mail] )
-        
-        if @amzurevent
-          if @amzurevent.is_send_mail
-             Group.find(params[:group_id]).employees.where(status: false).each do |emp|
-            Notification.delay.event_notification(emp.user,@amzurevent)
-          end
-        end
-        redirect_to amzur_events_path
-       else
-        flash.now[:error]
-        render "edit"
-       end
-    
-    when "Department"
-    #raise amzurevent_params.inspect
       @amzurevent = AmzurEvent.find(params[:id])
-      @amzurevent.update(:title =>params[:amzur_event][:title], :description=>params[:amzur_event][:description], :held_on=>params[:amzur_event][:held_on], :eventable_type=> params[:eventable_type], :eventable_id => params[:department_id], :is_send_mail=>params[:amzur_event][:is_send_mail] )
-    
-      if @amzurevent
-        if @amzurevent.is_send_mail
-          Department.find(params[:department_id]).employees.where(status: false).each do |emp|
-          Notification.delay.event_notification(emp.user,@amzurevent)
-        end
-      end
-      redirect_to amzur_events_path
-     else
-      flash.now[:error]
-      render "edit"
-     end
-      
-    when "Workgroup"
-    #raise  params.inspect
-         @amzurevent = AmzurEvent.find(params[:id])
-         @amzurevent.update(:title =>params[:amzur_event][:title], :description=>params[:amzur_event][:description], :held_on=>params[:amzur_event][:held_on], :eventable_type=> params[:eventable_type], :eventable_id => params[:workgroup_id], :is_send_mail=>params[:amzur_event][:is_send_mail] )
-    
-        if @amzurevent
-          if @amzurevent.is_send_mail
-             Workgroup.find(params[:workgroup_id]).employees.where(status: false).each do |emp|
-            Notification.delay.event_notification(emp.user,@amzurevent)
-           end
-        end
-        redirect_to amzur_events_path
-       else
-        flash.now[:error]
-        render "edit"
-       end
-    else 
-       @amzurevent = AmzurEvent.find(params[:id])
-       @amzurevent.update(:title =>params[:amzur_event][:title], :description=>params[:amzur_event][:description], :held_on=>params[:amzur_event][:held_on], :eventable_type=> params[:eventable_type], :eventable_id => params[:eventable_id], :is_send_mail=>params[:amzur_event][:is_send_mail] )
+       @amzurevent.update(amzurevent_params)
       if @amzurevent
         if @amzurevent.is_send_mail
           Employee.where(status: false).each do |emp|
@@ -179,11 +135,10 @@ class AmzurEventsController < ApplicationController
       flash.now[:error]
       render "edit"
      end
-    
-    end
-   
+  
   end
   
+ 
   def destroy
     @amzurevent.destroy
     redirect_to amzur_events_path 
