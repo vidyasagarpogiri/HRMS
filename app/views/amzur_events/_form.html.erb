@@ -24,6 +24,9 @@
                   <span class="help-block with-errors"></span>   
                 </div>
               </div>
+              
+             
+              <%if @amzurevent.new_record? %>
               <div class="control-group">
               <label class="control-label" for="amzur_event_title">Select </label>
               <div class="controls">
@@ -37,7 +40,7 @@
               </div> 
               
               
-              
+            
               
               
               
@@ -61,7 +64,14 @@
               
               </div>
               
+             <% else %>
             
+            <div class="control-group">
+              <div class="controls">
+              <strong>Event for <%if @amzurevent.eventable_type.nil? %> ALL <%else%> <%=@evantable %>  <%=@amzurevent.eventable_type%> <%end%></strong>
+             </div>
+            </div>
+            <%end%>
             
               <div class="control-group">
                 <label class="control-label" for="amzur_event_held_on">Select to Send Mail  </label>
