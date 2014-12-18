@@ -14,10 +14,10 @@
                 <tbody>
                   <tr> 
                     <td class="center">
-                     <% if workgroup.workgroupicon.present? %>
+                     <% if workgroup.workgroupicon.present? && workgroup.workgroupicon_url.present? %>
                         <%= image_tag workgroup.workgroupicon, size: "60x20" %>
                      <% else %>
-                        <%= image_tag "workgroup_icon.png", size: "60x20" %> 
+                        <%= image_tag "workgroup.png", :width => "60px", :height => "20px" %> 
                      <% end %>
                     </td>          
                     <td><%= link_to workgroup.name,workgroup_path(workgroup) if workgroup.name.present? %></td>
@@ -51,3 +51,5 @@
              <%= paginate @workgroups, remote: true %>
            </div> 
        </div>
+       
+ 
