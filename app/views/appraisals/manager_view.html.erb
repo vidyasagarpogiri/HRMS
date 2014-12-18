@@ -54,7 +54,7 @@
                         <td><%= text_field_tag :employee_assesment, review_element.employee_assesment, disabled: "true" %></td>
                         <td><%= text_field_tag :employee_rating, review_element.employee_rating, disabled: "true" %></td>
                         <td><%= text_field_tag 'manager_feedback[]', review_element.manager_feedback %></td>
-                        <td><%= select_tag 'manager_rating[]', options_for_select([['Exceptional', 'Exceptional'], ['Highly Effective', 'Highly Effective'], ['Proficient', 'Proficient'], ['Needs Improvement','Needs Improvement'], ['Unacceptable', 'Unacceptable'], ['Not Applicable','Not Applicable']]), width: 10%></td>
+                        <td><%= select_tag 'manager_rating[]', options_for_select([['Exceptional', 'Exceptional'], ['Highly Effective', 'Highly Effective'], ['Proficient', 'Proficient'], ['Needs Improvement','Needs Improvement'], ['Unacceptable', 'Unacceptable'], ['Not Applicable','Not Applicable']])%></td>
                         <%= hidden_field_tag 'review_id[]', review_element.id%>
                       <% end %>
                     </tr>

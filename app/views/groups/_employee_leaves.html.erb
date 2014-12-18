@@ -16,8 +16,7 @@
 				  <th width="60px">Status</th>
 				  <th width="120px">Reporting Manger</th>													
 			  </tr>
-		  </thead>		
-	    	
+		  </thead>			    	
       <tbody>	
         <% @leaves.each do |f| %>												
 			  <tr class="gradeA">               
@@ -31,10 +30,9 @@
 			    <td> <%= f.employee.reporting_manager%></td>
 			  </tr>
 			  <% end %>
-     </tbody>
-     	
-	  </table>      
-		<% else %>
+     </tbody>     	
+	 </table>      
+	 <% else %>
     <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           You have No Leaves Requests 
