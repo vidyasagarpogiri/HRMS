@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
   
+  layout :wall_layout only: [:wall]
+  
   def index
     render :layout => false
   end
@@ -68,6 +70,10 @@ class WelcomeController < ApplicationController
     redirect_to employees_path
    end
   end  
+  
+  def wall
+  
+  end
     
   private 
   def calculate_time_diff(time_in_min)  
