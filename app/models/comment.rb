@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   # comment belongs to status,posts,photos so polymorphic relation
   belongs_to :commentable, polymorphic: true
   belongs_to :employee # comments will be posted by employee
-  default_scope { order('created_at DESC') }
+  default_scope { order('created_at ASC') }
   validates :comment, presence: true # validation for comment
   validates :employee_id, presence: true # validation for employee
   validates :commentable_id, presence: true # validation for commentable_id

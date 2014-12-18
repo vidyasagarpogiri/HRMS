@@ -46,14 +46,18 @@
 			              <% end %>
 			            </th>
 			            <th>
-			             <% if current_user.employee.id == @workgroup.admin_id  %>
-			              <%= link_to "Delete",destroy_member_workgroup_path(@workgroup.id,em.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger "%>
+			              <% if current_user.employee.id == @workgroup.admin_id %> 
+			                <%= link_to "Delete",destroy_member_workgroup_path(@workgroup.id,em.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger "%>
+			                <% elsif WorkgroupsEmployee.where(is_moderator: true, employee_id: current_user.employee.id, workgroup_id: @workgroup.id).present? %>
+			                  <% unless em.id == current_user.employee.id %>
+			                    <%= link_to "Delete",destroy_member_workgroup_path(@workgroup.id,em.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger "%>
+			                  <% end %>
 			            <% end %>
 			            </th>
 			        </tr>
               <% end %>
-			           <% else %>  
-						    <div class="alert alert-success alert-dismissable">
+			           <% else %>    
+						     <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         No members/moderators to display
                   </div>                                    
