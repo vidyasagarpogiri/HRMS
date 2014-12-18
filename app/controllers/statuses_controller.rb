@@ -1,7 +1,6 @@
 # This controller is for employee status # Author: Vidya Sagar Pogiri
 class StatusesController < ApplicationController
-  before_filter :admin_view,  only: ["edit"]
-  
+  before_filter :admin_view,  only: ['edit']
   def index # for displaying all statuses
     @statuses = Status.all.order('updated_at DESC').page(params[:page]).per(3)
     @status = Status.new
@@ -21,13 +20,12 @@ class StatusesController < ApplicationController
       render 'new'
     end
   end
-
-  def add_like # like will be created on the selected status
+  # like will be created on the selected status
+  def add_like
     @status = Status.find(params[:id])
-    # @employee = current_user.employee
-    @like = @status.likes.create(:employee_id => params[:employee_id])
-    if (@status.likes_count == nil) 
-     @status.update(:likes_count => 0)
+    @like = @status.likes.create(employee_id: params[:employee_id])
+    if (@status.likes_count == nil)
+      @status.update(:likes_count => 0)
     end
     if @like
       @like.update is_like: true
@@ -43,15 +41,15 @@ class StatusesController < ApplicationController
   def remove_like # unlikes the status which is being liked previously
     @status = Status.find(params[:id])
     employee = current_user.employee
-    @like = @status.likes.where(:employee_id => employee.id).first
+    @like = @status.likes.where(employee_id: employee.id).first
     @like.update is_like: false
     count = @status.likes_count
     @status.update likes_count: count - 1
     @status.update(updated_at: Time.now)
-     @like.destroy
+    @like.destroy
     redirect_to statuses_path
   end
-  
+
   # Present we are not using this one.
   def edit # Edits the status
     @status = Status.find(params[:id])
@@ -78,35 +76,31 @@ class StatusesController < ApplicationController
     @comment = Comment.new
     @employees = Like.where(likeable_id: @status.id).map(&:employee)
   end
-  
-  
+
   def add_comment_form # comments form
     @comment = @status.comments.new
     @status = Status.find(params[:id])
     @status.update(updated_at: Time.now)
   end
-  
+
   def add_comments # creating comments
     @status = Status.find(params[:status_id])
     @employee = current_user.employee
     @status.comments.create(comment: params[:comment], employee_id: @employee.id)
     @status.update(updated_at: Time.now)
     redirect_to statuses_path
-    
   end
 
   private
 
-  def status_params # method for passing parameters 
+  def status_params # method for passing parameters
     params.require(:status).permit(:status)
   end
-  
-   def admin_view # method for editing only admin of that status
-  @status = Status.find(params[:id])
-  #raise current_user.employee.employee_id.inspect
-	  unless current_user.employee.id == @status.employee_id
-	    render :text => "You Don`t Have Permission"  
-	  end
-	end
-	
+
+  def admin_view # method for editing only admin of that status
+    @status = Status.find(params[:id])
+    unless current_user.employee.id == @status.employee_id
+      render text: 'You Don`t Have Permission'
+    end
+  end
 end
