@@ -18,9 +18,9 @@ class AmzurEventsController < ApplicationController
    @groups =Group.all
    @workgroups =Workgroup.all
   end
-  
+  ##############
   #creatating an Amzur event by current user modified by @pattabhi 8th Dec 2014
-  
+  ##############
   def create
   #raise params.inspect
    case params[:eventable_type] 
@@ -107,9 +107,9 @@ class AmzurEventsController < ApplicationController
     @amzurevent =AmzurEvent.find(params[:id])
     @event = AmzurEvent.all.page(params[:page]).per(5)
   end
-  
+  #################
   #creatating an Amzur event by current user modified by @pattabhi 8th Dec 2014
-  
+  #################
   def update
   
  # raise params.inspect
