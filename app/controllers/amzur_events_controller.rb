@@ -97,25 +97,17 @@ class AmzurEventsController < ApplicationController
   end
   
   def edit
-   @amzurevent = AmzurEvent.find(params[:id])
-   case @amzurevent.eventable_type
-     when "Department"
-     @evantable = @amzurevent.eventable_type.classify.constantize.find(@amzurevent.eventable_id).department_name 
-     when "Group"
-     @evantable = @amzurevent.eventable_type.classify.constantize.find(@amzurevent.eventable_id).group_name
-     
-     when "Workgroup"
-     @evantable = @amzurevent.eventable_type.classify.constantize.find(@amzurevent.eventable_id).name
-    end
-   
-   #@departments = Department.all
-   #@groups =Group.all
-   #@workgroups =Workgroup.all   
-  end
+    @amzurevent = AmzurEvent.find(params[:id])
+    
+    @eventable = AmzurEvent.get_eventable(@amzurevent)
+   # raise @eventable.inspect
+  
+   end
   
   def show
     @amzurevent =AmzurEvent.find(params[:id])
     @event = AmzurEvent.all.page(params[:page]).per(5)
+    @eventable = AmzurEvent.get_eventable(@amzurevent)
   end
   #################
   #creatating an Amzur event by current user modified by @pattabhi 8th Dec 2014

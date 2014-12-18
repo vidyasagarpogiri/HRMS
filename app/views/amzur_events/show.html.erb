@@ -8,6 +8,11 @@
 	        </div>			
 		      <div class="module-body">	       
             <div><strong><%= @amzurevent.title %></strong> on <strong><%= format_date (@amzurevent.held_on) %></strong></div>
+            <div class="control-group">
+              <div class="controls">
+              <strong>Event for <%if @amzurevent.eventable_type.nil? %> ALL <%else%> <%=@eventable %>  <%=@amzurevent.eventable_type%> <%end%></strong>
+             </div>
+            </div>
             <% if current_user.employee == @amzurevent.employee %>
               <ul class="navigation-btns pull-right" style="margin-top:-20px">
                 <li><%= link_to 'Edit', edit_amzur_event_path(@amzurevent), :class => "btn btn-success " %></li>
