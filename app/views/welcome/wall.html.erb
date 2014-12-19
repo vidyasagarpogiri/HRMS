@@ -24,11 +24,9 @@
             <a href="#" class="fb-user-mail"><%= current_user.email %></a>
         </div>
       </section>
-      <section class="panel profile-info">
-          <form>
-              <textarea class="form-control input-lg p-text-area" rows="2" placeholder="Whats in your mind today?"></textarea>
-          </form>
-          <footer class="panel-footer">
+      <section class="panel profile-info">                  
+         <%= render 'statuses/form' %>
+          <!--<footer class="panel-footer">
               <button class="btn btn-danger pull-right">Post</button>
               <ul class="nav nav-pills">
                   <li>
@@ -44,44 +42,48 @@
                       <a href="#"><i class="fa fa-microphone"></i></a>
                   </li>
               </ul>
-          </footer>
+          </footer>-->
       </section>
       <section class="panel">
-          <div class="panel-body">
-            <% @welcome_albums.each do |album| %> 
-            <div class="fb-user-thumb">                     
-              <% if album.present? && album.employee.avatar_url.present? %>
-                <%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %>
+         
+      </section>
+      <section class="panel">
+        <div class="panel-body">
+          <% @welcome_albums.each do |album| %> 
+          <div class="fb-user-thumb">                     
+            <% if album.present? && album.employee.avatar_url.present? %>
+              <%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %>
+            <% else %>
+              <% if album.employee.gender == "Female" %>
+                <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
               <% else %>
-                <% if album.employee.gender == "Female" %>
-                  <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
-                <% else %>
-                  <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
-                <% end %>
+                <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
               <% end %>
-            
-              </div>
-              <div class="fb-user-details">
-                <h3><a href="#" class="#"><%= album.employee.first_name %> <%= album.employee.last_name %></a></h3>
-                <p>added <%= pluralize(album.photos.count, 'photo') %> <strong><a href="<%= album_path(album) %>"><%= album.title %></a>
-      </strong></p>
-                <% if album.photos.present?%> 
-                  <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
-                    <% album.photos.each do |photo| %>
-                      <div style="width:400px;height:250px;overflow:hidden;">
-                        <a class="group1" href="<%= photo.image %>"><img src="<%= photo.image %>" width="300px" height="200" ></a>
-                      </div>            
-                    <% end %>
-                  </div>
-                  <div class="slider slider-nav">
-                    <% album.photos.each do |photo| %> 
-                      <div ><img src="<%= photo.image %>" width="100px" height="100"></div>
-                    <% end %> 
-                  </div>                    
-                  <% end %>      
-                </div>                                        
-              <% end %>             
-          </div>
+            <% end %>
+          
+            </div>
+            <div class="fb-user-details">
+              <h3><a href="#" class="#"><%= album.employee.first_name %> <%= album.employee.last_name %></a></h3>
+              <p>added <%= pluralize(album.photos.count, 'photo') %> <strong><a href="<%= album_path(album) %>"><%= album.title %></a>
+    </strong></p>
+              <% if album.photos.present?%> 
+                <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
+                  <% album.photos.each do |photo| %>
+                    <div style="width:400px;height:250px;overflow:hidden;">
+                      <a class="group1" href="<%= photo.image %>"><img src="<%= photo.image %>" width="300px" height="200" ></a>
+                    </div>            
+                  <% end %>
+                </div>
+                
+                <div class="slider slider-nav">
+                  <% album.photos.each do |photo| %> 
+                    <div ><img src="<%= photo.image %>" width="50px" height="50"></div>
+                  <% end %> 
+                </div>                    
+                <% end %>      
+              </div>                                        
+            <% end %>             
+        </div>
       </section> 
       <section class="panel">
           <div class="panel-body">
@@ -144,8 +146,11 @@
           <% if @welcome_event.present? %>	
           <ul>
             <% @welcome_event.each do |welcome_event| %>
-              <li class="active"><a href="#"><strong><%= welcome_event.title %> </strong> on<strong> <%= format_date (welcome_event.held_on) %> </strong></a></li>                                    
-            <% end %>	
+              <li class="active"><a href="#"><strong><%= welcome_event.title %> </strong> on<strong> <%= format_date (welcome_event.held_on) %> </strong></a></li>       <div class="control-group">
+                <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>
+                <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %> <br>
+             </div>                                          
+              <% end %>	
           </ul>
            <% else %>
             <div class="alert alert-success alert-dismissable">
@@ -162,8 +167,8 @@
             <li>
               <a href="#"><strong><%= welcome_announcement.title %> </strong></a>
               <div class="control-group">
-                <label class="idesc" for="basicinput" style="font-weight:normal"><%= raw welcome_announcement.description %> </label>
-              </div>
+                <label class="idesc" for="basicinput"><%= raw welcome_announcement.description %> </label>
+              </div>              
               <%= link_to "Continue..", announcement_path(welcome_announcement), :class => "pt4" %><br>
             </li>         
           <% end %>
@@ -206,6 +211,24 @@
 /** reset styling **/
 .row .wall-layout{
 margin-left:200pximportant;
+}
+.jdesc,.idesc{
+height:40px;
+overflow:hidden;
+font-weight:normal;
+}
+.pt4{
+border-left: 0px solid #d3d7dd!important;
+float: right;
+
+}
+
+.slick-track > .slick-slide .slick-active{
+width:100px!important;
+}
+
+.slick-prev, .slick-next{
+background: rgb(113, 195, 235);
 }
 </style>
 
