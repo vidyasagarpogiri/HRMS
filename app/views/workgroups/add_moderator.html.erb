@@ -37,12 +37,14 @@
 				              <% end %>
 				            </th>
 				            <th class="center">
+				            <% unless em == current_user.employee %>
 				            <% if WorkgroupsEmployee.where(is_moderator: true, employee_id: em.id, workgroup_id: @workgroup.id).present? %>
 				                <%= check_box_tag 'employee_ids[]', em.id, checked = true%>
 				                <% elsif em.id == @workgroup.admin_id %> 
 				                <%# check_box_tag %>
                     <% else%>
                          <%= check_box_tag 'employee_ids[]', em.id %> 
+                    <% end %>
                     <% end %>
 				            </th>
 				         </tr>

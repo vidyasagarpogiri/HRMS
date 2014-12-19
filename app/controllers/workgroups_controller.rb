@@ -1,6 +1,6 @@
 # This controller is for workgroups # Author: Vidya Sagar Pogiri
 class WorkgroupsController < ApplicationController
-  before_filter :admin_view,  only: ["edit"]
+  before_filter :admin_view,  only: ["edit","add_moderator","add_members"]
   
   def index
     @workgroups = Workgroup.all.page(params[:page]).per(10)
@@ -55,12 +55,13 @@ class WorkgroupsController < ApplicationController
     @workgroup = Workgroup.find(params[:id])
     @employee_id = @workgroup.admin_id
     @employees = Employee.all
-    #@employee_ids = WorkgroupsEmployee.where(workgroup_id: @workgroup.id).pluck(:employee_id)
+    # @employee_ids = WorkgroupsEmployee.where(workgroup_id: @workgroup.id).pluck(:employee_id)
   end
   
-   def add_moderator
-    #raise params.inspect
+  def add_moderator
+    # raise params.inspect
     @workgroup = Workgroup.find(params[:id])
+    @moderator = WorkgroupsEmployee.where(is_moderator: true, employee_id: current_user.employee.id, workgroup_id: @workgroup.id)
     @employees = @workgroup.employees
   end
   
@@ -71,10 +72,11 @@ class WorkgroupsController < ApplicationController
     redirect_to @workgroup
   end
   
-  def added_moderators 
+  def added_moderators
+  # raise params.inspect 
     @workgroup = Workgroup.find(params[:id])
     WorkgroupsEmployee.where(workgroup_id: @workgroup.id).each do |work| 
-    work.update(is_moderator: false)
+    work.update(is_moderator: false) unless current_user.employee == work.employee # if current user is moderator of workgroup then check box is not displayed
     end
     if params[:employee_ids].present?
         params[:employee_ids].each do |emp| 
@@ -119,7 +121,8 @@ class WorkgroupsController < ApplicationController
   @workgroup = Workgroup.find(params[:id])
   #raise current_user.employee.inspect
 	  unless current_user.employee.id == @workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: @workgroup.id ).present?
-	    render :text => "You Don`t Have Permission"  
+	    redirect_to @workgroup
+	    #render :text => "You Don`t Have Permission"  
 	  end
 	end 
 end
