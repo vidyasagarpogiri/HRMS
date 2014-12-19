@@ -24,6 +24,9 @@
                   <span class="help-block with-errors"></span>   
                 </div>
               </div>
+              
+             
+              <%if @amzurevent.new_record? %>
               <div class="control-group">
               <label class="control-label" for="amzur_event_title">Select </label>
               <div class="controls">
@@ -37,7 +40,7 @@
               </div> 
               
               
-              
+            
               
               
               
@@ -61,7 +64,14 @@
               
               </div>
               
+             <% else %>
             
+            <div class="control-group">
+              <div class="controls">
+              <strong>Event for <%if @amzurevent.eventable_type.nil? %> ALL <%else%> <%=@eventable %>  <%=@amzurevent.eventable_type%> <%end%></strong>
+             </div>
+            </div>
+            <%end%>
             
               <div class="control-group">
                 <label class="control-label" for="amzur_event_held_on">Select to Send Mail  </label>
@@ -77,6 +87,24 @@
                   <span class="help-block with-errors"></span>   
                 </div>
               </div>
+              
+                <div class="control-group">
+                <label class="control-label" for="amzur_event_held_on">Event From Time </label>
+                <div class="controls">
+                  <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
+                  <span class="help-block with-errors"></span>   
+                </div>
+              </div>
+              
+              
+              <div class="control-group">
+                <label class="control-label" for="amzur_event_held_on">Event To Time </label>
+                <div class="controls">
+                  <%= f.text_field :to_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
+                  <span class="help-block with-errors"></span>   
+                </div>
+              </div>
+              
               <ul class="navigation-btns editthree" >
               <li><button type="submit" class="btn btn-success">Save</button></li>
               <li><%= link_to "Cancel", amzur_events_path,:class => "btn btn-danger" %></li>
@@ -107,7 +135,7 @@
 
 <script>
 
-  
+ $(".timepicker").timepicker(); 
   
 </script>
 
