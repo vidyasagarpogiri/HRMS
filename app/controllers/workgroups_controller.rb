@@ -1,6 +1,6 @@
 # This controller is for workgroups # Author: Vidya Sagar Pogiri
 class WorkgroupsController < ApplicationController
-  before_filter :admin_view,  only: ["edit"]
+  before_filter :admin_view,  only: ["edit","add_moderator","add_members"]
   
   def index
     @workgroups = Workgroup.all.page(params[:page]).per(10)
@@ -61,6 +61,7 @@ class WorkgroupsController < ApplicationController
    def add_moderator
     #raise params.inspect
     @workgroup = Workgroup.find(params[:id])
+    # @moderator = WorkgroupsEmployee.where(is_moderator: true, employee_id: current_user.employee.id, workgroup_id: @workgroup.id)
     @employees = @workgroup.employees
   end
   
