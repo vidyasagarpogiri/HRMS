@@ -383,7 +383,7 @@ post 'create_package' => "features#create_package"
   end 
   resources :organization
   
-  get "/welcome/wall"
+  get "welcome/wall" 
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
