@@ -39,8 +39,7 @@
         <% album.photos.each do |photo| %> 
           <div ><img src="<%= photo.image %>" width="100px" height="100"></div>
         <% end %> 
-      </div>     
-     
+      </div>          
       <% end %>      
     </div><br>                      
     <% end %>
@@ -71,7 +70,7 @@
           <tr >
             
             <td></td>
-            <td><%= emp.full_name %></td>
+            <!--<td><%# emp.full_name %></td>-->
           </tr>
           <% i+=1 %>
           <% end %>

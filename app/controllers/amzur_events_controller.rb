@@ -142,7 +142,7 @@ class AmzurEventsController < ApplicationController
   private
   
   def amzurevent_params
-     params.require(:amzur_event).permit(:title, :description, :held_on, :is_send_mail) 
+     params.require(:amzur_event).permit(:title, :description, :held_on, :is_send_mail, :from_time, :to_time) 
   end
   
   def find_event
