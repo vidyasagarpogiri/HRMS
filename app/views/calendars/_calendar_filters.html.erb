@@ -1,33 +1,37 @@
 
 
   <%= form_tag('/calendar', method: :get, remote: true) do %>
-      <div class="control-group">
-        <label class="control-label" for="amzur_event_title">Select </label>
-        <div class="controls">
-          <select  name="calendar_type" class="company_select">
-            <option value="Company">All</option>
-            <option value="Department">Department</option>
-            <option value="Group">Group</option>
-            <option value="Workgroup">WorkGroup</option>
-          </select>
-        </div> 
-      </div> 
-
-      <div class="control-group">
-        <div class="controls">
-          <div id ="departments">             
-            <%= select_tag :department_id, options_from_collection_for_select(Department.all, "id", "department_name"), prompt: "All Departments" %>
+      <div class="row">
+          <div class="control-group inline span3">
+            <label class="control-label" for="amzur_event_title">Select </label>
+            <div class="controls">
+              <select  name="calendar_type" class="company_select">
+                <option value="Company">All</option>
+                <option value="Department">Department</option>
+                <option value="Group">Group</option>
+                <option value="Workgroup">WorkGroup</option>
+                <option value ="Reportees">Reportees</option>
+              </select>
+            </div> 
+          </div> 
+          <div class="control-group span4">
+             <label class="control-label" for="amzur_event_title">Select </label>
+            <div class="controls">
+              <div id ="departments">             
+                <%= select_tag :department_id, options_from_collection_for_select(Department.all, "id", "department_name"), prompt: "All Departments" %>
+              </div>
+              
+              <div id="groups">
+                <%= select_tag :group_id, options_from_collection_for_select(Group.all, "id", "group_name"), prompt: "All Groups" %>  
+              </div>
+            
+              <div id="workgroups">
+                <%= select_tag :workgroup_id, options_from_collection_for_select(Workgroup.all, "id", "name"), prompt: "All Work Groups" %>
+              </div>
+            </div>
           </div>
-          
-          <div id="groups">
-            <%= select_tag :group_id, options_from_collection_for_select(Group.all, "id", "group_name"), prompt: "All Groups" %>  
-          </div>
-        
-          <div id="workgroups">
-            <%= select_tag :workgroup_id, options_from_collection_for_select(Workgroup.all, "id", "name"), prompt: "All Work Groups" %>
-          </div>
-        </div>
-      </div>                 
+      </div>  
+      <hr>               
   <% end %>
 
 <script>
@@ -63,6 +67,11 @@
          $("#departments").hide();
           $("#groups").hide();
           $("#workgroups").hide();
+
+    case 'Reportees': 
+      $("#departments").hide();
+      $("#groups").hide();
+      $("#workgroups").hide();
     }
      $(this).closest('form').submit();
   });
