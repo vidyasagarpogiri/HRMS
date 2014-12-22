@@ -14,19 +14,14 @@
       <% end %>
     </div>
     <div class="fb-user-details">
-      <h3><%= s.employee.full_name %></h3>
-      <div class="length"><%= truncate(s.status, length: 225)  %>
-        <% if s.status.length > 224 %>
-          <%= link_to "Read More", "#" , :class => "read-more" %>
-        <% end %>
-      </div>
+      <h3><a href="#" class="#"><%= s.employee.full_name %></a></h3><p><%= time_ago_in_words(s.created_at)%> ago</p>      
       <div class="total_status">
-        <%= s.status %><%= link_to "Show Less", "#", :class => "show-less" %>
+        <%= s.status %>
       </div>           
     </div>
                  
     <div class="span8"><hr>   
-      <h5>Likes(<%= s.likes_count %>) . Comments(<%= s.comments.count %>) . <%= time_ago_in_words(s.created_at)%> ago  
+      <h5>Likes(<%= s.likes_count %>) . Comments(<%= s.comments.count %>) .
       <% if current_user.employee.id == s.employee.id %>
         <%= link_to "Delete", status_path(s.id), method: :delete, data: {confirm: "Are You sure?"} %>
       <% end %>
@@ -71,22 +66,4 @@
 </div>
 </section>   
 
-<script>
-	  $(function(){
-	    $(".new_status").hide();
-	    $(".total_status").hide();
-	    $(".new_post").click(function(){
-	      $(".new_status").toggle();
-	    }); 
-	    $(".read-more").click(function(){
-	      $(".length").hide();
-	      $(".total_status").show();
-	    });
-	    
-	    $(".show-less").click(function(){
-	      $(".total_status").hide();
-	      $(".length").show();
-	    });
-	  });
-	
-	</script>                                                                                  
+
