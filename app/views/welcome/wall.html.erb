@@ -24,6 +24,8 @@
             <a href="#" class="fb-user-mail"><%= current_user.email %></a>
         </div>
       </section>
+      
+      
       <section class="panel">
         <div class="new_status">
           <%= render 'statuses/form' %>
@@ -32,47 +34,20 @@
           <%= render 'albums/form' %>
         </div>        
       </section>
-        <div class="status-on-wall">
-          <%= render 'welcome/status_index' %>
-        </div> 
       
-      <section class="panel">
-        <div class="panel-body">
-          <% @welcome_albums.each do |album| %> 
-          <div class="fb-user-thumb">                     
-            <% if album.present? && album.employee.avatar_url.present? %>
-              <%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %>
-            <% else %>
-              <% if album.employee.gender == "Female" %>
-                <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
-              <% else %>
-                <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
-              <% end %>
-            <% end %>          
-            </div>
-            <div class="fb-user-details">
-              <h3><a href="#" class="#"><%= album.employee.first_name %> <%= album.employee.last_name %></a></h3>
-              <p>added <%= pluralize(album.photos.count, 'photo') %> <strong><a href="<%= album_path(album) %>"><%= album.title %></a>
-    </strong></p>
-              <% if album.photos.present?%> 
-                <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
-                  <% album.photos.each do |photo| %>
-                    <div style="width:400px;height:250px;overflow:hidden;">
-                      <a class="group1" href="<%= photo.image %>"><img src="<%= photo.image %>" width="300px" height="200" ></a>
-                    </div>            
-                  <% end %>
-                </div>
-                
-                <!--<div class="slider slider-nav">
-                  <%# album.photos.each do |photo| %> 
-                    <div ><img src="<%# photo.image %>" width="50px" height="50"></div>
-                  <%# end %> 
-                </div>-->               
-                <% end %>      
-              </div>                                        
-            <% end %>             
-        </div>
-      </section> 
+      <% @posts.each do |post| %>
+        <% if post.class.name == "Album" %>
+          <%= render "welcome/album_view",  :post => post %>
+        <% else post.class.name == "Status" %>
+          <%= render 'welcome/status_view', :post => post %>
+        <% end %>
+      <% end %>
+      
+      
+       
+      
+     
+      
       <section class="panel">
           <div class="panel-body">
               <div class="fb-user-thumb">

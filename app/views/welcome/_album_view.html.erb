@@ -1,0 +1,35 @@
+ <section class="panel">
+        <div class="panel-body"> 
+          <div class="fb-user-thumb">                     
+            <% if post.present? && post.employee.avatar_url.present? %>
+              <%= image_tag post.employee.avatar_url, :width => "60px", :height => "60px" %>
+            <% else %>
+              <% if post.employee.gender == "Female" %>
+                <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+              <% else %>
+                <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+              <% end %>
+            <% end %>          
+            </div>
+            <div class="fb-user-details">
+              <h3><a href="#" class="#"><%= post.employee.first_name %> <%= post.employee.last_name %></a></h3>
+              <p>added <%= pluralize(post.photos.count, 'photo') %> <strong><a href="<%= album_path(post) %>"><%= post.title %></a>
+    </strong></p>
+              <% if post.photos.present?%> 
+                <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
+                  <% post.photos.each do |photo| %>
+                    <div style="width:400px;height:250px;overflow:hidden;">
+                      <a class="group1" href="<%= photo.image %>"><img src="<%= photo.image %>" width="300px" height="200" ></a>
+                    </div>            
+                  <% end %>
+                </div>
+                
+                <!--<div class="slider slider-nav">
+                  <%# album.photos.each do |photo| %> 
+                    <div ><img src="<%# photo.image %>" width="50px" height="50"></div>
+                  <%# end %> 
+                </div>-->               
+                <% end %>      
+              </div>                                                     
+        </div>
+      </section> 

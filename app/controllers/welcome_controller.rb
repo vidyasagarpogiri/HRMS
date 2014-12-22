@@ -72,15 +72,16 @@ class WelcomeController < ApplicationController
   end  
   
   def wall    
-   unless current_user.department == Department::HR
+
     @welcome_event = AmzurEvent.all.page(params[:page1]).per(2)
     @welcome_announcements = Announcement.all.page(params[:page2]).per(2)
     @welcome_recruitments = Recruitment.where(:status => "open").page(params[:page3]).per(2)
     @employee = current_user.employee
-    @welcome_albums = Album.all.order('created_at DESC').page(params[:page4]).per(1)   
-    @photos = Photo.all
-    @statuses = Status.all.order('updated_at DESC').page(params[:page]).per(1)
-  end
+    @albums = Album.all
+    @statuses = Status.all
+    @posts = [@albums, @statuses]
+    @posts.flatten!
+    @posts.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!
  end
     
   private 
