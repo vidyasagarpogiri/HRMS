@@ -1,0 +1,81 @@
+
+
+  <%= form_tag('/calendar', method: :get, remote: true) do %>
+      <div class="control-group">
+        <label class="control-label" for="amzur_event_title">Select </label>
+        <div class="controls">
+          <select  name="calendar_type" class="company_select">
+            <option value="Company">All</option>
+            <option value="Department">Department</option>
+            <option value="Group">Group</option>
+            <option value="Workgroup">WorkGroup</option>
+          </select>
+        </div> 
+      </div> 
+
+      <div class="control-group">
+        <div class="controls">
+          <div id ="departments">             
+            <%= select_tag :department_id, options_from_collection_for_select(Department.all, "id", "department_name"), prompt: "All Departments" %>
+          </div>
+          
+          <div id="groups">
+            <%= select_tag :group_id, options_from_collection_for_select(Group.all, "id", "group_name"), prompt: "All Groups" %>  
+          </div>
+        
+          <div id="workgroups">
+            <%= select_tag :workgroup_id, options_from_collection_for_select(Workgroup.all, "id", "name"), prompt: "All Work Groups" %>
+          </div>
+        </div>
+      </div>                 
+  <% end %>
+
+<script>
+  $(function(){
+          $("#departments").hide();
+          $("#groups").hide();
+          $("#workgroups").hide();
+  
+  $(".company_select").change(function () {
+    var str = $( ".company_select" ).val();  
+    console.log(str);
+    switch (str) { 
+    case 'Group': 
+           console.log(str);
+          $("#departments").hide();
+          $("#groups").show();
+          $("#workgroups").hide();
+        break;
+    case 'Department':
+    console.log(str); 
+        $("#departments").show();
+          $("#groups").hide();
+          $("#workgroups").hide();
+        break;
+    case 'Workgroup': 
+    console.log(str);
+        $("#departments").hide();
+          $("#groups").hide();
+          $("#workgroups").show();
+        break;      
+    case 'Company': 
+    console.log(str);
+         $("#departments").hide();
+          $("#groups").hide();
+          $("#workgroups").hide();
+    }
+     $(this).closest('form').submit();
+  });
+  $("#department_id").change(function(){
+    $(this).closest('form').submit();
+  }); 
+  
+  $("#workgroup_id").change(function(){
+    $(this).closest('form').submit();
+  }); 
+  
+   $("#group_id").change(function(){
+    $(this).closest('form').submit();
+  }); 
+});
+</script>

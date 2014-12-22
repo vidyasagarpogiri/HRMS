@@ -315,6 +315,9 @@ post 'create_package' => "features#create_package"
   
   # routes for Calendar
   #resources :calendars
+ 
+  get '/calendar' => 'calendars#index'
+ 
   get "/calendars/reporting_manager_calendar" => 'calendars#reporting_manager_calendar'
   get "/calendars/reportees_leaves_calendar" => 'calendars#reportees_leaves_calendar'
   get "/calendars/workgroup_calendar" => 'calendars#workgroup_calendar'
