@@ -28,13 +28,15 @@ class CalendarsController < ApplicationController
           @group = Group.find(params[:group_id])
           @calendar_events = "/calendar.json?calendar_type=Group&group_id= #{params[:group_id]}"
           @all_holidays = @group.events
+        
           @group.employees 
         else
           @calendar_events = "/calendar.json?calendar_type=Group"
+          @group_holiday_calender = HolidayCalender.where(:group_id =>  Employee.all.map(&:employee_id).uniq ).map(&:event_id).uniq
+          @all_holidays = Event.where(:id => @group_holiday_calender) 
           Employee.all.map(&:employee_id).uniq
         end 
-        @group_holiday_calender = HolidayCalender.where(:group_id => @employees).map(&:event_id).uniq
-        @all_holidays = Event.where(:id => @group_holiday_calender)   
+         
         @all_leaves = LeaveHistory.where(:employee_id => @employees, :status => "APPROVED") 
        
        #------------------------------------------------------------------------------------------------
@@ -58,6 +60,7 @@ class CalendarsController < ApplicationController
        @all_holidays = Event.all
        @all_leaves = LeaveHistory.all.where(:status => "APPROVED")
     end
+    
     response1 = @all_holidays.map { |event| {:title => event.event_name, :start => event.event_date.to_date}  }
     response2 =  @all_leaves.map { |leave| {:title => leave.employee.full_name, :start => leave.from_date.to_date , :end => leave.to_date.to_date.tomorrow} } 
     response = response1 + response2 
