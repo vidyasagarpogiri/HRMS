@@ -58,3 +58,19 @@
     </div>
   </section>   
 </div>
+
+	<script>
+	  $(function(){
+	    $(".total_status").hide();
+	    $(".read-more").click(function(){
+	      $(".length").hide();
+	      $(".total_status").show();
+	    });
+	    
+	    $(".show-less").click(function(){
+	      $(".total_status").hide();
+	      $(".length").show();
+	    });
+	  });
+	
+	</script>
