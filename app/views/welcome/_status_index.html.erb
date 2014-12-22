@@ -1,7 +1,7 @@
 <section class="panel">
 <% if @statuses.present? %> 
   <div class="panel-body">
-  <% @statuses.each do |s| %> 
+    <% @statuses.each do |s| %> 
     <div class="fb-user-thumb"> 
       <% if s.employee.avatar_url.present? %>
         <%= link_to image_tag(s.employee.avatar_url,size: "60x20") %>
@@ -58,16 +58,7 @@
       <p><%= time_ago_in_words(comm.created_at)%> ago </p>
       <hr>
       <% end %> 
-    </div>         
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    </div>                                             
      <%= render "statuses/add_comment_form",  :status => s.id%><hr>
 <% end %>
 <% else %>                                         
@@ -75,26 +66,26 @@
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     No Statuses to displayhshsrt.
   </div>  
-</div>
+  </div>
 <% end %> 
 </section>   
 
 <script>
-	  $(function(){
-	    $(".new_status").hide();
-	    $(".total_status").hide();
-	    $(".new_post").click(function(){
-	      $(".new_status").toggle();
-	    }); 
-	    $(".read-more").click(function(){
-	      $(".length").hide();
-	      $(".total_status").show();
-	    });
-	    
-	    $(".show-less").click(function(){
-	      $(".total_status").hide();
-	      $(".length").show();
-	    });
-	  });
-	
-	</script>                                                                                  
+  $(function(){
+    $(".new_status").hide();
+    $(".total_status").hide();
+    $(".new_post").click(function(){
+      $(".new_status").toggle();
+    }); 
+    $(".read-more").click(function(){
+      $(".length").hide();
+      $(".total_status").show();
+    });
+    
+    $(".show-less").click(function(){
+      $(".total_status").hide();
+      $(".length").show();
+    });
+  });
+
+</script>                                                                                  

@@ -24,30 +24,18 @@
             <a href="#" class="fb-user-mail"><%= current_user.email %></a>
         </div>
       </section>
-      <section class="panel profile-info">                  
-         <%= render 'statuses/form' %>
-          <footer class="panel-footer">
-              <button class="btn btn-danger pull-right">Post</button>
-              <ul class="nav nav-pills">
-                  <li>
-                      <a href="#"><i class="fa fa-map-marker"></i></a>
-                  </li>
-                  <li>
-                      <a href="#"><i class="fa fa-camera"></i></a>
-                  </li>
-                  <li>
-                      <a href="#"><i class=" fa fa-film"></i></a>
-                  </li>
-                  <li>
-                      <a href="#"><i class="fa fa-microphone"></i></a>
-                  </li>
-              </ul>
-          </footer>
-      </section>
-      
       <section class="panel">
-         <%= render 'statuses/index' %>
+        <div class="new_status">
+          <%= render 'statuses/form' %>
+        </div>
+        <div class="new_album">
+          <%= render 'albums/form' %>
+        </div>        
       </section>
+        <div class="status-on-wall">
+          <%= render 'welcome/status_index' %>
+        </div> 
+      
       <section class="panel">
         <div class="panel-body">
           <% @welcome_albums.each do |album| %> 
@@ -75,11 +63,11 @@
                   <% end %>
                 </div>
                 
-                <div class="slider slider-nav">
-                  <% album.photos.each do |photo| %> 
-                    <div ><img src="<%= photo.image %>" width="50px" height="50"></div>
-                  <% end %> 
-                </div>                    
+                <!--<div class="slider slider-nav">
+                  <%# album.photos.each do |photo| %> 
+                    <div ><img src="<%# photo.image %>" width="50px" height="50"></div>
+                  <%# end %> 
+                </div>-->               
                 <% end %>      
               </div>                                        
             <% end %>             
@@ -232,6 +220,10 @@ width:100px!important;
 .slick-prev, .slick-next{
 background: rgb(113, 195, 235);
 }
+
+ input[type="text"]{
+ padding :15px;
+ }
 </style>
 
 <script>
