@@ -300,6 +300,7 @@ post 'create_package' => "features#create_package"
      collection do
       post "add_comments"
     end
+    resources :comments # for deleting comments
   end
 
   
