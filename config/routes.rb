@@ -301,6 +301,7 @@ post 'create_package' => "features#create_package"
      collection do
       post "add_comments"
     end
+    resources :comments # for deleting comments
   end
 
   
@@ -316,6 +317,9 @@ post 'create_package' => "features#create_package"
   
   # routes for Calendar
   #resources :calendars
+ 
+  get '/calendar' => 'calendars#index'
+ 
   get "/calendars/reporting_manager_calendar" => 'calendars#reporting_manager_calendar'
   get "/calendars/reportees_leaves_calendar" => 'calendars#reportees_leaves_calendar'
   get "/calendars/workgroup_calendar" => 'calendars#workgroup_calendar'
@@ -384,6 +388,8 @@ post 'create_package' => "features#create_package"
     end
   end 
   resources :organization
+  
+  get "welcome/wall" 
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,5 +1,5 @@
 <!-- Author :Priyanka
- View for displaying respective reportees Events -->
+Calendar View for displaying Company Level Events -->
 <div class="wrapper">
   <div class="container">
     <div class="row">                
@@ -7,12 +7,13 @@
         <div class="content">         
 				  <div class="module">
 					  <div class="module-head">
-              <h3>Reportees Holidays</h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class=" icon-arrow-right"></i></a> <%= link_to 'Reportees Leaves',  calendars_reportees_leaves_calendar_path %></label>              
+              <h3>All Holidays</h3>             
 					  </div>
 					  <div class="module-body">
-					    <div id='calendar'>						     					        					     					          
-					    </div>					      					      					      					   
+					    <%= render "calendar_filters"%>
+					   <div class='calendar-partial'>
+					      <%= render 'calendars/workgroup_partial'%>														   
+					    </div>
 	          </div><!--.module-body-->
 					</div><!--/.module -->
 		    </div><!--/.content-->
@@ -21,13 +22,14 @@
 	</div><!--/.container-->
 </div><!--/.wrapper-->
 
+
+
 <style>
   #calendar {
   max-width: 900px;
   margin: 0 auto;
 }
 </style>
-
 <script>
 $(document).ready(function() {
     $('#calendar').fullCalendar({
@@ -36,10 +38,8 @@ $(document).ready(function() {
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
     },
-          events: '/calendars/reporting_manager_calendar.json'                     
+          events: '<%= @calendar_events %>'                
      });
 });
 </script>
 
-
-   

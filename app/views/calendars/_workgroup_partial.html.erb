@@ -9,8 +9,8 @@ $(document).ready(function() {
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
     },
-          <% workgroup_id = @workgroup.id if @workgroup.present?  %>
-          events: '/calendars/workgroup_calendar.json?workgroup=<%= workgroup_id%>'                                                              
+          events: '<%= @calendar_events %>'                
      });
 });
 </script>
+

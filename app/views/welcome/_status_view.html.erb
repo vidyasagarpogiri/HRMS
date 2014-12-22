@@ -1,0 +1,76 @@
+<div class="status-on-wall">
+  <section class="panel">
+    <div class="panel-body">  
+      <div class="fb-user-thumb">        
+        <% if post.employee.avatar_url.present? %>
+          <%= link_to image_tag(post.employee.avatar_url,size: "60x20") %>
+        <% else %>
+          <% if post.employee.gender == "Female" %>
+            <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+          <% else %>
+            <%= image_tag("user.png", :width => "60px", :height => "60px") %> 
+          <% end %>
+        <% end %>
+      </div>
+      <div class="fb-user-details">
+        <h3><a href="#" class="#"><%= post.employee.full_name %></a></h3><p><%= time_ago_in_words(post.created_at)%> ago</p>      
+        <div class="total_status">
+          <%= post.status %>
+        </div>           
+      </div>
+                   
+      <div class="span8"><hr>   
+        <h5>Likes(<%= post.likes_count %>) . Comments(<%= post.comments.count %>) .
+        <% if current_user.employee.id == post.employee.id %>
+          <%= link_to "Delete", status_path(post.id), method: :delete, data: {confirm: "Are You sure?"} %>
+        <% end %>
+
+        <% if post.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
+          <%= link_to 'Unlike', remove_like_status_path(post.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
+        <% else %> 
+          <%= link_to 'Like', add_like_status_path(post.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
+        <% end %>
+        
+        <% if post.comments.count > 3 %>
+          <%=link_to "Show Previous Comments", status_path(s.id) %>
+            <% else %>
+        <%end %><hr> 
+       <% post.comments.limit(3).each do |comm| %> 
+         <% if comm.employee.avatar_url.present? %> 
+              <%= image_tag(comm.employee.avatar_url,size: "30x30") %>
+            <% else %>
+               <% if comm.employee.gender == "Female" %>
+              <%= image_tag("1.jpg", :style => "width:30px;height:30px;") %> 
+           <% else %>
+              <%= image_tag("user.png", size: "30x30") %> 
+           <% end %> 
+           <% end %>
+            <b>   
+              <%= comm.employee.full_name %> 
+            </b>
+              <%=comm.comment %>
+        </p>
+        <p><%= time_ago_in_words(comm.created_at)%> ago </p>
+        <hr>
+        <% end %> 
+      </div>                                             
+      <%= render "statuses/add_comment_form",  :status => post.id%><hr>                                                                                     
+    </div>
+  </section>   
+</div>
+
+	<script>
+	  $(function(){
+	    $(".total_status").hide();
+	    $(".read-more").click(function(){
+	      $(".length").hide();
+	      $(".total_status").show();
+	    });
+	    
+	    $(".show-less").click(function(){
+	      $(".total_status").hide();
+	      $(".length").show();
+	    });
+	  });
+	
+	</script>

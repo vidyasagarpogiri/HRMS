@@ -1,58 +1,61 @@
 <!-- Author :Priyanka
  Form for creating new album along with its images. -->
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-		    <div class="content">
-			    <div class="module">
-				    <div class="module-head">
-					    <h3>New Album</h3>
-						</div>					 
-					  <div class="module-body">
-							<%= form_for @album, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
-		          <div class="control-group">
-                <label class="control-label" for="basicinput">Title</label>
-                  <div class="controls">
-                    <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title for Album", :data => {:error => "Please Enter Title for Album"}, :required =>true  %>                             
-                    <span class="help-block with-errors"></span>
-                  </div>
-							</div>
-						  
-						  <div class="control-group">
-						    <label class="control-label" for="basicinput">Description</label>
-						    <div class="controls">
-						       <%= f.text_area :description, :class => "span8 form-control", :placeholder =>"Enter description Name", :data => {:error => "Please Enter  description name"} %>                             
-                    <span class="help-block with-errors"></span>
-						    </div>
-						  </div>
-						  
-						  <%= f.fields_for :photos do |photo| %>
-						  <div class="control-group">
-						    <label class="control-label" for="basicinput">Upload Images</label>
-						    <div class="controls">
-						       <%= photo.file_field :image, :onchange =>"validateFiles(this);", :multiple => true, name: "photos[image][]", :id => "image-input", :required => true %>
-                   <span class="help-block with-errors"></span>
-						    </div>
-						  </div>
-						  <% end %>	
-						  <div class="preview-area"></div><br><br>
-						  <ul class="navigation-btns pull-left">
-							  <li><%= f.submit  'Save', :class => "btn btn-success " %></li> 
-							  <li><%= link_to  'Cancel', albums_path(@album), :class => "btn btn-danger " %></li>
-						 </ul>			 
-						<% end %>
-						</div><!--/.module-body-->
-					</div><!--/.module-->
-				</div><!--/.content-->
-			</div><!--/.span12-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
+<section class="panel">  
+  <div class="panel-body">
+    <h4>New Album</h4>  
+    <%= form_for Album.new do |f| %>
+    <div class="control-group">
+      <label class="control-label" for="basicinput">Title</label>
+        <div class="controls">
+          <%= f.text_field :title, :class => "span6 form-control", :placeholder =>"Enter Title for Album", :data => {:error => "Please Enter Title for Album"}, :required =>true  %>                             
+          <span class="help-block with-errors"></span>
+        </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="basicinput">Description</label>
+      <div class="controls">
+         <%= f.text_area :description, :class => "form-control input-lg p-text-area", :placeholder =>"Enter description", :data => {:error => "Please Enter  description name"} %>                             
+          <span class="help-block with-errors"></span>
+      </div>
+    </div>
+    
+    <%= f.fields_for Photo.new do |photo| %>
+    <div class="control-group">
+      <label class="control-label" for="basicinput">Upload Images</label>
+      <div class="controls">
+        <%= photo.file_field :image, :onchange =>"validateFiles(this);", :multiple => true, name: "photos[image][]", :id => "image-input", :required => true %>
+        <span class="help-block with-errors"></span>
+      </div>
+    </div>
+    <% end %>	
+    <div class="preview-area"></div><br><br>
+    <footer class="panel-footer">              
+      <ul class="nav nav-pills pull-right">
+         <li><%= f.submit  'Save', :class => "btn btn-success " %></li>
+        <li><button class="btn btn-danger ">Cancel</button></li>             
+      </ul>
+      <ul class="nav nav-pills">
+          <li>
+              <a href="#"><i class="fa fa-map-marker"></i></a>
+          </li>
+          <li class="camera">
+              <a href="#"><i class="fa fa-camera"></i></a>
+          </li>
+          <li>
+              <a href="#"><i class=" fa fa-film"></i></a>
+          </li>
+          <li>
+              <a href="#"><i class="fa fa-microphone"></i></a>
+          </li>
+      </ul>                         
+    </footer>    		 
+  <% end %>
+  </div><!--/.module-body-->					  
+</section>
 
-
-<!--Script for showing added images in the form befor actually uploading into model-->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!--Script for showing added images in the form befor actually uploading into model
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
 <script language="javascript" type="text/javascript">
 var inputLocalFont = document.getElementById("image-input");
 inputLocalFont.addEventListener("change",previewImages,false);
@@ -64,7 +67,7 @@ function previewImages(){
 
         for(var i = 0; i < fileList.length; i++){
           var objectUrl = anyWindow.createObjectURL(fileList[i]);
-          $('.preview-area').append('<img  class="new-image-border" src="' + objectUrl + '" />');
+          $('.preview-area').append('<img  class="new-image-border" style="width:150px;height:150px;overflow:hidden;" src="' + objectUrl + '" />');
           window.URL.revokeObjectURL(fileList[i]);
         }
     
