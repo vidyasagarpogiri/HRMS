@@ -1,19 +1,39 @@
+<!--<%# form_for @status,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |s| %>-->
+<%= form_for Status.new do |s| %>
+<div class="control-group">               
+  <div class="controls">
+    <%= s.text_area :status, :class => "form-control input-lg p-text-area", :placeholder =>"Whats in your mind today?", :data => {:error => "Please Enter Status"}, :required => true %>
+    <span class="help-block with-errors"></span>
+  </div>
+</div>
 
-              <!--<%# form_for @status,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |s| %>-->
-              <%= form_for Status.new do |s| %>
-              <div class="control-group">               
-                <div class="controls">
-                  <%= s.text_area :status, :class => "form-control input-lg p-text-area", :placeholder =>"Whats in your mind today?", :data => {:error => "Please Enter Status"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              <footer class="panel-footer">
-                <button type="submit" class="btn btn-success">Post To Wall</button>
-                <%= link_to "Cancel", statuses_path,:class => "btn btn-danger" %>
-              </footer>
-              <% end %>
-      <hr><br>
-
-
-
-
+<footer class="panel-footer">              
+  <ul class="nav nav-pills pull-right">
+    <li><%= s.submit  'Post', :class => "btn btn-success " %></li>
+    <li><button class="btn btn-danger ">Cancel</button></li>
+  </ul>
+  <ul class="nav nav-pills">
+      <li>
+          <a href="#"><i class="fa fa-map-marker"></i></a>
+      </li>
+      <li class="camera">
+          <a href="#"><i class="fa fa-camera"></i></a>
+      </li>
+      <li>
+          <a href="#"><i class=" fa fa-film"></i></a>
+      </li>
+      <li>
+          <a href="#"><i class="fa fa-microphone"></i></a>
+      </li>
+  </ul>                         
+</footer>
+<% end %>     
+<script>
+$(function(){
+  $(".new_album").hide();
+  $(".camera").click(function(){
+    $(".new_album").show();
+    $(".new_status").hide();
+  });
+});
+</script>

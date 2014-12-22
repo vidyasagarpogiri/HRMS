@@ -79,6 +79,7 @@ class WelcomeController < ApplicationController
     @employee = current_user.employee
     @welcome_albums = Album.all.order('created_at DESC').page(params[:page4]).per(1)   
     @photos = Photo.all
+    @statuses = Status.all.order('updated_at DESC').page(params[:page]).per(1)
   end
  end
     
