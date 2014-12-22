@@ -26,7 +26,7 @@
       </section>
       <section class="panel profile-info">                  
          <%= render 'statuses/form' %>
-          <!--<footer class="panel-footer">
+          <footer class="panel-footer">
               <button class="btn btn-danger pull-right">Post</button>
               <ul class="nav nav-pills">
                   <li>
@@ -42,10 +42,11 @@
                       <a href="#"><i class="fa fa-microphone"></i></a>
                   </li>
               </ul>
-          </footer>-->
+          </footer>
       </section>
+      
       <section class="panel">
-         
+         <%= render 'statuses/index' %>
       </section>
       <section class="panel">
         <div class="panel-body">
@@ -59,8 +60,7 @@
               <% else %>
                 <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
               <% end %>
-            <% end %>
-          
+            <% end %>          
             </div>
             <div class="fb-user-details">
               <h3><a href="#" class="#"><%= album.employee.first_name %> <%= album.employee.last_name %></a></h3>
@@ -146,11 +146,13 @@
           <% if @welcome_event.present? %>	
           <ul>
             <% @welcome_event.each do |welcome_event| %>
-              <li class="active"><a href="#"><strong><%= welcome_event.title %> </strong> on<strong> <%= format_date (welcome_event.held_on) %> </strong></a></li>       <div class="control-group">
-                <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>
-                <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %> <br>
-             </div>                                          
-              <% end %>	
+            <li class="active"><a href="#"><strong><%= welcome_event.title %> </strong> on<strong> <%= format_date (welcome_event.held_on) %> </strong></a>
+              <div class="control-group">
+                <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>                
+              </div>
+              <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %> <br>
+            </li>
+            <% end %>	
           </ul>
            <% else %>
             <div class="alert alert-success alert-dismissable">

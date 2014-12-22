@@ -2,7 +2,7 @@
 class StatusesController < ApplicationController
   before_filter :admin_view,  only: ['edit']
   def index # for displaying all statuses
-    @statuses = Status.all.order('updated_at DESC').page(params[:page]).per(3)
+    @statuses = Status.all.order('updated_at DESC').page(params[:page]).per(1)
     @status = Status.new
     @comment = Comment.new
     @employees = Like.where(likeable_id: @status.id).map(&:employee)
