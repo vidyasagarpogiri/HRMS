@@ -1,6 +1,6 @@
 <section class="panel">
-<% if @statuses.present? %> 
-  <div class="panel-body">
+  <div class="panel-body"> 
+  <% if @statuses.present? %>   
     <% @statuses.each do |s| %> 
     <div class="fb-user-thumb"> 
       <% if s.employee.avatar_url.present? %>
@@ -23,7 +23,8 @@
       <div class="total_status">
         <%= s.status %><%= link_to "Show Less", "#", :class => "show-less" %>
       </div>           
-    </div>             
+    </div>
+                 
     <div class="span8"><hr>   
       <h5>Likes(<%= s.likes_count %>) . Comments(<%= s.comments.count %>) . <%= time_ago_in_words(s.created_at)%> ago  
       <% if current_user.employee.id == s.employee.id %>
@@ -64,10 +65,28 @@
 <% else %>                                         
   <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    No Statuses to displayhshsrt.
+    No Statuses to display.
   </div>  
-  </div>
 <% end %> 
+</div>
 </section>   
 
-                                                                                
+<script>
+	  $(function(){
+	    $(".new_status").hide();
+	    $(".total_status").hide();
+	    $(".new_post").click(function(){
+	      $(".new_status").toggle();
+	    }); 
+	    $(".read-more").click(function(){
+	      $(".length").hide();
+	      $(".total_status").show();
+	    });
+	    
+	    $(".show-less").click(function(){
+	      $(".total_status").hide();
+	      $(".length").show();
+	    });
+	  });
+	
+	</script>                                                                                  
