@@ -1,0 +1,7 @@
+<% @posts.each do |post| %>
+  <% if post.class.name == "Album" %>
+    <%= render "welcome/album_view",  :post => post %>
+  <% else post.class.name == "Status" %>
+    <%= render 'welcome/status_view', :post => post %>
+  <% end %>
+<% end %>        
