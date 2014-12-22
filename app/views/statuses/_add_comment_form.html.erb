@@ -1,18 +1,27 @@
-  <%= form_tag add_comments_statuses_path, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"}, method: :post do %>
-  
-  
-    <div class="control-group">
-      
-        <div class="controls">
-        <%= text_area_tag  'comment', " ", :style => "width: 650px;",:placeholder =>"Comment",:data => {:error => "Please Enter Comment"}, required: true %>
-        <span class="help-block with-errors"></span>
-      </div>
+<%= form_tag add_comments_statuses_path, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"}, method: :post do %>   
+  <div class="control-group">
+    <a href="#" class="cmt-thumb">
+      <% if current_user.employee.avatar_url.present? %> 
+        <%= image_tag(comm.employee.avatar_url,size: "30x30") %>
+      <% else %>
+        <% if current_user.employee.gender == "Female" %>
+          <%= image_tag("1.jpg", :style => "width:40px;height:40px;") %> 
+        <% else %>
+          <%= image_tag("user.png", size: "40x40") %> 
+        <% end %> 
+      <% end %>
+    </a>
+    <div class="controls">
+      <div class="cmt-form">
+        <%= text_area_tag  'comment', " ", :class => "form-control", :placeholder =>"Write a comment...",:data => {:error => "Please Enter Comment"}, required: true %>
+      </div>                  
+      <span class="help-block with-errors"></span>
     </div>
-     <input type="hidden" value="<%= status %>" name="status_id">
-     <ul class="navigation-btns " style="margin: 10px 0 10px 550px;">
-       <li><button type="submit" class="btn btn-success"> Comment </button></li>
-    									
-     </ul>
-  <% end %>
+  </div>
+  <input type="hidden" value="<%= status %>" name="status_id">                  
+  <ul class="nav nav-pills pull-right">     
+    <li><button type="submit" class="btn btn-success"> Comment </button></li>    									
+  </ul>
+<% end %>
   
   
