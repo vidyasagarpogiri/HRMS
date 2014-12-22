@@ -92,6 +92,7 @@ class AppraisalsController < ApplicationController
     @appraisal = Appraisal.find(@employee_appraisal.appraisal_id)
     # Review elements of employee who fill above apprasal form
     @review_elements = @employee.employees_reviews.where(employee_id: @employee.id, appraisal_id: @appraisal.id, appraisal_cycle_id: @employee_appraisal.appraisal_cycle_id) if @employee.employees_reviews.present?
+    @goals = @employee.employees_goals.where(employees_appraisal_list_id: @employee_appraisal.id, appraisal_cycle_id: @employee_appraisal.appraisal_cycle_id) 
   end
   
   def manager_feedback
@@ -104,22 +105,23 @@ class AppraisalsController < ApplicationController
   
   # this action is for appraisal view for hr 
   def hr_manager_view
+    @goals =EmployeesGoal.where(employee_id: @employee_appraisal.employee_id, employees_appraisal_list_id: @employee_appraisal.id, appraisal_cycle_id: @employee_appraisal.appraisal_cycle_id)
   end
   
   def manager_appraisal_view
     @employee = Employee.find(params[:id])
-    @employee_appraisal = EmployeesAppraisalList.where(employee_id: @employee.id, status: Appraisal::HR).first
-    if @employee_appraisal.present? 
-      @review_elements = EmployeesReview.where(employee_id: @employee.id, appraisal_id: @employee_appraisal.appraisal_id, appraisal_cycle_id: @employee_appraisal.appraisal_cycle_id)
-   end
+    @employee_appraisal = EmployeesAppraisalList.where(employee_id: @employee.id, status: Appraisal::HR).first || EmployeesAppraisalList.where(status: Appraisal::REVIEW, employee_id: @employee.id).first
+    @review_elements = EmployeesReview.where(employee_id: @employee.id, appraisal_id: @employee_appraisal.appraisal_id, appraisal_cycle_id: @employee_appraisal.appraisal_cycle_id)
+    @goals = @employee.employees_goals.where(employees_appraisal_list_id: @employee_appraisal.id, appraisal_cycle_id: @employee_appraisal.appraisal_cycle_id)    
   end
   
   def employee_appraisal_view
+     @goals = @employee.employees_goals.where(employees_appraisal_list_id: @employee_appraisal.id, appraisal_cycle_id: @employee_appraisal.appraisal_cycle_id)
   end
   
   # this action in not in use but for future implementation  
   def indivisual_appraisals
-    @employee_appraisals = EmployeesAppraisalList.where(employee_id: @employee.id)
+    @employee_appraisals = EmployeesAppraisalList.where(employee_id: @employee.id) 
     #@appraisals, @appraisal_cycles = Appraisal.find_employee_appraisals(employee_appraisals)
   end
   
@@ -130,10 +132,37 @@ class AppraisalsController < ApplicationController
   
   def reportee_appraisals
     @employee = Employee.find(params[:id])
-    @employee_appraisals = EmployeesAppraisalList.where(employee_id: @employee.id, status: Appraisal::CLOSE)
+    @employee_appraisals = EmployeesAppraisalList.where(employee_id: @employee.id, status: Appraisal::CLOSE) 
   end
   
   def reportee_appraisal_view
+    @goals =EmployeesGoal.where(employee_id: @employee_appraisal.employee_id, employees_appraisal_list_id: @employee_appraisal.id, appraisal_cycle_id: @employee_appraisal.appraisal_cycle_id)
+  end
+  
+  def reportee_appraisal_edit
+    @employee = Employee.find(params[:id])
+    # will get record with status with manager from EmployeesAppraisalList 
+    @employee_appraisal = EmployeesAppraisalList.where(status: Appraisal::REVIEW, employee_id: @employee.id).first
+    # Review elements of employee who fill above apprasal form
+    @review_elements = @employee.employees_reviews.where(employee_id: @employee.id, appraisal_id: @employee_appraisal.appraisal_id, appraisal_cycle_id: @employee_appraisal.appraisal_cycle_id) if @employee.employees_reviews.present?
+    @goal = EmployeesGoal.new
+    
+  end
+  
+  def reportee_appraisal_update
+    descriptions, start_date, end_date = params[:description], params[:start_date], params[:end_date]
+    @employee = Employee.find(params[:id])
+    @employee_appraisal = EmployeesAppraisalList.where(status: Appraisal::REVIEW, employee_id: @employee.id).first
+    Appraisal.manager_feedback_creation(@employee, params[:review_id], params[:manager_feedback], params[:manager_rating]) if params[:review_id].present?
+    if params[:title].present? 
+      params[:title].each do |title|
+        element_id = 0
+        EmployeesGoal.create(title: title, description: descriptions[element_id], start_date: start_date[element_id], end_date: end_date[element_id], employee_id: @employee.id, employees_appraisal_list_id: @employee_appraisal.id, appraisal_cycle_id: @employee_appraisal.appraisal_cycle_id)
+        element_id += 1
+      end
+    end
+    @employee_appraisal.update(overall_rating: params[:over_all_rating], status: Appraisal::CLOSE, discussion_notes: params[:discussion_notes])
+    redirect_to appraisals_list_path
   end
   
   private

@@ -26,6 +26,12 @@ class AppraisalCyclesController < ApplicationController
     @appraisal_cycle = AppraisalCycle.find(params[:id])
     @appraisals = @appraisal_cycle.employees_appraisal_lists
   end
+  
+  def appraisal_status_update
+    employee_appraisal = EmployeesAppraisalList.find(params[:id])
+    employee_appraisal.update(status: Appraisal::REVIEW)
+    @appraisals = employee_appraisal.appraisal_cycle.employees_appraisal_lists
+  end
 
   private
 

@@ -21,16 +21,17 @@
                 <tr>
                 <% if employee.employees_appraisal_lists.where(status: Appraisal::MANAGER).first.present?%>
                   <td><%= link_to employee.full_name, "/manager_view/#{employee.id}" %></td>
-                <% else %>
-                  <td><%= link_to employee.full_name, "/manager_appraisal_view/#{employee.id}" %></td>
-                <% end %>
-                <% if employee.employees_appraisal_lists.where(status: Appraisal::MANAGER).first.present? %>
                   <td><%= @appraisals[i].title %></td>
                 <% elsif employee.employees_appraisal_lists.where(status: Appraisal::HR).present? %>
+                  <td><%= link_to employee.full_name, "/manager_appraisal_view/#{employee.id}" %></td>
                   <td>Form submitted to HR </td>
+                <% elsif employee.employees_appraisal_lists.where(status: Appraisal::REVIEW).present? %>
+                  <td><%= link_to employee.full_name, "/reportee_appraisal_edit/#{employee.id}" %></td>
+                  <td>ReView Meeting Scheduled</td>
                 <% else %>
+                  <td><%= employee.full_name %></td>
                   <td>Form still with employee </td>
-                <% end %>
+                <% end %>               
                 <% i += 1 %>
               <% end %>
              <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141205110553) do
+ActiveRecord::Schema.define(version: 20141218102804) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -330,6 +330,18 @@ ActiveRecord::Schema.define(version: 20141205110553) do
   create_table "employees_appraisals", force: true do |t|
     t.integer  "employee_id"
     t.integer  "appraisal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employees_goals", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "employee_id"
+    t.integer  "employees_appraisal_list_id"
+    t.integer  "appraisal_cycle_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

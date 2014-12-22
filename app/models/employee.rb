@@ -68,6 +68,7 @@ class Employee < ActiveRecord::Base
   has_many :employees_appraisals
   has_many :employees_reviews
   has_many :employees_appraisal_lists
+  has_many :employees_goals
   
 	validates :employee_id, presence: true 
 	validates :first_name, presence: true, format: { with: /\A[a-zA-Z\s ]+\z/, message: "Plese Enter only allows letters" }
