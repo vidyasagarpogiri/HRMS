@@ -100,12 +100,14 @@ class CalendarsController < ApplicationController
   def workgroup_calendar   
     @employees = if params[:workgroup].present? 
       @workgroup = Workgroup.find(params[:workgroup])
-      WorkgroupsEmployee.where(:workgroup_id => params[:workgroup] ).map(&:employee_id).uniq
+      WorkgroupsEmployee.where(:workgroup_id => params[:workgroup] )
     else
-      Employee.all.map(&:employee_id).uniq
-    end         
+      Employee.all
+    end 
+    #raise @employees.inspect
+    @group_employees = @employees.pluck(:group_id).uniq          
     #@group_employees = WorkgroupsEmployee.where(:workgroup_id => 3).pluck(:employee_id)#TODO pass @workgroup_id to :workgroup_id for dynamic values    
-    @group_holiday_calender = HolidayCalender.where(:group_id => @employees).map(&:event_id).uniq
+    @group_holiday_calender = HolidayCalender.where(:group_id => @group_employees).map(&:event_id).uniq
     @group_events = Event.where(:id => @group_holiday_calender)
     respond_to do |format| 
       format.html # reporting_manager_calendar.html.erb

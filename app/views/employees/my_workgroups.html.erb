@@ -25,11 +25,11 @@
                 <tbody>
                   <tr> 
                     <td class="center">
-                    <% if workgroup.workgroupicon.present? %>
-                        <%= image_tag(workgroup.workgroupicon,size: "60x20") %>
-                    <% else %>
-                        <%= image_tag "workgroup_icon.png", :width => "60px", :height => "60px" %> 
-                    <% end %>
+                     <% if workgroup.workgroupicon.present? && workgroup.workgroupicon_url.present? %>
+                        <%= image_tag workgroup.workgroupicon, size: "60x20" %>
+                     <% else %>
+                        <%= image_tag "workgroup.png", :width => "60px", :height => "20px" %> 
+                     <% end %>
                     </td>          
                     <td><%= link_to workgroup.name,workgroup_path(workgroup) if workgroup.name.present? %></td>
                     <td><%= workgroup.description %></td>
