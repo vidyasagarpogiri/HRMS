@@ -69,11 +69,9 @@
               <%= image_tag "user.png", :width => "20px", :height => "20px" %> 
             <% end %> <b> <%= com.employee.full_name %> </b><%=com.comment %> 
 					 </p>
-					 <% if current_user.employee == com.employee %> 
-                                <label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-trash"></i></a>
-                                  <%= link_to 'delete',status_comment_path(@status.id,com.id), method: :delete, data: {confirm: "Are You sure?"}%> 
-                                </label>
-                              <% end %>
+					 <%# if current_user.employee == com.employee %> 
+                <%# link_to 'delete',status_comment_path(@status.id,com.id), method: :delete, data: {confirm: "Are You sure?"}%> 
+           <%# end %>
 					 <p>
 					    <%= time_ago_in_words(com.created_at)%> ago 
            </p> 

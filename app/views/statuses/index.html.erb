@@ -81,11 +81,9 @@
                             <%= comm.employee.full_name %> 
                           </b>
                             <%=comm.comment %> 
-                              <% if current_user.employee == comm.employee %> 
-                                <label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-trash"></i></a>
-                                  <%= link_to 'delete',status_comment_path(s.id,comm.id), method: :delete, data: {confirm: "Are You sure?"}%> 
-                                </label>
-                              <% end %>
+                              <%# if current_user.employee == comm.employee %> 
+                                  <%# link_to 'delete',status_comment_path(s.id,comm.id), method: :delete, data: {confirm: "Are You sure?"}%> 
+                              <%# end %>
                       </p>
                       <p><%= time_ago_in_words(comm.created_at)%> ago </p><hr>
                       <% end %> 
