@@ -283,6 +283,7 @@ post 'create_package' => "features#create_package"
   # Routes for apprisal_cycle
   resources :appraisal_cycles
   post "appraisal_cycles/status_update"
+   post "appraisal_cycles/appraisal_status_update"
   #routes for goals
    resources :goals
   #routes for review_elements
@@ -360,8 +361,9 @@ post 'create_package' => "features#create_package"
   get "/reportees" => "appraisals#reportees"
   get '/reportee_appraisals/:id' => "appraisals#reportee_appraisals"
   get "/reportee_appraisal_view/:id" => "appraisals#reportee_appraisal_view"
-
-  
+  get "/reportee_appraisal_edit/:id" => "appraisals#reportee_appraisal_edit"
+  post "/reportee_appraisal_update/:id" => "appraisals#reportee_appraisal_update"
+ 
   # for work groups Author:Vidya Sagar
   resources :workgroups do 
    member do

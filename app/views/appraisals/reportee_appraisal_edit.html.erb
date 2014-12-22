@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <div class="content">
+          <div class="module">
+            <div class="module-head">
+              <h3>Reportee Appraisal For <%= @employee_appraisal.appraisal_cycle.title %></h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"></a><%= link_to 'Back To List', "/reportee_appraisals/#{@employee.id}"%></label>
+            </div>
+            <div class="module-body">
+              <%= form_tag "/reportee_appraisal_update/#{@employee.id}", :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, method: :post do %>
+                <%= render "appraisals/manager_appraisal_edit"%><hr/>
+                <% if @employee_appraisal.status == Appraisal::REVIEW %>
+                <h4>Add Goal
+                <!-- code for employee goals -->
+                <span class="icon-plus-sign add-goal" style="cursor:pointer";></span></h4>
+                <%= fields_for @goal do |g| %>
+                <div class="display-area">
+                </div><br/>
+                <% end %>
+               <% end %> 
+              <%= submit_tag 'Submit', :class => 'btn btn-success pull-right' %>
+              <% end %><br/>
+            </div>
+          </div><!--/.module-->
+        </div><!--/.content-->
+      </div><!--/.span12-->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.wrapper-->
+
+<script>
+  $(function(){
+    $(".add-goal").click(function(){
+      $(".display-area").append('<div class="display-form"></div>');
+      $(".display-form").replaceWith('<%= j render "appraisals/goal_form"%>');
+    });
+  });
+</script>

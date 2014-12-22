@@ -1,0 +1,51 @@
+<div class="module-body">
+<table border="0" class="table  table-striped">
+  <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Department</th>
+      <th>Review Form</th>
+     <!-- <th>Start Date</th>
+      <th>End Date</th>
+      <th>Period</th> -->
+      <th>status</th>
+      <th>Set Review Meeting</th>
+    </tr>
+  </thead>
+  <% @appraisals.each do |employee_appraisal| %>
+    <tr>
+    <%# if employee_appraisal.status == Appraisal::HR %>
+      <td><%= link_to employee_appraisal.employee.full_name, "/hr_manager_view/#{employee_appraisal.id}" %></td>
+    <% #else %>
+ <!--     <td><%# link_to employee_appraisal.employee.full_name, "/employee_appraisal_view/#{employee_appraisal.id}" %></td> -->
+    <% #end %>
+    <td><%= employee_appraisal.employee.department.department_name %></td>
+    <td><%= Appraisal.find(employee_appraisal.appraisal_id).title %></td>
+   <!-- <td><%# employee_appraisal.appraisal.start_date.strftime("%d %b, %Y") %></td>
+    <td><%# employee_appraisal.appraisal.end_date.strftime("%d %b, %Y") %></td>
+    <td><%# employee_appraisal.appraisal.review_period %></td> -->
+    <td><%= employee_appraisal.status %></td>
+    <% if employee_appraisal.status == Appraisal::HR %>
+      <td><%= button_tag 'Review Meeting', :onclick => "getAppraisalId(#{employee_appraisal.id})"%></td>
+    <% else %>
+      <td>over/not scheduled</td>
+    <% end %>
+    <%= hidden_field_tag('appraisal_cycle_id', employee_appraisal.appraisal_cycle_id) %>
+  <% end %>
+</table>
+</div><!--/.module-body-->
+
+<script>
+  function getAppraisalId(appraisal_id){
+    if(confirm("Are you sure?")){
+    $.ajax({
+          type: "POST",
+          url: "appraisal_status_update",
+          data: { 'id': appraisal_id }
+        });
+    }
+    else{
+      return false
+    }
+  }
+</script>

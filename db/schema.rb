@@ -336,6 +336,18 @@ ActiveRecord::Schema.define(version: 20141219055502) do
     t.datetime "updated_at"
   end
 
+  create_table "employees_goals", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "employee_id"
+    t.integer  "employees_appraisal_list_id"
+    t.integer  "appraisal_cycle_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "employees_reviews", force: true do |t|
     t.string   "review_element"
     t.string   "performance_indicator"

@@ -9,6 +9,7 @@ class GoalsController < ApplicationController
   end
   
   def create
+  raise params.inspect
     @goal = Goal.create(goal_params)
     redirect_to goals_path
   end
