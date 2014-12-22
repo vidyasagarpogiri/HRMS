@@ -37,14 +37,8 @@
       
 
       <section class="panel">
-        <div class="panel-body">
-          <% @posts.each do |post| %>
-            <% if post.class.name == "Album" %>
-              <%= render "welcome/album_view",  :post => post %>
-            <% else post.class.name == "Status" %>
-              <%= render 'welcome/status_view', :post => post %>
-            <% end %>
-          <% end %>                              
+        <div class="panel-body posts">
+          <%= render "welcome/posts"%>                      
         </div>
       </section> 
 

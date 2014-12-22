@@ -72,6 +72,7 @@ class WelcomeController < ApplicationController
   end  
   
   def wall    
+    @status = Status.new
     @welcome_event = AmzurEvent.all.page(params[:page1]).per(2)
     @welcome_announcements = Announcement.all.page(params[:page2]).per(2)
     @welcome_recruitments = Recruitment.where(:status => "open").page(params[:page3]).per(2)

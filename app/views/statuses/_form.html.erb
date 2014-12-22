@@ -1,5 +1,5 @@
 <!--<%# form_for @status,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |s| %>-->
-<%= form_for Status.new do |s| %>
+<%= form_for @status, :remote => true do |s| %>
 <div class="control-group">               
   <div class="controls">
     <%= s.text_area :status, :class => "form-control input-lg p-text-area", :placeholder =>"Whats in your mind today?", :data => {:error => "Please Enter Status"}, :required => true %>
