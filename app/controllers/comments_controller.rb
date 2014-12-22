@@ -21,8 +21,14 @@ class CommentsController < ApplicationController
    # @status = Status.find(params[:status_id])
     @comment = Comment.new
   end
-
-
+  
+  # for destroying comments commeneted by an employee to status
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to statuses_path
+    #raise @comment.inspect
+  end
 
   private
 
