@@ -94,13 +94,14 @@
           <span class="help-block with-errors"></span>
         </div>
       </div>
-  </div><hr/>
- <div class="row-fluid">
+  </div>
+ </div><hr/>
+ <h4>Review Elements</h4><hr/>
  <table class="table table-striped">
     <thead>
       <tr>
-        <th width="100">Review Element</th>
-        <th width="100">Performance Indicator</th>
+        <th>Element</th>
+        <th>Performance Indicator</th>
         <th>Employee Assesment</th>
         <th>Employee Rating</th>
         <th>Manager Feedback</th>
@@ -111,18 +112,17 @@
   <% if @review_elements.present? %>
     <% @review_elements.each do |review_element| %>
         <tr>
-          <td width="100"><%= review_element.review_element %></td>
-          <td width="100"><%= review_element.performance_indicator %></td>
+          <td><%= review_element.review_element %></td>
+          <td><%= review_element.performance_indicator %></td>
           <td><%= text_field_tag :employee_assesment, review_element.employee_assesment, disabled: "true" %></td>
-          <td><%= text_field_tag :employee_rating, review_element.employee_rating, disabled: "true", :style => "width:130px" %></td>
+          <td><%= text_field_tag :employee_rating, review_element.employee_rating, disabled: "true", style: "width:120px;"%></td>
           <td><%= text_field_tag :manager_feedback, review_element.manager_feedback, disabled: "true" %></td>
-          <td><%= text_field_tag :manager_rating, review_element.manager_rating, disabled: "true", :style => "width:130px" %></td>
+          <td><%= text_field_tag :manager_rating, review_element.manager_rating, disabled: "true", style: "width:120px;" %></td>
         </tr>
       <% end %>
     <% end %>
   </tbody>
- </table>
- </div><br/>
+ </table><hr/>
  <% if @goals.present? %>
  <h4>Employee Goals</h4><hr/>
   <table class="table table-striped">
