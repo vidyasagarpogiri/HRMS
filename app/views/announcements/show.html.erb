@@ -9,6 +9,11 @@
 					  </div>
 				    <div class="module-body">											    
                <h5><%= @announcement.title %></h5>
+              <div class="control-group">
+               <div class="controls">
+                <strong>Announcement for <%if @announcement.announceable_type.nil? %> ALL <%else%> <%=@announceable %>  <%=@announcement.announceable_type%> <%end%></strong>
+              </div>
+             </div>
                 <% if current_user.department == Department::HR %>  
                  <ul class="navigation-btns pull-right" style="margin-top:-30px">
                    <li><%= link_to 'Edit', edit_announcement_path(@announcement), :class => "btn btn-success " %></li>

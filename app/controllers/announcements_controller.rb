@@ -88,61 +88,27 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
   
   def edit
     @announcement =Announcement.find(params[:id])
-    @departments = Department.all
-    @groups =Group.all
-    @workgroups =Workgroup.all
+     
+    @announceable = Announcement.get_eventable(@announcement)
   end
   
   def show
     @announcement =Announcement.find(params[:id])
     @announcements = Announcement.all.page(params[:page]).per(5)
+    @announceable = Announcement.get_eventable(@announcement)
   end
   
   def update
   #raise params.inspect
-    case params[:announceable_type]
-    
-        when "Group"
-        
-          @announcement = Announcement.find(params[:id])
-           @announcement.update(:title =>params[:announcement][:title], :description=>params[:announcement][:description], :announceable_type=> params[:announceable_type],  :announceable_id => params[:group_id], :is_send_mail=>params[:announcement][:is_send_mail] )
-           if @announcement
-            redirect_to announcements_path
-          else
-           flash.now[:error]
-           render "edit"
-        end  
-          
-        when "Department"
-         @announcement = Announcement.find(params[:id])
-           @announcement.update(:title =>params[:announcement][:title], :description=>params[:announcement][:description], :announceable_type=> params[:announceable_type],  :announceable_id => params[:department_id], :is_send_mail=>params[:announcement][:is_send_mail] )
-          if @announcement
-            redirect_to announcements_path
-          else
-           flash.now[:error]
-           render "edit"
-        end  
-        when "Workgroup"
-         @announcement = Announcement.find(params[:id])
-           @announcement.update(:title =>params[:announcement][:title], :description=>params[:announcement][:description], :announceable_type=> params[:announceable_type],  :announceable_id => params[:workgroup_id], :is_send_mail=>params[:announcement][:is_send_mail] )
-          if @announcement
-            redirect_to announcements_path
-          else
-           flash.now[:error]
-           render "edit"
-          end  
+   
+     @announcement = Announcement.find(params[:id])
+     @announcement.update(announcement_params)
+       if @announcement
+        redirect_to announcements_path
         else
-         @announcement = Announcement.find(params[:id])
-           @announcement.update(:title =>params[:announcement][:title], :description=>params[:announcement][:description], :is_send_mail=>params[:announcement][:is_send_mail] )
-           if @announcement
-            redirect_to announcements_path
-            else
-             flash.now[:error]
-             render "edit"
-           end  
-      end
-     
-  
+         flash.now[:error]
+         render "edit"
+       end  
       
   end
   

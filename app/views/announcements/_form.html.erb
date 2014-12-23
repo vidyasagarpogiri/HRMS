@@ -25,7 +25,7 @@
 							</div>
 							
 							
-							
+							   <%if @announcement.new_record? %>
 							<div class="control-group">
               <label class="control-label" for="announcement_title">Select </label>
               <div class="controls">
@@ -61,6 +61,14 @@
                </div>
               
               </div>
+              <% else %>
+             <div class="control-group">
+              <div class="controls">
+              <strong>Announcement for <%if @announcement.announceable_type.nil? %> ALL <%else%> <%=@announceable %>  <%=@announcement.announceable_type%> <%end%></strong>
+             </div>
+            </div>
+            <%end%>
+              
               
               <div class="control-group">
                 <label class="control-label" for="amzur_event_held_on">Select to Send Mail </label>
