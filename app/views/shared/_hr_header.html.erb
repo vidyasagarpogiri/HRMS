@@ -106,8 +106,10 @@
 			  <ul class="dropdown-menu">
 			    <li><a href="/employee_appraisal_form">Appraisal Form</a></li>
 			    <li><a href="/my_appraisals">My Previous Appraisals</a></li>
-			    <li><a href="/appraisals_list">Employee Appraisals</a></li>
-			    <li><a href="/reportees">Reportees Previous Appraisals</a></li>
+			    <% if current_user.employee.is_reporting_manager? %>
+			      <li><a href="/appraisals_list">Employee Appraisals</a></li>
+			      <li><a href="/reportees">Reportees Previous Appraisals</a></li>
+			    <% end %>
 			  </ul>
 			</li>
 			<li><a href="/employee_attendence/emp_show_attendance" >My Attendance</a></li>		
