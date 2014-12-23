@@ -25,11 +25,11 @@
 							</div>
 							
 							
-							
+							   <%if @announcement.new_record? %>
 							<div class="control-group">
               <label class="control-label" for="announcement_title">Select </label>
               <div class="controls">
-              <select  name="announceable_type" multiple="multiple" class="announcement">
+              <select  name="announceable_type" class="announcement">
                 <option value="all">All</option>
                 <option value="Department">Department</option>
                 <option value="Group">Group</option>
@@ -46,21 +46,29 @@
               
               <div class="controls">
               <div id ="departments">             
-                <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name"), prompt: "Please Select" %>
+                <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name") %>
               </div>
               
               <div id="groups">
-                  <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name"), prompt: "Please Select" %>
+                  <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name") %>
                   
               </div>
               
               <div id="workgroups">
-                  <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name"), prompt: "Please Select" %>
+                  <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name")%>
               </div>
               
                </div>
               
               </div>
+              <% else %>
+             <div class="control-group">
+              <div class="controls">
+              <strong>Announcement for <%if @announcement.announceable_type.nil? %> ALL <%else%> <%=@announceable %>  <%=@announcement.announceable_type%> <%end%></strong>
+             </div>
+            </div>
+            <%end%>
+              
               
               <div class="control-group">
                 <label class="control-label" for="amzur_event_held_on">Select to Send Mail </label>
@@ -113,7 +121,7 @@
   $(".announcement").change(function () {
     var str = $( ".announcement" ).val();  
     console.log(str);
-    switch (str[0]) { 
+    switch (str) { 
     case 'Group': 
            console.log(str);
           $("#departments").hide();

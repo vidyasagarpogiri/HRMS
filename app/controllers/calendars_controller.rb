@@ -68,6 +68,7 @@ class CalendarsController < ApplicationController
        @all_leaves = LeaveHistory.all.where(:status => "APPROVED")
   end
     response1 = @all_holidays.map { |event| {:title => event.event_name, :start => event.event_date.to_date}  }
+    #raise @all_leaves.first.employee.full_name.inspect
     response2 =  @all_leaves.map { |leave| {:title => leave.employee.full_name, :start => leave.from_date.to_date , :end => leave.to_date.to_date.tomorrow} }
     response = response1 + response2 
     @response = response.to_json

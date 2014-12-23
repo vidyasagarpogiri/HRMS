@@ -10,8 +10,9 @@
                     <th>Actions</th>														            									      		
                   </tr>
                   </thead>
-                <% @workgroups.each do |workgroup| %>  
+                
                 <tbody>
+                <% @workgroups.each do |workgroup| %>  
                   <tr> 
                     <td class="center">
                      <% if workgroup.workgroupicon.present? && workgroup.workgroupicon_url.present? %>
@@ -36,8 +37,8 @@
                     </td>
                  
                   </tr>
-                </tbody>
-                <% end %>
+                  <% end %>
+                </tbody>               
               </table>
             <% else %> 
             <div class="module-body">                                           
