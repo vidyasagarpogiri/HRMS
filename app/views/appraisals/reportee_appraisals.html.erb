@@ -6,8 +6,10 @@
           <div class="module">
             <div class="module-head">
               <h3>Repotees Appraisals List </h3>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><span class="glyphicon glyphicon-circle-arrow-left"></span></a> <%= link_to 'Back To Repotees', reportees_path %></label>
             </div>
             <div class-module-body>
+              <% if @employee_appraisals.present? %>
               <table class="table">
                 <thead>
                   <tr>
@@ -32,6 +34,13 @@
                   <% end %>
                 </tbody>
               </table>
+              <% else %>
+                
+                <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    Employee did not have any previous appraisals 
+                </div>
+              <% end %>
             </div>
           </div><!--/.module-->
         </div><!--/.content-->
