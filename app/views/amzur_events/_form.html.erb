@@ -30,11 +30,17 @@
               <div class="control-group">
               <label class="control-label" for="amzur_event_title">Select </label>
               <div class="controls">
-              <select  name="eventable_type" class="event">
+              <select  name="eventable_type"  class="event">
                 <option value="all">All</option>
+                <%unless @departments.blank? %>
                 <option value="Department">Department</option>
+                <%end%>
+                 <%unless @groups.blank? %>
                 <option value="Group">Group</option>
-                <option value="Workgroup">WorkGroup</option>
+                <%end%>
+                 <%unless @workgroups.blank? %>
+                  <option value="Workgroup">WorkGroup</option>
+                 <%end%>
               </select>
               </div> 
               </div> 
