@@ -35,7 +35,7 @@ class StatusesController < ApplicationController
     count = @status.likes_count
     @status.update likes_count: count + 1
     @status.update(updated_at: Time.now)
-    redirect_to statuses_path
+    redirect_to welcome_wall_path
   end
 
   def remove_like # unlikes the status which is being liked previously
@@ -47,7 +47,7 @@ class StatusesController < ApplicationController
     @status.update likes_count: count - 1
     @status.update(updated_at: Time.now)
     @like.destroy
-    redirect_to statuses_path
+    redirect_to welcome_wall_path
   end
 
   # Present we are not using this one.
@@ -68,7 +68,7 @@ class StatusesController < ApplicationController
   #raise params.inspect
     @status = Status.find(params[:id])
     @status.destroy
-    redirect_to statuses_path
+    redirect_to welcome_wall_path
   end
 
   def show # Displays the status in a show page
@@ -89,7 +89,7 @@ class StatusesController < ApplicationController
     @employee = current_user.employee
     @status.comments.create(comment: params[:comment], employee_id: @employee.id)
     @status.update(updated_at: Time.now)
-    redirect_to statuses_path
+    redirect_to welcome_wall_path
   end
 
   private
