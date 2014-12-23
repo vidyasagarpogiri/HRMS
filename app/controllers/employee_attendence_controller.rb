@@ -107,6 +107,7 @@ class EmployeeAttendenceController < ApplicationController
         emp_rec = Employee.find_by_devise_id(deviceUserId)
         from_work_time = emp_rec.shift.from_time 
         to_work_time = emp_rec.shift.to_time 
+
         
         inOutTimingsArray =  if(from_work_time > to_work_time)
         TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.at_noon, logDate.to_datetime.tomorrow.at_noon).map(&:date_time)
