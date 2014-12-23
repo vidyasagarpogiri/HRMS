@@ -73,7 +73,7 @@ class WorkgroupsController < ApplicationController
   end
   
   def added_moderators
-  # raise params.inspect 
+   # raise params.inspect 
     @workgroup = Workgroup.find(params[:id])
     WorkgroupsEmployee.where(workgroup_id: @workgroup.id).each do |work| 
     work.update(is_moderator: false) unless current_user.employee == work.employee # if current user is moderator of workgroup then check box is not displayed
