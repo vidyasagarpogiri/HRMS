@@ -46,16 +46,16 @@
               
               <div class="controls">
               <div id ="departments">             
-                <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name"), prompt: "Please Select" %>
+                <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name") %>
               </div>
               
               <div id="groups">
-                  <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name"), prompt: "Please Select" %>
+                  <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name") %>
                   
               </div>
               
               <div id="workgroups">
-                  <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name"), prompt: "Please Select" %>
+                  <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name")%>
               </div>
               
                </div>
