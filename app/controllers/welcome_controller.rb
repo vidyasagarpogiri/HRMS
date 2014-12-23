@@ -83,6 +83,8 @@ class WelcomeController < ApplicationController
     @posts.flatten!
     @posts.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!
  end
+ 
+
     
   private 
   def calculate_time_diff(time_in_min)  
