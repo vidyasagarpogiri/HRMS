@@ -65,6 +65,7 @@ class StatusesController < ApplicationController
   end
 
   def destroy # Deletes the selected status
+  #raise params.inspect
     @status = Status.find(params[:id])
     @status.destroy
     redirect_to statuses_path
