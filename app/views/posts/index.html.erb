@@ -8,14 +8,17 @@
               <h3>All posts </h3>					    
               <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i> </a><%= link_to " New Post", new_post_path %></label>   
             </div>	
-            <div class="module-body">				 
-            <% if @posts.present? %>
-            <%= form_tag posts_path, :class => "span12", :method => :get do %>
-               <div class="control-group ">
+            <div class="module-body">		
+             <%= form_tag posts_path, :class => "span12", :method => :get do %>		 
+              <div class="control-group"> 
+              <label class="control-label" for="basicinput">
                 <%= text_field_tag :search, params[:search], :class => "span4" %>
-                <%= submit_tag "Search", :name => nil , :class => "btn btn-success" %>
+                <%= submit_tag "Search", :name => nil , :class => "btn btn-success" %></label>
               </div>
-            <% end %>                        
+            </div>
+            <% end %>
+            <div class="module-body">
+             <% if @posts.present? %>                        
             <% @posts.each do |p| %>                                	 
             <div class="control-group" style= "padding:10px;border:solid 1px #eee;">                                                                   	
               <div class="control-group ">

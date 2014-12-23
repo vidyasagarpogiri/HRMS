@@ -1,8 +1,8 @@
 class Event < ActiveRecord::Base
  
 
-  has_many :holiday_calenders
-  has_many :departments, :through => :holiday_calenders
+  has_many :holiday_calenders,  dependent: :destroy
+  has_many :groups, :through => :holiday_calenders
 
 
   validates :event_name, uniqueness: { case_sensitive: false }
