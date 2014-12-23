@@ -30,7 +30,7 @@
               <div class="control-group">
               <label class="control-label" for="amzur_event_title">Select </label>
               <div class="controls">
-              <select  name="eventable_type" multiple="multiple" class="event">
+              <select  name="eventable_type" class="event">
                 <option value="all">All</option>
                 <option value="Department">Department</option>
                 <option value="Group">Group</option>
@@ -148,7 +148,7 @@
   $(".event").change(function () {
     var str = $( ".event" ).val();  
     console.log(str);
-    switch (str[0]) { 
+    switch (str) { 
     case 'Group': 
            console.log(str);
           $("#departments").hide();

@@ -29,7 +29,7 @@
 							<div class="control-group">
               <label class="control-label" for="announcement_title">Select </label>
               <div class="controls">
-              <select  name="announceable_type" multiple="multiple" class="announcement">
+              <select  name="announceable_type" class="announcement">
                 <option value="all">All</option>
                 <option value="Department">Department</option>
                 <option value="Group">Group</option>
@@ -121,7 +121,7 @@
   $(".announcement").change(function () {
     var str = $( ".announcement" ).val();  
     console.log(str);
-    switch (str[0]) { 
+    switch (str) { 
     case 'Group': 
            console.log(str);
           $("#departments").hide();
