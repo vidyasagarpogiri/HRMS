@@ -105,7 +105,7 @@ class EmployeeAttendenceController < ApplicationController
         
         emp_rec = Employee.find_by_devise_id(deviceUserId)       
         from_work_time = emp_rec.shift.from_time
-        raise from_work_time.inspect
+        #raise from_work_time.inspect
         to_work_time = emp_rec.shift.to_time
         
         inOutTimingsArray =  if(from_work_time > to_work_time)
