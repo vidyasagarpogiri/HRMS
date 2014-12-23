@@ -96,7 +96,8 @@ class EmployeeAttendenceController < ApplicationController
     @attendaceDates = @attendanceDates.collect {|dt| dt.to_datetime.strftime("%d-%m-%Y") }
     @attendaceDates = @attendaceDates.uniq
 
-    @employee_devise_ids = Employee.where(:status=>false).map(&:devise_id).compact.uniq
+   # @employee_devise_ids = Employee.where(:status=>false).map(&:devise_id).compact.uniq
+    @employee_devise_ids = Employee.devise_ids_employees
     @employee_devise_ids.each do|deviceUserId|
       @attendaceDates.each do|logDate|
       
@@ -104,8 +105,8 @@ class EmployeeAttendenceController < ApplicationController
         inTime = 0
         
         emp_rec = Employee.find_by_devise_id(deviceUserId)
-        from_work_time = emp_rec.shift.from_time
-        to_work_time = emp_rec.shift.to_time
+        from_work_time = emp_rec.shift.from_time 
+        to_work_time = emp_rec.shift.to_time 
         
         inOutTimingsArray =  if(from_work_time > to_work_time)
         TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.at_noon, logDate.to_datetime.tomorrow.at_noon).map(&:date_time)
