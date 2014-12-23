@@ -2,7 +2,7 @@
 class StatusesController < ApplicationController
   before_filter :admin_view,  only: ['edit']
   def index # for displaying all statuses
-    @statuses = Status.all.order('updated_at DESC').page(params[:page]).per(3)
+    @statuses = Status.all.order('updated_at DESC').page(params[:page]).per(1)
     @status = Status.new
     @comment = Comment.new
     @employees = Like.where(likeable_id: @status.id).map(&:employee)
@@ -13,12 +13,12 @@ class StatusesController < ApplicationController
   end
 
   def create # creates New status record
-    @status = current_user.employee.statuses.new(status_params)
-    if @status.save
-      redirect_to statuses_path
-    else
-      render 'new'
-    end
+    @post = current_user.employee.statuses.create(status_params)
+    @albums = Album.all
+    @statuses = Status.all
+    @posts = [@albums, @statuses]
+    @posts.flatten!
+    @posts.sort!{|a,b| b.updated_at <=> a.updated_at}
   end
   # like will be created on the selected status
   def add_like

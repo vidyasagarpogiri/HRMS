@@ -33,15 +33,8 @@
 	
 					
 
-
-			<li class="dropdown-submenu"><a href="#">Calendar</a>
-			  <ul class="dropdown-menu">
-			    <li><a href="/calendars/reporting_manager_calendar">Reportees</a></li>			    
-			    <li><a href="/calendars/department_calendar">Departments</a></li>
-			    <li><a href="/calendars/workgroup_calendar">Work Group</a></li>
-			    <li><a href="/calendars/company_calendar">Company</a></li>
-			  </ul>			
-			</li>
+      <li><a href="/calendar">Calendar</a></li>
+		
 
 
 			<li><a href="/employee_leaves">Employee Leaves</a></li>
@@ -53,7 +46,6 @@
 			    <% if current_user.employee.is_reporting_manager? %>
 			    <li><a href=" /assign_employee_appraisals">Assign Appraisal</a></li>
 			    <% end %>
-			    <li><a href="/goals">Goals</a></li>
 			    <li><a href="/review_elements">Review Elements</a></li>
 			  </ul>
 			</li>

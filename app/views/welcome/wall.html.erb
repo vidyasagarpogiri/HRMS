@@ -2,7 +2,7 @@
 <section id="main-content" >
   <section class="wrapper site-min-height" style="background-color:#F1FAFF">
   <div class="row wall-layout">
-    <div class="col-md-9">
+    <div class="col-md-8" style="margin-top:100px;">
       <section class="panel">
         <div class="cover-photo">         
           <div class="fb-name">
@@ -24,67 +24,21 @@
             <a href="#" class="fb-user-mail"><%= current_user.email %></a>
         </div>
       </section>
-      <section class="panel profile-info">                  
-         <%= render 'statuses/form' %>
-          <!--<footer class="panel-footer">
-              <button class="btn btn-danger pull-right">Post</button>
-              <ul class="nav nav-pills">
-                  <li>
-                      <a href="#"><i class="fa fa-map-marker"></i></a>
-                  </li>
-                  <li>
-                      <a href="#"><i class="fa fa-camera"></i></a>
-                  </li>
-                  <li>
-                      <a href="#"><i class=" fa fa-film"></i></a>
-                  </li>
-                  <li>
-                      <a href="#"><i class="fa fa-microphone"></i></a>
-                  </li>
-              </ul>
-          </footer>-->
-      </section>
+      
+      
       <section class="panel">
-         
-      </section>
-      <section class="panel">
-        <div class="panel-body">
-          <% @welcome_albums.each do |album| %> 
-          <div class="fb-user-thumb">                     
-            <% if album.present? && album.employee.avatar_url.present? %>
-              <%= image_tag album.employee.avatar_url, :width => "60px", :height => "60px" %>
-            <% else %>
-              <% if album.employee.gender == "Female" %>
-                <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
-              <% else %>
-                <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
-              <% end %>
-            <% end %>
-          
-            </div>
-            <div class="fb-user-details">
-              <h3><a href="#" class="#"><%= album.employee.first_name %> <%= album.employee.last_name %></a></h3>
-              <p>added <%= pluralize(album.photos.count, 'photo') %> <strong><a href="<%= album_path(album) %>"><%= album.title %></a>
-    </strong></p>
-              <% if album.photos.present?%> 
-                <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
-                  <% album.photos.each do |photo| %>
-                    <div style="width:400px;height:250px;overflow:hidden;">
-                      <a class="group1" href="<%= photo.image %>"><img src="<%= photo.image %>" width="300px" height="200" ></a>
-                    </div>            
-                  <% end %>
-                </div>
-                
-                <div class="slider slider-nav">
-                  <% album.photos.each do |photo| %> 
-                    <div ><img src="<%= photo.image %>" width="50px" height="50"></div>
-                  <% end %> 
-                </div>                    
-                <% end %>      
-              </div>                                        
-            <% end %>             
+        <div class="new_status">
+          <%= render 'statuses/form' %>
         </div>
-      </section> 
+        <div class="new_album">
+          <%= render 'albums/form' %>
+        </div>        
+      </section>
+      
+      <div class="panel-body posts">
+        <%= render "welcome/posts"%>                      
+      </div>
+
       <section class="panel">
           <div class="panel-body">
               <div class="fb-user-thumb">
@@ -129,28 +83,27 @@
                       </div>
                     </li>                    
                   </ul>
-
                   <div class="clearfix"></div>
-
               </div>
-
           </div>
-      </section>   
-        
+      </section>           
       </div><!--"col-md-9-->
       
       <!--Notifications-->
-      <div class="col-md-3">
+      <div class="col-md-3" style="background-color:#FFF">
         <div class="fb-timeliner">
           <h2 class="recent-highlight">Events</h2>
           <% if @welcome_event.present? %>	
           <ul>
             <% @welcome_event.each do |welcome_event| %>
-              <li class="active"><a href="#"><strong><%= welcome_event.title %> </strong> on<strong> <%= format_date (welcome_event.held_on) %> </strong></a></li>       <div class="control-group">
-                <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>
-                <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %> <br>
-             </div>                                          
-              <% end %>	
+            <li class="active"><a href="#"><strong><%= welcome_event.title %> </strong> on<strong> <%= format_date (welcome_event.held_on) %> </strong></a>
+            <p> <%= time_ago_in_words(welcome_event.created_at)%> ago</p>
+              <div class="control-group">
+                <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>                
+              </div>
+              <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %> <br>
+            </li>
+            <% end %>	
           </ul>
            <% else %>
             <div class="alert alert-success alert-dismissable">
@@ -165,7 +118,7 @@
         <ul>
           <% @welcome_announcements.each do |welcome_announcement| %>
             <li>
-              <a href="#"><strong><%= welcome_announcement.title %> </strong></a>
+              <a href="#"><strong><%= welcome_announcement.title %> </strong></a> <p><%= time_ago_in_words(welcome_announcement.created_at)%> ago</p>
               <div class="control-group">
                 <label class="idesc" for="basicinput"><%= raw welcome_announcement.description %> </label>
               </div>              
@@ -186,7 +139,7 @@
         <ul>
            <% @welcome_recruitments.each do |welcome_recruitment| %>
             <li>
-              <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a>
+              <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a><p><%= time_ago_in_words(welcome_recruitment.created_at)%> ago</p>
               <div class="control-group">
                 <%= welcome_recruitment.link %><br>              
                 <%= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4" %>                                  
@@ -229,6 +182,15 @@ width:100px!important;
 
 .slick-prev, .slick-next{
 background: rgb(113, 195, 235);
+}
+
+ input[type="text"]{
+ padding :15px;
+ }
+ 
+.total_status{
+padding:5px;
+margin-left:50px;
 }
 </style>
 

@@ -283,6 +283,7 @@ post 'create_package' => "features#create_package"
   # Routes for apprisal_cycle
   resources :appraisal_cycles
   post "appraisal_cycles/status_update"
+   post "appraisal_cycles/appraisal_status_update"
   #routes for goals
    resources :goals
   #routes for review_elements
@@ -316,6 +317,9 @@ post 'create_package' => "features#create_package"
   
   # routes for Calendar
   #resources :calendars
+ 
+  get '/calendar' => 'calendars#index'
+ 
   get "/calendars/reporting_manager_calendar" => 'calendars#reporting_manager_calendar'
   get "/calendars/reportees_leaves_calendar" => 'calendars#reportees_leaves_calendar'
   get "/calendars/workgroup_calendar" => 'calendars#workgroup_calendar'
@@ -357,8 +361,9 @@ post 'create_package' => "features#create_package"
   get "/reportees" => "appraisals#reportees"
   get '/reportee_appraisals/:id' => "appraisals#reportee_appraisals"
   get "/reportee_appraisal_view/:id" => "appraisals#reportee_appraisal_view"
-
-  
+  get "/reportee_appraisal_edit/:id" => "appraisals#reportee_appraisal_edit"
+  post "/reportee_appraisal_update/:id" => "appraisals#reportee_appraisal_update"
+ 
   # for work groups Author:Vidya Sagar
   resources :workgroups do 
    member do
@@ -385,6 +390,7 @@ post 'create_package' => "features#create_package"
   resources :organization
   
   get "welcome/wall" 
+  get "welcome/header"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

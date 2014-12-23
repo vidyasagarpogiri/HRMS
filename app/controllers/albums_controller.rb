@@ -18,7 +18,7 @@ class AlbumsController < ApplicationController
       params[:photos][:image].each do |photoimage|
         @photo = @album.photos.create(:image => photoimage)
       end
-    redirect_to @album
+    redirect_to welcome_wall_path
     else
       format.html { render action: 'new' }
     end

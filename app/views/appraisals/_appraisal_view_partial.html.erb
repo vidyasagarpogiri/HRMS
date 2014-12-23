@@ -122,7 +122,30 @@
     <% end %>
   </tbody>
  </table>
- </div>
+ </div><br/>
+ <% if @goals.present? %>
+ <h4>Employee Goals</h4><hr/>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Goal</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @goals.each do |goal| %>
+      <tr>
+        <td><%= goal.title %></td>
+        <td><%= goal.description%></td>
+        <td><%= goal.start_date.strftime("%d %b, %Y") %></td>
+        <td><%= goal.end_date.strftime("%d %b, %Y") %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+ <% end %>
 <% else %>
  Appraisal Form not submited to HR
 <% end %>
