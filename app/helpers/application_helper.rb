@@ -70,7 +70,7 @@ module ApplicationHelper
     a.to_f
   end
   
-  #leaves for current year according to leave policy
+  #leaves for current year according to leave policy @pattabhi
   
   def total_balance_leaves(employee)  
    employee_join = employee.date_of_join.to_date
@@ -82,7 +82,7 @@ module ApplicationHelper
    a 
   end
   
- # leaves are caliculated based on the joining day 
+ # leaves are caliculated based on the joining day @pattabhi
   def total_leaves(employee)
     employee_join = employee.date_of_join.to_date
     if(employee_join.year == Date.current.cwyear)
@@ -92,7 +92,9 @@ module ApplicationHelper
    end  
    a 
   end
-# caluculate carry forward leaves from previous year
+  
+  
+# caluculate carry forward leaves from previous year @pattabhi
 
   def carry_forward_leaves(employee)
    employee_join = employee.date_of_join.to_date
