@@ -88,23 +88,23 @@
                 </div>
               </div>
               
-                <div class="control-group">
-                <label class="control-label" for="amzur_event_held_on">Event From Time </label>
-                <div class="controls">
-                  <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
-                  <span class="help-block with-errors"></span>   
-                </div>
-              </div>
-              
-              
               <div class="control-group">
-                <label class="control-label" for="amzur_event_held_on">Event To Time </label>
+                <div class="span6">
+                  <label class="control-label" for="amzur_event_held_on">Event From Time </label>
+                  <div class=" controls">
+                    <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
+                    <span class="help-block with-errors"></span>   
+                  </div>
+                </div>
+                <div class="span6">
+                 <label class="control-label" for="amzur_event_held_on">Event To Time </label>
                 <div class="controls">
                   <%= f.text_field :to_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
                   <span class="help-block with-errors"></span>   
                 </div>
+                </div>
               </div>
-              
+                           
               <ul class="navigation-btns editthree" >
               <li><button type="submit" class="btn btn-success">Save</button></li>
               <li><%= link_to "Cancel", amzur_events_path,:class => "btn btn-danger" %></li>
