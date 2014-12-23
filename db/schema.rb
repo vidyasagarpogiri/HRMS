@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219055502) do
+ActiveRecord::Schema.define(version: 20141223124732) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20141219055502) do
     t.string   "title"
     t.date     "start_date"
     t.date     "end_date"
-    t.integer  "period"
+    t.string   "period"
     t.date     "employee_dead_line"
     t.date     "manager_dead_line"
     t.date     "discussion_dead_line"
@@ -88,17 +88,10 @@ ActiveRecord::Schema.define(version: 20141219055502) do
   create_table "appraisals", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.integer  "review_period"
-    t.string   "over_all_rating"
-    t.integer  "manager_id"
-    t.integer  "employee_id"
-    t.integer  "department_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
-    t.boolean  "is_assign",       default: false
+    t.boolean  "is_assign",   default: false
   end
 
   create_table "appraisals_goals", force: true do |t|
@@ -507,6 +500,7 @@ ActiveRecord::Schema.define(version: 20141219055502) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "employee_id"
+    t.float    "available_leaves",           limit: 24
   end
 
   create_table "likes", force: true do |t|
