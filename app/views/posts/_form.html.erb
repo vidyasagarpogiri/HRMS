@@ -37,10 +37,7 @@
                       <div class="control-group">
                      <label class="control-label" for="basicinput">Add Tags:</label>
                       <div class="controls">
-                 
-                        <%#= p.text_field :tags, :class => "span8 form-control ", :placeholder =>"Add Tags", :data => {:error => "Please Enter Status"}, :required => true %>
-                        
-                        <input id="s" type="text">
+                     <input id="s" type="text">
                        <input type="hidden" name="hidden_tags" class="hidden_tags">
                         <span id="advanced_search_box"></span><br><br>
                         <% if @post.tags.present?%>
@@ -55,17 +52,11 @@
                       </div>
                     </div>
                     
-                  
-                   
-                    
-                    
-                    
-                    
-                          
                 <ul class="navigation-btns editthree" >
                 <li><button type="submit" class="btn btn-success">Post </button></li>
                 <li><%= link_to "Cancel", posts_path, :class => "btn btn-danger" %></li>
               </ul>	
+              <input type="hidden" name="total_tags" class="total_tags">
               <% end %>
           </div>
           </div><!--/.module-->
@@ -80,28 +71,45 @@
 
 <script>
 $(function(){
-var tags= "";
+    var tags= "";
+    var total_tags="";
+    var present_tags = "<%= @post.tags %>";
 $("#s").keypress(function(e) {
     if(e.which == 13) {
     var tag = $("#s").val();
     //var all_tags  = tag+ ","+ $("#s").val()
-    console.log(tag);
     span = get_box(tag);
     $('#advanced_search_box').append(span);
     tags = tags+ tag + "," ;
     $("#s").val("");
     $(".hidden_tags").val(tags); 
+    total_tags = tags + present_tags
+    $(".total_tags").val(total_tags);
     e.preventDefault();
     return false;
      
     }
-});
-});
+});  
+   });
+
 
  function get_box(text){
-    return "<span style='margin:5px;margin-left:0px;min-width: 40px;color: #FFF !important;text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); background-color: #36ACD1;background-image: -moz-linear-gradient(top, #3FC6F2, #36ACD1);background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3FC6F2), to(#36ACD1)); background-image: -webkit-linear-gradient(top, #3FC6F2, #36ACD1);background-image: -o-linear-gradient(top, #3FC6F2, #36ACD1); background-image: linear-gradient(to bottom, #3FC6F2, #36ACD1);background-repeat: repeat-x;border-color: #3FC6F2 #30A1C4 #36ACD1; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = &#39;#ff0088cc&#39;, endColorstr = &#39;#ff0044cc&#39;, GradientType = 0); filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);' class='btn btn-primary' onclick='$(this).hide();remove_skill(&#39;"+text+"&#39;);'>"
+    return "<span style='margin:5px;margin-left:0px;min-width: 40px;color: #FFF !important;text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); background-color: #36ACD1;background-image: -moz-linear-gradient(top, #3FC6F2, #36ACD1);background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3FC6F2), to(#36ACD1)); background-image: -webkit-linear-gradient(top, #3FC6F2, #36ACD1);background-image: -o-linear-gradient(top, #3FC6F2, #36ACD1); background-image: linear-gradient(to bottom, #3FC6F2, #36ACD1);background-repeat: repeat-x;border-color: #3FC6F2 #30A1C4 #36ACD1; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = &#39;#ff0088cc&#39;, endColorstr = &#39;#ff0044cc&#39;, GradientType = 0); filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);' class='btn btn-primary' onclick='$(this).hide();remove_tags(&#39;"+text+"&#39;);'>"
     +text+" <span style='text-shadow: 0 1px 0 #FFF;opacity: 0.3;'> X</span></span>"
   }
+function remove_tags(text){
+var present_tags = "<%= @post.tags %>";
+console.log(text);
+var tags =  $(".hidden_tags").val().split(",");
+tags = jQuery.grep(tags, function(value) {
+        return value !== text;
+    });    
+    tags = tags.join(",");
+    $(".hidden_tags").val(tags);
+    total_tags = tags + present_tags;
+    $(".total_tags").val(total_tags); 
+}
+
 
 </script>
 

@@ -14,12 +14,12 @@
 					       <div class="control-group">   
 							   <label class="control-label" for="basicinput">Appraisal Template</label>
                    <div class="controls">
-                      <%= dep.collection_select :appraisal_id, Appraisal.all, :id, :title, :prompt => "Please Select", :class => "form-control"%>
+                      <%= dep.collection_select :appraisal_id, Appraisal.all, :id, :title, { :prompt => "Please Select" }, { :class => "departments, form-control", required: true } %>
                     <span class="help-block with-errors"></span>
 		               </div>
 					       </div>									        							
 								 <button type="submit" class="btn btn-success editthree">Save </button>
-								   <%= link_to "Cancel", departments_path,:class => "btn btn-danger "%>							 
+								   <%= link_to "Cancel", department_path(@department),:class => "btn btn-danger "%>							 
 						  <% end %>
 							</div><!--/.module-body-->
 </div>

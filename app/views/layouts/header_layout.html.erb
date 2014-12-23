@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html class="sb-init" lang="en" style="overflow: hidden;">
+<head>
+<!-- Hide this line for IE (needed for Firefox and others) -->
+  <![if !IE]> 
+  <%= favicon_link_tag 'favicon.png', rel: 'icon', type: 'image/x-icon' %>
+  <![endif]>
+  <!-- This is needed for IE -->
+  <%= favicon_link_tag 'favicon.png', rel: 'shortcut icon' %>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="description">
+<meta content="Mosaddek" name="author">
+<meta content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" name="keyword">
+<!-- css for slick-->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.15/slick.css"/>
+  
+<!--<link rel="stylesheet" href="http://thevectorlab.net/flatlab/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://thevectorlab.net/flatlab/css/bootstrap-reset.css">
+<link rel="stylesheet" href="http://thevectorlab.net/flatlab/assets/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="http://thevectorlab.net/flatlab/css/slidebars.css">
+<link rel="stylesheet" href="http://thevectorlab.net/flatlab/css/style.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:4...00italic,600,600italic,700,700italic,800,800italic">
+<link rel="stylesheet" href="http://thevectorlab.net/flatlab/css/style-responsive.css">-->
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+ <%= stylesheet_link_tag  'workgroups' %>
+<%= javascript_include_tag 'application' %>
+<style>
+  <%= render "welcome/wall.css.erb"%>
+</style>
+<link href="img/favicon.png" rel="shortcut icon">
+<title>AmzurHRM</title>
+<%= csrf_meta_tag %>
+ 
+</head>
+<body>
+ 
+<%= yield%>
+
+  <footer class="site-footer">
+    <div class="text-center">
+       <b class="copyright">&copy; 2014 AmzurHRM - amzur.com </b> All rights reserved.
+        <a href="#" class="go-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+    </div>
+  </footer>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.3.15/slick.min.js"></script>
+ <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+ <script>
+  
+ </script>
+</body>
+</html>
+

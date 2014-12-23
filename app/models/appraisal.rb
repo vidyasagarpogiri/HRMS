@@ -15,6 +15,7 @@ class Appraisal < ActiveRecord::Base
   MANAGER = 'With Manager'
   HR = 'With HR'
   CLOSE = 'close'
+  REVIEW = 'Review Meeting'
   def check_appraisal_reviews(review)
     true if appraisals_reviews.map(&:review_element_id).include?(review.id)
   end
@@ -78,6 +79,7 @@ class Appraisal < ActiveRecord::Base
       review_ids.each do |id|
         employee_review = EmployeesReview.find(id.to_i)
         employee_review.update(manager_feedback: manager_assesments[elemnet_id], manager_rating: manager_ratings[elemnet_id])
+        elemnet_id += 1
       end
     employee_appraisal = EmployeesAppraisalList.where(status: Appraisal::MANAGER, employee_id: employee.id).first
   end

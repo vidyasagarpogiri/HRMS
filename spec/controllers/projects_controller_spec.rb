@@ -11,12 +11,11 @@ RSpec.describe ProjectsController, :type => :controller do
     
     describe "GET #index" do
       it "populates an array of projects" do
-      project1 = @employee.projects.create(FactoryGirl.attributes_for(:project))
-      project2 = @employee.projects.create(FactoryGirl.attributes_for(:project))
-      project3 = @employee.projects.create(FactoryGirl.attributes_for(:project))
-      xhr :get, :index, {}
-      expect(assigns(:projects)).to eq([project1, project2, project3])
-      
+        project1 = @employee.projects.create(FactoryGirl.attributes_for(:project))
+        project2 = @employee.projects.create(FactoryGirl.attributes_for(:project))
+        project3 = @employee.projects.create(FactoryGirl.attributes_for(:project))
+        xhr :get, :index, {}
+        expect(assigns(:projects)).to eq([project1, project2, project3])      
       end
    end
    

@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
   
+  layout "wall_layout", only: [:wall]
+  
   def index
     render :layout => false
   end
@@ -68,6 +70,21 @@ class WelcomeController < ApplicationController
     redirect_to employees_path
    end
   end  
+  
+  def wall    
+    @status = Status.new
+    @welcome_event = AmzurEvent.all.page(params[:page1]).per(2)
+    @welcome_announcements = Announcement.all.page(params[:page2]).per(2)
+    @welcome_recruitments = Recruitment.where(:status => "open").page(params[:page3]).per(2)
+    @employee = current_user.employee
+    @albums = Album.all
+    @statuses = Status.all
+    @posts = [@albums, @statuses]
+    @posts.flatten!
+    @posts.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!
+ end
+ 
+
     
   private 
   def calculate_time_diff(time_in_min)  

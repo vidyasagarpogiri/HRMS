@@ -1,0 +1,116 @@
+<div class="status-on-wall">
+  <section class="panel">
+    <div class="panel-body">  
+      <div class="fb-user-thumb">        
+        <% if post.employee.avatar_url.present? %>
+          <%= link_to image_tag(post.employee.avatar_url,size: "60x20") %>
+        <% else %>
+          <% if post.employee.gender == "Female" %>
+            <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+          <% else %>
+            <%= image_tag("user.png", :width => "60px", :height => "60px") %> 
+          <% end %>
+        <% end %>
+      </div>
+      <div class="fb-user-details">
+        <h3><a href="#" class="#"><%= post.employee.full_name %></a></h3>
+        <p><%= time_ago_in_words(post.created_at)%> ago</p>                         
+      </div>
+      <div class="clearfix"></div>  
+      <p class="fb-user-status"><%= post.status %></p>
+      
+      <div class="fb-status-container fb-border">
+        <div class="fb-time-action">
+          <a href="#" title="Like this">Likes(<%= post.likes_count %>)</a>
+          <span>-</span>
+          <a href="#" title="Leave a comment">Comments(<%= post.comments.count %>)</a>
+          <span>-</span>
+          <% if current_user.employee.id == post.employee.id %>
+            <%= link_to "Delete", status_path(post.id), method: :delete, data: {confirm: "Are You sure?"} %>
+          <% end %>
+          <span>-</span>
+          <% if post.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
+            <%= link_to 'Unlike', remove_like_status_path(post.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
+          <% else %> 
+            <%= link_to 'Like', add_like_status_path(post.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
+          <% end %>
+        </div>
+      </div>
+      
+      
+      <div class="fb-status-container fb-border fb-gray-bg">
+        <div class="fb-time-action like-info">
+          <% if post.likes.present? %>
+            <% post.likes.limit(2).each do |like| %>
+            <a href="#"><%= like.employee.full_name %>,</a>
+            <% end %>                       
+            <% if post.likes.count >= 3 %>
+              <span class="like">and</span>
+              <a href="#" class="value like"><%= (post.likes.count) %> more</a>
+            <% end %>            
+            <span>like this</span>          
+          <% end %>                      
+        </div>
+
+        <ul class="fb-comments">
+        <!--<%# if post.comments.count > 3 %>
+          <%# link_to "Show Previous Comments", status_path(post.id) %>            
+        <%# end %>-->
+        <% post.comments.limit(3).each do |comm| %> 
+          <li>
+            <a href="#" class="cmt-thumb">
+              <% if comm.employee.avatar_url.present? %> 
+                <%= image_tag(comm.employee.avatar_url,size: "30x30") %>
+              <% else %>
+                 <% if comm.employee.gender == "Female" %>
+                <%= image_tag("1.jpg", :style => "width:40px;height:40px;") %> 
+             <% else %>
+                <%= image_tag("user.png", size: "40x40") %> 
+             <% end %> 
+            <% end %>
+          </a>
+          <div class="cmt-details">          
+              <a href="#"> <%= comm.employee.full_name %> </a>
+              <span> <%=comm.comment %> </span>
+              <p><%= time_ago_in_words(comm.created_at)%> ago</p>
+          </div>
+        </li>        
+        <% end %>
+        <li><%= render "statuses/add_comment_form",  :status => post.id%></li>                    
+      </ul>
+      <div class="clearfix"></div>
+    </div>        
+                                                                                                                                                         
+    </div>
+  </section>   
+</div>
+
+
+	<script>
+	  $(function(){
+	    $(".read-more").click(function(){
+	      $(".length").hide();
+	      $(".total_status").show();
+	    });
+	    
+	    $(".show-less").click(function(){
+	      $(".total_status").hide();
+	      $(".length").show();
+	    });
+	  });
+	
+	</script>
+
+<script>
+  $(function(){
+    var val = $(".value").val();
+    if (val<=0)
+    {
+      $("#like").hide();  
+    }
+    else{
+    $("#like").show();
+    }
+  });
+</script>
+

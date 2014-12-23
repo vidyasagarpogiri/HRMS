@@ -1,0 +1,224 @@
+<!-- page start-->
+<section id="main-content" >
+  <section class="wrapper site-min-height" style="background-color:#F1FAFF">
+  <div class="row wall-layout">
+    <div class="col-md-8" style="margin-top:100px;">
+      <section class="panel">
+        <div class="cover-photo">         
+          <div class="fb-name">
+              <h2><a href="#"  style="color:#FF6C60 !important"><%= current_user.employee.full_name %></a></h2>
+          </div>
+        </div>
+       <div class="panel-body">
+          <div class="profile-thumb">                
+            <% if current_user.present? && current_user.employee.avatar_url.present? %>		  
+              <%= image_tag current_user.employee.avatar_url,  :class=> "nav-avatar" %> 
+            <% else %>
+            <% if current_user.employee.gender == "Female" %>
+              <%= image_tag "1.jpg", :class=> "nav-avatar" %> 
+            <% else %>
+              <%= image_tag "user.png", :class=> "nav-avatar" %> 
+            <% end %>
+            <% end %>							
+          </div>
+            <a href="#" class="fb-user-mail"><%= current_user.email %></a>
+        </div>
+      </section>
+      
+      
+      <section class="panel">
+        <div class="new_status">
+          <%= render 'statuses/form' %>
+        </div>
+        <div class="new_album">
+          <%= render 'albums/form' %>
+        </div>        
+      </section>
+      
+      <div class="panel-body posts">
+        <%= render "welcome/posts"%>                      
+      </div>
+
+      <section class="panel">
+          <div class="panel-body">
+              <div class="fb-user-thumb">
+                  <img src="img/pro-ac-1.png" alt="">
+              </div>
+              <div class="fb-user-details">
+                  <h3><a href="#" class="#">Margarita Elina</a></h3>
+                  <p>7 minutes ago near Alaska, USA</p>
+              </div>
+              <div class="clearfix"></div>
+              <p class="fb-user-status">John is world famous professional photographer.  with forward thinking clients to create beautiful, honest and amazing things that bring positive results. John is world famous professional photographer.  with forward thinking clients to create beautiful, honest and amazing things that bring positive results.
+              </p>
+              <div class="fb-status-container fb-border">
+                  <div class="fb-time-action">
+                      <a href="#" title="Like this">Like</a>
+                      <span>-</span>
+                      <a href="#" title="Leave a comment">Comments</a>
+                      <span>-</span>
+                      <a href="#" title="Send this to friend or post it on your time line">Share</a>
+                  </div>
+              </div>
+
+
+              <div class="fb-status-container fb-border fb-gray-bg">
+                  <div class="fb-time-action like-info">
+                      <a href="#">Jhon Due,</a>
+                      <a href="#">Danieal Kalion</a>
+                      <span>and</span>
+                      <a href="#">40 more</a>
+                      <span>like this</span>
+                  </div>
+
+                  <ul class="fb-comments">
+                    <li>
+                      <a href="#" class="cmt-thumb">
+                          <img src="img/mail-avatar.jpg" alt="">
+                      </a>
+                      <div class="cmt-details">
+                          <a href="#">Jhone due</a>
+                          <span> is world famous professional photographer.  with forward thinking clients to create beautiful, </span>
+                          <p>40 minutes ago - <a href="#" class="like-link">Like</a></p>
+                      </div>
+                    </li>                    
+                  </ul>
+                  <div class="clearfix"></div>
+              </div>
+          </div>
+      </section>           
+      </div><!--"col-md-9-->
+      
+      <!--Notifications-->
+      <div class="col-md-3" style="background-color:#FFF">
+        <div class="fb-timeliner">
+          <h2 class="recent-highlight">Events</h2>
+          <% if @welcome_event.present? %>	
+          <ul>
+            <% @welcome_event.each do |welcome_event| %>
+            <li class="active"><a href="#"><strong><%= welcome_event.title %> </strong> on<strong> <%= format_date (welcome_event.held_on) %> </strong></a>
+            <p> <%= time_ago_in_words(welcome_event.created_at)%> ago</p>
+              <div class="control-group">
+                <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>                
+              </div>
+              <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %> <br>
+            </li>
+            <% end %>	
+          </ul>
+           <% else %>
+            <div class="alert alert-success alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                There are no events
+            </div>    
+          <% end %>                                                                  
+      </div>                                     
+      <div class="fb-timeliner">
+        <h2 >Announcements</h2>
+        <% if @welcome_announcements.present? %>
+        <ul>
+          <% @welcome_announcements.each do |welcome_announcement| %>
+            <li>
+              <a href="#"><strong><%= welcome_announcement.title %> </strong></a> <p><%= time_ago_in_words(welcome_announcement.created_at)%> ago</p>
+              <div class="control-group">
+                <label class="idesc" for="basicinput"><%= raw welcome_announcement.description %> </label>
+              </div>              
+              <%= link_to "Continue..", announcement_path(welcome_announcement), :class => "pt4" %><br>
+            </li>         
+          <% end %>
+        </ul>      
+        <% else %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              There are no announcements
+          </div>
+        <% end %> 
+      </div>	  	    
+      <div class="fb-timeliner">      
+        <h2 class="recent-highlight">Job Openings</h2>
+        <% if @welcome_recruitments.present? %>
+        <ul>
+           <% @welcome_recruitments.each do |welcome_recruitment| %>
+            <li>
+              <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a><p><%= time_ago_in_words(welcome_recruitment.created_at)%> ago</p>
+              <div class="control-group">
+                <%= welcome_recruitment.link %><br>              
+                <%= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4" %>                                  
+              </div><br>
+           </li>
+           <% end %>
+        </ul>
+        <% else %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              There are no Job Openings
+          </div>     
+        <% end %>	
+      </div>                	          
+    </div>
+  </div>
+  </section>
+</section>
+<!-- page end-->
+<style>
+/* See license.txt for terms of usage */
+/** reset styling **/
+.row .wall-layout{
+margin-left:200pximportant;
+}
+.jdesc,.idesc{
+height:40px;
+overflow:hidden;
+font-weight:normal;
+}
+.pt4{
+border-left: 0px solid #d3d7dd!important;
+float: right;
+
+}
+
+.slick-track > .slick-slide .slick-active{
+width:100px!important;
+}
+
+.slick-prev, .slick-next{
+background: rgb(113, 195, 235);
+}
+
+ input[type="text"]{
+ padding :15px;
+ }
+ 
+.total_status{
+padding:5px;
+margin-left:50px;
+}
+</style>
+
+<script>
+  $(function() {
+    $( document ).tooltip();
+  });
+
+    $(function() {
+  $(".group1").colorbox({rel:'group1', transition:"none", width:"75%", height:"75%"});
+  
+   $('.slider-for').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: '.slider-nav'
+  });
+  $('.slider-nav').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      asNavFor: '.slider-for',
+      dots: true,
+      centerMode: true,
+      focusOnSelect: true
+  });
+      
+  
+  });
+  </script>
+

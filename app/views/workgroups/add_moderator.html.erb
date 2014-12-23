@@ -7,7 +7,7 @@
 					  <div class="module-head">
               <h3><%= @workgroup.name.upcase %> </h3>
               <div class="pull-right" ></div>  
-                   <label style="font-weight:normal;margin-top:-20px" class = "pull-right" ><a><i class="icon-circle-arrow-left "></i></a><%= link_to  'Back',workgroup_path(@workgroup) %> </label> 
+                   <label style="font-weight:normal;margin-top:-20px" class = "pull-right" ><a><i class="icon-circle-arrow-left "></i></a><%= link_to  ' Back',workgroup_path(@workgroup) %> </label> 
             </div>
             <%= form_tag("/workgroups/#{@workgroup.id}/added_moderators") do %>
         
@@ -37,12 +37,14 @@
 				              <% end %>
 				            </th>
 				            <th class="center">
+				            <% unless em == current_user.employee %>
 				            <% if WorkgroupsEmployee.where(is_moderator: true, employee_id: em.id, workgroup_id: @workgroup.id).present? %>
 				                <%= check_box_tag 'employee_ids[]', em.id, checked = true%>
 				                <% elsif em.id == @workgroup.admin_id %> 
 				                <%# check_box_tag %>
                     <% else%>
                          <%= check_box_tag 'employee_ids[]', em.id %> 
+                    <% end %>
                     <% end %>
 				            </th>
 				         </tr>

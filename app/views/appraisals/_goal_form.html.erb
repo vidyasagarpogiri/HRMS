@@ -1,0 +1,46 @@
+<div class="goal-form">
+<span class="icon-minus-sign remove-goal pull-right" style="cursor:pointer";></span>
+<div class="control-group">   
+  <label class="control-label" for="basicinput">Title</label>
+  <div class="controls">
+    <%= text_field_tag 'title[]', nil, :class => "span9 form-control", required: true %>
+    <span class="help-block with-errors"></span>
+  </div>
+</div>
+<div class="control-group">   
+  <label class="control-label" for="basicinput">Description</label>
+  <div class="controls">
+    <%= text_area_tag 'description[]',nil, :class => "span9 form-control" %> 
+    <span class="help-block with-errors"></span>
+  </div>
+</div>
+<div class="row-fluid">   
+  <div class="span5">
+    <label class="control-label" for="basicinput">Start Date</label>
+    <div class="controls">
+      <%= text_field_tag 'start_date[]', nil, :class => "date-picker start-date"  %>
+      <span class="help-block with-errors"></span>
+    </div>
+  </div>
+  <div class="span5">   
+    <label class="control-label" for="basicinput">End Date</label>
+    <div class="controls">
+      <%= text_field_tag 'end_date[]', nil, :class => "date-picker end-date" %>
+      <span class="help-block with-errors"></span>
+    </div>
+  </div>
+</div>
+</div></hr>
+
+<script>
+  $(function() {
+    $( ".date-picker, .start-date" ).removeAttr("id");
+    $( ".date-picker, .end-date" ).removeAttr("id");
+    $( ".date-picker, .start-date" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    $( ".date-picker, .end-date" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    
+    $(".remove-goal").click(function(){
+      $(this).parent('div.goal-form').remove();
+    });
+  });
+</script>
