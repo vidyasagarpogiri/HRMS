@@ -2,7 +2,7 @@
   <div class="control-group">
     <a href="#" class="cmt-thumb">
       <% if current_user.employee.avatar_url.present? %> 
-        <%= image_tag(comm.employee.avatar_url,size: "30x30") %>
+        <%= image_tag(current_user.employee.avatar_url, size: "30x30") %>
       <% else %>
         <% if current_user.employee.gender == "Female" %>
           <%= image_tag("1.jpg", :style => "width:40px;height:40px;") %> 
