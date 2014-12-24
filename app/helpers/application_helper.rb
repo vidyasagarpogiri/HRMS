@@ -37,6 +37,13 @@ module ApplicationHelper
     time = time.to_date if time
   	time.strftime("%d %b, %Y") if time
 	end
+#for mate time wih am and pm
+  def format_time(time)
+    time.strftime("%H:%M %P") if time
+  end
+	
+	
+	
 # this method is for to get date with out year	
 	def format_date_without_year(time)
     time = time.to_date if time
