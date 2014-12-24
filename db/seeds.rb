@@ -166,7 +166,7 @@ GeneralInvestment.create(title: "Home Loan Principal Repayment", description: "N
 GeneralInvestment.create(title: "Provident Fund", description: "Need Documents", section_declaration_id: 1) 
 GeneralInvestment.create(title: "Medical Insurance", description: "Need Documents", section_declaration_id: 2) 
 
-['ruby', 'rails','java','ios','android','jquery','ajax'].each do |skill|
+['c','c++','ruby', 'rails','java','ios','android','asp.net','jquery','ajax','css','javascript','mysql','sqlite','oracle','pl/sql'].each do |skill|
 Skill.create(:name => skill ) 
 end
 
