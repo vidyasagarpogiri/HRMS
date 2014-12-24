@@ -33,11 +33,12 @@ class Leave < ActiveRecord::Base
         leave_policy_cf_leaves = leave_policy.eligible_carry_forward_leaves || 0
         max_carry_forward_leaves = leave_policy.max_carry_forward_leaves || 0
         if leave_policy_cf_leaves >= a_leaves
-          a_leaves
+          carry_leaves = a_leaves
         else
           carry_leaves = [ cf_leaves +  leave_policy_cf_leaves, a_leaves].min
-          final_cf_leaves = [max_carry_forward_leaves,  carry_leaves].min
         end
+        final_cf_leaves = [max_carry_forward_leaves,  carry_leaves].min
+        leave.update(available_leaves: final_cf_leaves, pl_carry_forward_prev_year: final_cf_leaves )
       else
         0
       end
