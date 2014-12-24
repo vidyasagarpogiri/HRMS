@@ -30,7 +30,6 @@ class LeaveHistoriesController < ApplicationController
   def create
   #raise params.inspect
     @employee = current_user.employee
-    
     flag = 0
     @leaves = LeaveHistory.where(employee_id: @employee.id).collect{|leave| (leave.from_date.to_date..leave.to_date.to_date).to_a}.flatten!
     (params[:leave_history][:from_date].to_date..params[:leave_history][:to_date].to_date).each do |date|
@@ -51,11 +50,13 @@ class LeaveHistoriesController < ApplicationController
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, current_user.employee.group)  
     applied_days = total_days - weekend_count 
-    @leave_history.update(:days => applied_days) 
+    @leave_history.update(:days => applied_days)
+   
     Notification.delay.applyleave(current_user.employee, @leave_history)
     else
         @leave_history = current_user.employee.leave_histories.create(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true)
       @leave_history.update(:days => 0.5) 
+      # @employee.leave.update(available_leaves: a_leaves - 0.5 )
       Notification.delay.applyleave(current_user.employee, @leave_history)
     end
 		redirect_to leave_histories_path
@@ -69,18 +70,32 @@ class LeaveHistoriesController < ApplicationController
   
   def update
    @leave_history = LeaveHistory.find(params[:id])
-   
+   @employee = @leave_history.employee
+   #Checking Wehter Leave already apporved or not if apporved then we added days to leaves avialalbe days
+    if @leave_history.status == LeaveHistory::APPROVED
+      @days =  @leave_history.days   
+    end
+   ###
    if params[:leave_history][:is_halfday] == "full_day"
     @leave_history.update(params_leave_history)
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
-    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, current_user.employee.group)
+    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, @employee.group)
     applied_days = total_days - weekend_count  
-    @leave_history.update(:days => applied_days)
-    @leave_history.update(:status => LeaveHistory::HOLD)
+    @leave_history.update(days: applied_days, status: LeaveHistory::HOLD)
+    
+    @days ||= 0
+    a_leaves = Leave.employee_available_leaves(@employee)
+    @employee.leave.update(available_leaves: a_leaves + @days )
+    
     Notification.delay.applyleave(current_user.employee, @leave_history)
    else
     @leave_history.update(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true)
-    @leave_history.update(:days => 0.5) 
+    @leave_history.update(:days => 0.5, status: LeaveHistory::HOLD) 
+    
+    @days ||= 0
+    a_leaves = Leave.employee_available_leaves(@employee)
+    @employee.leave.update(available_leaves: a_leaves + @days )
+    
     Notification.delay.applyleave(current_user.employee, @leave_history)
    end
     redirect_to leave_histories_path
@@ -102,6 +117,10 @@ class LeaveHistoriesController < ApplicationController
 		@employee = Employee.find(params[:employee_id])
 		@leave_history = LeaveHistory.find(params[:leave_history_id])
 		@leave_history.update(:status => LeaveHistory::APPROVED)
+		#BalaRaju Updates Availabe Days into Leave Table
+    a_leaves = Leave.employee_available_leaves(@employee)
+    @employee.leave.update(available_leaves: a_leaves - @leave_history.days )
+    #
 		@leave_type = @leave_history.leave_type
 		Notification.delay.accept_leave(@employee, @leave_history)
 	  @reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id)
