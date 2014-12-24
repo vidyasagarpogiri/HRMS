@@ -36,8 +36,32 @@
   $(function() {
     $( ".date-picker, .start-date" ).removeAttr("id");
     $( ".date-picker, .end-date" ).removeAttr("id");
-    $( ".date-picker, .start-date" ).datepicker({ dateFormat: 'dd/mm/yy' });
-    $( ".date-picker, .end-date" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    $(".start-date").datepicker({ 
+    dateFormat: 'dd/mm/yy',
+    onClose: function (selectedDate) {
+              var date2 = $('.start-date').datepicker('getDate');
+              date2.setDate(date2.getDate());
+              $(".end-date").datepicker("option", "minDate", date2);
+              $(".error1").html('');
+             }
+    });
+    $(".end-date").datepicker({
+         dateFormat: 'dd/mm/yy', 
+           onClose: function (selectedDate) {
+            var date1 = $('.start-date').datepicker('getDate');
+            if (date1){
+              
+            }else{
+              $(".end-date").val('');
+              $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
+            }
+           }
+     });
+   // $(".date-picker").datepicker({ dateFormat: 'dd/mm/yy' });
+   // $( ".date-picker, .end-date").click(function(){
+     // $(this).datepicker({ dateFormat: 'dd/mm/yy' });
+   // });
+    //$( ".datepicker, .end-date" ).datepicker({ dateFormat: 'dd/mm/yy' });
     
     $(".remove-goal").click(function(){
       $(this).parent('div.goal-form').remove();

@@ -16,6 +16,7 @@ class Appraisal < ActiveRecord::Base
   HR = 'With HR'
   CLOSE = 'close'
   REVIEW = 'Review Meeting'
+  
   def check_appraisal_reviews(review)
     true if appraisals_reviews.map(&:review_element_id).include?(review.id)
   end
