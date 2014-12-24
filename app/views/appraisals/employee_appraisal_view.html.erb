@@ -6,7 +6,7 @@
           <div class="module">
             <div class="module-head">
               <h3>Appraisal For <%= @employee_appraisal.appraisal_cycle.title %></h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"></a><%= link_to 'Back To List', my_appraisals_path %></label>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><span class="glyphicon glyphicon-circle-arrow-left"></span></a><%= link_to 'Back To Appraisals', my_appraisals_path %></label>
             </div>
               <%= render "appraisals/appraisal_view_partial" %>
           </div><!--/.module-->

@@ -33,7 +33,7 @@ class LeavePoliciesController < ApplicationController
  private
  
  def params_leavepolicy
-    params.require(:leave_policy).permit(:pl_this_year, :sl_this_year, :eligible_carry_forward_leaves)
+    params.require(:leave_policy).permit(:pl_this_year, :sl_this_year, :eligible_carry_forward_leaves, :max_carry_forward_leaves)
  end
 
  def get_group

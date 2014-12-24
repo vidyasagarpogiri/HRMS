@@ -17,7 +17,7 @@ Hello  <%= @employee.reporting_manager %>,
 </tr><tr>
   <% if @leave_history.is_halfday %>
     <th>Leave Date</th>
-    <td>:    <%= @leave_history.from_date %></td></tr>
+    <td>:    <%= @leave_history.from_date.to_date.strftime("%d %b, %Y") %></td></tr>
     <tr><th>Leave</th>
     <td>:   Half Day</td></tr>
     <tr><th>Section</th>

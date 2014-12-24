@@ -13,7 +13,8 @@
         <thead>
           <tr>
             <th>Personal leaves Per Month</th>
-            <th>Maximum Carry forword Leaves</th>
+            <th>Carry Forword Leaves Per Year</th>
+            <th>Maximum Carry Forward Leaves</th>
            </tr>
          </thead>
          <tbody>          
@@ -21,6 +22,7 @@
          <tr>
           <td><%= @leave_policy.pl_this_year %></td>
           <td> <%= @leave_policy.eligible_carry_forward_leaves %></td>
+          <td> <%= @leave_policy.max_carry_forward_leaves %></td>
           <td><%= link_to 'Edit', edit_group_leave_policy_path(@group, @leave_policy), :class => "btn btn-success pull-right", :remote => true %></td> 
             <% end %>
            </tr>
