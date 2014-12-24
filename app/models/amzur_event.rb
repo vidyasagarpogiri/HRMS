@@ -6,8 +6,8 @@ class AmzurEvent < ActiveRecord::Base
   validates :title, presence: true
 	#validates :description, presence: true
 	validates :held_on, presence: true
-	validates  :from_time, presence: true
-	validates :to_time, presence: true
+	#validates  :from_time, presence: true
+	#validates :to_time, presence: true
 	
 	def self.get_eventable(event)
 
