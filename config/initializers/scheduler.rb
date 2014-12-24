@@ -84,8 +84,10 @@ end
       leave = employee.leave || employee.create_leave(pl_carry_forward_prev_year: 0, available_leaves: 0)
 	    a_leaves = leave.available_leaves ||  0
 	    cf_leaves = leave.pl_carry_forward_prev_year || 0
-	    leave_policy = employee.group.leave_policy
-      if leave_policy.present?
+	    
+	    group = employee.group
+      if group.present? && group.leave_policy.present?
+        leave_policy = group.leave_policy
         a_leaves += leave_policy.pl_this_year
         leave.update(available_leaves: a_leaves)
       end
