@@ -1,34 +1,39 @@
+<div class="module">
+  <div class="module-head">
+   <h3> New Leave Policy For : <%= @group.group_name %></h3>
+ </div>                      
+ <div class="module-body">
+  <%= form_for ([@group, @leave_policy]), :html => {:class=>"form-horizontal row-fluid edit-leave_policy-form"}, :remote => true do |f| %> 
+    <div class="control-group">   
+			 <label class="control-label" for="basicinput">Leaves per Month</label>
+          <div class="controls">
+               <%= f.text_field :pl_this_year,  :class => "span8 form-control", :data => {:error => "Please Enter Valid Number Of Leaves Per Month"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>
+            <span class="help-block with-errors"></span>
+			     </div>
+	  </div>                                                                              
+    <div class="control-group">   
+			 <label class="control-label" for="basicinput">Carry forword Leaves per Year</label>
+           <div class="controls">
+               <%= f.text_field :eligible_carry_forward_leaves,  :class => "span8 form-control", :data => {:error => "Please Enter Maximum Carryforward Leaves Per Year"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>
+            <span class="help-block with-errors"></span>
+			      </div>
+	  </div>
+	  <div class="control-group">   
+			 <label class="control-label" for="basicinput">Maximum Carry forword Leaves</label>
+           <div class="controls">
+               <%= f.text_field :max_carry_forward_leaves,  :class => "span8 form-control", :data => {:error => "Please Enter Maximum Carryforward Leaves Per Year"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>
+            <span class="help-block with-errors"></span>
+			      </div>
+	  </div><br>                                                                                                             
+    <%= f.submit  'Save', :class => "btn btn-success pull-left" %>                                                   
+     <% end %>
+ </div><!--/.module-body-->
+</div><!--/.module-->
 
 
-			 <div class="module">
-				  <div class="module-head">
-           <h3> New Leave Policy For : <%= @group.group_name %></h3>
-         </div>                      
-         <div class="module-body">
-          <%= form_for ([@group, @leave_policy]), :html => {:class=>"form-horizontal row-fluid edit-leave_policy-form"}, :remote => true do |f| %> 
-            <div class="control-group">   
-							 <label class="control-label" for="basicinput">Leaves per Month</label>
-                  <div class="controls">
-                       <%= f.text_field :pl_this_year,  :class => "span8 form-control", :data => {:error => "Please Enter Valid Number Of Leaves Per Month"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>
-                    <span class="help-block with-errors"></span>
-							     </div>
-					  </div>                                                                              
-            <div class="control-group">   
-							 <label class="control-label" for="basicinput">Maximum Carry forword Leaves per Year</label>
-                   <div class="controls">
-                       <%= f.text_field :eligible_carry_forward_leaves,  :class => "span8 form-control", :data => {:error => "Please Enter Maximum Carryforward Leaves Per Year"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>
-                    <span class="help-block with-errors"></span>
-							      </div>
-					  </div><br>                                                                                                             
-            <%= f.submit  'Save', :class => "btn btn-success pull-left" %>                                                   
-             <% end %>
-         </div><!--/.module-body-->
-			</div><!--/.module-->
+<script>
+$(function(){
+  $(".edit-leave_policy-form").validator();
+ });  
+</script>
 
-		
-			<script>
-			  $(function(){
-          $(".edit-leave_policy-form").validator();
-         });  
-			</script>
-    

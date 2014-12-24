@@ -22,7 +22,15 @@
                <%= f.text_field :eligible_carry_forward_leaves,  :class => "span8 form-control", :data => {:error => "Please Enter Valid Carryforward Leaves Per Year"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>
                 <div class="help-block with-errors"></div>
 			        </div>
-		   </div>                           
+		   </div> 
+		   
+		   <div class="control-group">   
+			 <label class="control-label" for="basicinput">Maximum Carry forword Leaves</label>
+           <div class="controls">
+               <%= f.text_field :max_carry_forward_leaves,  :class => "span8 form-control", :data => {:error => "Please Enter Maximum Carryforward Leaves Per Year"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>
+            <span class="help-block with-errors"></span>
+			      </div>
+	  </div>                          
               
                                   
      <%= f.submit  'Save', :class => "btn btn-success pull-left" %>

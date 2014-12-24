@@ -83,16 +83,9 @@ class LeaveHistoriesController < ApplicationController
     applied_days = total_days - weekend_count  
     @leave_history.update(days: applied_days, status: LeaveHistory::HOLD)
     Notification.delay.applyleave(current_user.employee, @leave_history)
-   else   
-    @days ||= 0
-    a_leaves = Leave.employee_available_leaves(@employee)
-    @employee.leave.update(available_leaves: a_leaves + @days )
-    
-    Notification.delay.applyleave(current_user.employee, @leave_history)
    else
     @leave_history.update(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true)
-    @leave_history.update(:days => 0.5, status: LeaveHistory::HOLD) 
-    
+    @leave_history.update(:days => 0.5, status: LeaveHistory::HOLD)     
     @days ||= 0
     a_leaves = Leave.employee_available_leaves(@employee)
     @employee.leave.update(available_leaves: a_leaves + @days )
