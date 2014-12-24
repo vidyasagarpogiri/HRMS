@@ -79,7 +79,7 @@ end
  end
   
   #TODO Month Starting Corn Job
-  scheduler.cron '0 0 * * *' do
+  scheduler.cron '15 1 1 * *' do
     Employee.all.each do |employee| 
       leave = employee.leave || employee.create_leave(pl_carry_forward_prev_year: 0, available_leaves: 0)
 	    a_leaves = leave.available_leaves ||  0
