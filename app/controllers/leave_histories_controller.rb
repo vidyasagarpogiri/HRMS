@@ -54,10 +54,13 @@ class LeaveHistoriesController < ApplicationController
    
     Notification.delay.applyleave(current_user.employee, @leave_history)
     else
-        @leave_history = current_user.employee.leave_histories.create(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true)
+    if params[:leave_date].present?
+        @leave_history = current_user.employee.leave_histories.create(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true) 
+        
       @leave_history.update(:days => 0.5) 
       # @employee.leave.update(available_leaves: a_leaves - 0.5 )
       Notification.delay.applyleave(current_user.employee, @leave_history)
+     end
     end
 		redirect_to leave_histories_path
 		end
