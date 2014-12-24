@@ -33,7 +33,7 @@
     <footer class="panel-footer">              
       <ul class="nav nav-pills pull-right">
          <li><%= f.submit  'Save', :class => "btn btn-success " %></li>
-        <li><button class="btn btn-danger ">Cancel</button></li>             
+        <li><%= submit_tag "Cancel", :class => "btn btn-danger ", :type => "button", :onclick => "this.form.reset()" %></li>             
       </ul>
       <ul class="nav nav-pills">
           <li>

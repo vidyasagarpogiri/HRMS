@@ -1,7 +1,7 @@
 <header class="header white-bg" style="background: #FF6C60;" >          
     <!--logo start-->
     <div class="navbar-header" id="font">
-          <a class="navbar-brand" href="/"><font style="color:#fff;">AmzurHRM</font></a>
+          <a class="navbar-brand" href="/"><font style="">AmzurHRM</font></a>
       </div>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu">
@@ -79,51 +79,48 @@
 		
 	</li> -->				                           
     </ul>
-  </div>  
-  <div class="top-nav ">
-    <ul class="nav pull-right top-menu">          
-      <!-- user login dropdown start-->
-      <li class="dropdown">
-          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-            <% if current_user.present? && current_user.employee.avatar_url.present? %>		  
-              <%= image_tag current_user.employee.avatar_url,  :class=> "nav-avatar", :style => "width:30px;height:30px" %> 
-           <% else %>
-             <% if current_user.employee.gender == "Female" %>
-                <%= image_tag "1.jpg", :class=> "nav-avatar", :style => "width:30px;height:30px" %> 
-             <% else %>
-                <%= image_tag "user.png", :class=> "nav-avatar", :style => "width:30px;height:30px" %> 
-             <% end %>
-           <% end %>
-            <span class="username"><%= current_user.employee.full_name %></span>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu extended logout">
-            <div class="log-arrow-up"></div>                  
-            <li><%= link_to "My Profile", profile_path(current_user.employee) %></a></li>
-            <li><%= link_to ' My Projects',  projects_path, :class => "fa fa-user fa-fw" %></a></li>
-            <li class="dropdown-submenu"><a href="#">My Appraisals</a>
-              <ul class="dropdown-menu">
-                <li><%= link_to 'Appraisal Form',  employee_appraisal_form_path, :class => "fa fa-user fa-fw" %></li>
-                <li><a href="/my_appraisals">Previous Appraisals</a></li>
-              </ul>
-            </li>
-            <li><%= link_to ' My Self Description', employee_self_description_show_employee_path(current_user.employee), :class => "fa fa-user fa-fw" %></a></li>
-            <li><%= link_to "My Work Groups", my_workgroups_path %></a></li>
-            <li><%= link_to "My Letters", letters_path(current_user.employee) %></a></li>
-            <% if current_user.department == Department::HR %>
-            <li><a href="#">Edit Profile</a></li>
-            <% end %>
-            <% if current_user.department == Department::ACCOUNTS %>
-            <li><a href="/monthly_payslips" >Payslips</a></li>
-            <% end %>
-            <li><a href="#">Account Settings</a></li>
-            <li class="divider"></li>
-            <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-sign-out fa-fw" %></li>   
-          </ul>              
-      </li>
-      <!-- user login dropdown end -->      
-    </ul>
   </div>
+  <div class="top-nav ">
+    <ul class="nav pull-right top-menu">
+      <li class="nav-user dropdown">
+		    <a href="#" class="dropdown-toggle" data-toggle="dropdown">                                                           							
+		      <% if current_user.present? && current_user.employee.avatar_url.present? %>		  
+            <%= image_tag current_user.employee.avatar_url,  :class=> "nav-avatar", :style => "width:30px;height:30px" %> 
+         <% else %>
+           <% if current_user.employee.gender == "Female" %>
+              <%= image_tag "1.jpg", :class=> "nav-avatar", :style => "width:30px;height:30px" %> 
+           <% else %>
+              <%= image_tag "user.png", :class=> "nav-avatar", :style => "width:30px;height:30px" %> 
+           <% end %>
+         <% end %>
+         <span class="username"><%= current_user.employee.full_name %></span>							
+			    <b class="caret"></b>
+		    </a>
+		    <ul class="dropdown-menu">
+			    <li><%= link_to "My Profile", profile_path(current_user.employee) %></a></li>
+			    <li><%= link_to ' My Projects',  projects_path, :class => "fa fa-user fa-fw" %></a></li>
+			      <li class="dropdown-submenu"><a href="#">My Appraisals</a>
+			      <ul class="dropdown-menu">
+			        <li><%= link_to 'Appraisal Form',  employee_appraisal_form_path, :class => "fa fa-user fa-fw" %></li>
+			        <li><a href="/my_appraisals">Previous Appraisals</a></li>
+			      </ul>
+			    </li>
+			    <li><%= link_to ' My Self Description', employee_self_description_show_employee_path(current_user.employee), :class => "fa fa-user fa-fw" %></a></li>
+			    <li><%= link_to "My Work Groups", my_workgroups_path %></a></li>
+			    <li><%= link_to "My Letters", letters_path(current_user.employee) %></a></li>
+			    <% if current_user.department == Department::HR %>
+			      <li><a href="#">Edit Profile</a></li>
+          <% end %>
+          <% if current_user.department == Department::ACCOUNTS %>
+            <li><a href="/monthly_payslips" >Payslips</a></li>
+          <% end %>
+			    <li><a href="#">Account Settings</a></li>
+			    <li class="divider"></li>
+			    <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-sign-out fa-fw" %></li>   
+		    </ul>
+	    </li>
+    </ul>
+  </div>              
 </header>
       
 <style>
@@ -134,6 +131,5 @@ ul.top-menu > li > a{
 .nav .dropdown-toggle .caret{
   border-top-color:#fff;
 }
-</style>      
-      
+</style>             
     
