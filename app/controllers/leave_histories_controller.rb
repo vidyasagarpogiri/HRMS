@@ -54,10 +54,13 @@ class LeaveHistoriesController < ApplicationController
    
     Notification.delay.applyleave(current_user.employee, @leave_history)
     else
-        @leave_history = current_user.employee.leave_histories.create(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true)
+    if params[:leave_date].present?
+        @leave_history = current_user.employee.leave_histories.create(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true) 
+        
       @leave_history.update(:days => 0.5) 
       # @employee.leave.update(available_leaves: a_leaves - 0.5 )
       Notification.delay.applyleave(current_user.employee, @leave_history)
+     end
     end
 		redirect_to leave_histories_path
 		end
@@ -82,20 +85,13 @@ class LeaveHistoriesController < ApplicationController
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, @employee.group)
     applied_days = total_days - weekend_count  
     @leave_history.update(days: applied_days, status: LeaveHistory::HOLD)
-    
-    @days ||= 0
-    a_leaves = Leave.employee_available_leaves(@employee)
-    @employee.leave.update(available_leaves: a_leaves + @days )
-    
     Notification.delay.applyleave(current_user.employee, @leave_history)
    else
     @leave_history.update(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true)
-    @leave_history.update(:days => 0.5, status: LeaveHistory::HOLD) 
-    
+    @leave_history.update(:days => 0.5, status: LeaveHistory::HOLD)     
     @days ||= 0
     a_leaves = Leave.employee_available_leaves(@employee)
     @employee.leave.update(available_leaves: a_leaves + @days )
-    
     Notification.delay.applyleave(current_user.employee, @leave_history)
    end
     redirect_to leave_histories_path

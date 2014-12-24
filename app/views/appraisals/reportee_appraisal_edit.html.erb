@@ -6,7 +6,7 @@
           <div class="module">
             <div class="module-head">
               <h3>Reportee Appraisal For <%= @employee_appraisal.appraisal_cycle.title %></h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"></a><%= link_to 'Back To List', "/reportee_appraisals/#{@employee.id}"%></label>
+              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"></a><%= link_to 'Back To Reportees', "/reportee_appraisals/#{@employee.id}"%></label>
             </div>
             <div class="module-body">
               <%= form_tag "/reportee_appraisal_update/#{@employee.id}", :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, method: :post do %>

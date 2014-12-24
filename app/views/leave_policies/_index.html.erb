@@ -19,13 +19,15 @@
                   <thead>											      
 	                  <tr>
 		                  <th class="center">Personal leaves Per Month </th>
-		                  <th>Maximum Carry forward Leaves For Year</th>
+		                  <th>Carry forward Leaves For Year</th>
+		                  <th>Maximum Carry forward Leaves</th>
 		                </tr>
                   </thead>											                 
                   <tbody>
 	                  <tr>               
 		                  <td class="center"> <%= @leave_policy.pl_this_year %>  </td>
 		                  <td> <%= @leave_policy.eligible_carry_forward_leaves %></td>
+		                  <td><%= @leave_policy.max_carry_forward_leaves %></td>
 	                  </tr>
                   </tbody>
               </table>
