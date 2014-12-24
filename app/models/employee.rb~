@@ -112,6 +112,16 @@ class Employee < ActiveRecord::Base
     end
   end
   
+  #for Devise Ids and Work Shifts
+  def self.devise_ids_employees
+    devise_ids= []
+    Employee.all.each do |emp| 
+      if (emp.shift.present? && emp.devise_id.present?) && !emp.status == true
+        devise_ids << emp.devise_id
+      end
+    end
+    devise_ids
+  end
   
   def is_reporting_manager?
     

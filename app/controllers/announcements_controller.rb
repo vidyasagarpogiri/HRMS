@@ -55,6 +55,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
         end
      
      when "Workgroup"
+     
         @announcement = Workgroup.find(params[:workgroup_id]).announcements.create(announcement_params)
         if @announcement.save
           if @announcement.is_send_mail

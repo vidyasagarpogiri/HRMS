@@ -29,11 +29,17 @@
 							<div class="control-group">
               <label class="control-label" for="announcement_title">Select </label>
               <div class="controls">
-              <select  name="announceable_type" multiple="multiple" class="announcement">
+              <select  name="announceable_type" class="announcement">
                 <option value="all">All</option>
+                 <%unless @departments.blank? %>
                 <option value="Department">Department</option>
+                <%end%>
+                 <%unless @groups.blank? %>
                 <option value="Group">Group</option>
-                <option value="Workgroup">WorkGroup</option>
+                <%end%>
+                 <%unless @workgroups.blank? %>
+                  <option value="Workgroup">WorkGroup</option>
+                 <%end%>
               </select>
               </div> 
               </div>
@@ -45,19 +51,31 @@
                <div class="control-group">
               
               <div class="controls">
-              <div id ="departments">             
-                <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name"), prompt: "Please Select" %>
-              </div>
-              
-              <div id="groups">
-                  <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name"), prompt: "Please Select" %>
+                  <div id ="departments">
+                  <%unless @departments.blank? %>             
+                    <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name") %>
+                    <%else%>  
+                  <p>No Departments</p>
+                  <%end%> 
+                  </div>
                   
-              </div>
-              
-              <div id="workgroups">
-                  <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name"), prompt: "Please Select" %>
-              </div>
-              
+                  <div id="groups">
+                  <%unless @groups.blank? %>
+                      <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name") %>
+                      <%else%>  
+                  <p>No Groups</p>
+                  <%end%> 
+                      
+                  </div>
+                  
+                  <div id="workgroups">
+                  <%unless @workgroups.blank? %>
+                      <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name")%>
+                  <%else%>  
+                  <p>No Workgroups</p>
+                  <%end%>  
+                  </div>
+                <span class="help-block with-errors"></span>  
                </div>
               
               </div>
@@ -121,7 +139,7 @@
   $(".announcement").change(function () {
     var str = $( ".announcement" ).val();  
     console.log(str);
-    switch (str[0]) { 
+    switch (str) { 
     case 'Group': 
            console.log(str);
           $("#departments").hide();

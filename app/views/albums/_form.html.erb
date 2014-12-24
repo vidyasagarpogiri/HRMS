@@ -2,7 +2,7 @@
  Form for creating new album along with its images. -->
 <section class="panel">  
   <div class="panel-body">
-    <h4>New Album</h4>  
+    <h4 class="album-title">New Album</h4>  
     <%= form_for Album.new do |f| %>
     <div class="control-group">
       <label class="control-label" for="basicinput">Title</label>
@@ -33,7 +33,7 @@
     <footer class="panel-footer">              
       <ul class="nav nav-pills pull-right">
          <li><%= f.submit  'Save', :class => "btn btn-success " %></li>
-        <li><button class="btn btn-danger ">Cancel</button></li>             
+        <li><%= submit_tag "Cancel", :class => "btn btn-danger ", :type => "button", :onclick => "this.form.reset()" %></li>             
       </ul>
       <ul class="nav nav-pills">
           <li>
