@@ -13,8 +13,9 @@
 			      <div class="module-body">
 		          <% if @empevents.present? %>    
               <% @empevents.each do |amzurevent| %>
-              <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
-              <% if current_user.employee.id                                                                                                                        == amzurevent.employee_id %>         
+              <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong> at <strong><%= amzurevent.from_time.strftime("%H:%M %P") %></strong> to <strong><%= amzurevent.to_time.strftime("%H:%M %P") %></strong></div>
+               
+              <% if current_user.employee.id == amzurevent.employee_id %>         
                 <ul class="navigation-btns pull-right" style="margin-top:-20px">
                   <li><%= link_to 'Edit', edit_amzur_event_path(amzurevent), :class => "btn btn-success " %></li>
                   <li><%= link_to "Delete", amzur_event_path(amzurevent.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
