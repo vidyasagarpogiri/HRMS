@@ -29,7 +29,7 @@ Group.destroy_all
 Allowance.destroy_all
 Event.destroy_all 
 StaticSalary.destroy_all
-
+Skill.destroy_all
 
 #sekharberi@1989
  @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
@@ -165,4 +165,11 @@ GeneralInvestment.create(title: "Life Insurance Premiums", description: "Need Do
 GeneralInvestment.create(title: "Home Loan Principal Repayment", description: "Need Documents", section_declaration_id: 1) 
 GeneralInvestment.create(title: "Provident Fund", description: "Need Documents", section_declaration_id: 1) 
 GeneralInvestment.create(title: "Medical Insurance", description: "Need Documents", section_declaration_id: 2) 
+
+['ruby', 'rails','java','ios','android','jquery','ajax'].each do |skill|
+Skill.create(:name => skill ) 
+end
+
+
+
 
