@@ -56,7 +56,7 @@
         <!--<%# if post.comments.count > 3 %>
           <%# link_to "Show Previous Comments", status_path(post.id) %>            
         <%# end %>-->
-        <% post.comments.limit(3).each do |comm| %> 
+        <% post.comments.each do |comm| %> 
           <li>
             <a href="#" class="cmt-thumb">
               <% if comm.employee.avatar_url.present? %> 
