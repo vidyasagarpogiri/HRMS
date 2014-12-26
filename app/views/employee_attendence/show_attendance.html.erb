@@ -24,7 +24,7 @@
 								  </thead>
 								  <tbody>
 								    <% @employees.each do |employee| %>  
-                    <tr id= "<%= employee.employee_id%>">
+                    <tr id= "<%= employee.id%>">
                       <td><%= employee.full_name%></td>
 									    <td class="Mon"></td>
 									    <td class="Tue"></td>
@@ -77,7 +77,10 @@ function call_sw(){
 
       var i=0;          
       $.each(value, function( day, hrs ) {
-        day_arr = day.split("|"); 
+        day_arr = day.split("|");
+        console.log(day_arr[1]);
+        console.log(day);
+        console.log(hrs.toString()); 
         if(hrs!="0" && hrs.toString().split("hr").length==2){
           $("tr#"+key+" ."+day_arr[0]).html(hrs+ " <i class='icon-comment' onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'></i>");
         }
