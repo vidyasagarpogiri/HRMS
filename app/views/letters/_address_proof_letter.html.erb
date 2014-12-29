@@ -1,79 +1,70 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                
-      <div class="span12">
-        <div class="content">
-          <div class="module" >
-            <div class="module-head">
-                <h3>Address Proof</h3>        
-            </div><!--/.module-head-->
-            <div class="module-body">
-              <div class="outing">  
-               <% if @address1.present? && @address2.present? %>      
-                  <div class="row-fluid">
-                    <div class="span6">
-                      <label>Date: <%= format_date(Time.now.to_date) %></label>
-                    </div>                      
-                 </div>
-                  <div class="row-fluid" style="margin-left:300px;">
-                    <div class="span6">
-                      <label><u><b>TO WHOMSOEVER IT MAY CONCERN</b></u></label>
-                    </div>                      
-                 </div><br>
-                 <div class="row-fluid">
-                    <div class="span12">
-                      <label><p>This is to certify that <b> <%= current_user.employee.title %>.<%= current_user.employee.full_name %> </b> is a bonafide employee and is working as <b><%= current_user.employee.designation.designation_name if current_user.employee.designation.present? %></b> since <b><%= format_date(current_user.employee.date_of_join)%></b>, for Amzur Technologies Pvt Ltd and as per the company records the residential address of him is as mentioned below.</p></label>
-                    </div>                      
-                 </div><br>               
-                  
-                 <div class="row-fluid">
-                  
-                   <div class="span6">     
-                     <label> <b>Present Address </b></label>   
-                     <label><%= @address1.line %>, <%= @address1.line1 %>,</label>
-                     <label><%= @address1.city %>, <%= @address1.state %>,</label> 
-                     <label><%= @address1.country %>,</label>
-                     <label> Pin/Zip:<%= @address1.zipcode %>.</label>
-                   </div>
-                 
-                
-                   <div class="span6"> 
-                     <label> <b>Permanent Address </b></label> 
-                     <label><%= @address2.line %>, <%= @address2.line1 %>,</label>
-                     <label><%= @address2.city %>, <%= @address2.state %>,</label> 
-                     <label><%= @address2.country %>,</label>
-                     <label> Pin/Zip:<%= @address2.zipcode %>.</label>
-                   </div>
-                                    
-                 </div>  <br>                                                                           
-                 <div class="row-fluid">
-                    <div class="span12">
-                      <label>Thanking you,</label><br>
-                      <label><%= @hr_manager %>,</label>
-                      <label> Human Resources </label>
-                    </div>                      
-                 </div>
-                 <ul class="navigation-btns editthree">                                                       
-                   <li><%= link_to "Save as PDF ", "/letters/address_proof_letter.pdf", :class => "btn btn-success" %></li> 
-                   <li><%= link_to " Send to My Mail", address_notification_path, :class => "btn btn-success" %></li>
-                   <li><%= link_to "Back", letters_path, :class => "btn btn-info" %></li>
-                 </ul>
-                  <% else %>
-                     <div class="alert alert-success alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                         Please Contact HR Manager, You don't have Present/Permenant Address.
-                     </div>   
-                  <% end %>  
-               </div><!--/.outing-->                                                        
-            </div><!--/.module-body-->                    
-          </div><!--/.module-->                
-        </div><!--/.content-->            
-      </div><!--/.span12-->
-    </div><!--/.row-->    
-  </div><!--/.container-->	
-</div><!--/.Wrapper-->
-
-
+<div class="panel panel-info">
+  <div class="panel-heading"> 
+     Address Proof       
+  </div><!--/.module-head-->
+  <div class="row"> 
+    <div class="col-md-12">
+      <section class="panel">         
+        <div class="panel-body">               
+          <% if @address1.present? && @address2.present? %>  
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label  class="col-lg-1 control-label">Date:</label>
+              <div class="col-lg-10">
+              <%= format_date(Time.now.to_date) %>
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group" style="text-align:center;">                                        
+              <u><b>TO WHOMSOEVER IT MAY CONCERN</b></u>
+              <span class="help-block with-errors"></span>
+           </div>                  
+         </div>         
+         <div class="col-lg-12">
+           <div class="form-group">                                         
+             <p>This is to certify that <b> <%= current_user.employee.title %>.<%= current_user.employee.full_name %> </b> is a bonafide employee and is working as <b><%= current_user.employee.designation.designation_name if current_user.employee.designation.present? %></b> since <b><%= format_date(current_user.employee.date_of_join)%></b>, for Amzur Technologies Pvt Ltd and as per the company records the residential address of him is as mentioned below.</p>
+              <span class="help-block with-errors"></span>
+           </div>                  
+         </div>
+         <div class="col-lg-6">
+           <div class="form-group">
+             <p><b>Present Address </b></p><br>
+             <p><%= @address1.line %>, <%= @address1.line1 %>,</p>
+             <p><%= @address1.country %>, </p>
+             <p> Pin/Zip:<%= @address1.zipcode %>.</p>
+           </div>
+         </div>
+         <div class="col-lg-6">
+           <div class="form-group">
+             <p><b>Permanent Address </b></p><br>
+             <p><%= @address2.line %>, <%= @address2.line1 %>,</p>
+             <p><%= @address2.country %>, </p>
+             <p> Pin/Zip:<%= @address2.zipcode %>.</p>
+           </div>
+         </div>                                                                                                                
+         <div class="col-lg-12">
+           <div class="form-group">
+             <p>Yours sincerely,</p><br>
+             <p><label> <%= @hr_manager %>, </label></p>
+             <p> Human Resources </p>
+           </div>
+        </div>                     
+        <div class="panel-body">
+          <%= link_to "Save as PDF ", "/letters/address_proof_letter.pdf", :class => "btn btn-success" %>
+          <%= link_to " Send to My Mail", address_notification_path, :class => "btn btn-success" %>                                    
+       </div>                                                                                                            
+      <% else %>
+         <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             Please Contact HR Manager, You don't have Present/Permenant Address.
+         </div>   
+      <% end %>  
+      </section>
+    </div>
+  </div>
+</div>
+     
 <style>
    .outing{
    width:1000px;   
