@@ -1,6 +1,6 @@
 <div class="panel panel-info">
   <div class="panel-heading"> 
-    Upcoming Leaves List
+    Upcoming Leaves List<%= link_to ' Apply Leave',  new_leave_history_path, :class => "icon-plus-sign pull-right " %>
   </div>
   <% if @leave_histories.present? %> 	 	           
     <!-- page start-->
@@ -15,7 +15,7 @@
         </header>
         <div class="panel-body">
           <div class="adv-table">
-            <table  class="display table table-bordered table-striped" id="dynamic-table2">
+            <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
               <thead>
                 <tr>
 			            <th>Date</th>
@@ -37,14 +37,14 @@
 		             	   <td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
 			               <td>  <%= pluralize(f.days, 'day') %>  </td>
 			             <% end %>
-			            <td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal3"}, :id => "modal-text" } %>  </td>
+			            <td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal2"}, :id => "modal-text" } %>  </td>
 			            <td><%=f.leave_type.type_name %> </td>													
 			            <td><%=f.status %></td>
 			            <td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info", :remote => true  %>
 			            <%= link_to "Cancel",  f, method: :delete, data: {confirm: "Are You sure?"} , :class => "btn btn-danger"%></td>		 
 		            </tr>																						
 		            <% end %>
-                <% end %>	
+               <% end %>	
                 </tbody>                   
               <tfoot>
                <tr>
@@ -74,15 +74,7 @@
 
 
     <!--common script for all pages-->
-    <script src="/assets/common-scripts.js"></script>
-
-
-
-                                         
-												      
-</div><!--module body-->	
-							
-							
+    <script src="/assets/common-scripts.js"></script>                                         												 												
 							
 							
 									
@@ -100,7 +92,7 @@ $(function(){
 
 
 <!-- Modal -->
-<div class="modal hide" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

@@ -1,6 +1,6 @@
 <div class="panel panel-info">
   <div class="panel-heading"> 
-    Leaves Waiting for Approval
+    Leaves Waiting for Approval<%= link_to ' Apply Leave',  new_leave_history_path, :class => "icon-plus-sign pull-right " %>
   </div>
   <% if employee_has_hold_leaves? %>	           
     <!-- page start-->
@@ -15,7 +15,7 @@
         </header>
         <div class="panel-body">
           <div class="adv-table">
-            <table  class="display table table-bordered table-striped" id="dynamic-table">
+            <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
               <thead>
                 <tr>																																						
 	                <th> Date </th>
@@ -79,7 +79,7 @@ $(function(){
 
 
 <!-- Modal -->
-<div class="modal hide" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -98,8 +98,7 @@ $(function(){
     
 
 
-    <!--common script for all pages-->
-    <script src="/assets/common-scripts.js"></script>
+  
 
 
     
