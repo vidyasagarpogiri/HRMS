@@ -8,6 +8,8 @@
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="/assets/favicon.png">
     <title>Profile</title>
+    
+    
     <%= stylesheet_link_tag    'application', media: 'all'  %>
     <%= javascript_include_tag 'application' %>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
@@ -16,14 +18,14 @@
   </head>
   
   <body>
-    <section id="container" class="">
+    <section id="container" class="" >
       <!--header start-->
         <%= render "shared/hrm_header"%>
       <!--header end-->
         <%= render "shared/hrm_side_bar" %>
       <!--main content start-->
       <section id="main-content">
-        <section class="wrapper">
+        <section class="wrapper" style="min-height:820px;">
           <!-- page start-->
             <%= yield %>
           <!-- page end-->
@@ -39,5 +41,7 @@
       //knob
    $(".knob").knob();
   </script>
+  
+    
   </body>
 </html>
