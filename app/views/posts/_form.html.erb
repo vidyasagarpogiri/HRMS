@@ -1,31 +1,40 @@
 <section class="panel">
-   <header class="panel-heading">
-    Post Form
+  <header class="panel-heading">
+      Post Form
   </header>
   <div class="panel-body">
-    <%= form_for @post,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |p| %>
-      <form role="form">
-          <div class="col-lg-8 form-group">
-              <label for="Title">Title:</label>
-              <%= p.text_field :title, :class => "form-control ", :placeholder =>"What's On Your Mind", :data => {:error => "Please Enter Status"}, :required => true %>
+      <%= form_for @post,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |p| %>
+      <form class="form-horizontal" role="form">
+          <div class="form-group">
+              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Title</label>
+              <div class="col-lg-8">
+                   <%= p.text_field :title, :class => "form-control ", :placeholder =>"What's On Your Mind", :data => {:error => "Please Enter Status"}, :required => true %>
             <span class="help-block with-errors"></span>
+                  
+              </div>
           </div>
-          <div class="col-lg-8 form-group">
-              <label for="content">content:</label>
-                <%= p.bootsy_area :content, :class => " form-control ", :placeholder =>"What's On Your Mind", :data => {:error => "Please Enter Status"}, :size => "650x20", :required => true %>
+          <div class="form-group">
+              <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">Content</label>
+              <div class="col-lg-8">
+               <%= p.bootsy_area :content, :class => " form-control ", :placeholder =>"What's On Your Mind", :data => {:error => "Please Enter Status"}, :size => "650x20", :required => true %>
            <span class="help-block with-errors"></span>
+              </div>
           </div>
-          <div class="col-lg-8 form-group">
-              <label for="exampleInputFile">Add Category</label>
-             <%= p.text_field :category, :class => " form-control ", :placeholder =>"Add Category", :data => {:error => "Please Enter Status"}, :required => true %>
+          
+           <div class="form-group">
+              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Category</label>
+              <div class="col-lg-8">
+                   <%= p.text_field :category, :class => " form-control ", :placeholder =>"Add Category", :data => {:error => "Please Enter Status"}, :required => true %>
           <span class="help-block with-errors"></span>
+                  
+              </div>
           </div>
           
           
-           <div class="col-lg-8 form-group">
-              <label for="exampleInputFile">Tags</label>
-              
-              <input id="s" type="text">
+          <div class="form-group">
+              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Tags</label>
+              <div class="col-lg-8">
+                 <input id="s" type="text">
                <input type="hidden" name="hidden_tags" class="hidden_tags">
                 <span id="advanced_search_box"></span><br><br>
                 <% if @post.tags.present?%>
@@ -34,27 +43,26 @@
                     <span class="label label-info"><i class=" icon-tag"></i> <%=  tag %></span>
                   <% end %>
                 </p>
-                <%end%>
-      
-          <span class="help-block with-errors"></span>
+                <%end%>  
+                  
+              </div>
           </div>
-          <div class="col-lg-8 form-group">
-         
-            <button type="submit" class="btn btn-success">Post </button>&nbsp&nbsp
-           <%= link_to "Cancel", posts_path, :class => "btn btn-danger" %>
-           
-          </div> 
-         <input type="hidden" name="total_tags" class="total_tags">
+          
+       
+          <div class="form-group">
+              <div class="col-lg-offset-2 col-lg-8">
+                 <button type="submit" class="btn btn-success">Post </button>&nbsp&nbsp
+                 <%= link_to "Cancel", posts_path, :class => "btn btn-danger" %>
+              </div>
+          </div>
       </form>
-  <% end %>
+      
+       <% end %>
   </div>
 </section>
 
 
-
-
-
-            
+           
          
 
 
