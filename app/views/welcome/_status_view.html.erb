@@ -70,7 +70,7 @@
             <% end %>
           </a>
           <div class="cmt-details">          
-              <a href="#"> <%= comm.employee.full_name %> </a>
+              <a href="#"> <%= link_to comm.employee.full_name , profile_path(comm.employee) %></a>
               <span> <%=comm.comment %> </span>
               <p><%= time_ago_in_words(comm.created_at)%> ago</p>
           </div>

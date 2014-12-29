@@ -17,7 +17,7 @@
           <a href="#"><i class="fa fa-map-marker"></i></a>
       </li>
       <li class="camera">
-          <a href="#"><i class="fa fa-camera"></i></a>
+          <a href="#"><i class="fa fa-camera" title = "Create Album"></i></a>
       </li>
       <li>
           <a href="#"><i class=" fa fa-film"></i></a>
@@ -29,6 +29,10 @@
 </footer>
 <% end %>     
 <script>
+$(function() {
+  $( document ).tooltip();
+});
+  
 $(function(){
   $(".new_album").hide();
   $(".camera").click(function(){

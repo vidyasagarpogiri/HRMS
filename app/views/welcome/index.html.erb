@@ -1,99 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <%= stylesheet_link_tag    'application', media: 'all'  %>
+    <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <%= csrf_meta_tag %>
+    <title>Coming Soon </title>
 
-    <title>AmzurHRM</title>
-    
-     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-
- 
-
-    <!-- Custom Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
     <![endif]-->
-
-
 </head>
 
-<body>
+<body class="cs-bg">
+    <!-- START HEADER -->
+    <section id="header">
+        <div class="container" style="margin-top:150px;">
+            <header>                                                                     
+              <!-- HEADLINE -->
+              <a class="logo floatless" href="#">My<span>Amzur</span></a>
+              <h3 > Talent Management. Connections. Innovations</h3>
+              <br/>              
+          </header>
+          <!-- START TIMER -->
+          
+          <div class="col-lg-4 col-lg-offset-4 mt centered">
+          	<h4> LOG IN WITH <span>AMZUR ID</span></h4>
+		          <form class="form-inline" role="form">
+		            <% unless current_user.present? %>                              
+                  <%= link_to 'Login', user_omniauth_authorize_path(:google_oauth2), :class => "network-name btn btn-danger", :style => "text-decoration: none;color:#fff;width:100px;" %>                                      
+                <% end %>                   		    		    
+		          </form>            
+	          </div>          
+      </div>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>-->                
-                <%= image_tag('amzur-logo.png', :style=>'height:100px;margin-left: -250px;') %>
-            </div>
-        </div>
-        <!-- /.container -->
-    </nav>
+    </section>
+    <!-- END HEADER -->
 
-    <!-- Header -->
-    <div class="intro-header">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message">
-                        <h1>MyAmzur</h1>
-                        <h3>Talent Management. Connections. Innovations</h3>
-                        <hr class="intro-divider">
-                        <% unless current_user.present? %>
-                        <ul class="list-inline intro-social-buttons" style="display: inline; ">
-                          <li>
-                          </li>
-                          <li>                             
-                            <%= link_to user_omniauth_authorize_path(:google_oauth2), :class => "network-name btn btn-warning btn-lg", :style => "text-decoration: none;color:#fff" do %>
-                            <i class="fa fa-sign-in fa-fw"> Login</i>
-                            <% end %>     
-                          </li>
-                          <li>
-                          </li>
-                        </ul>
-                       <% end %>  
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.intro-header -->
-
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="copyright text-muted small">Copyright &copy; 2014 Amzur Technologies, Inc.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-</body>
-
+  </body>
+  <!-- END BODY -->
 </html>
