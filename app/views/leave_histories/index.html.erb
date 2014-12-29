@@ -1,101 +1,75 @@
-<div class="wrapper" >
-  <div class="container" >
-    <div class="row">                
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3> My Leaves</h3>
-            </div>
-            <% if @employee.group.present? && @employee.group.leave_policy.present? %>
-            <% if @employee.reporting_manager? %>
-            <div class="module-body" >
-              <div class="profile-head media" style="min-height:800px;">              
-                <div class="media-body">
-                   <a class="media-avatar pull-left" href="#">                                 
-                     <%= image_tag "leave-view-icon.jpg", :style => "margin-top:50px;height:120px !important;width:120px !important;" %>
-                    </a> 
-                    <div class="media-body"> 
-                      <h4>
-                         Leaves DashBoard
-                            <%= link_to ' Apply Leave',  new_leave_history_path, :class => "icon-plus-sign pull-right " %> 
-                      </h4>
-                      <p>Available Leaves:  <%= pluralize(Leave.employee_available_leaves(@employee)+0, 'day') %></p>
-                       
-                      <p>Used Leaves : <%= pluralize(total_used_leaves(@employee), 'day') %>  </p>                    
-                    </div>
-                 </div>                                                                         
-                  <ul class="profile-tab nav nav-tabs">
-                      <li class="active"><a href="#waiting-for-approval" data-toggle="tab">Leaves Waiting for Approval</a></li>
-                      <li><a href="#upcoming-leaves" data-toggle="tab">Upcoming Leaves List</a></li>
-                      <li ><a href="#leaves-history" data-toggle="tab">Leave History</a></li>
-                      <li><a href="#leave_policy" data-toggle="tab">Leave Policy</a></li>
-                      <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li> 
-                                                     
-                  </ul>                                                                                                                                
-                     <div class="profile-tab-content tab-content">  
-                        <div class="tab-pane fade active in" id="waiting-for-approval">
-                          <div class="module">                                              
-                              <%= render "leave_histories/waiting_for_approvals"%>                  
-                          </div> 
-                        </div><!--/.tab-pane-list-->
-              <!--leaves PANEL-->                                    
-                        
-                        <div class="tab-pane fade" id="upcoming-leaves">
-                          <div class="module">
-                             <%= render "leave_histories/upcoming_leaves_list"%>
-                          </div>         
-                        </div><!--/.tab-pane-list--> 
-              <!--designations PANEL-->   
-                         
-                          <div class="tab-pane fade " id="leaves-history">
-                            <div class="module"> 
-                              <%= render "leave_histories/leave_history" %>    
-                            </div>
-                          </div> <!--/.tab-pane-list-->                                              
-              <!--leave_policies PANEL-->             
-                         
-                          <div class="tab-pane fade " id="leave_policy">
-                            <div class="module"> 
-                              <%= render "leave_histories/leave_policy"%>
-                            </div>                                          
-                          </div><!--/.tab-pane-list-->
-              <!--holiday_calender PANEL-->             
-                          
-                          <div class="tab-pane fade " id="holiday_calender">
-                            <div class="module">  
-                              <%= render "leave_histories/holiday_list" %>
-                            </div>                                          
-                          </div><!--/.tab-pane-list-->                                          
-                          
-               
-                        
-                                  
-                                                                               
-                          </div><!--/.profile-tab-content -->                                                                                      
-                       </div><!--/.profile-head-->                        
-                      <% else %><br>
-                      <div class="alert alert-success alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        There is No Reporting Manager. Please contact HR.
-                      </div>                      
-                      <% end %>
-                     <% else %><br>                      
-                       <div class="alert alert-success alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                          There is no leave policy configure to your Group. Please Contact HR.  
-                       </div>                     
-                    <% end %>
-                  </div>
-                  <!--/.module-->
-                </div>
-                <!--/.content-->
-            </div>
-            <!--/.span9-->
-        </div>
-    </div>
-    <!--/.container-->
-    </div>	
+<div class="row">
+  <aside class="profile-nav col-lg-3">
+    <section class="panel">
+      <div class="user-heading round">             
+      <% if @employee.group.present? && @employee.group.leave_policy.present? %>
+      <% if @employee.reporting_manager? %>
+        <a href="#">   
+          <%= image_tag "leave-view-icon.jpg" %>
+        </a> 
+        <p>Available Leaves:  <%= pluralize(Leave.employee_available_leaves(@employee)+0, 'day') %></p>                       
+        <p>Used Leaves : <%= pluralize(total_used_leaves(@employee), 'day') %>  </p>
+      </div> 
+      <ul class="nav nav-pills nav-stacked">            
+       <li class="active"><a href="#waiting-for-approval" data-toggle="tab"><i class="fa fa-user"></i>Leaves Waiting for Approval</a></li>
+          <li><a href="#upcoming-leaves" data-toggle="tab"><i class="fa fa-user"></i>Upcoming Leaves List</a></li>
+          <li ><a href="#leaves-history" data-toggle="tab"><i class="fa fa-user"></i>Leave History</a></li>
+          <li><a href="#leave_policy" data-toggle="tab"><i class="fa fa-user"></i>Leave Policy</a></li>
+          <li><a href="#holiday_calender" data-toggle="tab"><i class="fa fa-user"></i>Holiday-Calender</a></li>
+       </ul>                                  
+        </section>
+    </aside> 
+    <aside class="profile-info col-lg-9">
+      <section>                                                                                                                                              
+       <div class="profile-tab-content tab-content">  
+          <div class="tab-pane fade active in" id="waiting-for-approval">
+            <div class="module">                                              
+                <%= render "leave_histories/waiting_for_approvals"%>                  
+            </div> 
+          </div><!--/.tab-pane-list-->
+<!--leaves PANEL-->                                    
+          
+          <div class="tab-pane fade" id="upcoming-leaves">
+            <div class="module">
+               <%= render "leave_histories/upcoming_leaves_list"%>
+            </div>         
+          </div><!--/.tab-pane-list--> 
+<!--designations PANEL-->   
+           
+            <div class="tab-pane fade " id="leaves-history">
+              <div class="module"> 
+                <%= render "leave_histories/leave_history" %>    
+              </div>
+            </div> <!--/.tab-pane-list-->                                              
+<!--leave_policies PANEL-->             
+           
+            <div class="tab-pane fade " id="leave_policy">
+              <div class="module"> 
+                <%= render "leave_histories/leave_policy"%>
+              </div>                                          
+            </div><!--/.tab-pane-list-->
+<!--holiday_calender PANEL-->             
+            
+            <div class="tab-pane fade " id="holiday_calender">
+              <div class="module">  
+                <%= render "leave_histories/holiday_list" %>
+              </div>                                          
+            </div><!--/.tab-pane-list-->
+         </div><!--/.profile-tab-content -->                                                                                                                 
+        <% else %><br>
+        <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          There is No Reporting Manager. Please contact HR.
+        </div>                      
+        <% end %>
+       <% else %><br>                      
+         <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            There is no leave policy configure to your Group. Please Contact HR.  
+         </div>                     
+      <% end %>
+       </section>
+    </aside>                
 </div>
 
 

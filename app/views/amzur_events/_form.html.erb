@@ -91,23 +91,28 @@
        
           <div class="form-group">
                
+
               <div class="col-lg-3">
               <label class="col-lg-offset-2  control-label">Event Date </label>
+
                   <%= f.text_field :held_on,:placeholder =>"Enter Date Of Event", :class => "date-picker", :data => {:error => "Please Select Event Date"}, :required => true %>
                   <span class="help-block with-errors"></span>   
                 </div>
              
-                
+
                   <div class="col-lg-3">
                   <label  class="col-lg-offset-2  control-label">Event From Time</label>
+
                     <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
                     <span class="help-block with-errors"></span>   
                   </div>
                 
                
                  
+
                  <div class="col-lg-3">
                  <label class="col-lg-offset-2  control-label">Event To Time</label>
+
                   <%= f.text_field :to_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
                   <span class="help-block with-errors"></span>   
                 </div>
