@@ -22,8 +22,6 @@
           </div>
           
           
-          
-          
           <%if @amzurevent.new_record? %>
           
            <div class="form-group">
@@ -46,7 +44,7 @@
           </div>
          
           
-          <div class="form-group">
+          <div class="form-group ">
               <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label"></label>
               <div class="col-lg-8">
             
@@ -88,25 +86,27 @@
 
 
 
-        </div class="row">
+        <div class="row">
        
           <div class="form-group">
-               <label class="col-sm-1  control-label">Event Date </label>
-              <div class="col-lg-2">
+               
+              <div class="col-lg-3">
+              <label class="col-lg-2 col-sm-2 control-label">Event Date </label>
                   <%= f.text_field :held_on,:placeholder =>"Enter Date Of Event", :class => "date-picker", :data => {:error => "Please Select Event Date"}, :required => true %>
                   <span class="help-block with-errors"></span>   
                 </div>
              
-                <label  class="col-sm-1  control-label">Event From Time</label>
-                  <div class="col-lg-2">
-                  
+                
+                  <div class="col-lg-3">
+                  <label  class="col-lg-2 col-sm-2 control-label">Event From Time</label>
                     <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
                     <span class="help-block with-errors"></span>   
                   </div>
                 
-               <label  class="col-sm-1  control-label">Event To Time</label>
+               
                  
-                 <div class="col-lg-2">
+                 <div class="col-lg-3">
+                 <label class="col-lg-2 col-sm-2 control-label">Event To Time</label>
                   <%= f.text_field :to_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
                   <span class="help-block with-errors"></span>   
                 </div>
