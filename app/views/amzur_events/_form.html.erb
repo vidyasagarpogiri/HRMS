@@ -1,36 +1,33 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>Event Form</h3>
-            </div>
-            <div class="module-body">
-              <%= form_for @amzurevent, :html => {:class=>"form-horizontal row-fluid event_form"} do |f| %>
-              <div class="control-group">
-                <label class="control-label" for="amzur_event_title">Event Title</label>
-                <div class="controls">
-                  <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter valid Event Title"}, :required => true %>
+<section class="panel">
+  <header class="panel-heading">
+      Event Form
+  </header>
+  <div class="panel-body">
+      <%= form_for @amzurevent, :html => {:class=>"form-horizontal row-fluid event_form"} do |f| %>
+      <form class="form-horizontal" role="form">
+          <div class="form-group">
+              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Event Title</label>
+              <div class="col-lg-8">
+                   <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter valid Event Title"}, :required => true %>
                   <span class="help-block with-errors"></span>
-                </div>
+                  
               </div>
-              
-              <div class="control-group">
-                <label class="control-label" for="amzur_event_bootsy_image_gallery_id">Description</label>
-                <div class="controls">
-                  <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter  Event Description"}, :style => "margin: 0px 0px 10px; width: 640px; height: 221px;" %>
-                  <span class="help-block with-errors"></span>   
-                </div>
+          </div>
+          <div class="form-group">
+              <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">Description</label>
+              <div class="col-lg-8">
+                <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter  Event Description"}, :style => "margin: 0px 0px 10px; width: 640px; height: 221px;" %>
+                  <span class="help-block with-errors"></span> 
               </div>
-              
-             
-              <%if @amzurevent.new_record? %>
-              <div class="control-group">
-              <label class="control-label" for="amzur_event_title">Select </label>
-              <div class="controls">
-              <select  name="eventable_type"  class="event">
+          </div>
+          
+          
+          <%if @amzurevent.new_record? %>
+          
+           <div class="form-group">
+              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Select</label>
+              <div class="col-lg-8">
+               <select  name="eventable_type"  class="event">
                 <option value="all">All</option>
                 <%unless @departments.blank? %>
                 <option value="Department">Department</option>
@@ -42,87 +39,105 @@
                   <option value="Workgroup">WorkGroup</option>
                  <%end%>
               </select>
-              </div> 
-              </div> 
-              
-              
+                  
+              </div>
+          </div>
+         
+          
+          <div class="form-group ">
+              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label"></label>
+              <div class="col-lg-8">
             
-              
-              
-              
-               <div class="control-group">
-              
-                <div class="controls">
-                    <div id ="departments">             
-                      <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name"), prompt: "Please Select" %>
+                        <div id ="departments">             
+                      <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name") %>
                     </div>
                     
                     <div id="groups">
-                        <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name"), prompt: "Please Select" %>
+                        <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name") %>
                         
                     </div>
                     
                     <div id="workgroups">
-                        <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name"), prompt: "Please Select" %>
-                    </div>
-                
-                 </div>
-              
+                        <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name") %>
+                    </div> 
               </div>
-              
-             <% else %>
+          </div>
+          <% else %>
+          
+          
+          
             
-            <div class="control-group">
-              <div class="controls">
+            <div class="form-group">
+               <div class="col-lg-8">
               <strong>Event for <%if @amzurevent.eventable_type.nil? %> ALL <%else%> <%=@eventable %>  <%=@amzurevent.eventable_type%> <%end%></strong>
              </div>
             </div>
             <%end%>
             
-              <div class="control-group">
-                <label class="control-label" for="amzur_event_held_on">Select to Send Mail  </label>
-                <div class="controls">
-              <%= f.check_box :is_send_mail %>
-                </div>
-              </div>        
-             
-              <div class="control-group">
-                <label class="control-label" for="amzur_event_held_on">Event Date </label>
-                <div class="controls">
+                <div class="form-group">
+                  <div class="col-lg-offset-2 col-lg-10">
+                      <div class="checkbox">
+                          <label>
+                              <%= f.check_box :is_send_mail %> Select To Send Mail
+                          </label>
+                      </div>
+                  </div>
+              </div>
+
+
+
+        <div class="row">
+       
+          <div class="form-group">
+               
+              <div class="col-lg-4">
+              <label class="col-lg-2  control-label">Event Date </label>
+              
                   <%= f.text_field :held_on,:placeholder =>"Enter Date Of Event", :class => "date-picker", :data => {:error => "Please Select Event Date"}, :required => true %>
                   <span class="help-block with-errors"></span>   
                 </div>
-              </div>
-              
-              <div class="control-group">
-                <div class="span6">
-                  <label class="control-label" for="amzur_event_held_on">Event From Time </label>
-                  <div class=" controls">
+             
+                
+                  <div class="col-lg-4">
+                  <label  class="col-lg-2  control-label">Event From Time</label>
                     <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
                     <span class="help-block with-errors"></span>   
                   </div>
-                </div>
-                <div class="span6">
-                 <label class="control-label" for="amzur_event_held_on">Event To Time </label>
-                <div class="controls">
+                
+               
+                 
+                 <div class="col-lg-4">
+                 <label class="col-lg-2 control-label">Event To Time</label>
                   <%= f.text_field :to_time, :placeholder =>"Enter Time Of Event", :class => "timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
                   <span class="help-block with-errors"></span>   
                 </div>
-                </div>
+             </div>
+              
+         </div>
+         
+         
+            <div class="form-group">
+              <div class="col-lg-offset-2 col-lg-8">
+                 <button type="submit" class="btn btn-success">Post </button>&nbsp&nbsp
+                 <%= link_to "Cancel", amzur_events_path,:class => "btn btn-danger" %>
               </div>
-                           
-              <ul class="navigation-btns editthree" >
-              <li><button type="submit" class="btn btn-success">Save</button></li>
-              <li><%= link_to "Cancel", amzur_events_path,:class => "btn btn-danger" %></li>
-              </ul>	
-              <% end %>
-            </div><!--/.module-body-->
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+          </div>
+          
+         
+          
+      </form>
+      
+       <% end %>
+  </div>
+</section>
+
+
+
+
+
+
+
+
 
 <script>
     $(function() {
