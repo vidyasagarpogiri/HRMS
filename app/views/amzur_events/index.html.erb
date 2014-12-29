@@ -1,25 +1,18 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-				      <h3>Events Created By Me</h3>
-				      
-				      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add Event',  new_amzur_event_path %></label>
-				     
-		        </div>			
-			      <div class="module-body">
+<section class="panel">
+<header class="panel-heading">
+      Events Created By Me
+      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add Event',  new_amzur_event_path %></label>
+  </header>
+	      <div class="panel-body">
 		          <% if @empevents.present? %>    
               <% @empevents.each do |amzurevent| %>
               <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong> at <strong><%= format_time(amzurevent.from_time) %></strong> to <strong><%= format_time(amzurevent.to_time) %></strong></div>
                
               <% if current_user.employee.id == amzurevent.employee_id %>         
-                <ul class="navigation-btns pull-right" style="margin-top:-20px">
-                  <li><%= link_to 'Edit', edit_amzur_event_path(amzurevent), :class => "btn btn-success " %></li>
-                  <li><%= link_to "Delete", amzur_event_path(amzurevent.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-                </ul> 
+               
+              <%= link_to 'Edit', edit_amzur_event_path(amzurevent), :class => "btn btn-success " %>
+              <%= link_to "Delete", amzur_event_path(amzurevent.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
+               
               <% end %>             
               <label class="desc">
                 <%= raw amzurevent.description %>
@@ -33,12 +26,13 @@
               </div>
             <% end %> 
               <%= paginate  @amzurevent %>     	           
-						</div><!--/.module-body-->
-						
-					  <div class="module-head">
-              <h3>My Department Events</h3>
+						</div><!--/.panel-body-->
+			  </section>
+				<section class="panel">
+         <header class="panel-heading">
+              My Department Events
             </div>
-            <div class="module-body">	
+            <div class="panel-body">
             <% if @emp_dept_events.present? %>                             	           
               <% @emp_dept_events.each do |amzurevent| %>
                 <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div>                           
@@ -54,15 +48,16 @@
               </div>               
               <%= paginate  @amzurevent %>
               <% end %>	     	           
-						  </div><!--/.module-body-->
+						  </div><!--/.panel-body-->
+						</section>
 						
-																							
-						   <div class="module-head">
-				          <h3>My Group Events</h3>
-		           </div>
-		           
-		           <div class="module-body">
-		          <% if @emp_group_events.present? %>    
+						
+						<section class="panel">
+						<header class="panel-heading">
+             My Group Events
+            </div>
+            <div class="panel-body">															
+						  <% if @emp_group_events.present? %>    
               <% @emp_group_events.each do |amzurevent| %>
               <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
                           
@@ -78,16 +73,18 @@
               </div>
             <% end %> 
             <%= paginate  @amzurevent %>     	           
-						</div><!--/.module-body-->
+						</div><!--/.panel-body-->
+						</section>
 						
+						<section class="panel">
 						
+						<header class="panel-heading">
+              My WorkGroup Events
+            </div>
 						
-						
-						   <div class="module-head">
-				          <h3>My WorkGroup Events</h3>
-		           </div>
+						   
 		           
-		            <div class="module-body">
+		            <div class="panel-body">
 		          <% if @emp_workgroup_events.present? %>    
               <% @emp_workgroup_events.each do |amzurevent| %>
               <div> <strong><%= amzurevent.title %></strong> on <strong> <%= format_date (amzurevent.held_on) %> </strong></div> 
@@ -104,15 +101,9 @@
               </div>
             <% end %> 
             <%= paginate  @amzurevent %>     	           
-						</div><!--/.module-body-->
+						</div><!--/.panel-body-->
 						
-						
-					</div><!--/.module-->
-				</div><!--/.content-->
-			</div><!--/.span12-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
+          </section>
 	
 
 

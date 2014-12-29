@@ -1,37 +1,35 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-		    <div class="content">
-			    <div class="module">
-				    <div class="module-head">
-					    <h3>Announcement Form</h3>
-						</div>
-				    <div class="module-body">						
-              <%= form_for @announcement,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>				
-              <div class="control-group">
-              <label class="control-label" for="basicinput">Announcement Title</label>
-                <div class="controls">
-                  <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter Valid Annoucement Title"}, :required => true %>
+<section class="panel">
+  <header class="panel-heading">
+      Announcement Form
+  </header>
+  <div class="panel-body">
+      <%= form_for @announcement,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>	
+      <form class="form-horizontal" role="form">
+          <div class="form-group">
+              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Announcement Title</label>
+              <div class="col-lg-10">
+                     <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter Valid Annoucement Title"}, :required => true %>
+                    
                   <span class="help-block with-errors"></span>
-                </div>
-	            </div>									        	
-		          <div class="control-group">
-								<label class="control-label" for="basicinput">Description</label>
-								<div class="controls">
-								  <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter Announcement  Description"}, :required => true,:style => "margin: 0px 0px 10px; width: 640px; height: 221px;" %>
-								  <span class="help-block with-errors"></span>   
-								</div>
-							</div>
-							
-							
-							   <%if @announcement.new_record? %>
-							<div class="control-group">
-              <label class="control-label" for="announcement_title">Select </label>
-              <div class="controls">
-              <select  name="announceable_type" class="announcement">
+                  
+              </div>
+          </div>
+          
+          <div class="form-group">
+              <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">Description</label>
+              <div class="col-lg-9">
+                 <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter Announcement  Description"}, :required => true,:style => "margin: 0px 0px 10px; width: 850px; height: 221px;" %>
+                  <span class="help-block with-errors"></span> 
+              </div>
+          </div>
+           <%if @announcement.new_record? %>
+          
+           <div class="form-group">
+              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Select</label>
+              <div class="col-lg-9">
+               <select  name="announceable_type" class="announcement">
                 <option value="all">All</option>
-                 <%unless @departments.blank? %>
+                <%unless @departments.blank? %>
                 <option value="Department">Department</option>
                 <%end%>
                  <%unless @groups.blank? %>
@@ -41,74 +39,64 @@
                   <option value="Workgroup">WorkGroup</option>
                  <%end%>
               </select>
-              </div> 
-              </div>
-              
-              
-              
-              
-              
-               <div class="control-group">
-              
-              <div class="controls">
-                  <div id ="departments">
-                  <%unless @departments.blank? %>             
-                    <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name") %>
-                    <%else%>  
-                  <p>No Departments</p>
-                  <%end%> 
-                  </div>
                   
-                  <div id="groups">
-                  <%unless @groups.blank? %>
-                      <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name") %>
-                      <%else%>  
-                  <p>No Groups</p>
-                  <%end%> 
-                      
-                  </div>
-                  
-                  <div id="workgroups">
-                  <%unless @workgroups.blank? %>
-                      <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name")%>
-                  <%else%>  
-                  <p>No Workgroups</p>
-                  <%end%>  
-                  </div>
-                <span class="help-block with-errors"></span>  
-               </div>
-              
               </div>
-              <% else %>
-             <div class="control-group">
-              <div class="controls">
-              <strong>Announcement for <%if @announcement.announceable_type.nil? %> ALL <%else%> <%=@announceable %>  <%=@announcement.announceable_type%> <%end%></strong>
+          </div>
+          <div class="form-group ">
+              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label"></label>
+              <div class="col-lg-9">
+            
+                        <div id ="departments">             
+                      <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name") %>
+                    </div>
+                    
+                    <div id="groups">
+                        <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name") %>
+                        
+                    </div>
+                    
+                    <div id="workgroups">
+                        <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name") %>
+                    </div> 
+              </div>
+          </div>
+          <% else %>
+            <div class="form-group">
+               <div class="col-lg-9">
+             <strong>Announcement for <%if @announcement.announceable_type.nil? %> ALL <%else%> <%=@announceable %>  <%=@announcement.announceable_type%> <%end%></strong>
              </div>
             </div>
             <%end%>
-              
-              
-              <div class="control-group">
-                <label class="control-label" for="amzur_event_held_on">Select to Send Mail </label>
-                <div class="controls">
-              <%= f.check_box :is_send_mail %>
-                </div>
-              </div> 
-              
-							
-														
-						 <ul class="navigation-btns editthree" >
-							  <li><button type="submit" class="btn btn-success">Save</button></li>
-							  <li><%= link_to "Cancel", announcements_path,:class => "btn btn-danger" %></li>
-							</ul>																 									
-  						<% end %>
-						</div><!--/.module-body-->
-					</div><!--/.module-->
-				</div><!--/.content-->
-			</div><!--/.span12-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
+            
+                <div class="form-group">
+                  <div class="col-lg-offset-2 col-lg-10">
+                      <div class="checkbox">
+                          <label>
+                              <%= f.check_box :is_send_mail %> Select To Send Mail
+                          </label>
+                      </div>
+                  </div>
+              </div>
+         
+         
+         
+            <div class="form-group">
+              <div class="col-lg-offset-2 col-lg-8">
+                 <button type="submit" class="btn btn-success">Post </button>&nbsp&nbsp
+                <%= link_to "Cancel", announcements_path,:class => "btn btn-danger" %>
+              </div>
+          </div>
+          
+         
+          
+      </form>
+      
+       <% end %>
+  </div>
+</section>
+
+
+
 	
 
 
