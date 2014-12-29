@@ -1,73 +1,81 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+      <h1>Address Form</h1>
+  </div>						    
+  <div class="panel-body"> 
+    <%= form_for([@employee, @address], :html => {:class => "address-edit-form"}, :remote => true)  do |f|%>  
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2">Address Line 1</label>
+          <div class="col-lg-8">
+            <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter Address Line 1"}, :required =>true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">         
+        <div class="form-group">
+          <label class="control-label col-lg-2">Address Line 2</label>
+          <div class="col-lg-8">
+            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 2",:data => {:error => "Please Enter Address Line 2"}, :required =>true %>  
+            <span class="help-block with-errors"></span>
+          </div>
+        </div> 
+      </div>
 
-			          <div class="module">
-				          <div class="module-head">
-					          <h3>Address Details</h3>
-						      </div>						    
-						      <div class="module-body"> 
-                  <%= form_for([@employee, @address], :html => {:class => "address-edit-form"}, :remote => true)  do |f|%>  
-	                 <div class="control-group">
-                      <label class="control-label" for="basicinput">Address Line 1</label>
-                      <div class="controls">
-                        <%= f.text_field :line, :class => "span8 form-control", :placeholder=> "Enter Address Line 1",:data => {:error => "Please Enter Address Line 1"}, :required =>true %>
-                         <span class="help-block with-errors"></span>
-                      </div>
-	              </div>
-								                                                                   
-                <div class="control-group">
-                    <label class="control-label" for="basicinput">Address Line 2</label>
-                        <div class="controls">
-                          <%= f.text_field :line1, :class => "span8 form-control", :placeholder=> "Enter Address Line 2",:data => {:error => "Please Enter Address Line 2"}, :required =>true %>  
-                           <span class="help-block with-errors"></span>
-                        </div>
-							    </div> 
-							
-							    <div class="control-group">
-                    <label class="control-label" for="basicinput">City</label>
-                        <div class="controls">
-                          <%= f.text_field :city, :class => "span8 form-control", :placeholder=> "Enter City",:data => {:error => "Please Enter City Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
-                           <span class="help-block with-errors"></span>
-                        </div>
-							    </div>
-							
-							    <div class="control-group">
-                    <label class="control-label" for="basicinput">State</label>
-                        <div class="controls">
-                          <%= f.text_field :state, :class => "span8 form-control", :placeholder=> "Enter State",:data => {:error => "Please Enter State Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>   
-                           <span class="help-block with-errors"></span>
-                        </div>
-							    </div>
-							
-							    <div class="control-group">
-                    <label class="control-label" for="basicinput">Country</label>
-                        <div class="controls">
-                          <%= f.text_field :country, :class => "span8 form-control", :placeholder=> "Enter Country",:data => {:error => "Please Enter Country Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
-                           <span class="help-block with-errors"></span>
-                        </div>
-							    </div> 
-							
-							    <div class="control-group">
-                    <label class="control-label" for="basicinput">ZipCode</label>
-                        <div class="controls">
-                          <%= f.text_field :zipcode, :class => "span8 form-control", :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter ZipCode ", :minlength => "6", :maxlenght => "6"}, :type => "number", :required =>true %> 
-                           <span class="help-block with-errors"></span>
-                        </div>
-							    </div> 															    
-                   <ul class="navigation-btns" style="margin: 10px 0 10px 650px;" >
-                    <li><button type="submit" class="btn btn-success ">Save</button></li>
-                    <li><%= link_to 'Cancel', employee_addresses_path(@employee), :class => "btn btn-danger", :remote => true %></li>
-                  </ul>    
-                    <br>
-                   <% end %>							                   
-						    </div><!--/.module-body-->
-					    </div><!--/.module-->
-		
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2">City</label>
+          <div class="col-lg-8">
+            <%= f.text_field :city, :class => "form-control", :placeholder=> "Enter City",:data => {:error => "Please Enter City Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2">State</label>
+          <div class="col-lg-8">
+            <%= f.text_field :state, :class => "form-control", :placeholder=> "Enter State",:data => {:error => "Please Enter State Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>   
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2">Country</label>
+          <div class="col-lg-8">
+            <%= f.text_field :country, :class => "form-control", :placeholder=> "Enter Country",:data => {:error => "Please Enter Country Name "}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
+            <span class="help-block with-errors"></span>
+          </div>
+        </div> 
+      </div>
+      
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2">ZipCode</label>
+          <div class="col-lg-8">
+            <%= f.text_field :zipcode, :class => "form-control", :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter ZipCode ", :minlength => "6", :maxlenght => "6"}, :type => "number", :required =>true %> 
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+      </div> 															    
+      
+      <ul class="navigation-btns" style="margin: 10px 0 10px 650px;" >
+        <li><button type="submit" class="btn btn-success ">Save</button></li>
+        <li><%= link_to 'Cancel', employee_addresses_path(@employee), :class => "btn btn-danger", :remote => true %></li>
+      </ul>    
+    <% end %>							                   
+  </div><!--/.module-body-->
+</div><!--/.module-->
 
 
-
-
-			<script>
-			  $(function(){
-          $(".address-edit-form").validator();
-         });  
-			</script>
+  <script>
+    $(function(){
+      $(".address-edit-form").validator();
+    });  
+  </script>
 
