@@ -1,24 +1,20 @@
-<div class="module-head" >
-  <h3>Contact Info</h3>
-</div><br>
-<% if current_user.department == Department::HR %>
-  <% if @address1.nil? %>
-    <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info add" %>
-  <% end %>
-  <% if @address2.nil? %>
-    <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info add" %>
-    <br><br>
-  <% end %> 
-<% end %>
-
-<div class ="new_address_form">
-  <% if !@address1.present? && !@address2.present? %>
-    <div class="alert alert-success alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      You have No Addresses to display. 
-    </div>
+<div class="panel panel-info">
+  <div class="panel-heading"> Contact Info</div>
+  <div class="panel-body bio-graph-info">
+    <% if current_user.department == Department::HR %>
+      <% if @address1.nil? %>
+        <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info add" %>
+      <% end %>
+      <% if @address2.nil? %>
+        <%= link_to "Permanent Address", new_employee_address_path(@employee, :address_type => "true"), :remote => true, :class=>"btn btn-info add" %>
+      <% end %> 
     <% end %>
-    <!-- /.row -->
+    <div class ="new_address_form">
+      <% if !@address1.present? && !@address2.present? %>
+        <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>You have No Addresses to display. 
+        </div>
+      <% end %>
       <% if @address1.present? %>
       <div class="row-fluid">            
         <div class="module-head" style="background-color:#F0F5F5!important;"> 
@@ -69,9 +65,7 @@
     </div><!-- /.module-body -->
   </div><!-- /.row-fluid -->
   <% end %>	 
-
-
-    <% if @address2.present? %>                               
+  <% if @address2.present? %>                               
     <div class="row-fluid">  
       <div class="module-head" style="background-color:#F0F5F5!important;">  
         <strong>Permanent Address</strong>
@@ -122,7 +116,10 @@
     </div><!-- /.row-fluid -->				                          
   </div><!-- /.module-body -->									      				                                      
   <% end %>   
-</div> 
+    </div>
+    
+  </div>
+</div>
 
 
 
