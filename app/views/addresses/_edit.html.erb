@@ -1,6 +1,6 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-      <h1>Address Form</h1>
+      <h3>Address Form</h3>
   </div>						    
   <div class="panel-body"> 
     <%= form_for([@employee, @address], :html => {:class => "address-edit-form"}, :remote => true)  do |f|%>  
@@ -64,9 +64,9 @@
         </div>
       </div> 															    
       
-      <ul class="navigation-btns" style="margin: 10px 0 10px 650px;" >
-        <li><button type="submit" class="btn btn-success ">Save</button></li>
-        <li><%= link_to 'Cancel', employee_addresses_path(@employee), :class => "btn btn-danger", :remote => true %></li>
+      <ul class="navigation-btns" >
+        <li><button type="submit" class="btn btn-success pull-left">Save</button></li>
+        <li><%= link_to 'Cancel', employee_addresses_path(@employee), :class => "btn btn-danger pull-left", :remote => true %></li>
       </ul>    
     <% end %>							                   
   </div><!--/.module-body-->
