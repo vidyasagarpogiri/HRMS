@@ -1,48 +1,44 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-		    <div class="content">
-			    <div class="module">
-				    <div class="module-head">
-					    <h3>Add Section Declaration</h3>
-				    </div>
-						<div class="module-body">						
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+      Add Section Declaration
+      </header>
+		
 						<%= form_for @section, :html => {:class=>"form-horizontal row-fluid new_event_form"} do |sec| %>
 						
 						
-						<div class="control-group">   
-						 <label class="control-label" for="basicinput">Section Name</label>
-               <div class="controls">
-                  <%= sec.text_field :section, :class => "span8 form-control", :placeholder =>"Enter Section Name", :data => {:error => "Enter Valid Section Name"}, :required =>true %>
+						<div class="form-group">   
+						 <label class="control-label col-lg-2" for="basicinput">Section Name</label>
+               <div class="col-lg-8">
+                  <%= sec.text_field :section, :class => "form-control", :placeholder =>"Enter Section Name", :data => {:error => "Enter Valid Section Name"}, :required =>true %>
                 <span class="help-block with-errors"></span>
 					    </div>
 						</div>
 							      
 					  
-						<div class="control-group">   
-						 <label class="control-label" for="basicinput"> Maximum Limit</label>
-               <div class="controls">
-                  <%= sec.text_field :maximum_limit, :class => "span8 form-control", :placeholder =>"Enter Maximum limit value", :data => {:error => "Enter Valid Maxlimit Value"}, :required =>true,:pattern => '[0-9]*\.?[0-9]*' %>
+						<div class="form-group">   
+						 <label class="control-label col-lg-2" for="basicinput"> Maximum Limit</label>
+               <div class="col-lg-8">
+                  <%= sec.text_field :maximum_limit, :class => "form-control", :placeholder =>"Enter Maximum limit value", :data => {:error => "Enter Valid Maxlimit Value"}, :required =>true,:pattern => '[0-9]*\.?[0-9]*' %>
                  <span class="help-block with-errors"></span>
 					     </div>
 					
 						</div>	
 												  								          		
-					   <ul class="navigation-btns editthree" >
-					    <li><button type="submit" class="btn btn-success">Save</button></li>
-					    <li><%= link_to "Cancel", section_declarations_path,:class => "btn btn-danger" %></li>
+            <div class="form-group">  
+                <div class="col-lg-offset-2 col-lg-10">
+					        <button type="submit" class="btn btn-success">Save</button>
+					        <%= link_to "Cancel", section_declarations_path,:class => "btn btn-danger" %>
+					     </div>
 					  </ul>	
-						<% end %>
-						</div><!--/.module-body-->
-					</div><!--/.module-->
-				</div><!--/.content-->
-			</div><!--/.span12-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
+					</div>
+			<% end %>
+				
 	
-          
+    </section>
+  </div>
+</div>     
      <script>
           $(".new_event_form").validator();
         </script> 
