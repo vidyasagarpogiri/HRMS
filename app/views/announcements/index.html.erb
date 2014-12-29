@@ -1,25 +1,19 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-					    <h3>Announcement Details</h3>
-					    <% if current_user.department == Department::HR %>  
+<section class="panel">
+  <header class="panel-heading">
+      Announcement Details
+ 
+  		    <% if current_user.department == Department::HR %>  
 					    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'New Announcement',  new_announcement_path %></label>
 					    <% end %>
-					  </div>
-				    <div class="module-body">							
+					 </header>
+				    <div class="panel-body">						
 				     <% if @announcements.present? %>									            									      		
              <% @announcements.each do |announcement| %> 
              <h4><%= announcement.title %></h4> 
              <% if current_user.department == Department::HR %>                   
            
-             <ul class="navigation-btns pull-right" style="margin-top:-20px">
-               <li><%= link_to 'Edit', edit_announcement_path(announcement), :class => "btn btn-success " %></li>
-               <li><%= link_to "Delete", announcement_path(announcement.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger" %></li>
-             </ul>  
+              <%= link_to 'Edit', edit_announcement_path(announcement), :class => "btn btn-success " %>&nbsp&nbsp
+               <%= link_to "Delete", announcement_path(announcement.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger" %>
                <% end %>           
              <label class="desc">
                <%= raw announcement.description %>             
@@ -35,13 +29,8 @@
             </div>
            <% end %> 
            <%= paginate  @announcements %>      	           
-						</div><!--/.module-body-->
-					</div><!--/.module-->
-				</div><!--/.content-->
-			</div><!--/.span12-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
+						</div><!--panel-body-->
+					
 	
 
 
