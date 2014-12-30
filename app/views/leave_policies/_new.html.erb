@@ -24,7 +24,15 @@
                <%= f.text_field :max_carry_forward_leaves,  :class => "span8 form-control", :data => {:error => "Please Enter Maximum Carryforward Leaves Per Year"}, :required =>true, :pattern =>'[0-9]*\.[0-9]+|[0-9]+' %>
             <span class="help-block with-errors"></span>
 			      </div>
-	  </div><br>                                                                                                             
+			      </div>
+			  <div class="control-group">   
+			 <label class="control-label" for="basicinput">Floating Leave Period</label>
+           <div class="controls">    
+			      
+			      <%= f.select(:floating_leave_period, options_for_select([['Quarterly', 1], ['Half Yearly', 2], ['Annually', 3]]), {},  :class => "span4 form-control") %>
+			    <span class="help-block with-errors"></span>
+			  </div>
+			  </div><br>                                                                                                             
     <%= f.submit  'Save', :class => "btn btn-success pull-left" %>                                                   
      <% end %>
  </div><!--/.module-body-->
