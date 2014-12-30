@@ -1,16 +1,21 @@
-<div class="panel panel-info">
-  <div class="panel-heading"> 
-    Work Groups List <%= link_to " New Work Group",new_workgroup_path, :class => "fa fa-plus pull-right" %>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <section class="panel">        
-        <div class="panel-body">  
-          <div class="workgroups">
-            <%= render "workgroups/list_of_workgroups" %>
-          </div><br>    																																											                               
-        </div><!-- /.module-->
-      </section>									      				                                      
-    </div><!--/.content-->
-  </div>
-</div>                                                                                 
+<section id="main-content">
+  <section class="wrapper">
+    <div class="panel panel-info">
+      <div class="panel-heading"> 
+        Work Groups List <%= link_to " New Work Group",new_workgroup_path, :class => "fa fa-plus pull-right" %>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <section class="panel">        
+            <div class="panel-body">  
+              <div class="workgroups">
+                <%= render "workgroups/list_of_workgroups" %>
+              </div><br>    																																											                               
+            </div><!-- /.module-->
+          </section>									      				                                      
+        </div><!--/.content-->
+      </div>
+    </div>
+  </section>
+</section>
+                                                                                 
