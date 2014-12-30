@@ -1,3 +1,12 @@
+<div class="panel panel-info">
+  <div class="panel-heading"> 
+    Policies
+     <% if current_user.department == "HR" %>
+      <span class="pull-right">
+       <%= link_to 'Add New Policy',  new_policy_path %>
+     </span>
+     <% end %>
+  </div>
     <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
@@ -32,9 +41,7 @@
                   </div>
               </div>
              
-          
-          </div><!--col-md-9-->
-                
+        
                 
                 
                 
