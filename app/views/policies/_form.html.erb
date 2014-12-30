@@ -1,52 +1,49 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>Policy Details</h3>
+<div class="panel panel-info">
+  <div class="panel-heading"> 
+    Policy Details Form
+  </div>        
+  <div class="panel-body">
+     <%= form_for @policy,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid policy_from"} do |f| %>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="inputEmail1" class="col-lg-2 control-label">Policy Title</label>
+            <div class="col-lg-10">
+                <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Policy Title", :data => {:error => "Please Enter valid Policy Title"}, :required => true %>
+          <span class="help-block with-errors"></span>
+                
             </div>
-            <div class="module-body">
-              <%= form_for @policy,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid policy_from"} do |f| %>
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Policy Title:</label>
-                <div class="controls">
-                  <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Policy Title", :data => {:error => "Please Enter valid Policy Title"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Descrption:</label>
-                <div class="controls">
-                  <%= f.bootsy_area :details, :class => "span8 form-control", :placeholder =>"Enter Policy Details", :data => {:error => "Please Enter Policy  Details"}, :required => true, :style => "margin: 0px 0px 10px; width: 640 px; height: 221px;" %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Upload Attachment</label>                                         
-                <div class="controls">
-                  <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"} %>
+        </div>
+               
+         <div class="form-group">
+            <label for="inputPassword1" class="col-lg-2 control-label">Descrption</label>
+            <div class="col-lg-10">
+             <%= f.bootsy_area :details, :class => "span8 form-control", :placeholder =>"Enter Policy Details", :data => {:error => "Please Enter Policy  Details"}, :required => true, :style => "margin: 0px 0px 10px; width: 850 px; height: 221px;" %>
+         <span class="help-block with-errors"></span>
+            </div>
+        </div>
+        
+        
+        <div class="form-group">
+          <label for="exampleInputFile" class="col-lg-2 control-label">Upload Attachment</label>
+          <div class="col-lg-10">
+             <%= f.file_field :document, :onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes,:error => " Please Choose a file to attach"} %>
                   <% if @policy.document_url.present? %>
                   Existing Attachment: <%= link_to "Attachment", @policy.document_url, :target => "/blank"%>
                   <%end%>
-                </div>
-              </div>
-              <ul class="navigation-btns editthree" >
-              <li><button type="submit" class="btn btn-success">Save</button></li>
-              <li><%= link_to "Cancel", policies_path,:class => "btn btn-danger" %></li>
-              </ul>	
-              <% end %>
-            </div><!--/.module-body-->
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
-	
+          </div> 
+        </div>                
+        <div class="panel-body">              
+          <button type="submit" class="btn btn-success">Save</button>&nbsp&nbsp
+          <%= link_to "Cancel", policies_path,:class => "btn btn-danger" %>            
+        </div>
+    </form>      
+    <% end %>
+  </div>
+</div>
+
+
+
+
  <!-- script for image uploading-->
     
 <script>
