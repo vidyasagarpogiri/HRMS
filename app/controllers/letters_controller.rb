@@ -20,6 +20,7 @@ class LettersController < ApplicationController
     @employee = current_user.employee
     @address1 = @employee.addresses.where(:address_type=>0).first
 		@address2 = @employee.addresses.where(:address_type=>1).first
+		#raise @address2.inspect
     respond_to do |format|
         format.html
         format.pdf do
