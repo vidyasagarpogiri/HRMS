@@ -2,7 +2,7 @@
 <html>
 <body>
 Hello  <%= @employee.reporting_manager %>,
- <p>You have a leave request from <%= @employee.first_name %> <%= @employee.last_name%> </p>
+ <p>You have a <%= @leave_history.leave_type.type_name %> request from <%= @employee.first_name %> <%= @employee.last_name%> </p>
 <table border="0">
     <thead>
       <tr>
