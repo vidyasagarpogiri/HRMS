@@ -5,7 +5,21 @@ module ApplicationHelper
   date = time.to_date if time
    date.strftime("%b, %Y") if time 
  end
-
+  
+  #def float_leave
+	  # leave_history"=>{"leave_type_id"=>"2", "reason"=>"hello", "is_halfday"=>"full_day", "from_date"=>"26/12/2014", "to_date"=>"26/12/2014", "section"=>"Morning"}, "leave_date"=>"", "float_leave_date"=>"26/12/2014"
+	#  raise @employee.group.leave_policy.inspect
+	#  case floating_leave_period
+	#  when 1 
+	#    'Quartely'
+	#  when 2
+	#    'Half Yearly'
+	#  else
+	#    'Annually'
+	# end
+#	end
+  
+  
 #will calcualte months difference between two dates 
  def difference_in_months(date1, date2)
     date1 = date1.to_date if date1.present? 

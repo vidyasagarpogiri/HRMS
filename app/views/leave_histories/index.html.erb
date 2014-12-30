@@ -22,7 +22,8 @@
                       </h4>
                       <p>Available Leaves:  <%= pluralize(Leave.employee_available_leaves(@employee)+0, 'day') %></p>
                        
-                      <p>Used Leaves : <%= pluralize(total_used_leaves(@employee), 'day') %>  </p>                    
+                      <p>Used Leaves : <%= pluralize(total_used_leaves(@employee), 'day') %>  </p>   
+                                       
                     </div>
                  </div>                                                                         
                   <ul class="profile-tab nav nav-tabs">

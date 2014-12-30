@@ -11,6 +11,7 @@
           <th>Personal Leaves Per Month</th>
           <th>Carry forword Leaves per year</th>
           <th>Maximum Carry forward Leaves</th>
+          <th>Floating Holiday Period</th>
          </tr>
        </thead>
        <tbody>          
@@ -19,6 +20,7 @@
         <td><%= @leave.pl_this_year %></td>
         <td> <%= @leave.eligible_carry_forward_leaves %></td>
         <td><%= @leave.max_carry_forward_leaves %></td>
+        <td><%= float_leave(@leave.floating_leave_period) %></td>
        </tr>
           <% end %>
           </tbody>                        
