@@ -1,41 +1,27 @@
-	<div class="wrapper">
-	<div class="container">
-		<div class="row">	
-			<div class="span12">
-				<div class="content">
-					<div class="module">
-						<div class="module-head">
-							<h3>Employee Details</h3>
-						</div>
-						
-						<div class="module-body ">	
-						  
-		     <%= form_tag({("/workgroups/#{@workgroup.id}/added_members")}, {:autocomplete => :"on"}) do %> 
-		      
-                  <div class ="row-fluid">
-						  <div class="span5">		
-								<div class="control-group">
-									<label class="control-label" for="basicinput"> Add Member</label>
-									<div class="controls">
-                   <input type="text" id="member" class ="span12 form-control", name= "member" , place_holder = "Enter Member Name" data-error="Please Enter valid Employee Name" required>
-                   <input type="hidden" id="member_id"  name= "member_id"> 
-                   <span class="help-block with-errors"></span> 
-									</div>
-								</div>
-							</div>         
-						 	  </div>  
-					     		 
-             <ul class="navigation-btns">                    
-					 <button type="submit" class="btn btn-success pull-left">Add Member</button></ul>
-					 </div>										
-						<% end %>
-						</div><!--/.module-body-->
-					</div><!--/.module-->
-				</div><!--/.content-->
-			</div><!--/.span12-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
+<div class="panel panel-info">
+  <div class="panel-heading"> 
+		Employee Details
+	</div>
+	<div class="panel-body ">							  
+    <%= form_tag({("/workgroups/#{@workgroup.id}/added_members")}, {:autocomplete => :"on"}) do %>
+      <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Add Member</label>
+            <div class="col-lg-4">
+              <input type="text" id="member" class ="span12 form-control", name= "member" , place_holder = "Enter Member Name" data-error="Please Enter valid Employee Name" required>
+              <input type="hidden" id="member_id"  name= "member_id">
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <button type="submit" class="btn btn-success pull-left">Add Member</button>                                          
+      </div>				                    
+	  <% end %>						
+	</div><!--/.panel-body-->
+</div><!--/.panel panel-info-->
 
 		
     		    

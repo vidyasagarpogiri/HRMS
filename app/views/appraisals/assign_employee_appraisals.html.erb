@@ -1,44 +1,32 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-           <div class="appraisal-list">
-            <div class="module-head">
-              <h3>Appraisal Template</h3>
-            </div>
-            <div class="module-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Employee</th>
-                    <th>Appraisal Template</th>
-                    <th>Edit Here</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @employees.each do |employee| %>
-                    <tr>
-                      <td><%= employee.full_name %></td>
-                      <% if employee.check_appraisal %>
-                        <td><%= employee.appraisals.first.title %></td>
-                      <% else %>
-                        <td>No Appraisal Template </td>
-                      <% end %>
-                      <td><a href="#myModal" class="appraisal-edit" data-toggle="modal" value="<%= employee.id %>">Edit Appraisal</a></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div><!--/.module-body-->
-          </div>
-          <div class="edit-appraisal"></div>
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Appraisal Template
+  </div>
+  <div class="panel-body">
+    <table class="display table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Appraisal Template</th>
+          <th>Edit Here</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.full_name %></td>
+            <% if employee.check_appraisal %>
+              <td><%= employee.appraisals.first.title %></td>
+            <% else %>
+              <td>No Appraisal Template </td>
+            <% end %>
+            <td><a href="#myModal" class="appraisal-edit" data-toggle="modal" value="<%= employee.id %>">Edit Appraisal</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="edit-appraisal"></div>
+  </div><!--/.panel-body-->        
 </div><!--/.wrapper-->
 
 <div class="modal fade format-color" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
