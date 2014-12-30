@@ -1,35 +1,27 @@
-<!-- Author :Priyanka
-Calendar View for displaying Company Level Events -->
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                
-      <div class="span12">
-        <div class="content">         
-				  <div class="module">
-					  <div class="module-head">
-              <h3>All Holidays</h3>             
-					  </div>
-					  <div class="module-body">
-					    <%= render "calendar_filters"%>
+    <div class="row">                 
+             <aside class="col-lg-3">
+					      <%= render "calendar_filters"%>
+					    </aside>
+					    			
 					   <div class='calendar-partial'>
 					      <%= render 'calendars/workgroup_partial'%>														   
 					    </div>
-	          </div><!--.module-body-->
-					</div><!--/.module -->
-		    </div><!--/.content-->
-			</div><!--/.span12-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
+
+  </div>
+
+
+           
+					   
+	    
 
 
 
 <style>
-  #calendar {
-  max-width: 900px;
-  margin: 0 auto;
-}
+  h2{
+    font-size: 16px !important;
+  }
 </style>
+
 <script>
 $(document).ready(function() {
     $('#calendar').fullCalendar({
@@ -42,4 +34,3 @@ $(document).ready(function() {
      });
 });
 </script>
-
