@@ -1,40 +1,39 @@
-	
-<div class="module">
-  <div class="module-head">							
-    <h3>Emergency Contact Info</h3> 
+<div class="panel panel-info">
+  <div class="panel-heading">							
+    Emergency Contact Info
     <% if current_user.department == Department::HR %>                                       
-    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add Emergency Contact', new_employee_emergency_contact_path(@employee.id), :remote => true %></label>
+        <label class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add Emergency Contact', new_employee_emergency_contact_path(@employee.id), :remote => true %></label>
     <% end %>
   </div>                   
-  <div class="module-body">	
+  
+  <div class="panel-body">	
     <% if @emergency.present? %>				                                   
     <table class="table table-striped table-bordered table-condensed">
       <thead>											      
         <tr>
-          <th class="center">Name Of Person</th>
+          <th>Name Of Person</th>
           <th>Relation Ship With Person </th>	
           <th>Mobile1 </th>
-          <th>Mobile2</th>														            									      		
+          <th>Mobile2</th>
+          <th>Action</th>														            									      		
         </tr>
       </thead>			      
-    <% @emergency.each do |emergency| %>
-    <tbody>
-      <tr>               
-        <td class="center"><%= emergency.name %></td>
-        <td> <%= emergency.relation %> </td>
-        <td> <%= emergency.mobile1 %> </td>
-        <td> <%= emergency.mobile2 %> </td>
-        <% if current_user.department == Department::HR %>
-        <td> 
-          <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-            <li><%= link_to 'Edit', edit_employee_emergency_contact_path(@employee.id, emergency.id), :class => "btn btn-success ", :remote => true %></li>
-            <li><%= link_to "Delete", employee_emergency_contact_path(@employee.id, emergency), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger ", :remote => true %></li>
-          </ul>
-        </td>
-        <% end %>
-      </tr>
-    </tbody>
-    <% end %>			      
+      <% @emergency.each do |emergency| %>
+      <tbody>
+        <tr>               
+          <td><%= emergency.name %></td>
+          <td> <%= emergency.relation %> </td>
+          <td> <%= emergency.mobile1 %> </td>
+          <td> <%= emergency.mobile2 %> </td>
+          <% if current_user.department == Department::HR %>
+          <td> 
+            <%= link_to 'Edit', edit_employee_emergency_contact_path(@employee.id, emergency.id), :class => "btn btn-success", :remote => true %>
+             <%= link_to "Delete", employee_emergency_contact_path(@employee.id, emergency), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger", :remote => true %>
+          </td>
+          <% end %>
+        </tr>
+      </tbody>
+      <% end %>			      
     </table>                                                                                                                              
     <% else %>
     <div class="alert alert-success alert-dismissable">

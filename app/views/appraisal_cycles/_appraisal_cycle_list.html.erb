@@ -1,58 +1,50 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>Appraisal Cycles List</h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'New Appraisal Cycle',  new_appraisal_cycle_path, :remote => true %></label>
-            </div>
-            <div class="module-body">
-          <% if @appraisal_cycles.present? %>
-            <table border="0" class="table  table-striped">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Department</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Period</th>
-                  <th>Employee Dead Line Date</th>
-                  <th>Manager Dead Line Date</th>
-                  <th>Employee Discussion Dead Line</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <% @appraisal_cycles.each do |appraisal_cycle| %>
-                <tr>
-                <td><%= link_to appraisal_cycle.title, appraisal_cycle_path(appraisal_cycle.id) %></td>
-                <td><%= appraisal_cycle.department.department_name %></td>
-                <td><%= appraisal_cycle.start_date.strftime("%d %b, %Y") %></td>
-                <td><%= appraisal_cycle.end_date.strftime("%d %b, %Y") %></td>
-                <td><%= appraisal_cycle.period %></td>
-                <td><%= appraisal_cycle.employee_dead_line.strftime("%d %b, %Y") %></td>
-                <td><%= appraisal_cycle.manager_dead_line.strftime("%d %b, %Y") %></td>
-                <td><%= appraisal_cycle.discussion_dead_line.strftime("%d %b, %Y") %></td>
-                <% if appraisal_cycle.status == AppraisalCycle::CLOSE %>
-                  <td><%= appraisal_cycle.status %></td>
-                <% else %>
-                  <td><%= select_tag :status, options_for_select([['Open', 'Open'], ['Close', 'Close']]), class: "span1 status", :onchange => "get_appraisal(#{appraisal_cycle.id})" %></td>
-                <% end %>
-              <% end %>
-            </table>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Appraisal Cycles List <%= link_to ' New Appraisal Cycle',  new_appraisal_cycle_path, :class => "fa fa-plus pull-right", :remote => true %>              
+  </div>
+  <div class="panel-body">
+  <% if @appraisal_cycles.present? %>
+    <div class="adv-table">
+      <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Department</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Period</th>
+            <th>Employee Dead Line Date</th>
+            <th>Manager Dead Line Date</th>
+            <th>Employee Discussion Dead Line</th>
+            <th width="100px;">Status</th>
+          </tr>
+        </thead>
+        <% @appraisal_cycles.each do |appraisal_cycle| %>
+          <tr class="gradeA">
+          <td><%= link_to appraisal_cycle.title, appraisal_cycle_path(appraisal_cycle.id) %></td>
+          <td><%= appraisal_cycle.department.department_name %></td>
+          <td><%= appraisal_cycle.start_date.strftime("%d %b, %Y") %></td>
+          <td><%= appraisal_cycle.end_date.strftime("%d %b, %Y") %></td>
+          <td><%= appraisal_cycle.period %></td>
+          <td><%= appraisal_cycle.employee_dead_line.strftime("%d %b, %Y") %></td>
+          <td><%= appraisal_cycle.manager_dead_line.strftime("%d %b, %Y") %></td>
+          <td><%= appraisal_cycle.discussion_dead_line.strftime("%d %b, %Y") %></td>
+          <% if appraisal_cycle.status == AppraisalCycle::CLOSE %>
+            <td><%= appraisal_cycle.status %></td>
           <% else %>
-            <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                 Appraisal Templates Not Created Yet 
-            </div>
+            <td>
+            <%= select_tag :status, options_for_select([['Open', 'Open'], ['Close', 'Close']]), class: "status", id: "some-id", :onchange => "get_appraisal(#{appraisal_cycle.id})" %></td>
           <% end %>
-            </div><!--/.module-body-->
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
+        <% end %>
+      </table>
+    </div>  
+  <% else %>
+  <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+       Appraisal Templates Not Created Yet 
+  </div>
+  <% end %>
+  </div><!--/.module-body-->          
 </div><!--/.wrapper-->
   
   

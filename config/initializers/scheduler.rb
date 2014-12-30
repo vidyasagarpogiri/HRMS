@@ -67,7 +67,7 @@ end
     end                        
  end
  end
- 
+# to change ff_status of employee according to date of exit 
  scheduler.cron '0 0 * * *' do
     exit_date = Date.today.strftime("%d/%m/%Y").to_s
     @stauses = FfStatus.where(:date_of_exit == exit_date)
@@ -78,8 +78,10 @@ end
     end
  end
   
+  
+  # to change employee available leaves every month accumlate according to leave policy
   #TODO Month Starting Corn Job
-  scheduler.cron '15 1 1 * *' do
+  scheduler.cron '30 5 1 * *' do
     Employee.all.each do |employee| 
       leave = employee.leave || employee.create_leave(pl_carry_forward_prev_year: 0, available_leaves: 0)
 	    a_leaves = leave.available_leaves ||  0
@@ -93,7 +95,35 @@ end
       end
 	  end
   end
-	
 
+#to change employeecarry forward leaves every year
 
+scheduler.cron '0 4 1 1 *' do 
+
+   Employee.all.each do |employee|
+    leave = employee.leave 
+	  if leave.present?
+	    cf_leaves = leave.pl_carry_forward_prev_year || 0
+	    a_leaves = leave.available_leaves || 0
+	    group = employee.group
+	    leave_policy = group.leave_policy if group.present?
+      if group.present? && leave_policy.present?
+        #a_leaves += leave_policy.pl_this_year
+        leave_policy_cf_leaves = leave_policy.eligible_carry_forward_leaves || 0
+        max_carry_forward_leaves = leave_policy.max_carry_forward_leaves || 0
+        if leave_policy_cf_leaves >= a_leaves
+          carry_leaves = a_leaves
+        else
+          carry_leaves = [ cf_leaves +  leave_policy_cf_leaves, a_leaves].min
+        end
+        final_cf_leaves = [max_carry_forward_leaves,  carry_leaves].min
+        leave.update(available_leaves: final_cf_leaves, pl_carry_forward_prev_year: final_cf_leaves )
+      else
+        0
+      end
+	  else
+	    0
+	  end #Leave.present?
+	 end 
+end
  

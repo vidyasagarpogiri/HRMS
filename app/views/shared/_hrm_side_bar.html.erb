@@ -1,0 +1,18 @@
+<!--sidebar start-->
+<aside>          
+  <div id="sidebar"  class="nav-collapse ">
+  <!-- sidebar menu start-->
+    <% if current_user.department == Department::HR %>
+      <%= render "shared/hrm_hr_side_bar" %>
+    <% else %>
+      <%= render "shared/hrm_employee_side_bar"%>
+    <% end %>
+  <!-- sidebar menu end-->
+  </div>
+</aside>
+<!--sidebar end-->
+  
+  
+  
+
+             

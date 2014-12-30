@@ -56,7 +56,7 @@
         <!--<%# if post.comments.count > 3 %>
           <%# link_to "Show Previous Comments", status_path(post.id) %>            
         <%# end %>-->
-        <% post.comments.limit(3).each do |comm| %> 
+        <% post.comments.each do |comm| %> 
           <li>
             <a href="#" class="cmt-thumb">
               <% if comm.employee.avatar_url.present? %> 
@@ -70,7 +70,7 @@
             <% end %>
           </a>
           <div class="cmt-details">          
-              <a href="#"> <%= comm.employee.full_name %> </a>
+              <a href="#"> <%= link_to comm.employee.full_name , profile_path(comm.employee) %></a>
               <span> <%=comm.comment %> </span>
               <p><%= time_ago_in_words(comm.created_at)%> ago</p>
           </div>

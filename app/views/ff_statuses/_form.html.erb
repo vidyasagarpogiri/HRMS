@@ -1,98 +1,68 @@
-
-		
-			<div class="module">
-				<div class="module-head">
-					<h3>F&F Status Info</h3>
-						</div>
-							<div class="module-body">							
-							<%= form_for ([@employee, @status]), :remote => true, :html => {:class=>"form-horizontal row-fluid edit-status-form"} do |f| %>
-			         <div class="control-group">
-                  <label class="control-label" for="basicinput">Date of Exit</label>
-                  <div class="controls">
-                <%= f.text_field :date_of_exit, :class => "span8 date-picker form-control", :data => {:error => " Please Enter Exit Date"},:required =>true %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        F&F Status Info
+      </div>
+      
+      <div class="panel-body">
+        <%= form_for ([@employee, @status]), :remote => true, :html => {:class=>"form-horizontal row-fluid edit-status-form"} do |f| %>
+          <div class="row">
+            <div class="form-group">
+              <label class="control-label col-lg-2" for="basicinput">Date of Exit</label>
+              <div class="col-lg-8">
+                <%= f.text_field :date_of_exit, :class => "date-picker form-control", :data => {:error => " Please Enter Exit Date"},:required =>true %>
                 <span class="help-block with-errors"></span>
-                      </div>
-								</div>
-									        
-									        
-                <div class="control-group">
-                  <label class="control-label" for="basicinput">Status of F & F</label>
-                      <div class="controls">
-                      <%= f.select :status_name, options_for_select(FfStatus::STATUS), { :prompt => "Please Select" }, :class => "span8 form-control", :data => {:error => " Please Select Status"},:required =>true %>
-                      
-                      <span class="help-block with-errors"></span>
-                     </div>
-								</div>
-	
-	
-		<div class="control-group">
-										<label class="control-label" for="basicinput">InterView Status</label>
-										<div class="controls">
-										<%= f.select :interview_status, options_for_select([['Yes', 'Yes'], ['No', 'No']]), {:prompt => "Please Select"}, :class=> "span8 form-control", :id=>"disabledSelect",:data => {:error => " Please Select InterView Status"}, :required =>true %>
-										
-                     <span class="help-block with-errors"></span>   
-										</div>
-									</div>
-	
-	
-	
-	
-		<div class="control-group">
-										<label class="control-label" for="basicinput">Summary Of F&F </label>
-										<div class="controls">
-										<%= f.text_area :summary, :class =>"span8 form-control",:required =>true, :data => {:error => " Please Enter Summary"} %>	
-                    
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
-								<ul class="navigation-btns edit">
-                    <li><%= f.submit 'Save', :class => "btn btn-success" %></li>
-                    <li><%= link_to 'Cancel', employee_ff_statuses_path(@employee), :class=>"btn btn-danger", :remote => true %></li>            
-                 </ul>  <br>			  																							
-										<% end %>
-							</div><!--/.module-body-->
-						</div><!--/.module-->
-				      
-        <script>
-		      $(function(){
-            $(".edit-status-form").validator();
-           });  
-		    </script> 
-			    
-        <script>
-           $(function () {
-               $( ".date-picker" ).datepicker({ dateFormat: 'dd/mm/yy' });
-           });
-        </script>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label class="control-label col-lg-2" for="basicinput">Status of F & F</label>
+              <div class="col-lg-8">
+                <%= f.select :status_name, options_for_select(FfStatus::STATUS), { :prompt => "Please Select" }, :class => "form-control", :data => {:error => " Please Select Status"},:required =>true %>
+                <span class="help-block with-errors"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label class="control-label col-lg-2" for="basicinput">InterView Status</label>
+              <div class="col-lg-8">
+                <%= f.select :interview_status, options_for_select([['Yes', 'Yes'], ['No', 'No']]), {:prompt => "Please Select"}, :class=> "form-control", :id=>"disabledSelect",:data => {:error => " Please Select InterView Status"}, :required =>true %>
+                <span class="help-block with-errors"></span>   
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label class="control-label col-lg-2" for="basicinput">Summary Of F&F </label>
+              <div class="col-lg-8">
+                <%= f.text_area :summary, :class =>"form-control",:required =>true, :data => {:error => " Please Enter Summary"} %>	
+                <span class="help-block with-errors"></span>   
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-offset-2 col-lg-10">
+              <%= f.submit 'Save', :class => "btn btn-success" %> 
+              <%= link_to 'Cancel', employee_ff_statuses_path(@employee), :class=>"btn btn-danger", :remote => true %>							
+            </div>
+          </div>
+        <% end %>
+      </div><!--/.module-body-->
+    </div><!--/.module-->
+  </div>
+</div>
 
+  <script>
+    $(function(){
+      $(".edit-status-form").validator();
+    });   
+  </script> 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <script>
+    $(function () {
+      $( ".date-picker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    });
+  </script>

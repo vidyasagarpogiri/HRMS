@@ -1,54 +1,42 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head"> 
-              <h3>Add Work Group</h3>
-            </div>
-            <div class="module-body">
-              <%= form_for @workgroup,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |w| %>
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Work Group Name</label>
-                <div class="controls">
-                  <%= w.text_field :name, :class => "span8 form-control ", :placeholder =>"Enter Work Group Name", :data => {:error => "Please Enter Work Group Name"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Work Group Description</label>
-                <div class="controls">
-                  <%= w.text_area :description, :class => "span8 form-control time-picker", :placeholder =>"Enter Description ", :data => {:error => "Please Enter Description  "}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Work Group Icon</label>                                         
-                <div class="controls">
-                  <%= w.file_field :workgroupicon,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
-                  Existing/Default Work Group Icon: <% if @workgroup.workgroupicon.present? %> <%= image_tag @workgroup.workgroupicon, size: "40x20" %>
-                  <% else %>
-                    <%= image_tag "workgroup.png", size: "40x20" %> 
-                  <% end %> 
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              <ul class="navigation-btns editthree" >
-                <li><button type="submit" class="btn btn-success">Save</button></li>
-                <li><%= link_to "Cancel", workgroups_path,:class => "btn btn-danger" %></li>
-              </ul>	
-              <% end %>
-            </div><!--/.module-body-->
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
-	
+<div class="panel panel-info">
+  <div class="panel-heading"> 
+    Work Group Form
+  </div>        
+  <div class="panel-body">                                      
+  <%= form_for @workgroup,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |w| %>
+    <div class="form-group">
+      <label class="control-label col-lg-2">Work Group Name</label>
+      <div class="col-lg-8">
+        <%= w.text_field :name, :class => "form-control ", :placeholder =>"Enter Work Group Name", :data => {:error => "Please Enter Work Group Name"}, :required => true %>
+        <span class="help-block with-errors"></span>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-lg-2" for="basicinput">Work Group Description</label>
+      <div class="col-lg-8">
+        <%= w.text_area :description, :class => "form-control time-picker", :placeholder =>"Enter Description ", :data => {:error => "Please Enter Description  "}, :required => true %>
+        <span class="help-block with-errors"></span>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="col-lg-2 control-label" for="basicinput">Work Group Icon</label>                                         
+      <div class="col-lg-8">
+        <%= w.file_field :workgroupicon,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%><br>
+          Existing/Default Work Group Icon: <% if @workgroup.workgroupicon.present? %> <%= image_tag @workgroup.workgroupicon, size: "50x50" %>
+        <% else %>
+          <%= image_tag "workgroup.png", size: "50x50" %> 
+        <% end %> 
+        <span class="help-block with-errors"></span>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <%= link_to "Cancel", workgroups_path,:class => "btn btn-danger" %>    
+    <% end %>
+    </div>
+</div>
+                                                                   
 	
 <script>
  function validateFiles(inputFile) {
@@ -76,7 +64,6 @@
     $(inputFile).val('');
   };
 }
-
 
 </script>
 

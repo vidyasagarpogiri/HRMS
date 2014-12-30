@@ -1,14 +1,16 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-        <div class="monthly_list">
-          <%= render "payrolls/payslips_list_by_year" %>
+<div class="panel panel-info">
+  <div class="panel-heading"> 
+    pay slips
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <section class="panel">        
+        <div class="panel-body">      
+          <div class="monthly_list">
+            <%= render "payrolls/payslips_list_by_year" %>
+          </div>
         </div>
-        <div class="yearly_list"></div>
-        </div><!--/.content-->                    
-      </div><!--/.span9-->                
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+      </section>
+    </div>
+  </div>       
+</div>

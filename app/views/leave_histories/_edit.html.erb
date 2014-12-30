@@ -28,6 +28,8 @@
 					  <span class="help-block with-errors"></span>   
 					</div>
 			</div>
+			
+			 <div id="casualleave">
 			<div class="row-fluid">
         <div class="span2">
            <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
@@ -73,6 +75,23 @@
 						  </div>
             </div>
           </div>
+          
+           </div><!-- calualleave-->
+           
+             <div id="floatingleave">
+          <div class="row-fluid">
+            <div class="span4">
+              <div class="control-group">
+							  <label class="control-label" for="basicinput">Date</label>
+							  <div class="controls">
+                 <input type="text" name="float_leave_date" id = "idnm4" class ="span8 form-control float-leave-date">
+								   <span class="help-block with-errors"></span>   
+							  </div>
+						  </div>
+            </div>
+          </div>
+          </div>
+          
         <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
 		<ul class="navigation-btns edittwo">                                                                                       
       <li> <button type="submit" class="btn btn-success"> Apply </button></li>
@@ -129,6 +148,13 @@
       $('.half_day').hide();
       $('.full_day').show();
     <% end %>
+     $(".float-leave-date").datepicker({ // floating leave
+       dateFormat: 'dd/mm/yy',
+          minDate: -0,
+          yearRange: "0:+1",
+           changeMonth: true,
+         changeYear: true
+      });
  });
   $(function(){
     $(".alert-message").hide();
@@ -169,7 +195,26 @@
   });
 </script>
 
-            
+  <script>
+  function checkLeaveTYpe(leaveType){
+       if(leaveType==2) {
+          $('#casualleave').hide(); 
+          $('.span4:last').show(); 
+         }
+         else {
+          $('#casualleave').show();
+          $('.span4:last').hide(); 
+         }
+    }
+  
+  $(function(){
+    checkLeaveTYpe($("select[name='leave_history[leave_type_id]']").val());
+        $("select[name='leave_history[leave_type_id]']").change(function(){ 
+          checkLeaveTYpe($(this).val());
+        });
+       //$("select[name='leave_history[leave_type_id]'] option[value='2']").change(function(){ $('#casualleave').hide(); });
+    });
+  </script>          
 
 
 

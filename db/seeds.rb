@@ -125,7 +125,7 @@ end
 
 
 
-["Personal Leave", "Carry Forward Leave"].each do |leave|
+["Personal Leave", "Floating Holiday"].each do |leave|
 LeaveType.create(:type_name => leave ) 
 end
 LeaveTypes = LeaveType.all.pluck(:id)

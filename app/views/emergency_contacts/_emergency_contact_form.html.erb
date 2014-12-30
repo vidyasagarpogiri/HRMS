@@ -1,44 +1,54 @@
-<div class="module">
-	<div class="module-head">
-		<h3>Emergency Contact Info</h3>
-	</div>
-	<div class="module-body">							                                              
-	  <%= form_for ([@employee, @emergency]), :remote => true,  :html => {:class=>"form-horizontal row-fluid new_emergency-contact-form"} do |f| %>		
-    <div class="control-group">
-      <label class="control-label" for="basicinput">Name Of person</label>
-        <div class="controls">
-          <%= f.text_field :name, :class => "span8 form-control", :placeholder =>"Enter Name", :data => {:error => "Please Enter Name "}, :required => true,:pattern => '[a-zA-Z/s ]*' %>  
-          <span class="help-block with-errors"></span>
-        </div>
-		</div>				          
-    <div class="control-group">
-      <label class="control-label" for="basicinput">Relationship with the Employee</label>
-      <div class="controls">
-        <%= f.text_field :relation, :class => "span8 form-control", :placeholder =>"Enter Relationship", :data => {:error => "Please Enter Relationship"}, :required => true,:pattern => '[a-zA-Z/s ]*' %>
+<div class="row">
+<div class="col-lg-12">
+<section class="panel">
+	<header class="panel-heading">
+		<h4>Emergency Contact Info</h4>
+	</header>
+
+  <div class="panel-body">							                                              
+    <%= form_for ([@employee, @emergency]), :remote => true,  :html => {:class=>"form-horizontal row-fluid new_emergency-contact-form"} do |f| %>		
+    <div class="form-group">
+      <label class="control-label col-lg-2">Name Of person</label>
+      <div class="col-lg-8">
+        <%= f.text_field :name, :class => "form-control", :placeholder =>"Enter Name", :data => {:error => "Please Enter Name "}, :required => true,:pattern => '[a-zA-Z/s ]*' %>  
         <span class="help-block with-errors"></span>
       </div>
-	  </div>
-    <div class="control-group">
-     <label class="control-label" for="basicinput">Mobile 1</label>
-     <div class="controls">
-     <%= f.text_field :mobile1, :class => "span8  form-control", :placeholder => "Enter Mobile Number", :data => {:error => "Please Enter Valid Mobile number"}, :required =>true, :pattern=> '[0-9]{10}' %> 
-	     <span class="help-block with-errors mobile-format"></span>   
+    </div>				          
+    
+    <div class="form-group">
+      <label class="control-label col-lg-2">Relationship with the Employee</label>
+      <div class="col-lg-8">
+        <%= f.text_field :relation, :class => "form-control", :placeholder =>"Enter Relationship", :data => {:error => "Please Enter Relationship"}, :required => true,:pattern => '[a-zA-Z/s ]*' %>
+        <span class="help-block with-errors"></span>
+      </div>
     </div>
+    
+    <div class="form-group">
+      <label class="control-label col-lg-2">Mobile 1</label>
+      <div class="col-lg-8">
+        <%= f.text_field :mobile1, :class => "form-control", :placeholder => "Enter Mobile Number", :data => {:error => "Please Enter Valid Mobile number"}, :required =>true, :pattern=> '[0-9]{10}' %> 
+        <span class="help-block with-errors mobile-format"></span>   
+      </div>
     </div>		 		
-    <div class="control-group">
-	    <label class="control-label" for="basicinput">Mobile2 </label>
-	    <div class="controls">
-       <%= f.text_field :mobile2, :class => "span8  form-control", :placeholder => "Enter Mobile Number",  :data => {:error => "Please Enter Valid mobile number"}, :pattern=> '[0-9]{10}' %>                  
-		     <span class="help-block with-errors"></span>   
-	    </div>
+    <div class="form-group">
+      <label class="control-label col-lg-2">Mobile2 </label>
+      <div class="col-lg-8">
+        <%= f.text_field :mobile2, :class => "form-control", :placeholder => "Enter Mobile Number",  :data => {:error => "Please Enter Valid mobile number"} %>
+        <span class="help-block with-errors"></span>   
+      </div>
     </div>					
-    <ul class="navigation-btns " style="margin-left:685px;">
-      <li><%= f.submit  'Save', :class => "btn btn-success" %></li>
-	    <li><%= link_to 'Cancel', employee_emergency_contacts_path(@employee), :class=>"btn btn-danger ", :remote => true %></li>									
-    </ul>		
-    <% end %>
+    
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <%= f.submit  'Save', :class => "btn btn-success" %>
+        <%= link_to 'Cancel', employee_emergency_contacts_path(@employee), :class=>"btn btn-danger", :remote => true %>
+      </div>
+    </div>		
+   <% end %>
   </div><!--/.module-body-->
-</ bdiv><!--/.module-->
+</section><!--/.module-->
+</div>
+</div>
 
 
 <script>
@@ -49,5 +59,3 @@
    });
   });
 </script>
-
-    

@@ -1,85 +1,11 @@
-<header class="header white-bg" style="background: #FF6C60;" >          
+<header class="header white-bg"  >          
     <!--logo start-->
     <div class="navbar-header" id="font">
-          <a class="navbar-brand" href="/"><font style="">AmzurHRM</font></a>
-      </div>
-    <!--logo end-->
-    <div class="nav notify-row" id="top_menu">
-      <!--  notification start -->
-      <ul class="nav top-menu">
-        <!-- settings organization -->
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Organization <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to 'Policies',policies_path %></li>
-            <li><a href="/employees">Employees</a></li>
-            <li><a href="/albums">Gallery</a></li>
-            <li><a href="/posts">Posts</a></li>
-            <li><a href="/statuses">Employee Wall</a></li>
-            <li><a href="/workgroups">Work Groups</a></li>
-            <li><%= link_to 'Events',amzur_events_path %></li>
-            <li><%= link_to 'Announcements',announcements_path %></li>
-            <li><a href="/calendar">Calendar</a></li>
-            <!-----<li><a href="#">Holidays</a></li> ------->
-            <li><%# link_to 'Announcement',announcements_path %></li>
-            <li><%# link_to 'Job Openings',recruitments_path %></li>
-          </ul>
-        </li>
-        <!-- organization end -->
-        <!-- Attendence dropdown start-->
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Attendence <b class="caret"></b></a>	        
-	        <ul class="dropdown-menu">
-	          <li><a href="/employee_attendence/emp_show_attendance"> My Attendance </a></li>	
-			      <li><a href="/employee_attendence/show_attendance">Employee Attendance</a></li>														
-		      </ul>
-	      </li>
-	      <!-- Attendence dropdown end-->
-	      <!-- Appraisals dropdown start-->
-	      <% if current_user.employee.is_reporting_manager? %>
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Appraisals <b class="caret"></b></a>
-	          <ul class="dropdown-menu">
-			          <li><a href="/appraisals">Appraisal Templates</a></li>
-			          <li><a href=" /assign_employee_appraisals">Assign Appraisal</a></li>
-			          <li><a href="/review_elements">Review Elements</a></li>
-			          <li><a href="/appraisals_list">Employee Appraisals</a></li>
-			          <li><a href="/reportees">Reportees Previous Appraisals</a></li>			    												
-		        </ul>
-	        </li>
-	      <% end %>
-	      <!-- Appraisals dropdown end-->
-	      <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Leaves<b class="caret"></b></a>
-		<ul class="dropdown-menu">
-			<li><a href="/leave_histories">MyLeaves</a></li>
-			<% if current_user.employee.is_reporting_manager? %>
-			      <li><a href="/reportees_leaves">Leave Approvals</a></li>
-       <% end %>                                    
-			 </ul> 
-	 
-	</li>
-	
-	<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pay Roll<b class="caret"></b></a>
-    <ul class="dropdown-menu">
-	  <% if current_user.department == Department::ACCOUNTS %>
-	    <li><%= link_to 'Pay Slips View', payroll_path %></li>
-	    <li><a href = "/company_pay_roll_masters">Company Monthly PayRoll</a></li>
-	  <% else %>
-	   <li><a href="/monthly_payslips" >Payslips</a></li>
-	    
-	  <% end%>
-	  <li><%= link_to 'Investment Declarations', investment_declarations_path %></li>
-	  </ul>
-	</li>
-
-<!---  <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportees <b class="caret"></b></a>
-		
-	</li> -->				                           
-    </ul>
+        <a class="navbar-brand" href="/"><font style="">AmzurHRM</font></a>
     </div>
+    <!--logo end-->
+   
+      
     <div class="top-nav ">
         <ul class="nav pull-right top-menu">
             <li>
@@ -105,7 +31,7 @@
                     <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                     <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
                     <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
-                    <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                    <li><%= link_to ' Logout', destroy_user_session_path, :method => :delete, :class=> "fa fa-key" %></li>
                 </ul>
             </li>
             <!-- user login dropdown end -->
@@ -113,7 +39,7 @@
                 <i class="fa  fa-align-right"></i>
             </li>
         </ul>
-    </div>              
+    </div>       
 </header>
       
 <style>

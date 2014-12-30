@@ -1,13 +1,16 @@
 <!-- page start-->
-<section id="main-content" >
-  <section class="wrapper site-min-height" style="background-color:#F1FAFF">
-  <div class="row wall-layout">
-    <div class="col-md-8" style="margin-top:100px;">
+
+  <div class="row">
+    <div class="col-md-9">
       <section class="panel">
-        <div class="cover-photo">         
-          <div class="fb-name">
-              <h2><a href="#"  style="color:#FF6C60 !important"><%= current_user.employee.full_name %></a></h2>
+        <div class="cover-photo">  
+          <div class="fb-timeline-img">
+            <img src="/assets/fb-img.jpg" alt="">
           </div>
+                              <div class="fb-name">
+                                  <h2><a href="#"><%= current_user.employee.full_name %></a></h2>
+                              </div>       
+        
         </div>
         <div class="panel-body">
           <div class="profile-thumb">                
@@ -39,7 +42,7 @@
     </div><!--"col-md-9-->
     
     <!--Notifications-->
-    <div class="col-md-3" style="background-color:#FFF;padding:10px;">
+    <div class="col-md-3">
       <div class="fb-timeliner">
         <h2 class="recent-highlight">Events</h2>
         <% if @welcome_event.present? %>	
@@ -105,8 +108,7 @@
       </div>                	          
     </div>
   </div>
-  </section>
-</section>
+
 <!-- page end-->
 <style>
 /* See license.txt for terms of usage */

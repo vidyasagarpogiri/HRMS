@@ -1,48 +1,161 @@
-<div class="wrapper">
- <div class="container">
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Job Openings
+      <% if current_user.department == Department::HR %>                                
+       <%= link_to 'New Job',  new_recruitment_path, :class => "fa fa-plus pull-right" %>
+     <% end %>  
+  </div>	
 	<div class="row">
-    <div class="span12">
-		  <div class="content">
-			  <div class="module">
-				  <div class="module-head">
-					  <h3>Job Openings </h3>
-					    <% if current_user.department == Department::HR %>                                
-					  <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'New Job',  new_recruitment_path %></label>
-					<% end %>  
-				  </div>	
-			    <div class="module-body">
-		        <% if @recruitments.present? %> 
+    <div class="col-sm-12">
+      <section class="panel">        
+        <div class="panel-body">  		   
+	        <% if @recruitments.present? %> 
             <% @recruitments.each do |recruitment| %>
-              <h5><%= recruitment.jobcode %> - <%= recruitment.title %></h5> 
-                 <% if current_user.department == Department::HR %>     
-                   <ul class="navigation-btns pull-right" style="margin-top:-20px">
-                    <li><%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %></li>
-                    <li><%= link_to "Delete", recruitment_path(recruitment.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-                  </ul> 
-                <% end %> 
-              <h5>Job Type: <%= recruitment.job_type%></h5>     
-              <h5>Job Status: <%= recruitment.status %></h5>         
-              <h5><%= link_to recruitment.link, recruitment.link, :target => "/blank" %></h5>             
-              <label class="desc"><%= raw recruitment.description %></label>
+              
+              <p><strong>Job Code:</strong> <%= recruitment.jobcode %></p>
+              <p><strong>JOb Title: </strong><%= recruitment.title %></p>                
+              <p><strong>Job Type: </strong><%= recruitment.job_type%></p>     
+              <p><strong>Job Status: </strong><%= recruitment.status %></p>         
+              <p><%= link_to recruitment.link, recruitment.link, :target => "/blank" %></p>             
+              <p ><strong>Job Description: </strong><div class="description"><%= raw recruitment.description %></div></p>
               <%= link_to "Continue..", recruitment_path(recruitment), :class => "pt4" %><br>
               Attachment:<%= link_to "Show", recruitment.file_url, :target => "/blank" %>
+              <% if current_user.department == Department::HR %>                      
+                <%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %>
+                <%= link_to "Delete", recruitment_path(recruitment.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
+              <% end %> 
               <% if current_user.department == Department::HR %>               
               <% end %><hr>
             <% end %>                                                                                                                             
             <% else %>
-              <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  No Jobs to display.
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              No Jobs to display.
+          </div>
+        <% end %>                 
+				</div><!--/.module-body-->
+			</section><!--/.module-->
+		</div><!--/.content-->
+	</div><!--/.span12-->
+</div><!--/.row-->	
+
+<style>
+.description{
+max-height:35px;
+overflow:hidden;
+}
+</style>	 
+
+
+
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Job Openings
+      <% if current_user.department == Department::HR %>                                
+       <%= link_to 'New Job',  new_recruitment_path, :class => "fa fa-plus pull-right" %>
+     <% end %>  
+  </div>	
+	<div class="row">
+    <div class="col-lg-12">
+      <section class="panel">        
+        <div class="panel-body">  		   
+	        <% if @recruitments.present? %> 
+            <% @recruitments.each do |recruitment| %>
+            <div class="col-lg-8">
+              <div class ="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label  class="col-lg-4 control-label">Job Code:</label>
+                    <div class="col-lg-8">
+                      <%= recruitment.jobcode %>
+                      <span class="help-block with-errors"></span> 
+                    </div>
+                  </div>
+                </div>            
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label  class="col-lg-4 control-label">Job Title:</label>
+                    <div class="col-lg-8">
+                      <%= recruitment.title %>
+                      <span class="help-block with-errors"></span> 
+                    </div>
+                  </div>
+                </div>
               </div>
-            <% end %>  
-               <%= paginate  @recruitments %> 
-						</div><!--/.module-body-->
-					</div><!--/.module-->
-				</div><!--/.content-->
-			</div><!--/.span12-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
-	
+            </div>
+            
+            <div class="col-lg-8">
+              <div class ="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label  class="col-lg-4 control-label">Job Type:</label>
+                    <div class="col-lg-8">
+                      <%= recruitment.job_type%>
+                      <span class="help-block with-errors"></span> 
+                    </div>
+                  </div>
+                </div>            
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label  class="col-lg-5 control-label">Job Status:</label>
+                    <div class="col-lg-7">
+                      <%= recruitment.status %>
+                      <span class="help-block with-errors"></span> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                       
+            <div class="col-lg-8">
+              <div class ="row">             
+                <div class="form-group"> 
+                  <div class="col-lg-12">                                     
+                    <%= link_to recruitment.link, recruitment.link, :target => "/blank" %>
+                    <span class="help-block with-errors"></span> 
+                  </div>                
+                </div>
+              </div>                      
+            </div><br>
 
+            <div class="col-lg-12">
+              <div class ="row">               
+                <div class="form-group">
+                  <label  class="col-lg-4 control-label">Job Description:</label>
+                  <div class="col-lg-8">
+                   <p><div class="description"><%= raw recruitment.description %></div></p>
+                    <span class="help-block with-errors"></span> 
+                  </div>
+                </div>
+              </div>      
+              
+              <p ><strong>Job Description: </strong><div class="description"><%= raw recruitment.description %></div></p>
+              <%= link_to "Continue..", recruitment_path(recruitment), :class => "pt4" %><br>
+              Attachment:<%= link_to "Show", recruitment.file_url, :target => "/blank" %>
+              <% if current_user.department == Department::HR %>                      
+                <%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %>
+                <%= link_to "Delete", recruitment_path(recruitment.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
+              <% end %> 
+              <% if current_user.department == Department::HR %>               
+              <% end %><hr>
+            <% end %>                                                                                                                             
+            <% else %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              No Jobs to display.
+          </div>
+        <% end %>                 
+				</div><!--/.module-body-->
+			</section><!--/.module-->
+		</div><!--/.content-->
+	</div><!--/.span12-->
+</div><!--/.row-->	
 
+<style>
+.description{
+max-height:35px;
+overflow:hidden;
+}
+</style>	 

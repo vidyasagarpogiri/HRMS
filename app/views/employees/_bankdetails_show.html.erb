@@ -1,40 +1,36 @@
-<div class="module-head">
-  <h3>Bank Info</h3>
-</div>
-  <% if current_user.department == Department::HR %>                                                  
-  <label style="font-weight:normal;margin-top:-30px;" class="pull-right"><a><i class="icon-edit"></i></a><%= link_to " Edit",  bankdetails_edit_employee_path(@employee), :remote => true %></label>
-  <% end %>
-  <div class="module-body " style="margin-left:100px;">	                                       
-    <div class ="row-fluid">
-      <div class="span5">		
-        <div class="control-group">
-          <label class="control-label" for="basicinput"><strong>Bank Name: </strong><%= @employee.bank_name %> </label>
-        </div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        Bank Info
+      <% if current_user.department == Department::HR %>                                                  
+        <label class="pull-right"><a><i class="icon-edit"></i></a><%= link_to " Edit",  bankdetails_edit_employee_path(@employee), :remote => true %></label>
+      <% end %>
       </div>
-      <div class="span5">	
-        <div class="control-group">
-          <label class="control-label" for="basicinput"><strong>Account Number: </strong><%= @employee.account_number %></label>  
+      
+      <div class="panel-body">
+        <div class ="row">
+          <div class="bio-row">
+            <p><span>Bank Name</span>: <%= @employee.bank_name %></p>
+          </div>
+          <div class="bio-row">
+            <p><span>Account Number</span>: <%= @employee.account_number %></p>
+          </div>
         </div>
-     </div>
-   </div><hr>	
-     <div class ="row-fluid">
-       <div class="span5">		
-         <div class="control-group">
-           <label class="control-label" for="basicinput"><strong>Branch Name: </strong><%= @employee.branch_name %> </label>
-         </div>
-      </div>
-      <div class="span5">	
-        <div class="control-group">
-          <label class="control-label" for="basicinput"><strong>PAN No: </strong><%= @employee.pan %></label>
+        <div class="row">
+          <div class="bio-row">
+            <p><span>Branch Name</span>: <%= @employee.branch_name %></p>
+          </div>
+          <div class="bio-row">
+            <p><span>PAN Number</span>: <%= @employee.pan %></p>
+          </div>
         </div>
-      </div>
-   </div><hr>
-   
-   <div class ="row-fluid">
-     <div class="span5">	
-       <div class="control-group">
-         <label class="control-label" for="basicinput"><strong>PF Account Number: </strong><%= @employee.PFAccountNumber %></label>
+        <div class ="row">
+          <div class="bio-row">
+            <p><span>PF Account Number</span>: <%= @employee.PFAccountNumber %></p>
+          </div>
+        </div>
       </div>
     </div>
-  </div><hr>
+  </div>
 </div>
