@@ -1,56 +1,41 @@
-<div class="wrapper">
- <div class="container">
-	<div class="row">
-    <div class="span8">
-		  <div class="content">
-			  <div class="module">
-				  <div class="module-head">
-					  <h3>Job Openings </h3>					  
-				  </div>				
-				  <div class="module-body">			    
-            <h5><%= @recruitment.jobcode %> - <%= @recruitment.title %></h5> 
-             <h5>Job Type: <%= @recruitment.job_type%></h5>
-              <h5>Job Status: <%= @recruitment.status%></h5>
-              <% if current_user.department == Department::HR %>     
-                <ul class="navigation-btns pull-right" style="margin-top:-20px">
-                  <li><%= link_to 'Edit', edit_recruitment_path(@recruitment), :class => "btn btn-success " %></li>
-                  <li><%= link_to "Delete", recruitment_path(@recruitment), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-                </ul> 
-              <% end %>             
-            <h5>Link: <%= link_to @recruitment.link, @recruitment.link, :target => "/blank" %></h5>
-             <%= raw @recruitment.description %> <br> <br>
-            <h5>Attachment: <%= link_to "Show", @recruitment.file_url, :target => "/blank" %> </h5>
-                   
-                     
-						</div><!--/.module-body-->
-					</div><!--/.module-->
-				</div><!--/.content-->
-			</div><!--/.span8-->  
-			<div class="span4">
-			  <div class="module">	
-          <div class="box-title">
-            <div class="module-head">
-              <h3>Job Openings List</h3> 
-            </div>                                            
-          </div>
-          <div class="module-body">
-            <% @recruitments.each do |recruitment| %>
-            <div class="module-body">	
-               <div class="control-group">
-                  <a href="#"><strong><%= recruitment.title %>  - <%= recruitment.jobcode %></strong></a>
-               </div>
-               <div class="control-group">
-                  <a href="#"><%= recruitment.link %></a>
-                  <label class="idesc" for="basicinput"> <%= raw recruitment.description %></label>                                  
-               </div>
-               <%= link_to "Continue..", recruitment_path(recruitment), :class => "pt4" %><br> 
-               <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>                     
-            </div><!--module body-->
-            <% end %>
-             <%= paginate  @recruitments %> 	
-          </div><!--/.module-body-->
-       </div><!--/.module-->
-			</div><!--/.span4-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
+  <div class="panel panel-info">
+    <div class="panel-heading"> 
+    Job Opening  <%= link_to " All Job Openings",recruitments_path, :class => "fa pull-right" %>
+  </div>                          
+    <div class="panel-body"> 
+  
+      <p><font size="4"><strong>Job Code:</strong> <%= @recruitment.jobcode %> </font></p>
+      <p><font size="4"><strong>Job Title:</strong> <%= @recruitment.title %> </font></p>
+      <p><font size="4"><strong>Job Type: </strong><%= @recruitment.job_type %> </font></p> 
+      <p><font size="4"><strong>Job Status: </strong><%= @recruitment.status %></p> 
+      <p><font size="4"><strong>Job Link: </strong><%= link_to @recruitment.link, @recruitment.link, :target => "/blank" %></p>
+      <p><font size="4"><strong>Job Attachment: </strong><%= link_to "Show", @recruitment.file_url, :target => "/blank" %></p>
+      <p><font size="4"><strong>Job Description: </strong><%= raw @recruitment.description %></p>
+      
+    <% if current_user.department == Department::HR %>     
+      <ul class="navigation-btns pull-left">
+        <%= link_to 'Edit', edit_recruitment_path(@recruitment), :class => "btn btn-success " %>
+        <%= link_to "Delete", recruitment_path(@recruitment), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
+      </ul> 
+    <% end %>             
+                                                               
+
+
+
+</div><!--module-body -->    																																											                               
+        </div><!-- /.module-->									      				                                      
+      </section><!--/.content-->                    
+    </div><!--/.col-sm-12-->                
+  </div><!--/.row-->
+</div><!--/panel panel-info-->
+
+
+         
+  
+  <style>
+    .ui-autocomplete{
+      z-index :5000;
+    }
+  </style>
+  
+
