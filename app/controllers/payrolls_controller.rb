@@ -13,6 +13,7 @@ class PayrollsController < ApplicationController
       @actual_days = Time.days_in_month(@month, @year)
       @payslips = Payslip.new.generating_payslips(@salary_percentages, @employees, @month, @year)
       @company_payroll = CompanyPayRollMaster.create(month: Date::MONTHNAMES[@month], year: @year, status: CompanyPayRollMaster::GENERATED, name: current_user.employee.full_name)
+      @cprm = CompanyPayRollMaster.where(month: enter_month, year: @year)
     end
   end
 
@@ -24,6 +25,7 @@ class PayrollsController < ApplicationController
     @years = CompanyPayRollMaster.pluck(:year).uniq
     if params[:payslip_view_year] == '0' || params[:payslip_view_month] == '0'
       @error = 'Please Enter Month and Year'
+      @cprm = true
     else
       month = Date::MONTHNAMES.index(enter_month)
       @payslips = Payslip.where(month: month, year: enter_year)
