@@ -1,8 +1,10 @@
-<div class="panel panel-info">
+<div class="panel">
   <div class="panel-heading">
               All Job Locations
               <% if current_user.department == Department::HR %>
-              <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a><%= link_to " Add Job Location",new_job_location_path%></label>
+              <span class="pull-right">
+                <%= link_to " Add Job Location",new_job_location_path%>
+              </span>
               <% end %>
             </div>
             <% if @job_locations.present? %>                                         
@@ -11,7 +13,8 @@
                 <thead>											      
                   <tr>
                     <th>City</th>
-                    <th> Number of Employees</th>															            									      		
+                    <th> Number of Employees</th>	
+                    <th>Actions</th>														            									      		
                   </tr>
                   </thead>
                 <% @job_locations.each do |job| %>

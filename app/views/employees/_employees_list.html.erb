@@ -1,35 +1,26 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-             <div class="module-head" style="background-color: #82B4E6 ">
-                <h3> List of Employees</h3>
-              </div>                                                                                        
-              <div class="module-body">                                                                          								
+<div class="row">                                             
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        List Of Employees
+      </header>
+    <div class="panel-body">
+      <section id="unseen">                                                                                   
+                                                                            								
                 <%= render "employees/employee_data_table" %>   
-              </div><!-- module body-->
-            </div><!--/.module-->
-          </div><!--/.content-->                    
+       </section>                
+        </div><!--/.span9-->   
+         </section>                
         </div><!--/.span9-->                
      </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
 
   
 <script>
 	$(document).ready(function() {
-		$('.datatable-2').dataTable();
+		$('#dynamic-table').dataTable();
 		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
 		$('.dataTables_paginate > a').wrapInner('<span />');
 		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
 		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
 	} );
 </script>
-  
- 
-
-
-
-
