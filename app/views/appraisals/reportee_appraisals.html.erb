@@ -1,50 +1,38 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>Repotees Appraisals List </h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><span class="glyphicon glyphicon-circle-arrow-left"></span></a> <%= link_to 'Back To Repotees', reportees_path %></label>
-            </div>
-            <div class-module-body>
-              <% if @employee_appraisals.present? %>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Appraisal</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Review Period</th>
-                    <th>Overall Rating</th>
-                    <th>Appraisal Cycle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @employee_appraisals.each do |appraisal| %>
-                    <tr>
-                      <td><%= link_to appraisal.title, "/reportee_appraisal_view/#{appraisal.id}" %></td>
-                      <td><%= appraisal.start_date %></td>
-                      <td><%= appraisal.end_date %></td>
-                      <td><%= appraisal.review_period %></td>
-                      <td><%= appraisal.overall_rating %></td>
-                      <td><%= appraisal.appraisal_cycle.title %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-              <% else %>
-                
-                <div class="alert alert-success alert-dismissable">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    Employee did not have any previous appraisals 
-                </div>
-              <% end %>
-            </div>
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Reportees Appraisals List <%= link_to ' Back To Reportees', reportees_path, :class => "fa fa-arrow-circle-left pull-right" %>             
+  </div>
+  <div class="panel-body">
+    <% if @employee_appraisals.present? %>
+    <table class="display table table-bordered table-striped"> 
+      <thead>
+        <tr>
+          <th>Appraisal</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Review Period</th>
+          <th>Overall Rating</th>
+          <th>Appraisal Cycle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employee_appraisals.each do |appraisal| %>
+          <tr>
+            <td><%= link_to appraisal.title, "/reportee_appraisal_view/#{appraisal.id}" %></td>
+            <td><%= appraisal.start_date %></td>
+            <td><%= appraisal.end_date %></td>
+            <td><%= appraisal.review_period %></td>
+            <td><%= appraisal.overall_rating %></td>
+            <td><%= appraisal.appraisal_cycle.title %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>                
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          Employee did not have any previous appraisals 
+      </div>
+    <% end %>
+  </div><!--/.panel-body-->          
+</div><!--/.panel-info-->

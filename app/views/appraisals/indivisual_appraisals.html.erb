@@ -1,41 +1,38 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>Employee Appraisals List</h3>
-            </div>
-              <table border="0" class="table  table-striped">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Period</th>
-                  <th>Status</th>
-                  <th>Appraisal Cycle</th>
-                </tr>
-              </thead>
-              <% if @employee_appraisals.present? %>
-              <% @employee_appraisals.each do |appraisal| %>
-                <% i = 0 %>
-                <tr>
-                <td><%= link_to appraisal.title, "/employee_appraisal_view/#{appraisal.id}" %></td>
-                <td><%= appraisal.start_date.strftime("%d %b, %Y") %></td>
-                <td><%= appraisal.end_date.strftime("%d %b, %Y") %></td>
-                <td><%= appraisal.review_period %></td>
-                <td><%= appraisal.status%></td>
-                <td><%= appraisal.appraisal_cycle.title %></td>
-              <% end %>
-             <% end %>
-             </tbody>
-            </table>
-            </div><!--/.module-body-->
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+<div class="panel panel-info">
+  <div class="panel-heading">    
+    Employee Appraisals List
+  </div>
+  <div class="panel-body">
+    <% if @employee_appraisals.present? %>
+    <table class="display table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Period</th>
+          <th>Status</th>
+          <th>Appraisal Cycle</th>
+        </tr>
+      </thead>
+      <tbody>        
+        <% @employee_appraisals.each do |appraisal| %>
+        <% i = 0 %>
+        <tr>
+          <td><%= link_to appraisal.title, "/employee_appraisal_view/#{appraisal.id}" %></td>
+          <td><%= appraisal.start_date.strftime("%d %b, %Y") %></td>
+          <td><%= appraisal.end_date.strftime("%d %b, %Y") %></td>
+          <td><%= appraisal.review_period %></td>
+          <td><%= appraisal.status%></td>
+          <td><%= appraisal.appraisal_cycle.title %></td>        
+        <% end %>  
+      </tbody>
+    </table>
+    <% else %>  
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          Seems Employees have no appraisals
+      </div>                                   
+    <% end %>
+  </div><!--/.panel-body-->          
+</div><!--/.panel-info-->
