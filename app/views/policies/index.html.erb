@@ -6,7 +6,7 @@
           <div class="module">
             <div class="module-head">
 			        <h3>Policy Details</h3>
-			        <% if @new_permission.present? %> 
+			        <% if current_user.department == "HR" %> 
 			        <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add Policy',  new_policy_path %>
 			        </label>
 			        <% end %>

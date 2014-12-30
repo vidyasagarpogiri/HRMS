@@ -1,6 +1,6 @@
 # This Controller for Adding Policies
 class PoliciesController < ApplicationController
-  before_filter :role_auth
+ # before_filter :role_auth
 
   def role_auth
     actions = role_based_auth(params[:controller], params[:action])
