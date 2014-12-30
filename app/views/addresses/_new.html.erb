@@ -1,5 +1,8 @@
+<div class="row">
+<div class="col-lg-12">
+<section class="panel">
 <% if current_user.department == Department::HR %>
-  <div class="panel-body bio-graph-info">	
+  <div class="panel-body">	
     <%= form_for [@employee, @address],  :remote => true  do |f| %>  
       <div class="" style="color:black">                                
         <u><strong><%= @address_type %> Address</strong></u>
@@ -80,7 +83,9 @@
     <% end %>
    </div><!--/.module-body-->
   <% end %>
-</div><!--/.module-->
+</section><!--/.module-->
+</div>
+</div>
                                                                                                                        
 
 
