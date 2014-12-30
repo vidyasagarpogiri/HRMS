@@ -17,13 +17,14 @@
         <div class="form-group ">
           <label class="form-label" for="basicinput"> <strong><%=link_to p.title, post_path(p.id) %> </strong> </label>
            <% if current_user.employee.id == p.employee.id %>
-        <ul class="navigation-btns pull-right"> 
-          <li><label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-trash"></i></a>
-            <%= link_to "Delete", post_path(p.id), method: :delete, data: {confirm: "Are You sure?"} %>
-          </label></li>
-         <li><label style="font-weight:normal;margin-top:-5px;" class = "pull-right"><a><i class="icon-edit"></i></a>
-          <%= link_to 'Edit',  edit_post_path(p)%></label> </li>                         
-        </ul>
+        
+          <span class="pull-right">
+            <%= link_to "Delete", post_path(p.id), method: :delete, data: {confirm: "Are You sure?"}, :class => "fa fa-trash-o" %>&nbsp&nbsp
+         
+       
+          <%= link_to 'Edit', edit_post_path(p),  :class => "fa fa-edit" %>                        
+          </span>
+       
         <% end %>                
         </div>              
                  
@@ -48,7 +49,7 @@
                <label class="control-label" for="basicinput"><i>by:</i> <strong><%= p.employee.full_name %></strong> &nbsp; on <strong> <%= format_date(p.created_at) %></strong></label> 
             </div> 
             <div class="form-group pull-right ">
-              <label class="control-label" for="basicinput"><strong>Categoty </strong> <%= p.category %> &nbsp;&nbsp; <h5>Likes(<%= p.likes_count %>) . Comments(<%= p.comments.count %>)               
+              <label class="control-label" for="basicinput"><strong>Categoty </strong> <%= p.category %> &nbsp;&nbsp; <h5><li class= "fa  fa-thumbs-up"></li>(<%= p.likes_count %>) . Comments(<%= p.comments.count %>)               
                     <% if p.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
                       <%= link_to 'Unlike', remove_like_post_path(p.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
                     <% else %> 
