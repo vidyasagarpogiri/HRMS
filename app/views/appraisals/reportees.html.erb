@@ -1,33 +1,23 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>Repotees List</h3>
-            </div>
-            <div class-module-body>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Employee</th>
-                    <th>Department</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @reportees.each do |reportee| %>
-                    <tr>
-                      <td><%= link_to reportee.employee.full_name, "/reportee_appraisals/#{reportee.employee.id}" %></td>
-                      <td><%= reportee.employee.department.department_name%></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Reportees List
+  </div>
+  <div class="panel-body">
+    <table class="display table table-bordered table-striped"> 
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Department</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reportees.each do |reportee| %>
+          <tr>
+            <td><%= link_to reportee.employee.full_name, "/reportee_appraisals/#{reportee.employee.id}" %></td>
+            <td><%= reportee.employee.department.department_name%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!--/.panel-body-->          
+</div><!--/.panel-infox-->
