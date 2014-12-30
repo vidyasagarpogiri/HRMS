@@ -1,65 +1,74 @@
-<div class="wrapper">
-   <div class="container">
-     <div class="row">                                             
-       <div class="span12">
-          <div class="content">
-             <div class="module">
-                <div class="module-head">
-                   <h3>All Groups                               
-                    <label style="font-weight:normal;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to "New Group", new_group_path %></label>
-                   </h3>                                            
-                </div><!--/.module-head-->
-                <div class="module-body " style="background-color:#eee">
-                    <% if @groups.present? %>
-                    <% divscount = 0 %>
-                    <% @groups.each do |group| %>
-                    <% divscount = divscount+1 %>
-                    <% if divscount%3 == 1 %>
-                    <div class="row-fluid">
-                    <% end %>                              
-                      <div class="span4" style="border-radius:4px; background-color:#fff">
-                        <div class="style">
-                          <div class=" module-head" style="background-color:#F0F5F5!important;" >
-                            <h3 style=" color:black!important;"><%= group.group_name %>'s Info
-                              <label style="font-weight:normal;margin-top:10px;" class = "pull-right"><a><i class="icon-edit"></i></a> <%= link_to 'Edit', edit_group_path(group.id) %></label><hr>
-                            </h3>                          
-                          </div>
-                        </div>
-                        <div class="media user">  
-                          <div class="group pull-left" >
-                           <label class=" group_name" ><%= link_to group.group_name, group_path(group) %></abel>                           
-                          </div>     
-                          <div class="media-body span6" style="margin-left:30px;">
-                            <div class="style">
-                              <h5 class="media-title">
-                                  <%= link_to group.group_name, group_path(group) %>                                   
-                              </h5> <br>                                                                                                               
-                              <ul style="list-style-type: none;">
-                                <!--<li><i class="icon-suitcase"></i> Head : Mehar</li> -->
-                                <li><i class="icon-user"></i> <strong>Employees: </strong><%=  group.employees.count %></li>
-                              </ul>                              
-                           </div>                                         
-                         </div><!--/.media-body-->     
-                      </div>
-                    </div>                             
-                     <% if divscount%3 == 0 %>
-                      </div><br>
-                     <% end %>
-                     <% end %>                                                                     
-                     <% if divscount%3 == 1 %>
-                     </div><br>
-                     <% end %> 
-                     <% else %>
-                       <div class="alert alert-success alert-dismissable">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            No Groups to display.
-                       </div>
-                     <% end %>                              
-                </div></div>
-              </div><!--/.module--> 
-           </div><!--/.content-->                    
-        </div><!--/.span12-->                
-     </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+<div class="directory-info-row">
+  <div class="row">                                             
+    <div class="panel">
+      <div class="panel-heading">
+        All Groups                               
+        <label class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to "New Group", new_group_path %></label>                               
+      </div><!--/.module-head-->
+      <div class="panel-body">
+        <% if @groups.present? %>
+          <% @groups.each do |group| %>
+            <div class="col-md-4 col-sm-4">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <%= group.group_name %>'s Info
+                </div>
+              <div class="panel-body">
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="thumb media-object" src="img/photos/user1.png" alt="">
+                  </a>
+                  <address>
+                    <h4><%= link_to group.group_name, group_path(group) %></h4>
+                    <abbr title="employees"><i class="icon-user"></i> <strong>Employees: </strong><%=  group.employees.count %>
+                  </address>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>  
+<!--<div class="col-lg-4" style="border-radius:4px; background-color:#fff">
+<div class="style">
+<div class=" module-head" style="background-color:#F0F5F5!important;" >
+<h3 style=" color:black!important;"><%# group.group_name %>'s Info
+<label style="font-weight:normal;margin-top:10px;" class = "pull-right"><a><i class="icon-edit"></i></a> <%#link_to 'Edit', edit_group_path(group.id) %></label><hr>
+</h3>                          
+</div>
+</div>
+<div class="media user">  
+<div class="group pull-left" >
+<label class=" group_name" ><%#link_to group.group_name, group_path(group) %></abel>                           
+</div>     
+<div class="media-body span6" style="margin-left:30px;">
+<div class="style">
+<h5 class="media-title">
+<%#link_to group.group_name, group_path(group) %>                                   
+</h5> <br>                                                                                                               
+<ul style="list-style-type: none;">
+<!--<li><i class="icon-suitcase"></i> Head : Mehar</li> -->
+<!--<li><i class="icon-user"></i> <strong>Employees: </strong><%#group.employees.count %></li>
+</ul>                              
+</div>                                         
+</div><!--/.media-body-->     
+<!--</div>
+</div>                             
+<% #if divscount%3 == 0 %>
+</div><br>
+<% #end %>
+<% #end %>                                                                     
+<% #if divscount%3 == 1 %>
+</div><br>
+<% #end %> 
+<% #else %>
+<div class="alert alert-success alert-dismissable">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+No Groups to display.
+</div>
+<% #end %>                              
+</div></div>
+
 

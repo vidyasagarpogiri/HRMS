@@ -1,60 +1,44 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                
-      <div class="span12">
-        <div class="content">
-          <div class="module" >
-            <div class="module-body">
-              <div class="profile-head media" style="min-height:700px;">                   
-                <div class="media-body">
-                  <div class="span4 group" style="margin-left:20px;">
-                    <label class="group_name"><%= @group.group_name %></abel>
-                  </div> 
-                  <div class="media-body span8" style="margin-left:50px;margin-top:30px;">
-                    <div class="pull-right" ><a href="/groups" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Groups</i></a></div>
-                      <h4>
-                         <%= @group.group_name %> 
-                      </h4>
-                      <p>Employees : <%= @group.employees.count %></p>                      
-                      <!---<p>Manager : Mehar</p> -->
-                    </div><!--/.module-body-->
-                  </div><!--/.module-body-->                                                                         
-                     <ul class="profile-tab nav nav-tabs">
-                        <li class="active"><a href="#employees" data-toggle="tab">Employees</a></li>                        
-                        <li><a href="#leave_policies" data-toggle="tab">Leave Policies</a></li>
-                         <li><a href="#leaves" data-toggle="tab">Leaves</a></li>
-                        <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calendar</a></li>                                    
-                     </ul>                                                                                                                        
-                     <div class="profile-tab-content tab-content">  
-                        <div class="tab-pane fade active in" id="employees">
-                                                              
-                            <%= render "groups/employees"%>           
-                        </div><!--/.tab-pane-list-->                                                        
+<div class="row">                
+    <div class="col-lg-12">
+      <div class="panel" >
+        <div class="panel-body">
+          <div class="profile-head media">
+            <div class="media-body">
+              <div class="span4 group" style="margin-left:20px;">
+                <label class="group_name"><%= @group.group_name %></abel>
+              </div> 
+              <div class="media-body" style="margin-left:50px;margin-top:30px;">
+                <div class="pull-right" ><a href="/groups" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Groups</i></a></div>
+                <h4><%= @group.group_name %> </h4>
+                <p>Employees : <%= @group.employees.count %></p>                      
+              </div><!--/.module-body-->
+            </div><!--/.module-body-->                                                                         
+            <ul class="profile-tab nav nav-tabs">
+              <li class="active"><a href="#employees" data-toggle="tab">Employees</a></li>                        
+              <li><a href="#leave_policies" data-toggle="tab">Leave Policies</a></li>
+              <li><a href="#leaves" data-toggle="tab">Leaves</a></li>
+              <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calendar</a></li>                                    
+            </ul>                                                                                                                        
+            <div class="profile-tab-content tab-content">  
+              <div class="tab-pane fade active in" id="employees">
+                <%= render "groups/employees"%>           
+              </div><!--/.tab-pane-list-->                                                        
               <!--leave_policies PANEL-->                                        
-                        <div class="tab-pane fade " id="leave_policies"> 
-                          <%= render "groups/leave_policies"%>                                         
-                        </div><!--/.tab-pane-list-->
-                        <div class="tab-pane fade" id="leaves">
-                          <%= render "groups/employee_leaves"%> 
-                        </div>
-                        
-            <!--holiday_calender PANEL-->                                       
-                        <div class="tab-pane fade " id="holiday_calender">
-                         <%= render "groups/holiday_calender"%>                                        
-                        </div><!--/.tab-pane-list-->                                                                                             
-                      </div><!--/.profile-tab-content -->                            
-                    </div> <!--/.profile-head-->                       
-                 </div><!--/.module-body-->                     
-              </div><!--/.module-->                
-           </div><!--/.content-->            
-        </div><!--/.span12-->
-     </div><!--/.row-->    
-  </div><!--/.container-->	
-</div><!--/.Wrapper-->
-                    
-                    
-
-
-
-        
-
+              <div class="tab-pane fade " id="leave_policies"> 
+                <%= render "groups/leave_policies"%>                                         
+              </div><!--/.tab-pane-list-->
+              <div class="tab-pane fade" id="leaves">
+                <%= render "groups/employee_leaves"%> 
+              </div>
+              <!--holiday_calender PANEL-->                                       
+              <div class="tab-pane fade " id="holiday_calender">
+                <%= render "groups/holiday_calender"%>                                        
+              </div><!--/.tab-pane-list-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            
