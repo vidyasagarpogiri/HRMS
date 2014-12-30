@@ -2,7 +2,7 @@
   <div class="panel-heading">
     Job Openings
       <% if current_user.department == Department::HR %>                                
-       <%= link_to 'New Job',  new_recruitment_path, :class => "fa fa-plus pull-right" %>
+       <%= link_to 'New Job',  new_recruitment_path, :class => "pull-right" %>
      <% end %>  
   </div>	
 	<div class="row">
@@ -12,14 +12,9 @@
 	        <% if @recruitments.present? %> 
             <% @recruitments.each do |recruitment| %>
               
-              <p><strong>Job Code:</strong> <%= recruitment.jobcode %></p>
-              <p><strong>JOb Title: </strong><%= recruitment.title %></p>                
-              <p><strong>Job Type: </strong><%= recruitment.job_type%></p>     
-              <p><strong>Job Status: </strong><%= recruitment.status %></p>         
-              <p><%= link_to recruitment.link, recruitment.link, :target => "/blank" %></p>             
-              <p ><strong>Job Description: </strong><div class="description"><%= raw recruitment.description %></div></p>
-              <%= link_to "Continue..", recruitment_path(recruitment), :class => "pt4" %><br>
-              Attachment:<%= link_to "Show", recruitment.file_url, :target => "/blank" %>
+              <p><font size="4"><strong><%= recruitment.title %> </strong></font></p>                        
+              <p><strong><%=truncate recruitment.description.html_safe, :length => 220 %></strong> <%= link_to "Continue..", recruitment_path(recruitment)%></p>
+              <p><strong><%= link_to recruitment.link, recruitment.link, :target => "/blank" %></strong></p>
               <% if current_user.department == Department::HR %>                      
                 <%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %>
                 <%= link_to "Delete", recruitment_path(recruitment.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
