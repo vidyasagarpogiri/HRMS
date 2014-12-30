@@ -4,11 +4,11 @@
     <% if @sections.present? %>
       
       <% @sections.each do |section| %>
-      <section class="panel">
-        <header class="panel-heading">				
+      <div class="panel panel-info">
+        <div class="panel-heading">				
         <%= section.section %> Investment Declaration Form 
         <label class="pull-right">Maximum Limit: <%= section.maximum_limit %></label>
-        </header>    
+        </div>    
 
         <div class="panel-body">
           <table class="table table-striped table-bordered table-condensed" >
@@ -36,7 +36,7 @@
             </tbody>
           </table>
         </div>
-        </section> 
+        </div> 
       <% end %>
 
       

@@ -1,89 +1,67 @@
-<div class="wrapper">
-    <div class="container">
-        <div class="row">                
-            <div class="span12">
-                <div class="content">
-                    <div class="module" >
-                        <div class="module-body">
-                            <div class="profile-head media" style="min-height:700px;">                   
-                                <div class="media-body">
-                                   <a class="media-avatar pull-left" href="#">                                 
-                                      <% if @department.department_name == "HR" %>
-                                          <%= image_tag "HR.jpg" %>
-                                      <% elsif @department.department_name == "Development"%>
-                                        <%= image_tag "dep.jpg" %>
-                                      <% elsif @department.department_name == "Business Development"%>
-                                      <%= image_tag "accounts.jpg" %>
-                                      <% elsif @department.department_name == "Accounts"%>
-                                        <%= image_tag "bdm.jpg" %>
-                                      <% else %>
-                                        <div class="media user" style="padding:0px;">  
-                                            <div class="group" >
-                                             <label class=" group_name" ><%= @department.department_name %></abel>                           
-                                            </div>                                     
-                                        </div>
-                                      <% end %>
-                                    </a><br> 
-                                    <div class="media-body">
-                                      <div class="pull-right" ><a href="/departments" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Departments</i></a></div> 
-                                      <h4>
-                                         <%= @department.department_name %> 
-                                      </h4>
-                                      <p>Employees :<%= @department.employees.count %></p>                                      
-                                    </div><!--/.module-body-->
-                                 </div><!--/.module-body-->                                                                         
-                                  <ul class="profile-tab nav nav-tabs">
-                                      <li class="active"><a href="#employees" data-toggle="tab">Employees</a></li>
-                                      <li><a href="#leaves" data-toggle="tab">Leaves</a></li>
-                                       <li ><a href="#designations" data-toggle="tab">Designations</a></li>
-                                       <li ><a href="#appraisal_template" data-toggle="tab">Appraisal Template</a></li>
-                                   <!--TODO Commented by pattabhi according  the requirement is changed following components depaends on groups
-                                      <li><a href="#leave_policies" data-toggle="tab">Leave Policies</a></li>
-                                       <li><a href="#holiday_calender" data-toggle="tab">Holiday-Calender</a></li>                                    
-                                       -->
-                                  </ul>                                                                                                                        
-                             <div class="profile-tab-content tab-content">  
-                                <div class="tab-pane fade active in" id="employees">                                              
-                                    <%= render "departments/employees"%>                  
-                                </div><!--/.tab-pane-list--> 
-                      <!--leaves PANEL-->                                    
-                                
-                                <div class="tab-pane fade" id="leaves">
-                                     <%= render "departments/employee_leaves"%> 
-                                </div><!--/.tab-pane-list--> 
-                      <!--designations PANEL-->   
-                                 
-                                  <div class="tab-pane fade " id="designations"> 
-                                      <%= render "departments/designations"%>    
-                                  </div> <!--/.tab-pane-list-->
-                    <!-- appraisal templates PANEL -->
-                                  <div class="tab-pane fade " id="appraisal_template"> 
-                                      <%= render "departments/appraisal_list" %>    
-                                  </div> <!--/.tab-pane-list-->                                              
-                      <!--leave_policies PANEL-->             
-                                 <!--@TODO comented by pattabhi as the requirement is changed That leavepolict is dependet on groups
-                                  <div class="tab-pane fade " id="leave_policies"> 
-                                    <%#= render "departments/leave_policies"%>                                          
-                                  </div>--> <!--/.tab-pane-list-->
-                                  
-                      <!--holiday_calender PANEL-->             
-                            <!--@TODO comented by pattabhi as the requirement is changed That leavepolict is dependet on groups      
-                                  <div class="tab-pane fade " id="holiday_calender">
-                                    <%#= render "departments/holiday_calender"%>                                          
-                                  </div><!--/.tab-pane-list-->                                                                                             
-                            </div><!--/.profile-tab-content -->
-                                                                                                                  
-                    </div> <!--/.profile-head-->                       
-                 </div><!--/.module-body-->                     
-              </div><!--/.module-->                
-           </div><!--/.content-->            
-        </div><!--/.span12-->
-     </div><!--/.row-->    
-  </div><!--/.container-->	
-</div><!--/.Wrapper-->
-                    
-                    
-
-
-
-
+<div class="row">
+  <aside class="profile-nav col-lg-3">
+    <section class="panel">
+      <div class="user-heading round">                   
+      <a href="#">   
+        <% if @department.department_name == "HR" %>
+          <%= image_tag "HR.jpg" %>
+        <% elsif @department.department_name == "Development"%>
+          <%= image_tag "dep.jpg" %>
+        <% elsif @department.department_name == "Business Development"%>
+        <%= image_tag "accounts.jpg" %>
+        <% elsif @department.department_name == "Accounts"%>
+          <%= image_tag "bdm.jpg" %>
+        <% else %>
+          <div class="media user" style="padding:0px;">  
+            <div class="group" >
+             <label class=" group_name" ><%= @department.department_name %></abel>                           
+            </div>                                     
+        </div>
+      <% end %>
+      </a> 
+      <p><%= @department.department_name %> </p>                       
+      <p>Employees :<%= @department.employees.count %></p>      
+    </div> 
+    <ul class="nav nav-pills nav-stacked">            
+      <li class="active"><a href="#employees" data-toggle="tab">Employees</a></li>
+      <li><a href="#leaves" data-toggle="tab">Leaves</a></li>
+      <li ><a href="#designations" data-toggle="tab">Designations</a></li>
+      <li ><a href="#appraisal_template" data-toggle="tab">Appraisal Template</a></li>
+     </ul>                                  
+      </section>
+    </aside>
+    <aside class="profile-info col-lg-9">
+      <section>                                             
+        <div class="profile-tab-content tab-content">  
+          <div class="tab-pane fade active in" id="employees">                                              
+              <%= render "departments/employees"%>                  
+          </div><!--/.tab-pane-list--> 
+<!--leaves PANEL-->                                    
+          
+          <div class="tab-pane fade" id="leaves">
+               <%= render "departments/employee_leaves"%> 
+          </div><!--/.tab-pane-list--> 
+<!--designations PANEL-->   
+           
+            <div class="tab-pane fade " id="designations"> 
+                <%= render "departments/designations"%>    
+            </div> <!--/.tab-pane-list-->
+<!-- appraisal templates PANEL -->
+            <div class="tab-pane fade " id="appraisal_template"> 
+                <%= render "departments/appraisal_list" %>    
+            </div> <!--/.tab-pane-list-->                                              
+<!--leave_policies PANEL-->             
+           <!--@TODO comented by pattabhi as the requirement is changed That leavepolict is dependet on groups
+            <div class="tab-pane fade " id="leave_policies"> 
+              <%#= render "departments/leave_policies"%>                                          
+            </div>--> <!--/.tab-pane-list-->
+            
+<!--holiday_calender PANEL-->             
+      <!--@TODO comented by pattabhi as the requirement is changed That leavepolict is dependet on groups      
+            <div class="tab-pane fade " id="holiday_calender">
+              <%#= render "departments/holiday_calender"%>                                          
+            </div><!--/.tab-pane-list-->                                                                                             
+      </div><!--/.profile-tab-content -->
+    </section>
+  </aside>
+ </div>                      
