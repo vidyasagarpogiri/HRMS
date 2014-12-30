@@ -13,7 +13,7 @@ class PayrollsController < ApplicationController
       @actual_days = Time.days_in_month(@month, @year)
       @payslips = Payslip.new.generating_payslips(@salary_percentages, @employees, @month, @year)
       @company_payroll = CompanyPayRollMaster.create(month: Date::MONTHNAMES[@month], year: @year, status: CompanyPayRollMaster::GENERATED, name: current_user.employee.full_name)
-      @cprm = CompanyPayRollMaster.where(month: enter_month, year: @year)
+      #@cprm = CompanyPayRollMaster.where(month: enter_month, year: @year)
     end
   end
 
