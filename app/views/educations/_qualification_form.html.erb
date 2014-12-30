@@ -1,9 +1,11 @@
-<div class="panel panel-info">
+<div class="row">
+<div class="col-lg-12">
+<div class="panel">
 	<div class="panel-heading">
 		Education Info
   </div>
 	<div class="panel-body">
-	  <%= form_for ([@employee, @education]), :remote => true,  :html => {:class=>"form-horizontal row-fluid"} do |f| %>	
+	  <%= form_for ([@employee, @education]), :remote => true,  :html => {:class=>"form-horizontal row-fluid new_education"} do |f| %>	
       <div class="form-group">
         <label class="control-label col-lg-2">Name Of Graduation</label>
           <div class="col-lg-8">
@@ -35,19 +37,23 @@
 					<span class="help-block with-errors"></span>   
 				</div>
 			</div>
-		
-			<ul class="navigation-btns edit">
-			  <li><button type="submit" class="btn btn-success pull-left">Save </button></li>
-				<li><%= link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger pull-left", :remote => true %></li>			
-		  </ul>		
+			
+      <div class="form-group">		
+			  <div class="col-lg-offset-2 col-lg-10">
+			    <button type="submit" class="btn btn-success">Save </button></li>
+				  <%= link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger", :remote => true %></li>			
+		    </div>
+		  </div>		
 	  <% end %>
-	</div><!--/.module-body-->
+  </div><!--/.module-body-->
 </div><!--/.module-->
+</div>
+</div>
 
 
 <script>
   $(function(){
-   $("#new_education").validator();
+   $(".new_education").validator();
   });
 </script>
 
