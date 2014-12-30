@@ -15,7 +15,7 @@
        <%= form_for @shift, :html => {:class=>"form-horizontal row new_shift_form"} do |shift| %>
 
         <div class="form-group">   
-          <label class="control-label col-lg-2" for="basicinput">Work Group Name</label>
+          <label class="control-label col-lg-2" for="basicinput">Work Shift Name</label>
           <div class="col-lg-6">
             <%= shift.text_field :name, :class => "form-control", :placeholder =>"Enter Work Shift Name",:data => {:error => "Please Enter WorkShift Name"},:required => true %>
             <span class="help-block with-errors"></span>
