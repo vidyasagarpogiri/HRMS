@@ -12,7 +12,6 @@ class LeaveHistoriesController < ApplicationController
 		@holiday_calenders = current_user.employee.group.holiday_calenders if current_user.employee.group.present?
 		@reported_leaves = ReportingManager.where(:manager_id => current_user.employee.id).order('created_at DESC')
 		@employees=ReportingManager.where(:manager_id => current_user.employee.id).map(&:employee)
-		@leavepolicy = 
 	end
   
   def reportees_leaves   
