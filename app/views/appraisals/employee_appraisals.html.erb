@@ -1,46 +1,38 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>Reportees Appraisals List</h3>
-            </div>
-              <table class="table  table-striped">
-              <thead>
-                <tr>
-                  <th>Employee</th>
-                  <th>Apprisal</th>
-                </tr>
-              </thead>
-              <tbody>
-              <% if @employees.present? %>
-              <% @employees.each do |employee| %>
-                <% i = 0 %>
-                <tr>
-                <% if employee.employees_appraisal_lists.where(status: Appraisal::MANAGER).first.present?%>
-                  <td><%= link_to employee.full_name, "/manager_view/#{employee.id}" %></td>
-                  <td><%= @appraisals[i].title %></td>
-                <% elsif employee.employees_appraisal_lists.where(status: Appraisal::HR).present? %>
-                  <td><%= link_to employee.full_name, "/manager_appraisal_view/#{employee.id}" %></td>
-                  <td>Form submitted to HR </td>
-                <% elsif employee.employees_appraisal_lists.where(status: Appraisal::REVIEW).present? %>
-                  <td><%= link_to employee.full_name, "/reportee_appraisal_edit/#{employee.id}" %></td>
-                  <td>ReView Meeting Scheduled</td>
-                <% else %>
-                  <td><%= employee.full_name %></td>
-                  <td>Form still with employee </td>
-                <% end %>               
-                <% i += 1 %>
-              <% end %>
-             <% end %>
-             </tbody>
-            </table>
-            </div><!--/.module-body-->
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Reportees Appraisals List
+  </div>
+  <div class="panel-body">
+    <table class="display table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Apprisal</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% if @employees.present? %>
+      <% @employees.each do |employee| %>
+        <% i = 0 %>
+        <tr>
+        <% if employee.employees_appraisal_lists.where(status: Appraisal::MANAGER).first.present?%>
+          <td><%= link_to employee.full_name, "/manager_view/#{employee.id}" %></td>
+          <td><%= @appraisals[i].title %></td>
+        <% elsif employee.employees_appraisal_lists.where(status: Appraisal::HR).present? %>
+          <td><%= link_to employee.full_name, "/manager_appraisal_view/#{employee.id}" %></td>
+          <td>Form submitted to HR </td>
+        <% elsif employee.employees_appraisal_lists.where(status: Appraisal::REVIEW).present? %>
+          <td><%= link_to employee.full_name, "/reportee_appraisal_edit/#{employee.id}" %></td>
+          <td>ReView Meeting Scheduled</td>
+        <% else %>
+          <td><%= employee.full_name %></td>
+          <td>Form still with employee </td>
+        <% end %> 
+        </tr>              
+        <% i += 1 %>
+      <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div><!--/.panel-body-->          
+</div><!--/.panel-info-->

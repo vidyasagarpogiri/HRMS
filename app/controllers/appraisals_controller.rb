@@ -58,6 +58,7 @@ class AppraisalsController < ApplicationController
   # author: sekhar
   # Here we will assign selected appraisal template to selected employee by reporting manager
   def create_appraisal
+  #raise params.inspect
     employee_appraisal = EmployeesAppraisal.where(employee_id: params[:employee]).first
     if employee_appraisal.present?
       employee_appraisal.update(appraisal_id: params[:appraisal])
