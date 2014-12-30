@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141224052242) do
+ActiveRecord::Schema.define(version: 20141226063928) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -493,6 +493,7 @@ ActiveRecord::Schema.define(version: 20141224052242) do
     t.integer  "department_id"
     t.integer  "group_id"
     t.float    "max_carry_forward_leaves",      limit: 24
+    t.integer  "floating_leave_period"
   end
 
   create_table "leave_types", force: true do |t|

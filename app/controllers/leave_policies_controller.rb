@@ -12,12 +12,12 @@ class LeavePoliciesController < ApplicationController
    
  end
  
- def create
-   @leave_policy = LeavePolicy.create(params_leavepolicy)
-   @leave_policy.group_id = params[:group_id]
-   @leave_policy.save
-  @errors = @leave_policy.errors.full_messages
- end
+  def create
+    @leave_policy = LeavePolicy.create(params_leavepolicy)
+    @leave_policy.group_id = params[:group_id]
+    @leave_policy.save
+    @errors = @leave_policy.errors.full_messages
+  end
 	
 
  def edit
@@ -33,7 +33,7 @@ class LeavePoliciesController < ApplicationController
  private
  
  def params_leavepolicy
-    params.require(:leave_policy).permit(:pl_this_year, :sl_this_year, :eligible_carry_forward_leaves, :max_carry_forward_leaves)
+    params.require(:leave_policy).permit(:pl_this_year, :sl_this_year, :eligible_carry_forward_leaves, :max_carry_forward_leaves, :floating_leave_period)
  end
 
  def get_group

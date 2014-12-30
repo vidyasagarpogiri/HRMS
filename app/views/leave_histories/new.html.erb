@@ -24,6 +24,7 @@
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <%= flash[:error] %>
             </div>
+
           <% end %>                               
           <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %>
           <div class="row"> 
@@ -42,6 +43,7 @@
               <div class="col-lg-10">
                 <%= f.text_area :reason,  :class =>"span8 form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %> 
               <span class="help-block with-errors"></span> 
+
             </div>
           </div></div>
           <div class="col-lg-5">
@@ -82,6 +84,7 @@
 								   <span class="help-block with-errors"></span>   
 							  </div>
             </div>
+
             <div class="form-group">
               <label  class="col-lg-1 control-label">Section:</label>
               <div class="col-lg-3">
@@ -90,11 +93,7 @@
               </div>
             </div>   
           </div><br/>
-        
-          
-          
-         
-         
+
           <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
           <div class="panel-body">
             <button type="submit" class="btn btn-success apply"> Apply </button>
@@ -158,6 +157,14 @@
            changeMonth: true,
          changeYear: true
      });
+     
+     $(".float-leave-date").datepicker({
+       dateFormat: 'dd/mm/yy',
+          minDate: -0,
+          yearRange: "0:+1",
+           changeMonth: true,
+         changeYear: true
+      });
   });
   $(function(){
     $('.half_day').hide();
@@ -205,5 +212,33 @@
 });
 
 </script>
+
+<script>
+  $(function(){
+    $('#floatingleave').hide();
+    $("#leave_history_leave_type_id").change(function(){
+      var leave_id = parseInt($("#leave_history_leave_type_id").val());
+      if(leave_id == 2)
+        {
+          $('#casualleave').hide();
+          $('#floatingleave').show();
+          //.datepicker('setDate', date);
+        }
+        else{
+          $('#floatingleave').hide();
+          $('#casualleave').show();
+        }
+          //console.log(leave_id);
+     });
+     $('.float-leave-date').change(function(){
+          var float_date = $(".float-leave-date").datepicker('getDate');
+          console.log(float_date);
+          float_date.setDate(float_date.getDate());
+          $('.leave-form-date').datepicker('setDate', float_date);
+          $('.leave-to-date').datepicker('setDate', float_date);
+       });
+  });
+</script>
+
             
 

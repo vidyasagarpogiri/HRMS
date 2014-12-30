@@ -1,64 +1,67 @@
-<div class="wrapper">
-	<div class="container">
-		<div class="row">
-      <div class="span12">
-				<div class="content">
-					<div class="module">
-						<div class="module-head">							
-              <h3>List of Holidays</h3> 
-              <% if current_user.department == Department::HR %>                                           
-              <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a><%= link_to " New Holiday", new_event_path %></label>
+						<div class="row">                                             
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        List Of Holidays
+         <% if current_user.department == Department::HR %> 
+          <span class="pull-right">                                          
+              <%= link_to " New Holiday", new_event_path %>
               <% end %>
-            </div>                          
-            <div class="module-body">
+           </span>
+      </header>
+    <div class="panel-body">
+      <section id="unseen">  	            
+           
             <% if current_user.department == Department::HR %>               
               <strong>Download:</strong>
               <%= link_to "CSV", events_path(format: "csv") %> |
               <%= link_to "Excel", events_path(format: "xls") %>                  
               <%# link_to 'Send As Email', holiday_notification_path, :class => "btn btn-success pull-right " %>            
               <% end %>
-              </div>           
-              <% if @events.present? %>                                                                                                            
+                        
+              <% if @events.present? %>     
+              <div class="adv-table">                                                                                                       
               <table cellpadding="0" cellspacing="0" border="0" class="datatable-2 table  table-striped	 display" width="100%">
                <thead>											      
                 <tr>
                   <th>Holiday</th>
                   <th>Date</th>
-                  <th></th>															            									      		
+                  <th>Actions</th>															            									      		
                 </tr>
                </thead>              
                <tbody>
                  <% @events.each do |event| %>
                  <tr class="gradeA">               
-                  <td class="center"><%= event.event_name %></td>
+                  <td><%= event.event_name %></td>
                   <td><%= format_date(event.event_date) %></td>
                  <% if current_user.department == Department::HR %>
-                  <td> 
-                   <ul class="navigation-btns pull-right" style="list-style: none;display:inline;">
-                     <li><%= link_to 'Edit', edit_event_path(event), :class => "btn btn-success " %></li>
-                     <li><%= link_to "Delete", event_path(event.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-                   </ul>
+                  <td>
+                     <%= link_to 'Edit', edit_event_path(event), :class => "btn btn-success " %>
+                     <%= link_to "Delete", event_path(event.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
                  </td>
                 <% end %>
                 </tr>
                 <% end %>
               </tbody>   
                          
-              </table>                                                                                                                          
+              </table>
+              </div>                                                                                                                          
               <% else %>   
               <div class="alert alert-success alert-dismissable">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     No Holidays to display.
               </div>
              <% end %>                    
-           </div><!--module -body-->                                                                              
-	       </div><!--/.module -->
-	      </div><!--/.content-->
-		  </div><!--/.span12-->
-	  </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+    
+              </section>                
+        </div><!--/.span9-->   
+         </section>                
+        </div><!--/.span9-->                
+     </div><!--/.row-->
 
+            
+            
+            
 <script>
 	$(document).ready(function() {
 		$('.datatable-2').dataTable({

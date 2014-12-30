@@ -70,17 +70,16 @@
 				      </tr>
 					      <th>Action</th>									      		             	
                 <td>
-                <% if current_user.department == Department::HR %>  
-                  <ul class="navigation-btns pull-left">                                          
-                    <li><%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success ", :remote => true %></li>
-                    <li><%= link_to 'Delete', employee_salary_path(@employee, @salary), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger ", :remote => true %></li>
-						        <% if @salary.allowances.present?%>													
-						        <li><%= link_to 'Configure', edit_allowance_employee_salary_salaries_allowances_path(@employee, @salary), :class => "btn btn-info", :remote => true %></li>
-						        <% else %>
-						        <li><%= link_to 'Configure', new_employee_salary_salaries_allowance_path(@employee, @salary), :class => "btn btn-info " , :remote => true %></li>
-						        <% end %>              
-                    </ul>
-                  <% end %>  
+                <% if current_user.department == Department::HR %>                                           
+                  <%= link_to 'Edit', edit_employee_salary_path(@employee, @salary), :class => "btn btn-success ", :remote => true %>
+                  <%= link_to 'Delete', employee_salary_path(@employee, @salary), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger ", :remote => true %>
+						      <% if @salary.allowances.present?%>													
+						        <%= link_to 'Configure', edit_allowance_employee_salary_salaries_allowances_path(@employee, @salary), :class => "btn btn-info", :remote => true %>
+						      <% else %>
+						        <%= link_to 'Configure', new_employee_salary_salaries_allowance_path(@employee, @salary), :class => "btn btn-info " , :remote => true %>
+						      <% end %>              
+                  
+                <% end %>  
                 </td>
               </tr>
             </thead>

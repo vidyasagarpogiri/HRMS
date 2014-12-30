@@ -1,50 +1,59 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head"> 
-              <h3>Add Work Shift</h3>
-            </div>
-            <div class="module-body">
-              <%= form_for @shift,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"} do |s| %>
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Work Shift Name:</label>
-                <div class="controls">
-                  <%= s.text_field :name, :class => "span8 form-control ", :placeholder =>"Enter Work Shift Name", :data => {:error => "Please Enter valid Shift Name"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              
-              <div class="control-group">
-                <label class="control-label" for="basicinput">From Time:</label>
-                <div class="controls">
-                  <%= s.text_field :from_time, :class => "span8 form-control time-picker", :placeholder =>"Enter Login Time", :data => {:error => "Please Enter Login Time  "}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              
-              <div class="control-group">
-                <label class="control-label" for="basicinput">To Time</label>                                         
-                <div class="controls">
-                  <%= s.text_field :to_time, :class => "span8 form-control time-picker", :placeholder =>"Enter Logout Time", :data => {:error => "Please Enter Logout Time"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              <ul class="navigation-btns editthree" >
-                <li><button type="submit" class="btn btn-success">Save</button></li>
-                <li><%= link_to "Cancel", shifts_path,:class => "btn btn-danger" %></li>
-              </ul>	
-              <% end %>
-            </div><!--/.module-body-->
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
-	
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+    <header class="panel-heading">
+    Work Shift
+    </header>
+    <div class="panel-body">
+      <% if @custom_error.present? %>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= @custom_error %>
+        </div>
+      <% end %>
+      
+       <%= form_for @shift, :html => {:class=>"form-horizontal row new_shift_form"} do |shift| %>
+
+        <div class="form-group">   
+          <label class="control-label col-lg-2" for="basicinput">Work Shift Name</label>
+          <div class="col-lg-6">
+            <%= shift.text_field :name, :class => "form-control", :placeholder =>"Enter Work Shift Name",:data => {:error => "Please Enter WorkShift Name"},:required => true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+        
+        <div class="form-group">   
+          <label class="control-label col-lg-2" for="basicinput">Start Time</label>
+          <div class="col-lg-6">
+             <%= shift.text_field :from_time, :class => "form-control time-picker", :placeholder =>"Enter Start Time",:data => {:error => "Please Select Start Time"},:required => true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+        
+        <div class="form-group">   
+          <label class="control-label col-lg-2" for="basicinput">End Time</label>
+          <div class="col-lg-6">
+             <%= shift.text_field :to_time, :class => "form-control time-picker", :placeholder =>"Enter End Time",:data => {:error => "Please Select End Time "},:required => true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+        
+         <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-success">Save</button>
+            <%= link_to "Cancel", shifts_path,:class => "btn btn-danger" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </section>
+  </div>
+</div>
+
+<script>
+  $(".new_shift_form").validator();
+</script>   
+  	
 	
 <script>
   $(function(){

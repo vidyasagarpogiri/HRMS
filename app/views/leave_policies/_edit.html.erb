@@ -31,10 +31,18 @@
             <span class="help-block with-errors"></span>
 			      </div>
 	  </div>                          
-              
+          
+			  <div class="control-group">   
+			 <label class="control-label" for="basicinput">Floating Leave Period</label>
+           <div class="controls">    
+			      
+			      <%= f.select(:floating_leave_period, options_for_select([['Quarterly', 1], ['Half Yearly', 2], ['Annually', 3]], :selected => @leave_policy.floating_leave_period), {},:class => "span4 form-control") %>
+			    <span class="help-block with-errors"></span>
+			  </div>
+			  </div><br>                   
                                   
      <%= f.submit  'Save', :class => "btn btn-success pull-left" %>
-                                  
+     <%= link_to  'Cancel', @group, :class => "btn btn-danger" %>                                    
                                               
        <% end %>
          </div><!--/.module-body-->
