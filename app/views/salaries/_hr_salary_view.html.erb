@@ -1,4 +1,4 @@
-<div class="module-body" style="margin-top:-30px;">   
+<div class="panel panel-info">   
   <ul class="profile-tab nav nav-tabs">
     <li class="active"><a href="#bank_info" data-toggle="tab">Bank Details</a></li>
     <li><a href="#salary_structure" data-toggle="tab">Salary Structure</a></li>  
@@ -8,7 +8,7 @@
       <% if @employee.account_number.present? %>
         <%=render 'employees/bankdetails_show' %>
       <%else%>
-      <div class="bank_form">
+      <div class="bank_form row">
         <%=render 'employees/bankdetails_form' %>
       </div>
         <div class="bankdetails_show"></div>
@@ -17,11 +17,11 @@
     
     <!--salary_structure-->  
     <div class="tab-pane fade" id="salary_structure">
-      <div class="module">
-        <div class="module-head">
-          <h3>Salary Info</h3>     
+      <div class="panel">
+        <div class="panel-heading">
+          Salary Info     
         </div>
-        <div class="module-body">   
+        <div class="panel-body">   
           <%= render 'salaries/salary_record' %>   
          </div>
        
