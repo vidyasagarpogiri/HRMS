@@ -79,7 +79,11 @@
         <div class="form-group">
           <%= f.hidden_field :address_type,:class => "form-control", :id => "basicinput", :value=>"#{@address_type_value}" %>
         </div>
-        <button type="submit" class="btn btn-success edittwo">Save & Continue</button>
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-success edittwo">Save & Continue</button>
+          </div>
+        </div>
     <% end %>
    </div><!--/.module-body-->
   <% end %>

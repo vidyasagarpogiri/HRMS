@@ -1,115 +1,110 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        Project Form
+      </div>
 
-          <div class="module">
-            <div class="module-head">
-              <h3>Project Form</h3>
-            </div>
-            
-            
-            <div class="module-body">
-              <%= form_for @project,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"}, :remote=> true do |f| %>
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Project Title</label>
-                  <div class="controls">
-                  <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Project Title", :data => {:error => "Please Enter valid Project Code"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              
-              
-                <div class="control-group ">
-                  <div class="span6">
-										<label class="control-label" for="basicinput">Start Date</label>
-										<div class="controls span8 " >
-                     <%= f.text_field :start_date, :class => "span8 from form-control",:placeholder => "Select Project Start Date", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
-											 <span class="help-block with-errors"></span>   
-										</div>
-								  </div>
-								  
-								   <div class="span6" style="margin-left:-160px;">
-		  							<label class="control-label" for="basicinput">End Date </label>
-										<div class="controls span8 ">
-                     <%= f.text_field :end_date, :class => "span8 to form-control", :placeholder => "Select Project End Date", :data => {:error => "Please Enter valid Relieving Date"}%>
-											 <span class="help-block with-errors"></span>   
-										</div>
-										 </div>
-								 
-									</div>
-              
-               <div class="control-group">
-                <label class="control-label" for="basicinput">Description</label>
-                <div class="controls">
-                  <%= f.text_area :description, :class => "span8 form-control", :placeholder =>"Enter Project Description", :data => {:error => "Please Enter Project Description"}, :required => true, :style => "margin: 0px 0px 10px; width: 620px; height: 180px;" %>
-                  <span class="help-block with-errors"></span>   
-                </div>
-              </div>
-              
-                <div class="control-group">
-                <label class="control-label" for="basicinput">Roles</label>
-                  <div class="controls">
-                  <%= f.text_field :roles, :class => "span8 form-control", :placeholder =>"Enter roles Performed", :data => {:error => "Please Enter valid Tasks"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              
-              <div class="control-group">
-                <label class="control-label" for="basicinput">Taskes Performed</label>
-                  <div class="controls">
-                  <%= f.text_area :tasks_performed, :class => "span8 form-control", :placeholder =>"Enter Tasks Performed", :data => {:error => "Please Enter valid Tasks"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-              
-              
-              
-              <div class="control-group">
-                <label class="control-label" for="basicinput">key Skills Used</label>
-                  <div class="controls">
-                  <%= f.text_field :skills, :class => "span8 form-control", :placeholder =>"Enter key Skills Used", :data => {:error => "Please Enter valid skills comma seperated"}, :required => true %>
-                  <span class="help-block with-errors"></span>
-                </div>
-              </div>
-             
-              <ul class="navigation-btns editthree" >
-                <li><button type="submit" class="btn btn-success" data-remote="true">Save</button></li>
-                <li><%= link_to "Cancel", projects_path,:class => "btn btn-danger",  :remote => true %></li>
-              </ul>	
-              
-              <% end %>
-            
-            </div><!--/.module-body-->
-          </div><!--/.module-->
-  
-
-
- <script>    
-$(function() {
-    $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
-  });
-</script>
-
-        <script>
-           $(function () {
-               $(".from").datepicker({
-                   dateFormat: 'dd/mm/yy',
-                   changeMonth: true,
-                   changeYear: true,
-                    maxDate: -0,
-                   yearRange: "-100:+0",
-                   onClose: function (selectedDate) {
-                       var date2 = $('.from').datepicker('getDate');
-                       date2.setDate(date2.getDate());
-                       $(".to").datepicker("option", "minDate", date2);
-                   }
-               });
-
-               $(".to").datepicker({
-                   dateFormat: 'dd/mm/yy',
-                    maxDate: -0,
-                    yearRange: "-100:+0",
-                     changeMonth: true,
-                   changeYear: true
-               });
-           });
-        </script>
+      <div class="panel-body">
+        <%= form_for @project,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"}, :remote=> true do |f| %>
         
+        <div class="form-group">
+          <label class="control-label col-lg-2" for="basicinput">Project Title</label>
+          <div class="col-lg-8">
+            <%= f.text_field :title, :class => "form-control", :placeholder =>"Enter Project Title", :data => {:error => "Please Enter valid Project Code"}, :required => true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-lg-2" for="basicinput">Start Date</label>
+          <div class="col-lg-8" >
+            <%= f.text_field :start_date, :class => "from form-control",:placeholder => "Select Project Start Date", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
+            <span class="help-block with-errors"></span>   
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-lg-2" for="basicinput">End Date </label>  
+          <div class="col-lg-8">
+            <%= f.text_field :end_date, :class => "to form-control", :placeholder => "Select Project End Date", :data => {:error => "Please Enter valid Relieving Date"}%>
+            <span class="help-block with-errors"></span>   
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label col-lg-2" for="basicinput">Description</label>
+          <div class="col-lg-8">
+            <%= f.text_area :description, :class => "form-control", :placeholder =>"Enter Project Description", :data => {:error => "Please Enter Project Description"}, :required => true %>
+            <span class="help-block with-errors"></span>   
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-lg-2" for="basicinput">Roles</label>
+          <div class="col-lg-8">
+            <%= f.text_field :roles, :class => "form-control", :placeholder =>"Enter roles Performed", :data => {:error => "Please Enter valid Tasks"}, :required => true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-lg-2" for="basicinput">Taskes Performed</label>
+          <div class="col-lg-8">
+            <%= f.text_area :tasks_performed, :class => "form-control", :placeholder =>"Enter Tasks Performed", :data => {:error => "Please Enter valid Tasks"}, :required => true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-lg-2" for="basicinput">key Skills Used</label>
+          <div class="col-lg-8">
+            <%= f.text_field :skills, :class => "form-control", :placeholder =>"Enter key Skills Used", :data => {:error => "Please Enter valid skills comma seperated"}, :required => true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-success" data-remote="true">Save</button>
+            <%= link_to "Cancel", projects_path,:class => "btn btn-danger",  :remote => true %>
+          </div>
+        </div>	
+        <% end %>
+      </div>
+    </div><!--/.module-body-->
+  </div><!--/.module-->
+</div>
+
+
+
+  <script>    
+    $(function() {
+      $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
+    });
+  </script>
+
+  <script>
+    $(function () {
+      $(".from").datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeMonth: true,
+        changeYear: true,
+        maxDate: -0,
+        yearRange: "-100:+0",
+        onClose: function (selectedDate) {
+          var date2 = $('.from').datepicker('getDate');
+          date2.setDate(date2.getDate());
+          $(".to").datepicker("option", "minDate", date2);
+        }
+      });
+      $(".to").datepicker({
+        dateFormat: 'dd/mm/yy',
+        maxDate: -0,
+        yearRange: "-0:+100",
+        changeMonth: true,
+        changeYear: true
+      });
+    });
+  </script>
+
 
