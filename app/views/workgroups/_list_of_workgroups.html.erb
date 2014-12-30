@@ -15,9 +15,9 @@
       <tr class="gradeA"> 
         <td class="center">
          <% if workgroup.workgroupicon.present? && workgroup.workgroupicon_url.present? %>
-            <%= image_tag workgroup.workgroupicon, size: "60x20" %>
+            <%= image_tag workgroup.workgroupicon, size: "60x60" %>
          <% else %>
-            <%= image_tag "workgroup.png", size: "60x20" %> 
+            <%= image_tag "workgroup.png", size: "60x60" %> 
          <% end %>
         </td>          
         <td><%= link_to workgroup.name,workgroup_path(workgroup) if workgroup.name.present? %></td>

@@ -1,5 +1,5 @@
-<div class="panel">
-  <div class="panel-heading">
+<section class="panel">
+           <div class="panel-heading">
               All Job Locations
               <% if current_user.department == Department::HR %>
               <span class="pull-right">
@@ -8,8 +8,8 @@
               <% end %>
             </div>
             <% if @job_locations.present? %>                                         
-           <div class="panel-body">            
-               <table class="table table-bordered">     
+           <div class="panel-body">   
+            <table class="table table-bordered">     
                 <thead>											      
                   <tr>
                     <th>City</th>
@@ -32,15 +32,17 @@
                 </tbody>
                 <% end %>
               </table>
+              </div>
             <% else %> 
-            <div class="module-body">                                           
+            <div class="panel-body">                                           
               <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   No Job Locations to display.
               </div>
             </div>
             <% end %>
-            </div><!--module-body -->    																																											                               
+       
+            </section><!--module-body -->    																																											                               
 
 
 
