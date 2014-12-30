@@ -1,0 +1,36 @@
+
+         <div class="panel panel-danger">
+          <div class="panel-heading">
+         
+              <h4 class="panel-title">
+                  <a href="#accordion1_1" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+                   <%= @policy.title %>
+                  </a>
+              </h4>
+          </div>
+       
+        <div class="panel-body">
+        
+            <div class="row">
+              <label class="control-label col-lg-4" for="basicinput">Description</label>
+              <div class="col-lg-10">
+                 <%= raw(@policy.details) %>
+              </div>
+            </div>
+        
+          <div class="row">
+              <label class="control-label col-lg-4" for="basicinput">Attachment</label>
+              <div class="col-lg-10">
+                <%= link_to "show", @policy.document_url, :target => "/blank" %>
+              </div>
+            </div>
+        
+         
+          
+           </div>
+      </div>
+          
+          
+
+
+
