@@ -1,7 +1,7 @@
 class ProfileController < ApplicationController
  before_filter :hr_view, :only => [ :edit, :new]
  before_filter :other_emp_profile_view, only: [:show]
- 
+ layout "profile"
   def new
     @employee = Employee.new 
   end

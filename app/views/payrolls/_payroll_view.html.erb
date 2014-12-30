@@ -1,169 +1,175 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head" style="background-color: #82B4E6 ">
-              <h3>PayRoll
-              </h3>
+<div class="row">                                             
+  <div class="col-lg-12">
+    <section class="panel pay-roll-hide">
+    <header class="panel-heading">
+    PayRoll
+    </header>
+
+    <div class= "panel-body ">
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Select Month to View PayRoll :&nbsp&nbsp </label>
+          <%= form_tag(payroll_view_path, method: :get,  :class => "form-horizontal form-inline", :remote => true) do %>            
+
+            <div class="form-group">
+              <div class="col-lg-4">
+                <select name="payslip_view_year" class="payroll_year form-control">
+                  <option value=0>-select year-</option>
+                  <% @years.each do |year| %>
+                    <option value="<%= year %>"><%= year %></option>
+                  <% end %>             
+                </select>
+              </div>
             </div>
-            <div class="module-body">
-              <div class="row-fluid">
-                <div class="span6">
-                  <%= form_tag(payroll_view_path, method: :get,  :class => "form-horizontal", :remote => true) do %>            
-                  <label><strong>Select Month to View PayRoll :&nbsp&nbsp </strong><br>
-                  <select name="payslip_view_year" class="payroll_year">
-                    <option value=0>-select year-</option>
-                    <% @years.each do |year| %>
-                      <option value="<%= year %>"><%= year %></option>
-                    <% end %>             
-                  </select>
-                  <select name="payslip_view_month" class ="payroll_month">
-                    <option value=0>-select month-</option>
-                  </select>   
-                  <input type="submit" class="btn btn-success" value="View">                      
-                  <% end %>      
-                </div>              
-                <div class="span6">  <br> 
-                  <% unless @cprm.present? %>     
-                    <%= link_to "Generate Last Month PayRoll", payrolls_path, :class => "btn btn-success pull-right last-month-payroll", method: :post, :remote => true %> 
-                  <% end %>               
-               </div>
-             </div></br>
-             <div class="processing"></div>
-               <% if @payslips.present? %>                 
-                <!-- code for displayin all employees payslips -->  
-                <div class="employee_payslip">             
-                <table class="table table-striped table-bordered table-condensed">
-                   <thead>
-                   <tr>
-                      <th><strong>PayRoll For <%= @month_name %>, <%= @year %></strong></th>
-                   </tr>
-                   <tr>
-                      <th>Employee-Id</th>
-                      <th>Name</th>
-                      <th>Department</th>
-                      <th>Total Working days</th>
-                      <th>Basic</th>
-                      <th>Gross</th>
-                      <th>Total Deductions</th>
-                      <th>NetPay</th>
-                      <th>Aciton</th>
-                    </tr>
-                   </thead>
-                   <% @payslips.each do |payslip| %>
-                   <tbody>
-                    <tr>
-                      <td><%= payslip.employee.employee_id %></td>
-                      <td><%= link_to payslip.employee.full_name, "/payroll/#{payslip.id}" %></td>
-                      <td><%= payslip.employee.department.department_name %></td>
-                      <td><%= payslip.no_of_working_days%></td>
-                      <td><%= payslip.basic_salary%></td>
-                       <td><%= payslip.gross_salary %></td>
-                      <td><%= payslip.total_deductions %></td>
-                      <td><%= payslip.netpay %></td>
-                      <% unless payslip.status == "PROCESS"%>
-                        <td><%= link_to 'Edit', "/payroll/#{payslip.id}/edit", :remote => true %></td>
-                      <% else %>
-                        <td>Generated</td>
-                      <% end %>
-                   </tbody>
-                       <% end %> 
-                </table>
-                </div> 
 
-                <% if @payroll_last.present? %>             
-                <% if @payroll_last.status == CompanyPayRollMaster::GENERATED %><br>
-                  <%= link_to "Save&Process", payrolls_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right save-process" %>
-                <% end %>
-                
-                <% if @payroll_last.status == CompanyPayRollMaster::PROCESSING %><br>
-                <ul class="navigation-btns pull-right">
-                   <li><%= link_to "Save&Process", payrolls_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success save-process" %></li>
-                  <li><%= link_to "Generate To Bank", payrolls_bank_process_path(:month => @month, :year => @year), :class => "btn btn-success generate_bank" %></li> 
-                </ul> 
-                
-                 <% end %><br> 
-                <% if @payroll_last.status == CompanyPayRollMaster::SENDTOBANK %>
-                <%= link_to "Download Bank Statement","/#{@month_name}-#{@year}-bank_statement.xlsx", :class => "btn btn-success pull-right" %>
-                <% end %>
-                
-               
-               <% end %>
+            <div class="form-group">      
+              <div class="col-lg-4">        
+                <select name="payslip_view_month" class ="payroll_month form-control ">
+                  <option value=0>-select month-</option>
+                </select>   
+              </div>   
+            </div> 
+            <input type="submit" class="btn btn-success" value="View">                  
+          <% end %> 
+        </div>   <!---Col-lg-6 -->               
+        <div class="col-lg-6">  
+          <% unless @cprm.present? %>     
+            <%= link_to "Generate Last Month PayRoll", payrolls_path, :class => "btn btn-success pull-right last-month-payroll", method: :post, :remote => true %> 
+          <% end %>               
+        </div>  <!---Col-lg-6 -->  
+      </div>  <!---Row -->  
+      <div class="processing"></div>
 
-                  <% elsif @error.present? %>
-                  <hr>
-                  <div class="alert alert-success alert-dismissable">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      <%= @error%>
-                  </div>
-                <% else %>
-                 <hr>
-                  <div class="alert alert-success alert-dismissable">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      
-                    PayRoll Not Generated for <%= @month_name %>  and <%= @year %>
-                  </div>
-                
-                <% end %>           
-                </div><br/>
-            </div><!--/.module-->
-          
-               <!-- div for render edit form -->
-               
-               <div class="payslip_edit"></div>
-               
-             <!-- ***** -->
-        </div><!--/.content-->                    
-      </div><!--/.span9-->                
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
-<script>
-// Script for listing months in select box depends on selected year in select box 
-// In this script it will get json data of months from a service and display it in dropdown select box -sekhar
-  $(function(){
-    $(".payroll_year").change(function(){
-      var year = $(this).val();
-      $.getJSON("http://myhost.com/payrolls/get_payroll_years.json?yr="+ year, function(data){
-        $.each( data, function(key, val) {
-          $(".payroll_month").append( "<option>" + val  + "</option>" );
+      <% if @payslips.present? %>                 
+        <!-- code for displayin all employees payslips --> 
+        <header class="panel-heading">
+          PayRoll For <%= @month_name %>, <%= @year %></strong></th>
+        </header>
+        <div class="employee_payslip">             
+          <table class="table table-striped table-bordered table-condensed">
+            <thead>
+
+              <tr>
+                <th>Employee-Id</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Total Working days</th>
+                <th>Basic</th>
+                <th>Gross</th>
+                <th>Total Deductions</th>
+                <th>NetPay</th>
+                <th>Aciton</th>
+              </tr>
+            </thead>
+            <% @payslips.each do |payslip| %>
+              <tbody>
+                <tr>
+                  <td><%= payslip.employee.employee_id %></td>
+                  <td><%= link_to payslip.employee.full_name, "/payroll/#{payslip.id}" %></td>
+                  <td><%= payslip.employee.department.department_name %></td>
+                  <td><%= payslip.no_of_working_days%></td>
+                  <td><%= payslip.basic_salary%></td>
+                  <td><%= payslip.gross_salary %></td>
+                  <td><%= payslip.total_deductions %></td>
+                  <td><%= payslip.netpay %></td>
+                  <% unless payslip.status == "PROCESS"%>
+                    <td><%= link_to 'Edit', "/payroll/#{payslip.id}/edit", :remote => true %></td>
+                  <% else %>
+                    <td>Generated</td>
+                  <% end %>
+                </tbody>
+              <% end %> 
+            </table>
+          </div> <!--employee_payslip -->
+
+          <% if @payroll_last.present? %>             
+            <% if @payroll_last.status == CompanyPayRollMaster::GENERATED %><br>
+              <%= link_to "Save&Process", payrolls_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success pull-right save-process" %>
+            <% end %>
+
+            <% if @payroll_last.status == CompanyPayRollMaster::PROCESSING %><br>
+              <span class="pull-right">
+                <%= link_to "Save&Process", payrolls_exporting_payslips_excel_sheet_path(:month => @month, :year => @year, :format => "xlsx"), :class => "btn btn-success save-process" %>
+                <%= link_to "Generate To Bank", payrolls_bank_process_path(:month => @month, :year => @year), :class => "btn btn-primary generate_bank" %>
+              </span> 
+            <% end %> 
+            
+            <% if @payroll_last.status == CompanyPayRollMaster::SENDTOBANK %>
+              <%= link_to "Download Bank Statement","/#{@month_name}-#{@year}-bank_statement.xlsx", :class => "btn btn-success pull-right" %>
+            <% end %>
+          <% end %>
+
+        <% elsif @error.present? %>
+          <hr>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%= @error%>
+          </div>
+        <% else %>
+          <hr>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+            PayRoll Not Generated for <%= @month_name %>  and <%= @year %>
+          </div>
+
+        <% end %>           
+
+
+    <!-- div for render edit form -->
+  </div> <!-- Panel Body-->
+   
+  
+  <!-- ***** -->
+    </section>
+     <div class="payslip_edit"></div>
+  </div><!--/.col-lg-12-->                
+</div><!--/.row-->
+
+    <script>
+      // Script for listing months in select box depends on selected year in select box 
+      // In this script it will get json data of months from a service and display it in dropdown select box -sekhar
+      $(function(){
+        $(".payroll_year").change(function(){
+          var year = $(this).val();
+          $.getJSON("http://myhost.com/payrolls/get_payroll_years.json?yr="+ year, function(data){
+            $.each( data, function(key, val) {
+              $(".payroll_month").append( "<option>" + val  + "</option>" );
+            });
+          });
         });
-       });
-    });
-  });
+      });
 
-/*
- this script contains a change function and it  will submit form every time when a change occurs in fields
- which are reside in div elements which have  given class attributes
-*/
-</script>
-<script>
-  $(function(){
-     $(".last-month-payroll").click(function(){
-      var $lastMonthPayrollModal = $('.processing');
-      $lastMonthPayrollModal.modal('show');
-    });
-    
-    $(".save-process").click(function(){
-      var $saveAndProcessModal = $('.processing');
-      $saveAndProcessModal.modal('show');
-    });
-    
-    $(".generate_bank").click(function(){
-      var $generateBankModal = $('.processing');
-      $generateBankModal.modal('show');
-    });
-    
-});
-</script>
+      /*
+      this script contains a change function and it  will submit form every time when a change occurs in fields
+      which are reside in div elements which have  given class attributes
+      */
+    </script>
+    <script>
+      $(function(){
+        $(".last-month-payroll").click(function(){
+          var $lastMonthPayrollModal = $('.processing');
+          $lastMonthPayrollModal.modal('show');
+        });
 
-<script>
-$(function(){
-  $('.processing').hide();
-});
+        $(".save-process").click(function(){
+          var $saveAndProcessModal = $('.processing');
+          $saveAndProcessModal.modal('show');
+        });
 
-</script>
+        $(".generate_bank").click(function(){
+          var $generateBankModal = $('.processing');
+          $generateBankModal.modal('show');
+        });
+
+      });
+    </script>
+
+    <script>
+      $(function(){
+        $('.processing').hide();
+      });
+
+    </script>
 
 

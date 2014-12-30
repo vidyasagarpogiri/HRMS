@@ -1,106 +1,126 @@
-	
-							<% if current_user.department == Department::HR %>
-							<div class="module-body">	
-							  <%= form_for [@employee, @address],  :remote => true  do |f| %>  
-						    <div class="" style="color:black">                                
-                  <u><strong><%= @address_type %> Address</strong></u>
-                </div><br>
-                  <% if @employee.addresses.present? %>                                        
-                    <a href="#" id="address-check-box-hyper-link"><input type="checkbox", id="address-check-box"></a> 
-                    Same As &nbsp<%= @copy_address_type %> Address                    
-                  <% end %>	                    														
-                  <div class="control-group">
-										<label class="control-label" for="basicinput">Address Line 1</label>
-										<div class="controls">
-											 <%= f.text_field :line, :class => "span8 form-control", :placeholder=> "Enter Address Line 1", :data => {:error => "Please Enter Address Line 1"}, :required =>true %>
-                       <div class="help-block with-errors"></div>  
-										</div>
-									</div>																																				
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Address Line 2</label>
-										<div class="controls">									
-                      <%= f.text_field :line1, :class => "span8 form-control", :placeholder=> "Enter Address Line 1", :data => {:error => "Please Enter Address Line 2"}, :required =>true %>
-                       <div class="help-block with-errors"></div>											 
-										</div>
-									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">City</label>
-										<div class="controls">									
-                      <%= f.text_field :city, :class => "span8 form-control", :placeholder=> "Enter City", :data => {:error => "Please Enter City"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
-                       <div class="help-block with-errors"></div>											 
-										</div>
-									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">State</label>
-										<div class="controls">									
-                      <%= f.text_field :state,:class => "span8 form-control", :placeholder=> "Enter State", :data => {:error => "Please Enter State"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
-                       <div class="help-block with-errors"></div>											 
-										</div>
-									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Country</label>
-										<div class="controls">									
-                       <%= f.text_field :country, :class => "span8 form-control", :placeholder=> "Enter Country", :data => {:error => "Please Enter Country"},  :required =>true, :pattern => '[a-zA-Z/s ]*' %>
-                       <div class="help-block with-errors"></div>											 
-										</div>
-									</div>
-									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Zipcode</label>
-										<div class="controls">									
-                       <%= f.text_field :zipcode, :class => "span8 form-control",  :placeholder=> "Enter Zipcode", :type => "number", :data => {:error => "Please Enter valid Zipcode",  :minlength => "6", :maxlenght => "6"}, :required =>true %>
-                       <div class="help-block with-errors"></div>											 
-										</div>
-									</div>
-									
-									<div class="control-group">
-                     <%= f.hidden_field :address_type,:class => "span8 form-control", :id => "basicinput", :value=>"#{@address_type_value}" %>
-                  </div>
-                  <button type="submit" class="btn btn-success edittwo">Save & Continue</button>
-									<% end %>
-									   
-							</div><!--/.module-body-->
-							 <% end %>
-						</div><!--/.module-->
-						                                                                                                                                                                         
-																		
-            
-            <script>
-              $(function(){
-                $("#address-check-box-hyper-link").click(function(){
-                   if($("#address-check-box").is(':checked')){
-                   <% if @employee.addresses.present?  %>
-                    $("#address_line1").val('<%= @employee.addresses.first.line1 %>');
-                    $("#address_line").val('<%= @employee.addresses.first.line %>');
-                    $("#address_city").val('<%= @employee.addresses.first.city %>');
-                    $("#address_state").val('<%= @employee.addresses.first.state %>');
-                    $("#address_country").val('<%= @employee.addresses.first.country %>');
-                    $("#address_zipcode").val('<%= @employee.addresses.first.zipcode %>');
-                   <% end %>
-                   }
-                   else{
-                     $("#address_line1").val("");
-                    $("#address_line").val("");
-                    $("#address_city").val("");
-                    $("#address_state").val("");
-                    $("#address_country").val("");
-                    $("#address_zipcode").val("");
-                   }
-                });
-               
-              });
-            </script>
-      
+<div class="row">
+<div class="col-lg-12">
+<section class="panel">
+<% if current_user.department == Department::HR %>
+  <div class="panel-body">	
+    <%= form_for [@employee, @address],  :remote => true  do |f| %>  
+      <div class="" style="color:black">                                
+        <u><strong><%= @address_type %> Address</strong></u>
+      </div><br>
+      <% if @employee.addresses.present? %>
+        <div class="row"> 
+          <div class="form-group">                                       
+            <a href="#" id="address-check-box-hyper-link"><input type="checkbox", id="address-check-box"></a> 
+              Same As &nbsp<%= @copy_address_type %> Address                    
+            </div>
+          </div>
+      <% end %>	                    														
 
-<script>
-  $(function(){
-   $("#new_address").validator();
-  });
-</script>
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2" >Address Line 1</label>
+          <div class="col-lg-8">
+            <%= f.text_field :line, :class => "form-control", :placeholder=> "Enter Address Line 1", :data => {:error => "Please Enter Address Line 1"}, :required =>true %>
+            <div class="help-block with-errors"></div>
+          </div>  
+        </div>
+      </div>																																				
+
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2">Address Line 2</label>
+          <div class="col-lg-8">									
+            <%= f.text_field :line1, :class => "form-control", :placeholder=> "Enter Address Line 1", :data => {:error => "Please Enter Address Line 2"}, :required =>true %>
+            <div class="help-block with-errors"></div>											 
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2">City</label>
+            <div class="col-lg-8">									
+            <%= f.text_field :city, :class => "form-control", :placeholder=> "Enter City", :data => {:error => "Please Enter City"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
+            <div class="help-block with-errors"></div>											 
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2">State</label>
+          <div class="col-lg-8">									
+            <%= f.text_field :state,:class => "form-control", :placeholder=> "Enter State", :data => {:error => "Please Enter State"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
+            <div class="help-block with-errors"></div>											 
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2">Country</label>
+          <div class="col-lg-8">									
+            <%= f.text_field :country, :class => "form-control", :placeholder=> "Enter Country", :data => {:error => "Please Enter Country"},  :required =>true, :pattern => '[a-zA-Z/s ]*' %>
+            <div class="help-block with-errors"></div>											 
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label class="control-label col-lg-2">Zipcode</label>
+          <div class="col-lg-8">									
+            <%= f.text_field :zipcode, :class => "form-control",  :placeholder=> "Enter Zipcode", :type => "number", :data => {:error => "Please Enter valid Zipcode",  :minlength => "6", :maxlenght => "6"}, :required =>true %>
+            <div class="help-block with-errors"></div>											 
+          </div>
+        </div>
+      </div>
+
+        <div class="form-group">
+          <%= f.hidden_field :address_type,:class => "form-control", :id => "basicinput", :value=>"#{@address_type_value}" %>
+        </div>
+        <button type="submit" class="btn btn-success edittwo">Save & Continue</button>
+    <% end %>
+   </div><!--/.module-body-->
+  <% end %>
+</section><!--/.module-->
+</div>
+</div>
+                                                                                                                       
+
+
+  <script>
+    $(function(){
+      $("#address-check-box-hyper-link").click(function(){
+        if($("#address-check-box").is(':checked')){
+          <% if @employee.addresses.present?  %>
+            $("#address_line1").val('<%= @employee.addresses.first.line1 %>');
+            $("#address_line").val('<%= @employee.addresses.first.line %>');
+            $("#address_city").val('<%= @employee.addresses.first.city %>');
+            $("#address_state").val('<%= @employee.addresses.first.state %>');
+            $("#address_country").val('<%= @employee.addresses.first.country %>');
+            $("#address_zipcode").val('<%= @employee.addresses.first.zipcode %>');
+          <% end %>
+        }
+        else{
+          $("#address_line1").val("");
+          $("#address_line").val("");
+          $("#address_city").val("");
+          $("#address_state").val("");
+          $("#address_country").val("");
+          $("#address_zipcode").val("");
+        }
+      });
+
+    });
+  </script>
+
+
+  <script>
+    $(function(){
+      $("#new_address").validator();
+    });
+  </script>
 
 
 

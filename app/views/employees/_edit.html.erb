@@ -1,253 +1,269 @@
-
-						<div class="module">
-							<div class="module-head">
-								<h3>Employee Details</h3>
-							</div>
-							<div class="module-body">	
-							  <%= form_for @employee, :html => {:class=> "edit-employee-form"}, :remote => true  do |f| %>
-							  <div class ="row-fluid">
-							    <div class="span5">														
-                    <div class="control-group">
-										  <label class="control-label" for="basicinput">Employee Id</label>
-										  <div class="controls">
-											 <%= f.text_field :employee_id, :class => "span8 form-control ", :placeholder =>"Enter Emp Id", :data => {:error => " Please Enter valid Employee Id"},:required =>true %>
-											 <span class="help-block with-errors"></span>  
-										  </div>
-									  </div>
-									</div>
-									<div class="span5">	
-									  <div class="control-group">
-										  <label class="control-label" for="basicinput">Title</label>
-										  <div class="controls">									
-                       <%= f.select( :title, options_for_select([['Mr', 'Mr'], ['Mrs', 'Mrs'], ['Miss', 'Miss']]),{}, :class=> "span8  ") %>
-										  </div>
-									 </div>
-								</div>
-							</div>
-							
-							<div class ="row-fluid">
-							  <div class="span5">		
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Employee First Name</label>
-										<div class="controls">
-                      <%= f.text_field :first_name,:class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter First name",:data => {:error => " Please Enter valid Employee First Name"}, :required =>true, :pattern => '[a-zA-Z\s ]*' %>
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
-								</div> 
-								<div class="span5">		
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Employee Last Name</label>
-										<div class="controls">
-                      <%= f.text_field :last_name,:class => "span8 form-control ", :id => "basicinput", :placeholder => "Enter Last name",:data => {:error => " Please Enter valid Employee Last Name"},:required =>true, :pattern => '[a-zA-Z\s ]*'  %> 
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
-							 </div>
-						 </div>
-						 
-						 <div class ="row-fluid">
-							  <div class="span5">						 									
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Date Of Joining</label>
-										<div class="controls">
-                     <%= text_field :employee, :date_of_join, :placeholder=>"Enter Date Of Joining",:class => "span8 datepicker form-control ", :placeholder => "Enter Last name",:data => {:error => " Please Enter valid Employee Joinh dateName"},:required =>true %> 
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
-							 </div>		
-									 <% a = []%>
+<div class="panel panel-info">
+  <div class="panel-body bio-graph-info">
+    <h1> Employee Details</h1>
+    <%= form_for @employee, :html => {:class=> "edit-employee-form form-horizontal"}, :remote => true  do |f| %>
+      
+      <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Id:</label>
+            <div class="col-lg-10">
+              <%= f.text_field :employee_id, :class => "form-control", :placeholder =>"Enter Emp Id", :data => {:error => " Please Enter valid Employee Id"}, :required =>true %>
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label">Title</label>
+            <div class="col-lg-10">
+              <%= f.select( :title, options_for_select([['Mr', 'Mr'], ['Mrs', 'Mrs'], ['Miss', 'Miss']]),{}, :class => "form-control") %>
+            </div>
+         </div>
+        </div>   
+      </div>
+            <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">First Name</label>
+            <div class="col-lg-10">
+              <%= f.text_field :first_name,:class => "form-control ", :id => "basicinput", :placeholder=>"Enter First name",:data => {:error => " Please Enter valid Employee First Name"}, :required =>true, :pattern => '[a-zA-Z\s ]*' %>
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label">Last Name</label>
+            <div class="col-lg-10">
+              <%= f.text_field :last_name,:class => "form-control ", :id => "basicinput", :placeholder => "Enter Last name",:data => {:error => " Please Enter valid Employee Last Name"},:required =>true, :pattern => '[a-zA-Z\s ]*'  %> 
+						  <span class="help-block with-errors"></span>   
+            </div>
+         </div>
+        </div>   
+      </div>
+            <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Date Of Joining</label>
+            <div class="col-lg-10">
+             <%= text_field :employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class => "datepicker form-control ", :placeholder => "Enter Last name",:data => {:error => " Please Enter valid Employee Joinh dateName"}, :required =>true %> 
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+         <% a = []%>
                    <%  JobLocation.all.each do |j| 
                     b=[]
                     b << j.address.city 
                     b << j.id
                     a << b
-                   end  %>                  
-              <div class="span5">   									
-								<div class="control-group">
-									<label class="control-label" for="basicinput">Job Location</label>
-									<div class="controls">
-                    <%= f.select :job_location_id, a,  { :prompt => "Please Select" }, { :class => "job_location, span8 form-control ", :id => "disabledSelect" } %>
-									</div>
-								</div>
-						 </div>
-					 </div>
-					 
-					  <div class ="row-fluid">
-							 <div class="span5">																		
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Blood Group</label>
-										<div class="controls">
-                       <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group, span8 form-control ", :id => "disabledSelect" } %> 
-										</div>
-									</div>
-								</div>	
-						   <div class="span5">
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Mobile Number</label>
-										<div class="controls">
-                      <%= f.text_field :mobile_number, :class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter valid Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
-                      <span class="help-block with-errors"></span>
-										</div>
-									</div>
-							  </div>
-							</div>
-							
-						  <div class ="row-fluid">
-							  <div class="span5">		
-								  <div class="control-group">
-										<label class="control-label" for="basicinput">Email Id</label>
-										<div class="controls">
-                     <input class=" span8 form-control" placeholder="Enter Email id", name="email", value=<%= @employee.user.email %> disabled >
-										</div>
-									</div>
-								</div>
-								<div class="span5">		
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Alternate E-Mail</label>
-										<div class="controls">
-                     <%= f.text_field :alternate_email, :class=>"span8 form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter valid Employee Alternate Email"}, :required =>true, :pattern => '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$' %>
+                   end  %>        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label">Job Location</label>
+            <div class="col-lg-10">
+               <%= f.select :job_location_id, a,  { :prompt => "Please Select" }, { :class => "job_location form-control ", :id => "disabledSelect" } %>
+            </div>
+         </div>
+        </div>   
+      </div>
+            <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Blood Group</label>
+            <div class="col-lg-10">
+              <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :blood_group_name, { :prompt => "Please Select" }, { :class => "blood_group form-control ", :id => "disabledSelect" } %>
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label">Mobile Number</label>
+            <div class="col-lg-10">
+              <%= f.text_field :mobile_number, :class => "form-control ", :id => "basicinput", :placeholder=>"Enter Mobile No",:data => {:error => " Please Enter valid Employee Mobile Number", :minlength => "10", :maxlength => "10"}, :required =>true, :type => "number" %> 
+              <span class="help-block with-errors"></span>
+            </div>
+         </div>
+        </div>   
+      </div>
+            <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Email Id</label>
+            <div class="col-lg-10">
+              <input class="form-control" placeholder="Enter Email id", name="email", value=<%= @employee.user.email %> disabled >
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label">Alternate E-Mail</label>
+            <div class="col-lg-10">
+             <%= f.text_field :alternate_email, :class=>"form-control", :placeholder=>"Enter Alternate Email",:data => {:error => " Please Enter valid Employee Alternate Email"}, :required =>true, :pattern => '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$' %>
                       <span class="help-block with-errors"></span> 
-										</div>
-									</div>
-							  </div>
-							</div>
-							
-							<div class ="row-fluid">
-							  <div class="span5">									
-									<div class="control-group">
-										<label class="control-label" for="basicinput"> Reporting Manager</label>
-										<div class="controls">
-                     <input type="text" id="reporting" class ="span8 form-control", name= "reporting" , place_holder = "Enter Reporting Manager Name" data-error="Please Enter valid Employee Reporting Manager" required>
-                     <input type="hidden" id="reporting_id"  name= "reporting_id"> 
-                     <span class="help-block with-errors"></span> 
-										</div>
-									</div>
-							  </div>		
-								<div class="span5">	
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Father Name</label>
-										<div class="controls">
-                     <%= f.text_field :father_name, :class => "span8 form-control", :id =>"basicinput",  :placeholder=>"Enter Father name",:data => {:error => " Please Enter valid Employee Father Number"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %> 
-                     <span class="help-block with-errors"></span>
-										</div>
-									</div>
-								</div>
-							</div>	
-							
-							<div class ="row-fluid">
-							  <div class="span5">										
-									 <div class="control-group">
-										  <label class="control-label" for="basicinput">Gender</label>
-										  <div class="controls">
-                       <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']], :selected => f.object.gender), {}, :class=> "span8 form-control", :id=>"disabledSelect") %> 
-                       <span class="help-block with-errors"></span>
-										  </div>
-									  </div>
-								  </div>	
-								  <div class="span5">									  
-									  <div class="control-group">
-										  <label class="control-label" for="basicinput">Date Of Birth</label>                                             
-										  <div class="controls">
-                       <%= f.text_field :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"span8 datepicker_with_year form-control", :data => {:error => " Please Enter valid Employee Date Of Birth"}, :required =>true %> 
-                       <span class="help-block with-errors"></span>
-										  </div>
-									  </div>
-									</div>
-								</div>
-								
-								<div class ="row-fluid">
-							    <div class="span5">									
-									  <div class="control-group">
-										  <label class="control-label" for="basicinput">Department</label>                                              
-										  <div class="controls">
-                       <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, span8 form-control", :id => "disabledSelect1" } %> 
-                       <span class="help-block with-errors"></span>
-										  </div>
-									  </div>
-									</div>
-									<div class="span5">	
-									  <div class="control-group">
-										  <label class="control-label" for="basicinput">Designation</label>                                              
-										  <div class="controls">
-                       <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation span8 form-control", :id=>"disabledSelect"  } %>  
-                       <span class="help-block with-errors"></span>
-										  </div>
-									  </div>
-									</div>
-							  </div> 
-							  
-							  <div class ="row-fluid">
-							    <div class="span5">	 									
-								    <div class="control-group">
-									    <label class="control-label" for="basicinput">Grade/Level</label>                                           
-									    <div class="controls">
-                        <%= f.grouped_collection_select :grade_id, Designation.all, :grades, :designation_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades span8 form-control", :id=>"disabledSelect"  } %>
-                       <span class="help-block with-errors"></span>
-									    </div>
-								    </div>
-									</div>
-									 <div class="span5">									  
-									  <div class="control-group">
-										  <label class="control-label" for="basicinput">Employment Status</label>                                             
-										  <div class="controls">
-                      <%= f.select(:employment_status, options_for_select([['New', 'New'], ['Internship', 'Internship'], ['Regular', 'Regular'], ['F&F', 'F&F']], :selected => f.object.employment_status ), {}, :class=> "span8 form-control") %>
-                      <span class="help-block with-errors"></span>
-										  </div>
-									  </div>
-									</div>
-								</div>
-						   
-						   <div class ="row-fluid">
-						     <div class="span5">		
-									<div class="control-group">
-										<label class="control-label" for="basicinput">Employee Devise Id</label>
-										<div class="controls">
-                      <%= f.text_field :devise_id,:class => "span8 form-control ", :id => "basicinput", :placeholder=>"Enter Devise Id",:data => {:error => " Please Enter Employee Devise Id"}, :required =>true %>
-											 <span class="help-block with-errors"></span>   
-										</div>
-									</div>
-									</div>
-						     <div class="span5">	
-								<div class="control-group">
-									<label class="control-label" for="basicinput"> Work Shift</label>
-									<div class="controls">
-                   <%= f.collection_select :shift_id, Shift.all, :id, :name, { :prompt => "Please Select" }, { :class => "shifts span8 form-control", :id => "disabledSelect2" } %> 
-                   <span class="help-block with-errors"></span> 
-									</div>
-								</div>
-							</div></div>
-							
-					  <div class ="row-fluid">
-              <div class="span5">		
-								<div class="control-group">
-									<label class="control-label" for="basicinput">Group</label>                                              
-									<div class="controls">
-                   <%= f.collection_select :group_id, Group.all, :id, :group_name, { :prompt => "Please Select" }, { :class => "groups, span8 form-control", :id => "disabledSelect1" } %> 
-                   <span class="help-block with-errors"></span>
-									</div>
-								</div>
-							</div>
-							<div class="span5">
-						    <div class="control-group">
-										  <label class="control-label" for="basicinput">Employee Display Picture</label>                                         
-										  <div class="controls">
-                        <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes, :error => " Please upload valid photo"}, :required =>true %>
-                       <span class="help-block with-errors"></span>
-										  </div>
-									  </div>	
-								 </div>
-							</div>						   			
-							<button type="submit" class="btn btn-success edit">Save & Continue</button>									
-						<% end %>
-					</div>
-				</div>
+            </div>
+         </div>
+        </div>   
+      </div>
+            <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Reporting Manager</label>
+            <div class="col-lg-10">
+              <input type="text" id="reporting" class ="form-control", name= "reporting" , place_holder = "Enter Reporting Manager Name" data-error="Please Enter valid Employee Reporting Manager" required>
+              <input type="hidden" id="reporting_id"  name= "reporting_id"> 
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label">Father Name</label>
+            <div class="col-lg-10">
+              <%= f.text_field :father_name, :class => "form-control", :id =>"basicinput",  :placeholder=>"Enter Father name",:data => {:error => " Please Enter valid Employee Father Number"}, :required =>true, :pattern => '[a-zA-Z/s ]*' %>
+              <span class="help-block with-errors"></span> 
+            </div>
+         </div>
+        </div>   
+      </div>
+            <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Gender</label>
+            <div class="col-lg-10">
+               <%= f.select(:gender, options_for_select([['Male', 'Male'], ['Female', 'Female']], :selected => f.object.gender), {}, :class=> "form-control", :id=>"disabledSelect") %> 
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label">Date Of Birth</label>
+            <div class="col-lg-10">
+              <%= f.text_field :date_of_birth, :placeholder=>"Enter Date Of Birth", :class=>"datepicker_with_year form-control", :data => {:error => " Please Enter valid Employee Date Of Birth"}, :required =>true %> 
+              <span class="help-block with-errors"></span>
+            </div>
+         </div>
+        </div>   
+      </div>
+            <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Department</label>
+            <div class="col-lg-10">
+              <%= f.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments form-control", :id => "disabledSelect1" } %> 
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label">Designation</label>
+            <div class="col-lg-10">
+              <%= f.grouped_collection_select :designation_id, Department.all, :designations, :department_name,  :id, :designation_name, { :prompt => "Please Select" }, { :class => "designation form-control", :id=>"disabledSelect"  } %>  
+             <span class="help-block with-errors"></span>
+            </div>
+         </div>
+        </div>   
+      </div>
+      
+      <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Grade/Level</label>
+            <div class="col-lg-10">
+              <%= f.grouped_collection_select :grade_id, Designation.all, :grades, :designation_name,  :id, :value, { :prompt => "Please Select" }, { :class => "grades form-control", :id=>"disabledSelect"  } %>
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label">Employment Status</label>
+            <div class="col-lg-10">
+              <%= f.select(:employment_status, options_for_select([['New', 'New'], ['Internship', 'Internship'], ['Regular', 'Regular'], ['F&F', 'F&F']], :selected => f.object.employment_status ), {}, :class=> "form-control") %>
+              <span class="help-block with-errors"></span>
+            </div>
+         </div>
+        </div>   
+      </div>
+      
+      <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Devise Id</label>
+            <div class="col-lg-10">
+              <%= f.text_field :devise_id,:class => "form-control ", :id => "basicinput", :placeholder=>"Enter Devise Id",:data => {:error => " Please Enter Employee Devise Id"}, :required =>true %>
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label"> Work Shift</label>
+            <div class="col-lg-10">
+              <%= f.collection_select :shift_id, Shift.all, :id, :name, { :prompt => "Please Select" }, { :class => "shifts form-control", :id => "disabledSelect2" } %> 
+              <span class="help-block with-errors"></span>
+            </div>
+         </div>
+        </div>   
+      </div>
+      
+      <div class ="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Group</label>
+            <div class="col-lg-10">
+              <%= f.collection_select :group_id, Group.all, :id, :group_name, { :prompt => "Please Select" }, { :class => "groups form-control"} %> 
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+           <div class="form-group">
+            <label  class="col-lg-2 control-label">Employee Display Picture</label>
+            <div class="col-lg-10">
+              <%= f.file_field :avatar,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes, :error => " Please upload valid photo"}, :required =>true %>
+              <span class="help-block with-errors"></span>
+            </div>
+         </div>
+        </div>   
+      </div>
+      
+      	<button type="submit" class="btn btn-success edit">Save & Continue</button>	
+    <% end %>
+  </div>
+</div>				
 
-					<script>
-			      $(function(){
-              $(".edit-employee-form").validator();
+<script>
+ $(function(){
+ $(".edit-employee-form").validator();
              });  
-			    </script>    							
+</script>    							
                            
           <script>
             $(document).ready(function() {
@@ -259,7 +275,7 @@
           <script>
              
 $(function() {
-    $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
+    $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
   });
   
     $(function() {

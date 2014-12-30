@@ -1,77 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <!-- Hide this line for IE (needed for Firefox and others) -->
-  <![if !IE]> 
-  <%= favicon_link_tag 'favicon.png', rel: 'icon', type: 'image/x-icon' %>
-  <![endif]>
-  <!-- This is needed for IE -->
-  <%= favicon_link_tag 'favicon.png', rel: 'shortcut icon' %>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>AmzurHRM</title>
-
-  <!-- css for slick-->
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.15/slick.css"/>
-  <!-- Bootstrap Core CSS -->
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-
-  <%= javascript_include_tag 'application' %>
-
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-  <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="shortcut icon" href="/assets/favicon.png">
+    <title>Profile</title>
+    
+    
+    <%= stylesheet_link_tag    'application', media: 'all'  %>
+    <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <%= csrf_meta_tag %>
+  </head>
   
-  <!--script for loading ------
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
-  <script type="text/javascript">
-  $(window).load(function() {
-	  $(".loader").fadeOut("slow");
-  });
-  </script>
-  
+  <body>
+    <section id="container" class="" >
+      <!--header start-->
+        <%= render "shared/hrm_header"%>
+      <!--header end-->
+        <%= render "shared/hrm_side_bar" %>
+      <!--main content start-->
+      <section id="main-content">
+        <section class="wrapper" style="min-height:820px;">
+          <!-- page start-->
+            <%= yield %>
+          <!-- page end-->
+        </section>
+      </section>
+      <!--main content end-->
+
+      <!--footer start-->
+        <%= render "shared/hrm_footer"%>
+      <!--footer end-->
+  </section>
   <script>
-  $(function(){
-  $("input[type='submit']").click(function(){
-    $(".help-block.with-errors:not(:empty)").prev().attr('style','border:solid 1px red;');
-    $(".help-block.with-errors>ul.list-unstyled").attr('style','margin: 0px !important;	');
-  });
-  });
-  </script>
-
-  
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
- <%= csrf_meta_tags %>
-</head>
-
-<body>
-
-      <%= render "shared/ui_header"%>
-          <%= yield %>
-     <%= debug(params)%>
-   
-
-  <div class="footer">
-		<div class="container">			 
-			<b class="copyright">&copy; 2014 AmzurHRM - amzur.com </b> All rights reserved.
-			</div>
-	</div>
-	
-  <div class="loader">
-  <%= image_tag("loader.gif", height: '50px', width: '50px')%>
-  </div>
-  
-
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.3.15/slick.min.js"></script>
-</body>             
-<%= render "shared/modals"%>
+      //knob
+   $(".knob").knob();
+  </script>  
+    
+  </body>
 </html>

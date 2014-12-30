@@ -1,56 +1,59 @@
-			<div class="module">
-				<div class="module-head">
-					<h3>Education Info</h3>
-			  </div>
-				<div class="module-body">
-				
-				<%= form_for ([@employee, @education]), :remote => true,  :html => {:class=>"form-horizontal row-fluid"} do |f| %>
-				
-         <div class="control-group">
-            <label class="control-label" for="basicinput">Name Of Graduation</label>
-                <div class="controls">
-                  <%= f.text_field :specilization, :class => "span8 form-control", :placeholder =>"Enter Graduation", :data => {:error => "Please Enter Degree"}, :required => true,:pattern => '[a-zA-Z0-9/./-/s ]*'%>  
-                  <span class="help-block with-errors"></span>
-                </div>
-					</div>
-						        
-        <div class="control-group">
-            <label class="control-label" for="basicinput">College/University Name</label>
-                <div class="controls">
-                  <%= f.text_field :institute, :class => "span8 form-control", :placeholder =>"Enter College/University Name", :data => {:error => "Please Enter University"}, :required => true, :pattern => '[a-zA-Z\.\-\,\s ]*'%>
-                  <span class="help-block with-errors"></span>
-                </div>
-					</div>
+<div class="row">
+<div class="col-lg-12">
+<div class="panel">
+	<div class="panel-heading">
+		Education Info
+  </div>
+	<div class="panel-body">
+	  <%= form_for ([@employee, @education]), :remote => true,  :html => {:class=>"form-horizontal row-fluid new_education"} do |f| %>	
+      <div class="form-group">
+        <label class="control-label col-lg-2">Name Of Graduation</label>
+          <div class="col-lg-8">
+            <%= f.text_field :specilization, :class => "form-control", :placeholder =>"Enter Graduation", :data => {:error => "Please Enter Degree"}, :required => true,:pattern => '[a-zA-Z0-9/./-/s ]*'%>  
+            <span class="help-block with-errors"></span>
+          </div>
+		  </div>
+			        
+      <div class="form-group">
+        <label class="control-label col-lg-2">College/University Name</label>
+          <div class="col-lg-8">
+            <%= f.text_field :institute, :class => "form-control", :placeholder =>"Enter College/University Name", :data => {:error => "Please Enter University"}, :required => true, :pattern => '[a-zA-Z\.\-\,\s ]*'%>
+            <span class="help-block with-errors"></span>
+          </div>
+		  </div>
 
+      <div class="form-group">
+				<label class="control-label col-lg-2">Year of Passing</label>
+				<div class="col-lg-8">
+         <%= f.text_field :year_of_pass, :class => "from form-control", :placeholder => "Enter Year Of Passing", :data => {:error => "Please Enter Passing Year"}, :required => true, :pattern => '[0-9]{4}' %> 
+					<span class="help-block with-errors"></span>   
+				</div>
+			</div>		 		
 
-<div class="control-group">
-							<label class="control-label" for="basicinput">Year of Passing</label>
-							<div class="controls">
-               <%= f.text_field :year_of_pass, :class => "span8 from form-control", :placeholder => "Enter Year Of Passing", :data => {:error => "Please Enter Passing Year"}, :required => true, :pattern => '[0-9]{4}' %> 
-								 <span class="help-block with-errors"></span>   
-							</div>
-						</div>		 		
-
-<div class="control-group">
-							<label class="control-label" for="basicinput">Percentage/CGPA </label>
-							<div class="controls">
-               <%= f.text_field :cgpa_percentage, :class => "span8 to form-control", :id => "basicinput", :placeholder => "Enter Percentage/CGPA",  :data => {:error => "Please Enter Percentage/CGPA"},:required => true, :pattern => "[0-9]*\.[0-9]+|[0-9]+" %>                  
-								 <span class="help-block with-errors"></span>   
-							</div>
-						</div>
-					
-						<ul class="navigation-btns edit">
-						  <li><button type="submit" class="btn btn-success">Save </button></li>
-							<li><%= link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger ", :remote => true %></li>									
-					  </ul>		
-							<% end %>
-				</div><!--/.module-body-->
-			</div><!--/.module-->
+      <div class="form-group">
+				<label class="control-label col-lg-2" for="basicinput">Percentage/CGPA </label>
+				<div class="col-lg-8">
+          <%= f.text_field :cgpa_percentage, :class => "to form-control", :id => "basicinput", :placeholder => "Enter Percentage/CGPA",  :data => {:error => "Please Enter Percentage/CGPA"},:required => true, :pattern => "[0-9]*\.[0-9]+|[0-9]+" %>                  
+					<span class="help-block with-errors"></span>   
+				</div>
+			</div>
+			
+      <div class="form-group">		
+			  <div class="col-lg-offset-2 col-lg-10">
+			    <button type="submit" class="btn btn-success">Save </button></li>
+				  <%= link_to 'Cancel', employee_educations_path(@employee), :class=>"btn btn-danger", :remote => true %></li>			
+		    </div>
+		  </div>		
+	  <% end %>
+  </div><!--/.module-body-->
+</div><!--/.module-->
+</div>
+</div>
 
 
 <script>
   $(function(){
-   $("#new_education").validator();
+   $(".new_education").validator();
   });
 </script>
 

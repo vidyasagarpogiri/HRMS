@@ -1,0 +1,116 @@
+<ul class="sidebar-menu" id="nav-accordion">
+  <li>
+  <a href="/welcome/wall">
+    <i class="fa fa-dashboard"></i>
+    <span>My Wall</span>
+  </a>
+  </li>
+
+  <li class="sub-menu">
+  <a href="#">
+    <i class="fa fa-laptop"></i>
+    <span>Organization</span>
+  </a>
+  <ul class="sub">
+    <li><%= link_to 'Locations',job_locations_path %></li>
+    <li><a href="/departments">Departments</a></li>
+    <li><a href="/groups">Groups</a></li>
+    <li><a href="/workgroups">Work Groups</a></li>	
+    <li><a href="/posts">Posts</a></li>	
+    <li><%= link_to 'Policies',policies_path %></li>
+    <li><a href="/shifts">Work Shifts</a></li>
+    <li><a href="/events">Holidays</a></li>
+    <li><%= link_to 'Announcement',announcements_path %></li>
+    <li><%= link_to 'Events',amzur_events_path %></li>
+    <li><%= link_to 'Job Openings',recruitments_path %></li>
+  </ul>
+  </li>
+
+  <li class="sub-menu">
+    <a href="#">
+      <i class="fa fa-book"></i>
+      <span>Employees</span>
+    </a>
+
+    <ul class="sub">
+      <li><a href="/employees">Employees</a></li>
+      <li class="sub-menu"><a href="#">Attendence</a>
+      <ul class="sub">
+        <li><a href="/employee_attendence/new_attendence_log">Upload CSV</a></li>
+        <li><a href="/employee_attendence/show_attendance">Employee Attendance</a></li>
+      </ul>			
+      <li><a href="/calendar">Calendar</a></li>
+      <li><a href="/employee_leaves">Employee Leaves</a></li>
+      <li><a href="#">Resignations</a></li>
+      <li class="sub-menu"><a href="#">Apprisals</a>
+        <ul class="sub">
+          <li><a href="/appraisal_cycles">Appraisal Cycle</a></li>
+          <li><a href="/appraisals">Appraisal Templates</a></li>
+          <% if current_user.employee.is_reporting_manager? %>
+            <li><a href=" /assign_employee_appraisals">Assign Appraisal</a></li>
+          <% end %>
+          <li><a href="/review_elements">Review Elements</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Employees Exit</a></li>
+      <li><a href="/inactive_employees">Inactive Employees</a></li>			
+      <li><a href="/new_profile">New Employee</a></li>
+    </ul>
+  </li>
+
+  <li class="sub-menu">
+    <a href="#">
+      <i class="fa fa-cogs"></i>
+      <span>PayRoll</span>
+    </a>
+    <ul class="sub">
+      <li><%= link_to 'PayRoll Master', static_allowances_path %></li>     
+      <li><%= link_to 'Employee PayRoll', payroll_path %></li>
+      <li><a href="#">Bonus</a></li>
+      <li><a href="#"> Reimbursement</a></li>
+      <li><%= link_to 'Investment Declaration Form', section_declarations_path %></li>
+      <li><a href="#">Loans</a></li>
+      <li><a href = "/company_pay_roll_masters">Company Monthly PayRoll</a></li>
+      <li class="sub-menu"><a href="#">TDS</a>
+        <ul class="sub">
+          <li><a href="/tax_brackets">Tax Brackets</a></li>
+          <li><a href="/tax_exemptions">Tax Exemptions</a></li>
+        </ul>			
+      </li>
+    </ul>
+  </li>
+  
+  <li class="sub-menu">
+    <a href="#">
+      <i class="fa fa-cogs"></i>
+      <span>My Amzur</span>
+    </a>
+    <ul class="sub">
+      <li><%= link_to "My Profile", profile_path(current_user.employee) %></li>
+		  <li class="sub-menu"><a href="#">Leaves</a>
+			  <ul class="sub">
+			    <li><a href="/leave_histories">My Leaves</a></li>
+			    <% if current_user.employee.is_reporting_manager? %>           
+			      <li><a href="/reportees_leaves">Leave Approvals</a></li>
+         <% end %> 
+        </ul>
+      </li> 
+      <li><a href="/letters" >Letters</a></li>
+ 			<li><%= link_to "My Work Groups", my_workgroups_path %></a></li>
+			<li><a href="/monthly_payslips" >My Payslips</a></li>
+			<li class="sub-menu"><a href="#">My Apprisals</a>
+			  <ul class="sub">
+			    <li><a href="/employee_appraisal_form">Appraisal Form</a></li>
+			    <li><a href="/my_appraisals">Previous Appraisals</a></li>
+			    <% if current_user.employee.is_reporting_manager? %>
+			      <li><a href="/appraisals_list">Employee Appraisals</a></li>
+			      <li><a href="/reportees">Reportees Previous Appraisals</a></li>
+			    <% end %>
+			  </ul>
+			</li>
+			<li><a href="/employee_attendence/emp_show_attendance" >My Attendance</a></li>		
+			<li><a href="/investment_declarations" >My Investment Declartions</a></li>
+    </ul>
+  </li>
+  
+</ul>

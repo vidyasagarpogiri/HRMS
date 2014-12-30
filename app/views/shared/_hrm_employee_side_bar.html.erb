@@ -1,0 +1,104 @@
+<ul class="sidebar-menu" id="nav-accordion">
+  <li>
+  <a href="/welcome/wall">
+    <i class="fa fa-dashboard"></i>
+    <span>My Wall</span>
+  </a>
+  </li>
+
+  <li class="sub-menu">
+  <a href="#">
+    <i class="fa fa-laptop"></i>
+    <span>Organization</span>
+  </a>
+  <ul class="sub">
+    <li><%= link_to 'Policies',policies_path %></li>
+    <li><a href="/employees">Employees</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/statuses">Employee Wall</a></li>
+    <li><a href="/workgroups">Work Groups</a></li>
+    <li><%= link_to 'Events',amzur_events_path %></li>
+    <li><%= link_to 'Announcements',announcements_path %></li>
+    <li><a href="/calendar">Calendar</a></li>
+  </ul>
+  </li>
+
+  <li class="sub-menu">
+  <a href="#">
+    <i class="fa fa-book"></i>
+    <span>Attendence </span>
+  </a>
+  <ul class="sub">
+    <li><a href="/employee_attendence/emp_show_attendance"> My Attendance </a></li>	
+    <li><a href="/employee_attendence/show_attendance">Employee Attendance</a></li>
+  </ul>
+  </li>
+
+  <% if current_user.employee.is_reporting_manager? %>
+    <li class="sub-menu">
+    <a href="#">
+      <i class="fa fa-cogs"></i>
+      <span>Appraisals</span>
+    </a>
+    <ul class="sub">
+      <li><a href="/appraisals">Appraisal Templates</a></li>
+      <li><a href="/assign_employee_appraisals">Assign Appraisal</a></li>
+      <li><a href="/review_elements">Review Elements</a></li>
+      <li><a href="/appraisals_list">Employee Appraisals</a></li>
+      <li><a href="/reportees">Reportees Previous Appraisals</a></li>
+    </ul>
+    </li>
+  <% end %>
+  <li class="sub-menu">
+  <a href="#" >
+    <i class="fa fa-tasks"></i>
+    <span>Leaves</span>
+  </a>
+  <ul class="sub">
+    <li><a href="/leave_histories">MyLeaves</a></li>
+    <% if current_user.employee.is_reporting_manager? %>
+      <li><a href="/reportees_leaves">Leave Approvals</a></li>
+    <% end %>  
+  </ul>
+  </li>
+  <li class="sub-menu">
+  <a href="#">
+    <i class="fa fa-th"></i>
+    <span>Pay Roll</span>
+  </a>
+  <ul class="sub">
+    <% if current_user.department == Department::ACCOUNTS %>
+      <li><%= link_to 'Pay Slips View', payroll_path %></li>
+      <li><a href = "/company_pay_roll_masters">Company Monthly PayRoll</a></li>
+    <% else %>
+      <li><a href="/monthly_payslips" >Payslips</a></li>
+    <% end%>
+    <li><%= link_to 'Investment Declarations', investment_declarations_path %></li>
+  </ul>
+  </li>
+
+  <li class="sub-menu">
+  <a href="#" >
+    <i class=" fa fa-envelope"></i>
+    <span>My Amzur</span>
+  </a>
+  <ul class="sub">
+    <li><%= link_to "My Profile", profile_path(current_user.employee) %></li>
+    <li><%= link_to ' My Projects',  projects_path %></li>
+    <li class="sub-menu"><a href="#">My Appraisals</a>
+    <ul class="sub">
+      <li><%= link_to 'Appraisal Form',  employee_appraisal_form_path %></li>
+      <li><a href="/my_appraisals">Previous Appraisals</a></li>
+    </ul>
+    </li>
+    <li><%= link_to ' My Self Description', employee_self_description_show_employee_path(current_user.employee) %>
+    </li>
+    <li><%= link_to "My Work Groups", my_workgroups_path %></li>
+    <li><%= link_to "My Letters", letters_path(current_user.employee) %></li>
+    <% if current_user.department == Department::ACCOUNTS %>
+      <li><a href="/monthly_payslips" >Payslips</a></li>
+    <% end %>
+  </ul>
+  </li>
+</ul>      
+
