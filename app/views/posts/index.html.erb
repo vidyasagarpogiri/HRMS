@@ -1,8 +1,7 @@
-<section class="panel">
-  <header class="panel-heading">
-      All posts 					    
-         <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign"></i> </a><%= link_to " New Post", new_post_path %></label>  
-              </header>
+<div class="panel panel-info">
+  <div class="panel-heading"> 
+    All posts <%= link_to " New Post", new_post_path, :class => "fa fa-plus pull-right" %>
+  </div>             
   
             
              <%= form_tag posts_path, :class => "span12", :method => :get do %>		 

@@ -1,24 +1,16 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>Work Groups List</h3>
-                <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a><%= link_to " New Work Group",new_workgroup_path%></label>
-             </div>
-           <div class="workgroups">
-              <%= render "workgroups/list_of_workgroups" %>
-           </div><br>    																																											                               
-          </div><!-- /.module-->									      				                                      
-        </div><!--/.content-->                    
-      </div><!--/.span12-->                
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
-
-
-                       
-                       
-               
+<div class="panel panel-info">
+  <div class="panel-heading"> 
+    Work Groups List <%= link_to " New Work Group",new_workgroup_path, :class => "fa fa-plus pull-right" %>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <section class="panel">        
+        <div class="panel-body">  
+          <div class="workgroups">
+            <%= render "workgroups/list_of_workgroups" %>
+          </div><br>    																																											                               
+        </div><!-- /.module-->
+      </section>									      				                                      
+    </div><!--/.content-->
+  </div>
+</div>                                                                                 
