@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   
-  layout "wall_layout", only: [:wall]
+  #layout "wall_layout", only: [:wall]
   
   def index
     render :layout => false
