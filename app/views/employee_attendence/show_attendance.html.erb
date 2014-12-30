@@ -24,7 +24,7 @@
 								  </thead>
 								  <tbody>
 								    <% @employees.each do |employee| %>  
-                    <tr id= "<%= employee.employee_id%>">
+                    <tr id= "<%= employee.id %>">
                       <td><%= employee.full_name%></td>
 									    <td class="Mon"></td>
 									    <td class="Tue"></td>
@@ -68,21 +68,23 @@ $(function(){
 
 function call_sw(){
   $("#attendance_table tr td:not(:first-child)").html("0");
+  // sekhar - json to get dates and working hours of employees based on week 
   $.getJSON( "/employee_attendence/attandence_ws.json?week_no="+$("#week_num").val(), function( data ) {
     $.each(data, function( key, value ) {
           $("th span").remove();
+          // loop for append dates and day value in the table
           $.each(data["dt"], function( dt, v ) {
-            $("th."+dt).prepend("<span>"+v+"</span> ");
+            $("th."+dt).prepend("<span>"+v+"</span> "); // append day and date to th tag in the table
           });
 
       var i=0;          
       $.each(value, function( day, hrs ) {
         day_arr = day.split("|"); 
-        if(hrs!="0" && hrs.toString().split("hr").length==2){
-          $("tr#"+key+" ."+day_arr[0]).html(hrs+ " <i class='icon-comment' onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'></i>");
+        if(hrs!="0" && hrs.toString().split("hr").length==2){ // if working hours present
+          $("tr#"+key+" ."+day_arr[0]).html(hrs+ " <i class='icon-comment' onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'></i>"); // append working hours of corresponding date to table row
         }
         else {
-          if((day_arr[0]=="Sat" || day_arr[0]=="Sun") && hrs.toString().split("hr").length!=2){
+          if((day_arr[0]=="Sat" || day_arr[0]=="Sun") && hrs.toString().split("hr").length!=2){ // for sat and sunday
             $("tr#"+key+" ."+day_arr[0]).text(0); 
           } else 
           {
@@ -97,9 +99,10 @@ function call_sw(){
   });
 }
 
+// function will be called when we click on comment icon of timings in the table
 function call_log_sw(id, val){
   var log_records = ""
-  $.get( "/employee_attendence/attendence_log_ws.json?emp_id="+id+"&dt="+val, function( data ) {
+  $.get( "/employee_attendence/attendence_log_ws.json?emp_id="+id+"&dt="+val, function( data ) { // json for attendence log i.e timings of in and put of an employee
     $.each(data, function( k, v ) {   
           $(".modal-header h4").html("<i class='icon-time icon-large'></i> Attendance Logs - "+v);
       if(k!="dt"){
