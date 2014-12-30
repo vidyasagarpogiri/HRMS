@@ -1,23 +1,12 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>Appraisals List For <%= @appraisal_cycle.title %></h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><span class="glyphicon glyphicon-circle-arrow-left"></span></i></a> <%= link_to 'Appraisal Cycles', appraisal_cycles_path %></label>
-            </div>
-            <div class="actual-list">
-              <!-- render actual page -->
-              <%= render "appraisal_cycles/employee_appraisals_list"%>
-            </div>
-            <div class="updated-list"></div> 
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
-
-
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Appraisals List For <%= @appraisal_cycle.title %> <%= link_to ' Appraisal cycles', appraisal_cycles_path, :class => "fa fa-arrow-circle-left pull-right" %>
+  </div>
+  <div class="panel-body">
+    <div class="actual-list">
+      <!-- render actual page -->
+      <%= render "appraisal_cycles/employee_appraisals_list"%>
+    </div>
+    <div class="updated-list"></div> 
+  </div><!--/.panel-body-->        
+</div><!--/.panel-info-->
