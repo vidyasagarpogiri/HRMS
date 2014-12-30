@@ -1,24 +1,32 @@
-<div class="module">
-            <div class="module-head" style="background-color: #82B4E6 ">
-              <h3>pay slips
-              </h3>
-            </div>
-            <div class="module-body">
+<div class="row">                                             
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">Payslips</header>
+
+          <div class="panel-body"> 
               <div class="row-fluid">
                <div class="span6">
-             <%= form_tag( payrolls_employee_payslips_by_year_path,  :class => "form-horizontal", :remote => true) do %>
+               <label><strong>Select Month to View payslip :&nbsp&nbsp </strong></label>
+             <%= form_tag( payrolls_employee_payslips_by_year_path,  :class => "form-horizontal form-inline", :remote => true) do %>
             
-                <label><strong>Select Month to View payslip :&nbsp&nbsp </strong><br>
-                <select name="payslip_view_year" class="payroll_year">
+                <div class="form-group">
+                  <div class="col-lg-4">
+                  <select name="payslip_view_year" class="payroll_year form-control">
                     <option value=0>-select year-</option>
                     <% @years.each do |year| %>
                       <option value="<%= year %>"><%= year %></option>
                     <% end %>             
                   </select> 
-                <input type="submit" class="btn btn-success" value="View">                
+                 </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-4">
+                    <input type="submit" class="btn btn-success" value="View"> 
+                  </div>  
+                </div>             
            <% end %>  
                </div>
-             </div></br>
+             </div><hr>
                 <% if @payslips.present? %>               
                 <!-- code for displayin all employees payslips -->   
                 <div class="employee_payslip">             
@@ -56,5 +64,5 @@
                     </div>
                 <% end %>           
               </div>
-            </div><!--/.module-->
-
+            </div>
+           </div>
