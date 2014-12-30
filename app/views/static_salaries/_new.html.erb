@@ -1,5 +1,4 @@
 <%= form_for @static_salary do |s|%>             
-<div class="module-body">
   <p style="color:red;"><u>Note:</u></p><p>Basic, Esic, Esic contribution depends on Gross and PF,Pf Contribution depends on basic</p>     
   <table class="table table-striped table-bordered table-condensed">
     <thead>
@@ -19,7 +18,6 @@
     <% end %>
     <% end %>
     </tbody>      
-  </table><br>
+  </table>
   <%= submit_tag "Submit", :class => "btn btn-success pull-right", :id=> "save" %><br/>
-</div>
 <% end %>
