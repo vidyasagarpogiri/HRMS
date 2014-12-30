@@ -1,103 +1,96 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head">
-              <h3>New Appraisal Cycle</h3>
-              <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-arrow-left"></i></a> <%= link_to 'Back', appraisal_cycles_path %></label>
-            </div>
-            <div class="module-body">
-              <%= form_for @appraisal_cycle, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, remote: true  do |a| %>
-              <div class ="row-fluid">
-						    <div class="span5">
-                  <div class="control-group">   
-                    <label class="control-label" for="basicinput">Title</label>
-                    <div class="controls">
-                      <%= a.text_field :title, required: true %>
-                      <span class="help-block with-errors"></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="span5">
-                  <div class="control-group">   
-                    <label class="control-label" for="basicinput">Department</label>
-                    <div class="controls">
-                      <%= a.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, span9 form-control", required: true } %> 
-                      <span class="help-block with-errors"></span>
-                    </div>
-                  </div>
-                </div>
-              </div><hr>
-              <div class ="row-fluid">
-						    <div class="span5">
-                  <div class="control-group">   
-                    <label class="control-label" for="basicinput">Start Date</label>
-                    <div class="controls">
-                      <%= a.text_field :start_date, :class => "date-picker start_date", required: true %>
-                      <span class="help-block with-errors"></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="span5">
-                  <div class="control-group">   
-                    <label class="control-label" for="basicinput">End Date</label>
-                    <div class="controls">
-                      <%= a.text_field :end_date, :class => "date-picker end_date", required: true %>
-                      <span class="help-block with-errors"></span><span class="error1"></span>
-                    </div>
-                  </div>
-                </div>
-              </div><hr>
-              <div class ="row-fluid">
-						    <div class="span5">
-                  <div class="control-group">   
-                    <label class="control-label" for="basicinput">Period</label>
-                    <div class="controls">
-                      <%= a.text_field :period, required: true %>
-                      <span class="help-block with-errors"></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="span5">
-                  <div class="control-group">   
-                    <label class="control-label" for="basicinput">Employee Dead Line Date</label>
-                    <div class="controls">
-                      <%= a.text_field :employee_dead_line, :class => "date-picker employee_date", required: true %>
-                      <span class="help-block with-errors"></span><span class="error2"></span>
-                    </div>
-                  </div>
-                </div>
-              </div><hr>
-              <div class ="row-fluid">
-						    <div class="span5">
-                  <div class="control-group">   
-                    <label class="control-label" for="basicinput">Manager Dead Line Date</label>
-                    <div class="controls">
-                      <%= a.text_field :manager_dead_line, :class => "date-picker manager_date", required: true %>
-                      <span class="help-block with-errors"></span><span class="error3"></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="span5">
-                  <div class="control-group">   
-                    <label class="control-label" for="basicinput">Discussion Dead Line Date</label>
-                    <div class="controls">
-                      <%= a.text_field :discussion_dead_line, :class => "date-picker discussion_date", required: true %>
-                      <span class="help-block with-errors"></span><span class="error4"></span>
-                    </div>
-                  </div>
-                </div>
-              </div><hr>
-              <%= a.submit 'Create Appraisal', :class => 'btn btn-success pull-right' %>
-              <% end %><br/>
-            </div><!--/.module-body-->
-          </div><!--/.module-->
-        </div><!--/.content-->
-      </div><!--/.span12-->
-    </div><!--/.row-->
-  </div><!--/.container-->
+<div class="panel panel-info">
+  <div class="panel-heading">
+    New Appraisal Cycle  
+  </div>
+  <div class="panel-body">
+    <%= form_for @appraisal_cycle, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, remote: true  do |a| %>
+    <div class ="row">
+	    <div class="col-lg-6">
+        <div class="form-group">   
+          <label class="col-lg-2 control-label" for="basicinput">Title</label>
+          <div class="col-lg-10">
+            <%= a.text_field :title, :class => "form-control", required: true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="control-group">   
+          <label class="col-lg-2 control-label" for="basicinput">Department</label>
+          <div class="col-lg-10">
+            <%= a.collection_select :department_id, Department.all, :id, :department_name, { :prompt => "Please Select" }, { :class => "departments, form-control", required: true } %> 
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+      </div>
+    </div><hr>
+    
+    <div class ="row">
+	    <div class="col-lg-6">
+        <div class="form-group">   
+          <label class="col-lg-2 control-label" for="basicinput">Start Date</label>
+          <div class="col-lg-10">
+            <%= a.text_field :start_date, :class => "date-picker start_date form-control", required: true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="control-group">   
+          <label class="col-lg-2 control-label" for="basicinput">End Date</label>
+          <div class="col-lg-10">
+            <%= a.text_field :end_date, :class => "date-picker end_date form-control", required: true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+      </div>
+    </div><hr>
+            
+    <div class ="row">
+	    <div class="col-lg-6">
+        <div class="form-group">   
+          <label class="col-lg-2 control-label" for="basicinput">Period</label>
+          <div class="col-lg-10">
+            <%= a.text_field :period, :class => "form-control", required: true %>
+            <span class="help-block with-errors"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">   
+          <label class="col-lg-3 control-label" for="basicinput">Employee Dead Line Date</label>
+          <div class="col-lg-9">
+            <%= a.text_field :employee_dead_line, :class => "date-picker employee_date form-control", required: true %>
+            <span class="help-block with-errors"></span><span class="error2"></span>
+          </div>
+        </div>
+      </div>
+    </div><hr>
+    
+    <div class ="row">
+	    <div class="col-lg-6">
+        <div class="form-group">   
+          <label class="col-lg-3 control-label" for="basicinput">Manager Dead Line Date</label>
+          <div class="col-lg-9">
+            <%= a.text_field :manager_dead_line, :class => "form-control date-picker manager_date", required: true %>
+            <span class="help-block with-errors"></span><span class="error3"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">   
+          <label class="col-lg-3 control-label" for="basicinput">Discussion Dead Line Date</label>
+          <div class="col-lg-9">
+            <%= a.text_field :discussion_dead_line, :class => "form-control date-picker discussion_date", required: true %>
+            <span class="help-block with-errors"></span><span class="error4"></span>
+          </div>
+        </div>
+      </div>
+    </div><hr>
+    <%= a.submit 'Create', :class => 'btn btn-success' %>
+    <%= link_to ' Back', appraisal_cycles_path, :class => "btn btn-danger" %>            
+    <% end %>
+  </div><!--/.panel-body-->          
 </div><!--/.wrapper-->
 
 <script>
