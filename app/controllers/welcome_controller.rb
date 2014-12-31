@@ -71,9 +71,10 @@ class WelcomeController < ApplicationController
    end
   end  
   
-  def wall    
+  def wall
+    
     @status = Status.new
-    @welcome_event = AmzurEvent.all.page(params[:page1]).per(2)
+    @welcome_event = AmzurEvent.get_amzur_events
     @welcome_announcements = Announcement.all.page(params[:page2]).per(2)
     @welcome_recruitments = Recruitment.where(:status => "open").page(params[:page3]).per(2)
     @employee = current_user.employee

@@ -1,14 +1,12 @@
-<div class="wrapper">
-  <div class="container">
+
     <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-             <div class="module-head" style="background-color: #82B4E6 ">
+      <div class="col-lg-12">
+          <div class="panel panel-info">
+             <div class="panel-heading">
                 <label class="pull-left"><a id="prev" ><i class="icon-chevron-left"></i> Previous Week</a></label>
                 <label class="pull-right"><a  id="next">Next Week <i class=" icon-chevron-right"></i></a></label><br>
               </div>                                                                                        
-              <div class="module-body">                                                                          								
+              <div class="panel-body">                                                                          								
                 <table class="table table-striped table-bordered table-condensed" id="attendance_table">
 								  <thead>
 									  <tr>		
@@ -39,12 +37,9 @@
 								</table>
 								<input type="hidden" value="0" id="week_num">
               </div><!-- module body-->
-            </div><!--/.module-->
-          </div><!--/.content-->                    
+            </div>                   
         </div><!--/.span9-->                
      </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
 
 <script>
 $(function(){
@@ -81,7 +76,7 @@ function call_sw(){
       $.each(value, function( day, hrs ) {
         day_arr = day.split("|"); 
         if(hrs!="0" && hrs.toString().split("hr").length==2){ // if working hours present
-          $("tr#"+key+" ."+day_arr[0]).html(hrs+ " <i class='icon-comment' onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'></i>"); // append working hours of corresponding date to table row
+          $("tr#"+key+" ."+day_arr[0]).html(hrs+ " <i class='fa fa-comment' onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'></i>"); // append working hours of corresponding date to table row
         }
         else {
           if((day_arr[0]=="Sat" || day_arr[0]=="Sun") && hrs.toString().split("hr").length!=2){ // for sat and sunday
@@ -130,7 +125,7 @@ function call_log_sw(id, val){
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel"> <i class="icon-time icon-large"></i> Attendance Logs </h4>
       </div>
-      <div class="modal-body show-investment-modal-body" style="min-height:200px;margin-top:-100px;">
+      <div class="modal-body show-investment-modal-body">
          <table class="table table-striped table-bordered table-condensed" id="attendance_table">
 				    <thead>
 					    <tr>		
