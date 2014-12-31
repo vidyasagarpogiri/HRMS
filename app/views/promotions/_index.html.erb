@@ -4,7 +4,7 @@
       <div class="panel-heading">																			
         Promotion Info
         <% if current_user.department == Department::HR %>                                
-          <label class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to ' Add Promotion', new_employee_promotion_path(@employee.id), :remote => true %></label>  
+          <i class="fa fa-plus pull-right" style="margin-top:3px;"></i> <%= link_to ' Add Promotion', new_employee_promotion_path(@employee.id),:class => "pull-right", :remote => true %>
         <% end %>
       </div>
       

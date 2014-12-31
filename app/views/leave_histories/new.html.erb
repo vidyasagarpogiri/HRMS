@@ -40,12 +40,15 @@
           <div class="col-lg-12">
             <div class="form-group">
               <label  class="col-lg-1 control-label">Reason:</label>
-              <div class="col-lg-10">
+              <div class="col-lg-8">
                 <%= f.text_area :reason,  :class =>"form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %> 
               <span class="help-block with-errors"></span> 
 
             </div>
           </div></div>
+          
+          <div id="casualleave">
+          
           <div class="col-lg-5">
             <div class="form-group">                           
                 <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
@@ -93,6 +96,20 @@
               </div>
             </div>   
           </div><br/>
+          
+          </div><!-- calualleave-->
+          
+           <div id="floatingleave">
+          <div class="col-lg-12 ">          
+            <div class="form-group">
+              <label  class="col-lg-1 control-label">Date:</label>
+              <div class="col-lg-3">
+                <input type="text" name="float_leave_date" id = "idnm4" class ="form-control float-leave-date" required = "true">
+                <span class="help-block with-errors"></span> 
+              </div>
+            </div>
+          </div>
+  </div>
 
           <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
           <div class="panel-body">
@@ -116,7 +133,7 @@
       </div>
      </div>
     </div>
-</div>
+
 
  <script>
  $(function () {

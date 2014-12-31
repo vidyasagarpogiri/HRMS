@@ -1,35 +1,43 @@
 <!-- Author :Priyanka
  Form for creating new album along with its images. -->
-<section class="panel">  
-  <div class="panel-body">
-    <h4 class="album-title">New Album</h4>  
+<section class="panel panel-info">
+  <div class="panel-heading">
+    New Album
+  </div> 
+  <div class="panel-body">   
     <%= form_for Album.new do |f| %>
-    <div class="control-group">
-      <label class="control-label" for="basicinput">Title</label>
-        <div class="controls">
-          <%= f.text_field :title, :class => "span6 form-control", :placeholder =>"Enter Title for Album", :data => {:error => "Please Enter Title for Album"}, :required =>true  %>                             
-          <span class="help-block with-errors"></span>
-        </div>
-    </div>
-    
-    <div class="control-group">
-      <label class="control-label" for="basicinput">Description</label>
-      <div class="controls">
-         <%= f.text_area :description, :class => "form-control input-lg p-text-area", :placeholder =>"Enter description", :data => {:error => "Please Enter  description name"} %>                             
-          <span class="help-block with-errors"></span>
+    <div class="row">
+      <div class="form-group">
+        <label class="col-lg-1 control-label" for="basicinput">Title:</label>
+          <div class="col-lg-8">
+            <%= f.text_field :title, :class => "form-control", :placeholder =>"Enter Title for Album", :data => {:error => "Please Enter Title for Album"}, :required =>true  %>                             
+            <span class="help-block with-errors"></span>
+          </div>
       </div>
     </div>
+    <div class="row ">
+      <div class="form-group">
+        <label class="col-lg-1 control-label" for="basicinput">Description</label>
+        <div class="col-lg-8">
+          <%= f.text_area :description, :class => "form-control", :placeholder =>"Enter description", :data => {:error => "Please Enter  description name"} %>
+          <span class="help-block with-errors"></span>
+        </div>
+      </div>
+    </div> 
     
     <%= f.fields_for Photo.new do |photo| %>
-    <div class="control-group">
-      <label class="control-label" for="basicinput">Upload Images</label>
-      <div class="controls">
-        <%= photo.file_field :image, :onchange =>"validateFiles(this);", :multiple => true, name: "photos[image][]", :id => "image-input", :required => true %>
-        <span class="help-block with-errors"></span>
+    <div class="row">
+      <div class="form-group">
+        <label class="col-lg-2 control-label" for="basicinput">Upload Images</label>
+        <div class="col-lg-8">
+          <%= photo.file_field :image, :onchange =>"validateFiles(this);", :multiple => true, name: "photos[image][]", :id => "image-input", :required => true %>
+          <span class="help-block with-errors"></span>
+        </div>
       </div>
     </div>
     <% end %>	
     <div class="preview-area"></div><br><br>
+   
     <footer class="panel-footer">              
       <ul class="nav nav-pills pull-right">
          <li><%= f.submit  'Save', :class => "btn btn-success " %></li>
@@ -54,6 +62,14 @@
   </div><!--/.module-body-->					  
 </section>
 
+
+<style>
+.new-image-border{
+margin-right:5px;
+padding:2px;
+border:solid 3px #ff766c;
+}
+</style>
 <script>
 $(function(){ 
   $(".status").click(function(){
@@ -89,7 +105,7 @@ function previewImages(){
  function validateFiles(inputFile) {
   var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
   var extErrorMessage = "Only file with extension: .jpg, .jpeg, .gif, .png is allowed";
-  var allowedExtension = ["jpg", "JPEG", "jpeg", "gif", "GIF",  "png", "PNG",  ]; 
+  var allowedExtension = ["jpg","JPG", "JPEG", "jpeg", "gif", "GIF",  "png", "PNG",  ]; 
   
   var extName;
   var maxFileSize = $(inputFile).data('max-file-size');

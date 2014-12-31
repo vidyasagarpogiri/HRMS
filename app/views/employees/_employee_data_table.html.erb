@@ -1,42 +1,41 @@
 <div class="adv-table">
-              <table  class="display table table-bordered table-striped" id="dynamic-table">
-
-  <thead>											      
-    <tr>
-      <th>Photo</th>
-      <th>Employee Name</th>
-      <th>Email-id</th>
-      <th>Designation</th>
-      <th>Department</th>		
-      <th>Contact No</th>	
-      <th>Manager</th>          									                 	                  										      		
-    </tr>
-  </thead>											                  	                                   			
-  <tbody>
-    <!-- loop for iterating employees list -->
-    <% @employees.each do |employee| %>
-    <tr class="gradeA">
-      <td>
-        <% if employee.present? && employee.avatar_url.present? %>
-          <%= image_tag employee.avatar_url, :width => "60px", :height => "60px" %> 
-        <% else %>
-          <% if employee.gender == "Female" %>
-            <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+  <table  class="display table table-bordered table-striped" id="dynamic-table">
+    <thead>											      
+      <tr>
+        <th>Photo</th>
+        <th>Employee Name</th>
+        <th>Email-id</th>
+        <th>Designation</th>
+        <th>Department</th>		
+        <th>Contact No</th>	
+        <th>Manager</th>          									                 	                  										      		
+      </tr>
+    </thead>											                  	                                   			
+    <tbody>
+      <!-- loop for iterating employees list -->
+      <% @employees.each do |employee| %>
+      <tr class="gradeA">
+        <td>
+          <% if employee.present? && employee.avatar_url.present? %>
+            <%= image_tag employee.avatar_url, :width => "60px", :height => "60px" %> 
           <% else %>
-	          <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+            <% if employee.gender == "Female" %>
+              <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+            <% else %>
+	            <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+            <% end %>
           <% end %>
-        <% end %>
-      </td>                           
-      <td>
-          <%= link_to employee.full_name , profile_path(employee) %>                        
-      </td>
-      <td><%= employee.user.email if employee.user.present? %></td>
-      <td><%= employee.designation.designation_name if employee.designation.present? %></td>
-      <td><%= employee.department.department_name %></td>
-      <td><%= employee.mobile_number %></td>
-      <td><%= employee.reporting_manager %></td>
-    </tr>	
-  <%end%>											                   
- </tbody>												                 
-</table> 
+        </td>                           
+        <td>
+            <%= link_to employee.full_name , profile_path(employee) %>                        
+        </td>
+        <td><%= employee.user.email if employee.user.present? %></td>
+        <td><%= employee.designation.designation_name if employee.designation.present? %></td>
+        <td><%= employee.department.department_name %></td>
+        <td><%= employee.mobile_number %></td>
+        <td><%= employee.reporting_manager %></td>
+      </tr>	
+    <%end%>											                   
+    </tbody>												                 
+  </table> 
 </div> 

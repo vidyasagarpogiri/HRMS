@@ -1,304 +1,299 @@
 <div class="row">                                             
   <div class="col-lg-12">
-    <section class="panel">
+    <section class="panel panel-info">
       <header class="panel-heading">
-      PayRoll for <%= Date::MONTHNAMES[@payslip.month] %>,<%= @payslip.year %>
-         <label  class = "pull-right"><a href="/payroll"><i class="icon-circle-arrow-left"></i> Back to PayRoll </a></label>
+        PayRoll for <%= Date::MONTHNAMES[@payslip.month] %>,<%= @payslip.year %><a href="/payroll" class="pull-right"> Back to PayRoll </a>
       </header>
-      <div class="panel-body">
-
-          
-
-                <!-- code for displayin all employees payslips -->
-              <div class="outing"> 
+      <div class="panel-body">         
+        <div class="outing"> <!-- code for displayin all employees payslips -->
+            <div class="row">
+              <div class="col-lg-6">
                 <div class="row">
                   <div class="col-lg-6">
-                    <div class="row">
-                      <div class="col-lg-6">
-                       <label class="label">Month&Year:</label>
-                      </div>
-                      <div class="col-lg-6">
-                        <label class="value"><%= Date::MONTHNAMES[@payslip.month] %>,<%= @payslip.year%></label>
-                      </div>
-                    </div>
+                   <label class="label">Month&Year:</label>
                   </div>
-                 <div class="col-lg-6">
-                   <div class="row">
-                    <div class="col-lg-6">
-                      <label class="label">Number Of Working Days:</label>
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="value"><%= @payslip.working_days %></label>
-                    </div>
-                  </div>
-                </div>
-               </div>
-               <div class="row">
                   <div class="col-lg-6">
-                    <div class="row">
-                      <div class="col-lg-6">
-                       <label class="label">Employee-id:</label>
-                      </div>
-                      <div class="col-lg-6">
-                        <label class="value"><%= @payslip.employee.employee_id %></label>
-                      </div>
-                    </div>
-                  </div>
-                 <div class="col-lg-6">
-                   <div class="row">
-                    <div class="col-lg-6">
-                      <label class="label">Department:</label>
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="value"><%= @payslip.employee.department.department_name %></label>
-                    </div>
+                    <label class="value"><%= Date::MONTHNAMES[@payslip.month] %>,<%= @payslip.year%></label>
                   </div>
                 </div>
-               </div>
+              </div>
+             <div class="col-lg-6">
                <div class="row">
+                <div class="col-lg-6">
+                  <label class="label">Number Of Working Days:</label>
+                </div>
+                <div class="col-lg-6">
+                  <label class="value"><%= @payslip.working_days %></label>
+                </div>
+              </div>
+            </div>
+           </div>
+           <div class="row">
+              <div class="col-lg-6">
+                <div class="row">
                   <div class="col-lg-6">
-                    <div class="row">
-                      <div class="col-lg-6">
-                       <label class="label">Name:</label>
-                      </div>
-                      <div class="col-lg-6">
-                        <label class="value"><%= @payslip.employee.full_name %></label>
-                      </div>
-                    </div>
+                   <label class="label">Employee-id:</label>
                   </div>
-                 <div class="col-lg-6">
-                   <div class="row">
-                    <div class="col-lg-6">
-                      <label class="label">PF.NO:</label>
-                    </div>
-                    <div class="col-lg-6">
-                     <label class="value"><%= @payslip.employee.PFAccountNumber %></label>
-                    </div>
+                  <div class="col-lg-6">
+                    <label class="value"><%= @payslip.employee.employee_id %></label>
                   </div>
                 </div>
-               </div>
+              </div>
+             <div class="col-lg-6">
                <div class="row">
+                <div class="col-lg-6">
+                  <label class="label">Department:</label>
+                </div>
+                <div class="col-lg-6">
+                  <label class="value"><%= @payslip.employee.department.department_name %></label>
+                </div>
+              </div>
+            </div>
+           </div>
+           <div class="row">
+              <div class="col-lg-6">
+                <div class="row">
                   <div class="col-lg-6">
-                    <div class="row">
-                      <div class="col-lg-6">
-                       <label class="label">Location:</label>
-                      </div>
-                      <div class="col-lg-6">
-                        <label class="value"><%= @payslip.employee.job_location.address.city %></label>
-                      </div>
-                    </div>
+                   <label class="label">Name:</label>
                   </div>
-                 <div class="col-lg-6">
-                   <div class="row">
-                    <div class="col-lg-6">
-                      <label class="label">PAN NO:</label>
-                    </div>
-                    <div class="col-lg-6">
-                     <label class="value"><%= @payslip.employee.pan %></label>
-                    </div>
+                  <div class="col-lg-6">
+                    <label class="value"><%= @payslip.employee.full_name %></label>
                   </div>
                 </div>
-               </div>
+              </div>
+             <div class="col-lg-6">
                <div class="row">
+                <div class="col-lg-6">
+                  <label class="label">PF.NO:</label>
+                </div>
+                <div class="col-lg-6">
+                 <label class="value"><%= @payslip.employee.PFAccountNumber %></label>
+                </div>
+              </div>
+            </div>
+           </div>
+           <div class="row">
+              <div class="col-lg-6">
+                <div class="row">
                   <div class="col-lg-6">
-                    <div class="row">
-                      <div class="col-lg-6">
-                       <label class="label">Mode:</label>
-                      </div>
-                      <div class="col-lg-6">
-                       <label class="value"><%= @payslip.mode%></label>
-                      </div>
-                    </div>
+                   <label class="label">Location:</label>
                   </div>
-                 <div class="col-lg-6">
-                   <div class="row">
-                    <div class="col-lg-6">
-                      <label class="label">A/C NO:</label>
-                    </div>
-                    <div class="col-lg-6">
-                     <label class="value"><%= @payslip.employee.account_number%></label>
-                    </div>
+                  <div class="col-lg-6">
+                    <label class="value"><%= @payslip.employee.job_location.address.city %></label>
                   </div>
                 </div>
-               </div>
+              </div>
+             <div class="col-lg-6">
+               <div class="row">
+                <div class="col-lg-6">
+                  <label class="label">PAN NO:</label>
+                </div>
+                <div class="col-lg-6">
+                 <label class="value"><%= @payslip.employee.pan %></label>
+                </div>
+              </div>
+            </div>
+           </div>
+           <div class="row">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-lg-6">
+                   <label class="label">Mode:</label>
+                  </div>
+                  <div class="col-lg-6">
+                   <label class="value"><%= @payslip.mode%></label>
+                  </div>
+                </div>
+              </div>
+             <div class="col-lg-6">
+               <div class="row">
+                <div class="col-lg-6">
+                  <label class="label">A/C NO:</label>
+                </div>
+                <div class="col-lg-6">
+                 <label class="value"><%= @payslip.employee.account_number%></label>
+                </div>
+              </div>
+            </div>
+           </div>
 
 <hr>
-                <div class="head">
-                  <div class="row">
-                    <div class="sapn6">
-                      <label class="heading">EARNINGS</label>
+            <div class="head">
+              <div class="row">
+                <div class="sapn6">
+                  <label class="heading">EARNINGS</label>
+                </div>
+                <div class="sapn6">
+                  <label class="heading" style="margin-left:70px">DEDUCTIONS</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+              <!-------- Earnings------>
+                <div class="row">  
+                  <div class="col-lg-6">
+                    <label class="label">Basic</label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="value"><%= @payslip.basic_salary %></label>
+                  </div>
+                </div> 
+                <div class="row">  
+                  <div class="col-lg-6">
+                    <label class="label">HRA</label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="value"><%= @payslip.hra %></label>
+                  </div>
+                </div> 
+              <!--- Allowances --->
+                <% if @payslip.allowances.present? %>
+                  <% @payslip.allowances.where(is_deductable: false).each do |allowance|%>
+                    <div class="row">
+                      <div class="col-lg-6">
+                       <label class="label"><%= allowance.allowance_name %></label>
+                      </div>
+                      <div class="col-lg-6">
+                        <label class="value"><%= allowance.total_value %></label>
+                      </div>
                     </div>
-                    <div class="sapn6">
-                      <label class="heading" style="margin-left:70px">DEDUCTIONS</label>
+                  <% end %>
+                <% end %>
+                <% if @payslip.special_allowance.present? %>
+                  <div class="row"> 
+                    <div class="col-lg-6">
+                      <label class="label"> Special Allowance:</label>
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="value"><%= @payslip.special_allowance %></label>
                     </div>
                   </div>
-                </div>
-                <div class="row">
+              <% end %>
+              <% if @payslip.arrears.present? %>
+                <div class="row"> 
                   <div class="col-lg-6">
-                  <!-------- Earnings------>
-                    <div class="row">  
-                      <div class="col-lg-6">
-                        <label class="label">Basic</label>
-                      </div>
-                      <div class="col-lg-6">
-                        <label class="value"><%= @payslip.basic_salary %></label>
-                      </div>
-                    </div> 
-                    <div class="row">  
-                      <div class="col-lg-6">
-                        <label class="label">HRA</label>
-                      </div>
-                      <div class="col-lg-6">
-                        <label class="value"><%= @payslip.hra %></label>
-                      </div>
-                    </div> 
-                  <!--- Allowances --->
-                    <% if @payslip.allowances.present? %>
-                      <% @payslip.allowances.where(is_deductable: false).each do |allowance|%>
-                        <div class="row">
-                          <div class="col-lg-6">
-                           <label class="label"><%= allowance.allowance_name %></label>
-                          </div>
-                          <div class="col-lg-6">
-                            <label class="value"><%= allowance.total_value %></label>
-                          </div>
-                        </div>
-                      <% end %>
-                    <% end %>
-                    <% if @payslip.special_allowance.present? %>
-                      <div class="row"> 
-                        <div class="col-lg-6">
-                          <label class="label"> Special Allowance:</label>
-                        </div>
-                        <div class="col-lg-6">
-                          <label class="value"><%= @payslip.special_allowance %></label>
-                        </div>
-                      </div>
-                  <% end %>
-                  <% if @payslip.arrears.present? %>
-                    <div class="row"> 
-                      <div class="col-lg-6">
-                        <label class="label">Arrears:</label>
-                      </div>
-                      <div class="col-lg-6">
-                        <label class="value"><%= @payslip.arrears %></label>
-                      </div>
-                    </div> 
-                 <% end %> 
-               </div>
-               <div class="col-lg-6">
-                  <!---- Dedcuations --->
+                    <label class="label">Arrears:</label>
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="value"><%= @payslip.arrears %></label>
+                  </div>
+                </div> 
+             <% end %> 
+           </div>
+           <div class="col-lg-6">
+              <!---- Dedcuations --->
 
-                  <% if @payslip.tds.present? %>
-                  <div class="row"> 
-                    <div class="col-lg-6">
-                      <label class="label"> TDS:</label>
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="value"> <%= @payslip.tds%></label>
-                    </div>
-                  </div>
-                  <% end %>
-                  <% if @payslip.pt.present? %> 
-                  <div class="row"> 
-                    <div class="col-lg-6">
-                      <label class="label">PT:</label>
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="value"><%= @payslip.pt %></label>
-                    </div>
-                  </div>
-                  <% end %>
-                  <% if @payslip.pf.present? %>
-                  <div class="row"> 
-                    <div class="col-lg-6">
-                      <label class="label">PF:</label>
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="value"><%= @payslip.pf %></label>
-                    </div>
-                  </div>
-                  <% end %>
-                  <% if @payslip.esic.present? %>
-                  <div class="row"> 
-                    <div class="col-lg-6">
-                      <label class="label">ESIC</label>
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="value"><%= @payslip.esic %></label>
-                    </div>
-                  </div>
-                 <% end %>
-                 <% if @payslip.employee.salary.allowances.present? %>
-                <% @payslip.employee.salary.allowances.where(:is_deductable => true).each do |allowance|%>
-                  <div class="row"> 
-                    <div class="col-lg-6">
-                      <label class="label"><%= allowance.allowance_name %></label>
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="value"><%= (allowance.total_value.to_f/12).round(2) %></label>
-                    </div>
-                  </div>
-                  <% end %>
-                 <% end %>
-                 <% if @payslip.deductible_arrears.present? %>
-                  <div class="row"> 
-                    <div class="col-lg-6">
-                      <label class="label">Deductible Arrears</label>
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="value"><%= @payslip.deductible_arrears %></label>
-                    </div>
-                  </div>
-                 <% end %>
+              <% if @payslip.tds.present? %>
+              <div class="row"> 
+                <div class="col-lg-6">
+                  <label class="label"> TDS:</label>
+                </div>
+                <div class="col-lg-6">
+                  <label class="value"> <%= @payslip.tds%></label>
                 </div>
               </div>
-              <hr>
-             <div class="head">
-             <div class="row">
-              <div class="col-lg-6">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <label class="text">TOTAL:</label>
-                  </div>
-                  <div class="col-lg-6">
-                      <label class="text"><%= @payslip.gross_salary %></label>
-                  </div>
+              <% end %>
+              <% if @payslip.pt.present? %> 
+              <div class="row"> 
+                <div class="col-lg-6">
+                  <label class="label">PT:</label>
+                </div>
+                <div class="col-lg-6">
+                  <label class="value"><%= @payslip.pt %></label>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <label class="text">TOTAL:</label>
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="text"><%= @payslip.total_deductions %></label>
-                  </div>
+              <% end %>
+              <% if @payslip.pf.present? %>
+              <div class="row"> 
+                <div class="col-lg-6">
+                  <label class="label">PF:</label>
+                </div>
+                <div class="col-lg-6">
+                  <label class="value"><%= @payslip.pf %></label>
                 </div>
               </div>
-             </div>
+              <% end %>
+              <% if @payslip.esic.present? %>
+              <div class="row"> 
+                <div class="col-lg-6">
+                  <label class="label">ESIC</label>
+                </div>
+                <div class="col-lg-6">
+                  <label class="value"><%= @payslip.esic %></label>
+                </div>
+              </div>
+             <% end %>
+             <% if @payslip.employee.salary.allowances.present? %>
+            <% @payslip.employee.salary.allowances.where(:is_deductable => true).each do |allowance|%>
+              <div class="row"> 
+                <div class="col-lg-6">
+                  <label class="label"><%= allowance.allowance_name %></label>
+                </div>
+                <div class="col-lg-6">
+                  <label class="value"><%= (allowance.total_value.to_f/12).round(2) %></label>
+                </div>
+              </div>
+              <% end %>
+             <% end %>
+             <% if @payslip.deductible_arrears.present? %>
+              <div class="row"> 
+                <div class="col-lg-6">
+                  <label class="label">Deductible Arrears</label>
+                </div>
+                <div class="col-lg-6">
+                  <label class="value"><%= @payslip.deductible_arrears %></label>
+                </div>
+              </div>
+             <% end %>
             </div>
-             <hr>
-             <div class="head">
-             <div class="row">
-               <div class="col-lg-6">
-                 <div class="row">
-                  <div class="col-lg-6">
-                   <label class="text">NetPay:</label>
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="text"><%= @payslip.netpay %>(INR)</label>
-                  </div>
-              </div>
-            </div>
-           </div> 
           </div>
-               </div> 
-               </div>                                                                             
+          <hr>
+         <div class="head">
+         <div class="row">
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="text">TOTAL:</label>
+              </div>
+              <div class="col-lg-6">
+                  <label class="text"><%= @payslip.gross_salary %></label>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="text">TOTAL:</label>
+              </div>
+              <div class="col-lg-6">
+                <label class="text"><%= @payslip.total_deductions %></label>
+              </div>
+            </div>
+          </div>
          </div>
-         </section>            
-      </div><!--/.span9-->                
-    </div><!--/.row-->
+        </div>
+         <hr>
+         <div class="head">
+         <div class="row">
+           <div class="col-lg-6">
+             <div class="row">
+              <div class="col-lg-6">
+               <label class="text">NetPay:</label>
+              </div>
+              <div class="col-lg-6">
+                <label class="text"><%= @payslip.netpay %>(INR)</label>
+              </div>
+          </div>
+        </div>
+       </div> 
+      </div>
+           </div> 
+           </div>                                                                             
+     </div>
+     </section>            
+  </div><!--/.span9-->                
+</div><!--/.row-->
 
 <style>
   .label, .value{

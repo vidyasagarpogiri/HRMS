@@ -4,49 +4,48 @@
       <div class="panel-heading">
         My Projects
         <% if current_user.employee == @employee %>
-          <label class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'New Project',  new_project_path, :remote => true %></label>
+          <i class="fa fa-plus pull-right"></i></a> <%= link_to 'New Project',  new_project_path, :class => "pull-right", :remote => true %>
         <% end %>
-      </div> 
-      
-      <div class="panel-body">
-        <% if @projects.present? %>
-          <% @projects.each do |project| %>
+      </div>
+      <% if @projects.present? %>
+        <% @projects.each do |project| %>       
+          <div class="panel-body">        
             <div class="row">
-              <label class="control-label col-lg-4" for="basicinput">Project Tille:</label>
+              <label class="control-label col-lg-2" for="basicinput">Project Tille:</label>
               <div class="col-lg-8">
                 <%= project.title %>
               </div>
             </div>
             
             <div class="row">
-              <label class="control-label col-lg-4" for="basicinput">Description:</label>
+              <label class="control-label col-lg-2" for="basicinput">Description:</label>
               <div class="col-lg-8">
                 <%= project.description %>
               </div>
             </div>
             
             <div class="row">
-              <label class="control-label col-lg-4" for="basicinput">Start Date:</label>
+              <label class="control-label col-lg-2" for="basicinput">Start Date:</label>
               <div class="col-lg-8"><%= format_date(project.start_date) %></div>
             </div>
 
             <div class="row">
-              <label class="control-label col-lg-4" for="basicinput">End Date:</label>
+              <label class="control-label col-lg-2" for="basicinput">End Date:</label>
               <div class="col-lg-8"><%= format_date(project.end_date) %></div>
             </div>
             
             <div class="row">
-              <label class="control-label col-lg-4" for="basicinput">Key Skills used:</label>
+              <label class="control-label col-lg-2" for="basicinput">Key Skills used:</label>
               <div class="col-lg-8"><%= project.skills %></div>
             </div>
             
             <div class="row">
-              <label class="control-label col-lg-4" for="basicinput">Roles:</label>
+              <label class="control-label col-lg-2" for="basicinput">Roles:</label>
               <div class="col-lg-8"><%= project.roles %></div>
             </div>
             
             <div class="row">
-              <label class="control-label col-lg-4" for="basicinput">Tasks Performed:</label>
+              <label class="control-label col-lg-2" for="basicinput">Tasks Performed:</label>
               <div class="col-lg-8"><%= project.tasks_performed %></div>
             </div>
             
@@ -56,16 +55,16 @@
                   <%= link_to 'Edit',  edit_project_path(project), :class => "btn btn-success", :remote => true %>
                   <%= link_to "Delete", project_path(project.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger ", :remote => true %>
                 </div>
-              </div><hr>
+              </div>
             <% end %>
+            </div><hr>
           <% end %>
         <% else %>
           <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             No Projects to display.
           </div>
-        <% end %> 	           
-      </div><!--/.module-body-->
+        <% end %> 	                 
     </div><!--/.module-->
   </div>
 </div>

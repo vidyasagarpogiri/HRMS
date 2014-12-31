@@ -1,41 +1,39 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-              Job Location                
-            </div>
-            <div class="panel-body">            
-               <table class="table table-bordered">												   
-					        <tbody>
-					          <tr>
-					            <td><strong>Lline1:</strong></td>
-					            <td><%= @job_location.address.line1 %></td>
-					          </tr>
-					          <tr>
-					            <td><strong>Line2:</strong></td>
-					            <td><%= @job_location.address.line %></td>
-					          </tr>
-					          <tr>
-					            <td><strong>City:</strong></td>
-					            <td><%= @job_location.address.city %></td>
-					          </tr>
-					          <tr>
-					            <td><strong>State:</strong></td>
-					            <td><%= @job_location.address.state %></td>
-					          </tr>
-					          <tr>
-					            <td><strong>Country:</strong></td>
-					            <td><%= @job_location.address.country %></td>
-					          </tr>
-					          <tr>
-					            <td><strong>Zipcode:</strong></td>
-					            <td><%= @job_location.address.zipcode %></td>
-					          </tr>
-					        </tbody>
-					      </table>
-					      <% if current_user.department == Department::HR %>
-           <%= link_to 'Edit', edit_job_location_path(@job_location.id), :class => "btn btn-success " %>
-           <%= link_to 'Back', job_locations_path(@job_locations), :class => "btn btn-success " %>	
-              
-            <% end %>  
-            </div><!--module-body -->    																																											                               
-          
-
+    Job Location                
+  </div>
+  <div class="panel-body">            
+    <table class="table table-bordered" >												   
+      <tbody>
+        <tr>
+          <td><strong>Lline1:</strong></td>
+          <td><%= @job_location.address.line1 %></td>
+        </tr>
+        <tr>
+          <td><strong>Line2:</strong></td>
+          <td><%= @job_location.address.line %></td>
+        </tr>
+        <tr>
+          <td><strong>City:</strong></td>
+          <td><%= @job_location.address.city %></td>
+        </tr>
+        <tr>
+          <td><strong>State:</strong></td>
+          <td><%= @job_location.address.state %></td>
+        </tr>
+        <tr>
+          <td><strong>Country:</strong></td>
+          <td><%= @job_location.address.country %></td>
+        </tr>
+        <tr>
+          <td><strong>Zipcode:</strong></td>
+          <td><%= @job_location.address.zipcode %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% if current_user.department == Department::HR %>
+      <%= link_to 'Edit', edit_job_location_path(@job_location.id), :class => "btn btn-success " %>
+      <%= link_to 'Back', job_locations_path(@job_locations), :class => "btn btn-success " %>	    
+    <% end %>  
+  </div><!--module-body -->    																																											                               
+</div>          
