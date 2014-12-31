@@ -1,9 +1,9 @@
-        <div class="module">
-		      <div class="module-head">							
+        <div class="panel panel-info">
+		      <div class="panel-heading">							
              <h3> Holiday calender</h3>
 		          <label style="font-weight:normal;margin-top:-15px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add Holidays",  new_department_holiday_calender_path(@department ), :remote => true %></label> 
           </div>		   	         
-		        <div class="module-body">   
+		        <div class="panel-body">   
 		          <% if @holiday_calenders.present? %> 
     		        <table class="table table-striped table-bordered table-condensed">
 								  <thead>

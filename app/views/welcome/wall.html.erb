@@ -5,12 +5,11 @@
       <section class="panel">
         <div class="cover-photo">  
           <div class="fb-timeline-img">
-            <img src="/assets/fb-img.jpg" alt="">
+            <%=image_tag "fb-img.jpg" %>
           </div>
-                              <div class="fb-name">
-                                  <h2><a href="#"><%= current_user.employee.full_name %></a></h2>
-                              </div>       
-        
+          <div class="fb-name">
+              <h2><a href="#"><%= current_user.employee.full_name %></a></h2>
+          </div>       
         </div>
         <div class="panel-body">
           <div class="profile-thumb">                
@@ -44,7 +43,7 @@
     <!--Notifications-->
     <div class="col-md-3">
       <div class="fb-timeliner">
-        <h2 class="recent-highlight">Events</h2>
+        <h2 class="recent-highlight">Events <span class="pull-right"><%= link_to 'Add New',  new_amzur_event_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px; color:white" %></span></h2>
         <% if @welcome_event.present? %>	
         <ul>
           <% @welcome_event.each do |welcome_event| %>
@@ -53,7 +52,8 @@
             <div class="control-group">
               <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>                
             </div>
-            <%= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %> <br>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">Continue..</button> 
+            <%#= link_to "Continue..", amzur_event_path(welcome_event), :class => "pt4" %> <br>
           </li>
           <% end %>	
         </ul>
@@ -65,7 +65,13 @@
           <% end %>                                                                  
       </div>                                     
       <div class="fb-timeliner">
-        <h2 >Announcements</h2>
+        <h2 class="recent-highlight">Announcements
+        <% if current_user.department == Department::HR %>
+          <span class="pull-right">
+            <%= link_to 'Add New',  new_announcement_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px; color:white" %>
+          </span>
+        <%end%>  
+         </h2>
         <% if @welcome_announcements.present? %>
         <ul>
           <% @welcome_announcements.each do |welcome_announcement| %>
@@ -73,8 +79,9 @@
               <a href="#"><strong><%= welcome_announcement.title %> </strong></a> <p><%= time_ago_in_words(welcome_announcement.created_at)%> ago</p>
               <div class="control-group">
                 <label class="idesc" for="basicinput"><%= raw welcome_announcement.description %> </label>
-              </div>              
-              <%= link_to "Continue..", announcement_path(welcome_announcement), :class => "pt4" %><br>
+              </div>
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">Continue..</button>               
+              <%#= link_to "Continue..", announcement_path(welcome_announcement), :class => "pt4" %><br>
             </li>         
           <% end %>
         </ul>      
@@ -86,15 +93,23 @@
         <% end %> 
       </div>	  	    
       <div class="fb-timeliner">      
-        <h2 class="recent-highlight">Job Openings</h2>
+        <h2 class="recent-highlight">Job Openings
+          <% if current_user.department == Department::HR %>
+            <span class="pull-right">
+              <%= link_to 'Add New',  new_recruitment_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px; color:white" %>
+            </span>
+          <%end%>
+        </h2>
         <% if @welcome_recruitments.present? %>
         <ul>
            <% @welcome_recruitments.each do |welcome_recruitment| %>
             <li>
               <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a><p><%= time_ago_in_words(welcome_recruitment.created_at)%> ago</p>
               <div class="control-group">
-                <%= welcome_recruitment.link %><br>              
-                <%= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4" %>                                  
+                <%= welcome_recruitment.link %><br>
+                 <%= link_to 'Continue..', "#mymodel",  :class => "btn btn-link welcome_recruitment ",   :url => recruitment_path(welcome_recruitment), :iid => welcome_recruitment.id, "data-toggle" => "modal", :id => "#{welcome_recruitment.id}"   %>   
+                           
+                <%#= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4", :data-toggle => "modal", :data-target => "#myModal" %>                                  
               </div><br>
            </li>
            <% end %>
@@ -176,4 +191,58 @@ margin-left:50px;
   
   });
   </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 

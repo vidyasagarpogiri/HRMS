@@ -1,15 +1,12 @@
-<section id="main-content">
-  <section class="wrapper">
-    <div class="panel panel-info">
-      <div class="panel-heading"> 
-        Work Groups List <%= link_to " New Work Group",new_workgroup_path, :class => "fa fa-plus pull-right" %>
-      </div>
       <div class="row">
-        <div class="col-sm-12">
-          <section class="panel">        
-            <div class="panel-body">  
-              <div class="workgroups">
-                <%= render "workgroups/list_of_workgroups" %>
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+        Work Groups <%= link_to " New Work Group",new_workgroup_path, :class =>" btn btn-success btn-xs pull-right" %> 
+      </header>
+  <div class="panel-body">
+    <section id="unseen">
+       <%= render "workgroups/list_of_workgroups" %>
               </div><br>    																																											                               
             </div><!-- /.module-->
           </section>									      				                                      

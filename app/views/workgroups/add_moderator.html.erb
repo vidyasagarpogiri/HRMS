@@ -1,23 +1,24 @@
-<section id="main-content">
-  <section class="wrapper">
-    <div class="panel panel-info">
-      <div class="panel-heading"> 
-        <%= @workgroup.name.upcase %> <%= link_to 'All Work Groups',workgroup_path(@workgroup), :class=>"fa pull-right " %>
-      <div>
       <div class="row">
-        <div class="col-sm-12">
-          <section class="panel">                      
-            <div class="panel-body">
-              <%= form_tag("/workgroups/#{@workgroup.id}/added_moderators") do %>                                                                 
-              <% if @employees.present? %>                                                                                         
-              <table class="display table table-bordered table-striped">
-                <thead>
-                  <tr>
-	                  <th class="center">Employee Name</th>
-	                  <th>Role </th>
-	                  <th> Moderator </th>
-	                </tr>
-                </thead>                  
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">
+         <%= @workgroup.name.upcase %>
+        <span class="pull-right">
+           <%= link_to 'All Work Groups',workgroup_path(@workgroup), :class=>"fa pull-right " %>
+         </span>
+      </header>
+     <div class="panel-body">
+    <section id="unseen">
+      <%= form_tag("/workgroups/#{@workgroup.id}/added_moderators") do %>  
+        <% if @employees.present? %>   
+           <table class="table table-bordered table-striped table-condensed" id="sample-table-2">
+             <thead>											      
+               <tr>                                                                                      
+              	 <th class="center">Employee Name</th>
+                 <th>Role </th>
+                 <th> Moderator </th>
+	             </tr>
+             </thead>                  
                 <tbody>
                   <% @employees.each do |em| %>
                   <tr>
@@ -59,9 +60,9 @@
                         No Employees to display
                 </div>                                             
 		          <% end %> 
-              <% end %>                           
-              <%= link_to 'Cancel', workgroup_path(@workgroup), :class => "btn btn-danger" %>       
-              <%= submit_tag 'Submit', :class => "btn btn-success" %>                         
+                <%= submit_tag 'Submit', :class => "btn btn-success" %>                          
+                <%= link_to 'Cancel', workgroup_path(@workgroup), :class => "btn btn-danger" %>         
+              <% end %>                    
             </div><!--module body-->
           </section><!--/.module -->
         </div><!--/.content-->
