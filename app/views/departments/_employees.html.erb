@@ -1,47 +1,52 @@
-<div class="module">
-	<div class="module-head">							
-    <h3>Employees</h3><a href="/departments" style="color:#5ecad4 pull-right"><i class="icon-circle-arrow-left"> Back to Departments</i></a>       
+<div class="panel panel-info">
+	<div class="panel-heading">							
+    Employees <a href="/departments" ><i class="fa fa-arrow-circle-left pull-right" title = "Back to Departments"> </i></a>       
   </div>
-  <div class="module-body">	
-    <% if @employees.present?%>			
-    <table cellpadding="0" cellspacing="0" border="0" class="datatable-2 table  table-striped	 display" width="100%">
-      <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Designation</th>
-        <th>Level</th>
-        <th>Group</th>
-        <th>Date of Join</th>
-      </tr>
-      </thead>      
-      <tbody>
-      <% @employees.each do |employee| %>
-      <tr class="gradeA">
-        <td><%= employee.employee_id %></td>
-        <td><%= employee.full_name %></td>
-        <td><%= employee.designation.designation_name if employee.designation.present? %></td>
-        <td><%= employee.grade.value if employee.grade.present? %></td>
-        <td><%= employee.group.group_name if employee.group.present? %></td>
-        <td><%= format_date(employee.date_of_join) %></td>
-      </tr>
-      <% end %>
-      </tbody>
-    </table>                
-    <% else %>    
-    <div class="alert alert-success alert-dismissable">
-       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-           You have No Employees for this Department.
+  <div class="row">
+    <div class="col-sm-12">
+      <section class="panel">        
+        <div class="panel-body">
+          <% if @employees.present?%>			
+          <div class="adv-table">
+            <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Designation</th>
+                  <th>Level</th>
+                  <th>Group</th>
+                  <th>Date of Join</th>
+                </tr>
+              </thead>      
+              <tbody>
+              <% @employees.each do |employee| %>
+                <tr class="gradeA">
+                  <td><%= employee.employee_id %></td>
+                  <td><%= employee.full_name %></td>
+                  <td><%= employee.designation.designation_name if employee.designation.present? %></td>
+                  <td><%= employee.grade.value if employee.grade.present? %></td>
+                  <td><%= employee.group.group_name if employee.group.present? %></td>
+                  <td><%= format_date(employee.date_of_join) %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>               
+          <% else %>    
+          <div class="alert alert-success alert-dismissable">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+               You have No Employees for this Department.
+          </div>
+          <% end %>  
+        </div>
+      </section> 
     </div>
-    <% end %>  
   </div>
 </div>
- <script>
-	$(document).ready(function() {
-		$('.datatable-2').dataTable();
-		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
-		$('.dataTables_paginate > a').wrapInner('<span />');
-		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-	} );
-</script>  
+
+<script>
+  $(function() {
+    $( document ).tooltip();
+  });
+</script>
