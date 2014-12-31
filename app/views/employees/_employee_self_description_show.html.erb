@@ -1,32 +1,38 @@
-<div class="module">
-   <div class="module-head">
-      <h3>Self Description</h3>
-       <% if current_user.employee == @employee %>
-      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add/Edit',  employee_self_description_form_employee_path(current_user.employee.id), :remote => true %></label>
-       <% end %>
-    </div> 
+<div class="panel panel-info">
+  <div class="panel-heading">
+   Self Description
+     <% if current_user.employee == @employee %>
+       <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to 'Add/Edit',  employee_self_description_form_employee_path(current_user.employee.id), :class => "pull-right", :remote => true %>
+     <% end %>
+  </div> 
 				      
-   <div class="module-body">
-    <div class ="row-fluid">
-	     <div class="span11" style="margin-left:30px;">		
-          <div class="control-group">
-            <label class="control-label" for="basicinput"><strong>About Me: </strong><br> <%= raw @employee.self_description %></label>                
-          </div>
-        </div>
-	     <div class="span10">		
-          <div class="control-group">
-            <label class="control-label" for="basicinput"><strong>Personal Interests:</strong><br> <%=@employee.interests %></label>                
-          </div>
-        </div>  
-          <div class="span10">		
-          <div class="control-group">
-            <label class="control-label" for="basicinput"><strong>Skills:</strong></label>                
-            <% @skills.each do |skill| %>
-              <input value="<%= skill %>" class="btn btn-success span2" style="color:black" disabled>
-            <% end %>
-          </div>
-       </div>
-		</div>
-   </div>
+  <div class="panel-body">
+    <div class ="row">	     	
+      <div class="form-group">
+        <label class="col-lg-2 control-label" for="basicinput">About Me: </label>
+        <div class="col-lg-8">
+          <p><%= raw @employee.self_description %></p>              
+        </div> 
+      </div>
+    </div>
+    <div class ="row">	     	
+      <div class="form-group">
+        <label class="col-lg-2 control-label" for="basicinput">Personal Interests: </label>
+        <div class="col-lg-8">
+          <%=@employee.interests %>               
+        </div> 
+      </div>
+    </div>
+    <div class ="row">	     	
+      <div class="form-group">
+        <label class="col-lg-2 control-label" for="basicinput">Skills: </label>
+        <div class="col-lg-8">
+          <% @skills.each do |skill| %>
+            <input value="<%= skill %>" class="btn btn-success span2" style="color:black" disabled>
+          <% end %> 
+        </div> 
+      </div>
+    </div>                
+  </div>   
 </div><!--/.module-->
 

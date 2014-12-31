@@ -84,14 +84,14 @@
   </a>
   <ul class="sub">
     <li><%= link_to "My Profile", profile_path(current_user.employee) %></li>
-    <li><%= link_to ' My Projects',  projects_path %></li>
+    <li><%# link_to ' My Projects',  projects_path %></li>
     <li class="sub-menu"><a href="#">My Appraisals</a>
     <ul class="sub">
       <li><%= link_to 'Appraisal Form',  employee_appraisal_form_path %></li>
       <li><a href="/my_appraisals">Previous Appraisals</a></li>
     </ul>
     </li>
-    <li><%= link_to ' My Self Description', employee_self_description_show_employee_path(current_user.employee) %>
+    <li><%# link_to ' My Self Description', employee_self_description_show_employee_path(current_user.employee) %>
     </li>
     <li><%= link_to "My Work Groups", my_workgroups_path %></li>
     <li><%= link_to "My Letters", letters_path(current_user.employee) %></li>
