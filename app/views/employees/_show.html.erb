@@ -2,53 +2,53 @@
   <div class="panel panel-info">
     <div class="panel-heading"> Basic Info
         <% if current_user.department == Department::HR %>
-          <label  class="pull-right"><a><i class="icon-edit"></i></a><%= link_to " Edit ", edit_employee_path(@employee), :remote => true %></label>
+          <i class="fa fa-edit pull-right" style="margin-top:3px;" ></i><%= link_to " Edit ", edit_employee_path(@employee),:class=>"pull-right", :remote => true %>
         <% end %>
     </div>
     <div class="panel-body bio-graph-info">
         
         <div class="row">
             <div class="bio-row">
-                <p><span>Job Location </span>: <%= @employee.job_location.address.city if @employee.job_location.present? %></p>
+                <p><strong>Job Location </strong>: <%= @employee.job_location.address.city if @employee.job_location.present? %></p>
             </div>
             <div class="bio-row">
-                <p><span>Department </span>: <%= @employee.department.department_name if @employee.department.present? %></p>
+                <p><strong>Department </strong>: <%= @employee.department.department_name if @employee.department.present? %></p>
             </div>
             <div class="bio-row">
-                <p><span>Alternate E-Mail </span>: <%= @employee.alternate_email %></p>
+                <p><strong>Alternate E-Mail </strong>: <%= @employee.alternate_email %></p>
             </div>
             <div class="bio-row">
-                <p><span>R Manager</span>: <%= Employee.find(@report.manager_id).full_name if @report.present? && @report.manager_id? %></p>
+                <p><strong>R Manager</strong>: <%= Employee.find(@report.manager_id).full_name if @report.present? && @report.manager_id? %></p>
             </div>
             <div class="bio-row">
-                <p><span>Date Of Joining</span>: <%= format_date (@employee.date_of_join) %></p>
+                <p><strong>Date Of Joining</strong>: <%= format_date (@employee.date_of_join) %></p>
             </div>
             <div class="bio-row">
-                <p><span>Grade/Level </span>: <%= @employee.grade.value if @employee.grade.present? %></p>
+                <p><strong>Grade/Level </strong>: <%= @employee.grade.value if @employee.grade.present? %></p>
             </div>
             <div class="bio-row">
-                <p><span>Date Of Birth </span>: <%= format_date (@employee.date_of_birth) %></p>
+                <p><strong>Date Of Birth </strong>: <%= format_date (@employee.date_of_birth) %></p>
             </div>
             <div class="bio-row">
-                <p><span>Gender </span>: <%= @employee.gender %>  </p>
+                <p><strong>Gender </strong>: <%= @employee.gender %>  </p>
             </div>
             <div class="bio-row">
-                <p><span>Father Name </span>: <%= @employee.father_name %>  </p>
+                <p><strong>Father Name </strong>: <%= @employee.father_name %>  </p>
             </div>
             <div class="bio-row">
-                <p><span>Blood Group </span>: <%= @employee.blood_group.blood_group_name if @employee.blood_group.present?  %>  </p>
+                <p><strong>Blood Group </strong>: <%= @employee.blood_group.blood_group_name if @employee.blood_group.present?  %>  </p>
             </div>
             <div class="bio-row">
-                <p><span>Employment Status </span>: <%= @employee.employment_status %>  </p>
+                <p><strong>Employment Status </strong>: <%= @employee.employment_status %>  </p>
             </div>
             <div class="bio-row">
-                <p><span>Work Shift </span>: <%= @employee.shift.name if @employee.shift.present? %>  </p>
+                <p><strong>Work Shift </strong>: <%= @employee.shift.name if @employee.shift.present? %>  </p>
             </div>
             <div class="bio-row">
-                <p><span>Group </span>: <%= @employee.group.group_name if @employee.group.present? %>  </p>
+                <p><strong>Group </strong>: <%= @employee.group.group_name if @employee.group.present? %>  </p>
             </div>
             <div class="bio-row">
-                <p><span>Device Id </span>: <%= @employee.devise_id %>  </p>
+                <p><strong>Device Id </strong>: <%= @employee.devise_id %>  </p>
             </div>
         </div>      
      </div>

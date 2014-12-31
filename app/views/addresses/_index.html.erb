@@ -1,6 +1,6 @@
 <div class="panel panel-info">
   <div class="panel-heading"> Contact Info</div>
-  <div class="panel-body bio-graph-info">
+  <div class="panel-body ">
     <% if current_user.department == Department::HR %>
       <% if @address1.nil? %>
         <%= link_to "Present Address", new_employee_address_path(@employee, :address_type => "false"), :remote => true, :class=>"btn btn-info add" %>
@@ -16,11 +16,11 @@
         </div>
       <% end %>      
       <% if @address1.present? %>
-      <div class="bio-graph-info">            
+      <div class="panel-body">            
         <div class="row"> 
             Present Address
             <% if current_user.department == Department::HR %>     
-              <label class = "pull-right"><a><i class="icon-edit"></i></a><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"pull-right", :remote => true %></label>
+              <i class="fa fa-edit pull-right" style="margin-top:3px;"></i><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"pull-right", :remote => true %>
             <% end %>
         </div>         
         <div class="panel-body">          
@@ -54,11 +54,11 @@
       </div>
       <% end %>      
       <% if @address2.present? %>                               
-        <div class="bio-graph-info">  
+        <div class="panel-body">  
           <div class="row">  
             Permanent Address
-            <% if current_user.department == Department::HR %>   
-              <label class = "pull-right"><a><i class=" icon-edit"></i></a><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"pull-right", :remote => true %></label>
+            <% if current_user.department == Department::HR %>
+              <i class="fa fa-edit pull-right" style="margin-top:3px;"></i><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"pull-right", :remote => true %>                
             <% end %>
           </div> 	              
           <div class="panel-body">								                                    

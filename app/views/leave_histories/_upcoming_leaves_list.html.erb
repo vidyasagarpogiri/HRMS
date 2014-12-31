@@ -1,66 +1,59 @@
 <div class="panel panel-info">
   <div class="panel-heading"> 
     Upcoming Leaves List<%= link_to ' Apply Leave',  new_leave_history_path, :class => "icon-plus-sign pull-right " %>
-  </div>
-  <% if @leave_histories.present? %> 	 	           
-    <!-- page start-->
-    <div class="row">
-      <div class="col-sm-12">
-        <section class="panel">        
-        <div class="panel-body">
-          <div class="adv-table">
-            <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
-              <thead>
-                <tr>
-			            <th>Date</th>
-				          <th>No.of Days</th>
-				          <th>Reason</th>
-				          <th>Leave Type</th>																							
-				          <th>Status</th>
-				          <th colspan=2>Action</th>								
-			          </tr>             
-              </thead>
-              <tbody >                           
-                <%  @leave_histories.each do |f| %>	
-	              <% unless f.from_date.to_date <= Date.today %>											           										
-		            <tr class="gradeA">               
-		             	<% if f.is_halfday %>
-		                <td><%= format_date(f.from_date) %></td>
-		                <td>half day(<%= f.section %>)</td>               
-		              <% else %>
-		             	   <td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
-			               <td>  <%= pluralize(f.days, 'day') %>  </td>
-			             <% end %>
-			            <td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal2"}, :id => "modal-text" } %>  </td>
-			            <td><%=f.leave_type.type_name %> </td>													
-			            <td><%=f.status %></td>
-			            <td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info", :remote => true  %>
-			            <%= link_to "Cancel",  f, method: :delete, data: {confirm: "Are You sure?"} , :class => "btn btn-danger"%></td>		 
-		            </tr>																						
-		            <% end %>
-               <% end %>	
-                </tbody>                   
-              <tfoot>
-               <tr>
-			            <th>Date</th>
-				          <th>No.of Days</th>
-				          <th>Reason</th>
-				          <th>Leave Type</th>																							
-				          <th>Status</th>
-				          <th colspan=2>Action</th>								
-			          </tr>         
-              </tfoot>
-            </table>
-          </div>
-        </div>
-      </section>
-      <% else %>
+  </div>   	                     
+  <div class="panel-body">
+    <% if @leave_histories.present? %> 	
+    <div class="adv-table">
+      <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>No.of Days</th>
+            <th>Reason</th>
+            <th>Leave Type</th>																							
+            <th>Status</th>
+            <th colspan=2>Action</th>								
+          </tr>             
+        </thead>
+        <tbody >                           
+          <%  @leave_histories.each do |f| %>	
+          <% unless f.from_date.to_date <= Date.today %>											           										
+          <tr class="gradeA">               
+           	<% if f.is_halfday %>
+              <td><%= format_date(f.from_date) %></td>
+              <td>half day(<%= f.section %>)</td>               
+            <% else %>
+           	   <td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
+               <td>  <%= pluralize(f.days, 'day') %>  </td>
+             <% end %>
+            <td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal2"}, :id => "modal-text" } %>  </td>
+            <td><%=f.leave_type.type_name %> </td>													
+            <td><%=f.status %></td>
+            <td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info", :remote => true  %>
+            <%= link_to "Cancel",  f, method: :delete, data: {confirm: "Are You sure?"} , :class => "btn btn-danger"%></td>		 
+          </tr>																						
+          <% end %>
+         <% end %>	
+          </tbody>                   
+        <tfoot>
+         <tr>
+            <th>Date</th>
+            <th>No.of Days</th>
+            <th>Reason</th>
+            <th>Leave Type</th>																							
+            <th>Status</th>
+            <th colspan=2>Action</th>								
+          </tr>         
+        </tfoot>
+      </table>     
+    </div>    
+    <% else %>
       <div class="alert alert-success alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
            You have No Leaves Requests 
       </div>
-    <% end %>                            
-    </div>
+   <% end %>                               
   </div>                          												  									
 </div><!--panel panel-info-->						      						
 									
