@@ -1,88 +1,46 @@
-<div class="wrapper">
-   <div class="container">
-     <div class="row">                                             
-       <div class="span12">
-          <div class="content">
-              <div class="module">
-                  <div class="module-head">
-                     <h3>All Departments                               
-                      <label style="font-weight:normal;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to "New Department", new_department_path %></label>
-                     </h3>
-                  </div>
-                  <div class="module-body " style="background-color:#eee">
-                    <% divscount = 0 %>
-                    <% @departments.each do |department| %>
-                    <% divscount = divscount+1 %>
-                    <% if divscount%3 == 1 %>
-                    <div class="row-fluid">
-                    <% end %>                              
-                      <div class="span4" style="border-radius:4px; background-color:#fff">
-                        <div class="style">
-                          <div class=" module-head" style="background-color:#F0F5F5!important;" >
-                            <h3 style=" color:black!important;"><%= department.department_name %>'s Info<hr></h3>
-                          </div>
-                        </div>
-                        <div class="media user">  
-                          <div class="media-avatar pull-left">                                 
-                            <% if department.department_name == "HR" %>
-			                         <%= image_tag "HR.jpg" %>
-                            <% elsif department.department_name == "Development"%>
-			                         <%= image_tag "dep.jpg" %>
-                            <% elsif department.department_name == "Business Development"%>
-                              <%= image_tag "accounts.jpg"%>
-                            <% elsif department.department_name == "Accounts"%>
-                              <%= image_tag "bdm.jpg" %>
-                            <% elsif department.department_name == "Staffing"%>
-                             <%= image_tag "us-staffing.png" %>
-                            <% else %>  
-                              <div class="media user" style="padding:0px;">  
-                                <div class="group" >
-                                 <label class=" group_name" ><%= department.department_name %></abel>                           
-                                </div>                                     
-                            </div>
-                            <% end %>
-                          </div>     
-                          <div class="media-body span6" style="margin-left:-80px;">
-                            <div class="style">
-                              <h5 class="media-title">
-                                  <%= link_to department.department_name, department_path(department) %>
-                              </h5>
-                               <br>                                                                                              
-                              <ul style="list-style-type: none;">
-                                <!--<li><i class="icon-suitcase"></i> Head : Mehar</li> -->
-                                <li><i class="icon-user"></i> <strong>Employees: </strong><%= department.employees.count %></li>
-                              </ul> 
-                           </div>                                         
-                         </div><!--/.media-body-->     
-                      </div>
-                    </div>                             
-                     <% if divscount%3 == 0 %>
-                      </div><br>
-                     <% end %>
-                     <% end %>                                                                     
-                     <% if divscount%3 == 1 %>
-                     </div><br>
-                     <% end %>                               
-                    <!----<div class="pagination pagination-centered">
-                        <ul>
-                            <li><a href="#"><i class="icon-double-angle-left"></i></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#"><i class="icon-double-angle-right"></i></a></li>
-                        </ul>
-                    </div>--->
-                  </div>
+<div class="directory-info-row">
+  <div class="row"> 
+    <div class="panel">
+      <div class="panel-heading">                  
+         All Departments  <%= link_to " New Department", new_department_path, :class => "fa fa-plus pull-right" %>                              
+      </div>
+      <div class="panel-body">        
+        <% @departments.each do |department| %>
+        <div class="col-md-4 col-sm-4">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <%= department.department_name %>'s Info
+            </div>     
+            <div class="panel-body">
+              <div class="media">
+                <a class="pull-left" href="#">
+              <% if department.department_name == "HR" %>
+               <%= image_tag "HR.jpg", :class=>"thumb media-object" %>
+              <% elsif department.department_name == "Development"%>
+                 <%= image_tag "dep.jpg", :class=>"thumb media-object" %>
+              <% elsif department.department_name == "Business Development"%>
+                <%= image_tag "accounts.jpg" , :class=>"thumb media-object"%>
+              <% elsif department.department_name == "Accounts"%>
+                <%= image_tag "bdm.jpg", :class=>"thumb media-object" %>
+              <% elsif department.department_name == "Staffing"%>
+               <%= image_tag "us-staffing.png" , :class=>"thumb media-object"%>
+              
+              
+            <% end %>  
+            </a>
+                <address>
+                  <h4><%= link_to department.department_name, department_path(department) %></h4>
+                  <abbr title="employees"><i class="icon-user"></i> <strong>Employees: </strong><%= department.employees.count %>
+                </address>
               </div>
-           </div><!--/.content-->                    
-        </div><!--/.span9-->                
-     </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
+</div>
+</div> 
 
-  
-  
-  
-  
-        
-                           
+
+

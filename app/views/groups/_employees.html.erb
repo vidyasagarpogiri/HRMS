@@ -1,48 +1,36 @@
-<div class="row">
-  <div class="col-lg-12">
-    <div class="panel">
-      <div class="panel-head">							
-        Employees        
-      </div>
-      <div class="panel-body">
-        <div class="adv-table">
-        <% if @employees.present?%>			
-        <table class="display table table-bordered table-striped dynamic-table" >
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Designation</th>
-              <th>Date of Join</th>
-            </tr>
-          </thead>      
-          <tbody>
-            <% @employees.each do |employee| %>
-              <tr class="gradeA">
-              <td><%= employee.employee_id %></td>
-              <td><%= employee.full_name %></td>
-              <td><%= employee.designation.designation_name if employee.designation.present? %></td>
-          <td><%= format_date(employee.date_of_join) %></td>
+<div class="panel panel-info">
+  <div class="panel-heading">							
+    Employees        
+  </div>
+  <div class="panel-body">
+    <div class="adv-table">
+    <% if @employees.present?%>			
+    <table class="display table table-bordered table-striped table-dynamic" >
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Designation</th>
+          <th>Date of Join</th>
         </tr>
+      </thead>      
+      <tbody>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.employee_id %></td>
+            <td><%= employee.full_name %></td>
+            <td><%= employee.designation.designation_name if employee.designation.present? %></td>
+            <td><%= format_date(employee.date_of_join) %></td>
+          </tr>
         <% end %>
-      </tbody>
-    </table>           
-  <% else %> 
-  <div class="alert alert-success alert-dismissable">
-     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-         You have No Employees for this group.
+        </tbody>
+      </table>           
+    <% else %> 
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+       You have No Employees for this group.
+    </div>
+   <% end %>  
+    </div>
   </div>
-  <% end %>  
-  </div>
-</div>  
-
-
-<script>
-	$(document).ready(function() {
-		$('.datatable-group-allemp').dataTable();
-		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
-		$('.dataTables_paginate > a').wrapInner('<span />');
-		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-	} );
-</script>     
+</div>     
