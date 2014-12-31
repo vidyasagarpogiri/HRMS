@@ -38,7 +38,7 @@ class Notification < ActionMailer::Base
 
   def policy_notification(user, policy)
     @policy = policy
-    mail(to: user.email, subject: "#{@policy.title}" 'Policy')
+    mail(to: user.email, subject: "#{@policy.title}"  ' Policy ')
   end
 
   def holiday_list(user, events, group)
