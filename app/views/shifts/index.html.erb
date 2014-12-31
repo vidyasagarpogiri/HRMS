@@ -1,13 +1,11 @@
       <div class="row">
   <div class="col-lg-12">
-    <section class="panel">
+    <section class="panel panel-info">
       <header class="panel-heading">
-        Work Shifts
-        <span class="pull-right">
-         <% if current_user.department == Department::HR %>
-           <%= link_to "New Work Shift", new_shift_path, :class =>" btn btn-success btn-xs" %>
-         <% end %>
-        </span>
+        Work Shifts        
+       <% if current_user.department == Department::HR %>
+         <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to "New Work Shift", new_shift_path, :class =>" pull-right" %>
+       <% end %>       
       </header>
   <div class="panel-body">
     <section id="unseen">
