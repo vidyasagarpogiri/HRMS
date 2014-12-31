@@ -1,37 +1,39 @@
-<div class="module">
-	<div class="module-head">							
-    <h3>Leaves </h3>         
+<div class="panel panel-info">
+	<div class="panel-heading">							
+    Leaves         
   </div>
-  <div class="module-body">	  
-    <% if @leaves.present? %>                  
-    <table cellpadding="0" cellspacing="0" border="0" class="datatable-group-leaves table  table-striped	 display" width="100%">
-		  <thead>
-			  <tr>
-			    <th width="80px">Full Name</th>
-				  <th width="80px">Date</th>
-				  <th width="80px">No of Days</th>													
-				  <th width="80px">Leaves Type</th>
-				  <th> Reason </th>
-				  <th width="100px">Leaves Balance</th>													
-				  <th width="60px">Status</th>
-				  <th width="120px">Reporting Manger</th>													
-			  </tr>
-		  </thead>			    	
-      <tbody>	
-        <% @leaves.each do |f| %>												
-			  <tr class="gradeA">               
-			    <td width="180px;"> <%= f.employee.full_name %></td>
-		      <td> <%= format_date(f.from_date) %> to <%= format_date(f.to_date) %>  </td>
-			    <td> <center><%= f.days %> </center></td>
-			    <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
-			    <td> <%= f.reason %> </td> 
-			    <td><center> <%= total_balance_leaves(f.employee) %> </center></td>												  
+  <div class="panel-body">	  
+    <% if @leaves.present? %>
+    <div class="adv-table">
+      <table class="display table table-bordered table-striped table-dynamic" >
+		    <thead>
+			    <tr>
+			      <th>Full Name</th>
+				    <th>Date</th>
+				    <th>No of Days</th>													
+				    <th>Leaves Type</th>
+				    <th> Reason </th>
+				    <th>Leaves Balance</th>													
+				    <th>Status</th>
+				    <th>Reporting Manger</th>													
+			    </tr>
+		    </thead>			    	
+        <tbody>	
+          <% @leaves.each do |f| %>												
+			    <tr>               
+			      <td><%= f.employee.full_name %></td>
+		        <td><%= format_date(f.from_date) %> to <%= format_date(f.to_date) %>  </td>
+			      <td><%= f.days %></td>
+			      <td><%= f.leave_type.type_name if f.leave_type.present? %>  </td>
+			      <td><%= f.reason %> </td> 
+			      <td><%= total_balance_leaves(f.employee) %></td>												  
 			    <td> <%= f.status %> </td>
 			    <td> <%= f.employee.reporting_manager%></td>
 			  </tr>
 			  <% end %>
      </tbody>     	
-	 </table>      
+	 </table> 
+	 </div>     
 	 <% else %>
     <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -40,16 +42,7 @@
 		<% end %>										
  </div>
 </div>
-
-<script>
-	$(document).ready(function() {
-		$('.datatable-group-leaves').dataTable();
-		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
-		$('.dataTables_paginate > a').wrapInner('<span />');
-		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-	} );
-</script>      
+      
      
      
  
