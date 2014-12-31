@@ -4,13 +4,13 @@
   </div>                          
     <div class="panel-body"> 
   
-      <p><font size="4"><strong>Job Code:</strong> <%= @recruitment.jobcode %> </font></p>
-      <p><font size="4"><strong>Job Title:</strong> <%= @recruitment.title %> </font></p>
-      <p><font size="4"><strong>Job Type: </strong><%= @recruitment.job_type %> </font></p> 
-      <p><font size="4"><strong>Job Status: </strong><%= @recruitment.status %></p> 
-      <p><font size="4"><strong>Job Link: </strong><%= link_to @recruitment.link, @recruitment.link, :target => "/blank" %></p>
-      <p><font size="4"><strong>Job Attachment: </strong><%= link_to "Show", @recruitment.file_url, :target => "/blank" %></p>
-      <p><font size="4"><strong>Job Description: </strong><%= raw @recruitment.description %></p>
+      <p><font size="3"><strong>Job Code:</strong> <%= @recruitment.jobcode %> </font></p>
+      <p><font size="3"><strong>Job Title:</strong> <%= @recruitment.title %> </font></p>
+      <p><font size="3"><strong>Job Type: </strong><%= @recruitment.job_type %> </font></p> 
+      <p><font size="3"><strong>Job Status: </strong><%= @recruitment.status %></p> 
+      <p><font size="3"><strong>Job Link: </strong><%= link_to @recruitment.link, @recruitment.link, :target => "/blank" %></p>
+      <p><font size="3"><strong>Job Attachment: </strong><%= link_to "Show", @recruitment.file_url, :target => "/blank" %></p>
+      <p><font size="3"><strong>Job Description: </strong><%= raw @recruitment.description %></p>
       
     <% if current_user.department == Department::HR %>     
       <ul class="navigation-btns pull-left">
