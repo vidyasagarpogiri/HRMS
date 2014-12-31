@@ -1,0 +1,19 @@
+
+ 			
+
+			      <h3>Events Details</h3>			      
+	   
+            <div><strong><%= @amzurevent.title %></strong> on <strong><%= format_date (@amzurevent.held_on) %></strong>at <strong><%= format_time(@amzurevent.from_time) %></strong> to <strong><%= format_time(@amzurevent.to_time) %></strong></div>
+            <div class="control-group">
+              <div class="controls">
+              <strong>Event for <%if @amzurevent.eventable_type.nil? %> ALL <%else%> <%=@eventable %>  <%=@amzurevent.eventable_type%> <%end%></strong>
+             </div>
+            </div>
+            <% if current_user.employee == @amzurevent.employee %>
+             
+               <%= link_to 'Edit', edit_amzur_event_path(@amzurevent), :class => "btn btn-success " %>
+                <%= link_to "Delete", amzur_event_path(@amzurevent), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
+              </ul>  
+            <% end %><br>                         
+            <%= raw @amzurevent.description %><br>                             
+					 

@@ -4,7 +4,6 @@
   </div>        
   <div class="panel-body">
      <%= form_for @policy,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid policy_from"} do |f| %>
-    <form class="form-horizontal" role="form">
         <div class="form-group">
             <label for="inputEmail1" class="col-lg-2 control-label">Policy Title</label>
             <div class="col-lg-10">
@@ -36,7 +35,6 @@
           <button type="submit" class="btn btn-success">Save</button>&nbsp&nbsp
           <%= link_to "Cancel", policies_path,:class => "btn btn-danger" %>            
         </div>
-    </form>      
     <% end %>
   </div>
 </div>
