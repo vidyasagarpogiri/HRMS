@@ -1,34 +1,35 @@
 <div class="row">
   <div class="col-lg-12">
-    <section class="panel">
+    <section class="panel panel-info">
       <header class="panel-heading">
         Company PayRoll Master Details					    
 		  </header>
-		  
-			      <table class="table table-bordered table-striped table-condensed" id="sample-table-2">
-               <thead>
-               <tr>
-                  <th>Month</th>
-                  <th>Year</th>
-                  <th>Total Netpay</th>
-                  <th>Status</th>
-                  <th>Name</th>
-                  <th>Date & Time</th>                  
-                </tr>
-               </thead>               
-               <tbody>
-               <% @pay_rolls.each do |cprm| %>
-                <tr>                  
-                  <td><%= cprm.month %></td>
-                  <td><%= cprm.year %></td>
-                  <td><%= cprm.total_netpay %></td>
-                  <td><%= cprm.status %></td>
-                  <td><%= cprm.name %></td>
-                  <td><%= format_date_time(cprm.created_at) %></td>
-                </tr>
-                <% end %>
-               </tbody>                 
-              </table>
+		  <div class="panel-body">
+	      <table class="table table-bordered table-striped table-condensed" id="sample-table-2">
+           <thead>
+           <tr>
+              <th>Month</th>
+              <th>Year</th>
+              <th>Total Netpay</th>
+              <th>Status</th>
+              <th>Name</th>
+              <th>Date & Time</th>                  
+            </tr>
+           </thead>               
+           <tbody>
+           <% @pay_rolls.each do |cprm| %>
+            <tr>                  
+              <td><%= cprm.month %></td>
+              <td><%= cprm.year %></td>
+              <td><%= cprm.total_netpay %></td>
+              <td><%= cprm.status %></td>
+              <td><%= cprm.name %></td>
+              <td><%= format_date_time(cprm.created_at) %></td>
+            </tr>
+            <% end %>
+           </tbody>                 
+          </table>
+        </div>
 		</section>
 	</div>
 </div>

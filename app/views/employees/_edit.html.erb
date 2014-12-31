@@ -1,8 +1,9 @@
 <div class="panel panel-info">
-  <div class="panel-body bio-graph-info">
-    <h1> Employee Details</h1>
-    <%= form_for @employee, :html => {:class=> "edit-employee-form form-horizontal"}, :remote => true  do |f| %>
-      
+  <div class="panel-heading">
+     Employee Details    
+   </div>
+   <div class="panel-body">
+   <%= form_for @employee, :html => {:class=> "edit-employee-form form-horizontal"}, :remote => true  do |f| %>  
       <div class ="row">
         <div class="col-lg-6">
           <div class="form-group">

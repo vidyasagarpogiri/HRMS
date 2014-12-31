@@ -1,6 +1,8 @@
 <div class="panel panel-info">
   <div class="panel-heading"> 
-    <%= @workgroup.name.upcase %> <a href="/workgroups"><i class=" fa pull-right"> All Workgroups</i></a>
+    <%= @workgroup.name.upcase %> 
+    <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to 'All Workgroups', workgroups_path, :class => "pull-right" %>
+
   </div>                          
   <div class="panel-body">  
     <p>Workgroup Group Admin : <%= @admin.full_name %></p>

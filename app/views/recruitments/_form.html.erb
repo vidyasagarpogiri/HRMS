@@ -4,8 +4,7 @@
   </div>        
   <div class="panel-body">
     <%= form_for @recruitment,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
-    <form class="form-horizontal" role="form">
-        <div class="form-group">
+       <div class="form-group">
             <label for="inputEmail1" class="col-lg-2 control-label">Job Code</label>
             <div class="col-lg-10">
                  <%= f.text_field :jobcode, :class => "span8 form-control", :placeholder =>"Enter Job Code", :data => {:error => "Please Enter valid Job Code"}, :required => true %>
@@ -72,7 +71,7 @@
           <button type="submit" class="btn btn-success">Save</button>&nbsp&nbsp
           <%= link_to "Cancel", recruitments_path,:class => "btn btn-danger" %>             
         </div>
-    </form>      
+        
     <% end %>
   </div>
 </div>

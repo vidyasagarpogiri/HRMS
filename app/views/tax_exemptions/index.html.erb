@@ -1,22 +1,20 @@
 <div class="row">
   <div class="col-lg-12">
-    <section class="panel">
+    <section class="panel panel-info">
       <header class="panel-heading">
-        Tax Exemptions
-        <label style="font-weight:normal;" class = "pull-right"><a><i class="icon-plus-sign"></i></a> <%= link_to "New Tax Exemption", new_tax_exemption_path %></label> 
+        Tax Exemptions <%= link_to "New Tax Exemption", new_tax_exemption_path, :class => "pull-right" %> 
       </header>
       <div class="panel-body">
         <section id="unseen">
           <% if @tax_exemptions.present? %>                                           
-             <table class="table table-bordered table-striped table-condensed" id="sample-table-2">
+          <table class="table table-bordered table-striped table-condensed" id="sample-table-2">
 		        <thead>											      
 			        <tr>
 				        <th>Gender</th>
 				        <th>Exemptions Limit</th>	
 				        <th>Action</th>						      		
 			        </tr>
-		        </thead>
-          
+		        </thead>          
 		        <tbody>
 		          <% @tax_exemptions.each do |tax| %>
 			          <tr>               
@@ -31,10 +29,15 @@
 			          </tr>
               <% end %>
 		        </tbody>
-	        </table> 
-	      <% end %>
-	    </section>
-	  </div>
+	        </table>
+	        <% else %>
+	          <div class="alert alert-success alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                No Tax Exemptions to display
+            </div>
+	        <% end %>
+	      </section>
+	    </div>
 	  </section>
   </div>
 </div>
