@@ -15,3 +15,33 @@
 		<%= link_to "Cancel", workgroup_path(@workgroup.id),:class => "btn btn-danger" %>                                          
   </div>										
 <% end %>
+
+<script>
+  $(function() {
+  var availableTags = [];
+  var workgroup_id = parseInt($("#work_group_id").val());
+  $.get( "/workgroups/"+workgroup_id+"/get_employees.json", function( data ) {
+      $.each( data, function( key, val ) {
+       availableTags.push(val);
+       
+       //alert(val["id"]+" - "+val["value"]);
+      });
+      console.log(availableTags);
+  });
+  
+       $( "#member" ).autocomplete({
+        minLength: 2,
+        source: availableTags,
+        focus: function( event, ui ) {
+        $( "#member" ).val( ui.item.value );
+        
+        return false;
+        },
+        select: function( event, ui ) {
+        $( "#member" ).val( ui.item.value );
+        $( "#member_id" ).val( ui.item.id );
+        return false;
+        }
+        })
+  });
+  </script>
