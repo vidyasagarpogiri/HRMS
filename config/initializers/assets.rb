@@ -3,7 +3,8 @@
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
 
-Rails.application.config.assets.precompile += %w( .js .css *.css.scss .svg .eot .woff .ttf .erb wall.css workgroups.css)
+Rails.application.config.assets.precompile += %w( *.js *.css *.css.scss .svg .eot .woff .ttf .erb wall.css workgroups.css *.png *.jpg *.jpeg *.gif)
+Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
 
 
 # Precompile additional assets.
