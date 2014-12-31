@@ -1,9 +1,6 @@
         <div class="panel panel-info">
 		      <div class="panel-heading">							
              Holiday calender
-             <% if @holiday_calenders.present? %>
-              <%= link_to 'Send As Email', holiday_notification_group_path(@group), :class => "btn btn-info pull-right" %>
-            <% end %>
 		        <label class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add Holidays",  new_group_holiday_calender_path(@group), :remote => true %>
 		        </label>
           </div>		   	         
@@ -28,6 +25,9 @@
 								 </tbody>
 								 <% end %>
 							</table>
+							  <% if @holiday_calenders.present? %>
+                  <%= link_to 'Send As Email', holiday_notification_group_path(@group), :class => "btn btn-info pull-right" %>
+                <% end %>
 							</div>
 							<% else %>  
 							    <div class="alert alert-success alert-dismissable">
