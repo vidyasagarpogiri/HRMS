@@ -1,32 +1,30 @@
-<div class="wrapper">
-  <div class="container">
+
     <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-             <div class="module-head" style="background-color: #82B4E6 ">
+      <div class="col-lg-12">
+          <div class="panel panel-info">
+             <div class="panel-heading">
                 <label class="pull-left"><a id="prev" ><i class="icon-chevron-left"></i> Previous Week</a></label>
                 <label class="pull-right"><a  id="next">Next Week <i class=" icon-chevron-right"></i></a></label><br>
               </div>                                                                                        
-              <div class="module-body"> 
+              <div class="panel-body"> 
               <!--
-                <div class="row-fluid">
-                  <div class="span6">
-                    <div class="row-fluid">
-                      <div class="span6">
-                       <label class="label">Month&Year:</label>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="row">
+                      <div class="col-lg-6">
+                       <label>Month&Year:</label>
                       </div>
-                      <div class="span6">
+                      <div class="col-lg-6">
                         <label class="value"><%# Date::MONTHNAMES[@payslip.month] %>,<%# @payslip.year%></label>
                       </div>
                     </div>
                   </div>
-                 <div class="span6">
-                   <div class="row-fluid">
-                    <div class="span6">
+                 <div class="col-lg-6">
+                   <div class="row">
+                    <div class="col-lg-6">
                       <label class="label">Number Of Working Days:</label>
                     </div>
-                    <div class="span6">
+                    <div class="col-lg-6">
                       <label class="value"><%# @payslip.working_days %></label>
                     </div>
                   </div>
@@ -81,9 +79,6 @@
             </div><!--/.module-->
           </div><!--/.content-->                    
         </div><!--/.span9-->                
-     </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
 
 
 <script>
