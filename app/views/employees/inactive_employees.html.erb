@@ -1,35 +1,8 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-             <div class="module-head" style="background-color: #82B4E6 ">
-                <h3> List of Employees</h3>
-              </div>                                                                                        
-              <div class="module-body ">                                                                       								
-                 <%= render "employees/employee_data_table" %>                              
-             </div><!-- module body-->
-          </div><!--/.module-->
-        </div><!--/.content-->                    
-      </div><!--/.span9-->                
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
-
-  
-<script>
-	$(document).ready(function() {
-		$('.datatable-2').dataTable();
-		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
-		$('.dataTables_paginate > a').wrapInner('<span />');
-		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-	} );
-</script>
-  
- 
-
-
-
-
+<div class="panel panel-info">
+  <div class="panel-heading">
+    List of Employees
+  </div>                                                                                        
+  <div class="panel-body ">                                                                       								
+    <%= render "employees/employee_data_table" %>                              
+  </div><!-- module body-->
+</div><!--/.module-->
