@@ -9,8 +9,8 @@
     <div class ="row">
       <div class="col-lg-6">
         <div class="form-group">   
-          <label class="col-lg-2 control-label" for="basicinput">Over All Rating</label>
-          <div class="col-lg-10">
+          <label class="col-lg-4 control-label" for="basicinput">Over All Rating</label>
+          <div class="col-lg-6">
             <%= text_field_tag :over_all_rating, nil, :class=>"form-control", disabled: true %>
             <span class="help-block with-errors"></span>
           </div>
@@ -20,14 +20,14 @@
     <div class ="row">
       <div class="form-group">   
         <label class="col-lg-2 control-label" for="basicinput">Discussion Notes</label>
-        <div class="col-lg-10">
+        <div class="col-lg-8">
             <%= text_area_tag :discussion_notes, nil , :class => "form-control", disabled: "true"%>
           <span class="help-block with-errors"></span>
         </div>
       </div>
     </div>
     
-    <table class="display table table-bordered table-striped"> 
+    <table class="table table-striped table-bordered table-condensed"> 
       <thead>
         <tr>
           <th>Review Element</th>
@@ -46,10 +46,10 @@
             <td><%= review_element.review_element %></td>
             <td><%= review_element.performance_indicator %></td>
               <%= hidden_field_tag 'review_id[]', review_element.id%>
-              <td><%= text_field_tag 'review_assesment[]',review_element.employee_assesment %></td>
-              <td><%= select_tag 'review_rating[]', options_for_select([['Exceptional', 'Exceptional'], ['Highly Effective', 'Highly Effective'], ['Proficient', 'Proficient'], ['Needs Improvement','Needs Improvement'], ['Unacceptable', 'Unacceptable'], ['Not Applicable','Not Applicable']]) %></td>
-              <td><%= text_field_tag :manager_feedback, nil, disabled: "true", style: "width: 130px;"%></td>
-              <td><%= text_field_tag :manager_rating, nil, disabled: "true", style: "width: 130px;" %></td>
+              <td><%= text_field_tag 'review_assesment[]',review_element.employee_assesment, :class => "form-control" %></td>
+              <td><%= select_tag 'review_rating[]', options_for_select([['Exceptional', 'Exceptional'], ['Highly Effective', 'Highly Effective'], ['Proficient', 'Proficient'], ['Needs Improvement','Needs Improvement'], ['Unacceptable', 'Unacceptable'], ['Not Applicable','Not Applicable']]), :class => "form-control" %></td>
+              <td><%= text_field_tag :manager_feedback, nil, disabled: "true"%></td>
+              <td><%= text_field_tag :manager_rating, nil, disabled: "true" %></td>
           </tr>
         <% end %>
         <% end %>

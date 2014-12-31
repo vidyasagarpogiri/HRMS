@@ -52,9 +52,11 @@ class WorkgroupsController < ApplicationController
   end
   
   def add_members
+  #raise params.inspect
     @workgroup = Workgroup.find(params[:id])
     @employee_id = @workgroup.admin_id
     @employees = Employee.all
+    #raise @workgroup.inspect
     # @employee_ids = WorkgroupsEmployee.where(workgroup_id: @workgroup.id).pluck(:employee_id)
   end
   
@@ -66,6 +68,7 @@ class WorkgroupsController < ApplicationController
   end
   
   def added_members
+  #raise params.inspect
     @employee = Employee.find(params[:member_id])
     @workgroup = Workgroup.find(params[:id])
     WorkgroupsEmployee.create(employee_id: @employee.id, workgroup_id: @workgroup.id)
