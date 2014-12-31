@@ -52,23 +52,19 @@ class WorkgroupsController < ApplicationController
   end
   
   def add_members
-  #raise params.inspect
     @workgroup = Workgroup.find(params[:id])
     @employee_id = @workgroup.admin_id
     @employees = Employee.all
-    #raise @workgroup.inspect
     # @employee_ids = WorkgroupsEmployee.where(workgroup_id: @workgroup.id).pluck(:employee_id)
   end
   
   def add_moderator
-    # raise params.inspect
     @workgroup = Workgroup.find(params[:id])
     @moderator = WorkgroupsEmployee.where(is_moderator: true, employee_id: current_user.employee.id, workgroup_id: @workgroup.id)
     @employees = @workgroup.employees
   end
   
   def added_members
-  #raise params.inspect
     @employee = Employee.find(params[:member_id])
     @workgroup = Workgroup.find(params[:id])
     WorkgroupsEmployee.create(employee_id: @employee.id, workgroup_id: @workgroup.id)
@@ -76,7 +72,6 @@ class WorkgroupsController < ApplicationController
   end
   
   def added_moderators
-   # raise params.inspect 
     @workgroup = Workgroup.find(params[:id])
     WorkgroupsEmployee.where(workgroup_id: @workgroup.id).each do |work| 
     work.update(is_moderator: false) unless current_user.employee == work.employee # if current user is moderator of workgroup then check box is not displayed
