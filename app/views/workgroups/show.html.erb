@@ -1,15 +1,18 @@
 <div class="panel panel-info">
   <div class="panel-heading"> 
-    <%= @workgroup.name.upcase %> <a href="/workgroups"><i class=" fa fa-arrow-circle-left pull-right"> All Workgroups</i></a>
+    <%= @workgroup.name.upcase %> <a href="/workgroups"><i class=" fa pull-right"> All Workgroups</i></a>
   </div>                          
   <div class="panel-body">  
     <p>Workgroup Group Admin : <%= @admin.full_name %></p>
     <% if current_user.employee.id == @workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: @workgroup.id ).present?%>
-    <label style="font-weight:normal;margin-top:-20px" class = "pull-right" ><a><i class="icon-plus-sign "></i></a><%= link_to " Add/Remove Moderator ",add_moderator_workgroup_path %> </label> 
-    <label style="font-weight:normal;margin-top:-20px" class = "pull-right" ><a><i class="icon-user"></i></a>
-      <a href="#myModal" role="button" data-toggle="modal">Add Member&nbsp;</a>
-    </label> <br>                           
-    <% end %>                          
+      <span class="pull-right">
+        <%# link_to "Add Member",add_members_workgroup_path,:class => "btn btn-success btn-xs"%>
+        
+        <%= link_to 'Add Member', "#member",  :class => "btn btn-success btn-xs add_member", :url => add_members_workgroup_path, "data-toggle" => "modal"  %> 
+        
+        <%= link_to "Add/Remove Moderator",add_moderator_workgroup_path, :class =>" btn btn-success btn-xs" %>                         
+    <% end %> 
+      </span>                         
 
    <%= hidden_field_tag('work_group_id', @workgroup.id) %> 
    <div class="adv-table">
@@ -67,7 +70,7 @@
 <!-- Button to trigger modal -->
  
 <!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="member" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Add New Member to Workgroup</h3>
@@ -79,7 +82,9 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true"></button>
     <button class="btn btn-primary"></button>
   </div>
-</div>      
+</div> 
+
+   
  
 <script>
   $(function() {
@@ -117,5 +122,17 @@
     }
   </style>
   
+  <script>
+  $(function(){
+    $(".add_member").click(function(){
+      var url = $(this).attr("url");
+      $.ajax({
+        type : "GET",
+        url : url,
+        dataType : "script"
+      });
+    });
+  });
+</script>
 
                      

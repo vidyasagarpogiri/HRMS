@@ -2,9 +2,10 @@
     <aside class="profile-nav col-lg-3">
       <section class="panel">
         <div class="user-heading round">                   
-        <a href="#">   
-          <h4><%= @group.group_name %></h4>
+        <a href="#"> 
+          <%= image_tag("us-staffing.png", alt: "", class: "thumb media-object") %>  
         </a>
+        <p><h4><%= @group.group_name %></h4></p>
         <p>Employees : <%= @group.employees.count %></p>
       </div> 
       <ul class="nav nav-pills nav-stacked">            
