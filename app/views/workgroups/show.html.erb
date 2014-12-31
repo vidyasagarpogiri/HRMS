@@ -8,7 +8,7 @@
       <span class="pull-right">
         <%# link_to "Add Member",add_members_workgroup_path,:class => "btn btn-success btn-xs"%>
         
-        <%= link_to 'Add Member', "#member",  :class => "btn btn-success btn-xs", :url => add_members_workgroup_path, "data-toggle" => "modal"  %> 
+        <%= link_to 'Add Member', "#member",  :class => "btn btn-success btn-xs add_member", :url => add_members_workgroup_path, "data-toggle" => "modal"  %> 
         
         <%= link_to "Add/Remove Moderator",add_moderator_workgroup_path, :class =>" btn btn-success btn-xs" %>                         
     <% end %> 
@@ -122,5 +122,17 @@
     }
   </style>
   
+  <script>
+  $(function(){
+    $(".add_member").click(function(){
+      var url = $(this).attr("url");
+      $.ajax({
+        type : "GET",
+        url : url,
+        dataType : "script"
+      });
+    });
+  });
+</script>
 
                      
