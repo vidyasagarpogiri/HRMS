@@ -4,10 +4,11 @@
   </header>
 </section>
 
+                                                    
 <div class="row">
   <div class="panel-body">
-    <aside class="profile-nav col-lg-9">      
-      <div class="row">              
+    <div class="row">
+      <div class="col-md-9">                      
         <div class="tab-content">
           <div class="tab-pane active" id="tab_1">
             <div class="panel-group" id="accordion1">                
@@ -15,33 +16,37 @@
           </div>
         </div>      
       </div>
-    </aside>
-    <aside class="profile-nav col-lg-3">         
-      <div class="row">
+   
+      <div class="col-md-3">
         <section class="panel">
-          <header class="panel-heading">
+          <header class="panel-heading" >
             All Policies
           </header>         
         </section>
         <ul class="vertical-menu">
           <% if @policies.present? %> 
           <% @policies.each do |policy| %> 
-          <li><%= link_to  policy.title ,policy_path(policy), :class => "fa fa-bullhorn ", :remote=> true %></a></li>
+          <li><%= link_to policy.title ,policy_path(policy), :class => "fa fa-bullhorn ", :remote=> true %></a></li>
           <%end%>
           <%else%>
           <div class="panel panel-success">
             <div class="panel-heading">
                 <h4 class="panel-title">
-           No policies to display.
-           </h4>
-           </div>
+                  No policies to display.
+                </h4>
+            </div>
           </div>
           <%end%>               
-        </ul>                                      
-      </div><!--col-md-3-->
-    </aside>
+        </ul>
+      </div>          
+    </div>                    
   </div>      
 </div>
+
+  
+                        
+                        
+    
 
 
         
