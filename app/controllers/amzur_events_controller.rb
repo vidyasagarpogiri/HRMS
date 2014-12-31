@@ -105,6 +105,7 @@ class AmzurEventsController < ApplicationController
    end
   
   def show
+  #raise params.inspect
     @amzurevent =AmzurEvent.find(params[:id])
     @event = AmzurEvent.all.page(params[:page]).per(5)
     @eventable = AmzurEvent.get_eventable(@amzurevent)
