@@ -7,7 +7,7 @@
 			      <h3>Events Details</h3>			      
 	        </div>			
 		      <div class="module-body">	       
-            <div><strong><%= @amzurevent.title %></strong> on <strong><%= format_date (@amzurevent.held_on) %></strong>at <strong><%= @amzurevent.from_time.strftime("%H:%M %P") %></strong> to <strong><%= @amzurevent.to_time.strftime("%H:%M %P") %></strong></div>
+            <div><strong><%= @amzurevent.title %></strong> on <strong><%= format_date (@amzurevent.held_on) %></strong>at <strong><%= format_time(@amzurevent.from_time) %></strong> to <strong><%= format_time(@amzurevent.to_time) %></strong></div>
             <div class="control-group">
               <div class="controls">
               <strong>Event for <%if @amzurevent.eventable_type.nil? %> ALL <%else%> <%=@eventable %>  <%=@amzurevent.eventable_type%> <%end%></strong>
