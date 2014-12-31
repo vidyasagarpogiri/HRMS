@@ -1,35 +1,33 @@
-<section class="panel">
+<section class="panel panel-info">
   <header class="panel-heading">
       Announcement Details
  	 </header>
-	<div class="panel-body">											    
-     <h5><%= @announcement.title %></h5>
+	  <div class="panel-body">
+	  <div class="form-group">											    
+      <label class="control-label"><strong><%= @announcement.title %></strong></label>
+    </div>
     <div class="form-group">
-     <div class="controls">
-      <strong>Announcement for <%if @announcement.announceable_type.nil? %> ALL <%else%> <%=@announceable %>  <%=@announcement.announceable_type%> <%end%></strong>
-      </div>
+     <label class="control-label"><strong>Announcement for <%if @announcement.announceable_type.nil? %> ALL <%else%> <%=@announceable %>  <%=@announcement.announceable_type%> <%end%></strong></label>
+    </div>
+    
+    <div class="form-group">
+     <label class="control-label"><strong>Details</strong></label>
+     <label class="dec">
+      <%= raw @announcement.description%>
+     </label>
      </div>
-        <% if current_user.department == Department::HR %>  
+     <div class="for-group">
+     <span class="pull-right">
+      <% if current_user.department == Department::HR %>  
         
           <%= link_to 'Edit', edit_announcement_path(@announcement), :class => "btn btn-success " %>
           <%= link_to "Delete", announcement_path(@announcement), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
       
-       <% end %><br>
-               <div class="form-group"> 
-                 <div class="controls"  >             
-                    <%= raw @announcement.description%>
-                 </div>
-               </div>
-               <% if current_user.department == Department::HR %>                 
-               <% end %>                        
-						  </div><!--/.module-body-->
-					  </div><!--/.module-->
-				  </div><!--/.content-->
-			  </div><!--/.span8-->
-			 
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
-	
+       <% end %>
+     </span>
+     </div>
+    
+</div><!--panel-body--> 
+</section>	
 
 
