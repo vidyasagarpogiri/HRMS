@@ -39,7 +39,7 @@ class AmzurEventsController < ApplicationController
             Notification.delay.event_notification(emp.user,@amzurevent)
             end
           end
-        redirect_to amzur_events_path
+        redirect_to welcome_wall_path
        else
         flash.now[:error]
         render "new"
@@ -55,7 +55,7 @@ class AmzurEventsController < ApplicationController
           Notification.delay.event_notification(emp.user,@amzurevent)
           end
         end
-      redirect_to amzur_events_path
+      redirect_to welcome_wall_path
      else
       flash.now[:error]
       render "new"
@@ -73,7 +73,7 @@ class AmzurEventsController < ApplicationController
             Notification.delay.event_notification(emp.user,@amzurevent)
             end
           end
-        redirect_to amzur_events_path
+        redirect_to welcome_wall_path
        else
         flash.now[:error]
         render "new"
@@ -86,7 +86,7 @@ class AmzurEventsController < ApplicationController
           Notification.delay.event_notification(emp.user,@amzurevent)
           end
         end
-      redirect_to amzur_events_path
+      redirect_to welcome_wall_path
      else
       flash.now[:error]
       render "new"
