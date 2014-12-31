@@ -5,7 +5,7 @@
         All Groups                               
         <label class = "pull-right"><a><i class="fa fa-plus"></i></a> <%= link_to "New Group", new_group_path %></label>                               
       </div><!--/.module-head-->
-      <div class="panel-body">
+      <div>
         <% if @groups.present? %>
           <% @groups.each do |group| %>
             <div class="col-md-4 col-sm-4">

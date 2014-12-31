@@ -1,101 +1,50 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-            <div class="module-head" style="background-color: #82B4E6 ">
-              <h3>All Members
-                <%= current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard 
-              </h3>
-            </div>
-            <div class="module-body table" style="width:98%">
-              <table cellpadding="0" cellspacing="0" border="0" class="datatable-2 table  table-striped	 display" width="100%" id="DataTables_Table_0">
-                <thead>
-                 <tr>
-                  <th>Employees</th>
-                </tr>
-                </thead>
-                <tbody>	                										                        
-                  <% tdcount = 0 %>
-                  <% @employees.each do |employee| %>
-                  <% tdcount = tdcount+1 %>
-                  <% if tdcount%2 == 1 %>
-                  <tr class="gradeA">
-                  <% end %>
-                  <td> 
-                    <div class="span5"> 
-                    <a class="media-avatar pull-left" href="#">                                               
-                      <% if employee.present? && employee.avatar_url.present? %>
-                        <%= image_tag employee.avatar_url, :width => "60px", :height => "60px" %> 
+<div class="directory-info-row">
+  <div class="row">                                             
+      <div class="panel">
+        <div class="panel-heading">
+          All Members
+          <%= current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard 
+        </div>
+        <div class="panel-body">
+        <% if @employees.present? %>
+          <% @employees.each do |employee| %>
+            <div class="col-md-6 col-sm-6">
+              <div class="panel">
+                <div class="panel-body">
+                  <div class="media">
+                  <a class="pull-left" href="#">
+                    <% if employee.present? && employee.avatar_url.present? %>
+                      <%= image_tag employee.avatar_url, class: "thumb media-object"%> 
+                    <% else %>
+                      <% if employee.gender == "Female" %>
+                        <%= image_tag "1.jpg", class: "thumb media-object" %> 
                       <% else %>
-                        <% if employee.gender == "Female" %>
-                          <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
-                        <% else %>
-	                        <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
-                        <% end %>
-                      <% end %>                                               
-                    </a>
-                    <div class="media-body">
-                      <div class="style">
-                        <h5 class="media-title">
-                          <% if current_user.department == Department::HR %>
-                          <%= link_to employee.full_name , profile_path(employee) %>
-                          <% else %>
-                          <%= link_to employee.full_name , "#employeeProfileModal", :class => "employee-popup",  :url => profile_employee_path(employee), :iid => employee.id,  "data-toggle" => "modal" , :id => "employee_#{employee.id}" %>
-                          <% end %>
-                        </h5>                                                                                             
-                        <ul style="list-style-type: none;">
-                          <li><i class="icon-suitcase"></i> <%= employee.designation.designation_name if employee.designation.present? %> </li>
-                          <li><i class="icon-envelope"></i> <%= employee.user.email if employee.user.present? %></li>
-                          <li><i class="icon-phone"></i> <%= employee.mobile_number %></li>
-                          <li><i class="icon-map-marker"></i> <%= employee.job_location.address.city if employee.job_location.present? %></li>
-                        </ul> 
-                      </div>                                         
-                    </div><!--/.media-body-->
+                        <%= image_tag "user.png", class: "thumb media-object" %> 
+                      <% end %>
+                    <% end %>
+                  </a>
+                  <div class="media-body">
+                    <% if current_user.department == Department::HR %>
+                      <h3><%= link_to employee.full_name , profile_path(employee) %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h3>
+                    <% else %>
+                        <%= link_to employee.full_name , "#employee_modal", :class => "employee-popup",  :url => profile_employee_path(employee), :iid => employee.id,  "data-toggle" => "employee_modal" , :id => "employee_#{employee.id}" %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
+                    <% end %>
+                  <address>
+                    <strong><%= employee.user.email if employee.user.present? %></strong><br>
+                    <%= employee.job_location.address.city if employee.job_location.present? %><br>
+                    <abbr title="Phone">Phone:</abbr><%= employee.mobile_number %>
+                  </address>
                   </div>
-                </td>
-                <% if tdcount%2 == 0 %>            
-                <% end %>
-                <% end %>        
-                <% if tdcount%2 == 1 %>
-                 </tr><br>
-                <% end %>                       									                 	                  										   
-                </tbody>
-                <br>			                
-              </table>                   
-            </div>              
-          <div class="pagination pagination-centered">                      
-          <!--<%# paginate @total_employees, :remote => true %>-->                       
-          </div>	
+                </div>
+              </div>
+            </div>
           </div>
-          </div>
-          </div><!--/.module-->
-        </div><!--/.content-->                    
-      </div><!--/.span9-->                
-    </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
-
-<script>
-	$(document).ready(function() {
-		$('.datatable-2').dataTable();
-		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
-		$('.dataTables_paginate > a').wrapInner('</span>');
-		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-		$('#DataTables_Table_0 th').attr('colspan','4');
-		$("input[aria-controls='DataTables_Table_0']").parent().replaceWith("<label>Search: <input type='text' id='search_input'></input></label>");
-		$("#search_input").keyup(function(){
-		  var search_val = $("#search_input").val();
-		  $("tr td").show();
-  		$("tr").hide();
-  		$("tr:first").attr("style","display:normal;");
-      $("tr td:contains('"+search_val+"')").parent().show();
-      $("tr td:not(:contains('"+search_val+"'))").hide();
-		});
-	} );
-</script>
+        <% end %>
+      <% end %>
+     </div> 
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   $('.employee-popup').click(function(){ 
@@ -108,4 +57,5 @@
         dataType: "script"
         });
   });
-</script>    
+</script> 
+
