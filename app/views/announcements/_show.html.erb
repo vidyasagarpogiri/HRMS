@@ -26,30 +26,7 @@
 					  </div><!--/.module-->
 				  </div><!--/.content-->
 			  </div><!--/.span8-->
-			  <div class="span4">	
-          <div class="module">	
-            <div class="box-title">
-              <div class="module-head">
-                <h3>All Announcements</h3> 
-              </div>                                            
-            </div>
-            <div class="module-body">
-              <% @announcements.each do |announcement| %>
-              <div class="module-body"> 	
-                 <div class="control-group">
-                    <a href="#"><strong><%= announcement.title %> </strong></a>
-                 </div>
-                 <div class="control-group">
-                    <label class="idesc" for="basicinput">  <%= raw announcement.description %> </label>
-                 </div>
-                 <%= link_to "Continue..", announcement_path(announcement), :class => "pt4" %><br>          
-                 <div style="border-top: 1px solid #eeeeee;padding-bottom:-20px;"></div>       
-              </div><!--module body-->
-              <% end %>
-              <%= paginate  @announcements %> 
-            </div><!--/.module-body-->
-         </div><!--/.module-->
-		  </div><!--/.span4-->
+			 
 		</div><!--/.row-->
 	</div><!--/.container-->
 </div><!--/.wrapper-->

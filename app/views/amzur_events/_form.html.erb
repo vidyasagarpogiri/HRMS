@@ -4,6 +4,7 @@
   </header>
   <div class="panel-body">
       <%= form_for @amzurevent, :html => {:class=>"form-horizontal row-fluid event_form"} do |f| %>
+
           <div class="form-group">
               <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Event Title</label>
               <div class="col-lg-10">
@@ -17,10 +18,12 @@
               <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter  Event Description"}, :style => "margin: 0px 0px 10px; width: 850px; height: 221px;" %>
                 <span class="help-block with-errors"></span> 
             </div>
+
           </div>
           <%if @amzurevent.new_record? %>
           <div class="form-group">
               <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Select</label>
+
                 <div class="col-lg-9">
                   <select  name="eventable_type"  class="event">
                     <option value="all">All</option>
@@ -52,6 +55,7 @@
                 <div id="workgroups">
                     <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name") %>
                 </div> 
+
           </div>
       </div>
           <% else %>
@@ -70,6 +74,7 @@
                       </div>
                   </div>
               </div>
+
         <div class="row">
           <div class="col-lg-6">
             <div class="form- group">                                                                              
@@ -103,13 +108,16 @@
        </div>
          
           <div class="row">
+
             <div class="form-group">
               <div class="col-lg-offset-2 col-lg-8">
                  <button type="submit" class="btn btn-success">Post </button>&nbsp&nbsp
                  <%= link_to "Cancel", amzur_events_path,:class => "btn btn-danger" %>
               </div>
           </div>
+
           </div>
+
        <% end %>
   </div>
 </section>

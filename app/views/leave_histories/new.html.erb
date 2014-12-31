@@ -41,7 +41,7 @@
             <div class="form-group">
               <label  class="col-lg-1 control-label">Reason:</label>
               <div class="col-lg-10">
-                <%= f.text_area :reason,  :class =>"span8 form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %> 
+                <%= f.text_area :reason,  :class =>"form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %> 
               <span class="help-block with-errors"></span> 
 
             </div>
@@ -63,14 +63,14 @@
             <div class="form-group">
               <label  class="col-lg-1 control-label">From:</label>
               <div class="col-lg-3">
-                <%= f.text_field :from_date, :id => "idnm1", :class => "form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
+                <%= f.text_field :from_date, :class => "form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
                 <span class="help-block with-errors"></span> 
               </div>
             </div>
             <div class="form-group">
               <label  class="col-lg-1 control-label">To:</label>
               <div class="col-lg-3">
-                <%= f.text_field :to_date, :id => "idnm2", :class => "form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"}, :required => true  %>
+                <%= f.text_field :to_date, :class => "form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"}, :required => true  %>
                 <span class="help-block with-errors"></span> 
               </div>
             </div>   
@@ -88,7 +88,7 @@
             <div class="form-group">
               <label  class="col-lg-1 control-label">Section:</label>
               <div class="col-lg-3">
-                <%= f.select :section, options_for_select([['Morning', 'Morning'], ['After Noon', 'After Noon']]), :id => "idnm2", :class => "form-control leave-to-date", :data => {:error => "Please Enter Select Session"} %>
+                <%= f.select :section, options_for_select([['Morning', 'Morning'], ['After Noon', 'After Noon']]), :class => "form-control leave-to-date idnm4", :data => {:error => "Please Enter Select Session"} %>
                 <span class="help-block with-errors"></span> 
               </div>
             </div>   
@@ -145,7 +145,7 @@
             if (date1){
               
             }else{
-              $("#idnm2").val('');
+              $(".idnm2").val('');
               $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
             }
            }
