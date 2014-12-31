@@ -1,6 +1,6 @@
 <div class="directory-info-row">
   <div class="row">                                             
-      <div class="panel">
+      <div class="panel panel-info">
         <div class="panel-heading">
           All Members
           <%= current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard 
@@ -27,7 +27,7 @@
                     <% if current_user.department == Department::HR %>
                       <h3><%= link_to employee.full_name , profile_path(employee) %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h3>
                     <% else %>
-                        <%= link_to employee.full_name , "#employee_modal", :class => "employee-popup",  :url => profile_employee_path(employee), :iid => employee.id,  "data-toggle" => "employee_modal" , :id => "employee_#{employee.id}" %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
+                        <%= link_to employee.full_name , "#employee-modal", :class => "employee-popup",  :url => profile_employee_path(employee), :iid => employee.id,  "data-toggle" => "employee_modal" , :id => "employee_#{employee.id}" %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
                     <% end %>
                   <address>
                     <strong><%= employee.user.email if employee.user.present? %></strong><br>
@@ -58,4 +58,18 @@
         });
   });
 </script> 
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="employee-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 class="modal-title">Form Tittle</h4>
+      </div>
+      <div class="modal-body event_show_body">
+      </div>
+    </div>
+  </div>
+</div>
+
 
