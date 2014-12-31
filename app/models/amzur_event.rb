@@ -22,9 +22,21 @@ class AmzurEvent < ActiveRecord::Base
      when "Workgroup"
     eventable = event.eventable_type.classify.constantize.find(event.eventable_id).name
     end
-    return eventable
+   eventable
 	end
+
 	
+
+
+  def self.get_amzur_events
+    a = []
+    AmzurEvent.all.each do |d|
+       if d.held_on.to_date >= Date.today
+          a << d
+        end
+   
+   end
+     a
+ 
 end
-
-
+end
