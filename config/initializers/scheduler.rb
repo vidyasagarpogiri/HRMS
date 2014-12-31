@@ -47,7 +47,21 @@ scheduler.cron '5 0 7 * *'  do
 end
 =end
 
-
+  scheduler.cron '20 23	31 12	* ' do    # This scheduler will run at midnight 11:20 on Dec 31 for wising new year
+  puts "happy new year"
+  @employees = Employee.all
+  @employees.each do |employee|
+    if(Date.today.day == 31)
+      if(Date.today.month == 12)
+       #raise emp.full_name.inspect
+        Employee.where(status: false).each do |emp|
+        #raise emp.inspect
+        Notification.newyear_notification(emp.user,employee).deliver # have to add the template in notification.rb
+        end
+      end
+    end                        
+ end
+ end
 
 
 
