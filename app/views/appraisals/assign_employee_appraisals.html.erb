@@ -46,11 +46,12 @@
 
 <script>
   $(function(){
-    var emp = parseInt($(".appraisal-edit").attr("value"));
-    $(".appraisal-edit").click({id: emp}, check_appraisal);
+    $(".appraisal-edit").click(function(){
+      var emp = parseInt($(this).attr("value"));
+      check_appraisal(emp)
+    });
     function check_appraisal(arg){
-      console.log(arg.data.id);
-      $("#employee").val(arg.data.id);
+      $("#employee").val(arg);
     }
   });
 </script>
