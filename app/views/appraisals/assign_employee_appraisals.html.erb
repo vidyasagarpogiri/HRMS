@@ -49,6 +49,7 @@
     var emp = parseInt($(".appraisal-edit").attr("value"));
     $(".appraisal-edit").click({id: emp}, check_appraisal);
     function check_appraisal(arg){
+      console.log(arg.data.id);
       $("#employee").val(arg.data.id);
     }
   });
