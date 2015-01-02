@@ -17,27 +17,21 @@
                 <p><%= @employee.user.email %></p>
             </div>
 
-            <ul class="nav nav-pills nav-stacked">
-            
+            <ul class="nav nav-pills nav-stacked">            
              <li class="active"><a href="#basic" data-toggle="tab"><i class="fa fa-user"></i>Basic</a></li>
-                                    <li><a href="#contact" data-toggle="tab"><i class="fa fa-phone-square"></i>Contact</a></li>
-                                    <li><a href="#emergency" data-toggle="tab"><i class="fa fa-plus"></i>Emergency Contact</a></li>
-                                    <li><a href="#education" data-toggle="tab"><i class="fa fa-book"></i>Education</a></li>
-                                    <li><a href="#experience" data-toggle="tab"><i class="fa fa-desktop"></i>Experience</a></li>
-                                    <li><a href="#salary" data-toggle="tab"><i class="fa fa-money"></i>Salary</a></li>
-                                    <li><a href="#promotions" data-toggle="tab"><i class="fa fa-flag-checkered"></i>Promotions</a></li>
-                                    <li><a href="#attachments" data-toggle="tab"><i class="fa fa-files-o"></i>Attachments</a></li>
-                                    <li><a href="#projects" data-toggle="tab"><i class="fa fa-users"></i>Projects</a></li>
-                                    <li><a href="#self_description" data-toggle="tab"><i class="fa fa-user"></i>Self Description</a></li>
-                                    
-                                    <% if current_user.department == Department::HR %>
-                                    <li><a href="#exit_info" data-toggle="tab"><i class="fa fa-sign-in"></i>Exit Info</a></li>
-                                    <% end %>
-                                    
-            
-       
+              <li><a href="#contact" data-toggle="tab"><i class="fa fa-phone-square"></i>Contact</a></li>
+              <li><a href="#emergency" data-toggle="tab"><i class="fa fa-plus"></i>Emergency Contact</a></li>
+              <li><a href="#education" data-toggle="tab"><i class="fa fa-book"></i>Education</a></li>
+              <li><a href="#experience" data-toggle="tab"><i class="fa fa-desktop"></i>Experience</a></li>
+              <li><a href="#salary" data-toggle="tab"><i class="fa fa-money"></i>Salary</a></li>
+              <li><a href="#promotions" data-toggle="tab"><i class="fa fa-flag-checkered"></i>Promotions</a></li>
+              <li><a href="#attachments" data-toggle="tab"><i class="fa fa-files-o"></i>Attachments</a></li>
+              <li><a href="#projects" data-toggle="tab"><i class="fa fa-users"></i>Projects</a></li>
+              <li><a href="#self_description" data-toggle="tab"><i class="fa fa-user"></i>Self Description</a></li>             
+              <% if current_user.department == Department::HR %>
+              <li><a href="#exit_info" data-toggle="tab"><i class="fa fa-sign-in"></i>Exit Info</a></li>
+              <% end %>
             </ul>
-
         </section>
     </aside>
     
@@ -80,7 +74,7 @@
                                       </div>
                           <!--Attachments PANEL-->             
                                       <div class="tab-pane fade " id="attachments">
-                                      <%= render "employees/attachment_index"%>                                                                               
+                                      <%= render "employees/attachment_index"%>
                                       </div>
                           <!--email_etiquette PANEL-->             
                                       <div class="tab-pane fade " id="email_etiquette">
@@ -93,7 +87,7 @@
                            
                            <!--employee  Personal description -->
                                     <div class="tab-pane fade " id="self_description">
-                                      <%= render "employees/employee_self_description_show", :skills => @skills %>                                            
+                                      <%= render "employees/employee_self_description_show", :skills => @skills %>                    
                                     </div>
                            
                           <!--exit_info PANEL--> 

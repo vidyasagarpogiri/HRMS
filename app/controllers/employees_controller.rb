@@ -55,6 +55,7 @@ class EmployeesController < ApplicationController
        @skills = @employee.skills
       # raise @projects.inspect
      end
+     @report = @employee.reporting_managers.first
      
   end
   
