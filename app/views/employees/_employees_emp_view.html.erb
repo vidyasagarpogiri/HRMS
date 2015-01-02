@@ -4,73 +4,77 @@
 
               <!-- page start-->
               <ul class="directory-list">
-                  <li><a href="/employees?name=a">a</a></li>
-                  <li><a href="/employees?name=b">b</a></li>
-                  <li><a href="/employees?name=c">c</a></li>
-                  <li><a href="/employees?name=d">d</a></li>
-                  <li><a href="/employees?name=e">e</a></li>
-                  <li><a href="/employees?name=f">f</a></li>
-                  <li><a href="/employees?name=g">g</a></li>
-                  <li><a href="/employees?name=h">h</a></li>
-                  <li><a href="/employees?name=i">i</a></li>
-                  <li><a href="/employees?name=j">j</a></li>
-                  <li><a href="/employees?name=k">k</a></li>
-                  <li><a href="/employees?name=l">l</a></li>
-                  <li><a href="/employees?name=m">m</a></li>
-                  <li><a href="/employees?name=n">n</a></li>
-                  <li><a href="/employees?name=o">o</a></li>
-                  <li><a href="/employees?name=p">p</a></li>
-                  <li><a href="/employees?name=q">q</a></li>
-                  <li><a href="/employees?name=r">r</a></li>
-                  <li><a href="/employees?name=s">s</a></li>
-                  <li><a href="/employees?name=t">t</a></li>
-                  <li><a href="/employees?name=u">u</a></li>
-                  <li><a href="/employees?name=v">v</a></li>
-                  <li><a href="/employees?name=w">w</a></li>
-                  <li><a href="/employees?name=x">x</a></li>
-                  <li><a href="/employees?name=y">y</a></li>
-                  <li><a href="/employees?name=z">z</a></li>
+                  <li><a href="/employees?name=a" data-remote=true>a</a></li>
+                  <li><a href="/employees?name=b" data-remote=true>b</a></li>
+                  <li><a href="/employees?name=c" data-remote=true>c</a></li>
+                  <li><a href="/employees?name=d" data-remote=true>d</a></li>
+                  <li><a href="/employees?name=e" data-remote=true>e</a></li>
+                  <li><a href="/employees?name=f" data-remote=true>f</a></li>
+                  <li><a href="/employees?name=g" data-remote=true>g</a></li>
+                  <li><a href="/employees?name=h" data-remote=true>h</a></li>
+                  <li><a href="/employees?name=i" data-remote=true>i</a></li>
+                  <li><a href="/employees?name=j" data-remote=true>j</a></li>
+                  <li><a href="/employees?name=k" data-remote=true>k</a></li>
+                  <li><a href="/employees?name=l" data-remote=true>l</a></li>
+                  <li><a href="/employees?name=m" data-remote=true>m</a></li>
+                  <li><a href="/employees?name=n" data-remote=true>n</a></li>
+                  <li><a href="/employees?name=o" data-remote=true>o</a></li>
+                  <li><a href="/employees?name=p" data-remote=true>p</a></li>
+                  <li><a href="/employees?name=q" data-remote=true>q</a></li>
+                  <li><a href="/employees?name=r" data-remote=true>r</a></li>
+                  <li><a href="/employees?name=s" data-remote=true>s</a></li>
+                  <li><a href="/employees?name=t" data-remote=true>t</a></li>
+                  <li><a href="/employees?name=u" data-remote=true>u</a></li>
+                  <li><a href="/employees?name=v" data-remote=true>v</a></li>
+                  <li><a href="/employees?name=w" data-remote=true>w</a></li>
+                  <li><a href="/employees?name=x" data-remote=true>x</a></li>
+                  <li><a href="/employees?name=y" data-remote=true>y</a></li>
+                  <li><a href="/employees?name=z" data-remote=true>z</a></li>
               </ul>
               <div class="directory-info-row">
               <div class="row">
-              <% @employees.each do |employee| %>
-              <div class="col-md-6 col-sm-6">
-                  <div class="panel">
-                      <div class="panel-body">
-                          <div class="media">
-                              <a class="pull-left" href="#">
-                                  
-                                     <% if employee.present? && employee.avatar_url.present? %>
-                                        <%= image_tag employee.avatar_url, :class=>"thumb media-object" %> 
-                                      <% else %>
-                                        <% if employee.gender == "Female" %>
-                                          <%= image_tag("1.jpg", :class=>"thumb media-object") %> 
-                                        <% else %>
-	                                        <%= image_tag "user.png", :class=>"thumb media-object" %> 
-                                        <% end %>
-                                      <% end %>         
-                              </a>
-                              <div class="media-body">
-                                  <h4><%= employee.full_name %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
-                                  <ul class="social-links">
-                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                  </ul>
-                                  <address>
-                                      <strong><%= employee.user.email%></strong><br>
-                                      Vamoil Ave, Suite 23<br>
-                                      Dream land, Australia <br>
-                                      <abbr title="Phone">P:</abbr> (142) 454-7890
-                                  </address>
+                <% if @employees.present? %>
+                  <% @employees.each do |employee| %>
+                  <div class="col-md-6 col-sm-6">
+                      <div class="panel">
+                          <div class="panel-body">
+                              <div class="media">
+                                  <a class="pull-left" href="#">
+                                      
+                                         <% if employee.present? && employee.avatar_url.present? %>
+                                            <%= image_tag employee.avatar_url, :class=>"thumb media-object" %> 
+                                          <% else %>
+                                            <% if employee.gender == "Female" %>
+                                              <%= image_tag("1.jpg", :class=>"thumb media-object") %> 
+                                            <% else %>
+	                                            <%= image_tag "user.png", :class=>"thumb media-object" %> 
+                                            <% end %>
+                                          <% end %>         
+                                  </a>
+                                  <div class="media-body">
+                                      <h4><%= employee.full_name %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
+                                      <ul class="social-links">
+                                          <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                          <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                          <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                          <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                                      </ul>
+                                      <address>
+                                          <strong><%= employee.user.email%></strong><br>
+                                          Vamoil Ave, Suite 23<br>
+                                          Dream land, Australia <br>
+                                          <abbr title="Phone">P:</abbr> (142) 454-7890
+                                      </address>
 
+                                  </div>
                               </div>
                           </div>
                       </div>
                   </div>
-              </div>
-            <% end %>
+                  <% end %>
+             <% else %>
+              <h3>No Employees with this name</h3>
+             <% end %>
            </div>
           </div>
             
