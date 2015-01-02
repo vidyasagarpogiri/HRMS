@@ -339,7 +339,11 @@ end
   
   #--------------- code for monthly salary calculation - sekhar ------------------
   def monthly(value)
-    (value/12).round(2)
+      if value.present?
+    (value/12).round(2) 
+    else
+      0
+    end
   end
   
   #----------------------------------------------------------------------

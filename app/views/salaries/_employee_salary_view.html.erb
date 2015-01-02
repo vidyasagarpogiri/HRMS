@@ -71,8 +71,8 @@
 				    				    
 				    <tr style="color:black">
 		          <th>Total Fixed Cash</th>	
-		          <td><%= (@salary.basic_salary) + (@salary.special_allowance) + allowance_total.to_f %></td>
-		          <td><%= ((@salary.basic_salary + @salary.special_allowance + allowance_total.to_f)/12).round(2) %> </td>				      
+		          <td><%= (@salary.basic_salary.to_f) + (@salary.special_allowance.to_f) + allowance_total.to_f %></td>
+		          <td><%= ((@salary.basic_salary.to_f + @salary.special_allowance.to_f + allowance_total.to_f)/12).round(2) %> </td>				      
 					  </tr>
 			      
 			      <% if @salary.pf_apply == "true"%>
