@@ -1,3 +1,5 @@
+<!--  Employee.where('first_name like ? OR  last_name like ? ', "n%", "n%").map(&:first_name)
+-->
 
               <!-- page start-->
               <ul class="directory-list">
@@ -36,10 +38,19 @@
                       <div class="panel-body">
                           <div class="media">
                               <a class="pull-left" href="#">
-                                  <img class="thumb media-object" src="img/photos/user1.png" alt="">
+                                  
+                                     <% if employee.present? && employee.avatar_url.present? %>
+                                        <%= image_tag employee.avatar_url, :class=>"thumb media-object" %> 
+                                      <% else %>
+                                        <% if employee.gender == "Female" %>
+                                          <%= image_tag("1.jpg", :class=>"thumb media-object") %> 
+                                        <% else %>
+	                                        <%= image_tag "user.png", :class=>"thumb media-object" %> 
+                                        <% end %>
+                                      <% end %>         
                               </a>
                               <div class="media-body">
-                                  <h4><%= employee.full_name %><span class="text-muted small"> - UI Engineer</span></h4>
+                                  <h4><%= employee.full_name %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
                                   <ul class="social-links">
                                       <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                       <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
@@ -47,7 +58,7 @@
                                       <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
                                   </ul>
                                   <address>
-                                      <strong>VectorLab, Inc.</strong><br>
+                                      <strong><%= employee.user.email%></strong><br>
                                       Vamoil Ave, Suite 23<br>
                                       Dream land, Australia <br>
                                       <abbr title="Phone">P:</abbr> (142) 454-7890
