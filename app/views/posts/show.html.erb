@@ -6,80 +6,77 @@
     <%= link_to "Edit", edit_post_path(@post.id), :class => "fa fa-edit pull-right" %>
     <% end %>  
   </div>	
+  <div class="panel-body">
+    <div class="row">					        			            
+      <div class="form-group">
+        <div class="col-lg-8">
+        <label class="control-label" for="basicinput"> <strong><%= @post.title %></strong></label> 
+        <div>                
+      </div>
 
-<div class="panel-body">
-  <div class="row">					        			            
-    <div class="form-group">
-      <div class="col-lg-8">
-      <label class="control-label" for="basicinput"> <strong><%= @post.title %></strong></label> 
-      <div>                
+      <div class="form-group">
+        <label class="control-label" for="basicinput"><strong>Created </strong> <%= format_date(@post.created_at) %></label>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="basicinput"><strong>Categoty </strong> <%= @post.category %></label>                
+      </div>
+    </div> 
+    <div class="span11">		
+      <div class="control-group">
+        <label class="control-label" for="basicinput"><strong>Content </strong></label>
+        <label class="control-label" for="basicinput"> <%= raw(@post.content)%></label>                
+      </div>
     </div>
-
-    <div class="form-group">
-      <label class="control-label" for="basicinput"><strong>Created </strong> <%= format_date(@post.created_at) %></label>
+    <div class="control-group span8">
+      <label class="control-label" for="basicinput"> 
+        <p class="pull-left">
+          <% @post.tags.split(",").each do|tag| %>
+            <span class="label label-info"><i class=" icon-tag"></i> <%=  tag %></span>
+          <% end %>
+        </p>
+      </label>
     </div>
-    <div class="form-group">
-      <label class="control-label" for="basicinput"><strong>Categoty </strong> <%= @post.category %></label>                
+    <div class="control-group span4">
+      <label class="control-label" for="basicinput"><i>by:</i> <strong><%= @post.employee.full_name %></strong></label>                
+    </div>
+    <div class="control-group span8">
+      <label class="control-label" for="basicinput">
+        <p class="pull-left">Likes(<%= @post.likes_count %>) . Comments(<%=@post.comments.count %>) 
+          <% if @post.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
+            <%= link_to 'Unlike', remove_like_post_path(@post.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
+          <% else %> 
+            <%= link_to 'Like',  add_like_post_path(@post.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
+          <% end %>
+        </p>
+      </label>
     </div>
   </div> 
-  <div class="span11">		
-    <div class="control-group">
-      <label class="control-label" for="basicinput"><strong>Content </strong></label>
-      <label class="control-label" for="basicinput"> <%= raw(@post.content)%></label>                
-    </div>
-  </div>
-  <div class="control-group span8">
-    <label class="control-label" for="basicinput"> 
-      <p class="pull-left">
-        <% @post.tags.split(",").each do|tag| %>
-          <span class="label label-info"><i class=" icon-tag"></i> <%=  tag %></span>
-        <% end %>
-      </p>
-    </label>
-  </div>
-  <div class="control-group span4">
-    <label class="control-label" for="basicinput"><i>by:</i> <strong><%= @post.employee.full_name %></strong></label>                
-  </div>
-  <div class="control-group span8">
-    <label class="control-label" for="basicinput">
-      <p class="pull-left">Likes(<%= @post.likes_count %>) . Comments(<%=@post.comments.count %>) 
-        <% if @post.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
-          <%= link_to 'Unlike', remove_like_post_path(@post.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
-        <% else %> 
-          <%= link_to 'Like',  add_like_post_path(@post.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
-        <% end %>
-      </p>
-    </label>
-  </div>
-</div> 
-
-    <div class="control-group span8"> 
-      <ul class="fb-comments">
-      <!--<%# if post.comments.count > 3 %>
-      <%# link_to "Show Previous Comments", status_path(post.id) %>            
-      <%# end %>-->
-        <% @post.comments.each do |comm| %> 
-            <li>
-              <a href="#" class="cmt-thumb">
-                <% if comm.employee.avatar_url.present? %> 
-                  <%= image_tag(comm.employee.avatar_url,:style=>"width:40px!important; height:40px;") %>
-                <% else %>
-                <% if comm.employee.gender == "Female" %>
-                  <%= image_tag("1.jpg", :style=>"width:40px!important; height:40px;") %> 
-                <% else %>
-                  <%= image_tag("user.png", :style=>"width:40px!important; height:40px;") %> 
-                <% end %> 
-               <% end %>
-              </a>
-              <div class="cmt-details">          
-                <a href="#"> <%= link_to comm.employee.full_name , profile_path(comm.employee) %></a>
-                <span> <%=comm.comment %> </span>
-                <p><%= time_ago_in_words(comm.created_at)%> ago</p>
-              </div>
-            </li>        
-        <% end %>
-        <li><%= render "posts/add_comment_form",  :post => @post.id%></li>                    
-      </ul>
-    </div> 
-
+  <div class="control-group span8"> 
+    <ul class="fb-comments">
+    <!--<%# if post.comments.count > 3 %>
+    <%# link_to "Show Previous Comments", status_path(post.id) %>            
+    <%# end %>-->
+      <% @post.comments.each do |comm| %> 
+          <li>
+            <a href="#" class="cmt-thumb">
+              <% if comm.employee.avatar_url.present? %> 
+                <%= image_tag(comm.employee.avatar_url,:style=>"width:40px!important; height:40px;") %>
+              <% else %>
+              <% if comm.employee.gender == "Female" %>
+                <%= image_tag("1.jpg", :style=>"width:40px!important; height:40px;") %> 
+              <% else %>
+                <%= image_tag("user.png", :style=>"width:40px!important; height:40px;") %> 
+              <% end %> 
+             <% end %>
+            </a>
+            <div class="cmt-details">          
+              <a href="#"> <%= link_to comm.employee.full_name , profile_path(comm.employee) %></a>
+              <span> <%=comm.comment %> </span>
+              <p><%= time_ago_in_words(comm.created_at)%> ago</p>
+            </div>
+          </li>        
+      <% end %>
+      <li><%= render "posts/add_comment_form",  :post => @post.id%></li>                    
+    </ul>
+  </div> 
 </div> 

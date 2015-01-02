@@ -1,0 +1,20 @@
+<div class="panel panel-success">
+  <div class="panel-heading"> 
+    <%= @recruitment.title %> - <%= @recruitment.jobcode %> <%# link_to " All Job Openings",recruitments_path, :class => "fa pull-right" %>
+  </div>                          
+  <div class="panel-body">   
+    <p><font size="3"><strong>Job Type: </strong><%= @recruitment.job_type %> </font></p> 
+    <p><font size="3"><strong>Job Status: </strong><%= @recruitment.status %></p> 
+    <p><font size="3"><strong>Job Link: </strong><%= link_to @recruitment.link, @recruitment.link, :target => "/blank" %></p>
+    <p><font size="3"><strong>Job Attachment: </strong><%= link_to "Show", @recruitment.file_url, :target => "/blank" %></p>
+    <p><font size="3"><strong>Job Description: </strong><%= raw @recruitment.description %></p>      
+    <% if current_user.department == Department::HR %>     
+    <div class="pull-right">
+      <%= link_to 'Edit', edit_recruitment_path(@recruitment), :class => "btn btn-success " %>
+      <%= link_to "Delete", recruitment_path(@recruitment), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
+    </div> 
+    <% end %>
+  </div><!--panel-body -->                                                                       
+</div><!--panle-->    																																											                                      
+           
+

@@ -1,6 +1,6 @@
 <section class="panel panel-info">
   <header class="panel-heading">      
-    Policy Details <i class="fa fa-plus pull-right" style="margin-top:5px;"></i><%= link_to 'New Policy', new_policy_path, :class => "pull-right" %>
+    Policy Details <% if current_user.department == Department::HR %><i class="fa fa-plus pull-right" style="margin-top:5px;"></i><%= link_to 'New Policy', new_policy_path, :class => "pull-right" %><% end %>
   </header>
 </section>
 
@@ -43,14 +43,7 @@
   </div>      
 </div>
 
-  
-                        
-                        
-    
-
-
-        
-
+                                                            
 <script>
 $(function(){
   $(".vertical-menu li:first a").click();
