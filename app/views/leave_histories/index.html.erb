@@ -57,31 +57,35 @@
               </div>                                          
             </div><!--/.tab-pane-list-->                                    
          </div><!--/.profile-tab-content -->                                                                                                                 
-        <% else %><br>
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            My Leaves
-          </div> 
-          <div class="panel-body">
-            <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              There is No Reporting Manager. Please contact HR.
+        <% else %>
+        <section class="wrapper ">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              My Leaves
+            </div> 
+            <div class="panel-body">
+              <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                There is No Reporting Manager. Please contact HR.
+              </div>
             </div>
           </div>
-        </div>                   
+        </section>                   
         <% end %>
-       <% else %><br> 
-       <div class="panel panel-info">
-         <div class="panel-heading">
-            My Leaves
-         </div> 
-         <div class="panel-body">                    
-           <div class="alert alert-success alert-dismissable">
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-             There is no leave policy configure to your Group. Please Contact HR.  
+       <% else %>
+       <section class="wrapper ">
+         <div class="panel panel-info">
+           <div class="panel-heading">
+              My Leaves
            </div> 
-         </div>
-       </div>                   
+           <div class="panel-body">                    
+             <div class="alert alert-success alert-dismissable">
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+               There is no leave policy configure to your Group. Please  HR.  
+             </div> 
+           </div>
+         </div> 
+       </section>                 
       <% end %>
        </section>
     </aside>                
