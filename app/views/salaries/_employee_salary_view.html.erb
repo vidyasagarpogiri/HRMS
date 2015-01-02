@@ -1,28 +1,24 @@
-<div class="module-body" style="margin-top:-30px;mam-height:600px;">   
-  <ul class="profile-tab nav nav-tabs">
-    <li class="active"><a href="#bank_info" data-toggle="tab">Bank Details</a></li>
-    <li><a href="#salary_structure" data-toggle="tab">Salary Structure</a></li>  
-  </ul>                                                                                                
+<section class="panel">        
+  <header class="panel-heading tab-bg-dark-navy-blue">
+    <ul class="nav nav-tabs nav-justified ">
+      <li class="active"><a href="#bank_info" data-toggle="tab">Bank Details</a></li>
+    <li><a href="#salary_structure" data-toggle="tab">Salary Structure</a></li>
+    </ul>
+  </header>                                                                                                     
   <div class="profile-tab-content tab-content">
     <div class="tab-pane fade active in" id="bank_info">
       <% if @employee.account_number.present? %>
-       <%= render 'employees/bankdetails_show' %>
-      <% else %>
-        <div class="module-head">
-          <h3>Bank Info</h3>
-        </div>
+        <%= render 'employees/bankdetails_show' %>
+      <% else %>       
         <div class="alert alert-success alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           Salary Not Yet Created please contact HR 
         </div>
       <% end %>
     </div>
-    <div class="tab-pane fade active" id="salary_structure">
-      <div class="module-head">
-        <h3>Salary Info</h3>  
-      </div>
-       
-	    <div class="module-body">
+    
+    <div class="tab-pane fade" id="salary_structure">             
+	    <div class="panel-body">
 	    <% unless @salary.new_record? %>                                       
         <table class="table table-striped table-bordered table-condensed" >
          <thead>             
@@ -155,6 +151,6 @@
     </div>  
   </div>
         
-</div>
+</section>
 
 

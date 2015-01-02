@@ -42,12 +42,12 @@
                                   <a class="pull-left" href="#">
                                       
                                          <% if employee.present? && employee.avatar_url.present? %>
-                                            <%= image_tag employee.avatar_url, :class=>"thumb media-object" %> 
+                                            <%= image_tag employee.avatar_url, :class=>"thumb media-object", :style => "height:175px;width:175px" %> 
                                           <% else %>
                                             <% if employee.gender == "Female" %>
-                                              <%= image_tag("1.jpg", :class=>"thumb media-object") %> 
+                                              <%= image_tag "1.jpg", :class=>"thumb media-object", :style => "height:175px;width:175px" %> 
                                             <% else %>
-	                                            <%= image_tag "user.png", :class=>"thumb media-object" %> 
+	                                            <%= image_tag "user.png", :class=>"thumb media-object", :style => "height:175px;width:175px" %> 
                                             <% end %>
                                           <% end %>         
                                   </a>
@@ -74,10 +74,14 @@
                   </div>
                   <% end %>
              <% else %>
-              <h3>No Employees with this name</h3>
+             <div class="panel-body">
+               <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                   No Employees with this Letter
+               </div>             
+             </div>
              <% end %>
            </div>
           </div>
-            
             
 
