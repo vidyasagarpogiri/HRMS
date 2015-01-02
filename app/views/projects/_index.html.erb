@@ -35,8 +35,12 @@
             </div>
             
             <div class="row">
-              <label class="control-label col-lg-2" for="basicinput">Key Skills used:</label>
-              <div class="col-lg-8"><%= project.skills %></div>
+             <label class="control-label col-lg-2" for="basicinput">Skills:</label>
+                <div class="col-lg-8">
+                    <% project.skills.split(",").each do|skill| %>
+                     <i class="label label-info fa fa-tag"><%=  skill %></i> 
+                    <% end %>  
+              </div>                                            
             </div>
             
             <div class="row">
