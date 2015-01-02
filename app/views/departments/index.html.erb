@@ -9,11 +9,10 @@
         <div class="col-md-4 col-sm-4">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <%= department.department_name %>'s Info
+              <%= department.department_name %>'s Info <%# link_to '',edit_department_path(department), :class=>"fa fa-edit pull-right" %>
             </div>     
-            <div class="panel-body">
-              <div class="media">
-                <a class="pull-left" href="#">
+            <div class="panel-body">              
+              <a class="pull-left" href="#">
               <% if department.department_name == "HR" %>
                <%= image_tag "HR.jpg", :class=>"thumb media-object" %>
               <% elsif department.department_name == "Development"%>
@@ -21,18 +20,16 @@
               <% elsif department.department_name == "Business Development"%>
                 <%= image_tag "accounts.jpg" , :class=>"thumb media-object"%>
               <% elsif department.department_name == "Accounts"%>
-                <%= image_tag "bdm.jpg", :class=>"thumb media-object" %>
-              <% elsif department.department_name == "Staffing"%>
-               <%= image_tag "us-staffing.png" , :class=>"thumb media-object"%>
-              
-              
-            <% end %>  
-            </a>
+                <%= image_tag "bdm.jpg", :class=>"thumb media-object" %>              
+              <% else %>
+                <%= image_tag "us-staffing.png" , :class=>"thumb media-object"%>
+              <% end %>  
+              </a>
                 <address>
                   <h4><%= link_to department.department_name, department_path(department) %></h4>
                   <abbr title="employees"><i class="icon-user"></i> <strong>Employees: </strong><%= department.employees.count %>
                 </address>
-              </div>
+              
             </div>
           </div>
         </div>
