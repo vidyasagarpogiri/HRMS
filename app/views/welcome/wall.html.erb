@@ -109,9 +109,9 @@
             <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a><p><%= time_ago_in_words(welcome_recruitment.created_at)%> ago</p>
             <div class="control-group">
               <%= welcome_recruitment.link %><br>
-              <%= link_to 'Continue..', "#mymodel",  :class => "btn btn-link welcome_recruitment ",   :url => recruitment_path(welcome_recruitment), :iid => welcome_recruitment.id, "data-toggle" => "modal", :id => "#{welcome_recruitment.id}"   %>   
+                 
 
-              <%#= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4", :data-toggle => "modal", :data-target => "#myModal" %>                                  
+              <%= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4" %>                                  
             </div><br>
             </li>
           <% end %>
