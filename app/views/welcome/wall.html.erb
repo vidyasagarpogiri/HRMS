@@ -1,47 +1,45 @@
 <!-- page start-->
-
 <div class="row">
-  <div class="col-md-9">
-    <section class="panel">
-    <div class="cover-photo">  
-      <div class="fb-timeline-img">
-        <%=image_tag "fb-img.jpg" %>
-      </div>
-      <div class="fb-name">
-        <h2><a href="#"><%= current_user.employee.full_name %></a></h2>
-      </div>       
-    </div>
-    <div class="panel-body">
-      <div class="profile-thumb">                
-        <% if current_user.present? && current_user.employee.avatar_url.present? %>		  
-          <%= image_tag current_user.employee.avatar_url,  :class=> "nav-avatar" %> 
-        <% else %>
-          <% if current_user.employee.gender == "Female" %>
-            <%= image_tag "1.jpg", :class=> "nav-avatar" %> 
-          <% else %>
-            <%= image_tag "user.png", :class=> "nav-avatar" %> 
-          <% end %>
-        <% end %>							
-      </div>
-      <a href="#" class="fb-user-mail"><%= current_user.email %></a>
-    </div>
-    </section>            
-    <section class="panel">
-    <div class="new_status">
-      <%= render 'statuses/form' %>
-    </div>
-    <div class="new_album">
-      <%= render 'albums/form' %>
-    </div>        
-    </section>
+    <div class="col-md-9">
+      <section class="panel">
+        <div class="cover-photo">  
+          <div class="fb-timeline-img">
+            <%=image_tag "fb-img.jpg" %>
+          </div>
+          <div class="fb-name">
+            <h2><a href="#"><%= current_user.employee.full_name %></a></h2>
+          </div>       
+        </div>
+        <div class="panel-body">
+          <div class="profile-thumb">                
+            <% if current_user.present? && current_user.employee.avatar_url.present? %>		  
+              <%= image_tag current_user.employee.avatar_url,  :class=> "nav-avatar" %> 
+            <% else %>
+              <% if current_user.employee.gender == "Female" %>
+                <%= image_tag "1.jpg", :class=> "nav-avatar" %> 
+              <% else %>
+                <%= image_tag "user.png", :class=> "nav-avatar" %> 
+              <% end %>
+            <% end %>							
+          </div>
+         <a href="#" class="fb-user-mail"><%= current_user.email %></a>
+        </div>
+      </section>            
+      <section class="panel">
+        <div class="new_status">
+          <%= render 'statuses/form' %>
+        </div>
+        <div class="new_album">
+          <%= render 'albums/form' %>
+        </div>        
+      </section>
+      <div class="panel-body posts" >
+        <%= render "welcome/posts"%>                      
+      </div>    
+    </div><!--"col-md-9-->
 
-    <div class="panel-body posts">
-      <%= render "welcome/posts"%>                      
-    </div>    
-  </div><!--"col-md-9-->
-
-  <!--Notifications-->
-  <div class="col-md-3">
+<!--Notifications-->
+   <div class="col-md-3">
     <div class="fb-timeliner">
       <h2 class="recent-highlight">Events <span class="pull-right"><%= link_to 'Add New',  new_amzur_event_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px; color:white" %></span></h2>
       <div class="text-scroll">
@@ -64,8 +62,9 @@
           </div>    
         <% end %> 
       </div>                                                                
-    </div>  <br>   
+    </div>   
                                   
+
     <div class="fb-timeliner">
       <h2 class="recent-highlight">Announcements
         <% if current_user.department == Department::HR %>
@@ -74,15 +73,18 @@
           </span>
         <%end%>  
       </h2>
+
       <div class="text-scroll">
         <% if @welcome_announcements.present? %>
           <ul>
             <% @welcome_announcements.each do |welcome_announcement| %>
               <li>
+
               <a href="#"><strong><%= welcome_announcement.title %> </strong></a> <p><%= time_ago_in_words(welcome_announcement.created_at)%> ago</p>
               <div class="control-group">
                 <label class="idesc" for="basicinput"><%= raw welcome_announcement.description %> </label>
               </div>      
+
               <%= link_to "Continue..", "#announcementModal", :class => "btn btn-link announcement-show event-show_#{welcome_announcement.id}", :url => announcement_path(welcome_announcement.id), "data-toggle" => "modal" %>
               </li>         
             <% end %>
@@ -95,7 +97,6 @@
         <% end %> 
       </div>
     </div>	<br>  
-    	    
     <div class="fb-timeliner">      
       <h2 class="recent-highlight">Job Openings
         <% if current_user.department == Department::HR %>
@@ -104,6 +105,7 @@
           </span>
         <%end%>
       </h2>
+
       <div class="text-scroll">
         <% if @welcome_recruitments.present? %>
           <ul>
@@ -112,9 +114,9 @@
               <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a><p><%= time_ago_in_words(welcome_recruitment.created_at)%> ago</p>
               <div class="control-group">
                 <%= welcome_recruitment.link %><br>
-                <%= link_to 'Continue..', "#jobmodel",  :class => "btn btn-link recruitment_show event-show_#{welcome_recruitment.id}",   :url => recruitment_path(welcome_recruitment), "data-toggle" => "modal", :id => "#{welcome_recruitment.id}"   %>                           
-              </div><br>
-              </li><hr>
+                <%= link_to 'Continue..', recruitments_path %>                           
+              </div>
+              </li>
             <% end %>
           </ul>
         <% else %>
@@ -124,9 +126,10 @@
           </div>     
         <% end %>
       </div>
+
     </div>                	          
-  </div>
-</div>
+   </div><!--col-md-3-->
+ </div><!--row-->
 
 <!-- page end-->
 <style>
@@ -222,18 +225,7 @@
     });
   });
 </script>
-<script>
-  $(function(){
-    $('.recruitment-show').click(function(){ 
-      var url = $(this).attr("url");
-      $.ajax({
-        type: "GET",
-        url: url,
-        dataType: "script"
-      });
-    });
-  });
-</script>
+
 
 
 
@@ -265,17 +257,5 @@
 </div>
 
 
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="jobmodel" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-        <h4 class="modal-title">Job</h4>
-      </div>
-      <div class="modal-body recruitment_show_body">
-      </div>
-    </div>
-  </div>
-</div>
 
 
