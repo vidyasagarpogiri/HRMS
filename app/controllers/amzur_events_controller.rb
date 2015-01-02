@@ -134,7 +134,7 @@ class AmzurEventsController < ApplicationController
  
   def destroy
     @amzurevent.destroy
-    redirect_to amzur_events_path 
+    redirect_to welcome_wall_path
   end
   
  
