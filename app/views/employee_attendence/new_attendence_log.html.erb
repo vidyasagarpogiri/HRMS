@@ -1,26 +1,17 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-             <div class="module-head" style="background-color: #82B4E6 ">
-                <h3> CSV Uploading</h3>
-              </div>
-              <div class="processing"></div>
-              <%= form_for(@employee_attendence_log_file, :url=>"/employee_attendence/upload_file", :html => {:multipart => true}) do |f| %>
-              <div class="module-body">
-              <label>Upload Attandance csv file:</label>
-                <%= f.file_field :log_file, :onchange =>"validateFiles(this);",:data => {:error => " Please Choose a CSV file to attach"}, :required => true %>
-                <%= f.submit "Submit", :class => "btn btn-info csv-upload" %>                
-              </div><!-- module body-->
-              <% end %> 
-            </div><!--/.module-->
-          </div><!--/.content-->                    
-        </div><!--/.span9-->                
-     </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3> CSV Uploading</h3>
+  </div>
+  <div class="processing"></div>
+  <%= form_for(@employee_attendence_log_file, :url=>"/employee_attendence/upload_file", :html => {:multipart => true}) do |f| %>
+  <div class="panel-body">
+    <label>Upload Attandance csv file:</label>
+    <%= f.file_field :log_file, :onchange =>"validateFiles(this);",:data => {:error => " Please Choose a CSV file to attach"}, :required => true %>
+    <%= f.submit "Submit", :class => "btn btn-info csv-upload" %>                
+  </div><!-- module body-->
+  <% end %>  
+</div><!--/.panel-->                    
+
 
 
 <script>

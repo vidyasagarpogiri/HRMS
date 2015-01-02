@@ -1,92 +1,80 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                                             
-      <div class="span12">
-        <div class="content">
-          <div class="module">
-             <div class="module-head" style="background-color: #82B4E6 ">
-                <label class="pull-left"><a id="prev" ><i class="icon-chevron-left"></i> Previous Week</a></label>
-                <label class="pull-right"><a  id="next">Next Week <i class=" icon-chevron-right"></i></a></label><br>
-              </div>                                                                                        
-              <div class="module-body"> 
-              <!--
-                <div class="row-fluid">
-                  <div class="span6">
-                    <div class="row-fluid">
-                      <div class="span6">
-                       <label class="label">Month&Year:</label>
-                      </div>
-                      <div class="span6">
-                        <label class="value"><%# Date::MONTHNAMES[@payslip.month] %>,<%# @payslip.year%></label>
-                      </div>
-                    </div>
-                  </div>
-                 <div class="span6">
-                   <div class="row-fluid">
-                    <div class="span6">
-                      <label class="label">Number Of Working Days:</label>
-                    </div>
-                    <div class="span6">
-                      <label class="value"><%# @payslip.working_days %></label>
-                    </div>
-                  </div>
-                </div>
-               </div>-->
-              
-                                                                                       								
-                <table class="table table-striped table-bordered table-condensed" id="attendance_table">
-								  <thead>
-									  <tr>	
-  									  <th></th>									     
-									    <th class="Mon"><br>Monday</th>									     
-                      <th class="Tue"><br>Tuesday</th>
-                      <th class="Wed"><br>Wednesday</th>
-                      <th class="Thu"><br>Thursday</th>
-                      <th class="Fri"><br>Friday</th> 
-                      <th class="Sat"><br>Saturday</th>
-                      <th class="Sun"><br>Sunday</th>                         
-									  </tr>
-								  </thead>
-								  <tbody>
-								   <tr>
-								    <td><b>Log History</b></td>
-								    <td class="Mon"></td>
-								    <td class="Tue"></td>
-								    <td class="Wed"></td>
-								    <td class="Thu"></td>
-								    <td class="Fri"></td>
-								    <td class="Sat"></td>
-									  <td class="Sun"></td>
-								   </tr>
-								   <tr>
-    							  <td><b>Total</b></td>
-								    <td class="Total_Mon"></td>
-								    <td class="Total_Tue"></td>
-								    <td class="Total_Wed"></td>
-								    <td class="Total_Thu"></td>
-								    <td class="Total_Fri"></td>
-								    <td class="Total_Sat"></td>
-								    <td class="Total_Sun"></td>
-								   </tr>
-								   <tr>
-    							  <td><b>Total Working Hours</b></td>
-								    <td colspan="3" id="Grand_Total"> </td>								   
-								    <td id="avg"></td>
-								    <td colspan="3" id="Average_Working_Hours"> </td>
-								   </tr>
-								  </tbody>
-								</table>
-								<input type="hidden" value="0" id="week_no">
-              </div><!-- module body-->
-            </div><!--/.module-->
-          </div><!--/.content-->                    
-        </div><!--/.span9-->                
-     </div><!--/.row-->
-  </div><!--/.container-->
-</div><!--/.wrapper-->
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <label class="pull-left"><a id="prev" ><i class="icon-chevron-left"></i> Previous Week</a></label>
+    <label class="pull-right"><a  id="next">Next Week <i class=" icon-chevron-right"></i></a></label><br>
+  </div>                                                                                        
+  <div class="panel-body"> 
+  <!--
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="row-fluid">
+          <div class="span6">
+           <label class="label">Month&Year:</label>
+          </div>
+          <div class="span6">
+            <label class="value"><%# Date::MONTHNAMES[@payslip.month] %>,<%# @payslip.year%></label>
+          </div>
+        </div>
+      </div>
+     <div class="span6">
+       <div class="row-fluid">
+        <div class="span6">
+          <label class="label">Number Of Working Days:</label>
+        </div>
+        <div class="span6">
+          <label class="value"><%# @payslip.working_days %></label>
+        </div>
+      </div>
+    </div>
+   </div>-->                                                                             								
+    <table class="table table-striped table-bordered table-condensed" id="attendance_table">
+		  <thead>
+			  <tr>	
+				  <th></th>									     
+			    <th class="Mon"><br>Monday</th>									     
+          <th class="Tue"><br>Tuesday</th>
+          <th class="Wed"><br>Wednesday</th>
+          <th class="Thu"><br>Thursday</th>
+          <th class="Fri"><br>Friday</th> 
+          <th class="Sat"><br>Saturday</th>
+          <th class="Sun"><br>Sunday</th>                         
+			  </tr>
+		  </thead>
+		  <tbody>
+		   <tr>
+		    <td><b>Log History</b></td>
+		    <td class="Mon"></td>
+		    <td class="Tue"></td>
+		    <td class="Wed"></td>
+		    <td class="Thu"></td>
+		    <td class="Fri"></td>
+		    <td class="Sat"></td>
+			  <td class="Sun"></td>
+		   </tr>
+		   <tr>
+			  <td><b>Total</b></td>
+		    <td class="Total_Mon"></td>
+		    <td class="Total_Tue"></td>
+		    <td class="Total_Wed"></td>
+		    <td class="Total_Thu"></td>
+		    <td class="Total_Fri"></td>
+		    <td class="Total_Sat"></td>
+		    <td class="Total_Sun"></td>
+		   </tr>
+		   <tr>
+			  <td><b>Total Working Hours</b></td>
+		    <td colspan="3" id="Grand_Total"> </td>								   
+		    <td id="avg"></td>
+		    <td colspan="3" id="Average_Working_Hours"> </td>
+		   </tr>
+		  </tbody>
+		</table>
+		<input type="hidden" value="0" id="week_no">
+  </div><!-- module body-->
+</div><!--/.module-->         
 
 
-<script>
+<script>  
 $(function(){
 
   var i = 0 ;
