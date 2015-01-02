@@ -48,7 +48,7 @@ class LettersController < ApplicationController
     @user = current_user
     #raise params.inspect
     Notification.delay.reference_notification(@user, @hr_manager)
-    redirect_to letters_path
+    redirect_to letters_path 
   end
   
   def address_notification  # email for address proof
