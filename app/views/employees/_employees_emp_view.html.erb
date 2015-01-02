@@ -1,75 +1,78 @@
-<div class="directory-info-row">
-  <div class="row">                                             
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          All Members
-          <%= current_user.employee.role.role_name if current_user.employee.role.present? %> Dashboard 
-        </div>
-        <div class="panel-body">
-        <% if @employees.present? %>
-          <% @employees.each do |employee| %>
-            <div class="col-md-6 col-sm-6">
-              <div class="panel">
-                <div class="panel-body">
-                  <div class="media">
-                  <a class="pull-left" href="#">
-                    <% if employee.present? && employee.avatar_url.present? %>
-                      <%= image_tag employee.avatar_url, class: "thumb media-object"%> 
-                    <% else %>
-                      <% if employee.gender == "Female" %>
-                        <%= image_tag "1.jpg", class: "thumb media-object" %> 
-                      <% else %>
-                        <%= image_tag "user.png", class: "thumb media-object" %> 
-                      <% end %>
-                    <% end %>
-                  </a>
-                  <div class="media-body">
-                    <% if current_user.department == Department::HR %>
-                      <h3><%= link_to employee.full_name , profile_path(employee) %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h3>
-                    <% else %>
-                        <%= link_to employee.full_name , "#employee-modal", :class => "employee-popup",  :url => profile_employee_path(employee), :iid => employee.id,  "data-toggle" => "employee_modal" , :id => "employee_#{employee.id}" %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
-                    <% end %>
-                  <address>
-                    <strong><%= employee.user.email if employee.user.present? %></strong><br>
-                    <%= employee.job_location.address.city if employee.job_location.present? %><br>
-                    <abbr title="Phone">Phone:</abbr><%= employee.mobile_number %>
-                  </address>
+
+<!--  Employee.where('first_name like ? OR  last_name like ? ', "n%", "n%").map(&:first_name)
+-->
+
+              <!-- page start-->
+              <ul class="directory-list">
+                  <li><a href="#">a</a></li>
+                  <li><a href="#">b</a></li>
+                  <li><a href="#">c</a></li>
+                  <li><a href="#">d</a></li>
+                  <li><a href="#">e</a></li>
+                  <li><a href="#">f</a></li>
+                  <li><a href="#">g</a></li>
+                  <li><a href="#">h</a></li>
+                  <li><a href="#">i</a></li>
+                  <li><a href="#">j</a></li>
+                  <li><a href="#">k</a></li>
+                  <li><a href="#">l</a></li>
+                  <li><a href="#">m</a></li>
+                  <li><a href="#">n</a></li>
+                  <li><a href="#">o</a></li>
+                  <li><a href="#">p</a></li>
+                  <li><a href="#">q</a></li>
+                  <li><a href="#">r</a></li>
+                  <li><a href="#">s</a></li>
+                  <li><a href="#">t</a></li>
+                  <li><a href="#">u</a></li>
+                  <li><a href="#">v</a></li>
+                  <li><a href="#">w</a></li>
+                  <li><a href="#">x</a></li>
+                  <li><a href="#">y</a></li>
+                  <li><a href="#">z</a></li>
+              </ul>
+              <div class="directory-info-row">
+              <div class="row">
+              <% @employees.each do |employee| %>
+              <div class="col-md-6 col-sm-6">
+                  <div class="panel">
+                      <div class="panel-body">
+                          <div class="media">
+                              <a class="pull-left" href="#">
+                                  
+                                     <% if employee.present? && employee.avatar_url.present? %>
+                                        <%= image_tag employee.avatar_url, :class=>"thumb media-object" %> 
+                                      <% else %>
+                                        <% if employee.gender == "Female" %>
+                                          <%= image_tag("1.jpg", :class=>"thumb media-object") %> 
+                                        <% else %>
+	                                        <%= image_tag "user.png", :class=>"thumb media-object" %> 
+                                        <% end %>
+                                      <% end %>         
+                              </a>
+                              <div class="media-body">
+                                  <h4><%= employee.full_name %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
+                                  <ul class="social-links">
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                                  </ul>
+                                  <address>
+                                      <strong><%= employee.user.email%></strong><br>
+                                      Vamoil Ave, Suite 23<br>
+                                      Dream land, Australia <br>
+                                      <abbr title="Phone">P:</abbr> (142) 454-7890
+                                  </address>
+
+                              </div>
+                          </div>
+                      </div>
                   </div>
-                </div>
               </div>
-            </div>
+            <% end %>
+           </div>
           </div>
-        <% end %>
-      <% end %>
-     </div> 
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript">
-  $('.employee-popup').click(function(){ 
-      var employee_id = $(this).attr("iid");
-      var url = $(this).attr("url");
-      $.ajax({
-        type: "GET",
-        url: url,
-        data: {employee_id: employee_id},
-        dataType: "script"
-        });
-  });
-</script> 
-
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="employee-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-        <h4 class="modal-title">Form Tittle</h4>
-      </div>
-      <div class="modal-body event_show_body">
-      </div>
-    </div>
-  </div>
-</div>
-
+            
+            
 
