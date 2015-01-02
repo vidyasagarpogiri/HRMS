@@ -51,7 +51,7 @@
                                       <% end %>         
                               </a>
                               <div class="media-body">
-                                  <h4><%= employee.full_name %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
+                                  <h4><%= link_to employee.full_name,  profile_employee_path(employee) %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
                                   <ul class="social-links">
                                       <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                       <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
