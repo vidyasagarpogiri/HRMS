@@ -4,12 +4,12 @@ class AmzurEventsController < ApplicationController
   before_action :find_event, only: [:edit, :show, :update, :destroy]
   
   def index
-   @amzurevent = AmzurEvent.all.page(params[:page]).per(5)
+   @amzurevent = AmzurEvent.get_amzur_events.page(params[:page]).per(5)
    @empevents = current_user.employee.amzur_events
    @emp_dept_events = current_user.employee.department.amzur_events - (@empevents).to_a
    @emp_group_events = current_user.employee.group.amzur_events  - (@empevents).to_a
    @emp_workgroup_events =current_user.employee.workgroups.map(&:amzur_events).flatten - (@empevents).to_a
-   
+    
   end
   
   def new
