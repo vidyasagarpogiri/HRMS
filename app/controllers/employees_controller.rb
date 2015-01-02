@@ -6,7 +6,12 @@ class EmployeesController < ApplicationController
    before_action :get_employee, only: [:show, :profile, :edit, :update, :exit_form, :attachment_form_new, :attachment_create, :attachment_edit, :attachment_update, :attachment_show, :attachment_destroy, :attachment_index, :bankdetails_form, :bankdetails_create,:bankdetails_show, :bankdetails_edit, :bankdetails_update	]
   
   def index
-    @employees =  Employee.where(:status => false)
+    if params[:name].present?
+    a = params[:name]
+     @employees=  Employee.where('first_name like ? OR  last_name like ? ', "#{a}%", "#{a}%")
+    else
+      @employees =  Employee.where(:status => false)
+    end
     #@skills = current_user.employee.skills.map(&:name)
     #raise @skills.inspect
   end
@@ -50,6 +55,7 @@ class EmployeesController < ApplicationController
        @skills = @employee.skills
       # raise @projects.inspect
      end
+     @report = @employee.reporting_managers.first
      
   end
   

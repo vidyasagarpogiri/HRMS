@@ -101,7 +101,7 @@
             <div class="form-group">
               <label  class="col-lg-1 control-label">Date:</label>
               <div class="col-lg-3">
-                <input type="text" name="float_leave_date" id = "idnm4" class ="form-control float-leave-date">
+                <input type="text" name="float_leave_date" id = "idnm4" class ="form-control float-leave-date" required="true" >
                 <span class="help-block with-errors"></span> 
               </div>
             </div>
@@ -142,7 +142,7 @@
              $(".error1").html('');
          }
      });
-
+     
      $(".leave-to-date").datepicker({
          dateFormat: 'dd/mm/yy',
           minDate: -0,
@@ -174,6 +174,14 @@
            changeMonth: true,
          changeYear: true
       });
+      
+      $(".leave-form-date").change(function(){
+      var date1 = $('.leave-form-date').datepicker('getDate');
+      date1.setDate(date1.getDate());
+        console.log(date1);
+      $(".float-leave-date").datepicker('setDate', date1);
+        $(".leave-date").datepicker('setDate', date1);
+      });
   });
   $(function(){
     $('.half_day').hide();
@@ -191,6 +199,7 @@
         date.setDate(date.getDate());
         $(".leave-form-date").datepicker('setDate', date);
         $(".leave-to-date").datepicker('setDate', date);
+        $(".float-leave-date").datepicker('setDate', date);
      });
     //script for checking applied leaves is greater than balanced leaves - sekhar
     $(".idnm2").change(function(){
@@ -241,10 +250,10 @@
      });
      $('.float-leave-date').change(function(){
           var float_date = $(".float-leave-date").datepicker('getDate');
-          console.log(float_date);
           float_date.setDate(float_date.getDate());
           $('.leave-form-date').datepicker('setDate', float_date);
           $('.leave-to-date').datepicker('setDate', float_date);
+          $('.leave-date').datepicker('setDate', float_date);
        });
   });
 </script>
