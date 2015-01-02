@@ -5,6 +5,7 @@ class PayrollsController < ApplicationController
   # call back for calculate default month and year
   before_action :find_month_and_year, only: [:pay_roll_generation, :generated_payroll, :payroll, :payslips_pdf]
   # PAYSLIP GENERATION  this action will generate payslips and display payslips
+  
   def pay_roll_generation
     @payslips = Payslip.where(month: @month, year: @year)
     unless @payslips.present?

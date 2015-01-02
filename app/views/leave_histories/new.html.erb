@@ -1,146 +1,130 @@
 <div class="panel panel-info">
   <div class="panel-heading"> 
     Leave Form
-  </div>
-  <div class="row"> 
-    <div class="col-md-12">
-      <section class="panel">         
-        <div class="panel-body">                 
-          <% if @employee.reporting_manager.present? %> 
-          <% if total_balance_leaves(@employee) <= 0 %>
-            <div class="alert alert-danger alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                Your Have No remaining leaves Please confirm before apply
-            </div>
-          <% end %>
-          <% if @error.present? %>
-             <div class="alert alert-danger alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-               <%= @error%>
-            </div>
-          <% end %>
-          <% if flash[:error].present? %>
-            <div class="alert alert-danger alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <%= flash[:error] %>
-            </div>
-
-          <% end %>                               
-          <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %>
-          <div class="row"> 
-            <div class="col-lg-12">
-              <div class="form-group">
-                <label  class="col-lg-1 control-label">Leave Type:</label>
-                <div class="col-lg-10">
-                  <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name,  { :class => "leave_type form-control", :id => "disabledSelect" } %> 
-                <span class="help-block with-errors"></span> 
-              </div>
-            </div> 
-          </div><br/>                        
-          <div class="col-lg-12">
-            <div class="form-group">
-              <label  class="col-lg-1 control-label">Reason:</label>
-              <div class="col-lg-6">
-                <%= f.text_area :reason,  :class =>"form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %> 
-                <span class="help-block with-errors"></span> 
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-12">
-          <div id="casualleave">
-          
-          <div class="col-lg-1">
-            <div class="form-group">                           
-                <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
-              <span class="help-block with-errors"></span>               
-            </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="form-group">
-              <%= f.radio_button :is_halfday, 'full_day',:class => "rb2", :checked => true %> &nbspFull Day      
+  </div>         
+  <div class="panel-body">                 
+    <% if @employee.reporting_manager.present? %> 
+      <% if total_balance_leaves(@employee) <= 0 %>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          Your Have No remaining leaves Please confirm before apply
+        </div>
+      <% end %>
+      <% if @error.present? %>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= @error%>
+        </div>
+      <% end %>
+      <% if flash[:error].present? %>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= flash[:error] %>
+        </div>
+      <% end %>                               
+      <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %>
+        <div class="row"> 
+          <div class="form-group">
+            <label  class="col-lg-1 control-label">Leave Type:</label>
+            <div class="col-lg-10">
+              <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name,  { :class => "leave_type form-control", :id => "disabledSelect" } %> 
               <span class="help-block with-errors"></span> 
             </div>
-          </div></div><br/><br/>
-          
+          </div> 
+        </div>                      
+        <div class="row">
+          <div class="form-group">
+            <label  class="col-lg-1 control-label">Reason:</label>
+            <div class="col-lg-6">
+              <%= f.text_area :reason,  :class =>"form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %> 
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>         
+        <div id="casualleave">
+          <div class="col-lg-12">
+            <div class="col-lg-1">
+              <div class="form-group">                           
+                <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
+                <span class="help-block with-errors"></span>               
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="form-group">
+                <%= f.radio_button :is_halfday, 'full_day',:class => "rb2", :checked => true %> &nbspFull Day      
+                <span class="help-block with-errors"></span> 
+              </div>
+            </div>
+          </div>
           <div class="col-lg-10 ">
-          <div class="full_day">
-          <div class="row">
-          <div class="col-lg-5">
-            <div class="form-group">
-              <label  class="col-lg-2 control-label">From: </label>
-              <div class="col-lg-8">
-                <%= f.text_field :from_date, :class => "form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
-                <span class="help-block with-errors"></span> 
+            <div class="full_day">
+              <div class="row">
+                <div class="col-lg-5">
+                  <div class="form-group">
+                    <label  class="col-lg-2 control-label">From: </label>
+                    <div class="col-lg-8">
+                      <%= f.text_field :from_date, :class => "form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
+                      <span class="help-block with-errors"></span> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-5">
+                  <div class="form-group">
+                    <label  class="col-lg-1 control-label">To:</label>
+                    <div class="col-lg-8">
+                      <%= f.text_field :to_date, :class => "form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"}, :required => true  %>
+                      <span class="help-block with-errors"></span> 
+                    </div>
+                  </div> 
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="form-group">
-              <label  class="col-lg-1 control-label">To:</label>
-              <div class="col-lg-8">
-                <%= f.text_field :to_date, :class => "form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"}, :required => true  %>
-                <span class="help-block with-errors"></span> 
+            <div class="col-lg-12 half_day">          
+              <div class="form-group">
+                <label  class="col-lg-1 control-label">Date:</label>
+                <div class="col-lg-3">
+                  <input type="text" name="leave_date" id = "idnm3" class ="form-control leave-date">
+					        <span class="help-block with-errors"></span>   
+				        </div>
               </div>
-            </div> 
-          </div>
-          </div>
-          </div>    
-          </div><br/><br/>
-          
-          <div class="col-lg-12 half_day">          
-            <div class="form-group">
-              <label  class="col-lg-1 control-label">Date:</label>
-              <div class="col-lg-3">
-                 <input type="text" name="leave_date" id = "idnm3" class ="form-control leave-date">
-								   <span class="help-block with-errors"></span>   
-							  </div>
-            </div>
-
-            <div class="form-group">
-              <label  class="col-lg-1 control-label">Section:</label>
-              <div class="col-lg-3">
-                <%= f.select :section, options_for_select([['Morning', 'Morning'], ['After Noon', 'After Noon']]), :class => "form-control leave-to-date idnm4", :data => {:error => "Please Enter Select Session"} %>
-                <span class="help-block with-errors"></span> 
-              </div>
-            </div>   
-          </div><br/>
-          
+              <div class="form-group">
+                <label  class="col-lg-1 control-label">Section:</label>
+                <div class="col-lg-3">
+                  <%= f.select :section, options_for_select([['Morning', 'Morning'], ['After Noon', 'After Noon']]), :class => "form-control leave-to-date idnm4", :data => {:error => "Please Enter Select Session"}, required: "true" %>
+                  <span class="help-block with-errors"></span> 
+                </div>
+              </div>   
+            </div>         
           </div><!-- calualleave-->
-          
-           <div id="floatingleave">
-          <div class="col-lg-12 ">          
+        </div>
+          <div class="col-lg-10 floatingleave">          
             <div class="form-group">
               <label  class="col-lg-1 control-label">Date:</label>
               <div class="col-lg-3">
-                <input type="text" name="float_leave_date" id = "idnm4" class ="form-control float-leave-date" required = "true">
+                <input type="text" name="float_leave_date" id = "idnm4" class ="form-control float-leave-date">
                 <span class="help-block with-errors"></span> 
               </div>
             </div>
           </div>
-</div>
-
           <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
           <div class="panel-body">
             <button type="submit" class="btn btn-success apply"> Apply </button>
             <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>                                    
-          </div>          
-          <% end %> 
-          <div class="alert-message alert alert-info alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-               You have crossed the limit of your balace leaves
-          </div>                                                                  
-          <% else %>  <br>
-          <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-               You Have No Reporting Manager,  Please Contact HR Manager.
           </div>
-          <% end %>
-        </div>
-          </div>
-        </div>
-      </div>
-     </div>
+        <% end %>           
+      <div class="alert-message alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        You have crossed the limit of your balace leaves
+      </div>                                                                  
+    <% else %>
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+         You Have No Reporting Manager,  Please Contact HR Manager.
     </div>
+    <% end %>
+  </div>
+</div>
+
 
 
  <script>
@@ -240,17 +224,17 @@
 
 <script>
   $(function(){
-    $('#floatingleave').hide();
+    $('.floatingleave').hide();
     $("#leave_history_leave_type_id").change(function(){
       var leave_id = parseInt($("#leave_history_leave_type_id").val());
       if(leave_id == 2)
         {
           $('#casualleave').hide();
-          $('#floatingleave').show();
+          $('.floatingleave').show();
           //.datepicker('setDate', date);
         }
         else{
-          $('#floatingleave').hide();
+          $('.floatingleave').hide();
           $('#casualleave').show();
         }
           //console.log(leave_id);
