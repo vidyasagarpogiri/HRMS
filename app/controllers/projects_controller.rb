@@ -13,10 +13,10 @@ class ProjectsController < ApplicationController
   end
   
   def create
-  raise params.inspect
+  #raise params.inspect
   @employee = current_user.employee
   @project = @employee.projects.create(project_params)
-  @project.update(:skills => params[:total_tags])
+  @project.update(:skills => params[:total_tags].chop)
   @projects = @employee.projects
   end
   
