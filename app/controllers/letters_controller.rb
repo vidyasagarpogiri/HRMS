@@ -3,7 +3,10 @@ class LettersController < ApplicationController
   before_filter :hr_manager
   
   def index
-    
+    @employee = current_user.employee
+    @address1 = @employee.addresses.where(:address_type=>0).first
+		@address2 = @employee.addresses.where(:address_type=>1).first
+		@salary = @employee.salary
   end
   
   def reference_letter
@@ -43,8 +46,9 @@ class LettersController < ApplicationController
   
   def reference_notification # email for reference letter
     @user = current_user
+    #raise params.inspect
     Notification.delay.reference_notification(@user, @hr_manager)
-    redirect_to reference_letter_letters_path
+    redirect_to letters_path
   end
   
   def address_notification  # email for address proof
@@ -53,13 +57,13 @@ class LettersController < ApplicationController
     @address1 = @employee.addresses.where(:address_type=>0).first
 		@address2 = @employee.addresses.where(:address_type=>1).first
     Notification.delay.address_notification(@user, @hr_manager, @address1, @address2)
-    redirect_to address_proof_letter_letters_path
+    redirect_to letters_path
   end
   
    def salary_notification  # email for salary certificate
     @user = current_user
-    Notification.salary_notification(@user).deliver
-    redirect_to salary_certificate_letters_path
+    Notification.delay.salary_notification(@user)
+    redirect_to letters_path
   end
 
 

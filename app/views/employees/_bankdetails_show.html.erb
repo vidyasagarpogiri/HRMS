@@ -1,36 +1,32 @@
-<div class="row">
-  <div class="col-lg-12">
-    <div class="panel">
-      <div class="panel-heading">
-        Bank Info
-      <% if current_user.department == Department::HR %>                                                  
-        <i class="fa fa-edit pull-right" style="margin-top:3px;"></i><%= link_to " Edit",  bankdetails_edit_employee_path(@employee),:class=>"pull-right", :remote => true %>
-      <% end %>
+<div class="panel">
+  <div class="panel-heading">       
+  <% if current_user.department == Department::HR %>                                                  
+    <i class="fa fa-edit pull-right" style="margin-top:3px;"></i><%= link_to " Edit",  bankdetails_edit_employee_path(@employee),:class=>"pull-right", :remote => true %>
+  <% end %>
+  </div>
+  
+  <div class="panel-body">
+    <div class ="row">
+      <div class="bio-row">
+        <p><strong>Bank Name</strong>: <%= @employee.bank_name %></p>
       </div>
-      
-      <div class="panel-body">
-        <div class ="row">
-          <div class="bio-row">
-            <p><span>Bank Name</span>: <%= @employee.bank_name %></p>
-          </div>
-          <div class="bio-row">
-            <p><span>Account Number</span>: <%= @employee.account_number %></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="bio-row">
-            <p><span>Branch Name</span>: <%= @employee.branch_name %></p>
-          </div>
-          <div class="bio-row">
-            <p><span>PAN Number</span>: <%= @employee.pan %></p>
-          </div>
-        </div>
-        <div class ="row">
-          <div class="bio-row">
-            <p><span>PF Account Number</span>: <%= @employee.PFAccountNumber %></p>
-          </div>
-        </div>
+      <div class="bio-row">
+        <p><strong>Account Number</strong>: <%= @employee.account_number %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="bio-row">
+        <p><strong>Branch Name</strong>: <%= @employee.branch_name %></p>
+      </div>
+      <div class="bio-row">
+        <p><strong>PAN Number</strong>: <%= @employee.pan %></p>
+      </div>
+    </div>
+    <div class ="row">
+      <div class="bio-row">
+        <p><strong>PF Account Number</strong>: <%= @employee.PFAccountNumber %></p>
       </div>
     </div>
   </div>
 </div>
+
