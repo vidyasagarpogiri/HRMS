@@ -39,8 +39,10 @@
           <div class="row">
             <div class="form-group">
               <label class="control-label col-lg-2" for="basicinput">Existing Skill</label>
-              <% @skills.each do |skill|%>
-                <input value="<%= skill %>" class="btn btn-success span1" style="color:black" disabled>
+               <% if @skills.present? %>
+                <% @skills.each do |skill| %>
+                 <i class="label label-info fa fa-tag" style="font-size: 13px"><%= skill %></i>
+                <% end %> 
               <% end %>
             </div>
           </div>
