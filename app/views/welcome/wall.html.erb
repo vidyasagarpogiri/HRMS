@@ -44,56 +44,58 @@
   <div class="col-md-3">
     <div class="fb-timeliner">
       <h2 class="recent-highlight">Events <span class="pull-right"><%= link_to 'Add New',  new_amzur_event_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px; color:white" %></span></h2>
-      <% if @welcome_event.present? %>	
-        <ul>
-          <% @welcome_event.each do |welcome_event| %>
-            <li class="active"><a href="#"><strong><%= welcome_event.title %> </strong> on<strong> <%= format_date (welcome_event.held_on) %> </strong></a>
-            <p> <%= time_ago_in_words(welcome_event.created_at)%> ago</p>
-            <div class="control-group">
-              <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>                
-            </div>
-            <%= link_to "Continue..", "#eventsModal", :class => "btn btn-link event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal", :id => "eventModal" %>
-
-
-            </li>
-          <% end %>	
-        </ul>
-
-      <% else %>
-        <div class="alert alert-success alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          There are no events
-        </div>    
-      <% end %>                                                                  
-    </div>                                     
+      <div class="text-scroll">
+        <% if @welcome_event.present? %>	
+          <ul>
+            <% @welcome_event.each do |welcome_event| %>
+              <li class="active"><strong><%= link_to welcome_event.title, "#eventsModal", :class => "btn btn-link event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal", :id => "eventModal" %><%= time_ago_in_words(welcome_event.created_at)%> ago</strong> 
+              <p> </p>
+              <!--<div class="control-group">
+                <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>                
+              </div>
+              <%#link_to "Continue..", "#eventsModal", :class => "btn btn-link event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal", :id => "eventModal" %>
+              </li>-->
+            <% end %>	
+          </ul>
+        <% else %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            There are no events
+          </div>    
+        <% end %> 
+      </div>                                                                
+    </div>  <br>   
+                                  
     <div class="fb-timeliner">
       <h2 class="recent-highlight">Announcements
-
         <% if current_user.department == Department::HR %>
           <span class="pull-right">
-            <%= link_to 'Add New',  new_announcement_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px; color:white" %>
+            <%= link_to 'Add New',  new_announcement_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px;color:white" %>
           </span>
         <%end%>  
       </h2>
-      <% if @welcome_announcements.present? %>
-        <ul>
-          <% @welcome_announcements.each do |welcome_announcement| %>
-            <li>
-            <a href="#"><strong><%= welcome_announcement.title %> </strong></a> <p><%= time_ago_in_words(welcome_announcement.created_at)%> ago</p>
-            <div class="control-group">
-              <label class="idesc" for="basicinput"><%= raw welcome_announcement.description %> </label>
-            </div>      
-            <%= link_to "Continue..", "#announcementModal", :class => "btn btn-link announcement-show event-show_#{welcome_announcement.id}", :url => announcement_path(welcome_announcement.id), "data-toggle" => "modal" %>
-            </li>         
-          <% end %>
-        </ul>      
-      <% else %>
-        <div class="alert alert-success alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          There are no announcements
-        </div>
-      <% end %> 
-    </div>	  	    
+      <div class="text-scroll">
+        <% if @welcome_announcements.present? %>
+          <ul>
+            <% @welcome_announcements.each do |welcome_announcement| %>
+              <li>
+              <a href="#"><strong><%= welcome_announcement.title %> </strong></a> <p><%= time_ago_in_words(welcome_announcement.created_at)%> ago</p>
+              <div class="control-group">
+                <label class="idesc" for="basicinput"><%= raw welcome_announcement.description %> </label>
+              </div>      
+              <%= link_to "Continue..", "#announcementModal", :class => "btn btn-link announcement-show event-show_#{welcome_announcement.id}", :url => announcement_path(welcome_announcement.id), "data-toggle" => "modal" %>
+              </li>         
+            <% end %>
+          </ul>      
+        <% else %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            There are no announcements
+          </div>
+        <% end %> 
+      </div>
+    </div>	<br>  
+    	    
     <div class="fb-timeliner">      
       <h2 class="recent-highlight">Job Openings
         <% if current_user.department == Department::HR %>
@@ -102,26 +104,26 @@
           </span>
         <%end%>
       </h2>
-      <% if @welcome_recruitments.present? %>
-        <ul>
-          <% @welcome_recruitments.each do |welcome_recruitment| %>
-            <li>
-            <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a><p><%= time_ago_in_words(welcome_recruitment.created_at)%> ago</p>
-            <div class="control-group">
-              <%= welcome_recruitment.link %><br>
-              <%= link_to 'Continue..', "#mymodel",  :class => "btn btn-link welcome_recruitment ",   :url => recruitment_path(welcome_recruitment), :iid => welcome_recruitment.id, "data-toggle" => "modal", :id => "#{welcome_recruitment.id}"   %>   
-
-              <%#= link_to "Continue..", recruitment_path(welcome_recruitment), :class => "pt4", :data-toggle => "modal", :data-target => "#myModal" %>                                  
-            </div><br>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <div class="alert alert-success alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          There are no Job Openings
-        </div>     
-      <% end %>	
+      <div class="text-scroll">
+        <% if @welcome_recruitments.present? %>
+          <ul>
+            <% @welcome_recruitments.each do |welcome_recruitment| %>
+              <li>
+              <a href="#"><strong><%= welcome_recruitment.title %>  - <%= welcome_recruitment.jobcode %></strong></a><p><%= time_ago_in_words(welcome_recruitment.created_at)%> ago</p>
+              <div class="control-group">
+                <%= welcome_recruitment.link %><br>
+                <%= link_to 'Continue..', "#jobmodel",  :class => "btn btn-link recruitment_show event-show_#{welcome_recruitment.id}",   :url => recruitment_path(welcome_recruitment), "data-toggle" => "modal", :id => "#{welcome_recruitment.id}"   %>                           
+              </div><br>
+              </li><hr>
+            <% end %>
+          </ul>
+        <% else %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            There are no Job Openings
+          </div>     
+        <% end %>
+      </div>
     </div>                	          
   </div>
 </div>
@@ -164,6 +166,11 @@
   .album-title{
     color:#FF6C60 !important
   }
+  
+  .text-scroll{
+    overflow-y: auto;
+    height:300px;
+  }
 </style>
 
 <script>
@@ -187,18 +194,8 @@
       centerMode: true,
       focusOnSelect: true
     });
-
-
-
-
-
   });
-
 </script>
-
-
-
-
 
 <script>
   $(function(){
@@ -211,7 +208,6 @@
       });
     });
   });
-
 </script>
 <!-- Button trigger modal -->
 <script>
@@ -225,7 +221,18 @@
       });
     });
   });
-
+</script>
+<script>
+  $(function(){
+    $('.recruitment-show').click(function(){ 
+      var url = $(this).attr("url");
+      $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "script"
+      });
+    });
+  });
 </script>
 
 
@@ -252,31 +259,23 @@
         <h4 class="modal-title">Announcement</h4>
       </div>
       <div class="modal-body announcement_show_body">
-
-
       </div>
     </div>
   </div>
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="jobmodel" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 class="modal-title">Job</h4>
+      </div>
+      <div class="modal-body recruitment_show_body">
+      </div>
+    </div>
+  </div>
+</div>
 
 
