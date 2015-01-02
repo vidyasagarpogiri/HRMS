@@ -37,13 +37,16 @@
                  <input id="s" type="text">
                <input type="hidden" name="hidden_tags" class="hidden_tags">
                 <span id="advanced_search_box"></span><br><br>
-                <% if @post.tags.present?%>
-                <p class="pull-left">
-                  <% @post.tags.split(",").each do|tag| %>
-                    <span class="label label-info"><i class=" icon-tag"></i> <%=  tag %></span>
-                  <% end %>
-                </p>
-                <%end%>  
+            
+               <span class="pull-left">
+                <% if @post.tags.present?%>               
+                <% @post.tags.split(",").each do|tag| %>
+                  <i class="label label-info fa fa-tag" style="font-size: 13px"><%=  tag %></i>
+                <% end %> 
+              
+                <%end%>
+                </span>
+                 
                 <input type="hidden" name="total_tags" class="total_tags">
               </div>
           </div>

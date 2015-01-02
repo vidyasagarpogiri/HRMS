@@ -66,8 +66,9 @@
         maxDate: -0,
         yearRange: "-100:+0",
         onClose: function (selectedDate) {
-          var date2 = $('.from').datepicker('getDate');
+          var date2 = $(this).datepicker('getDate');
           date2.setDate(date2.getDate());
+          console.log(date2);
           $(".to").datepicker("option", "minDate", date2);
         }
     });
@@ -75,7 +76,6 @@
     $(".to").datepicker({
       dateFormat: 'dd/mm/yy', 
       maxDate: -0,
-      yearRange: "-100:+0",
       changeMonth: true,
       changeYear: true
     });
