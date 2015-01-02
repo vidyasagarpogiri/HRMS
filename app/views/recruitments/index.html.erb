@@ -1,44 +1,54 @@
-<div class="panel panel-info">
-  <div class="panel-heading">
-    Job Openings
-      <% if current_user.department == Department::HR %>                                
-       <%= link_to 'New Job',  new_recruitment_path, :class => "pull-right" %>
-     <% end %>  
-  </div>	
-	<div class="row">
-    <div class="col-lg-12">
-      <section class="panel">        
-        <div class="panel-body">  		   
-	        <% if @recruitments.present? %> 
-            <% @recruitments.each do |recruitment| %>
-              
-              <p><font size="4"><strong><%= recruitment.title %> </strong></font></p>                        
-              <p><strong><%=truncate recruitment.description.html_safe, :length => 220 %></strong> <%= link_to "Continue..", recruitment_path(recruitment)%></p>
-              <p><strong><%= link_to recruitment.link, recruitment.link, :target => "/blank" %></strong></p>
-              <% if current_user.department == Department::HR %>                      
-                <%= link_to 'Edit', edit_recruitment_path(recruitment), :class => "btn btn-success " %>
-                <%= link_to "Delete", recruitment_path(recruitment.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
-              <% end %> 
-              <% if current_user.department == Department::HR %>               
-              <% end %><hr>
-            <% end %>                                                                                                                             
-            <% else %>
-          <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              No Jobs to display.
+<section class="panel panel-info">
+  <header class="panel-heading">      
+     Job Openings
+     <% if current_user.department == Department::HR %>                                
+       <%= link_to 'New Job',  new_recruitment_path, :class => "fa fa-plus pull-right" %>
+     <% end %> 
+  </header>
+</section>
+
+                                                    
+<div class="row">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-9">                      
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_1">
+            <div class="panel-group" id="accordion1">                
+            </div>
           </div>
-        <% end %>                 
-				</div><!--/.module-body-->
-			</section><!--/.module-->
-		</div><!--/.content-->
-	</div><!--/.span12-->
-</div><!--/.row-->	
+        </div>      
+      </div>
+   
+      <div class="col-md-3">
+        <section class="panel">
+          <header class="panel-heading" >
+            All Jobs
+          </header>         
+        </section>
+        <ul class="vertical-menu">
+          <% if @recruitments.present? %> 
+            <% @recruitments.each do |recruitment| %> 
+              <li><%= link_to  recruitment.title ,recruitment_path(recruitment), :class => "fa fa-bullhorn ", :remote=> true %></li>
+            <%end%>
+          <%else%>
+          <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                  No Jobs to display.
+                </h4>
+            </div>
+          </div>
+          <%end%>               
+        </ul>
+      </div>          
+    </div>                    
+  </div>      
+</div>
 
-<style>
-.description{
-max-height:35px;
-overflow:hidden;
-}
-</style>	 
-
+<script>
+  $(function(){
+    $(".vertical-menu li:first a").click();
+  });
+</script>
 

@@ -1,17 +1,14 @@
-
 <div class="panel panel-success">
   <div class="panel-heading">               
     <%= @policy.title %>           
-</div>
-       
+  </div>       
   <div class="panel-body">        
     <div class="row">
       <label class="control-label col-lg-4" for="basicinput">Description</label>
       <div class="col-lg-11">
          <%= raw(@policy.details) %>
       </div>
-    </div>
-    
+    </div>    
     <% if @policy.document_url.present? %>
     <div class="row">
       <label class="control-label col-lg-4" for="basicinput">Attachment</label>
