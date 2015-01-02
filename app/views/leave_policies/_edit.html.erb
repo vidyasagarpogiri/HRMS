@@ -1,7 +1,7 @@
 
 <div class="panel panel-info">
   <div class="panel-heading">
-     <h3> New Leave Policy For : <%= @group.group_name %></h3>
+     New Leave Policy For : <%= @group.group_name %>
   </div>
   <div class="panel-body">
     <%= form_for ([@group, @leave_policy]), :html => {:class=>"form-horizontal row-fluid edit-leave_policy-form"}, :remote => true do |f| %>
@@ -39,13 +39,16 @@
 			    <%= f.select(:floating_leave_period, options_for_select([['Quarterly', 1], ['Half Yearly', 2], ['Annually', 3]]), {}, :class =>  "form-control") %>
 			    <span class="help-block with-errors"></span>
 			  </div>
+	    </div>
 	  </div>
-	</div>
-	<div class="row"> 
-	                                                                                                      
-      <%= f.submit  'Save', :class => "btn btn-success " %> 
-      <%= link_to  'Cancel', @group, :class => "btn btn-danger" %>                                    
-    
+	  <div class="row"> 
+	    <div class="form-group">
+	     <label class="col-lg-2 control-label" for="basicinput"></label>
+	     <div class="col-lgl8">
+          <%= f.submit  'Save', :class => "btn btn-success " %> 
+          <%= link_to  'Cancel', @group, :class => "btn btn-danger" %>                                    
+        </div>
+      </div>
   </div>                                           
     <% end %>
   </div><!--/.module-body-->
