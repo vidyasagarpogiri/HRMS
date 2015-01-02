@@ -42,12 +42,12 @@
                                   <a class="pull-left" href="#">
                                       
                                          <% if employee.present? && employee.avatar_url.present? %>
-                                            <%= image_tag employee.avatar_url, :class=>"thumb media-object" %> 
+                                            <%= image_tag employee.avatar_url, :class=>"thumb media-object", :style => "height:175px;width:175px" %> 
                                           <% else %>
                                             <% if employee.gender == "Female" %>
-                                              <%= image_tag("1.jpg", :class=>"thumb media-object") %> 
+                                              <%= image_tag "1.jpg", :class=>"thumb media-object", :style => "height:175px;width:175px" %> 
                                             <% else %>
-	                                            <%= image_tag "user.png", :class=>"thumb media-object" %> 
+	                                            <%= image_tag "user.png", :class=>"thumb media-object", :style => "height:175px;width:175px" %> 
                                             <% end %>
                                           <% end %>         
                                   </a>
@@ -78,6 +78,5 @@
              <% end %>
            </div>
           </div>
-            
             
 
