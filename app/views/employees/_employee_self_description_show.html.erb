@@ -29,7 +29,7 @@
         <div class="col-lg-8">
           <% if @skills.present? %>
             <% @skills.each do |skill| %>
-              <input value="<%= skill %>" class="btn btn-success span2" style="color:black" disabled>
+             <i class="label label-info fa fa-tag"><%= skill %></i>
             <% end %> 
           <% end %>
         </div> 
