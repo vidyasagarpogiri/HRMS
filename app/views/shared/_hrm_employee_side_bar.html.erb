@@ -94,7 +94,7 @@
     <li><%# link_to ' My Self Description', employee_self_description_show_employee_path(current_user.employee) %>
     </li>
     <li><%= link_to "My Work Groups", my_workgroups_path %></li>
-    <li><%= link_to "My Letters", letters_path(current_user.employee) %></li>
+    <li><%= link_to "My Letters", letters_path %></li>
     <% if current_user.department == Department::ACCOUNTS %>
       <li><a href="/monthly_payslips" >Payslips</a></li>
     <% end %>

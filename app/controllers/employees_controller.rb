@@ -55,6 +55,7 @@ class EmployeesController < ApplicationController
        @skills = @employee.skills
       # raise @projects.inspect
      end
+     @emergency = @employee.emergency_contacts
      @report = @employee.reporting_managers.first
      
   end
@@ -132,7 +133,7 @@ class EmployeesController < ApplicationController
  		@emp_get_attachements.destroy
      @emp_get_attachments  = @employee.employee_attachments
 	end
-	
+
 	def myprofile
 	  @employee = current_user.employee
 	  @emp = @employee
