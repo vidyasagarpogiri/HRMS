@@ -32,7 +32,7 @@ before_filter :edit_view, only: ['edit']
    def update # Updates the Post
    #raise params.inspect
     @post = Post.find(params[:id])
-    @post.update(:tags => params[:total_tags].chop)
+    @post.update(:tags => params[:total_tags])
     if @post.update(post_params)
       redirect_to posts_path
     else
