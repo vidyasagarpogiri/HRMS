@@ -73,8 +73,7 @@
 <script>
 $(function(){
     var tags= "";
-    var total_tags="";
-    var present_tags = "<%= @post.tags %>";
+    var total_tags = "<%= @post.tags %>";
 $("#s").keypress(function(e) {
     if(e.which == 13) {
     var tag = $("#s").val();
@@ -84,13 +83,14 @@ $("#s").keypress(function(e) {
     tags = tags+ tag + "," ;
     $("#s").val("");
     $(".hidden_tags").val(tags); 
-    total_tags = tags + present_tags
+    total_tags = total_tags + tags
     $(".total_tags").val(total_tags);
     e.preventDefault();
     return false;
      
     }
-});  
+}); 
+  $(".total_tags").val(total_tags); 
    });
 
 
