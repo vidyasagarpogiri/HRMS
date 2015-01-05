@@ -85,7 +85,7 @@
               <div class="form-group">
                 <label  class="col-lg-1 control-label">Date:</label>
                 <div class="col-lg-3">
-                  <input type="text" name="leave_date" id = "idnm3" class ="form-control leave-date">
+                  <input type="text" name="leave_date" id = "idnm3" class ="leave-form-date form-control leave-date">
 					        <span class="help-block with-errors"></span>   
 				        </div>
               </div>
@@ -104,7 +104,7 @@
             <div class="form-group">
               <label  class="col-lg-1 control-label">Date:</label>
               <div class="col-lg-4">
-                <input type="text" name="float_leave_date" id = "idnm4" class ="form-control float-leave-date" required="true" >
+                <input type="text" name="float_leave_date" id = "idnm4" class ="leave-form-date form-control float-leave-date" required="true" >
                 <span class="help-block with-errors"></span> 
               </div>
             </div>
@@ -157,12 +157,12 @@ $('.leave-form-date').datepicker({
        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
        $('.to_date').datepicker('setStartDate', startDate);
    }); 
-   
+var date = $(".leave-form-date").datepicker('getDate', date);
 $('.leave-to-date')
    .datepicker({
        format: 'dd/mm/yyyy',
        weekStart: 1,
-       startDate: FromEndDate,
+       startDate: date,
        endDate: '01/01/2900',
        autoclose: true
    })
@@ -178,10 +178,6 @@ $('.leave-to-date')
  
 });
 </script>
-
-
-
-
 
 
  <script>
