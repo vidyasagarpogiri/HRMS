@@ -28,7 +28,7 @@
       <div class="form-group">
         <label class="control-label col-lg-2" for="basicinput">From Date</label>
         <div class="col-lg-8">
-          <%= f.text_field :from_date, :class => "from form-control",:placeholder => "Select Date Of Joining", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
+          <%= f.text_field :from_date, :class => "from date-picker form-control",:placeholder => "Select Date Of Joining", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
           <span class="help-block with-errors"></span>   
         </div>
       </div>
@@ -36,7 +36,7 @@
       <div class="form-group">
         <label class="control-label col-lg-2" for="basicinput">To Date</label>
         <div class="col-lg-8">
-          <%= f.text_field :to_date, :class => "to form-control", :id => "basicinput",:placeholder => "Select Date Of Relieving", :data => {:error => "Please Enter valid Relieving Date"}, :required => true %>
+          <%= f.text_field :to_date, :class => "to date-picker form-control", :id => "basicinput",:placeholder => "Select Date Of Relieving", :data => {:error => "Please Enter valid Relieving Date"}, :required => true %>
           <span class="help-block with-errors"></span>   
         </div>
       </div>
@@ -55,7 +55,9 @@
 
 <!--<script>    
   $(function() {
-    $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
+      $( ".date-picker" ).datepicker({  
+      format: 'dd/mm/yyyy',
+       autoclose: true });
   });
 </script>
 -->

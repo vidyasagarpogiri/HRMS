@@ -17,7 +17,7 @@
         <div class="form-group">
           <label class="control-label col-lg-2" for="basicinput">Start Date</label>
           <div class="col-lg-8" >
-            <%= f.text_field :start_date, :class => "from form-control",:placeholder => "Select Project Start Date", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
+            <%= f.text_field :start_date, :class => "date-picker form-control",:placeholder => "Select Project Start Date", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
             <span class="help-block with-errors"></span>   
           </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="form-group">
           <label class="control-label col-lg-2" for="basicinput">End Date </label>  
           <div class="col-lg-8">
-            <%= f.text_field :end_date, :class => "to form-control", :placeholder => "Select Project End Date", :data => {:error => "Please Enter valid Relieving Date"}%>
+            <%= f.text_field :end_date, :class => "date-picker form-control", :placeholder => "Select Project End Date", :data => {:error => "Please Enter valid Relieving Date"}%>
             <span class="help-block with-errors"></span>   
           </div>
         </div>
@@ -86,34 +86,15 @@
 
 
 
-  <script>    
-    $(function() {
-      $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
-    });
-  </script>
+<script>    
+  $(function() {
+      $( ".date-picker" ).datepicker({  
+      format: 'yyyy-mm-dd',
+       autoclose: true });
+  });
+</script>
 
-  <script>
-    $(function () {
-      $(".from").datepicker({
-        dateFormat: 'dd/mm/yy',
-        changeMonth: true,
-        changeYear: true,
-        maxDate: -0,
-        yearRange: "-100:+0",
-        onClose: function (selectedDate) {
-          var date2 = $(this).datepicker('getDate');
-          date2.setDate(date2.getDate());
-          $(".to").datepicker("option", "minDate", date2);
-        }
-      });
-      $(".to").datepicker({
-        dateFormat: 'dd/mm/yy',
-        maxDate: -0,
-        changeMonth: true,
-        changeYear: true
-      });
-    });
-  </script>
+
 
 
 

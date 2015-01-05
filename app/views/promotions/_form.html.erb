@@ -62,14 +62,17 @@
 <script>
   $(function(){
     $(".edit-promotion-form").validator();
+    
     });  
   </script>
 
-  <script>
-    $(function() {
-      $( ".date-picker" ).datepicker({ dateFormat: 'dd/mm/yy' });
-    });
-  </script>
+<script>    
+  $(function() {
+      $( ".date-picker" ).datepicker({  
+      format: 'dd/mm/yyyy',
+       autoclose: true });
+  });
+</script>
   
   <script>
     //Date Picker

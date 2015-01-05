@@ -52,7 +52,7 @@
           <div class="form-group">
             <label  class="col-lg-2 control-label">Date Of Joining</label>
             <div class="col-lg-10">
-             <%= text_field :employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class => "datepicker form-control ", :placeholder => "Enter Last name",:data => {:error => " Please Enter valid Employee Joinh dateName"}, :required =>true %> 
+             <%= text_field :employee, :date_of_join, :placeholder=>"Enter Date Of Joining", :class => "date-picker form-control ", :placeholder => "Enter Last name",:data => {:error => " Please Enter valid Employee Joinh dateName"}, :required =>true %> 
               <span class="help-block with-errors"></span> 
             </div>
           </div>
@@ -274,20 +274,7 @@
           </script>
           
           <script>
-             
-$(function() {
-    $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
-  });
-  
-    $(function() {
-    $( ".datepicker_with_year" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "-100:+0",
-      dateFormat: 'dd/mm/yy',
-       maxDate: -0
-    });
-  });
+
 
     var designations = $('.designation').html();
     
@@ -347,6 +334,19 @@ $(function() {
         return false;
         }
         })
+     
+     
+    $( ".date-picker" ).datepicker({  
+      format: 'dd/mm/yyyy',
+       autoclose: true });
+       
+    
+$( ".datepicker_with_year" ).datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose: true,
+       maxDate: -0
+    });
+    
   });
   </script>
   
