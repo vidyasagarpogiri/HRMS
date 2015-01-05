@@ -62,7 +62,7 @@
                 <div class="row">
                   <div class="col-lg-5">
                     <div class="form-group">
-                      <label  class="col-lg-3 control-label">From: </label>
+                      <label  class="col-lg-2 control-label">From: </label>
                       <div class="col-lg-8">
                         <%= f.text_field :from_date, :class => "form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
                         <span class="help-block with-errors"></span> 
@@ -103,7 +103,7 @@
           <div class="floatingleave">          
             <div class="form-group">
               <label  class="col-lg-1 control-label">Date:</label>
-              <div class="col-lg-3">
+              <div class="col-lg-4">
                 <input type="text" name="float_leave_date" id = "idnm4" class ="form-control float-leave-date" required="true" >
                 <span class="help-block with-errors"></span> 
               </div>
@@ -128,6 +128,48 @@
     <% end %>
   </div>
 </div>
+
+<script>
+$(function(){
+var startDate = new Date('01/01/1900');
+var FromEndDate = new Date();
+var ToEndDate = new Date();
+
+ToEndDate.setDate(ToEndDate.getDate()+365);
+
+$('.from_date').datepicker({
+    format: 'dd/mm/yyyy',
+    weekStart: 1,
+    startDate: FromEndDate,
+    endDate: '01/01/2900', 
+    autoclose: true
+})
+    .on('changeDate', function(selected){
+        startDate = new Date(selected.date.valueOf());
+        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+        $('.to_date').datepicker('setStartDate', startDate);
+    }); 
+$('.to_date')
+    .datepicker({
+        format: 'dd/mm/yyyy',
+        weekStart: 1,
+        startDate: startDate,
+        endDate: new Date(),
+        autoclose: true
+    })
+    .on('changeDate', function(selected){
+        FromEndDate = new Date(selected.date.valueOf());
+        FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+        $('.from_date').datepicker('setEndDate', FromEndDate);
+    });
+
+  
+  
+  
+  
+});
+</script>
+
 
 
 
