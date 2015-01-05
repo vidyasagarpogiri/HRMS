@@ -94,100 +94,56 @@
 </div><!--/.wrapper-->
 
 <script>
-     $(".start_date").datepicker({
-         dateFormat: 'dd/mm/yy',
-         changeMonth: true,
-         changeYear: true,
-          minDate: -0,
-         yearRange: "+0:+1",
-         onSelect: function (selectedDate) {
-             var date2 = $('.start_date').datepicker('getDate');
-             date2.setDate(date2.getDate());
-             $(".end_date").datepicker("option", "minDate", date2);
-             $(".error1").html('');
-         }
-     });
+  //var startDate = new Date('01/01/1900');
+  var appraisalStartDate = new Date();
+  var startDate = new Date();
+  var endDate = new Date();
+  $(".start_date").datepicker({
+    format: 'dd/mm/yyyy',
+    startDate: appraisalStartDate, 
+    autoclose: true
+  })
+    .on('changeDate', function(selected){
+      startDate = new Date(selected.date.valueOf());
+      startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+      $('.end_date').datepicker('setStartDate', startDate);
+  });
+  
+  $(".end_date").datepicker({
+    format: 'dd/mm/yyyy',
+    autoclose: true
+  })
+    .on( 'changeDate', function (selected) {
+      startDate = $(".start_date").datepicker('getDate');
+      endDate = new Date(selected.date.valueOf());
+      $('.employee_date').datepicker('setStartDate', startDate);
+      $('.employee_date').datepicker('setEndDate', endDate);       
+  });
+  
+  $(".employee_date").datepicker({
+    format: 'dd/mm/yyyy',
+    autoclose: true
+  })
+    .on('changeDate', function (selected) {
+      startDate = $(".employee_date").datepicker('getDate');
+      endDate = $('.end_date').datepicker('getDate');
+      $('.manager_date').datepicker('setStartDate', startDate);
+      $('.manager_date').datepicker('setEndDate', endDate);
+  });
 
-     $(".end_date").datepicker({
-         dateFormat: 'dd/mm/yy',
-          minDate: $('.start_date').datepicker('getDate'),
-          yearRange: "0:+1",
-           changeMonth: true,
-         changeYear: true, 
-           onClose: function (selectedDate) {
-            var date1 = $('.start_date').datepicker('getDate');
-            $(".employee_date").datepicker("option", "minDate", $('.start_date').datepicker('getDate'));
-            $(".employee_date").datepicker("option", "maxDate", $('.end_date').datepicker('getDate'));
-            if (date1){
-              
-            }else{
-              $(".end_date").val('');
-              $(".error1").html('<ul class="list-unstyled"><li>Please Enter Start Date First</li></ul>');
-            }
-           }
-     });
-     
-     $(".employee_date").datepicker({
-         dateFormat: 'dd/mm/yy',
-          minDate: -0,
-          yearRange: "0:+1",
-           changeMonth: true,
-         changeYear: true, 
-           onClose: function (selectedDate) {
-            var date1 = $('.start_date').datepicker('getDate');
-            var date2 = $('.end_date').datepicker('getDate');
-            var date3 = $('.employee_date').datepicker('getDate');
-            date3.setDate(date3.getDate());
-            $(".manager_date").datepicker("option", "minDate", date3);
-            $(".manager_date").datepicker("option", "maxDate", date2);
-            $(".error1").html('');
-            if (date3>date1 && date3<date2){
-              
-            }else{
-              $(".employee_date").val('');
-              $(".error2").html('<ul class="list-unstyled"><li>Please Enter Date Between start and end dates</li></ul>');
-            }
-           }
-     });
-     
-      $(".manager_date").datepicker({
-         dateFormat: 'dd/mm/yy',
-          minDate: -0,
-          yearRange: "0:+1",
-           changeMonth: true,
-         changeYear: true, 
-           onClose: function (selectedDate) {
-            var date1 = $('.employee_date').datepicker('getDate');
-            var date2 = $('.end_date').datepicker('getDate');
-            var date3 = $('.manager_date').datepicker('getDate');
-            date3.setDate(date3.getDate());
-            $(".discussion_date").datepicker("option", "minDate", date3);
-            $(".discussion_date").datepicker("option", "maxDate", date2);
-            $(".error1").html('');
-            if (date3>date1 && date3<date2){ 
-            }else{
-              $(".manager_date").val('');
-              $(".error3").html('<ul class="list-unstyled"><li>Please Enter Date Between start and end dates</li></ul>');
-            }
-           }
-     });
-     
-      $(".discussion_date").datepicker({
-         dateFormat: 'dd/mm/yy',
-          minDate: -0,
-          yearRange: "0:+1",
-           changeMonth: true,
-         changeYear: true, 
-           onClose: function (selectedDate) {
-            var date1 = $('.manager_date').datepicker('getDate');
-            var date2 = $('.end_date').datepicker('getDate');
-            var date3 = $('.discussion_date').datepicker('getDate');
-            if (date3>date1 && date3<date2){
-              
-            }else{
-              $(".discussion_date").val('');
-              $(".error4").html('<ul class="list-unstyled"><li>Please Enter Date Between start and end dates</li></ul>');
-            }
-           }
-     });
+  $(".manager_date").datepicker({
+    format: 'dd/mm/yyyy',
+    autoclose: true
+  }) 
+  .on ('changeDate', function (selected) {
+    startDate = $(".manager_date").datepicker('getDate');
+    endDate = $('.end_date').datepicker('getDate');
+    $(".discussion_date").datepicker('setStartDate', startDate);
+    $(".discussion_date").datepicker('setEndDate', endDate);
+  });
+
+  $(".discussion_date").datepicker({
+  format: 'dd/mm/yy',
+  autoclose: true
+  }) 
 </script>
