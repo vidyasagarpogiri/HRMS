@@ -23,7 +23,7 @@
 				          <td>
                     <% if current_user.department == Department::HR %>
 				                 <%= link_to 'Edit', edit_tax_exemption_path(tax), :class => "btn btn-success" %>
-				                <%= link_to 'Delete', "#", method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger" %> 
+				                <%# link_to 'Delete', "#", method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger" %> 
 							      <% end %>
 							    </td>
 			          </tr>
