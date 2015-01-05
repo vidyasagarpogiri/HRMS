@@ -8,32 +8,32 @@
       <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
         <thead>
           <tr>
-            <th width="80px">Full Name</th>
-	          <th width="80px">Date</th>
-	          <th width="80px">No of Days</th>													
-	          <th width="80px">Leaves Type</th>
-	          <th> Reason </th>
-	          <th width="100px">Leaves Balance</th>													
-	          <th width="60px">Status</th>
-	          <th width="120px">Reporting Manger</th>													
+            <th>Full Name</th>
+	          <th>Leave Date</th>
+	          <th>No of Days</th>													
+	          <th>Leaves Type</th>
+	          <th width="400px"> Reason </th>
+	          <th>Leaves Balance</th>													
+	          <th>Status</th>
+	          <th>Reporting Manger</th>													
           </tr>
         </thead>		      
         <tbody>		
         	<% @leaves.each do |f| %>								
-          <tr class="gradeA">               
+          <tr>               
             <td> <%= f.employee.full_name %></td>
             <td> <%= format_date(f.from_date) %> to <%= format_date(f.to_date) %>  </td>
-            <td> <center><%= f.days %> </center></td>
+            <td> <%= f.days %> </td>
             <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
             <td> <%= f.reason %> </td> 
-            <td><center> <%= total_balance_leaves(f.employee) %> </center></td>												  
+            <td><%= total_balance_leaves(f.employee) %></td>												  
             <td> <%= f.status %> </td>
             <td> <%= f.employee.reporting_manager%></td>
           </tr>
           <% end %>
         </tbody>      	
 	    </table>
-	  <div>            
+	  </div>            
 		<% else %>
     <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

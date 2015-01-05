@@ -1,0 +1,32 @@
+<div class="panel panel-info">
+  <div class="panel-heading"> Basic Info
+  </div>
+    <div class="panel-body bio-graph-info">        
+      <div class="row">
+          <div class="bio-row">
+              <p><strong>Job Location </strong>: <%= @employee.job_location.address.city if @employee.job_location.present? %></p>
+          </div>
+          <div class="bio-row">
+              <p><strong>Department </strong>: <%= @employee.department.department_name if @employee.department.present? %></p>
+          </div>
+          <div class="bio-row">
+              <p><strong>Date Of Joining</strong>: <%= format_date (@employee.date_of_join) %></p>
+          </div>
+          <div class="bio-row">
+              <p><strong>Grade/Level </strong>: <%= @employee.grade.value if @employee.grade.present? %></p>
+          </div>
+          <div class="bio-row">
+              <p><strong>Date Of Birth </strong>: <%= format_date (@employee.date_of_birth) %></p>
+          </div>
+          <div class="bio-row">
+              <p><strong>Gender </strong>: <%= @employee.gender %>  </p>
+          </div>
+          <div class="bio-row">
+              <p><strong>Blood Group </strong>: <%= @employee.blood_group.blood_group_name if @employee.blood_group.present?  %>  </p>
+          </div>
+          <div class="bio-row">
+              <p><strong>Work Shift </strong>: <%= @employee.shift.name if @employee.shift.present? %>  </p>
+          </div>
+      </div>      
+   </div>
+</div>
