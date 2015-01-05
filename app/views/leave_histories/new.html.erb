@@ -40,9 +40,9 @@
               <span class="help-block with-errors"></span> 
             </div>
           </div>
-        </div>
-        <div class="row">      
-          <div id="casualleave">        
+        </div>             
+          <div id="casualleave"> 
+          <div class="row">        
             <div class="col-lg-1">
               <div class="form-group">                           
                 <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
@@ -129,6 +129,14 @@
   </div>
 </div>
 
+
+<script>
+  $(function(){
+    $("#new_experience").validator();
+  });
+</script>
+
+
 <script>
 $(function(){
 var startDate = new Date('01/01/1900');
@@ -138,43 +146,46 @@ var ToEndDate = new Date();
 ToEndDate.setDate(ToEndDate.getDate()+365);
 
 $('.leave-form-date').datepicker({
-    format: 'dd/mm/yyyy',
-    weekStart: 1,
-    startDate: FromEndDate,
-    endDate: '01/01/2900', 
-    autoclose: true
+   format: 'dd/mm/yyyy',
+   weekStart: 1,
+   startDate: FromEndDate,
+   endDate: '01/01/2900', 
+   autoclose: true
 })
-    .on('changeDate', function(selected){
-        startDate = new Date(selected.date.valueOf());
-        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
-        $('.to_date').datepicker('setStartDate', startDate);
-    }); 
+   .on('changeDate', function(selected){
+       startDate = new Date(selected.date.valueOf());
+       startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+       $('.to_date').datepicker('setStartDate', startDate);
+   }); 
+   
 $('.leave-to-date')
-    .datepicker({
-        format: 'dd/mm/yyyy',
-        weekStart: 1,
-        startDate: FromEndDate,
-        endDate: '01/01/2900',
-        autoclose: true
-    })
-    .on('changeDate', function(selected){
-        FromEndDate = new Date(selected.date.valueOf());
-        FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
-        $('.from_date').datepicker('setEndDate', FromEndDate);
-    });
+   .datepicker({
+       format: 'dd/mm/yyyy',
+       weekStart: 1,
+       startDate: FromEndDate,
+       endDate: '01/01/2900',
+       autoclose: true
+   })
+   .on('changeDate', function(selected){
+       FromEndDate = new Date(selected.date.valueOf());
+       FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+       $('.from_date').datepicker('setEndDate', FromEndDate);
+   });
 
-  
-  
-  
-  
+ 
+ 
+ 
+ 
 });
 </script>
 
 
 
 
- <script>
 
+
+ <script>
+ 
   $(function(){
     $('.half_day').hide();
     $(".alert-message").hide();
