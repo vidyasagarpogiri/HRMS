@@ -28,7 +28,7 @@
       <div class="form-group">
         <label class="control-label col-lg-2" for="basicinput">From Date</label>
         <div class="col-lg-8">
-          <%= f.text_field :from_date, :class => "from date-picker form-control",:placeholder => "Select Date Of Joining", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
+          <%= f.text_field :from_date, :class => "from_date  form-control",:placeholder => "Select Date Of Joining", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
           <span class="help-block with-errors"></span>   
         </div>
       </div>
@@ -36,7 +36,7 @@
       <div class="form-group">
         <label class="control-label col-lg-2" for="basicinput">To Date</label>
         <div class="col-lg-8">
-          <%= f.text_field :to_date, :class => "to date-picker form-control", :id => "basicinput",:placeholder => "Select Date Of Relieving", :data => {:error => "Please Enter valid Relieving Date"}, :required => true %>
+          <%= f.text_field :to_date, :class => "to_date date-picker form-control", :id => "basicinput",:placeholder => "Select Date Of Relieving", :data => {:error => "Please Enter valid Relieving Date"}, :required => true %>
           <span class="help-block with-errors"></span>   
         </div>
       </div>
@@ -53,14 +53,7 @@
 </div>
 </div>
 
-<!--<script>    
-  $(function() {
-      $( ".date-picker" ).datepicker({  
-      format: 'dd/mm/yyyy',
-       autoclose: true });
-  });
-</script>
--->
+
 
 
 <script>
@@ -69,5 +62,45 @@
   });
 </script>
 
+<script>
+$(function(){
+var startDate = new Date('01/01/1900');
+var FromEndDate = new Date();
+var ToEndDate = new Date();
+
+ToEndDate.setDate(ToEndDate.getDate()+365);
+
+$('.from_date').datepicker({
+    format: 'dd/mm/yyyy',
+    weekStart: 1,
+    startDate: '01/01/1900',
+    endDate: FromEndDate, 
+    autoclose: true
+})
+    .on('changeDate', function(selected){
+        startDate = new Date(selected.date.valueOf());
+        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+        $('.to_date').datepicker('setStartDate', startDate);
+    }); 
+$('.to_date')
+    .datepicker({
+        format: 'dd/mm/yyyy',
+        weekStart: 1,
+        startDate: startDate,
+        endDate: new Date(),
+        autoclose: true
+    })
+    .on('changeDate', function(selected){
+        FromEndDate = new Date(selected.date.valueOf());
+        FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+        $('.from_date').datepicker('setEndDate', FromEndDate);
+    });
+
+  
+  
+  
+  
+});
+</script>
 
 
