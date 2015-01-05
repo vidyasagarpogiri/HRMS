@@ -103,6 +103,20 @@ $(".form_datetime-meridian").datetimepicker({
 
 //datetime picker end
 
+
+    $( ".date-picker" ).datepicker({  
+      format: 'dd/mm/yyyy',
+       autoclose: true });
+       
+    
+$( ".datepicker_with_year" ).datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose: true,
+       maxDate: -0
+    });
+    
+
+  
 //timepicker start
 $('.timepicker-default').timepicker();
 
@@ -116,6 +130,7 @@ $('.timepicker-24').timepicker({
 
 //timepicker end
 
+/*
 //colorpicker start
 
 $('.colorpicker-default').colorpicker({
@@ -181,7 +196,7 @@ $('#spinner4').spinner({value:0, step: 5, min: 0, max: 200});
 //spinner end
 
 
-
+*/ 
 //wysihtml5 start
 
 $('.wysihtml5').wysihtml5();

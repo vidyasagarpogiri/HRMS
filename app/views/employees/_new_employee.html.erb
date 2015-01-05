@@ -257,7 +257,14 @@
 <script>
 //Date Picker
 
+$(function(){
 
+
+$( ".datepicker_with_year" ).datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose: true,
+       maxDate: -0
+    });
 //Department and designation dynamic select buttons
  
   $('.designation').parent().hide();
@@ -301,6 +308,8 @@
       $('.grades').empty();
       //$('.grades').parent().hide();
       }
+    });
+    
     });
  </script>
 

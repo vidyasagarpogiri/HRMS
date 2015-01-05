@@ -21,26 +21,11 @@
           <%= f.text_field :last_designation, :class => "form-control", :placeholder =>"Enter Designation", :data => {:error => "Please Enter Valid Designation"}, :required => true, :pattern => '[a-zA-Z/./s ]*' %>
           <span class="help-block with-errors"></span>
         </div>
-		  </div>
-		  
-     <div class="form-group">
-        <label class="control-label col-md-4">Start with years viewMode</label>
-        <div class="col-md-6 col-xs-11">
-
-            <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"  class="input-append date dpYears">
-                <input type="text" readonly="" value="12-02-2012" size="16" class="form-control">
-                <span class="input-group-btn add-on">
-                  <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
-                </span>
-            </div>
-            <span class="help-block">Select date</span>
-        </div>
-    </div>
-
+		  </div>		       
       <div class="form-group">
         <label class="control-label col-lg-2" for="basicinput">From Date</label>
         <div class="col-lg-8">
-          <%= f.text_field :from_date, :class => "from form-control",:placeholder => "Select Date Of Joining", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
+          <%= f.text_field :from_date, :class => "from date-picker form-control",:placeholder => "Select Date Of Joining", :data => {:error => "Please Enter valid Joining Date"}, :required => true %>
           <span class="help-block with-errors"></span>   
         </div>
       </div>
@@ -48,7 +33,7 @@
       <div class="form-group">
         <label class="control-label col-lg-2" for="basicinput">To Date</label>
         <div class="col-lg-8">
-          <%= f.text_field :to_date, :class => "to form-control", :id => "basicinput",:placeholder => "Select Date Of Relieving", :data => {:error => "Please Enter valid Relieving Date"}, :required => true %>
+          <%= f.text_field :to_date, :class => "to date-picker form-control", :id => "basicinput",:placeholder => "Select Date Of Relieving", :data => {:error => "Please Enter valid Relieving Date"}, :required => true %>
           <span class="help-block with-errors"></span>   
         </div>
       </div>
@@ -65,28 +50,15 @@
 </div>
 </div>
 
-<!--<script>    
+<script>    
   $(function() {
-    $( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' })
+      $( ".date-picker" ).datepicker({  
+      format: 'dd/mm/yyyy',
+       autoclose: true });
   });
 </script>
--->
-<script>
-  $(function () {
-    $(".from").datepicker({
-        dateFormat: 'dd/mm/yy',
-        changeMonth: true,
-        changeYear: true,
-        maxDate: -0,
-        yearRange: "-100:+0",
-        onClose: function (selectedDate) {
-          var date2 = $(this).datepicker('getDate');
-          date2.setDate(date2.getDate());
-          console.log(date2);
-          $(".to").datepicker("option", "minDate", date2);
-        }
-    });
 
+<script>  
     $(".to").datepicker({
       dateFormat: 'dd/mm/yy', 
       maxDate: -0,

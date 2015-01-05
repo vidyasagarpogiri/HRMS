@@ -40,9 +40,9 @@
               <span class="help-block with-errors"></span> 
             </div>
           </div>
-        </div>         
-        <div id="casualleave">
-          <div class="col-lg-12">
+        </div>
+        <div class="row">      
+          <div id="casualleave">        
             <div class="col-lg-1">
               <div class="form-group">                           
                 <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
@@ -56,26 +56,28 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-10 ">
-            <div class="full_day">
-              <div class="row">
-                <div class="col-lg-5">
-                  <div class="form-group">
-                    <label  class="col-lg-2 control-label">From: </label>
-                    <div class="col-lg-8">
-                      <%= f.text_field :from_date, :class => "form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
-                      <span class="help-block with-errors"></span> 
+          <div class="row">         
+            <div class="col-lg-10 ">
+              <div class="full_day">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label  class="col-lg-3 control-label">From: </label>
+                      <div class="col-lg-8">
+                        <%= f.text_field :from_date, :class => "form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
+                        <span class="help-block with-errors"></span> 
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-5">
-                  <div class="form-group">
-                    <label  class="col-lg-1 control-label">To:</label>
-                    <div class="col-lg-8">
-                      <%= f.text_field :to_date, :class => "form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"}, :required => true  %>
-                      <span class="help-block with-errors"></span> 
-                    </div>
-                  </div> 
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label  class="col-lg-1 control-label">To:</label>
+                      <div class="col-lg-8">
+                        <%= f.text_field :to_date, :class => "form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"}, :required => true  %>
+                        <span class="help-block with-errors"></span> 
+                      </div>
+                    </div> 
+                  </div>
                 </div>
               </div>
             </div>
@@ -97,7 +99,8 @@
             </div>         
           </div><!-- calualleave-->
         </div>
-          <div class="col-lg-10 floatingleave">          
+        <div class="row">
+          <div class="floatingleave">          
             <div class="form-group">
               <label  class="col-lg-1 control-label">Date:</label>
               <div class="col-lg-3">
@@ -106,12 +109,13 @@
               </div>
             </div>
           </div>
-          <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
-          <div class="panel-body">
-            <button type="submit" class="btn btn-success apply"> Apply </button>
-            <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>                                    
-          </div>
-        <% end %>           
+        </div>
+        <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
+        <div class="panel-body">
+          <button type="submit" class="btn btn-success apply"> Apply </button>
+          <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>                                    
+        </div>
+      <% end %>           
       <div class="alert-message alert alert-info alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         You have crossed the limit of your balace leaves
@@ -130,7 +134,7 @@
  <script>
  $(function () {
      $(".leave-form-date").datepicker({
-         dateFormat: 'dd/mm/yy',
+         format: 'dd/mm/yyyy',
          changeMonth: true,
          changeYear: true,
           minDate: -0,
@@ -144,7 +148,7 @@
      });
      
      $(".leave-to-date").datepicker({
-         dateFormat: 'dd/mm/yy',
+         format: 'dd/mm/yyyy',
           minDate: -0,
           yearRange: "0:+1",
            changeMonth: true,
@@ -160,7 +164,7 @@
            }
      });
      $(".leave-date").datepicker({
-       dateFormat: 'dd/mm/yy',
+       format: 'dd/mm/yyyy',
           minDate: -0,
           yearRange: "0:+1",
            changeMonth: true,
@@ -168,7 +172,7 @@
      });
      
      $(".float-leave-date").datepicker({
-       dateFormat: 'dd/mm/yy',
+       format: 'dd/mm/yyyy',
           minDate: -0,
           yearRange: "0:+1",
            changeMonth: true,
