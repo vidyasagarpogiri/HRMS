@@ -155,29 +155,29 @@ $('.leave-form-date').datepicker({
    .on('changeDate', function(selected){
        startDate = new Date(selected.date.valueOf());
        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
-       $('.to_date').datepicker('setStartDate', startDate);
+       $('.leave-to-date').datepicker('setStartDate', startDate);
    }); 
-var date = $(".leave-form-date").datepicker('getDate', date);
+   
 $('.leave-to-date')
    .datepicker({
        format: 'dd/mm/yyyy',
        weekStart: 1,
-       startDate: date,
+       startDate: FromEndDate,
        endDate: '01/01/2900',
        autoclose: true
    })
    .on('changeDate', function(selected){
        FromEndDate = new Date(selected.date.valueOf());
        FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
-       $('.from_date').datepicker('setEndDate', FromEndDate);
+       $('.leave-from-date').datepicker('setEndDate', FromEndDate);
    });
-
- 
- 
- 
- 
+    
 });
 </script>
+
+
+
+
 
 
  <script>
