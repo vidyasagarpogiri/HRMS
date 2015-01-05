@@ -116,6 +116,7 @@ $('.timepicker-24').timepicker({
 
 //timepicker end
 
+/*
 //colorpicker start
 
 $('.colorpicker-default').colorpicker({
@@ -181,7 +182,7 @@ $('#spinner4').spinner({value:0, step: 5, min: 0, max: 200});
 //spinner end
 
 
-
+*/ 
 //wysihtml5 start
 
 $('.wysihtml5').wysihtml5();
