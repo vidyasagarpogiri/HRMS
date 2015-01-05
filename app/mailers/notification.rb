@@ -64,7 +64,7 @@ class Notification < ActionMailer::Base
     @employee = payslip.employee
     @user = @employee.user
     attachments.inline['payslip.pdf'] = File.read(file_path)
-    mail(to: @user.email, subject: 'payslip of #{I18n.t("date.abbr_month_names")[Date.today.month-1]} of Mr. #{@employee.full_name}')
+      mail(to: @user.email, subject: "payslip of #{Date::MONTHNAMES[payslip.month]} - #{payslip.year} of Mr. #{@employee.full_name}")
   end
 
   # email for reference letter
