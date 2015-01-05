@@ -51,16 +51,6 @@
 </div>
 
 
-<script>  
-    $(".to").datepicker({
-      dateFormat: 'dd/mm/yy', 
-      maxDate: -0,
-      changeMonth: true,
-      changeYear: true
-    });
-  });
-</script>
-
 <script>
   $(function(){
     $("#new_experience").validator();
@@ -99,7 +89,12 @@ $('.to_date')
         FromEndDate = new Date(selected.date.valueOf());
         FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
         $('.from_date').datepicker('setEndDate', FromEndDate);
-    });      
+    });
+
+  
+  
+  
+  
 });
 </script>
 
