@@ -20,27 +20,3 @@
 //= require moment
 //= require fullcalendar
 //= require_tree .
-
-
-
-
-$(function() {
-    $( ".date-picker" ).datepicker({  
-      format: 'dd/mm/yyyy',
-       autoclose: true });
-       
-    
-$( ".datepicker_with_year" ).datepicker({
-       format: 'dd/mm/yyyy',
-       autoclose: true,
-       maxDate: -0
-    });
-    
-  });
-  
-
-
-
-
-
-
