@@ -4,7 +4,7 @@
 	<div class="panel-heading">
 		Experience Details
 	</div>
-	<div class="panel-body">
+	<div class="panel-body">	 
 	  <%= form_for ([@employee, @experience]), :remote => true, :html => {:class=>"form-horizontal row-fluid"} do |f| %>			
       
       <div class="form-group">
@@ -22,6 +22,8 @@
           <span class="help-block with-errors"></span>
         </div>
 		  </div>
+		  
+    
 
       <div class="form-group">
         <label class="control-label col-lg-2" for="basicinput">From Date</label>
@@ -57,33 +59,13 @@
   });
 </script>
 -->
-<script>
-  $(function () {
-    $(".from").datepicker({
-        dateFormat: 'dd/mm/yy',
-        changeMonth: true,
-        changeYear: true,
-        maxDate: -0,
-        yearRange: "-100:+0",
-        onClose: function (selectedDate) {
-          var date2 = $(this).datepicker('getDate');
-          date2.setDate(date2.getDate());
-          console.log(date2);
-          $(".to").datepicker("option", "minDate", date2);
-        }
-    });
 
-    $(".to").datepicker({
-      dateFormat: 'dd/mm/yy', 
-      maxDate: -0,
-      changeMonth: true,
-      changeYear: true
-    });
-  });
-</script>
 
 <script>
   $(function(){
     $("#new_experience").validator();
   });
 </script>
+
+
+
