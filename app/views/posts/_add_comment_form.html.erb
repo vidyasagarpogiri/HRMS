@@ -1,16 +1,15 @@
   <%= form_tag add_comments_posts_path, method: :post do %>
   
   
-    <div class="control-group">
+    <div class="form-group">
       
-        <div class="controls">
+        <div class="col-lg-8">
         <%= text_area_tag  'comment', " ", :style => "width: 650px;", required: true%>
         <span class="help-block with-errors"></span>
       </div>
     </div>
      <input type="hidden" value="<%= post %>" name="post_id">
-     <ul class="navigation-btns" style="margin: 10px 0 10px 720px;">
-       <li><button type="submit" class="btn btn-success">Comment </button></li>
-    									
-     </ul>
-  <% end %>
+     <div class="col-lg-8">
+     <button type="submit" class="btn btn-success pull-right">Comment </button>
+  	 </div>								
+ <% end %>
