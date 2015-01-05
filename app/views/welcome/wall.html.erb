@@ -46,13 +46,14 @@
         <% if @welcome_event.present? %>	
           <ul>
             <% @welcome_event.each do |welcome_event| %>
-              <li class="active"><strong><%= link_to welcome_event.title, "#eventsModal", :class => "btn btn-link event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal", :id => "eventModal" %><%= time_ago_in_words(welcome_event.created_at)%> ago</strong> 
-              <p> </p>
+              <div><li class="active"><strong><%= link_to welcome_event.title, "#eventsModal", :class => " event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal", :id => "eventModal" %></strong></div>
+              <div class="time-show" style="margin-left:230px;margin-top:-20px;"><%= time_ago_in_words(welcome_event.created_at)%> ago </div>
+             
               <!--<div class="control-group">
                 <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>                
               </div>
-              <%#link_to "Continue..", "#eventsModal", :class => "btn btn-link event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal", :id => "eventModal" %>
-              </li>-->
+              <%#link_to "Continue..", "#eventsModal", :class => "btn btn-link event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal", :id => "eventModal" %>-->
+              </li>
             <% end %>	
           </ul>
         <% else %>
@@ -85,7 +86,7 @@
                 <label class="idesc" for="basicinput"><%= raw welcome_announcement.description %> </label>
               </div>      
 
-              <%= link_to "Continue..", "#announcementModal", :class => "btn btn-link announcement-show event-show_#{welcome_announcement.id}", :url => announcement_path(welcome_announcement.id), "data-toggle" => "modal" %>
+              <%= link_to "Continue..", "#announcementModal", :class => "announcement-show event-show_#{welcome_announcement.id}", :url => announcement_path(welcome_announcement.id), "data-toggle" => "modal" %>
               </li>         
             <% end %>
           </ul>      
@@ -174,6 +175,14 @@
     overflow-y: auto;
     max-height:300px;
   }
+  
+  .text-scroll ul li a:first-child{
+  border-left: 4px solid #d3d7dd;
+  }
+  .text-scroll ul li a,.text-scroll ul li a:hover{
+  border-left: 4px solid #f1f2f7;
+  }
+  
 </style>
 
 <script>

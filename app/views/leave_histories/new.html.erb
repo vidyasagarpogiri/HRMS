@@ -22,7 +22,7 @@
           <%= flash[:error] %>
         </div>
       <% end %>                               
-      <%= form_for (@leave_history), :data => {:toggle => "validator"}, :html => {:class => "form-horizontal"}do |f| %>
+      <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %>
         <div class="row"> 
           <div class="form-group">
             <label  class="col-lg-1 control-label">Leave Type:</label>
@@ -40,9 +40,9 @@
               <span class="help-block with-errors"></span> 
             </div>
           </div>
-        </div>         
-        <div id="casualleave">
-          <div class="col-lg-12">
+        </div>
+        <div class="row">      
+          <div id="casualleave">        
             <div class="col-lg-1">
               <div class="form-group">                           
                 <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
@@ -56,26 +56,28 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-10 ">
-            <div class="full_day">
-              <div class="row">
-                <div class="col-lg-5">
-                  <div class="form-group">
-                    <label  class="col-lg-2 control-label">From: </label>
-                    <div class="col-lg-8">
-                      <%= f.text_field :from_date, :class => "form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
-                      <span class="help-block with-errors"></span> 
+          <div class="row">         
+            <div class="col-lg-10 ">
+              <div class="full_day">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label  class="col-lg-2 control-label">From: </label>
+                      <div class="col-lg-8">
+                        <%= f.text_field :from_date, :class => "form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
+                        <span class="help-block with-errors"></span> 
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-5">
-                  <div class="form-group">
-                    <label  class="col-lg-1 control-label">To:</label>
-                    <div class="col-lg-8">
-                      <%= f.text_field :to_date, :class => "form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"}, :required => true  %>
-                      <span class="help-block with-errors"></span> 
-                    </div>
-                  </div> 
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label  class="col-lg-1 control-label">To:</label>
+                      <div class="col-lg-8">
+                        <%= f.text_field :to_date, :class => "form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"}, :required => true  %>
+                        <span class="help-block with-errors"></span> 
+                      </div>
+                    </div> 
+                  </div>
                 </div>
               </div>
             </div>
@@ -97,21 +99,23 @@
             </div>         
           </div><!-- calualleave-->
         </div>
-          <div class="col-lg-10 floatingleave">          
+        <div class="row">
+          <div class="floatingleave">          
             <div class="form-group">
               <label  class="col-lg-1 control-label">Date:</label>
-              <div class="col-lg-3">
+              <div class="col-lg-4">
                 <input type="text" name="float_leave_date" id = "idnm4" class ="form-control float-leave-date" required="true" >
                 <span class="help-block with-errors"></span> 
               </div>
             </div>
           </div>
-          <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
-          <div class="panel-body">
-            <button type="submit" class="btn btn-success apply"> Apply </button>
-            <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>                                    
-          </div>
-        <% end %>           
+        </div>
+        <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
+        <div class="panel-body">
+          <button type="submit" class="btn btn-success apply"> Apply </button>
+          <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>                                    
+        </div>
+      <% end %>           
       <div class="alert-message alert alert-info alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         You have crossed the limit of your balace leaves
@@ -125,64 +129,52 @@
   </div>
 </div>
 
+<script>
+$(function(){
+var startDate = new Date('01/01/1900');
+var FromEndDate = new Date();
+var ToEndDate = new Date();
+
+ToEndDate.setDate(ToEndDate.getDate()+365);
+
+$('.leave-form-date').datepicker({
+    format: 'dd/mm/yyyy',
+    weekStart: 1,
+    startDate: FromEndDate,
+    endDate: '01/01/2900', 
+    autoclose: true
+})
+    .on('changeDate', function(selected){
+        startDate = new Date(selected.date.valueOf());
+        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+        $('.to_date').datepicker('setStartDate', startDate);
+    }); 
+$('.leave-to-date')
+    .datepicker({
+        format: 'dd/mm/yyyy',
+        weekStart: 1,
+        startDate: FromEndDate,
+        endDate: '01/01/2900',
+        autoclose: true
+    })
+    .on('changeDate', function(selected){
+        FromEndDate = new Date(selected.date.valueOf());
+        FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+        $('.from_date').datepicker('setEndDate', FromEndDate);
+    });
+
+  
+  
+  
+  
+});
+</script>
+
+
 
 
  <script>
- $(function () {
-     $(".leave-form-date").datepicker({
-         dateFormat: 'dd/mm/yy',
-         changeMonth: true,
-         changeYear: true,
-          minDate: -0,
-         yearRange: "+0:+1",
-         onClose: function (selectedDate) {
-             var date2 = $('.leave-form-date').datepicker('getDate');
-             date2.setDate(date2.getDate());
-             $(".leave-to-date").datepicker("option", "minDate", date2);
-             $(".error1").html('');
-         }
-     });
-     
-     $(".leave-to-date").datepicker({
-         dateFormat: 'dd/mm/yy',
-          minDate: -0,
-          yearRange: "0:+1",
-           changeMonth: true,
-         changeYear: true, 
-           onClose: function (selectedDate) {
-            var date1 = $('.leave-form-date').datepicker('getDate');
-            if (date1){
-              
-            }else{
-              $(".idnm2").val('');
-              $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
-            }
-           }
-     });
-     $(".leave-date").datepicker({
-       dateFormat: 'dd/mm/yy',
-          minDate: -0,
-          yearRange: "0:+1",
-           changeMonth: true,
-         changeYear: true
-     });
-     
-     $(".float-leave-date").datepicker({
-       dateFormat: 'dd/mm/yy',
-          minDate: -0,
-          yearRange: "0:+1",
-           changeMonth: true,
-         changeYear: true
-      });
-      
-      $(".leave-form-date").change(function(){
-      var date1 = $('.leave-form-date').datepicker('getDate');
-      date1.setDate(date1.getDate());
-        console.log(date1);
-      $(".float-leave-date").datepicker('setDate', date1);
-        $(".leave-date").datepicker('setDate', date1);
-      });
-  });
+
   $(function(){
     $('.half_day').hide();
     $(".alert-message").hide();
