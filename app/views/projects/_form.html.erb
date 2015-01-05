@@ -64,19 +64,14 @@
             
                <span class="pull-left">
                 <% if @project.skills.present?%>               
-                <% @project.skills.split(",").each do|tag| %>
-                  <i class="label label-info fa fa-tag" style="font-size: 13px"><%=  tag %></i>
+                <% @project.skills.split(",").each do|skill| %>
+                  <i class="label label-info fa fa-tag" style="font-size: 13px"><%=  skill %></i>
                 <% end %> 
-              
                 <%end%>
                 </span>
-                 
                 <input type="hidden" name="total_tags" class="total_tags">
               </div>
           </div>
-        
-        
-
         <div class="form-group">
           <div class="col-lg-offset-2 col-lg-10">
             <button type="submit" class="btn btn-success" data-remote="true">Save</button>
@@ -106,24 +101,28 @@
 <script>
 $(function(){
     var tags= "";
-    var total_tags="";
-    var present_tags = "<%= @project.skills %>";
+    var total_tags=  "<%= @project.skills %>" ;
+    console.log(total_tags);
 $("#s").keypress(function(e) {
     if(e.which == 13) {
-    var tag = $("#s").val();
-    //var all_tags  = tag+ ","+ $("#s").val()
-    span = get_box(tag);
-    $('#advanced_search_box').append(span);
-    tags = tags+ tag + "," ;
-    $("#s").val("");
-    $(".hidden_tags").val(tags); 
-    total_tags = tags + present_tags
-    $(".total_tags").val(total_tags);
-    e.preventDefault();
-    return false;
+      var tag = $("#s").val();
+      //var all_tags  = tag+ ","+ $("#s").val()
+      span = get_box(tag);
+      $('#advanced_search_box').append(span);
+      tags = tags+ tag + "," ;
+      $("#s").val("");
+      $(".hidden_tags").val(tags); 
+      //console.log($(".hidden_tags").val()); 
+      total_tags = tags + total_tags;
+      $(".total_tags").val(total_tags);
+     // console.log($(".total_tags").val());
+      e.preventDefault();
+      return false;
      
     }
-});  
+    
+}); 
+$(".total_tags").val(total_tags);
    });
 
 
@@ -133,7 +132,7 @@ $("#s").keypress(function(e) {
   }
 function remove_tags(text){
 var present_tags = "<%= @project.skills %>";
-console.log(text);
+//console.log(present_tags);
 var tags =  $(".hidden_tags").val().split(",");
 tags = jQuery.grep(tags, function(value) {
         return value !== text;

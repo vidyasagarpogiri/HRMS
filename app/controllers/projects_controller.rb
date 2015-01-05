@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
   end
   
   def update
-   # raise params.inspect
+  #raise params.inspect
     @employee = current_user.employee
      @project = Project.find(params[:id])
      @project.update(project_params)
