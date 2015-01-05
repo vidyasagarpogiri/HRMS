@@ -155,7 +155,7 @@ $('.leave-form-date').datepicker({
    .on('changeDate', function(selected){
        startDate = new Date(selected.date.valueOf());
        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
-       $('.to_date').datepicker('setStartDate', startDate);
+       $('.leave-to-date').datepicker('setStartDate', startDate);
    }); 
    
 $('.leave-to-date')
@@ -169,13 +169,9 @@ $('.leave-to-date')
    .on('changeDate', function(selected){
        FromEndDate = new Date(selected.date.valueOf());
        FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
-       $('.from_date').datepicker('setEndDate', FromEndDate);
+       $('.leave-from-date').datepicker('setEndDate', FromEndDate);
    });
-
- 
- 
- 
- 
+    
 });
 </script>
 
