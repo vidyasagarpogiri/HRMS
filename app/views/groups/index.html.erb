@@ -2,10 +2,10 @@
   <div class="row">                                             
     <div class="panel">
       <div class="panel-heading">
-        All Groups                               
+        All Groups
         <% if current_user.designation == Designation::HRADMIN %>
-          <label class = "pull-right"><a><i class="fa fa-plus"></i></a> <%= link_to "New Group", new_group_path %></label>   
-        <% end %>                            
+          <%= link_to "New Group", new_group_path, :class => "fa fa-plus pull-right" %>
+        <% end %>
       </div><!--/.module-head-->
       <div>
         <% if @groups.present? %>

@@ -9,60 +9,58 @@
       </header>
      <div class="panel-body">
     <section id="unseen">
-      <%= form_tag("/workgroups/#{@workgroup.id}/added_moderators") do %>  
-        <% if @employees.present? %>   
-           <table class="table table-bordered table-striped table-condensed" id="sample-table-2">
-             <thead>											      
-               <tr>                                                                                      
-              	 <th class="center">Employee Name</th>
-                 <th>Role </th>
-                 <th> Moderator </th>
-	             </tr>
-             </thead>                  
-                <tbody>
-                  <% @employees.each do |em| %>
-                  <tr>
-	                  <th class="center">
-	                   <%= em.full_name %> 
-	                  </th>           
-	                  <th class="center">
-	                    <% if em.id == @workgroup.admin_id %> 
-	                      admin  
-	                    <% elsif WorkgroupsEmployee.where(is_moderator: true, employee_id: em.id, workgroup_id: @workgroup.id).present? %>
-	                      Moderator
-	                    <% else %>
-	                      Member    
-	                    <% end %>
-	                  </th>
-	                  <th class="center">
-	                    <% unless em == current_user.employee %>
-	                    <% if WorkgroupsEmployee.where(is_moderator: true, employee_id: em.id, workgroup_id: @workgroup.id).present? %>
-	                        <%= check_box_tag 'employee_ids[]', em.id, checked = true%>
-	                        <% elsif em.id == @workgroup.admin_id %> 
-	                        <%# check_box_tag %>
+      
+      <% if @employees.present? %>  
+        <%= form_tag("/workgroups/#{@workgroup.id}/added_moderators") do %>   
+        <table class="table table-bordered table-striped table-condensed" id="sample-table-2">
+          <thead>											      
+            <tr>                                                                                      
+              <th class="center">Employee Name</th>
+              <th>Role </th>
+              <th> Moderator </th>
+            </tr>
+          </thead>                  
+          <tbody>
+              <% @employees.each do |em| %>
+                <tr>
+                  <th class="center">
+                     <%= em.full_name %> 
+                  </th>           
+                  <th class="center">
+                      <% if em.id == @workgroup.admin_id %> 
+                        admin  
+                      <% elsif WorkgroupsEmployee.where(is_moderator: true, employee_id: em.id, workgroup_id: @workgroup.id).present? %>
+                         Moderator
+                      <% else %>
+                          Member    
+                       <% end %>
+                  </th>
+                  <th class="center">
+                    <% unless em == current_user.employee %>
+                      <% if WorkgroupsEmployee.where(is_moderator: true, employee_id: em.id, workgroup_id: @workgroup.id).present? %>
+                          <%= check_box_tag 'employee_ids[]', em.id, checked = true%>
+                      <% elsif em.id == @workgroup.admin_id %> 
+                         <%# check_box_tag %>
                       <% else%>
-                           <%= check_box_tag 'employee_ids[]', em.id %> 
+                         <%= check_box_tag 'employee_ids[]', em.id %> 
                       <% end %>
-                      <% end %>
-	                  </th>
-	               </tr>	                  
-                   <ul class="navigation-btns  pull-right" >
-                      <li><%# link_to 'Edit', :class => "btn btn-success " %></li>
-                      <li><%# link_to "Delete",shift_path(shift.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>
-                   </ul>  
-                <% end %>
-                </tbody>
-              </table>              
-              <% else %>  
-			          <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-                    </button>
-                        No Employees to display
-                </div>                                             
-		          <% end %> 
-                <%= submit_tag 'Submit', :class => "btn btn-success" %>                          
-                <%= link_to 'Cancel', workgroup_path(@workgroup), :class => "btn btn-danger" %>         
-              <% end %>                    
+                    <% end %>
+                  </th>
+                </tr>	                  
+        </tbody>
+        </table>
+              <%= submit_tag 'Submit', :class => "btn btn-success" %>                          
+              <%= link_to 'Cancel', workgroup_path(@workgroup), :class => "btn btn-danger" %>         
+              <% end %>         
+          <% end %>                
+      <% else %>  
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+            </button>
+                No Employees to display
+        </div>                                             
+      <% end %> 
+                                 
             </div><!--module body-->
           </section><!--/.module -->
         </div><!--/.content-->
