@@ -34,8 +34,8 @@
                 <td>
                <% if current_user.designation == Designation::HRADMIN %>
                
-                   <%= link_to 'Edit', edit_event_path(event), :class => "btn btn-success " %>
-                   <%= link_to "Delete", event_path(event.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
+                   <%= link_to 'Edit', edit_event_path(event), :class => "btn btn-success  btn-sm " %>
+                   <%= link_to "Delete", event_path(event.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger btn-sm" %>
                 <% end %>
                </td>
               
@@ -57,7 +57,7 @@
   </div><!--/.span9-->                
 </div><!--/.row-->
 
-            
+          
             
             
 <script>
@@ -71,4 +71,5 @@
 		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
 	} );
 </script>                               
-                       
+ 
+ <% title "Holiday List" %>                      
