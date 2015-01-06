@@ -2,7 +2,7 @@
   <div class="panel-heading">
     Department Appraisal  <a href="/departments" ><i class="fa fa-arrow-circle-left pull-right" title = "Back to Departments"> </i></a>  
     <% if current_user.designation == Designation::HRADMIN %>
-      <%= link_to " Change Review Template", edit_department_path(@department), :class => "pull-right", remote: true %>
+      <%= link_to " Change Review Template", assign_appraisal_department_path(@department), :class => "pull-right", remote: true %>
     <% end %>
   </div>
   <div class="panel-body">

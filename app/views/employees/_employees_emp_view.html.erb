@@ -61,9 +61,14 @@
                                       </ul>
                                       <address>
                                           <strong><%= employee.user.email%></strong><br>
-                                          Vamoil Ave, Suite 23<br>
-                                          Dream land, Australia <br>
-                                          <abbr title="Phone">P:</abbr> (142) 454-7890
+                                          <% if employee.designation.present? %>
+                                            <i class="fa fa-cog"></i> <%= employee.designation.designation_name if employee.designation.present? %><br>
+                                          <% end %>
+                                          <% if employee.blood_group.present? %> 
+                                            <i class="fa fa-plus-square-o"></i> <%= employee.blood_group.blood_group_name if employee.blood_group.present? %><br>
+                                          <% end %>
+                                          <i class="fa fa-gift"></i> <%= employee.date_of_birth %> <br>
+                                          <i class="fa fa-phone"></i> <%= employee.mobile_number %>
                                       </address>
 
 
