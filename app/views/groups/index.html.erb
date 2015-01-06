@@ -3,7 +3,9 @@
     <div class="panel">
       <div class="panel-heading">
         All Groups                               
-        <label class = "pull-right"><a><i class="fa fa-plus"></i></a> <%= link_to "New Group", new_group_path %></label>                               
+        <% if current_user.designation == Designation::HRADMIN %>
+          <label class = "pull-right"><a><i class="fa fa-plus"></i></a> <%= link_to "New Group", new_group_path %></label>   
+        <% end %>                            
       </div><!--/.module-head-->
       <div>
         <% if @groups.present? %>

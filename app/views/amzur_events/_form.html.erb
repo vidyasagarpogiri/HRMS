@@ -6,16 +6,16 @@
     <%= form_for @amzurevent, :html => {:class=>"form-horizontal row-fluid event_form"} do |f| %>
     <div class="form-group">
       <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Event Title: </label>
-      <div class="col-lg-10">
-        <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter valid Event Title"}, :required => true %>
+      <div class="col-lg-7">
+        <%= f.text_field :title, :class => " form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter valid Event Title"}, :required => true %>
         <span class="help-block with-errors"></span>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">Description: </label>
-      <div class="col-lg-10">
-        <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter  Event Description"}, :style => "margin: 0px 0px 10px; width: 850px; height: 221px;" %>
+      <div class="col-lg-7">
+        <%= f.bootsy_area :description, :class => "form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter  Event Description"}, :style => "margin: 0px 0px 10px; height: 221px;" %>
           <span class="help-block with-errors"></span> 
       </div>
     </div>
