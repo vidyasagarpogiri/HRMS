@@ -31,7 +31,7 @@
 	          <td><%=f.leave_type.type_name %> </td>													
 	          <td><%=f.status %></td>
 	          <% unless f.to_date.to_date <= Date.today %>
-	            <td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info", :remote => true  %></td>								 
+	            <td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info btn-sm", :remote => true  %></td>								 
 	          <% end %>
           </tr>																						
         </tbody>

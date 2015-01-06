@@ -27,7 +27,7 @@
                       <td> 
                         <% if current_user.department == Department::HR %>
                         <ul class="navigation-btns">
-                          <li><%= link_to 'Edit', edit_designation_path(designation.id), :class => "btn btn-success pull-left" %></li>                        
+                          <li><%= link_to 'Edit', edit_designation_path(designation.id), :class => "btn btn-success pull-left btn-sm" %></li>                        
                          <!-- <li><%# link_to "Delete", designation_path(designation.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger pull-left" %></li>    -->                                     
                         </ul>
                         <% end %>
