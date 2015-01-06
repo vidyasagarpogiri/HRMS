@@ -22,6 +22,7 @@
           <%= flash[:error] %>
         </div>
       <% end %>                               
+
     <!-- rendering leave form                 --> 
      <%= render "leave_histories/apply_form" %>
    <!--  ---------------------------------------->
@@ -37,14 +38,6 @@
     <% end %>
   </div>
 </div>
-
-
-<script>
-  $(function(){
-    $("#new_experience").validator();
-  });
-</script>
-
 
 <script>
 $(function(){
@@ -128,14 +121,7 @@ $(function(){
         startDate: FromEndDate,
        //endDate: '01/01/2900',
        autoclose: true
-   })
-   .on('change', function(){
-        var date = $('.leave-date').datepicker('getDate');
-        date.setDate(date.getDate());
-        $(".leave-form-date").datepicker('setDate', date);
-        $(".leave-to-date").datepicker('setDate', date);
-        $(".float-leave-date").datepicker('setDate', date);
-     });
+   });
    
 
    

@@ -33,6 +33,9 @@ class User < ActiveRecord::Base
 	  employee.department.department_name	
 	end
 	
+	def designation
+	  employee.designation.designation_name if employee.designation.present?
+	end
 
 
 end

@@ -6,4 +6,6 @@ class Designation < ActiveRecord::Base
   belongs_to :department
   
   validates :designation_name, presence: true, uniqueness: { case_sensitive: false }
+  
+  HRADMIN = "HR ADMIN"
 end

@@ -7,8 +7,8 @@
       <form class="form-horizontal" role="form">
           <div class="form-group">
               <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Announcement Title</label>
-              <div class="col-lg-10">
-                     <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter Valid Annoucement Title"}, :required => true %>
+              <div class="col-lg-7">
+                     <%= f.text_field :title, :class => " form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter Valid Annoucement Title"}, :required => true %>
                     
                   <span class="help-block with-errors"></span>
                   
@@ -17,8 +17,8 @@
           
           <div class="form-group">
               <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">Description</label>
-              <div class="col-lg-9">
-                 <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter Announcement  Description"}, :required => true,:style => "margin: 0px 0px 10px; width: 850px; height: 221px;" %>
+              <div class="col-lg-8">
+                 <%= f.bootsy_area :description, :class => " form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter Announcement  Description"}, :required => true,:style => "margin: 0px 0px 10px; width: 900px; height: 221px;" %>
                   <span class="help-block with-errors"></span> 
               </div>
           </div>
@@ -83,7 +83,7 @@
             <div class="form-group">
               <div class="col-lg-offset-2 col-lg-8">
                  <button type="submit" class="btn btn-success">Post </button>&nbsp&nbsp
-                <%= link_to "Cancel", announcements_path,:class => "btn btn-danger" %>
+                <%= link_to "Cancel", welcome_wall_path,:class => "btn btn-danger" %>
               </div>
           </div>
           

@@ -51,6 +51,9 @@ JobLocation.create( :address_id => addresses[rand(addresses.length)])
 end
 JobLocations = JobLocation.all.pluck(:id)
 
+
+Department.find_by_department_name("HR").designations.create(designation_name: "HR ADMIN")
+
 # We are already created deparment and designations in Migration file
 Departments = Department.all.pluck(:id)
 

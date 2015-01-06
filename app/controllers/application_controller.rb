@@ -43,6 +43,14 @@ class ApplicationController < ActionController::Base
 	  end
 	end 
 	
+	#BalaRaju HR Admin View 
+	def hr_admin_view
+	  unless current_user.designation == Designation::HRADMIN
+	    render :text => "You Don`t Have Permission"  
+	  end
+	end
+	
+	
 	def reporting_manager_view
 	  unless current_user.employee.is_reporting_manager?
 	    render :text => "You Don`t Have Permission"

@@ -3,7 +3,7 @@
     <section class="panel panel-info">
       <header class="panel-heading">
         List Of Holidays
-        <% if current_user.department == Department::HR %>                                                 
+        <% if current_user.designation == Designation::HRADMIN %>                                                 
           <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to " New Holiday", new_event_path, :class=>"pull-right" %>
         <% end %>        
       </header>
@@ -31,12 +31,14 @@
                <tr class="gradeA">               
                 <td><%= event.event_name %></td>
                 <td><%= format_date(event.event_date) %></td>
-               <% if current_user.department == Department::HR %>
                 <td>
+               <% if current_user.designation == Designation::HRADMIN %>
+               
                    <%= link_to 'Edit', edit_event_path(event), :class => "btn btn-success " %>
                    <%= link_to "Delete", event_path(event.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
+                <% end %>
                </td>
-              <% end %>
+              
               </tr>
               <% end %>
             </tbody>                        
