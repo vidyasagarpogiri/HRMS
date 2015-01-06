@@ -3,35 +3,37 @@
     Job Details Form
   </div>        
   <div class="panel-body">
-    <%= form_for @recruitment,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid"} do |f| %>
+    <%= form_for @recruitment,  :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row"} do |f| %>
+    
        <div class="form-group">
             <label for="inputEmail1" class="col-lg-2 control-label">Job Code</label>
-            <div class="col-lg-10">
-                 <%= f.text_field :jobcode, :class => "span8 form-control", :placeholder =>"Enter Job Code", :data => {:error => "Please Enter valid Job Code"}, :required => true %>
+            <div class="col-lg-8">
+                 <%= f.text_field :jobcode, :class => "form-control", :placeholder =>"Enter Job Code", :data => {:error => "Please Enter valid Job Code"}, :required => true %>
           <span class="help-block with-errors"></span>
                 
             </div>
         </div>
+        
         <div class="form-group">
             <label for="inputPassword1" class="col-lg-2 control-label">Job Title</label>
-            <div class="col-lg-10">
-            <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Job Title", :data => {:error => "Please Enter valid Job Title"}, :required => true %>
+            <div class="col-lg-8">
+            <%= f.text_field :title, :class => " form-control", :placeholder =>"Enter Job Title", :data => {:error => "Please Enter valid Job Title"}, :required => true %>
          <span class="help-block with-errors"></span>
             </div>
         </div>
         
          <div class="form-group">
             <label for="inputPassword1" class="col-lg-2 control-label">Description</label>
-            <div class="col-lg-10">
-             <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Job Description", :data => {:error => "Please Enter Job Description"}, :required => true, :style => "margin: 0px 0px 10px; width: 850px; height: 221px;" %>
+            <div class="col-lg-8">
+             <%= f.bootsy_area :description, :class => " form-control", :placeholder =>"Enter Job Description", :data => {:error => "Please Enter Job Description"}, :required => true, :style => "margin: 0px 0px 10px; width: 850px; height: 221px;" %>
          <span class="help-block with-errors"></span>
             </div>
         </div>
         
          <div class="form-group">
             <label for="inputEmail1" class="col-lg-2 control-label">Link</label>
-            <div class="col-lg-10">
-                  <%= f.text_field :link, :class => "span8  form-control", :id => "basicinput", :placeholder =>"http://www.example.com",:data => {:error => "Please Enter valid Job URL"},  :type => "url", :required => true %>
+            <div class="col-lg-8">
+                  <%= f.text_field :link, :class => "form-control", :id => "basicinput", :placeholder =>"http://www.example.com",:data => {:error => "Please Enter valid Job URL"},  :type => "url", :required => true %>
         <span class="help-block with-errors"></span>
                 
             </div>
@@ -40,8 +42,8 @@
         
         <div class="form-group">
             <label for="inputEmail1" class="col-lg-2 control-label">Status</label>
-            <div class="col-lg-10">
-                   <%= f.select(:status, options_for_select([['Open', 'open'], ['Closed', 'closed']]), {}, :class=> "span8 form-control",:id=>"disabledSelect") %>
+            <div class="col-lg-8">
+                   <%= f.select(:status, options_for_select([['Open', 'open'], ['Closed', 'closed']]), {}, :class=> "form-control",:id=>"disabledSelect") %>
                
         <span class="help-block with-errors"></span>
                 
@@ -51,8 +53,8 @@
      
       <div class="form-group">
         <label for="jobtype" class="col-lg-2 control-label">Job Type</label>
-        <div class="col-lg-10">
-          <%= f.select(:job_type, options_for_select([['Hot Position', 'Hot Position'], ['Regular Position', 'Regular Position']]), {}, :class=> "span8 form-control",:id=>"disabledSelect") %>             
+        <div class="col-lg-8">
+          <%= f.select(:job_type, options_for_select([['Hot Position', 'Hot Position'], ['Regular Position', 'Regular Position']]), {}, :class=> " form-control",:id=>"disabledSelect") %>             
           <span class="help-block with-errors"></span>              
         </div>
       </div>
@@ -60,16 +62,19 @@
         
         <div class="form-group">
           <label for="exampleInputFile" class="col-lg-2 control-label">Attachment</label>
-          <div class="col-lg-10">
+          <div class="col-lg-8">
             <%= f.file_field :file, :onchange =>"validateFiles(this);", :data => {:max_file_size => 5.megabytes,:error => " Please Choose valid a file to attach"} %> <br>
             <%if @recruitment.file_url.present? %>
               <%= link_to "attachment", @recruitment.file_url, :target => "/blank" %>
             <%end%>
           </div> 
-        </div>                
-        <div class="panel-body">              
-          <button type="submit" class="btn btn-success">Save</button>&nbsp&nbsp
-          <%= link_to "Cancel", recruitments_path,:class => "btn btn-danger" %>             
+        </div>   
+                     
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-10">           
+            <button type="submit" class="btn btn-success">Save</button>&nbsp&nbsp
+            <%= link_to "Cancel", recruitments_path,:class => "btn btn-danger" %>             
+          </div>
         </div>
         
     <% end %>
