@@ -132,8 +132,16 @@ class LeaveHistoriesController < ApplicationController
     if @leave_history.status == LeaveHistory::APPROVED
       @days =  @leave_history.days   
     end
+    leave_type_id = params[:leave_history][:leave_type_id].to_i
+   # For floating leave edit
+   if  leave_type_id == 2 && params[:leave_history][:is_halfday] == "full_day" 
+    #raise params.inspect
+    date = params['float_leave_date']
+    start_date, end_date = startenddate(date)
+    @leave_history.update(:from_date =>date, :to_date =>date, :reason => params[:leave_history][:reason])
+    Notification.delay.applyleave(current_user.employee, @leave_history)
    ###
-   if params[:leave_history][:is_halfday] == "full_day"
+   elsif params[:leave_history][:is_halfday] == "full_day"
     @leave_history.update(params_leave_history)
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, @employee.group)
