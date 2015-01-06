@@ -34,7 +34,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
             Notification.delay.announcement_notification(emp.user,@announcement) 
           end
         end
-          redirect_to announcements_path
+          redirect_to welcome_wall_path
         else
            flash.now[:error]
            render "new"
@@ -48,7 +48,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
             Notification.delay.announcement_notification(emp.user,@announcement) 
           end
         end
-          redirect_to announcements_path
+          redirect_to welcome_wall_path
         else
            flash.now[:error]
            render "new"
@@ -63,7 +63,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
             Notification.delay.announcement_notification(emp.user,@announcement) 
           end
         end
-          redirect_to announcements_path
+          redirect_to welcome_wall_path
         else
            flash.now[:error]
            render "new"
@@ -78,7 +78,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
             Notification.delay.announcement_notification(emp.user,@announcement) 
           end
         end
-          redirect_to announcements_path
+          redirect_to welcome_wall_path
         else
            flash.now[:error]
            render "new"
@@ -105,7 +105,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
      @announcement = Announcement.find(params[:id])
      @announcement.update(announcement_params)
        if @announcement
-        redirect_to announcements_path
+        redirect_to welcome_wall_path
         else
          flash.now[:error]
          render "edit"
@@ -115,7 +115,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
   
   def destroy
     @announcement.destroy
-    redirect_to announcements_path 
+    redirect_to welcome_wall_path 
   end
   
   
