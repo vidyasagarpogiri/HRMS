@@ -6,7 +6,6 @@
  </div>                      
  <div class="panel-body">
   <%= form_for ([@group, @leave_policy]), :html => {:class=>"form-horizontal row-fluid edit-leave_policy-form"}, :remote => true do |f| %> 
-    <div class="row">
     <div class="form-group">   
 			 <label class="col-lg-2 control-label" for="basicinput">Leaves per Month</label>
           <div class="col-lg-8">
@@ -14,8 +13,7 @@
             <span class="help-block with-errors"></span>
 			     </div>
 	  </div>
-	  </div>
-	  <div class="row">                                                                              
+	                                                                             
     <div class="form-group">   
 			 <label class="col-lg-2 control-label" for="basicinput">Carry forword Leaves per Year</label>
            <div class="col-lg-8">
@@ -23,8 +21,7 @@
             <span class="help-block with-errors"></span>
 			      </div>
 	  </div>
-	  </div>
-	  <div class="row">
+
 	  <div class="form-group">   
 			 <label class="col-lg-2 control-label" for="basicinput">Maximum Carry forword Leaves</label>
            <div class="col-lg-8">
@@ -32,8 +29,7 @@
             <span class="help-block with-errors"></span>
 			      </div>
 			      </div>
-			    </div>
-			   <div class="row">
+			 
 			  <div class="form-group">   
 			 <label class="col-lg-2 control-label" for="basicinput">Floating Leave Period</label>
            <div class="col-lg-8">    
@@ -42,7 +38,7 @@
 			    <span class="help-block with-errors"></span>
 			  </div>
 			  </div>
-			</div>                                                                                                        
+		                                                                                                       
     <%= f.submit  'Save', :class => "btn btn-success pull-left" %>                                                   
      <% end %>
  </div><!--/.module-body-->

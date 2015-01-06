@@ -1,5 +1,5 @@
 class LeavePoliciesController < ApplicationController
- before_filter :hr_view,  only: ["new", "edit"]
+ before_filter :hr_admin_view,  only: ["new", "edit"]
  before_filter :other_emp_view
  before_action :get_group, only: [:index, :new, :create, :edit, :update]
  
