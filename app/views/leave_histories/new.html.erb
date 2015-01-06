@@ -22,100 +22,10 @@
           <%= flash[:error] %>
         </div>
       <% end %>                               
-      <%= form_for (@leave_history), :data => {:toggle => "validator"}, :html => {:class => "form-horizontal"} do |f| %>
-        <div class="row"> 
-          <div class="form-group">
-            <label  class="col-lg-1 control-label">Leave Type:</label>
-            <div class="col-lg-10">
-              <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name,  { :class => "leave_type form-control", :id => "disabledSelect" } %> 
-              <span class="help-block with-errors"></span> 
-            </div>
-          </div> 
-        </div>                      
-        <div class="row">
-          <div class="form-group">
-            <label  class="col-lg-1 control-label">Reason:</label>
-            <div class="col-lg-6">
-              <%= f.text_area :reason,  :class =>"form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %> 
-              <span class="help-block with-errors"></span> 
-            </div>
-          </div>
-        </div>
-        <div class="row">      
-          <div id="casualleave">        
-            <div class="col-lg-1">
-              <div class="form-group">                           
-                <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
-                <span class="help-block with-errors"></span>               
-              </div>
-            </div>
-            <div class="col-lg-5">
-              <div class="form-group">
-                <%= f.radio_button :is_halfday, 'full_day',:class => "rb2", :checked => true %> &nbspFull Day      
-                <span class="help-block with-errors"></span> 
-              </div>
-            </div>
-          </div>
-          <div class="row">         
-            <div class="col-lg-10 ">
-              <div class="full_day">
-                <div class="row">
-                  <div class="col-lg-5">
-                    <div class="form-group">
-                      <label  class="col-lg-2 control-label">From: </label>
-                      <div class="col-lg-8">
-                        <%= f.text_field :from_date, :class => "form-control leave-form-date idnm1",  :data => {:error => "Please Enter Valid Date"}, :required => true %>
-                        <span class="help-block with-errors"></span> 
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-5">
-                    <div class="form-group">
-                      <label  class="col-lg-1 control-label">To:</label>
-                      <div class="col-lg-8">
-                        <%= f.text_field :to_date, :class => "form-control leave-to-date idnm2", :data => {:error => "Please Enter Valid Date"}, :required => true  %>
-                        <span class="help-block with-errors"></span> 
-                      </div>
-                    </div> 
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-12 half_day">          
-              <div class="form-group">
-                <label  class="col-lg-1 control-label">Date:</label>
-                <div class="col-lg-3">
-                  <input type="text" name="leave_date" id = "idnm3" class =" leave-form-date form-control leave-date">
-					        <span class="help-block with-errors"></span>   
-				        </div>
-              </div>
-              <div class="form-group">
-                <label  class="col-lg-1 control-label">Section:</label>
-                <div class="col-lg-3">
-                  <%= f.select :section, options_for_select([['Morning', 'Morning'], ['After Noon', 'After Noon']]), :class => "form-control leave-to-date idnm4", :data => {:error => "Please Enter Select Session"}, required: "true" %>
-                  <span class="help-block with-errors"></span> 
-                </div>
-              </div>   
-            </div>         
-          </div><!-- calualleave-->
-        </div>
-        <div class="row">
-          <div class="floatingleave">          
-            <div class="form-group">
-              <label  class="col-lg-1 control-label">Date:</label>
-              <div class="col-lg-4">
-                <input type="text" name="float_leave_date" id = "idnm4" class =" leave-form-date form-control float-leave-date" required="true" >
-                <span class="help-block with-errors"></span> 
-              </div>
-            </div>
-          </div>
-        </div>
-        <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
-        <div class="panel-body">
-          <button type="submit" class="btn btn-success apply"> Apply </button>
-          <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>                                    
-        </div>
-      <% end %>           
+
+    <!-- rendering leave form                 --> 
+     <%= render "leave_histories/apply_form" %>
+   <!--  ---------------------------------------->
       <div class="alert-message alert alert-info alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         You have crossed the limit of your balace leaves
@@ -131,159 +41,125 @@
 
 <script>
 $(function(){
-var startDate = new Date('01/01/1900');
-var FromEndDate = new Date();
-var ToEndDate = new Date();
-
-ToEndDate.setDate(ToEndDate.getDate()+365);
-
-$('.leave-form-date').datepicker({
-   format: 'dd/mm/yyyy',
-   weekStart: 1,
-   startDate: FromEndDate,
-   endDate: '01/01/2900', 
-   autoclose: true
-})
-   .on('changeDate', function(selected){
-       startDate = new Date(selected.date.valueOf());
-       startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
-       $('.leave-to-date').datepicker('setStartDate', startDate);
-   }); 
-   
-$('.leave-to-date')
-   .datepicker({
-       format: 'dd/mm/yyyy',
-       weekStart: 1,
-       startDate: FromEndDate,
-       endDate: '01/01/2900',
-       autoclose: true
-   })
-   .on('changeDate', function(selected){
-       FromEndDate = new Date(selected.date.valueOf());
-       FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
-       $('.leave-from-date').datepicker('setEndDate', FromEndDate);
-   });
-    
-});
-</script>
-
-
-
-
- <script>
-  $(function () {
-     $(".leave-form-date").datepicker({
-         dateFormat: 'dd/mm/yy',
-         changeMonth: true,
-         changeYear: true,
-          minDate: -0,
-         yearRange: "+0:+1",
-         onClose: function (selectedDate) {
-             var date2 = $('.leave-form-date').datepicker('getDate');
-             date2.setDate(date2.getDate());
-             $(".leave-to-date").datepicker("option", "minDate", date2);
-             $(".error1").html('');
-         }
-     });
-     $(".leave-to-date").datepicker({
-         dateFormat: 'dd/mm/yy',
-          minDate: -0,
-          yearRange: "0:+1",
-           changeMonth: true,
-         changeYear: true, 
-           onClose: function (selectedDate) {
-            var date1 = $('.leave-form-date').datepicker('getDate');
-            if (date1){
-              
-            }else{
-              $("#idnm2").val('');
-              $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
-            }
-           }
-     });
-     $(".leave-date").datepicker({
-       dateFormat: 'dd/mm/yy',
-          minDate: -0,
-          yearRange: "0:+1",
-           changeMonth: true,
-         changeYear: true
-     });
-  });
-  
-  $(function(){
     $('.half_day').hide();
     $(".alert-message").hide();
+     $('.floatingleave').hide();
+     
     $('.rb1').click(function(){
       $('.full_day').hide();
       $('.half_day').show();
+      $("#half_day").prop('required', true);
+      $("#floating_leave").removeAttr("required");
+      $("#full_day_from").removeAttr("required");
+      $("#full_day_to").removeAttr("required");
     });
     $('.rb2').click(function(){
       $('.half_day').hide();
       $('.full_day').show();
+      $("#full_day_from").prop('required', true);
+      $("#full_day_to").prop('required', true);
+      $("#half_day").removeAttr("required");
+      $("#floating_leave").removeAttr("required");
     });
-     $(".leave-date").change(function(){
-        var date = $('.leave-date').datepicker('getDate');
-        date.setDate(date.getDate());
-        $(".leave-form-date").datepicker('setDate', date);
-        $(".leave-to-date").datepicker('setDate', date);
-        $(".float-leave-date").datepicker('setDate', date);
+    
+    
+    var startDate = new Date('01/01/1900');
+    var FromEndDate = new Date();
+    var ToEndDate = new Date();
+
+    $('.leave-form-date').datepicker({
+       format: 'dd/mm/yyyy',
+       startDate: new Date(), 
+       autoclose: true
+    })
+     .on('changeDate', function(selected){
+           startDate = new Date(selected.date.valueOf());
+           startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+           $('.leave-to-date').datepicker('setStartDate', startDate);
      });
-    //script for checking applied leaves is greater than balanced leaves - sekhar
-    $(".idnm2").change(function(){
-      if($(".rb2").prop("checked")){
-       var startDate =$(".idnm1").datepicker("getDate");
-       var endDate =$(".idnm2").datepicker("getDate");
-       var diff = endDate - startDate;// calculating date difference will give value in milliseconds
-       var days = (diff/86400000)+1; // converting milliseconds to days here we are adding 1, becuase it will give the difference of two dates
-       var weeks = Math.floor(days / 7); // calculating how many weeks we have in that days
-       days = days - (weeks * 2); // multiply with 2 will give how many weekends we have in those weeks
-       var startDay = startDate.getDay(); //will give day of that date
-       var endDay = endDate.getDay();
-       if (startDay - endDay > 1) // conditons for calculating days depends on their start and end dates
-         days = days - 2;
-       if (startDay == 0 && endDay != 6) // it checks weather start day is sunday
+     
+     $('.leave-to-date').datepicker({
+           format: 'dd/mm/yyyy',
+           autoclose: true
+       })
+       .on('changeDate', function(selected){
+           FromEndDate = new Date(selected.date.valueOf());
+           FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+           $('.leave-from-date').datepicker('setEndDate', FromEndDate);
+       });
+       
+       
+      $(".idnm2").change(function(){
+       
+        if ($(".rb2").prop("checked")){
+          var startDate =$(".idnm1").datepicker("getDate");
+          var endDate =$(".idnm2").datepicker("getDate");
+          var diff = endDate - startDate;// calculating date difference will give value in milliseconds
+          var days = (diff/86400000)+1; // converting milliseconds to days here we are adding 1, becuase it will give the difference of two dates
+          var weeks = Math.floor(days / 7); // calculating how many weeks we have in that days
+          days = days - (weeks * 2); // multiply with 2 will give how many weekends we have in those weeks
+          var startDay = startDate.getDay(); //will give day of that date
+          var endDay = endDate.getDay();
+          if (startDay - endDay > 1) // conditons for calculating days depends on their start and end dates
+            days = days - 2;
+          if (startDay == 0 && endDay != 6) // it checks weather start day is sunday
             days = days - 1;
-       if (endDay == 6 && startDay != 0) // it checks weather end day is saturday
+          if (endDay == 6 && startDay != 0) // it checks weather end day is saturday
             days = days - 1;
-    var total_leaves = parseFloat($("#total_leaves").val());// converting value into float
-    if(total_leaves<days){  // checking weather applied leaves are more than balance leaves
-       $(".alert-message").show(); // it will show an alert message to the user that he crossed his balance leaves
-    }
-    else{
-       $(".alert-message").hide();
-    }
-   }
- });
-});
+          var total_leaves = parseFloat($("#total_leaves").val());// converting value into float
+          if(total_leaves<days){  // checking weather applied leaves are more than balance leaves
+            $(".alert-message").show(); // it will show an alert message to the user that he crossed his balance leaves
+          }
+          else{
+            $(".alert-message").hide();
+          }
+        }
+      });
+     
+   $('.leave-date').datepicker({
+       format: 'dd/mm/yyyy',
+        startDate: FromEndDate,
+       //endDate: '01/01/2900',
+       autoclose: true
+   });
+   
 
-</script>
-
-<script>
-  $(function(){
-    $('.floatingleave').hide();
+   
+    $('.float-leave-date').datepicker({
+       format: 'dd/mm/yyyy',
+       startDate: new Date(),
+      
+       autoclose: true
+   })
+   
     $("#leave_history_leave_type_id").change(function(){
       var leave_id = parseInt($("#leave_history_leave_type_id").val());
       if(leave_id == 2)
         {
           $('#casualleave').hide();
           $('.floatingleave').show();
+          $("#full_day_from").removeAttr("required");
+          $("#full_day_to").removeAttr("required");
+          $("#floating_leave").prop('required', true);
+          $("#half_day").removeAttr("required");
+          
           //.datepicker('setDate', date);
         }
         else{
           $('.floatingleave').hide();
           $('#casualleave').show();
+          $("#full_day_from").prop('required', true);
+          $("#full_day_to").prop('required', true);
+          $("#floating_leave").removeAttr("required");
+          $("#half_day").removeAttr("required");
         }
           //console.log(leave_id);
      });
-     $('.float-leave-date').change(function(){
-          var float_date = $(".float-leave-date").datepicker('getDate');
-          float_date.setDate(float_date.getDate());
-          $('.leave-form-date').datepicker('setDate', float_date);
-          $('.leave-to-date').datepicker('setDate', float_date);
-          $('.leave-date').datepicker('setDate', float_date);
-       });
-  });
+     
+  
+});
 </script>
+
 
             
 
