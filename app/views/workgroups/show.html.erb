@@ -6,13 +6,13 @@
   </div>   
                          
   <div class="panel-body">  
-    <p>Workgroup Group Admin : <%= @admin.full_name %></p>
+    <p>Workgroup Group Admin : <%= @admin.full_name %>
     
     <% if current_user.employee.id == @workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: @workgroup.id ).present? %>
       <span class="pull-right"> 
         <a href="#m" role="button" data-toggle="modal" class=" btn btn-success btn-xs">Add Member&nbsp;</a>                                
         <%= link_to "Add/Remove Moderator",add_moderator_workgroup_path, :class =>" btn btn-success btn-xs" %> 
-      </span>   
+      </p></span>   
     <% end %> 
                             
 

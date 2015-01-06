@@ -9,7 +9,7 @@
       </div>
       <div class="panel-body">   
       <% if @projects.present? %>
-        <% @projects.each do |project| %>                     
+        <% @projects.each do |project| %>                   
         <div class="row">
           <label class="control-label col-lg-2" for="basicinput">Project Tille:</label>
           <div class="col-lg-8">
@@ -33,13 +33,13 @@
           <label class="control-label col-lg-2" for="basicinput">End Date:</label>
           <div class="col-lg-8"><%= format_date(project.end_date) %></div>
         </div>
-        
+                   
         <div class="row">
          <label class="control-label col-lg-2" for="basicinput">Skills:</label>
             <div class="col-lg-8">
                 <% project.skills.split(",").each do|skill| %>
-                 <i class="label label-info fa fa-tag" style="font-size: 13px"><%=  skill %></i> 
-                <% end %>  
+                 <i class="label label-info fa fa-tag" style="font-size: 13px"><%=skill %></i> 
+                <% end if project.skills?%>  
           </div>                                            
         </div>
         
@@ -54,13 +54,15 @@
         </div>
         
         <% if current_user.employee == project.employee %>
-          <div class="form-group">
-            <div class="col-lg-10">
+          <div class="row">
+            <div class="form-group">
               <%= link_to 'Edit',  edit_project_path(project), :class => "btn btn-success", :remote => true %>
               <%= link_to "Delete", project_path(project.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger ", :remote => true %>
             </div>
           </div>
-        <% end %>       
+        <% end %>
+        
+<hr>
           <% end %>
         <% else %>
           <div class="alert alert-success alert-dismissable">
