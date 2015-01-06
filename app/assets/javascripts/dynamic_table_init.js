@@ -12,7 +12,7 @@ function fnFormatDetails ( oTable, nTr )
 
 $(document).ready(function() {
 
-    $('.table-dynamic').dataTable( {
+    $('#dynamic-table').dataTable( {
         "aaSorting": [[ 4, "desc" ]]
     } );
 
