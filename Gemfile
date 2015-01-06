@@ -134,6 +134,8 @@ gem 'momentjs-rails'
 gem "google_visualr", ">= 2.1"
 
 
+#for amazon s3
+gem "fog"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
