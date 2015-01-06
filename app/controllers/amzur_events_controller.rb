@@ -4,7 +4,7 @@ class AmzurEventsController < ApplicationController
   before_action :find_event, only: [:edit, :show, :update, :destroy]
   
   def index
-   @amzurevent = AmzurEvent.get_amzur_events.page(params[:page]).per(5)
+   @amzurevent = AmzurEvent.get_amzur_events
    @empevents = current_user.employee.amzur_events
    @emp_dept_events = current_user.employee.department.amzur_events - (@empevents).to_a
    @emp_group_events = current_user.employee.group.amzur_events  - (@empevents).to_a
@@ -123,7 +123,7 @@ class AmzurEventsController < ApplicationController
           Notification.delay.event_notification(emp.user,@amzurevent)
         end
       end
-      redirect_to amzur_events_path
+      redirect_to welcome_wall_path
      else
       flash.now[:error]
       render "edit"
