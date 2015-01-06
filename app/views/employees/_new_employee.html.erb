@@ -266,11 +266,15 @@ display:none;
 
 $(function(){
 
+$( ".date-picker" ).datepicker({
+       format: 'dd/mm/yyyy',
+       autoclose: true
+    });
 
 $( ".datepicker_with_year" ).datepicker({
        format: 'dd/mm/yyyy',
        autoclose: true,
-       maxDate: -0
+       endDate: new Date()
     });
 //Department and designation dynamic select buttons
  
