@@ -31,7 +31,7 @@
       <label class="control-label" for="basicinput"><strong>Tags </strong></label>
           <% @post.tags.split(",").each do|tag| %>
           <i class="label label-info fa fa-tag" style="font-size: 13px"><%=  tag %></i>
-          <% end %>
+          <% end if @post.tags? %>
     </div>    
     <div class="col-lg-6">
       <label class="control-label" for="basicinput"><i>by:</i> <strong><%= @post.employee.full_name %></strong></label>                
