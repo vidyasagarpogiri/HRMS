@@ -2,10 +2,7 @@
   <div class="row"> 
     <div class="panel">
       <div class="panel-heading">                  
-        All Departments  
-        <% if current_user.designation == Designation::HRADMIN %>
-          <%= link_to " New Department", new_department_path, :class => "fa fa-plus pull-right" %>   
-        <% end %>                           
+         All Departments <% if current_user.designation == Designation::HRADMIN  %> <%= link_to " New Department", new_department_path, :class => "fa fa-plus pull-right" %> <% end %>                      
       </div>
       <div class="panel-body">        
         <% @departments.each do |department| %>

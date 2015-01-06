@@ -10,9 +10,9 @@
           <th>Name Of Designation</th>
           <th>Number Of Employees</th>
 		   </tr>
-	     </thead>
-	       <% @designations.each do |designation| %>
+	     </thead>	      
 	     <tbody>
+	      <% @designations.each do |designation| %>
 		   <tr>
 		     <td><%=  designation.designation_name%></td>
          <td><%= designation.employees.count%></td>
@@ -30,8 +30,8 @@
        
   -- commented by pattabhi-->    
 		    </tr>
-	    </tbody>
-	    <% end %>
+		    <% end %>
+	    </tbody>	    
 	  </table>
 	  <% else %>  
     <div class="alert alert-success alert-dismissable">

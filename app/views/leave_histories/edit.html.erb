@@ -16,7 +16,7 @@
           <div class="control-group">
           <label class="control-label" for="basicinput">Leave Type</label>                                              
 	            <div class="controls">
-               <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name,  { :class => "leave_type span8 form-control", :id => "disabledSelect" } %> 
+               <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name,  { :class => "leave_type  form-control", :id => "disabledSelect" } %> 
                <span class="help-block with-errors"></span>
 	            </div>
           </div>
