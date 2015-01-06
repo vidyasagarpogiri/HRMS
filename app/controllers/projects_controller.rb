@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   #raise params.inspect
   @employee = current_user.employee
   @project = @employee.projects.create(project_params)
-  @project.update(:skills => params[:total_tags].chop)
+ # @project.update(:skills => params[:total_tags].chop)
   @projects = @employee.projects
   end
   
@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
     @employee = current_user.employee
      @project = Project.find(params[:id])
      @project.update(project_params)
-     @project.update(:skills => params[:total_tags])
+    # @project.update(:skills => params[:total_tags])
      @projects = @employee.projects
     
   end
@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
   
   private 
   def project_params
-     params.require(:project).permit(:title, :description, :start_date, :end_date, :tasks_performed, :roles) 
+     params.require(:project).permit(:title, :description, :start_date, :end_date, :tasks_performed, :roles, :skills) 
   end
   
 end
