@@ -5,7 +5,7 @@
   <div class="panel-body">
     <% if @leave_histories.present? %> 	
     <div class="adv-table">
-      <table  class="display table table-bordered table-striped table-dynamic">
+      <table  class="display table table-bordered table-striped table-dynamic" id="upcoming">
         <thead>
           <tr>
             <th>Date</th>
@@ -36,16 +36,7 @@
           <% end %>
          <% end %>	
           </tbody>                   
-        <tfoot>
-         <tr>
-            <th>Date</th>
-            <th>No.of Days</th>
-            <th>Reason</th>
-            <th>Leave Type</th>																							
-            <th>Status</th>
-            <th colspan=2>Action</th>								
-          </tr>         
-        </tfoot>
+       
       </table>     
     </div>    
     <% else %>
@@ -87,4 +78,7 @@ $(function(){
     </div>
   </div>
 </div>
+
+
+
 								
