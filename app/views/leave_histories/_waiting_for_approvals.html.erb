@@ -30,8 +30,8 @@
             <td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal"}, :id => "modal-text" } %>  </td>
             <td><%=f.leave_type.type_name if f.leave_type.present? %></td>													
             <td><%=f.status %></td>
-            <td><%= link_to "Edit", edit_leave_history_path(f), :class => "btn btn-info", :remote => true %>
-            <%= link_to "Delete",  f, method: :delete, data: {confirm: "Are You sure?"}, :class => "btn btn-danger"%></td>								 
+            <td><%= link_to "Edit", edit_leave_history_path(f), :class => "btn btn-info btn-sm", :remote => true %>
+            <%= link_to "Delete",  f, method: :delete, data: {confirm: "Are You sure?"}, :class => "btn btn-danger btn-sm"%></td>								 
           </tr>																						
         <% end %>             
         </tbody>
@@ -85,16 +85,6 @@ $(function(){
   </div>
 </div>				
     
-  
-<script>
-	$(document).ready(function() {
-		$('#d_table2').dataTable();
-		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
-		$('.dataTables_paginate > a').wrapInner('<span />');
-		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
-	} );
-</script>
 
   
 
