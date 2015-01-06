@@ -1,7 +1,6 @@
 <section class="panel panel-info">
-<header class="panel-heading">
-      Events Created By Me
-      <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'Add Event',  new_amzur_event_path %></label>
+  <header class="panel-heading">
+      Events Created By Me <%= link_to ' Add Event',  new_amzur_event_path, :class => "fa fa-plus pull-right" %>      
   </header>
 	      <div class="panel-body">
 		          <% if @empevents.present? %>    
@@ -25,7 +24,7 @@
                     No Events to display.
               </div>
             <% end %> 
-              <%= paginate  @amzurevent %>     	           
+             
 						</div><!--/.panel-body-->
 			  </section>
 				<section class="panel">
@@ -46,7 +45,7 @@
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     No Events to display.
               </div>               
-              <%= paginate  @amzurevent %>
+              
               <% end %>	     	           
 						  </div><!--/.panel-body-->
 						</section>
@@ -72,7 +71,7 @@
                     No Events to display.
               </div>
             <% end %> 
-            <%= paginate  @amzurevent %>     	           
+                	           
 						</div><!--/.panel-body-->
 						</section>
 						
@@ -100,7 +99,7 @@
                     No Events to display.
               </div>
             <% end %> 
-            <%= paginate  @amzurevent %>     	           
+            	           
 						</div><!--/.panel-body-->
 						
           </section>

@@ -14,7 +14,7 @@
            <%= raw @amzurevent.description %>
     </label>   
   </div> 
-    <div class="form-group">
+  <div class="form-group">
      <span class="pull-right">
      <% if current_user.employee == @amzurevent.employee %>
         <%= link_to 'Edit', edit_amzur_event_path(@amzurevent), :class => "btn btn-success " %>
@@ -24,4 +24,4 @@
     </div>
    </div><!--panel-body-->                              
                                         
-</section>				 
+</section>       		 

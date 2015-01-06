@@ -116,15 +116,33 @@
     $(".event_form").validator();
 });
 </script> 
+
 <script>
- $(".date-picker").datepicker({
-         dateFormat: 'dd/mm/yy',
-         changeMonth: true,
-         changeYear: true,
-          minDate: -0,
-         yearRange: "+0:+1",         
-     });
+$(function(){
+var startDate = new Date('01/01/1900');
+var FromEndDate = new Date();
+var ToEndDate = new Date();
+
+ToEndDate.setDate(ToEndDate.getDate()+365);
+
+$('.date-picker').datepicker({
+    format: 'dd/mm/yyyy',
+    weekStart: 1,
+    startDate: FromEndDate,
+    //endDate: '01/01/2900', 
+    autoclose: true
+})
+    .on('changeDate', function(selected){
+        startDate = new Date(selected.date.valueOf());
+        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+        //$('.to_date').datepicker('setStartDate', startDate);
+    }); 
+});
 </script>
+
+
+
+
 
 <script>
 

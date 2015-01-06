@@ -14,12 +14,12 @@
       
     <%= form_for @event, :html => {:class=>"form-horizontal row new_event_form"} do |event| %>
       <div>
-							     <% @event.errors.full_messages.each do |msg| %>
-                  <div class="alert alert-danger alert-dismissable">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <%= msg %>
-                  <%end%>          
-						</div>
+	       <% @event.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= msg %>
+        <%end%>          
+		  </div>
 
         <div class="form-group">   
           <label class="control-label col-lg-2" for="basicinput">Holiday Name</label>
@@ -50,8 +50,30 @@
       <% end %>
   </div>
 </section>
-   <script>
-     $(".new_event_form").validator();
-   </script>   
-            
+
+ <script>
+   $(".new_event_form").validator();
+ </script>   
+
+<script>
+$(function(){
+var startDate = new Date('01/01/1900');
+var FromEndDate = new Date();
+var ToEndDate = new Date();
+
+ToEndDate.setDate(ToEndDate.getDate()+365);
+
+$('.date-picker').datepicker({
+    format: 'dd/mm/yyyy',
+    weekStart: 1,
+    //startDate: '01/01/1900',
+    //endDate: '01/01/2900', 
+    autoclose: true
+})
+  .on('changeDate', function(selected){
+      startDate = new Date(selected.date.valueOf());
+      startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));     
+  }); 
+});
+</script>            
      
