@@ -23,7 +23,7 @@
           <th><%= grade.employees.count %></th> 
           <th>             
             <% if current_user.department == Department::HR %>                   
-              <%= link_to 'Edit', edit_grade_path(grade.id), :class => "btn btn-success pull-left" %>      
+              <%= link_to 'Edit', edit_grade_path(grade.id), :class => "btn btn-success pull-left btn-sm" %>      
             <% end %>          
           </th>
 	      </tr> 
