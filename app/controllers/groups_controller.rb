@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
   
   def update  
     @group.update(group_params)
-    redirect_to  @group    
+    redirect_to groups_path    
   end
   
   def add_employee
