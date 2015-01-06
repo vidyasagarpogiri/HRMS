@@ -22,7 +22,7 @@
           <%= flash[:error] %>
         </div>
       <% end %>                               
-      <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %>
+      <%= form_for (@leave_history), :data => {:toggle => "validator"}, :html => {:class => "form-horizontal"} do |f| %>
         <div class="row"> 
           <div class="form-group">
             <label  class="col-lg-1 control-label">Leave Type:</label>
@@ -40,9 +40,9 @@
               <span class="help-block with-errors"></span> 
             </div>
           </div>
-        </div>             
-          <div id="casualleave"> 
-          <div class="row">        
+        </div>
+        <div class="row">      
+          <div id="casualleave">        
             <div class="col-lg-1">
               <div class="form-group">                           
                 <%= f.radio_button :is_halfday, 'half_day', :class => "rb1" %> &nbspHalf Day  
@@ -85,7 +85,7 @@
               <div class="form-group">
                 <label  class="col-lg-1 control-label">Date:</label>
                 <div class="col-lg-3">
-                  <input type="text" name="leave_date" id = "idnm3" class ="leave-form-date form-control leave-date">
+                  <input type="text" name="leave_date" id = "idnm3" class =" leave-form-date form-control leave-date">
 					        <span class="help-block with-errors"></span>   
 				        </div>
               </div>
@@ -104,7 +104,7 @@
             <div class="form-group">
               <label  class="col-lg-1 control-label">Date:</label>
               <div class="col-lg-4">
-                <input type="text" name="float_leave_date" id = "idnm4" class ="leave-form-date form-control float-leave-date" required="true" >
+                <input type="text" name="float_leave_date" id = "idnm4" class =" leave-form-date form-control float-leave-date" required="true" >
                 <span class="help-block with-errors"></span> 
               </div>
             </div>
@@ -128,14 +128,6 @@
     <% end %>
   </div>
 </div>
-
-
-<script>
-  $(function(){
-    $("#new_experience").validator();
-  });
-</script>
-
 
 <script>
 $(function(){
@@ -178,10 +170,46 @@ $('.leave-to-date')
 
 
 
-
-
  <script>
- 
+  $(function () {
+     $(".leave-form-date").datepicker({
+         dateFormat: 'dd/mm/yy',
+         changeMonth: true,
+         changeYear: true,
+          minDate: -0,
+         yearRange: "+0:+1",
+         onClose: function (selectedDate) {
+             var date2 = $('.leave-form-date').datepicker('getDate');
+             date2.setDate(date2.getDate());
+             $(".leave-to-date").datepicker("option", "minDate", date2);
+             $(".error1").html('');
+         }
+     });
+     $(".leave-to-date").datepicker({
+         dateFormat: 'dd/mm/yy',
+          minDate: -0,
+          yearRange: "0:+1",
+           changeMonth: true,
+         changeYear: true, 
+           onClose: function (selectedDate) {
+            var date1 = $('.leave-form-date').datepicker('getDate');
+            if (date1){
+              
+            }else{
+              $("#idnm2").val('');
+              $(".error1").html('<ul class="list-unstyled"><li>Please Enter From Date First</li></ul>');
+            }
+           }
+     });
+     $(".leave-date").datepicker({
+       dateFormat: 'dd/mm/yy',
+          minDate: -0,
+          yearRange: "0:+1",
+           changeMonth: true,
+         changeYear: true
+     });
+  });
+  
   $(function(){
     $('.half_day').hide();
     $(".alert-message").hide();

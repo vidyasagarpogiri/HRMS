@@ -1,7 +1,6 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-    New Appraisal Cycle
-    <label class = "pull-right"><a href="#"><span class="glyphicon glyphicon-circle-arrow-left"></span></a> <%= link_to 'Back To AppraisalsCycles', appraisal_cycles_path %></label>
+    New Appraisal Cycle <%= link_to ' Back To AppraisalsCycles', appraisal_cycles_path, :class => "fa fa-arrow-circle-left pull-right" %>
   </div>
   <div class="panel-body">
     <%= form_for @appraisal_cycle, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, remote: true  do |a| %>
@@ -89,7 +88,7 @@
       </div>
     </div><hr>
     <%= a.submit 'Create', :class => 'btn btn-success' %>
-    <%= link_to ' Back', appraisal_cycles_path, :class => "btn btn-danger" %>            
+    <%= link_to 'Cancel', appraisal_cycles_path, :class => "btn btn-danger" %>            
     <% end %>
   </div><!--/.panel-body-->          
 </div><!--/.wrapper-->
@@ -101,7 +100,7 @@
   var endDate = new Date();
   $(".start_date").datepicker({
     format: 'dd/mm/yyyy',
-    startDate: appraisalStartDate, 
+    startDate: '01/01/2000', 
     autoclose: true
   })
     .on('changeDate', function(selected){
