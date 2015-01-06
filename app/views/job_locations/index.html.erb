@@ -20,8 +20,8 @@
           <td><%= job.employees.count %></td>
           <% if current_user.department == Department::HR %>
           <td> 
-         <%= link_to 'Edit', edit_job_location_path(job.id), :class => "btn btn-success " %>
-         <%= link_to "Delete",job_location_path(job.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %>
+         <%= link_to 'Edit', edit_job_location_path(job.id), :class => "btn btn-success btn-sm" %>
+         <%= link_to "Delete",job_location_path(job.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger btn-sm" %>
           </td>
         <% end %>
         </tr>
