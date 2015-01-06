@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController 
 
-   before_filter :hr_view
+   before_filter :hr_admin_view, only: [:edit, :new]
    before_action :get_group, only: [:show, :edit, :update, :add_employee, :update_employee]
   
   def index

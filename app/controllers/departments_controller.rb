@@ -1,6 +1,6 @@
 class DepartmentsController < ApplicationController
  #layout "leave_template", only: [:leaves, :index, :employee_leaves, :holiday_list]
-  before_filter :hr_view
+  before_filter :hr_adim_view, only: [:new, :edit]
   before_action :find_department, only: [:show, :edit, :department, :add_employee, :update_employee, :update ]
 
   def index
