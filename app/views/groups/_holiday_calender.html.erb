@@ -9,7 +9,7 @@
 		        <div class="panel-body">   
 		          <% if @holiday_calenders.present? %> 
 		          <div class="adv-table">
-    		        <table class="display table table-bordered table-striped table-dynamic">
+    		        <table class="display table table-bordered table-striped table-dynamic" id="dynamic-table2">
 								  <thead>
 										<tr>
 											<th>Holiday Name</th>
@@ -17,15 +17,17 @@
 											<th> Mandatory/Optional  </th>
 										</tr>
 									</thead>									
-									<% @holiday_calenders.each do |holiday| %>
+								
 									<tbody>
+										<% @holiday_calenders.each do |holiday| %>
 										<tr>
 										  <td><%= holiday.event.event_name %></td>	
 										  <td><%=format_date(holiday.event.event_date) %></td>
 										   <td><% if holiday.mandatory_or_optional? %>Mandatory<%else%>Optional<%end%></td>		
 									  </tr>
+									   <% end %>
 								 </tbody>
-								 <% end %>
+								
 							</table>
 							  <% if @holiday_calenders.present? %>
                   <%= link_to 'Send As Email', holiday_notification_group_path(@group), :class => "btn btn-info pull-right" %>
@@ -40,3 +42,13 @@
 		      </div><!--module -body-->                                                                                
      </div><!--/.module -->
 
+
+<script>
+	$(document).ready(function() {
+		$('#dynamic-table2').dataTable();
+		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
+		$('.dataTables_paginate > a').wrapInner('<span />');
+		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+		$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+	} );
+</script>
