@@ -3,7 +3,7 @@ class DepartmentsController < ApplicationController
 
   before_filter :hr_view
   before_filter :hr_admin_view, only: [:new, :edit]
-  before_action :find_department, only: [:show, :edit, :department, :add_employee, :update_employee, :update ]
+  before_action :find_department, only: [:show, :edit, :department, :add_employee, :update_employee, :update, :assign_appraisal, :create_appraisal]
 
   def index
     @departments = Department.all
@@ -34,8 +34,8 @@ class DepartmentsController < ApplicationController
   end
   
   def update
-    @department.update(appraisal_id: params[:department][:appraisal_id])
-    @appraisal = Appraisal.find(@department.appraisal_id)
+    @department.update(department_params)
+    redirect_to departments_path
   end
   
   def destroy
@@ -51,6 +51,14 @@ class DepartmentsController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @employee.update(:department_id => @department.id)
     redirect_to @department
+  end
+  
+  def assign_appraisal
+  end
+  
+  def create_appraisal
+    @department.update(appraisal_id: params[:department][:appraisal_id])
+    @appraisal = Appraisal.find(@department.appraisal_id)
   end
 
 =begin

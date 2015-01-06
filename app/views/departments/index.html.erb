@@ -9,7 +9,7 @@
         <div class="col-md-4 col-sm-4">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <%= department.department_name %>'s Info <%# link_to '',edit_department_path(department), :class=>"fa fa-edit pull-right" %>
+              <%= department.department_name %>'s Info <%= link_to 'edit',edit_department_path(department), :class=>"fa fa-edit pull-right" %>
             </div>     
             <div class="panel-body">              
               <a class="pull-left" href="#">
