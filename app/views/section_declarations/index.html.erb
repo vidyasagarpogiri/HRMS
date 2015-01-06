@@ -42,7 +42,7 @@
               <td> <%= sec.maximum_limit %> </td>
               <td> 
                 <% if current_user.department == Department::HR %>
-                  <%= link_to 'Edit',  edit_section_declaration_path(sec.id), :class => "btn btn-success " %>
+                  <%= link_to 'Edit',  edit_section_declaration_path(sec.id), :class => "btn btn-success btn-sm" %>
                 <% end %>  
               </td>										            									      		
             </tr>             		                                         

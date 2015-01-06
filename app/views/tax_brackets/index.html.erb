@@ -32,8 +32,8 @@
           <td><%= tax.min_tax %></td>
           <td>
             <% if current_user.department == Department::HR %>
-                 <%= link_to 'Edit', edit_tax_bracket_path(tax), :class => "btn btn-success" %>
-                <%= link_to 'Delete', "#", method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger" %>
+                 <%= link_to 'Edit', edit_tax_bracket_path(tax), :class => "btn btn-success btn-sm" %>
+                <%= link_to 'Delete', "#", method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger btn-sm" %>
             <% end %>
           </td>
         </tr>
