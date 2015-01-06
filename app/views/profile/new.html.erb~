@@ -1,1 +1,2 @@
 <%= render "employees/new_employee"%>
+<% title "Work Groups"%>                                                               

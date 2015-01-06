@@ -44,8 +44,10 @@
 
 
 <script>
-	$(document).ready(function() {
-		$('#dynamic-table2').dataTable();
+	$(document).ready(function({
+		$('#dynamic-table2').dataTable()( {
+    "order": [1, 'asc' ]
+} );
 		$('.dataTables_paginate').addClass("btn-group datatable-pagination");
 		$('.dataTables_paginate > a').wrapInner('<span />');
 		$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
