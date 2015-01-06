@@ -1,5 +1,7 @@
 class ShiftsController < ApplicationController
 
+  before_filter :hr_admin_view, only: [:new, :edit, :destroy]
+  
   def index
     @shifts = Shift.all
   end
