@@ -3,7 +3,6 @@ class ProjectsController < ApplicationController
   
   def index
      @projects = current_user.employee.projects
-    #raise @projects.inspect
   end
   
   def new
@@ -16,7 +15,6 @@ class ProjectsController < ApplicationController
   #raise params.inspect
   @employee = current_user.employee
   @project = @employee.projects.create(project_params)
- # @project.update(:skills => params[:total_tags].chop)
   @projects = @employee.projects
   end
   
@@ -31,7 +29,6 @@ class ProjectsController < ApplicationController
     @employee = current_user.employee
      @project = Project.find(params[:id])
      @project.update(project_params)
-    # @project.update(:skills => params[:total_tags])
      @projects = @employee.projects
     
   end
