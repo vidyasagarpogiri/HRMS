@@ -3,3 +3,4 @@
 <% else %>
 <%= render "employees/new_employee"%>
 <% end %>
+<% title "Profile Edit"%>                                                               
