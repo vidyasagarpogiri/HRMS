@@ -15,7 +15,7 @@ before_filter :edit_view, only: ['edit']
   def create
   #raise params.inspect
    @post = current_user.employee.posts.new(post_params) 
-   @post.update(:tags => params[:total_tags])
+   #@post.update(:tags => params[:total_tags])
   
     if @post.save
       redirect_to posts_path
@@ -112,7 +112,7 @@ before_filter :edit_view, only: ['edit']
   private
 
   def post_params # New method creates a obje
-    params.require(:post).permit(:title, :content, :category)
+    params.require(:post).permit(:title, :content, :category, :tags)
   end
   
   def edit_view
