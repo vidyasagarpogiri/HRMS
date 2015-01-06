@@ -1,32 +1,28 @@
-<div class="panel panel-info">
-	<div class="panel-heading">
-    Leave Form
-  </div>   
-  <% if @error.present? %>
-     <div class="alert alert-danger alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-       <%= @error%>
-    </div>
-  <% end %>              
-  <div class="panel-body">   
-     <%= form_for ([@employe, @leave_history]), :data => {:toggle => "validator"}, :html => {:class => "form-horizontal"} do |f| %>
-      <div class="form-group">
-			  <label class="control-label col-lg-2" for="basicinput">Leave Type</label>                                              
-					<div class="col-lg-8">
-           <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name, { :prompt => "Please Select" }, { :class => "leave_type  form-control" } %> 
-           <span class="help-block with-errors"></span>
-					</div>
-		 </div> 
-     <div class="form-group">
-				<label class="col-lg-2 control-label" for="basicinput">Reason</label>
-					<div class="col-lg-8">
-             <%= f.text_area :reason,  :class =>"form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %>  
-					  <span class="help-block with-errors"></span>   
-					</div>
-			</div>
-			
-		  <div class="casualleave">
-	      <!---------------- Radio Picker -------------------------->
+   <%= form_for (@leave_history), :data => {:toggle => "validator"} do |f| %>
+        <div class="row"> 
+          <div class="form-group">
+            <label  class="col-lg-1 control-label">Leave Type:</label>
+            <div class="col-lg-10">
+              <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name,  { :class => "leave_type form-control", :id => "disabledSelect" } %> 
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div> 
+        </div>  
+                            
+        <div class="row">
+          <div class="form-group">
+            <label  class="col-lg-1 control-label">Reason:</label>
+            <div class="col-lg-6">
+              <%= f.text_area :reason,  :class =>"form-control", :placeholder => "Enter Reason", :data => {:error => "Please Enter Reason For Leave"}, :required =>true %> 
+              <span class="help-block with-errors"></span> 
+            </div>
+          </div>
+        </div>   
+        
+        <!----------------------------------------------------------------->
+                  
+          <div id="casualleave"> 
+            <!---------------- Radio Picker -------------------------->
             <div class="row col-lg-6">       
                 <div class="col-lg-2"></div>
                 <div class="form-group col-lg-2">                           
@@ -39,10 +35,11 @@
                   <span class="help-block with-errors"></span> 
                 </div>
             </div>
-        <!-------- radio buttons end -------------------->
-        <!------------Full Day -------------------->
-               <div class="full_day">
-                <div class=" col-lg-10"> 
+          <!---------------- Radio Picker -------------------------->
+         
+            
+            <!------------Full Day -------------------->
+                <div class=" col-lg-10 full_day"> 
                   <div class="col-lg-5">
                     <div class="form-group">
                       <label  class="col-lg-2 control-label">From: </label>
@@ -62,9 +59,11 @@
                     </div> 
                   </div>
                 </div>
-              </div>
 
-        <!------------Full Day -------------------->
+              <!------------Full Day -------------------->
+                
+              <!------------Half Day -------------------->
+            
             <div class="col-lg-12 half_day">          
               <div class="form-group">
                 <label  class="col-lg-1 control-label">Date:</label>
@@ -80,8 +79,10 @@
                   <span class="help-block with-errors"></span> 
                 </div>
               </div>   
-            </div>
-        </div><!-- calualleave-->
+            </div>         
+          </div>
+        </div>
+          <!------------Half Day -------------------->
             <!------------Floating  Day -------------------->
           <div class="floatingleave col-lg-12">          
             <div class="form-group">
@@ -94,19 +95,9 @@
           </div>
         
           <!------------Floatng Day -------------------->
-          
         <%= hidden_field_tag 'total_leaves', total_balance_leaves(@employee) %>
-        <div class="row">
+        <div class="panel-body">
           <button type="submit" class="btn btn-success apply"> Apply </button>
           <%= link_to "Cancel", leave_histories_path,:class => "btn btn-danger" %>                                    
         </div>
-   <% end %>
-    <div class="alert-message alert alert-info alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-       You have crossed the limit of your balace leaves
-    </div>
-                       
-  </div><!--module -body-->
-</div><!--/.module-->
-	                               
-
+      <% end %>           
