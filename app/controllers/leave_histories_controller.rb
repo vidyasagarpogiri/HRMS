@@ -56,10 +56,11 @@ class LeaveHistoriesController < ApplicationController
       if flag == 1
         render action: 'new' , :locals => { :@error => "Already You Applied for Floating Holiday" }
       else
-        @leave_history = current_user.employee.leave_histories.create(params_leave_history)
-        total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
-        weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, current_user.employee.group)  
-        applied_days = total_days - weekend_count
+        leave_date = params[:float_leave_date]
+        @leave_history = current_user.employee.leave_histories.create(from_date: leave_date, to_date: leave_date, reason: params[:leave_history][:reason], leave_type_id: params[:leave_history][:leave_type_id]) 
+         total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
+         weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, current_user.employee.group)  
+         applied_days = total_days - weekend_count
         @leave_history.update(:days => applied_days)
         Notification.delay.applyleave(current_user.employee, @leave_history)
         redirect_to leave_histories_path 
