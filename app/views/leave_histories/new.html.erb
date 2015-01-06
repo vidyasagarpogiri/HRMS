@@ -1,44 +1,47 @@
-<div class="panel panel-info">
-  <div class="panel-heading"> 
-    Leave Form
-  </div>         
-  <div class="panel-body">                 
-    <% if @employee.reporting_manager.present? %> 
-      <% if total_balance_leaves(@employee) <= 0 %>
-        <div class="alert alert-danger alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          Your Have No remaining leaves Please confirm before apply
-        </div>
-      <% end %>
-      <% if @error.present? %>
-        <div class="alert alert-danger alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <%= @error%>
-        </div>
-      <% end %>
-      <% if flash[:error].present? %>
-        <div class="alert alert-danger alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <%= flash[:error] %>
-        </div>
-      <% end %>                               
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-info">
+      <div class="panel-heading"> 
+        Leave Form
+      </div>         
+      <div class="panel-body">                 
+        <% if @employee.reporting_manager.present? %> 
+          <% if total_balance_leaves(@employee) <= 0 %>
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              Your Have No remaining leaves Please confirm before apply
+            </div>
+          <% end %>
+          <% if @error.present? %>
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <%= @error%>
+            </div>
+          <% end %>
+          <% if flash[:error].present? %>
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <%= flash[:error] %>
+            </div>
+          <% end %>                               
 
-    <!-- rendering leave form                 --> 
-     <%= render "leave_histories/apply_form" %>
-   <!--  ---------------------------------------->
-      <div class="alert-message alert alert-info alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        You have crossed the limit of your balace leaves
-      </div>                                                                  
-    <% else %>
-    <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-         You Have No Reporting Manager,  Please Contact HR Manager.
+        <!-- rendering leave form                 --> 
+         <%= render "leave_histories/apply_form" %>
+       <!--  ---------------------------------------->
+          <div class="alert-message alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            You have crossed the limit of your balace leaves
+          </div>                                                                  
+        <% else %>
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             You Have No Reporting Manager,  Please Contact HR Manager.
+        </div>
+        <% end %>
+      </div>
     </div>
-    <% end %>
   </div>
 </div>
-
 <script>
 $(function(){
     $('.half_day').hide();
