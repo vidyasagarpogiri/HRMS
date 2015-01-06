@@ -3,7 +3,7 @@
     <section class="panel panel-info">
       <header class="panel-heading">
         Work Shifts        
-       <% if current_user.department == Department::HR %>
+         <% if current_user.designation == Designation::HRADMIN %>  
          <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to "New Work Shift", new_shift_path, :class =>" pull-right" %>
        <% end %>       
       </header>
@@ -26,7 +26,7 @@
           <td><%= shift.from_time %></td>
           <td><%= shift.to_time %></td>
           <td>
-            <% if current_user.department == Department::HR %>
+            <% if current_user.designation == Designation::HRADMIN %>
                  <%= link_to 'Edit', edit_shift_path(shift.id), :class => "btn btn-success" %>
                 <%= link_to 'Delete', shift_path(shift.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger" %>
             <% end %>

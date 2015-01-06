@@ -31,9 +31,12 @@
         <% end %> 
         <span class="help-block with-errors"></span>
     </div>
-    
-    <button type="submit" class="btn btn-success">Save</button>
-    <%= link_to "Cancel", workgroups_path,:class => "btn btn-danger" %>    
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <button type="submit" class="btn btn-success">Save</button>
+        <%= link_to "Cancel", workgroups_path,:class => "btn btn-danger" %>
+      </div> 
+    </div>   
     <% end %>
     </div>
 </div>
