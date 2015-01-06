@@ -38,8 +38,12 @@
 			    <span class="help-block with-errors"></span>
 			  </div>
 			  </div>
-		                                                                                                       
-    <%= f.submit  'Save', :class => "btn btn-success pull-left" %>                                                   
+		    <div class="form-group"> 
+		      <div class="col-lg-offset-2 col-lg-10">                                                                                                      
+             <button type="submit" class="btn btn-success">Save</button>
+            <%= link_to "Cancel", group_path(@group),:class => "btn btn-danger" %>
+          </div>
+        </div>                                                  
      <% end %>
  </div><!--/.module-body-->
 </div><!--/.module-->
