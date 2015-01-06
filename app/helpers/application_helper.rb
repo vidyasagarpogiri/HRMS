@@ -19,6 +19,11 @@ module ApplicationHelper
 	# end
 #	end
   
+  #for page title by balaraju
+  
+  def title(page_title)
+    content_for :title, page_title.to_s
+  end
   
 #will calcualte months difference between two dates 
  def difference_in_months(date1, date2)
