@@ -54,8 +54,8 @@
                 <%end%>
                 <td>
                 <% if current_user.department == Department::HR %>                  
-                    <%= link_to 'Edit',  edit_static_allowance_path(allowance.id), :class => "btn btn-success" %>
-                    <%= link_to 'Delete', static_allowance_path(allowance.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger" %>
+                    <%= link_to 'Edit',  edit_static_allowance_path(allowance.id), :class => "btn btn-success btn-sm" %>
+                    <%= link_to 'Delete', static_allowance_path(allowance.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger btn-sm" %>
                 <% end %>
                 </td>
                 </tr>
