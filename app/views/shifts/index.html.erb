@@ -27,8 +27,8 @@
           <td><%= shift.to_time %></td>
           <td>
             <% if current_user.designation == Designation::HRADMIN %>
-                 <%= link_to 'Edit', edit_shift_path(shift.id), :class => "btn btn-success" %>
-                <%= link_to 'Delete', shift_path(shift.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger" %>
+                 <%= link_to 'Edit', edit_shift_path(shift.id), :class => "btn btn-success btn-sm" %>
+                <%= link_to 'Delete', shift_path(shift.id), method: :delete ,data: {confirm: "Are You sure?"}, :class => "btn btn-danger btn-sm" %>
             <% end %>
           </td>
         </tr>
