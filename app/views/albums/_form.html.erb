@@ -8,7 +8,7 @@
     <%= form_for Album.new do |f| %>
     <div class="row">
       <div class="form-group">
-        <label class="col-lg-1 control-label" for="basicinput">Title:</label>
+        <label class="col-lg-2 control-label" for="basicinput">Title:</label>
           <div class="col-lg-8">
             <%= f.text_field :title, :class => "form-control", :placeholder =>"Enter Title for Album", :data => {:error => "Please Enter Title for Album"}, :required =>true  %>                             
             <span class="help-block with-errors"></span>
@@ -17,7 +17,7 @@
     </div>
     <div class="row ">
       <div class="form-group">
-        <label class="col-lg-1 control-label" for="basicinput">Description</label>
+        <label class="col-lg-2 control-label" for="basicinput">Description: </label>
         <div class="col-lg-8">
           <%= f.text_area :description, :class => "form-control", :placeholder =>"Enter description", :data => {:error => "Please Enter  description name"} %>
           <span class="help-block with-errors"></span>
@@ -28,7 +28,7 @@
     <%= f.fields_for Photo.new do |photo| %>
     <div class="row">
       <div class="form-group">
-        <label class="col-lg-2 control-label" for="basicinput">Upload Images</label>
+        <label class="col-lg-2 control-label" for="basicinput">Upload Images: </label>
         <div class="col-lg-8">
           <%= photo.file_field :image, :onchange =>"validateFiles(this);", :multiple => true, name: "photos[image][]", :id => "image-input", :required => true %>
           <span class="help-block with-errors"></span>

@@ -1,77 +1,73 @@
 <!-- Author :Priyanka
  View for showing individual album along with its all images. only authorised employee can delete,add images and can edit album-->
-<div class="wrapper">
-  <div class="container">
-    <div class="row">                
-      <div class="span12">
-        <div class="content">         
-				  <div class="module">
-					  <div class="module-head">
-						  <h3><%= @album.title %></h3>
-						  <% if current_user.employee.id == @id %>
-						    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a><i class="icon-plus-sign "></i></a> <%= link_to "Add more photos", add_more_photos_form_album_path(@album)%></label>	
-						  <% end %>
-					  </div>
-					  <div class="module-body show">
-					    <div class="album-employee-image span2" >
-                <% if @album.present? && @album.employee.avatar_url.present? %>
-                  <%= image_tag @album.employee.avatar_url, :width => "60px", :height => "60px" %>
-                <% else %>
-                  <% if @album.employee.gender == "Female" %>
-                      <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
-                    <% else %>
-                      <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
-                    <% end %>
-                <% end %>
-              </div>              
-              <div class="album-employee-details">
-                <strong>
-                 <%= @album.employee.first_name %> <%= @album.employee.last_name %>
-                </strong> added new 
-                <strong>
-                  <%= @album.title %>
-                </strong> Aldum                
-                <ul class="navigation-btns pull-right" >
-					      <% if current_user.employee.id == @id %>
-							    <li><%= link_to 'Edit', edit_album_path(@album), :class=>"btn btn-success" %> </li>
-							  <% end %>  
-							    <li><%= link_to 'Gallery',  albums_path, :class=>"btn btn-info" %></li>							  
-							  </ul> 
-              </div>               
-              <% if @photos.present?%>             
-              <div class="image-showbox">                      
-					      <div class="slider slider-for" style="margin-top:50px;margin-left:300px;">                                              
-                  <% @photos.each do |photo| %>                                                                           
-                  <div>
-                    <% if current_user.employee.id == @id %>                    
-                    <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"image-delete pull-right", :title => "delete photo " %>
-                    <% end %>  
-                    <a class="group1" href="<%= photo.image %>" ><%= image_tag photo.image, size: "400x300" %></a>                                         
-                  </div>
-                  <% end %>                                 
-                </div>
-              </div><br>
-					            					   
-              <div class="slider slider-nav">
-                <% @photos.each do |photo| %>                   
-                  <div><%= image_tag photo.image, size: "100x100" %></div>
-                <% end %> 
-              </div> <br>
-              <% else %>
-                <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    No Photos to this Album.Add now!!
-                </div>
-              <% end %>                           
-						</div>	                 							
-						</div><!--.module-body-->
-					</div><!--/.module -->
-		    </div><!--/.content-->
-			</div><!--/.span12-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</div><!--/.wrapper-->
-
+<div class="panel panel-info">
+  <div class="panel-heading">
+	  <%= @album.title %>
+	  <% if current_user.employee.id == @id %>
+	     <%= link_to " Add more photos", add_more_photos_form_album_path(@album), :class => "fa fa-plus pull-right" %>
+	  <% end %>
+  </div>
+  <div class="panel-body show">
+    <div class="album-employee-image " >
+      <% if @album.present? && @album.employee.avatar_url.present? %>
+        <%= image_tag @album.employee.avatar_url, :width => "60px", :height => "60px" %>
+      <% else %>
+        <% if @album.employee.gender == "Female" %>
+            <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+          <% else %>
+            <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+          <% end %>
+      <% end %>
+    </div>              
+    <div class="album-employee-details" style = "margin-left:80px;margin-top:-13px;">
+      <strong>
+       <%= @album.employee.first_name %> <%= @album.employee.last_name %>
+      </strong> added new 
+      <strong>
+        <%= @album.title %>
+      </strong> Aldum                
+      <div class="pull-right" >
+      <% if current_user.employee.id == @id %>
+		    <%= link_to 'Edit', edit_album_path(@album), :class=>"btn btn-success" %> 
+		  <% end %>  
+		   <%= link_to 'Gallery',  albums_path, :class=>"btn btn-info" %>							  
+		  </div> 
+    </div>               
+    <% if @photos.present?%>             
+    <div class="image-showbox">                      
+      <div class="slider slider-for" style="margin-top:50px;margin-left:300px;">                                              
+        <% @photos.each do |photo| %>                                                                           
+        <div>
+          <% if current_user.employee.id == @id %>                    
+          <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"image-delete", :title => "delete photo " %>
+          <% end %>  
+          <a class="group1" href="<%= photo.image %>" ><%= image_tag photo.image, size: "400x300" %></a>                                         
+        </div>
+        <% end %>                                 
+      </div>
+    </div><br>
+            					   
+    <div class="slider slider-nav">
+      <% @photos.each do |photo| %>                   
+        <div><%= image_tag photo.image, size: "100x100" %></div>
+      <% end %> 
+    </div> <br>
+    <% else %>
+      <div class="alert alert-success alert-dismissable" style="margin-top:100px;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          No Photos to this Album.Add now!!
+      </div>
+    <% end %>                           
+	</div>	                 							
+	</div><!--.module-body-->
+</div><!--/.module -->
+	
+<style>
+.image-delete{
+margin-left:500px;
+color:rgb(135, 10, 10);
+}
+</style>
 <script>
   $(function() {
     $( document ).tooltip();
