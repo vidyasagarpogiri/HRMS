@@ -5,7 +5,7 @@
   <div class="panel-body">
     <%= form_for @amzurevent, :html => {:class=>"form-horizontal row-fluid event_form"} do |f| %>
     <div class="form-group">
-      <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Event Title</label>
+      <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Event Title: </label>
       <div class="col-lg-10">
         <%= f.text_field :title, :class => "span8 form-control", :placeholder =>"Enter Title", :data => {:error => "Please Enter valid Event Title"}, :required => true %>
         <span class="help-block with-errors"></span>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="form-group">
-      <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">Description</label>
+      <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">Description: </label>
       <div class="col-lg-10">
         <%= f.bootsy_area :description, :class => "span8 form-control", :placeholder =>"Enter Description", :data => {:error => "Please Enter  Event Description"}, :style => "margin: 0px 0px 10px; width: 850px; height: 221px;" %>
           <span class="help-block with-errors"></span> 
@@ -22,8 +22,8 @@
           
     <%if @amzurevent.new_record? %>
     <div class="form-group">
-      <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Select</label>
-      <div class="col-lg-9">
+      <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Select: </label>
+      <div class="col-lg-9" style="margin-top:8px;">
         <select  name="eventable_type"  class="event">
           <option value="all">All</option>
         <%unless @departments.blank? %>
@@ -40,7 +40,7 @@
     </div>
     <div class="form-group ">
       <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label"></label>
-      <div class="col-lg-9">  
+      <div class="col-lg-9" >  
         <div id ="departments">             
           <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name") %>
         </div>        
@@ -54,8 +54,9 @@
     </div>
     <% else %>
     <div class="form-group">
-      <div class="col-lg-9">
-        <strong>Event for <%if @amzurevent.eventable_type.nil? %> ALL <%else%> <%=@eventable %>  <%=@amzurevent.eventable_type%> <%end%></strong>
+     <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Event for: </label>
+      <div class="col-lg-9" style="margin-top:8px;">
+         <%if @amzurevent.eventable_type.nil? %> <strong >ALL</strong> <%else%> <%=@eventable %>  <%=@amzurevent.eventable_type%> <%end%>
       </div>
     </div>
     <%end%>
@@ -72,7 +73,7 @@
     <div class="form-group">
       <div class="col-lg-6">
         <div class="form-group">                                                                              
-        <label class="col-lg-4 control-label">Start Time</label>
+        <label class="col-lg-4 control-label">Start Time: </label>
           <div class="col-lg-6 ">
             <%= f.text_field :to_time, :placeholder =>"Enter Time Of Event", :class => "form-control timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
             <span class="help-block with-errors"></span>   
@@ -81,7 +82,7 @@
       </div>     
       <div class="col-lg-6" style="margin-left:-190px;">           
         <div class="form-group">             
-        <label  class="col-lg-4  control-label">End Time</label>
+        <label  class="col-lg-4  control-label">End Time: </label>
           <div class="col-lg-6">
             <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "timepicker form-control", :data => {:error => "Please Select Event Time"}, :required => true %>
             <span class="help-block with-errors"></span>   
@@ -92,7 +93,7 @@
     </div>                 
       
     <div class="form-group">                                           
-      <label class="col-lg-2 control-label">Event Date </label>
+      <label class="col-lg-2 control-label">Event Date: </label>
       <div class="col-lg-3">
         <%= f.text_field :held_on,:placeholder =>"Enter Date Of Event", :class => "col-lg-2 date-picker form-control", :data => {:error => "Please Select Event Date"}, :required => true %>
         <span class="help-block with-errors"></span>   
@@ -102,7 +103,7 @@
     <div class="form-group">                                           
       <label class="col-lg-2 control-label"> </label>
       <div class="col-lg-3">
-        <button type="submit" class="btn btn-success">Post </button>
+        <button type="submit" class="btn btn-success">Post: </button>
         <%= link_to "Cancel", amzur_events_path,:class => "btn btn-danger" %>   
       </div>
     </div>                       
