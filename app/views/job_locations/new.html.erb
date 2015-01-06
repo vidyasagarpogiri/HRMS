@@ -49,7 +49,7 @@
         <div class="form-group">
             <label for="inputEmail1" class="col-lg-2 control-label">ZipCode</label>
             <div class="col-lg-10">
-                  <%= text_field_tag :zipcode, nil, :class => "span8 form-control", :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter valid ZipCode ", :minlength => "6"}, :pattern => '[0-9]{6}', :required =>true %> 
+                  <%= text_field_tag :zipcode, nil, :class => "span8 form-control", :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter valid ZipCode "}, :pattern => '[0-9]{5,6}$', :required =>true %> 
         <span class="help-block with-errors"></span>
                 
             </div>
