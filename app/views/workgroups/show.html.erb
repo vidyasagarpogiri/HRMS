@@ -3,19 +3,23 @@
     <%= @workgroup.name.upcase %> 
     <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to 'All Workgroups', workgroups_path, :class => "pull-right" %>
 
-  </div>                          
+  </div>   
+                         
   <div class="panel-body">  
     <p>Workgroup Group Admin : <%= @admin.full_name %></p>
-    <% if current_user.employee.id == @workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: @workgroup.id ).present?%>
+    
+    <% if current_user.employee.id == @workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: @workgroup.id ).present? %>
       <span class="pull-right"> 
         <a href="#m" role="button" data-toggle="modal" class=" btn btn-success btn-xs">Add Member&nbsp;</a>                                
         <%= link_to "Add/Remove Moderator",add_moderator_workgroup_path, :class =>" btn btn-success btn-xs" %> 
+      </span>   
     <% end %> 
-      </span>                         
+                            
 
    <%= hidden_field_tag('work_group_id', @workgroup.id) %> 
-   <div class="adv-table">
-      <% if @employees.present? %>      
+    <% if @employees.present? %>  
+         <div class="adv-table">
+         
       <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
         <thead>
           <tr>
@@ -51,7 +55,9 @@
           </tr>
           <% end %>
         </tbody>
-      </table>    
+      </table>  
+     </div>  
+     
       <% else %>    
        <div class="alert alert-success alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -59,9 +65,8 @@
         </div>                                    
       <% end %>                                                                   
       </div><!--module-body -->    																																											                               
-        </div><!-- /.module-->									      				                                      
-      </section><!--/.content-->                    
-    </div><!--/.col-sm-12-->                
+ 							      				                                      
+                  
   </div><!--/.row-->
 </div><!--/panel panel-info-->
 

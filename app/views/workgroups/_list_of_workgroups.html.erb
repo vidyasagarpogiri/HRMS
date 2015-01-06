@@ -1,47 +1,49 @@
-<div class="adv-table">
-  <% if @workgroups.present? %>   
-  <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">      
-    <thead>											      
-      <tr>
-        <th>Icon</th>
-        <th>Name</th>
-        <th>Description</th>	
-        <th>Admin </th>
-        <th>Actions</th>														            									      		
-      </tr>
-    </thead>    
-    <tbody>
-    <% @workgroups.each do |workgroup| %>  
-      <tr class="gradeA"> 
-        <td class="center">
-         <% if workgroup.workgroupicon.present? && workgroup.workgroupicon_url.present? %>
-            <%= image_tag workgroup.workgroupicon, size: "60x60" %>
-         <% else %>
-            <%= image_tag "workgroup.png", size: "60x60" %> 
-         <% end %>
-        </td>          
-        <td><%= link_to workgroup.name,workgroup_path(workgroup) if workgroup.name.present? %></td>
-        <td><%= workgroup.description %></td>
-        <% if workgroup.admin_id.present?%>
-        <td><%= Employee.find(workgroup.admin_id).full_name %></td> 
-        <% end %>
-        <td> 
-        <% if current_user.employee.id == workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: workgroup.id ).present?%>
-          <ul class="navigation-btns" >
-            <li><%# link_to 'Show', workgroup_path(workgroup), :class => "btn btn-info " %></li>
-            <li><%= link_to 'Edit', edit_workgroup_path(workgroup.id), :class => "btn btn-success " %></li>
-            <li><%# link_to "Delete",workgroup_path(workgroup.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>       
-          </ul>
+
+  <% if @workgroups.present? %>  
+  <div class="adv-table"> 
+    <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">      
+      <thead>											      
+        <tr>
+          <th>Icon</th>
+          <th>Name</th>
+          <th>Description</th>	
+          <th>Admin </th>
+          <th>Actions</th>														            									      		
+        </tr>
+      </thead>    
+      <tbody>
+      <% @workgroups.each do |workgroup| %>  
+        <tr class="gradeA"> 
+          <td class="center">
+           <% if workgroup.workgroupicon.present? && workgroup.workgroupicon_url.present? %>
+              <%= image_tag workgroup.workgroupicon, size: "60x60" %>
+           <% else %>
+              <%= image_tag "workgroup.png", size: "60x60" %> 
            <% end %>
-        </td>     
-      </tr>
-      <% end %>
-    </tbody>               
-  </table>
+          </td>          
+          <td><%= link_to workgroup.name,workgroup_path(workgroup) if workgroup.name.present? %></td>
+          <td><%= workgroup.description %></td>
+          <% if workgroup.admin_id.present?%>
+          <td><%= Employee.find(workgroup.admin_id).full_name %></td> 
+          <% end %>
+          <td> 
+          <% if current_user.employee.id == workgroup.admin_id || WorkgroupsEmployee.where(is_moderator: true,employee_id: current_user.employee.id, workgroup_id: workgroup.id ).present?%>
+            <ul class="navigation-btns" >
+              <li><%# link_to 'Show', workgroup_path(workgroup), :class => "btn btn-info " %></li>
+              <li><%= link_to 'Edit', edit_workgroup_path(workgroup.id), :class => "btn btn-success " %></li>
+              <li><%# link_to "Delete",workgroup_path(workgroup.id), method: :delete, data: {confirm: "Are You sure?"}, :class=>"btn btn-danger " %></li>       
+            </ul>
+             <% end %>
+          </td>     
+        </tr>
+        <% end %>
+      </tbody>               
+    </table>
+  </div>
   <% else %>                                            
     <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         No Work Groups to display.
     </div>
   <% end %>
-</div>  
+ 
