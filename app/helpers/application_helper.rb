@@ -56,6 +56,7 @@ module ApplicationHelper
     time = time.to_date if time
   	time.strftime("%d %b, %Y") if time
 	end
+	
 #for mate time wih am and pm
   def format_time(time)
     time.strftime("%H:%M %P") if time

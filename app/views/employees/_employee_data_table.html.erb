@@ -9,7 +9,7 @@
           <th>Email-id</th>
           <th>Designation</th>
           <th>Department</th>		
-          <th>Contact No</th>	
+          <th>Group</th>	
           <th>Manager</th>          									                 	                  										      		
         </tr>
       </thead>											                  	                                   			
@@ -35,7 +35,7 @@
           <td><%= employee.user.email if employee.user.present? %></td>
           <td><%= employee.designation.designation_name if employee.designation.present? %></td>
           <td><%= employee.department.department_name %></td>
-          <td><%= employee.mobile_number %></td>
+          <td><%= employee.group.group_name %></td>
           <td><%= employee.reporting_manager %></td>
         </tr>	
       <%end%>											                   

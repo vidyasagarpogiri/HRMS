@@ -22,9 +22,10 @@
           
     <%if @amzurevent.new_record? %>
     <div class="form-group">
-      <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Select: </label>
-      <div class="col-lg-9" style="margin-top:8px;">
-        <select  name="eventable_type"  class="event">
+      <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Event Group: </label>
+      <div class="col-lg-7" style="margin-top:8px;">
+        <select  name="eventable_type"  class="event form-control">
+
           <option value="all">All</option>
         <%unless @departments.blank? %>
           <option value="Department">Department</option>
@@ -60,16 +61,15 @@
       </div>
     </div>
     <%end%>
-    <div class="form-group">
-      <div class="col-lg-offset-2 col-lg-10">
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :is_send_mail %> Select To Send Mail
-          </label>
-        </div>
+    
+    
+     <div class="form-group">                                           
+      <label class="col-lg-2 control-label">Event Date: </label>
+      <div class="col-lg-3">
+        <%= f.text_field :held_on,:placeholder =>"Enter Date Of Event", :class => "col-lg-2 date-picker form-control", :data => {:error => "Please Select Event Date"}, :required => true %>
+        <span class="help-block with-errors"></span>   
       </div>
     </div>
-
     <div class="form-group">
       <div class="col-lg-6">
         <div class="form-group">                                                                              
@@ -91,14 +91,16 @@
         </div>   
       </div>
     </div>                 
-      
-    <div class="form-group">                                           
-      <label class="col-lg-2 control-label">Event Date: </label>
-      <div class="col-lg-3">
-        <%= f.text_field :held_on,:placeholder =>"Enter Date Of Event", :class => "col-lg-2 date-picker form-control", :data => {:error => "Please Select Event Date"}, :required => true %>
-        <span class="help-block with-errors"></span>   
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :is_send_mail, {checked: true} %> Select Mail To Event Group
+          </label>
+        </div>
       </div>
-    </div>
+    </div>  
+
     
     <div class="form-group">                                           
       <label class="col-lg-2 control-label"> </label>
@@ -110,6 +112,8 @@
     <% end %>
   </div>
 </section>
+
+<% title 'Events' %>
 
 
 <script>
