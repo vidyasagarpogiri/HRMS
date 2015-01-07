@@ -60,15 +60,7 @@
       </div>
     </div>
     <%end%>
-    <div class="form-group">
-      <div class="col-lg-offset-2 col-lg-10">
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :is_send_mail, {checked: true} %> Select Mail To Event Group
-          </label>
-        </div>
-      </div>
-    </div>
+    
     
      <div class="form-group">                                           
       <label class="col-lg-2 control-label">Event Date: </label>
@@ -98,7 +90,15 @@
         </div>   
       </div>
     </div>                 
-      
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :is_send_mail, {checked: true} %> Select Mail To Event Group
+          </label>
+        </div>
+      </div>
+    </div>  
 
     
     <div class="form-group">                                           
