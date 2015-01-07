@@ -49,14 +49,15 @@
         <div class="form-group">
             <label for="inputEmail1" class="col-lg-2 control-label">ZipCode</label>
             <div class="col-lg-10">
-                  <%= text_field_tag :zipcode, nil, :class => "span8 form-control", :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter valid ZipCode "}, :required =>true %> 
+                  <%= text_field_tag :zipcode, nil, :class => "span8 form-control", :placeholder=> "Enter ZipCode",:data => {:error => "Please Enter valid ZipCode "}, :pattern => '[0-9]{5,6}', :required =>true %> 
         <span class="help-block with-errors"></span>
                 
             </div>
         </div>   
         <div class="form-group">
-          <div class="col-lg-offset-2 col-lg-10">              
-            <%= submit_tag "Save",:class => "btn btn-success" %>&nbsp&nbsp
+        <label for="inputEmail1" class="col-lg-2 control-label"></label>
+          <div class="col-lg-4" style="margin-left:27px;">              
+            <%= submit_tag "Save",:class => "btn btn-success" %>
             <%= link_to 'Cancel', job_locations_path(@job_locations), :class => "btn btn-danger" %>   
          </div>          
         </div>     

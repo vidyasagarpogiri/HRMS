@@ -1,13 +1,15 @@
 <div class="panel panel-info">
   <div class="panel-heading"> 
-    All posts <%= link_to " Add New Post", new_post_path, :class => "fa fa-plus-circle pull-right" %>
+    All posts <i class="fa fa-plus pull-right" style="margin-top:5px;"></i><%= link_to " Add New Post", new_post_path, :class => "pull-right" %>
   </div>   
      <%= form_tag posts_path, :html => {:class=>"form-horizontal row-fluid shift_from"}, :method => :get do %>		 
        <div class="panel-body">
-        <div class="form-group"> 
-         <label class="control-label" for="basicinput">
-          <%= text_field_tag :search, params[:search], :class => "span4" %>
-          <%= submit_tag "Search", :name => nil , :class => "btn btn-success btn-xs" %></label>
+        <div class="form-group">
+          <div class="col-lg-4">
+            <%= text_field_tag :search, params[:search], :class => "form-control" %>
+          </div>
+          <label class="control-label col-lg-4" for="basicinput">          
+          <%= submit_tag "Search", :name => nil , :class => "btn btn-success" %></label>
         </div>
       </div>
      <% end %>
