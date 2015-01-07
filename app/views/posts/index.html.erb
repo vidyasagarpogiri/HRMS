@@ -48,7 +48,7 @@
         </div>
        
             <div class="form-group">
-               <label class="control-label" for="basicinput"><i>by:</i> <strong><%= p.employee.full_name %></strong> &nbsp; on <strong> <%= format_date(p.created_at) %></strong></label> 
+             by: <strong><%= p.employee.full_name %></strong> &nbsp; on <strong> <%= format_date(p.created_at) %></strong>
               </div> 
            <div class="form-group pull-right ">
               <label class="control-label" for="basicinput"><strong>Categoty </strong> <%= p.category %> &nbsp;&nbsp; <h5><li class= "fa  fa-thumbs-up"></li>(<%= p.likes_count %>) . Comments(<%= p.comments.count %>)               

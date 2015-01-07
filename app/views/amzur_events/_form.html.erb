@@ -24,7 +24,7 @@
     <div class="form-group">
       <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Select: </label>
       <div class="col-lg-9" style="margin-top:8px;">
-        <select  name="eventable_type"  class="event">
+        <select  name="eventable_type"  class="event qqq">
           <option value="all">All</option>
         <%unless @departments.blank? %>
           <option value="Department">Department</option>
@@ -111,7 +111,12 @@
   </div>
 </section>
 
-
+<% title 'Events' %>
+<style>
+.qqq{
+  width:77.34%;
+}
+</style>
 <script>
     $(function() {
     $(".event_form").validator();
