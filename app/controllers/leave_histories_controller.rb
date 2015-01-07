@@ -35,7 +35,7 @@ class LeaveHistoriesController < ApplicationController
   def create 
     @employee = current_user.employee
     leave_type_id = params[:leave_history][:leave_type_id].to_i
-    # condition checking for leave type i.e personal leave or floating leave
+    # condition for leave type i.e it will check leave is personal or floating
     if leave_type_id == 2
       # code for create float leave
       @leave_history = current_user.employee.leave_histories.new(params_leave_history)
