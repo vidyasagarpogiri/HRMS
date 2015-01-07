@@ -48,7 +48,7 @@ class DesignationsController < ApplicationController
     
   private
   def designation_params
-    params.require(:designation).permit(:designation_name, :email) 
+    params.require(:designation).permit(:designation_name, :department_id) 
   end
   def find_designation
     @designation = Designation.find(params[:id])

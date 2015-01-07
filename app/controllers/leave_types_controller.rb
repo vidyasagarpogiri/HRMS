@@ -22,7 +22,7 @@ class LeaveTypesController < ApplicationController
   
   def update
     @leave_type = LeaveType.find(params[:id])
-    @leave_type.update(parama_leave_types)
+    @leave_type.update(params_leave_types)
     redirect_to leave_types_path
   end
   
