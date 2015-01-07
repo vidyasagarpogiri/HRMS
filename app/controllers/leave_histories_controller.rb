@@ -72,7 +72,22 @@ class LeaveHistoriesController < ApplicationController
         # will send mail to reporting manager
         Notification.delay.applyleave(current_user.employee, @leave_history)
         redirect_to leave_histories_path # will redirect to leavehistiories index page
-      end 
+      end
+      
+=begin      flag = 0
+      @leaves = LeaveHistory.where(employee_id: @employee.id).collect{|leave| (leave.from_date.to_date..leave.to_date.to_date).to_a}.flatten!
+      (params[:leave_history][:from_date].to_date..params[:leave_history][:to_date].to_date).each do |date|
+        if @leaves.present? && @leaves.include?(date)
+          flag = 1
+          @applied_date = date
+          break
+         end
+        end
+        if flag == 1
+          @leave_history = LeaveHistory.new
+          
+        end 
+=end 
 		else 
 		  # code is for creating full day or half day leave
 		  # condition to check applied leave full day or not
