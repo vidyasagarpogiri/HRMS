@@ -16,8 +16,8 @@
         <%= form_for @tax_exemption, :html => {:class=>"form-horizontal row-fluid new_tax_form"} do |tax| %>    
 	        <div class="form-group">   
 	          <label class="control-label col-lg-2" for="basicinput">Gender</label>
-              <div class="col-lg-10">
-                <%= tax.select :gender,  options_for_select([['Male', 'Male'], ['Female', 'Female']], :selected => tax.object.gender), :class => "form-control" %>
+              <div class="col-lg-8">
+                <%= tax.select :gender,  options_for_select([['Male', 'Male'], ['Female', 'Female']], :selected => tax.object.gender) %>
               <span class="help-block with-errors"></span>
             </div>
 	        </div>
@@ -50,6 +50,7 @@
           
 
 <script>
+  $('select').addClass("form-control")
   $(".new_tax_form").validator();
 </script>  
 

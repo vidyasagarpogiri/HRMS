@@ -52,20 +52,20 @@
                                           <% end %>         
                                   </a>
                                   <div class="media-body">
-                                       <h4><%= link_to employee.full_name,  profile_employee_path(employee) %><span class="text-muted small"> - <%= employee.designation.designation_name if employee.designation.present? %></span></h4>
-                                      <ul class="social-links">
+                                       <h4><%= link_to employee.full_name,  profile_employee_path(employee) %><span class="text-muted small"> <% if employee.designation.present? %> - <%= employee.designation.designation_name if employee.designation.present? %><% end %></span></h4>
+                                      <!--<ul class="social-links">
                                           <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                           <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
                                           <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
                                           <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                      </ul>
+                                      </ul>-->
                                       <address>
                                           <strong><%= employee.user.email%></strong><br>
                                           <% if employee.designation.present? %>
                                             <i class="fa fa-cog"></i> <%= employee.designation.designation_name if employee.designation.present? %><br>
                                           <% end %>
                                           <% if employee.blood_group.present? %> 
-                                            <i class="fa fa-plus-square-o"></i> <%= employee.blood_group.blood_group_name if employee.blood_group.present? %><br>
+                                            <i class="fa fa-tint"></i> <%= employee.blood_group.blood_group_name if employee.blood_group.present? %><br>
                                           <% end %>
                                           <i class="fa fa-gift"></i> <%= format_date_without_year(employee.date_of_birth) %> <br>
                                           <i class="fa fa-phone"></i> <%= employee.mobile_number %>

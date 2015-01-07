@@ -5,6 +5,7 @@
         Company PayRoll Master Details					    
 		  </header>
 		  <div class="panel-body">
+		   <% if @pay_rolls.present? %>
 	      <table class="table table-bordered table-striped table-condensed" id="sample-table-2">
            <thead>
            <tr>
@@ -29,6 +30,12 @@
             <% end %>
            </tbody>                 
           </table>
+          <% else %>
+            <div class="alert alert-success alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                No Payrolls to display
+            </div>	       
+          <% end %>
         </div>
 		</section>
 	</div>

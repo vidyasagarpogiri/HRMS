@@ -4,7 +4,7 @@
       <div class="form-group">
         <label  class="col-lg-2 control-label">Select Month to View payslip :</label>
         <div class="col-lg-4">
-          <select name="payslip_view_year" class="payroll_year col-lg-12">
+          <select name="payslip_view_year" class="payroll_year form-control">
             <option value=0>-select year-</option>
             <% @years.each do |year| %>
               <option value="<%= year %>"><%= year %></option>

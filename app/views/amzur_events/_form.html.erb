@@ -23,8 +23,9 @@
     <%if @amzurevent.new_record? %>
     <div class="form-group">
       <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Event Group: </label>
-      <div class="col-lg-9" style="margin-top:8px;">
-        <select  name="eventable_type"  class="event">
+      <div class="col-lg-7" style="margin-top:8px;">
+        <select  name="eventable_type"  class="event form-control">
+
           <option value="all">All</option>
         <%unless @departments.blank? %>
           <option value="Department">Department</option>
@@ -111,6 +112,8 @@
     <% end %>
   </div>
 </section>
+
+<% title 'Events' %>
 
 
 <script>
