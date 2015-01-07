@@ -1,13 +1,15 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-    <h3> CSV Uploading</h3>
+     CSV Uploading
   </div>
   <div class="processing"></div>
   <%= form_for(@employee_attendence_log_file, :url=>"/employee_attendence/upload_file", :html => {:multipart => true}) do |f| %>
   <div class="panel-body">
-    <label>Upload Attandance csv file:</label>
+    <label class="col-lg-2 control-label">Upload Attandance csv file:</label>
+    <div class="col-lg-4">
     <%= f.file_field :log_file, :onchange =>"validateFiles(this);",:data => {:error => " Please Choose a CSV file to attach"}, :required => true %><br>
-    <%= f.submit "Submit", :class => "btn btn-info csv-upload" %>                
+    <%= f.submit "Submit", :class => "btn btn-info csv-upload" %>    
+    </div>            
   </div><!-- module body-->
   <% end %>  
 </div><!--/.panel-->                    

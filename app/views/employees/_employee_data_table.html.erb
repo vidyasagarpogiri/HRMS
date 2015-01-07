@@ -4,6 +4,7 @@
       <thead>											      
         <tr>
           <th>Photo</th>
+          <th>Amzur-ID</th>
           <th>Employee Name</th>
           <th>Email-id</th>
           <th>Designation</th>
@@ -26,7 +27,8 @@
 	              <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
               <% end %>
             <% end %>
-          </td>                           
+          </td>
+          <td><%= employee.employee_id if employee.employee_id.present? %></td>                          
           <td>
               <%= link_to employee.full_name , profile_path(employee) %>                        
           </td>
@@ -46,4 +48,4 @@
        Dont have Inactive Employees Record
   </div>
 <% end %>
-<% title "Employees List" %>
+

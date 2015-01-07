@@ -4,33 +4,32 @@
       <div class="panel-heading">
         All Groups
         <% if current_user.designation == Designation::HRADMIN %>
-          <%= link_to "New Group", new_group_path, :class => "fa fa-plus pull-right" %>
+          <i class="fa fa-plus pull-right" style="margin-top:5px;"></i><%= link_to " New Group", new_group_path, :class => "pull-right" %>
         <% end %>
       </div><!--/.module-head-->
-      <div>
-        <% if @groups.present? %>
-          <% @groups.each do |group| %>
-            <div class="col-md-4 col-sm-4">
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <%= group.group_name %>'s Info <%= link_to 'Edit',edit_group_path(group), :class=>"fa fa-edit pull-right" %>
-                </div>
-              <div class="panel-body">
-                <div class="media">
-                  <a class="pull-left" href="#">
-                    <%= image_tag("us-staffing.png", alt: "", class: "thumb media-object") %>
-                  </a>
-                  <address>
-                    <h4><%= link_to group.group_name, group_path(group) %></h4>
-                    <abbr title="employees"><i class="icon-user"></i> <strong>Employees: </strong><%=  group.employees.count %>
-                  </address>
-                </div>
+    </div>
+      <% if @groups.present? %>
+        <% @groups.each do |group| %>
+          <div class="col-md-4 col-sm-4">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <%= group.group_name %>'s Info  <% if current_user.designation == Designation::HRADMIN %><i class="fa fa-edit pull-right" style="margin-top:5px;"></i><%= link_to 'Edit',edit_group_path(group), :class=>" pull-right" %><% end %>
+              </div>
+            <div class="panel-body">
+              <div class="media">
+                <a class="pull-left" href="#">
+                  <%= image_tag("us-staffing.png", alt: "", class: "thumb media-object") %>
+                </a>
+                <address>
+                  <h4><%= link_to group.group_name, group_path(group) %></h4>
+                  <abbr title="employees"><i class="icon-user"></i> <strong>Employees: </strong><%=  group.employees.count %>
+                </address>
               </div>
             </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %> 
   </div>
 </div>  
 <!--<div class="col-lg-4" style="border-radius:4px; background-color:#fff">

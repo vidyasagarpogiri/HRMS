@@ -22,14 +22,15 @@
     
     <div class="form-group">
       <label class="col-lg-2 control-label" for="basicinput">Work Group Icon</label>                                         
-      <div class="col-lg-2">
+      <div class="col-lg-2" style="margin-top:10px;">
         <%= w.file_field :workgroupicon,:onchange =>"validateFiles(this);",:data => {:max_file_size => 5.megabytes}%>
       </div>
+      <div class="col-lg-6">
           Existing/Default Work Group Icon: <% if @workgroup.workgroupicon.present? %> <%= image_tag @workgroup.workgroupicon, size: "50x50" %>
         <% else %>
           <%= image_tag "workgroup.png", size: "50x50" %> 
         <% end %> 
-        <span class="help-block with-errors"></span>
+      </div>
     </div>
     <div class="form-group">
       <div class="col-lg-offset-2 col-lg-10">
