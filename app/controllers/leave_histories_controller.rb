@@ -125,7 +125,7 @@ class LeaveHistoriesController < ApplicationController
   end
   
   def update
- 
+  #raise params.inspect
    @leave_history = LeaveHistory.find(params[:id])
    @employee = @leave_history.employee
    #Checking Wehter Leave already apporved or not if apporved then we added days to leaves avialalbe days

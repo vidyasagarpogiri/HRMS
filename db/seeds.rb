@@ -32,7 +32,7 @@ StaticSalary.destroy_all
 Skill.destroy_all
 
 
- @user = User.invite!(:email =>  "hr-admin@amzur.com", :skip_invitation => true)
+ @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
  Address.create(:line1 => "9-29-22,2nd Floor,Pioneer Sankar Shantiniketan", :line => "Balaji Nagar,Siripuram", :city => "Visakhapatnam", :state=>"Andhra Pradesh",:country=>"India",:zipcode=>"530003")
 addresses = Address.all.pluck(:id)
 
