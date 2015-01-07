@@ -48,7 +48,7 @@
             <% @welcome_event.each do |welcome_event| %>             
               <li class="active">
                 <div class="col-lg-8" style="padding:2px;"><strong><%= link_to welcome_event.title, "#eventsModal", :class => " event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal", :id => "eventModal" %></strong></div>
-                <div class="col-lg-4" ><%= time_ago_in_words(welcome_event.created_at)%> ago </div>
+                <div class="col-lg-4" style="font-size:9px;" ><%= time_ago_in_words(welcome_event.created_at)%> ago </div>
                
                 <!--<div class="control-group">
                   <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>                
@@ -81,7 +81,7 @@
             <% @welcome_announcements.each do |welcome_announcement| %>
               <li>
                 <div class="col-lg-8" style="padding:2px;"><a href="#"><strong><%= link_to welcome_announcement.title, "#announcementModal", :class => "announcement-show event-show_#{welcome_announcement.id}", :url => announcement_path(welcome_announcement.id), "data-toggle" => "modal" %></strong></a></div>
-                <div class="col-lh-4"> <p><%= time_ago_in_words(welcome_announcement.created_at)%> ago</p></div>
+                <div class="col-lh-4" > <%= time_ago_in_words(welcome_announcement.created_at)%> ago</div>
                 
                 <!--<div class="control-group">
                   <label class="idesc" for="basicinput"><%# raw welcome_announcement.description %> </label>

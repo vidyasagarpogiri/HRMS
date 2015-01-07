@@ -1,6 +1,6 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-    New Appraisal Cycle <%= link_to ' Back To AppraisalsCycles', appraisal_cycles_path, :class => "fa fa-arrow-circle-left pull-right" %>
+    New Appraisal Cycle <i class="fa fa-arrow-circle-left pull-right" style="margin-top:5px;"></i><%= link_to ' Back To AppraisalsCycles', appraisal_cycles_path, :class => " pull-right" %>
   </div>
   <div class="panel-body">
     <%= form_for @appraisal_cycle, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, remote: true  do |a| %>
