@@ -3,7 +3,7 @@
           <div class="form-group">
             <label for="inputEmail1" class="control-label col-lg-2"> Leave Type: </label>           
             <div class="col-lg-7">
-              <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name,  { :class => "leave_type form-control", :id => "disabledSelect" } %> 
+              <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name,  { :class => "leave_type", :id => "disabledSelect" } %> 
               <span class="help-block with-errors"></span> 
             </div>
           </div> 
@@ -69,7 +69,7 @@
 					          <span class="help-block with-errors"></span>   
 				          </div>                              
                   <label  class="col-lg-1 control-label">Section:</label>
-                  <div class="col-lg-3">
+                  <div class="col-lg-3" style="">
                     <%= f.select :section, options_for_select([['First Half', 'First Half'], ['Second Half', 'Second Half']]), :class => "form-control leave-to-date idnm4", :data => {:error => "Please Enter Select Session"} %>
                     <span class="help-block with-errors"></span> 
                   </div>
