@@ -67,7 +67,7 @@
                                           <% if employee.blood_group.present? %> 
                                             <i class="fa fa-plus-square-o"></i> <%= employee.blood_group.blood_group_name if employee.blood_group.present? %><br>
                                           <% end %>
-                                          <i class="fa fa-gift"></i> <%= format_date(employee.date_of_birth) %> <br>
+                                          <i class="fa fa-gift"></i> <%= format_date_without_year(employee.date_of_birth) %> <br>
                                           <i class="fa fa-phone"></i> <%= employee.mobile_number %>
                                       </address>
 
