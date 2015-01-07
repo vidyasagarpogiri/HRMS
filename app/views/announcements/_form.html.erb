@@ -25,7 +25,7 @@
            <%if @announcement.new_record? %>
           
            <div class="form-group">
-              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Select</label>
+              <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Announcement Group</label>
               <div class="col-lg-9">
                <select  name="announceable_type" class="announcement">
                 <option value="all">All</option>
@@ -72,7 +72,7 @@
                   <div class="col-lg-offset-2 col-lg-10">
                       <div class="checkbox">
                           <label>
-                              <%= f.check_box :is_send_mail %> Select To Send Mail
+                              <%= f.check_box :is_send_mail, {checked: true}%> Select Mail To Announcement Group
                           </label>
                       </div>
                   </div>
