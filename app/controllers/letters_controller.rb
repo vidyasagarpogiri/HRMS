@@ -69,9 +69,9 @@ class LettersController < ApplicationController
 
   private
   def hr_manager
-    hr_managers = Designation.find_by(designation_name: "HR & Ops Manager").employees if Designation.find_by(designation_name: "HR & Ops Manager").present?
-    if hr_managers.present? 
-      @hr_manager = hr_managers.first.full_name
+    desg =  Designation.find_by(designation_name: "HR & Ops Manager")
+    if desg.present? && desg.employees.present? 
+      @hr_manager = desg.employees.first.full_name
     else
       @hr_manager = "Manager"
     end
