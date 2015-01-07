@@ -2,44 +2,41 @@
   <div class="row"> 
     <div class="panel">
       <div class="panel-heading">                  
-         All Departments <% if current_user.designation == Designation::HRADMIN  %> <%= link_to " New Department", new_department_path, :class => "fa fa-plus pull-right" %> <% end %>                      
+         All Departments <% if current_user.designation == Designation::HRADMIN  %> <i class="fa fa-plus pull-right" style="margin-top:5px;"></i><%= link_to " New Department", new_department_path, :class => "pull-right" %> <% end %>                      
       </div>
-      <div class="panel-body">        
-        <% @departments.each do |department| %>
-        <div class="col-md-4 col-sm-4">
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <%= department.department_name %>'s Info <%= link_to 'Edit',edit_department_path(department), :class=>"fa fa-edit pull-right" %>
-            </div>     
-            <div class="panel-body">              
-              <a class="pull-left" href="#">
-              <% if department.department_name == "HR" %>
-               <%= image_tag "HR.jpg", :class=>"thumb media-object" %>
-              <% elsif department.department_name == "Development"%>
-                 <%= image_tag "dep.jpg", :class=>"thumb media-object" %>
-              <% elsif department.department_name == "Business Development"%>
-                <%= image_tag "accounts.jpg" , :class=>"thumb media-object"%>
-              <% elsif department.department_name == "Accounts"%>
-                <%= image_tag "bdm.jpg", :class=>"thumb media-object" %>              
-              <% else %>
-                <%= image_tag "us-staffing.png" , :class=>"thumb media-object"%>
-              <% end %>  
-              </a>
-                <address>
-                  <h4><%= link_to department.department_name, department_path(department) %></h4>
-                  <abbr title="employees"><i class="icon-user"></i> <strong>Employees: </strong><%= department.employees.count %>
-                </address>
-              
-            </div>
+    </div>          
+    <% @departments.each do |department| %>
+    <div class="col-md-4 col-sm-4">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <%= department.department_name %>'s Info <% if current_user.designation == Designation::HRADMIN  %><i class="fa fa-edit pull-right" style="margin-top:5px;"></i><%= link_to 'Edit',edit_department_path(department), :class=>"pull-right" %><% end %>
+        </div>     
+        <div class="panel-body">              
+          <a class="pull-left" href="#">
+          <% if department.department_name == "HR" %>
+           <%= image_tag "HR.jpg", :class=>"thumb media-object" %>
+          <% elsif department.department_name == "Development"%>
+             <%= image_tag "dep.jpg", :class=>"thumb media-object" %>
+          <% elsif department.department_name == "Business Development"%>
+            <%= image_tag "accounts.jpg" , :class=>"thumb media-object"%>
+          <% elsif department.department_name == "Accounts"%>
+            <%= image_tag "bdm.jpg", :class=>"thumb media-object" %>              
+          <% else %>
+            <%= image_tag "us-staffing.png" , :class=>"thumb media-object"%>
+          <% end %>  
+          </a>
+            <address>
+              <h4><%= link_to department.department_name, department_path(department) %></h4>
+              <abbr title="employees"><i class="icon-user"></i> <strong>Employees: </strong><%= department.employees.count %>
+            </address>            
           </div>
         </div>
-      <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
-</div>
-</div> 
+
 
 <% title "Departments" %>
-
 
 
