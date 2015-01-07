@@ -4,8 +4,9 @@ class AppraisalsController < ApplicationController
   include ApplicationHelper
   
   # filter for authentication
-  before_filter :hr_view, only: [:index, :new, :edit, :hr_manager_view]
-  before_filter :reporting_manager_view, only: [:new, :edit, :assign_appraisal, :assign_employee_appraisals, :manager_view, :employee_appraisals, :manager_view, :manager_feedback, :manager_appraisal_view, :reportees, :reportee_appraisals, :reportee_appraisal_view, :reportee_appraisal_edit, :reportee_appraisal_update ]
+  #TODO We have to Redo
+  #before_filter :hr_view, only: [:index, :new, :edit, :hr_manager_view]
+  #before_filter :reporting_manager_view, only: [:new, :edit, :assign_appraisal, :assign_employee_appraisals, :manager_view, :employee_appraisals, :manager_view, :manager_feedback, :manager_appraisal_view, :reportees, :reportee_appraisals, :reportee_appraisal_view, :reportee_appraisal_edit, :reportee_appraisal_update, :index ]
   # to create appraisal list and employees list
   before_action :create_assign_list, only: [:create_appraisal, :assign_employee_appraisals]
   # will get current employee before going those actions in the array of actions
