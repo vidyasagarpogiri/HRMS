@@ -1,7 +1,7 @@
 <section class="panel panel-info">
   <div class="panel-heading">
     All Job Locations
-    <% if current_user.department == Department::HR %> <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to " Add Job Location",new_job_location_path, :class=>"pull-right" %><% end %>
+    <% if current_user.department == Department::HR %> <i class="fa fa-plus pull-right icon-position"></i><%= link_to " Add Job Location",new_job_location_path, :class=>"pull-right" %><% end %>
   </div>
   <div class="panel-body">   
     <% if @job_locations.present? %>                                           
