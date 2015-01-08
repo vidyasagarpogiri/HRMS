@@ -2,7 +2,7 @@
   <header class="panel-heading">      
      Job Openings
      <% if current_user.department == Department::HR %>                                
-       <%= link_to 'New Job',  new_recruitment_path, :class => "fa fa-plus pull-right" %>
+       <i class="fa fa-plus pull-right icon-position" ></i><%= link_to 'New Job',  new_recruitment_path, :class => " pull-right" %>
      <% end %> 
   </header>
 </section>

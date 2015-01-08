@@ -20,7 +20,7 @@
         <div class="row"> 
             Present Address
             <% if current_user.department == Department::HR %>     
-              <i class="fa fa-edit pull-right" style="margin-top:3px;"></i><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"pull-right", :remote => true %>
+              <i class="fa fa-edit pull-right icon-position" ></i><%= link_to "Edit", edit_employee_address_path(@employee, @address1), :class=>"pull-right", :remote => true %>
             <% end %>
         </div>         
         <div class="panel-body">          
@@ -58,7 +58,7 @@
           <div class="row">  
             Permanent Address
             <% if current_user.department == Department::HR %>
-              <i class="fa fa-edit pull-right" style="margin-top:3px;"></i><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"pull-right", :remote => true %>                
+              <i class="fa fa-edit pull-right icon-position" ></i><%= link_to "Edit", edit_employee_address_path(@employee, @address2), :class=>"pull-right", :remote => true %>                
             <% end %>
           </div> 	              
           <div class="panel-body">								                                    

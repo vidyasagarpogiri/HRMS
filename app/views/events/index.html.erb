@@ -4,7 +4,7 @@
       <header class="panel-heading">
         List Of Holidays
         <% if current_user.designation == Designation::HRADMIN %>                                                 
-          <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to " New Holiday", new_event_path, :class=>"pull-right" %>
+          <i class="fa fa-plus pull-right icon-position" ></i><%= link_to " New Holiday", new_event_path, :class=>"pull-right" %>
         <% end %>        
       </header>
     <div class="panel-body">

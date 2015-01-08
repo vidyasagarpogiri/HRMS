@@ -3,7 +3,7 @@
     <div class="panel panel-info">
       <div class="panel-heading">
         Reportee Appraisal For <%= @employee_appraisal.appraisal_cycle.title %>
-       <label class = "pull-right"><a href="#"><span class="glyphicon glyphicon-circle-arrow-left"></span></a><%= link_to 'Back To Appraisals', "/reportee_appraisals/#{@employee.id}"%></label>
+        <i class="fa fa-arrow-circle-left pull-right icon-position"></i><%= link_to 'Back To Appraisals', "/reportee_appraisals/#{@employee.id}", :class => "pull-right" %>
       </div>
       <%= render "appraisals/appraisal_view_partial" %>
     </div><!--/.module-->

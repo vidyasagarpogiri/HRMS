@@ -1,7 +1,7 @@
 <div class="panel">
   <div class="panel-heading">       
   <% if current_user.department == Department::HR %>                                                  
-    <i class="fa fa-edit pull-right" style="margin-top:3px;"></i><%= link_to " Edit",  bankdetails_edit_employee_path(@employee),:class=>"pull-right", :remote => true %>
+    <i class="fa fa-edit pull-right icon-position" ></i><%= link_to " Edit",  bankdetails_edit_employee_path(@employee),:class=>"pull-right", :remote => true %>
   <% end %>
   </div>
   

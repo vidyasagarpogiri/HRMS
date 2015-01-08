@@ -9,7 +9,7 @@
       <div class="panel-body">
       <% if @reported_leaves.present? %>
         <div class="adv-table">
-          <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
+          <table  class="display table table-bordered table-striped" id="dynamic-table">
             <thead>											      
               <tr>
                 <th>Employee Name</th>
@@ -36,9 +36,9 @@
                 <td><%= f.leave_type.type_name if f.leave_type.present? %> </td>
                 <td ><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal1"}, :id => "modal-text" } %>  </td>
                 <td>
-                <%= link_to "Accept", accept_path(:employee_id=> report.employee.id, :leave_history_id => f.id), method: :post, :class => "btn btn-success ", :remote => true %>
+                <%= link_to "Accept", accept_path(:employee_id=> report.employee.id, :leave_history_id => f.id), method: :post, :class => "btn btn-success btn-sm ", :remote => true %>
 			
-				         <%= link_to "Reject", "#cancelLeaveModal", :class => "cancel-leave btn btn-danger", :url => getLeaveForm_leave_history_path(f.id), "data-toggle" => "modal" %>           
+				         <%= link_to "Reject", "#cancelLeaveModal", :class => "cancel-leave btn btn-danger btn-sm", :url => getLeaveForm_leave_history_path(f.id), "data-toggle" => "modal" %>           
               </td>
             </tr>		
              <% end %>
