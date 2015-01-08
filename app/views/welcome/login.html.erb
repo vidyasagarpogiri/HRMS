@@ -15,6 +15,8 @@
       <p>or you can 
       <% unless current_user.present? %>                              
         <%= link_to 'sign in', user_omniauth_authorize_path(:google_oauth2), :class => "network-name" %>
+      <% else %>
+      sign in
       <% end %>
       via Amzur Id</p>
   </div>       
