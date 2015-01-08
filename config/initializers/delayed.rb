@@ -1,1 +1,1 @@
-system('ruby lib/background_job start')
+#system('ruby lib/background_job start')

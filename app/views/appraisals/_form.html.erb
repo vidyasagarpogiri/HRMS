@@ -1,7 +1,7 @@
 <div class="panel panel-info">
   <div class="panel-heading">
     Appraisal Template
-    <label class = "pull-right"><a href="#"><span class="glyphicon glyphicon-circle-arrow-left"></span></a> <%= link_to 'Back To Appraisals', appraisals_path %></label>
+    <i class="fa fa-arrow-circle-left pull-right" style="margin-top:5px;"></i><%= link_to 'Back To Appraisals', appraisals_path, :class=>"pull-right" %>
   </div>
   <div class="panel-body">
     <%= form_for @appraisal, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, remote: true  do |f| %>

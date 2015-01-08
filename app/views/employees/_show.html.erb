@@ -2,7 +2,7 @@
   <div class="panel panel-info">
     <div class="panel-heading"> Basic Info
         <% if current_user.department == Department::HR %>
-          <i class="fa fa-edit pull-right" style="margin-top:3px;" ></i><%= link_to " Edit ", edit_employee_path(@employee),:class=>"pull-right", :remote => true %>
+          <i class="fa fa-edit pull-right icon-position"  ></i><%= link_to " Edit ", edit_employee_path(@employee),:class=>"pull-right", :remote => true %>
         <% end %>
     </div>
     <div class="panel-body bio-graph-info">
