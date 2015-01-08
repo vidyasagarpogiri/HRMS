@@ -1,7 +1,8 @@
 class WelcomeController < ApplicationController
   
   #layout "wall_layout", only: [:wall]
-  
+  layout "device", only: [:login]
+   
   def index
     render :layout => false
   end
@@ -85,7 +86,9 @@ class WelcomeController < ApplicationController
     @posts.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!
  end
  
-
+  def login
+  
+  end
     
   private 
   def calculate_time_diff(time_in_min)  
