@@ -2,7 +2,7 @@
   <div class="panel-heading">							
     Education Info 
     <% if current_user.department == Department::HR %>
-    <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to ' Add Education', new_employee_education_path(@employee.id), :class=>"pull-right", :remote => true %>                                
+    <i class="fa fa-plus pull-right icon-position" ></i><%= link_to ' Add Education', new_employee_education_path(@employee.id), :class=>"pull-right", :remote => true %>                                
     <label class = "pull-right"><a><i class="icon-plus-sign"></i></a> </label>
     <% end %>
   </div>    
