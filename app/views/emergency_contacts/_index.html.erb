@@ -2,8 +2,8 @@
   <div class="panel-heading">							
     Emergency Contact Info
     <% if current_user.department == Department::HR %>                                       
-      <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to ' Add Emergency Contact', new_employee_emergency_contact_path(@employee.id),:class=>"pull-right", :remote => true %>
-    <% end %>
+      <i class="fa fa-plus pull-right icon-position" ></i><%= link_to ' Add Emergency Contact', new_employee_emergency_contact_path(@employee.id), :class => "pull-right", :remote => true %>
+      <% end %>
   </div>                   
   
   <div class="panel-body">	

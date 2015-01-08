@@ -2,7 +2,7 @@
  View for displaying all existing album along with its first images. You can view the whole album by clicking on image or on album name -->
 <div class="panel panel-info">
   <div class="panel-heading">
-    Gallery <%= link_to "New Album", new_album_path, :class => "fa fa-plus pull-right" %>    
+    Gallery <i class="fa fa-plus pull-right icon-position"></i><%= link_to "New Album", new_album_path, :class => "pull-right" %>    
   </div>
   <div class="panel-body show" >
     <% if @albums.present? %>

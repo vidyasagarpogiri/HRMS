@@ -26,7 +26,13 @@ class EmployeesController < ApplicationController
       render 'new'
     else
      @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])     
-     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
+     email_split_array = params[:email].split('@')
+     email_domain = email_split_array.last
+     if email_domain == "amzur.com"
+        @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
+     else
+        @user = User.invite!(:email =>  params[:email])
+     end
      @employee.update(:user_id => @user.id, :status => false)
      redirect_to profile_path(@employee)
     end   
@@ -239,6 +245,19 @@ class EmployeesController < ApplicationController
 	     workgroups = @employee.workgroups # workgroups in which current employee is a member 
 	     workgroups1 = Workgroup.where(admin_id: @employee.id) # workgroups which are created by current employee
 	     @workgroups=(workgroups+workgroups1).uniq # total work groups of current employee    
+	  end
+	  
+	  def change_status
+	    @employee = Employee.find(params[:id])
+	    if @employee.status
+	      @employee.update(status: false)
+	      @a = 0
+	      @employees =  Employee.where(:status => true)
+	    else
+	      @employee.update(status: true)
+	      @a =1 
+	      @employees =  Employee.where(:status => false)
+	    end
 	  end
 	  
   private   

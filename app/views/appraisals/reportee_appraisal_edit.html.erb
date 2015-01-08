@@ -3,7 +3,7 @@
     <div class="panel panel-info">
       <div class="panel-heading">
         Reportee Appraisal For <%= @employee_appraisal.appraisal_cycle.title %>
-          <label class = "pull-right"><a href="#"></a><%= link_to 'Back To Reportees', "/reportee_appraisals/#{@employee.id}"%></label>
+          <i class="fa fa-arrow-circle-left pull-right icon-position"></i><%= link_to 'Back To Reportees', "/reportee_appraisals/#{@employee.id}"%></label>
       </div>
       <div class="panel-body">
         <%= form_tag "/reportee_appraisal_update/#{@employee.id}", :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal"}, method: :post do %>

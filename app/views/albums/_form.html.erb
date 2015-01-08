@@ -44,18 +44,18 @@
         <li><%= submit_tag "Cancel", :class => "btn btn-danger status", :type => "button", :onclick => "this.form.reset()" %></li>             
       </ul>
       <ul class="nav nav-pills">
-          <li>
+          <li class="status">
               <a href="#"><i class="fa fa-map-marker"></i></a>
           </li>
           <li class="camera">
               <a href="#"><i class="fa fa-camera"></i></a>
           </li>
-          <li>
+          <!--<li>
               <a href="#"><i class=" fa fa-film"></i></a>
           </li>
           <li>
               <a href="#"><i class="fa fa-microphone"></i></a>
-          </li>
+          </li>-->
       </ul>                         
     </footer>    		 
   <% end %>
@@ -72,6 +72,7 @@ border:solid 3px #ff766c;
 </style>
 <script>
 $(function(){ 
+
   $(".status").click(function(){
     $(".new_status").show();
     $(".new_album").hide();

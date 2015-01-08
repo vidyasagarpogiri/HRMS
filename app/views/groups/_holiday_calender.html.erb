@@ -2,7 +2,7 @@
 		      <div class="panel-heading">							
              Holiday calender
              <% if current_user.designation == Designation::HRADMIN %>
-		          <i class="fa fa-plus pull-right" style="margin-top:5px;"></i> <%= link_to "Add Holidays",  new_group_holiday_calender_path(@group), :class=> "pull-right", :remote => true %>
+		          <i class="fa fa-plus pull-right icon-position"></i> <%= link_to "Add Holidays",  new_group_holiday_calender_path(@group), :class=> "pull-right", :remote => true %>
 		         
 		        <% end %>
           </div>		   	         

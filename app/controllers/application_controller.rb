@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   #before_filter :sign_in_user
   before_filter :is_employee_active
  
-  
+  layout :layout_by_resource
+
+
   
   private
 
@@ -31,14 +33,15 @@ class ApplicationController < ActionController::Base
 
     if current_user.present?
       unless current_user.employee.present? && current_user.employee.status == false 
-        redirect_to '/422'  
+        render :text => "You Dont have permission to access Please Contact HR" 
       end
     end     
   end
   
   
   def hr_view
-	  unless current_user.department == Department::HR
+    employee = current_user.employee
+	  unless employee.department == Department::HR || employee.is_reporting_manager? ||  current_user.designation == Designation::HRADMIN
 	    render :text => "You Don`t Have Permission"  
 	  end
 	end 
@@ -111,4 +114,12 @@ class ApplicationController < ActionController::Base
     sign_in user
   end
 
+  protected
+
+  def layout_by_resource
+    if devise_controller? 
+      "devise_layout"
+    end
+  end
+  
 end
