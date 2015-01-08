@@ -31,7 +31,7 @@
 
         <div class="row">
           <label class="control-label col-lg-2" for="basicinput">End Date:</label>
-          <div class="col-lg-8"><%= format_date(project.end_date) %></div>
+          <div class="col-lg-8"><%if project.end_date.nil?%> In Progress <%else%><%= format_date(project.end_date)%><%end%></div>
         </div>
                    
         <div class="row">
