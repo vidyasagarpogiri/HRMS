@@ -45,12 +45,13 @@
 	        </div>
 	        <div class="col-lg-6  mt ">
             <div class="pull-left">
-	            <h4> LOG IN WITH <span style="color:#FF6C60;">PERSONAL </span>ID</h4>
+	            <h4> LOG IN WITH <span style="color:rgb(237, 237, 153);">PERSONAL </span>ID</h4>
 	            <form class="form-inline" role="form">
 	              <%= link_to 'Login', login_path, :class => "btn btn-success", :style => "text-decoration: none;color:#fff;width:100px;" %>
 		          </form>
 	          </div>
 	        </div>         
+	                 
       </div>
 
     </section>
@@ -59,3 +60,5 @@
   </body>
   <!-- END BODY -->
 </html>
+
+
