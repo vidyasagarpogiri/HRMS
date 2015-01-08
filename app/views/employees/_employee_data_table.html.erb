@@ -10,7 +10,8 @@
           <th>Designation</th>
           <th>Department</th>		
           <th>Group</th>	
-          <th>Manager</th>          									                 	                  										      		
+          <th>Manager</th>
+          <th>Status</th>          									                 	                  										      		
         </tr>
       </thead>											                  	                                   			
       <tbody>
@@ -37,6 +38,11 @@
           <td><%= employee.department.department_name %></td>
           <td><%= employee.group.group_name %></td>
           <td><%= employee.reporting_manager %></td>
+          <% if employee.status %>
+            <td><%= link_to 'Active', change_status_employee_path(employee), remote: true, method: :post %></td>
+          <% else %>
+            <td><%= link_to 'Inactive', change_status_employee_path(employee), remote: true, method: :post %></td>
+          <% end %>
         </tr>	
       <%end%>											                   
       </tbody>												                 
@@ -48,4 +54,5 @@
        Dont have Inactive Employees Record
   </div>
 <% end %>
+
 

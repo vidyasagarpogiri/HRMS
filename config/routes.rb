@@ -144,6 +144,7 @@ get 'inactive_employees' => "employees#inactive_employees"
 			get 'employee_self_description_show'
 			get 'employee_self_description_form'
 			patch 'employee_self_description_create'
+			post 'change_status'
 			
 		end
 		
