@@ -3,7 +3,7 @@
       Announcement Details
  
   		    <% if current_user.department == Department::HR %>  
-					    <label style="font-weight:normal;margin-top:-20px;" class = "pull-right"><a href="#"><i class="icon-plus-sign"></i></a> <%= link_to 'New Announcement',  new_announcement_path %></label>
+					    <i class="fa fa-plus pull-right icon-position"></i><%= link_to ' New Announcement',  new_announcement_path, :class="pull-right" %>
 					    <% end %>
 					 </header>
 				    <div class="panel-body">						
