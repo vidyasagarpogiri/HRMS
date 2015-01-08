@@ -144,6 +144,7 @@ get 'inactive_employees' => "employees#inactive_employees"
 			get 'employee_self_description_show'
 			get 'employee_self_description_form'
 			patch 'employee_self_description_create'
+			post 'change_status'
 			
 		end
 		
@@ -391,7 +392,9 @@ post 'create_package' => "features#create_package"
   
   get "welcome/wall" 
   get "welcome/header"
-
+  
+  get 'login' => "welcome#login"
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

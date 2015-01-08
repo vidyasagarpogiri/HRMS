@@ -1,0 +1,8 @@
+if(<%= @employee.status %>){
+  $('#unseen').hide();
+  $(".seen").html('<%= j render "employees/employee_data_table"%>');
+}
+else{
+  $('.actual-list').hide();
+  $(".render-list").html('<%= j render "employees/employee_data_table"%>');
+}
