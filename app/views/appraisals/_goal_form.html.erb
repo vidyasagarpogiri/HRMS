@@ -45,7 +45,8 @@
     $( ".date-picker, .start-date" ).removeAttr("id");
     $( ".date-picker, .end-date" ).removeAttr("id");
     $(".start-date").datepicker({ 
-    dateFormat: 'dd/mm/yy',
+    format: 'dd/mm/yy',
+    autoclose: true
     onClose: function (selectedDate) {
               var date2 = $('.start-date').datepicker('getDate');
               date2.setDate(date2.getDate());
@@ -54,7 +55,8 @@
              }
     });
     $(".end-date").datepicker({
-         dateFormat: 'dd/mm/yy', 
+         format: 'dd/mm/yy',
+         autoclose: true 
            onClose: function (selectedDate) {
             var date1 = $('.start-date').datepicker('getDate');
             if (date1){

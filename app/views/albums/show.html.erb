@@ -4,7 +4,7 @@
   <div class="panel-heading">
 	  <%= @album.title %>
 	  <% if current_user.employee.id == @id %>
-	     <%= link_to " Add more photos", add_more_photos_form_album_path(@album), :class => "fa fa-plus pull-right" %>
+	     <i class="fa fa-plus pull-right icon-position"></i><%= link_to " Add more photos", add_more_photos_form_album_path(@album), :class => "pull-right" %>
 	  <% end %>
   </div>
   <div class="panel-body show">

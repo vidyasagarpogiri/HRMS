@@ -5,9 +5,9 @@
         <%= current_user.employee.role.role_name if current_user.employee.role.present? %> F&F Status Info
         <% if current_user.department == Department::HR %>
           <% unless @status.present? %>             
-            <i class="fa fa-plus pull-right" style="margin-top:3px;"></i><%= link_to 'Add FFStatus', new_employee_ff_status_path(@employee),:class => "pull-right", :remote => true %>
+            <i class="fa fa-plus pull-right icon-position"></i><%= link_to 'Add FFStatus', new_employee_ff_status_path(@employee),:class => "pull-right", :remote => true %>
           <% else %>
-            <i class=" fa fa-edit pull-right"></i></a> <%= link_to 'Edit', edit_employee_ff_status_path(@employee, @status),:class => "pull-right", :remote => true %>
+            <i class=" fa fa-edit pull-right icon-position"></i></a> <%= link_to 'Edit', edit_employee_ff_status_path(@employee, @status),:class => "pull-right", :remote => true %>
           <% end %> 
         <% end %>
       </div>	     

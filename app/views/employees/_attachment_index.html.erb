@@ -4,7 +4,7 @@
       <div class="panel-heading">
         Attachment Info
         <% if current_user.department == Department::HR %>
-          <i class="fa fa-plus pull-right" style="margin-top:3px;"></i> <%= link_to 'Add New Attachment', attachment_form_new_employee_path(@employee), :class => "pull-right", :remote => true  %>
+          <i class="fa fa-plus pull-right icon-position"></i> <%= link_to 'Add New Attachment', attachment_form_new_employee_path(@employee), :class => "pull-right", :remote => true  %>
         <% end %>
       </div>
       

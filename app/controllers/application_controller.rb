@@ -40,7 +40,8 @@ class ApplicationController < ActionController::Base
   
   
   def hr_view
-	  unless current_user.department == Department::HR
+    employee = current_user.employee
+	  unless employee.department == Department::HR || employee.is_reporting_manager? ||  current_user.designation == Designation::HRADMIN
 	    render :text => "You Don`t Have Permission"  
 	  end
 	end 

@@ -4,7 +4,7 @@
     Leave Policy
       <% unless @leave_policy.present?%>
         <% if current_user.designation == Designation::HRADMIN %>
-          <i class="fa fa-plus pull-right" style="margin-top:5px;"></i>
+          <i class="fa fa-plus pull-right icon-position"></i>
           <%= link_to "Add Leave Policy",  new_group_leave_policy_path(@group ), :class=> "pull-right", :remote => true %>
         <% end %>
       <% end %>	

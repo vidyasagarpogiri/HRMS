@@ -247,6 +247,19 @@ class EmployeesController < ApplicationController
 	     @workgroups=(workgroups+workgroups1).uniq # total work groups of current employee    
 	  end
 	  
+	  def change_status
+	    @employee = Employee.find(params[:id])
+	    if @employee.status
+	      @employee.update(status: false)
+	      @a = 0
+	      @employees =  Employee.where(:status => true)
+	    else
+	      @employee.update(status: true)
+	      @a =1 
+	      @employees =  Employee.where(:status => false)
+	    end
+	  end
+	  
   private   
  
   def params_employees
