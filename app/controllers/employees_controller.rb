@@ -26,7 +26,13 @@ class EmployeesController < ApplicationController
       render 'new'
     else
      @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])     
-     @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
+     email_split_array = params[:email].split('@')
+     email_domain = email_split_array.last
+     if email_domain == "amzur.com"
+        @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
+     else
+        @user = User.invite!(:email =>  params[:email])
+     end
      @employee.update(:user_id => @user.id, :status => false)
      redirect_to profile_path(@employee)
     end   

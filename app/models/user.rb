@@ -15,9 +15,6 @@ class User < ActiveRecord::Base
         user.token = auth.credentials.token
         user.secret = auth.credentials.secret
         user.email = auth.info.email
-        #user.name = auth.info.name
-        #user.remote_avatar_url = auth.info.image
-        #user.save!
       end
     else
       false
