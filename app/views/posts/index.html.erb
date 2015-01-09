@@ -2,74 +2,64 @@
   <div class="panel-heading"> 
     All posts <i class="fa fa-plus pull-right icon-position" ></i><%= link_to " Add New Post", new_post_path, :class => "pull-right" %>
   </div>   
-     <%= form_tag posts_path, :html => {:class=>"form-horizontal row-fluid shift_from"}, :method => :get do %>		 
+     <!--<%# form_tag posts_path, :html => {:class=>"form-horizontal row-fluid shift_from"}, :method => :get do %>		 
        <div class="panel-body">
         <div class="form-group">
           <div class="col-lg-4">
-            <%= text_field_tag :search, params[:search], :class => "form-control" %>
+            <%# text_field_tag :search, params[:search], :class => "form-control" %>
           </div>
           <label class="control-label col-lg-4" for="basicinput">          
-          <%= submit_tag "Search", :name => nil , :class => "btn btn-success" %></label>
+          <%# submit_tag "Search", :name => nil , :class => "btn btn-success" %></label>
         </div>
       </div>
-     <% end %>
+     <%# end %>--> 
+    </div>
      
-     <div class="panel-body">
-       <% if @posts.present? %>                        
-      <% @posts.each do |p| %>                                	 
-      <div class="form-group" style= "padding:20px;border:solid 1px #eee;">                                                                   	
-        <div class="form-group ">
-          <label class="form-label" for="basicinput"> <strong><%=link_to p.title, post_path(p.id) %> </strong> </label>
-           <% if current_user.employee.id == p.employee.id %>
-        
-          <span class="pull-right">
-            <%= link_to "Delete", post_path(p.id), method: :delete, data: {confirm: "Are You sure?"}, :class => "fa fa-trash-o" %>&nbsp&nbsp
-         
-       
-          <%= link_to 'Edit', edit_post_path(p),  :class => "fa fa-edit" %>                        
-          </span>
-       
-        <% end %>                
-        </div>              
-                 
-        <div class="form-group">
-          <label class="control-label" for="basicinput"><strong>Content </strong></label>
-          <label class="desc">
-            <%= raw(p.content)%>
-          </label>              
-            <%= link_to "Read More..", post_path(p.id), :class => "pt4" %>             
-       </div>
-      <div class="row">                                 
-       <div class="form-group">
-         <label class="control-label" for="basicinput"><strong>Tags </strong></label>
-          <% p.tags.split(",").each do|tag| %>
-          <i class="label label-info fa fa-tag"  style="font-size: 13px"><%=  tag %></i>
-          <% end if p.tags? %> 
-        </div>
-       
-            <div class="form-group">
-             by: <strong><%= p.employee.full_name %></strong> &nbsp; on <strong> <%= format_date(p.created_at) %></strong>
-              </div> 
-           <div class="form-group pull-right ">
-              <label class="control-label" for="basicinput"><strong>Categoty </strong> <%= p.category %> &nbsp;&nbsp; <h5><li class= "fa  fa-thumbs-up"></li>(<%= p.likes_count %>) . Comments(<%= p.comments.count %>)               
-            <% if p.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
-              <%= link_to 'Unlike', remove_like_post_path(p.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
-            <% else %> 
-              <%= link_to 'Like',  add_like_post_path(p.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
-            <% end %>   </label>                
-           </div>
-          </div><!--row-->
-           
-          </div>
-              <%end%>                                
-            <% else %>                                                  
-            <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              No Posts to display.
+<div class="row">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-9">                      
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_1">
+            <div class="panel-group" id="accordion2">                
             </div>
-              <% end %>      
-				   </div>
-		 </section>       
+          </div>
+        </div>      
+      </div>
+   
+      <div class="col-md-3">
+        <section class="panel">
+          <header class="panel-heading" >
+            All Posts
+          </header>         
+        </section>
+        <ul class="vertical-menu">
+          <% if @posts.present? %>                        
+            <% @posts.each do |post| %>       
+              <li><%= link_to post.title ,post_path(post), :class => "fa fa-bullhorn ", :remote=> true %></li>                             
+            <%end%>
+          <%else%>
+          <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                  No Posts to display.
+                </h4>
+            </div>
+          </div>
+          <%end%>               
+        </ul>
+      </div>          
+    </div>                    
+  </div>      
+</div>
 
+<script>
+  $(function(){
+    $(".vertical-menu li:first a").click();
+  });
+</script>           
 			
 	<% title "Posts"%>
+	
+	
+	
