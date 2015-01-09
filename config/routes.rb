@@ -395,6 +395,11 @@ post 'create_package' => "features#create_package"
   
   get 'login' => "welcome#login"
   
+  #Edit Employee
+  
+  get "edit_employee_email/:id"  => "employees#edit_email", as:"edit_employee_email"
+  put "update_employee_email/:id" =>"employees#update_email", as: "update_employee_email"
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

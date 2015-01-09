@@ -1,0 +1,28 @@
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+     Employee Details    
+   </div>
+   <div class="panel-body">
+   <%= form_for(@employee, url: update_employee_email_path(@employee), :html => {:class => "form-horizontal row"}, method: :put) do |f| %>
+
+      
+   						   			
+								<div class="form-group">
+									<label class="col-lg-2 control-label" for="basicinput">Email Id</label>
+									<div class="col-lg-8">
+                   <input class="form-control" id ="basicinput" placeholder="Enter Email id" name="email" data-error =" Please Enter Valid Amzur Email Id" required  type = "email"  value=<%= @employee.user.email %>  pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"> 
+                   <span class="help-block with-errors"></span> 
+									</div>
+								</div>
+						
+							
+						    <div class="form-group">
+      	          <div class="col-lg-offset-2 col-lg-10">
+      	            <button type="submit" class="btn btn-success">Save & Continue</button>
+      	          </div>
+      	       </div>	
+    <% end %>
+  </div>
+</div>		

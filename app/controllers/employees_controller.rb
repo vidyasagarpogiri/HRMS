@@ -260,6 +260,29 @@ class EmployeesController < ApplicationController
 	    end
 	  end
 	  
+	  def edit_email
+	    @employee = Employee.find(params[:id])
+	  end
+	  
+	  def update_email
+	    @employee = Employee.find(params[:id])
+	    if params[:email] == @employee.user.email
+	       redirect_to  employees_path
+	    else
+	      email_split_array = params[:email].split('@')
+        email_domain = email_split_array.last
+        @user = @employee.user
+        @user.update(email: params[:email])
+         if email_domain == "amzur.com"
+            User.invite!(:email =>  params[:email], :skip_invitation => true)
+         else
+            User.invite!(:email =>  params[:email])
+         end
+         @employee.update(:user_id => @user.id, :status => false)
+         redirect_to  employees_path
+	    end
+	    
+	  end
   private   
  
   def params_employees
