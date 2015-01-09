@@ -13,7 +13,7 @@
       <div class="form-group">
 			  <label class="control-label col-lg-2" for="basicinput">Leave Type</label>                                              
 					<div class="col-lg-8">
-           <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name, { :prompt => "Please Select" }, { :class => "leave_type  form-control" } %> 
+           <%= f.collection_select :leave_type_id, LeaveType.all, :id, :type_name, { :prompt => "Please Select" }, { :class => "leave_type  form-control" ,:selected => f.object.leave_type_id} %> 
            <span class="help-block with-errors"></span>
 					</div>
 		 </div> 
