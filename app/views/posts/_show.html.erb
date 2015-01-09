@@ -1,0 +1,84 @@
+<div class="panel panel-success">
+  <div class="panel-heading"> 
+    <%= @post.title %> <%# link_to " All Posts",posts_path, :class => " pull-right" %>
+    <% if current_user.employee.id == @post.employee.id %>             
+      <i class="fa fa-trash-o pull-right icon-position"></i><%= link_to " Delete", post_path(@post.id), method: :delete, data: {confirm: "Are You sure?"}, :class => "pull-right" %>
+       <i class="fa fa-edit pull-right icon-position"></i><%= link_to ' Edit', edit_post_path(@post), :class => "pull-right" %>                              
+    <% end %>
+  </div>
+                            
+  <div class="panel-body">  
+    <h5 class="bold">Post Details</h5>
+      <ul class="list-unstyled p-files">
+          <li><a href=""><i class="fa fa-calendar"></i>Created at: <%= format_date(@post.created_at) %></a></li>
+          <li><a href=""><i class="fa fa-cogs"></i>Category: <%= @post.category %></a></li>              
+      </ul>
+      
+     <h5 class="bold">Content: </h5>
+       <p> <%= raw(@post.content)%> </p> 
+    
+    <h5 class="bold">Tags: </h5>
+      <ul class="p-tag-list">
+        <% @post.tags.split(",").each do|tag| %>
+          <li><a href=""><i class="fa fa-tag"></i><%=  tag %></a></li>
+        <% end if @post.tags? %>                                   
+      </ul>
+    </div>    
+    <div class="col-lg-6">
+      <label class="control-label" for="basicinput"><i>by:</i> <strong><%= @post.employee.full_name %></strong></label>                
+    </div>
+      
+              
+    <div class="row">
+      <div class="form-group">
+        <label class="control-label col-lg-6" for="basicinput">
+          <p>Likes(<%= @post.likes_count %>) . Comments(<%=@post.comments.count %>) 
+            <% if @post.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
+              <%= link_to 'Unlike', remove_like_post_path(@post.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
+            <% else %> 
+              <%= link_to 'Like',  add_like_post_path(@post.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
+            <% end %>
+          </p>
+        </label>
+      </div>
+    </div> 
+      
+   <div class="row">
+      <div class="col-lg-8"> 
+        <ul class="fb-comments">
+        <!--<%# if post.comments.count > 3 %>
+        <%# link_to "Show Previous Comments", status_path(post.id) %>            
+        <%# end %>-->
+          <% @post.comments.each do |comm| %> 
+              <li>
+                <a href="#" class="cmt-thumb">
+                  <% if comm.employee.avatar_url.present? %> 
+                    <%= image_tag(comm.employee.avatar_url,:style=>"width:40px!important; height:40px;") %>
+                  <% else %>
+                  <% if comm.employee.gender == "Female" %>
+                    <%= image_tag("1.jpg", :style=>"width:40px!important; height:40px;") %> 
+                  <% else %>
+                    <%= image_tag("user.png", :style=>"width:40px!important; height:40px;") %> 
+                  <% end %> 
+                 <% end %>
+                </a>
+                <div class="cmt-details">          
+                  <a href="#"> <%= link_to comm.employee.full_name , profile_path(comm.employee) %></a>
+                  <span> <%=comm.comment %> </span>
+                  <p><%= time_ago_in_words(comm.created_at)%> ago</p>
+                </div>
+              </li>        
+          <% end %>
+          <li><%= render "posts/add_comment_form",  :post => @post.id%></li>                    
+        </ul>
+      </div> 
+   </div><br>
+  </div><!--panel-body -->                                                                       
+</div><!--panle-->    	
+<% title "Job Openings"%>		
+
+
+
+
+
+
