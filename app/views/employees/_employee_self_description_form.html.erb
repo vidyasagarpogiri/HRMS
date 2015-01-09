@@ -9,25 +9,25 @@
         <%= form_tag  employee_self_description_create_employee_path(@employee), :remote => true, method: :patch do %>
           <div class="row">
             <div class="form-group">
-              <label class="control-label col-lg-2" for="basicinput">Description</label>
+              <label class="control-label col-lg-2" for="basicinput">Description: </label>
               <div class="col-lg-8">
-                <%= text_area_tag 'self_description', @employee.self_description, :style => "width: 650px;", required: true%>
+                <%= text_area_tag 'self_description', @employee.self_description, :class => "form-control", :style => "height:200px;", required: true%>
                 <span class="help-block with-errors"></span>   
               </div>
             </div>
           </div>
           <div class="row">
             <div class="form-group">
-              <label class="control-label col-lg-2" for="basicinput">Personal Interests</label>
+              <label class="control-label col-lg-2" for="basicinput">Personal Interests: </label>
               <div class="col-lg-8">
-                <%= text_area_tag  'interests', @employee.interests, :style => "width: 650px;", required: true%>
+                <%= text_area_tag  'interests', @employee.interests, :class => "form-control", required: true%>
                 <span class="help-block with-errors"></span>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="form-group">
-              <label class="control-label col-lg-2" for="basicinput">Personal Skill</label>
+              <label class="control-label col-lg-2" for="basicinput">Personal Skill: </label>
               <div class="col-lg-8">
                 <input type="text"  class = "term_skill form-control", name= "skills" , place_holder = "Enter Reporting Manager Name" data-error="Please Enter valid Skill" >
                 <input type="hidden" name="hidden_skill" class="hidden_skill">
@@ -38,7 +38,7 @@
           </div>
           <div class="row">
             <div class="form-group">
-              <label class="control-label col-lg-2" for="basicinput">Existing Skill</label>
+              <label class="control-label col-lg-2" for="basicinput">Existing Skill: </label>
                <% if @skills.present? %>
                 <% @skills.each do |skill| %>
                  <i class="label label-info fa fa-tag" style="font-size: 13px"><%= skill %></i>
