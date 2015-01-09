@@ -203,7 +203,7 @@ class EmployeesController < ApplicationController
 	
 	#inactive employees code
 	def inactive_employees
-    @employees =  Employee.where(:status => true).page(params[:page]).per(4)
+    @employees =  Employee.where(:status => true)
 	end
 	
 	  # employee Self-description 
