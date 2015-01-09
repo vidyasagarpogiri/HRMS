@@ -6,7 +6,7 @@ require 'active_record'
 #singleton @pattabhi
 scheduler = Rufus::Scheduler.singleton
 
-# eg:Thursday, November 6, 2014 11:58 PM (every moth - crom job)
+# eg:Thursday, November 6, 2014 11:58 PM (every moth - crom job) to generate payslips
 scheduler.cron '0 0 7 * *'  do 
    puts "hello"
    
@@ -82,13 +82,15 @@ end
  end
  end
 # to change ff_status of employee according to date of exit 
- scheduler.cron '0 0 * * *' do
-    exit_date = Date.today.strftime("%d/%m/%Y").to_s
-    @stauses = FfStatus.where(:date_of_exit == exit_date)
+ scheduler.cron '59 * * * *' do
+    exit_date = Date.today
+    @stauses = FfStatus.all
     @stauses.each do |status|
+      if status.date_of_exit.to_date < exit_date
       status.employees.each do |employee|
         employee.update(:status => true)
       end 
+      end
     end
  end
   

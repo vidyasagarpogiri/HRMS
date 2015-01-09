@@ -14,10 +14,11 @@ class FfStatusesController < ApplicationController
 	
 	def create
 		@status = FfStatus.create(status_params)
-		if @status.date_of_exit.to_date >= Date.today
+		#TODO - uncomment the condition in production
+		#if @status.date_of_exit.to_date >= Date.today
 		  @employee.update(:ff_status_id => @status.id, :employment_status => 'F&F')
 		  @status = @employee.ff_status
-	  end
+	  #end
 	end
 	
 	def show		
