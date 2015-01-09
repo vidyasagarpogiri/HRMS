@@ -14,7 +14,11 @@ class ProjectsController < ApplicationController
   def create
   #raise params.inspect
   @employee = current_user.employee
-  @project = @employee.projects.create(project_params)
+    if params[:check] == "on"
+     @project = @employee.projects.create(project_params_without_end_date)
+    else
+      @project = @employee.projects.create(project_params)
+    end
   @projects = @employee.projects
   end
   
@@ -28,7 +32,11 @@ class ProjectsController < ApplicationController
   #raise params.inspect
     @employee = current_user.employee
      @project = Project.find(params[:id])
-     @project.update(project_params)
+       if params[:check] == "on"
+         @project.update(project_params_without_end_date)
+       else
+        @project.update(project_params)
+       end
      @projects = @employee.projects
     
   end
@@ -46,7 +54,9 @@ class ProjectsController < ApplicationController
   def project_params
      params.require(:project).permit(:title, :description, :start_date, :end_date, :tasks_performed, :roles, :skills) 
   end
-  
+  def project_params_without_end_date
+     params.require(:project).permit(:title, :description, :start_date, :tasks_performed, :roles, :skills) 
+  end
 end
 
 

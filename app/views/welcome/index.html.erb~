@@ -45,12 +45,13 @@
 	        </div>
 	        <div class="col-lg-6  mt ">
             <div class="pull-left">
-	            <h4> LOG IN WITH <span style="color:#FF6C60;">PERSONAL </span>ID</h4>
+	            <h4> LOG IN WITH <span style="color:rgb(237, 237, 153);">PERSONAL </span>ID</h4>
 	            <form class="form-inline" role="form">
-	              <%= link_to 'Login', login_path, :class => "btn btn-success", :style => "text-decoration: none;color:#fff;width:100px;" %>
+	              <a href="/users/login" class="btn btn-success" style ="width:100px;">Login</a>	             
 		          </form>
 	          </div>
 	        </div>         
+	                 
       </div>
 
     </section>
@@ -59,3 +60,31 @@
   </body>
   <!-- END BODY -->
 </html>
+
+<!--<div class="col-lg-4 col-lg-offset-4 mt centered">          
+          	<h4> LOG IN WITH <span style="color:rgb(237, 237, 153);">PERSONAL </span>ID</h4>
+		          <form class="form-signin" action="index.html" style="margin-top:20px;">              
+              <div class="login-wrap">
+                  <input type="text" class="form-control" placeholder="User ID" autofocus>
+                  <input type="password" class="form-control" placeholder="Password">
+                  <label class="checkbox">
+                      <input type="checkbox" value="remember-me"> Remember me
+                      <span class="pull-right">
+                          <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
+
+                      </span>
+                  </label>
+                  <button class="btn btn-danger" style ="width:100px;" type="submit">Sign in</button>                  
+              </div>       
+            </form>           
+	          </div>
+	          
+	          <div class="col-lg-4 col-lg-offset-4 mt centered">
+	          <h4><span style="color:#FF6C60;">OR</span></h4><br>
+          	<h4> LOG IN WITH <span style="color:rgb(237, 237, 153);">AMZUR </span>ID</h4>
+	          <form class="form-inline" role="form">
+	            <%# unless current_user.present? %>                              
+                <%# link_to 'Login', user_omniauth_authorize_path(:google_oauth2), :class => "network-name btn btn-danger", :style => "width:100px;margin-top:10px;" %>
+              <%# end %>                   		    		    
+	          </form>            
+          </div> -->

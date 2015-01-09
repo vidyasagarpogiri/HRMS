@@ -24,9 +24,12 @@
 
         <div class="form-group">
           <label class="control-label col-lg-2" for="basicinput">End Date </label>  
-          <div class="col-lg-8">
+          <div class="col-lg-4" id="projenddate">
             <%= f.text_field :end_date, :class => "date-picker form-control", :placeholder => "Select Project End Date", :data => {:error => "Please Enter valid Relieving Date"}%>
             <span class="help-block with-errors"></span>   
+          </div>
+          <div class="col-lg-4">
+             <input name="check" type="checkbox" id="inlineCheckbox1"> Check in if project is in Progress            
           </div>
         </div>
         
@@ -83,6 +86,15 @@
    $("#skills-input").tagsInput();    
       
   });
+  
+  $('#inlineCheckbox1').change(function(){
+        if (this.checked) {
+            $('#projenddate').hide();
+        }
+        else {
+            $('#projenddate').show();
+        }                   
+    });
 </script>
 
 
