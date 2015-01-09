@@ -13,3 +13,14 @@
 <% end %>
 
 <% end %>
+
+var leave_id = parseInt($(".leave_type").val());
+if(leave_id == 2)
+{
+$('.casualleave').hide();
+$('.floatingleave').show();
+}
+else{
+$('.floatingleave').hide();
+$('.casualleave').show();
+}
