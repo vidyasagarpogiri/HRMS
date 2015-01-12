@@ -111,7 +111,7 @@ class LeaveHistoriesController < ApplicationController
           @leave_history.update(:days => 0.5) 
           Notification.delay.applyleave(current_user.employee, @leave_history)
           end
-        end
+       end
 		    redirect_to leave_histories_path
 		  end
   end
@@ -130,30 +130,46 @@ class LeaveHistoriesController < ApplicationController
       @days =  @leave_history.days   
     end
     leave_type_id = params[:leave_history][:leave_type_id].to_i
-   # For floating leave edit
-   if  leave_type_id == 2 && params[:leave_history][:is_halfday] == "full_day" 
-   
     date = params['float_leave_date']
-    start_date, end_date = startenddate(date)
-    @leave_history.update(:from_date =>date, :to_date =>date, :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id])
-    Notification.delay.applyleave(current_user.employee, @leave_history)
-   ###
-   elsif params[:leave_history][:is_halfday] == "full_day"
-    @leave_history.update(params_leave_history)
-    total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
-    weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, @employee.group)
-    applied_days = total_days - weekend_count  
-    @leave_history.update(days: applied_days, status: LeaveHistory::HOLD, :is_halfday => false)
-    Notification.delay.applyleave(current_user.employee, @leave_history)
+   # For floating leave edit
+   if  leave_type_id == 2
+      flag = 0 # boolean variable for condition checking
+      start_date, end_date = startenddate(date)
+      leave_records = @employee.leave_histories.where(leave_type_id: 2)
+        if leave_records.present? # condition for leave records of floating leave present or not
+          leave_records.each do |leave| # loop for leave records
+            # condition will check leave record date already present in start and end dates of applied date
+            if (start_date.to_date .. end_date.to_date).include?(leave.from_date.to_date)
+              flag = 1 # value will assign to 1 when above condition returns true
+              break
+          end
+        end
+      end
+      if flag == 1
+        # if above condition returns true
+        @error = "Already You Applied for Floating Holiday"
+      else
+        @leave_history.update(:from_date =>date, :to_date =>date, :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id])
+        Notification.delay.applyleave(current_user.employee, @leave_history)
+      end
    else
-    @leave_history.update(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true)
-    @leave_history.update(:days => 0.5, status: LeaveHistory::HOLD)     
-    @days ||= 0
-    a_leaves = Leave.employee_available_leaves(@employee)
-    @employee.leave.update(available_leaves: a_leaves + @days )
-    Notification.delay.applyleave(current_user.employee, @leave_history)
+      if params[:leave_history][:is_halfday] == "full_day"
+        @leave_history.update(params_leave_history)
+        total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
+        weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, @employee.group)
+        applied_days = total_days - weekend_count  
+        @leave_history.update(days: applied_days, status: LeaveHistory::HOLD, :is_halfday => false)
+        Notification.delay.applyleave(current_user.employee, @leave_history)
+      else
+        @leave_history.update(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true)
+        @leave_history.update(:days => 0.5, status: LeaveHistory::HOLD)     
+        @days ||= 0
+        a_leaves = Leave.employee_available_leaves(@employee)
+        @employee.leave.update(available_leaves: a_leaves + @days )
+        Notification.delay.applyleave(current_user.employee, @leave_history)
+      end
+      redirect_to leave_histories_path
    end
-    redirect_to leave_histories_path
   end
     
   def applied_leaves

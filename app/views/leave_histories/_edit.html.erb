@@ -9,7 +9,7 @@
     </div>
   <% end %>              
   <div class="panel-body">   
-     <%= form_for ([@employe, @leave_history]), :data => {:toggle => "validator"}, :html => {:class => "form-horizontal"} do |f| %>
+     <%= form_for ([@employe, @leave_history]), :data => {:toggle => "validator"}, :html => {:class => "form-horizontal"}, remote: true do |f| %>
       <div class="form-group">
 			  <label class="control-label col-lg-2" for="basicinput">Leave Type</label>                                              
 					<div class="col-lg-8">
