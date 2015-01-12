@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
   end
   
   def show   
-     @employees = @group.employees
+     @employees = @group.employees.where(status: false)
      @leave_policy = @group.leave_policy
      @holiday_calenders = @group.holiday_calenders
      #TODO - Here emplee leave history has to shown in order of the upcoming leaves by @ Pattabhi
