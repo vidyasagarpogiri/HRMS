@@ -8,7 +8,7 @@
       <div class="panel-body">
      
         <div class="adv-table">        
-          <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
+          <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table3">
             <thead>											      
               <tr>
                 <th>Employee Name</th>
@@ -16,7 +16,7 @@
                 <th>No.of Days</th>		
                 <th>Leave Type </th>	
                 <th>Reason for leave</th>
-                <th colspan="2">Status</th>               											                 	                  										      		
+                <th>Status</th>               											                 	                  										      		
               </tr>
             </thead>											                            
             <tbody>
@@ -82,4 +82,9 @@ $(function(){
   </div>
 </div>
 
+<script>
+	$(document).ready(function(){
+		$('#dynamic-table3').dataTable();
+	});
+</script>
 

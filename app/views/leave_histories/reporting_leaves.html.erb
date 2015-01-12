@@ -32,7 +32,6 @@
 											<tbody>												
 												<tr>               
 												  <td> <%= @employee.full_name %></td>
-												  <td> </td>
 											    <td> <%= format_date (f.from_date) %> to <%= format_date (f.to_date) %>  </td>
 												  <td> <%= f.days %> </td>
 												  <td> <%= f.leave_type.type_name if f.leave_type.present? %>  </td>
@@ -52,15 +51,13 @@
 	                  <% end %>
 									</table>
 								</div>
-							</div>
-                   
-                    
-                    </div>
-                    <!-- /.panel .chat-panel -->
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
+							</div>                
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.panel .chat-panel -->
+    </div>
+    <!-- /.col-lg-4 -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
