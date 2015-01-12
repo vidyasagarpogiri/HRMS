@@ -2,63 +2,73 @@
 class Notification < ActionMailer::Base
   require 'open-uri'
   default from: 'from@example.com'
-
+  
+   # email for leave apply
   def applyleave(employee, leave_history)
     @employee = employee
     @leave_history = leave_history
     mail(to: @employee.reporting_manager_user, subject: 'Leave Applied By' " #{@employee.first_name} #{@employee.last_name}")
   end
 
+  # email for leave accept
   def accept_leave(employee, leave_history)
     @employee = employee
     @leave_history = leave_history
-    mail(to: @employee.user.email, subject: 'Leave Approved',cc: 'leaverequest@amzur.com')
+    mail(to: @employee.user.email, subject: 'Leave Approved')
   end
-
+  
+  # email for leave reject
   def reject_leave(employee, leave_history)
     @employee = employee
     @leave_history = leave_history
     mail(to: @leave_history.employee.user.email, subject: 'Leave Rejected')
   end
 
+  # email for new job notification
   def job_notification(user, recruitment)
     @recruitment = recruitment
     mail(to: user.email, subject: 'Bring Your Buddy - Employee Referral - New Job Opening for' " #{@recruitment.title}.")
   end
 
+  # email for announcement
   def announcement_notification(user, announcement)
     @announcement = announcement
     mail(to: user.email, subject: 'Announcement for' " #{@announcement.title}")
   end
 
+  # email for event notification
   def event_notification(user, amzurevent)
     @amzurevent = amzurevent
     mail(to: user.email, subject: 'Amzur Technologies is conducting a'  " #{@amzurevent.title} Event ")
   end
-
+  
+  # email for policy notification
   def policy_notification(user, policy)
     @policy = policy
     mail(to: user.email, subject: "#{@policy.title}"  ' Policy ')
   end
 
+  # email for holidays list
   def holiday_list(user, events, group)
     @events = events
     @group = group
     mail(to: user.email, subject: 'Holidays List - ' "#{@events.first.event_date.to_date.year}")
   end
 
+  # email for pay slips generation
   def send_payslip(mail, month_name, year)
     attachments.inline['payroll.xlsx'] = File.read("#{Rails.root}/public/Payroll/#{month_name}-#{year}-payslips.xlsx")
     mail(to: mail, subject: 'Payroll for'  "#{month_name}-#{year}")
   end
 
-  # birth day alert code
+  # email for birthday 
   def birthday_notification(employee)
     @employee = employee
     attachments.inline['birthday.jpg'] = File.read("#{Rails.root}/public/assets/birthdaycards/#{rand(6)}.jpg")
     mail(to: 'amzur-vizag@amzur.com', subject: 'Happy Birthday To ' " #{@employee.full_name}")
   end
 
+  # email for payslip of employee
   def send_pdf(payslip, file_path)
     @employee = payslip.employee
     @user = @employee.user
