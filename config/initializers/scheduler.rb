@@ -46,7 +46,7 @@ scheduler.cron '5 0 7 * *'  do
    #puts "hello"
 end
 =end
-
+=begin
   scheduler.cron '20 23	31 12	* ' do    # This scheduler will run at midnight 11:20 on Dec 31 for wising new year
   puts "happy new year"
   @employees = Employee.where(status: false)
@@ -62,7 +62,7 @@ end
     end                        
  end
  end
-
+=end
 
 
 #code for birth day notification
