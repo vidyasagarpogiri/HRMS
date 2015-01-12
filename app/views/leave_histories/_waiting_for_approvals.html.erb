@@ -6,7 +6,7 @@
   <div class="panel-body">
     <% if employee_has_hold_leaves? %>	   
     <div class="adv-table">
-      <table  class="display table table-bordered table-striped table-dynamic" id ="d_table2">
+      <table  class="display table table-bordered table-striped" id ="d_table2">
         <thead>
           <tr>																																						
             <th> Date </th>
@@ -68,12 +68,12 @@ $(function(){
 
 
 <!-- Modal -->
-<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel" style="color:red;">Reason for leave</h4>
+        <h4 class="modal-title" id="myModalLabel">Reason for leave</h4>
       </div>
       <div class="modal-body">
         <span id="modal_body-reason3"></span>
