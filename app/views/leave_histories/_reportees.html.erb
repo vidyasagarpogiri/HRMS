@@ -6,9 +6,10 @@
     <div class="col-sm-12">
       <section class="panel">      
       <div class="panel-body">
+       <% if @employees.present? %> 
         <div class="adv-table">
-          <% if @employees.present? %> 
-          <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">         
+         
+          <table  class="display table table-bordered table-striped" id="reportees-leaves">         
             <thead>
 		          <tr>
                 <th>Employee Name</th>
@@ -28,24 +29,16 @@
                   <td><%= total_used_leaves(emp)%> </td>
                </tr>
                <% end %>
-	          </tbody>
-	          <tfoot>
-		          <tr>
-                <th>Employee Name</th>
-                <th>Department</th>
-                <th>Designation</th>
-                <th>Group</th>
-                <th>Number of leaves used</th>
-              </tr>
-             </tfoot>                        
+	          </tbody>                     
           </table>
+          </div>
           <% else %>
           <div class="alert alert-success alert-dismissable">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 You have No List of Reportees to display.
           </div> 
           <% end %>        		 			             
-          </div>
+          
         </div>
       </section>                           
     </div>
@@ -53,6 +46,10 @@
 </div><!--panel panel-info-->		
 
 
-
+<script>
+	$(document).ready(function(){
+		$('#reportees-leaves').dataTable();
+	});
+</script>
 
        
