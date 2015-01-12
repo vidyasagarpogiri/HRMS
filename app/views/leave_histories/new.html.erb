@@ -73,7 +73,7 @@ $(function(){
 
     $('.leave-form-date').datepicker({
        format: 'dd/mm/yyyy',
-       startDate: new Date(), 
+       startDate: '-1m', 
        autoclose: true
     })
      .on('changeDate', function(selected){
@@ -122,7 +122,7 @@ $(function(){
      
    $('.leave-date').datepicker({
        format: 'dd/mm/yyyy',
-        startDate: FromEndDate,
+        startDate: '-1m',
        //endDate: '01/01/2900',
        autoclose: true
    });
@@ -131,7 +131,7 @@ $(function(){
    
     $('.float-leave-date').datepicker({
        format: 'dd/mm/yyyy',
-       startDate: new Date(),
+       startDate: '-1m',
       
        autoclose: true
    })

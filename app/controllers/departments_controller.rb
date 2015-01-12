@@ -23,7 +23,7 @@ class DepartmentsController < ApplicationController
   end
 
   def show
-    @employees = @department.employees
+    @employees = @department.employees.where(status: false)
 		@designations = @department.designations
 		@leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?
 		@appraisal = Appraisal.find(@department.appraisal_id) if @department.appraisal_id.present?
