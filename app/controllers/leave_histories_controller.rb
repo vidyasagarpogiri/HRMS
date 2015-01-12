@@ -132,10 +132,10 @@ class LeaveHistoriesController < ApplicationController
     leave_type_id = params[:leave_history][:leave_type_id].to_i
    # For floating leave edit
    if  leave_type_id == 2 && params[:leave_history][:is_halfday] == "full_day" 
-    #raise params.inspect
+   
     date = params['float_leave_date']
     start_date, end_date = startenddate(date)
-    @leave_history.update(:from_date =>date, :to_date =>date, :reason => params[:leave_history][:reason])
+    @leave_history.update(:from_date =>date, :to_date =>date, :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id])
     Notification.delay.applyleave(current_user.employee, @leave_history)
    ###
    elsif params[:leave_history][:is_halfday] == "full_day"
