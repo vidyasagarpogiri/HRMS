@@ -44,9 +44,9 @@
             <% end %>                       
             <% if post.likes.count >= 3 %>
               <span class="like">and</span>
-              <a href="#" class="value like"><%= (post.likes.count) %> more</a>
+              <a href="#" class="value like"><%= (post.likes.count) - 2 %> more</a>
             <% end %>            
-            <span>like this</span>          
+            <span>likes this</span>          
           <% end %>                      
         </div>
 

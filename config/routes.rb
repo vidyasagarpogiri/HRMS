@@ -208,6 +208,8 @@ end
 
   get 'profile/:id' => "profile#show", as: :profile
   
+  
+  # route for profile emp view in wall
   get '/employees/:id/profile' => "employees#profile" 
   
   #resources :educations
