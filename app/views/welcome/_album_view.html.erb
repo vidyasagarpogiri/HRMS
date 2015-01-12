@@ -12,7 +12,7 @@
         <% end %>          
         </div>
         <div class="fb-user-details">
-          <h3><a href="#" class="#"><%= link_to post.employee.full_name, profile_path(post.employee), :target => "/blank" %></a> added <%= pluralize(post.photos.count, 'photo') %> <a href="#"><%= post.title %></a></h3>
+          <h3><a href="#"><%= link_to post.employee.full_name, profile_employee_path(post.employee), :target => "/blank" %></a> added <%= pluralize(post.photos.count, 'photo') %> <a href="#"><%= post.title %></a></h3>
          
           <p><%= time_ago_in_words(post.created_at)%> ago</p>    
           <% if post.photos.present?%> 

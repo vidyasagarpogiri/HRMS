@@ -13,7 +13,7 @@
         <% end %>
       </div>
       <div class="fb-user-details">
-        <h3><a href="#" class="#"><%= post.employee.full_name %></a></h3>
+        <h3><a href="#"><%= link_to post.employee.full_name, profile_employee_path(post.employee), :target => "/blank" %></a></h3>
         <p><%= time_ago_in_words(post.created_at)%> ago</p>                         
       </div>
       <div class="clearfix"></div>  
@@ -67,7 +67,7 @@
              <% end %> 
             <% end %>
           </a>
-          <div class="cmt-details">          
+          <div class="cmt-details">         
               <a href="#"> <%= link_to comm.employee.full_name , profile_path(comm.employee), :target => "/blank" %></a>
               <span> <%=comm.comment %> </span>
               <p><%= time_ago_in_words(comm.created_at)%> ago</p>
