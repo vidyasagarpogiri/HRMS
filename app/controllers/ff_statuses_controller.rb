@@ -14,8 +14,8 @@ class FfStatusesController < ApplicationController
 	
 	def create
 		@status = FfStatus.create(status_params)
-		@employee.update(:ff_status_id => @status.id, :employment_status => 'F&F')
-		@status = @employee.ff_status
+		  @employee.update(:ff_status_id => @status.id, :employment_status => 'F&F')
+		  @status = @employee.ff_status
 	end
 	
 	def show		
