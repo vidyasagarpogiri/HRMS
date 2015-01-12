@@ -1,0 +1,23 @@
+<% if @error.present? %> 
+  <% if @leave_history.status == "APPROVED" || @leave_history.status == "REJECTED"  %>
+      <% if ((@leave_history.from_date.to_date <= Date.today && @leave_history.to_date.to_date >= Date.today) || (@leave_history.to_date.to_date < Date.today)) %>	
+        $("#leaves-history").html('<%= j render "leave_histories/edit"%>');
+      <% else %>
+        $("#upcoming-leaves").html('<%= j render "leave_histories/edit"%>');
+      <% end %>
+    <% end %>
+    <% if @leave_history.status == "HOLD" %>
+     $("#waiting-for-approval").html('<%= j render "leave_histories/edit"%>');
+    <% end %>
+<% end %>
+
+var leave_id = parseInt($(".leave_type").val());
+if(leave_id == 2)
+{
+$('.casualleave').hide();
+$('.floatingleave').show();
+}
+else{
+$('.floatingleave').hide();
+$('.casualleave').show();
+}
