@@ -66,7 +66,7 @@ end
 
 
 #code for birth day notification
-
+=begin
   scheduler.cron '5 0 * *	*	' do    # This scheduler will run at midnight 12:05 everyday (birthday email) 
   #puts "happy bday"
   @employees = Employee.where(status: false)
@@ -76,7 +76,8 @@ end
      end                      
    end
  end
- 
+=end
+
 # to change ff_status of employee according to date of exit 
  scheduler.cron '59 * * * *' do
     exit_date = Date.today
