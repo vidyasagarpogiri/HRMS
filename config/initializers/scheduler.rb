@@ -49,7 +49,7 @@ end
 
   scheduler.cron '20 23	31 12	* ' do    # This scheduler will run at midnight 11:20 on Dec 31 for wising new year
   puts "happy new year"
-  @employees = Employee.all
+  @employees = Employee.where(status: false)
   @employees.each do |employee|
     if(Date.today.day == 31)
       if(Date.today.month == 12)
@@ -69,18 +69,14 @@ end
 
   scheduler.cron '5 0 * *	*	' do    # This scheduler will run at midnight 12:05 everyday (birthday email) 
   #puts "happy bday"
-  @employees = Employee.all
+  @employees = Employee.where(status: false)
   @employees.each do |employee|
-    if(Date.today.month == employee.date_of_birth.to_date.month)
-      if(Date.today.mday == employee.date_of_birth.to_date.mday)
-       #raise emp.full_name.inspect
-        Employee.where(status: false).each do |emp|
-        Notification.birthday_notification(emp.user,employee).deliver
-        end
-      end
-    end                        
+    if Date.today.month == employee.date_of_birth.to_date.month && Date.today.mday == employee.date_of_birth.to_date.mday
+        Notification.birthday_notification(employee).deliver
+     end                      
+   end
  end
- end
+ 
 # to change ff_status of employee according to date of exit 
  scheduler.cron '59 * * * *' do
     exit_date = Date.today
@@ -98,7 +94,7 @@ end
   # to change employee available leaves every month accumlate according to leave policy
   #TODO Month Starting Corn Job
   scheduler.cron '30 5 1 * *' do
-    Employee.all.each do |employee| 
+    Employee.where(status: false).each do |employee| 
       leave = employee.leave || employee.create_leave(pl_carry_forward_prev_year: 0, available_leaves: 0)
 	    a_leaves = leave.available_leaves ||  0
 	    cf_leaves = leave.pl_carry_forward_prev_year || 0
@@ -116,7 +112,7 @@ end
 
 scheduler.cron '0 4 1 1 *' do 
 
-   Employee.all.each do |employee|
+   Employee.where(status: false).each do |employee|
     leave = employee.leave 
 	  if leave.present?
 	    cf_leaves = leave.pl_carry_forward_prev_year || 0

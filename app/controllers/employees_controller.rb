@@ -8,7 +8,7 @@ class EmployeesController < ApplicationController
   def index
     if params[:name].present?
     a = params[:name]
-     @employees=  Employee.where('first_name like ? OR  last_name like ? ', "#{a}%", "#{a}%")
+     @employees=  Employee.where('first_name like ? OR  last_name like ? ', "#{a}%", "#{a}%").where(:status => false)
     else
       @employees =  Employee.where(:status => false)
     end

@@ -53,11 +53,10 @@ class Notification < ActionMailer::Base
   end
 
   # birth day alert code
-  def birthday_notification(user, employee)
-    @user = user
+  def birthday_notification(employee)
     @employee = employee
     attachments.inline['birthday.jpg'] = File.read("#{Rails.root}/public/assets/birthdaycards/#{rand(6)}.jpg")
-    mail(to: @user.email, subject: 'Happy Birthday To ' " #{@employee.full_name}")
+    mail(to: 'amzur-vizag@amzur.com', subject: 'Happy Birthday To ' " #{@employee.full_name}")
   end
 
   def send_pdf(payslip, file_path)
