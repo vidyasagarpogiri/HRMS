@@ -50,13 +50,13 @@ $(document).ready(function() {
         if ( oTable.fnIsOpen(nTr) )
         {
             /* This row is already open - close it */
-            this.src = "/assets/details_open.png";
+            this.src = "<%= asset_path('details_open.png') %>";
             oTable.fnClose( nTr );
         }
         else
         {
             /* Open this row */
-            this.src = "/assets/details_close.png";
+            this.src = "<%= asset_path('details_close.png') %>";
             oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
         }
     } );
