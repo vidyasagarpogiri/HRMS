@@ -1,6 +1,6 @@
 <% if @employees.present? %>
   <div class="adv-table">
-    <table  class="display table table-bordered table-striped table-dynamic" id="dynamic-table">
+    <table  class="display table table-bordered table-striped table-dynamic" id="hidden-table-info">
       <thead>											      
         <tr>
           <th>Photo</th>
@@ -11,7 +11,8 @@
           <th>Department</th>		
           <th>Group</th>	
           <th>Manager</th>
-          <th>Status</th>          									                 	                  										      		
+          <th style="display:none;">Status</th>
+           <th style="display:none;">Edit</th>       									                 	                  										      		
         </tr>
       </thead>											                  	                                   			
       <tbody>
@@ -38,11 +39,12 @@
           <td><%= employee.department.department_name %></td>
           <td><%= employee.group.group_name %></td>
           <td><%= employee.reporting_manager %></td>
-          <% if employee.status %>
-            <td><%= link_to 'Active', change_status_employee_path(employee), remote: true, method: :post %></td>
+          <td style="display:none;"><% if employee.status %>
+            <%= link_to 'Active', change_status_employee_path(employee), remote: true, method: :post, :class => "btn btn-success btn-sm" %>
           <% else %>
-            <td><%= link_to 'Inactive', change_status_employee_path(employee), remote: true, method: :post %></td>
-          <% end %>
+            <%= link_to 'Inactive', change_status_employee_path(employee), remote: true, method: :post,  :class => "btn btn-danger btn-sm" %>
+          <% end %></td>
+          <td style="display:none;"><%= link_to "Edit Email", edit_employee_email_path(employee)%></td>
         </tr>	
       <%end%>											                   
       </tbody>												                 

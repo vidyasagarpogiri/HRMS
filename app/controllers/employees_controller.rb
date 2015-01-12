@@ -4,11 +4,11 @@ class EmployeesController < ApplicationController
 	 before_filter :other_emp_view, :except => [:index, :profile, :getAllSkills, :my_workgroups]
 	 before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]		
    before_action :get_employee, only: [:show, :profile, :edit, :update, :exit_form, :attachment_form_new, :attachment_create, :attachment_edit, :attachment_update, :attachment_show, :attachment_destroy, :attachment_index, :bankdetails_form, :bankdetails_create,:bankdetails_show, :bankdetails_edit, :bankdetails_update	]
-  
+  before_filter :hr_admin_view, only: [:edit_email, :update_email]
   def index
     if params[:name].present?
     a = params[:name]
-     @employees=  Employee.where('first_name like ? OR  last_name like ? ', "#{a}%", "#{a}%")
+     @employees=  Employee.where('first_name like ? OR  last_name like ? ', "#{a}%", "#{a}%").where(:status => false)
     else
       @employees =  Employee.where(:status => false)
     end
@@ -203,7 +203,7 @@ class EmployeesController < ApplicationController
 	
 	#inactive employees code
 	def inactive_employees
-    @employees =  Employee.where(:status => true).page(params[:page]).per(4)
+    @employees =  Employee.where(:status => true)
 	end
 	
 	  # employee Self-description 
@@ -260,6 +260,29 @@ class EmployeesController < ApplicationController
 	    end
 	  end
 	  
+	  def edit_email
+	    @employee = Employee.find(params[:id])
+	  end
+	  
+	  def update_email
+	    @employee = Employee.find(params[:id])
+	    if params[:email] == @employee.user.email
+	       redirect_to  employees_path
+	    else
+	      email_split_array = params[:email].split('@')
+        email_domain = email_split_array.last
+        @user = @employee.user
+        @user.update(email: params[:email])
+         if email_domain == "amzur.com"
+            User.invite!(:email =>  params[:email], :skip_invitation => true)
+         else
+            User.invite!(:email =>  params[:email])
+         end
+         @employee.update(:user_id => @user.id, :status => false)
+         redirect_to  employees_path
+	    end
+	    
+	  end
   private   
  
   def params_employees
