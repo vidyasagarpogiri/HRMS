@@ -151,6 +151,7 @@ class LeaveHistoriesController < ApplicationController
       else
         @leave_history.update(:from_date =>date, :to_date =>date, :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id])
         Notification.delay.applyleave(current_user.employee, @leave_history)
+         redirect_to leave_histories_path
       end
    else
       if params[:leave_history][:is_halfday] == "full_day"
@@ -168,8 +169,9 @@ class LeaveHistoriesController < ApplicationController
         @employee.leave.update(available_leaves: a_leaves + @days )
         Notification.delay.applyleave(current_user.employee, @leave_history)
       end
+         redirect_to leave_histories_path
       end
-      redirect_to leave_histories_path
+     
    
   end
     

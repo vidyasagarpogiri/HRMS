@@ -30,9 +30,9 @@
           <% end %>
           <span>-</span>
           <% if post.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
-            <%= link_to 'Unlike', remove_like_status_path(post.id, :employee_id => current_user.employee), :method => "post" %> </span> </h5>
+            <%= link_to 'Unlike', remove_like_status_path(post.id, :employee_id => current_user.employee), :method => "post",remote: true %> </span> </h5>
           <% else %> 
-            <%= link_to 'Like', add_like_status_path(post.id, :employee_id => current_user.employee), :method => "post" %></span> </h5>
+            <%= link_to 'Like', add_like_status_path(post.id, :employee_id => current_user.employee), :method => "post",remote: true %></span> </h5>
           <% end %>
         </div>
       </div>
