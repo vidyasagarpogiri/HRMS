@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141226063928) do
+ActiveRecord::Schema.define(version: 20150113132709) do
 
   create_table "addresses", force: true do |t|
     t.text     "line1"
@@ -253,6 +253,7 @@ ActiveRecord::Schema.define(version: 20141226063928) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.boolean  "is_proper_data"
   end
 
   create_table "employee_skills", force: true do |t|
