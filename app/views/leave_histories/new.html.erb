@@ -160,8 +160,22 @@ $(function(){
           //console.log(leave_id);
      });
      
-  
+
+  var l_id = parseInt($("#leave_history_leave_type_id").val()); 
+   if(l_id == 2)
+        {
+          $('#casualleave').hide();
+          $('.floatingleave').show();
+          $("#full_day_from").removeAttr("required");
+          $("#full_day_to").removeAttr("required");
+          $("#floating_leave").prop('required', true);
+          $("#half_day").removeAttr("required");
+          
+          //.datepicker('setDate', date);
+        }
 });
+
+
 </script>
 
 <% title "Apply New Leave" %>     

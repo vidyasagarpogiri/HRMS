@@ -1,6 +1,8 @@
 # This controller is for employee status # Author: Vidya Sagar Pogiri
 class StatusesController < ApplicationController
+
   before_filter :admin_view,  only: ['edit']
+  before_action :wall_details, only: [:add_like, :remove_like]
   def index # for displaying all statuses
     @statuses = Status.all.order('updated_at DESC').page(params[:page]).per(1)
     @status = Status.new
@@ -35,7 +37,7 @@ class StatusesController < ApplicationController
     count = @status.likes_count
     @status.update likes_count: count + 1
     @status.update(updated_at: Time.now)
-    redirect_to welcome_wall_path
+    @status = Status.new
   end
 
   def remove_like # unlikes the status which is being liked previously
@@ -47,7 +49,8 @@ class StatusesController < ApplicationController
     @status.update likes_count: count - 1
     @status.update(updated_at: Time.now)
     @like.destroy
-    redirect_to welcome_wall_path
+    @status = Status.new
+    #redirect_to welcome_wall_path
   end
 
   # Present we are not using this one.
@@ -103,5 +106,19 @@ class StatusesController < ApplicationController
     unless current_user.employee.id == @status.employee_id
       render text: 'You Don`t Have Permission'
     end
+  end
+  
+  def wall_details
+    #@welcome_event = AmzurEvent.all.order('created_at DESC')
+    @welcome_event = AmzurEvent.all_events(current_user.employee)
+    @welcome_announcements = Announcement.all_announcements(current_user.employee)
+    @welcome_recruitments = Recruitment.where(:status => "open").order('created_at DESC')
+    @employee = current_user.employee
+    @albums = Album.all
+    @statuses = Status.all
+    @posts = [@albums, @statuses]
+    @posts.flatten!
+    @posts.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!
+    #redirect_to welcome_wall_path
   end
 end
