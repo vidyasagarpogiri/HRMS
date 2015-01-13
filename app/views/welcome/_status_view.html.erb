@@ -44,9 +44,16 @@
             <% end %>                       
             <% if post.likes.count >= 3 %>
               <span class="like">and</span>
-              <a href="#" class="value like"><%= (post.likes.count) - 2 %> more</a>
+              <a href="#" class="employee_like"><%= (post.likes.count) - 2 %> more</a>
             <% end %>            
-            <span>likes this</span>          
+            <span>likes this</span>
+            <div class="employee_like_list hidden">
+              <ul>
+              <% post.likes.each do |like| %>
+                <li><a href="#"><%= like.employee.full_name %></a></li>
+              <% end %>   
+              </ul> 
+            </div>         
           <% end %>                      
         </div>
 
@@ -95,6 +102,26 @@
 	      $(".total_status").hide();
 	      $(".length").show();
 	    });
-	  });
-	
+	    
+	  });		 
 	</script>
+	
+<script>
+
+$(".employee_like").hover(function(){
+    $('.employee_like_list').removeClass('hidden');
+},function(){
+    $('.employee_like_list').addClass('hidden');
+});
+  
+</script>
+
+<style>
+.hidden{
+visibility: hidden;
+}
+.employee_like_list{
+margin-left:300px;
+margin-top:-100px;
+}
+</style>
