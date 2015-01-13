@@ -26,8 +26,8 @@
           
            <div class="form-group">
               <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Announcement Group</label>
-              <div class="col-lg-9">
-               <select  name="announceable_type" class="announcement">
+              <div class="col-lg-7" style="margin-top:8px;">
+               <select  name="announceable_type" class="announcement form-control">
                 <option value="all">All</option>
                 <%unless @departments.blank? %>
                 <option value="Department">Department</option>
@@ -44,19 +44,19 @@
           </div>
           <div class="form-group ">
               <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label"></label>
-              <div class="col-lg-9">
+              <div class="col-lg-7">
             
                         <div id ="departments">             
-                      <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name") %>
+                      <%= select_tag :department_id, options_from_collection_for_select(@departments, "id", "department_name"), :class => "form-control" %>
                     </div>
                     
                     <div id="groups">
-                        <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name") %>
+                        <%= select_tag :group_id, options_from_collection_for_select(@groups, "id", "group_name"), :class => "form-control" %>
                         
                     </div>
                     
                     <div id="workgroups">
-                        <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name") %>
+                        <%= select_tag :workgroup_id, options_from_collection_for_select(@workgroups, "id", "name"), :class => "form-control" %>
                     </div> 
               </div>
           </div>
