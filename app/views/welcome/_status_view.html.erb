@@ -21,11 +21,11 @@
       
       <div class="fb-status-container fb-border">
         <div class="fb-time-action">
-          <a href="#" >Likes(<%= post.likes_count %>)</a>
-          <span>-</span>
+          <!--<a href="#" >Likes(<%# post.likes_count %>)</a>
+          <span>-</span>-->
           <a href="#" >Comments(<%= post.comments.count %>)</a>
-          <span>-</span>
-          <% if current_user.employee.id == post.employee.id %>
+         
+          <% if current_user.employee.id == post.employee.id %> <span>-</span>
             <%= link_to "Delete", status_path(post.id), method: :delete, data: {confirm: "Are You sure?"} %>
           <% end %>
           <span>-</span>
