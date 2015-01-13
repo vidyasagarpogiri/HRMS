@@ -49,6 +49,7 @@ class StatusesController < ApplicationController
     @status.update likes_count: count - 1
     @status.update(updated_at: Time.now)
     @like.destroy
+    @status = Status.new
     #redirect_to welcome_wall_path
   end
 
