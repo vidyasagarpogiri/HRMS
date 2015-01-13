@@ -218,6 +218,10 @@ class LeaveHistoriesController < ApplicationController
   
   def destroy
     @leave_history = LeaveHistory.find(params[:id])
+    if @leave_history.status == LeaveHistory::APPROVED
+      a_leaves = Leave.employee_available_leaves( @leave_history.employee)
+      @leave_history.employee.leave.update(available_leaves: a_leaves + @leave_history.days )
+    end
     @leave_history.destroy
     redirect_to leave_histories_path
   end
