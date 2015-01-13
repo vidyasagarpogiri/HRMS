@@ -75,7 +75,7 @@
         <div class="form-group">                                                                              
         <label class="col-lg-5 control-label" style="margin-left:-10px;">Start Time: </label>
           <div class="col-lg-7">
-            <%= f.text_field :to_time, :placeholder =>"Enter Time Of Event", :class => "form-control timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
+            <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "form-control timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
             <span class="help-block with-errors"></span>   
           </div>
         </div>              
@@ -84,7 +84,7 @@
         <div class="form-group">             
         <label  class="col-lg-2  control-label">End Time: </label>
           <div class="col-lg-5">
-            <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "timepicker form-control", :data => {:error => "Please Select Event Time"}, :required => true %>
+            <%= f.text_field :to_time, :placeholder =>"Enter Time Of Event", :class => "form-control timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
             <span class="help-block with-errors"></span>   
 
           </div>
@@ -100,9 +100,7 @@
         </div>
       </div>
     </div>  
-
-    
-    <div class="form-group">                                           
+  <div class="form-group">                                           
       <label class="col-lg-2 control-label"> </label>
       <div class="col-lg-3">
         <button type="submit" class="btn btn-success">Post </button>

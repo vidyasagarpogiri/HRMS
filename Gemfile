@@ -133,7 +133,8 @@ gem 'momentjs-rails'
 
 gem "google_visualr", ">= 2.1"
 
-
+#Auto Link
+gem 'rails_autolink', '~> 1.1.6'
 #for amazon s3
 gem "fog"
 # Use debugger
