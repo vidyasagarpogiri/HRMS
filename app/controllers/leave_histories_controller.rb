@@ -168,8 +168,9 @@ class LeaveHistoriesController < ApplicationController
         @employee.leave.update(available_leaves: a_leaves + @days )
         Notification.delay.applyleave(current_user.employee, @leave_history)
       end
+      end
       redirect_to leave_histories_path
-   end
+   
   end
     
   def applied_leaves
