@@ -20,6 +20,20 @@ class Announcement < ActiveRecord::Base
     return announceable
 	end
 	
-  
+  def self.all_announcements(employee)
+    admin_work_group_announcements =  Workgroup.where(admin_id: employee.id).map(&:announcements)
+    workgroup_announcements = employee.workgroups.map(&:announcements)
+    company_announcements = Announcement.where(announceable_type: nil)
+    department_announcements = employee.department.announcements if employee.department.present?
+    group_announcements = employee.group.announcements if employee.group.present?
+    total_announcements = [ admin_work_group_announcements ,  workgroup_announcements,  company_announcements, department_announcements,  group_announcements].flatten.uniq
+    current_announcements = []
+    total_announcements.each do |d|
+      if (d.updated_at.to_date - Date.today).to_i < 30
+        current_announcements << d  
+      end
+    end
+    current_announcements
+  end
   
 end

@@ -62,8 +62,9 @@
           </div>
           <% else %>
             <div class="form-group">
-               <div class="col-lg-9">
-             <strong>Announcement for <%if @announcement.announceable_type.nil? %> ALL <%else%> <%=@announceable %>  <%=@announcement.announceable_type%> <%end%></strong>
+            <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Announcement for: </label>
+               <div class="col-lg-9" style="margin-top:8px;">
+           <%if @announcement.announceable_type.nil? %> <strong>ALL</strong> <%else%> <strong><%=@announceable %> <%=@announcement.announceable_type%></strong> <%end%>
              </div>
             </div>
             <%end%>

@@ -9,6 +9,8 @@ class Workgroup < ActiveRecord::Base
   validates :description, presence: true
   validates :admin_id, presence: true
   # to get admin name of workgroup
+  
+  
   def admin_name
     Employee.find(admin_id).full_name
   end
