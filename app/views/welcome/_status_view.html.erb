@@ -44,16 +44,10 @@
             <% end %>                       
             <% if post.likes.count >= 3 %>
               <span class="like">and</span>
-              <a href="#" class="employee_like"><%= (post.likes.count) - 2 %> more</a>
+              <a href="#" class="employee_like" id="m"><%= (post.likes.count) - 2 %> more</a>
             <% end %>            
             <span>likes this</span>
-            <div class="employee_like_list hidden">
-              <ul>
-              <% post.likes.each do |like| %>
-                <li><a href="#"><%= like.employee.full_name %></a></li>
-              <% end %>   
-              </ul> 
-            </div>         
+           
           <% end %>                      
         </div>
 
@@ -90,6 +84,22 @@
   </section>   
 </div>
 
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="m" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">    
+      <div class="modal-body event_show_body">
+        <div class="employee_like_list hidden">
+          <ul>
+            <% post.likes.each do |like| %>
+              <li><%= like.employee.full_name %></li>
+            <% end %>   
+          </ul> 
+        </div>         
+     </div>
+   </div>
+ </div>
+</div>
+
 
 	<script>
 	  $(function(){
@@ -106,16 +116,12 @@
 	  });		 
 	</script>
 	
-<script>
-$('.employee_like_list').hide();
-$(".employee_like").hover(function(){
-  $('.employee_like_list').show();   
-});
-  
-</script>
+
 
 <style>
-
+.hidden{
+visibility: hidden;
+}
 .employee_like_list{
 margin-left:300px;
 margin-top:-100px;

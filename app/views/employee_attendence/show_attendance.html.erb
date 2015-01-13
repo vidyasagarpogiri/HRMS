@@ -76,7 +76,7 @@ function call_sw(){
       $.each(value, function( day, hrs ) {
         day_arr = day.split("|"); 
         if(hrs!="0" && hrs.toString().split("hr").length==2){ // if working hours present
-          $("tr#"+key+" ."+day_arr[0]).html(hrs+ " <i class='fa fa-comment' onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'></i>"); // append working hours of corresponding date to table row
+          $("tr#"+key+" ."+day_arr[0]).html("<a style='cursor: pointer;'  onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'>" +hrs+ "</a>" ); // append working hours of corresponding date to table row
         }
         else {
           if((day_arr[0]=="Sat" || day_arr[0]=="Sun") && hrs.toString().split("hr").length!=2){ // for sat and sunday
