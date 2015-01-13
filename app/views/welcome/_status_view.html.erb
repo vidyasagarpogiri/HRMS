@@ -17,7 +17,7 @@
         <p><%= time_ago_in_words(post.created_at)%> ago</p>                         
       </div>
       <div class="clearfix"></div>  
-      <p class="fb-user-status"><%= post.status %></p>
+      <p class="fb-user-status"><%= auto_link(post.status) %></p>
       
       <div class="fb-status-container fb-border">
         <div class="fb-time-action">
