@@ -44,10 +44,17 @@
             <% end %>                       
             <% if post.likes.count >= 3 %>
               <span class="like">and</span>
-              <a href="#" class="employee_like" id="m"><%= (post.likes.count) - 2 %> more</a>
+              <%= link_to (post.likes.count) - 2, '#', :data => {:toggle => "modal", :target => "#listModal"}, :id => "modal-text" %> more
             <% end %>            
             <span>likes this</span>
-           
+            <div class="employee_like_list hidden">
+              <ul>
+                <% post.likes.each do |like| %>
+                  <li> <%= like.employee.full_name %> </li>
+                <% end %>
+              </ul>
+            </div>
+                 
           <% end %>                      
         </div>
 
@@ -62,11 +69,11 @@
                 <%= image_tag(comm.employee.avatar_url,:style=>"width:40px!important; height:40px;") %>
               <% else %>
                  <% if comm.employee.gender == "Female" %>
-                <%= image_tag("1.jpg", :style=>"width:40px!important; height:40px;") %> 
-             <% else %>
-                <%= image_tag("user.png", :style=>"width:40px!important; height:40px;") %> 
-             <% end %> 
-            <% end %>
+                   <%= image_tag("1.jpg", :style=>"width:40px!important; height:40px;") %> 
+                 <% else %>
+                    <%= image_tag("user.png", :style=>"width:40px!important; height:40px;") %> 
+                 <% end %> 
+             <% end %>
           </a>
           <div class="cmt-details">         
               <a href="#"> <%= link_to comm.employee.full_name , profile_path(comm.employee), :target => "/blank" %></a>
@@ -84,37 +91,37 @@
   </section>   
 </div>
 
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="m" class="modal fade">
+<script>
+$(function(){
+  $("span a[id='modal-text']").click(function(){
+    var content=$(this).next().text();
+    $("#employee_list").text(content);
+  });  
+});
+</script>
+
+
+
+
+<!-- Modal -->
+<div class="modal hide" id="listModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">    
-      <div class="modal-body event_show_body">
-        <div class="employee_like_list hidden">
-          <ul>
-            <% post.likes.each do |like| %>
-              <li><%= like.employee.full_name %></li>
-            <% end %>   
-          </ul> 
-        </div>         
-     </div>
-   </div>
- </div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        <span id="employee_list"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 
-	<script>
-	  $(function(){
-	    $(".read-more").click(function(){
-	      $(".length").hide();
-	      $(".total_status").show();
-	    });
-	    
-	    $(".show-less").click(function(){
-	      $(".total_status").hide();
-	      $(".length").show();
-	    });
-	    
-	  });		 
-	</script>
 	
 
 

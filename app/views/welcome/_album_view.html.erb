@@ -1,35 +1,85 @@
- <section class="panel">
-    <div class="panel-body"> 
-      <div class="fb-user-thumb">                     
-        <% if post.present? && post.employee.avatar_url.present? %>
-          <%= image_tag post.employee.avatar_url, :width => "60px", :height => "60px" %>
+<section class="panel">
+  <div class="panel-body"> 
+    <div class="fb-user-thumb">                     
+      <% if post.present? && post.employee.avatar_url.present? %>
+        <%= image_tag post.employee.avatar_url, :width => "60px", :height => "60px" %>
+      <% else %>
+        <% if post.employee.gender == "Female" %>
+          <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
         <% else %>
-          <% if post.employee.gender == "Female" %>
-            <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
-          <% else %>
-            <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+          <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+        <% end %>
+      <% end %>          
+      </div>
+      <div class="fb-user-details">
+        <h3><a href="#"><%= link_to post.employee.full_name, profile_employee_path(post.employee), :target => "/blank" %></a> added <%= pluralize(post.photos.count, 'photo') %> <a href="#"><%= post.title %></a></h3>
+       
+        <p><%= time_ago_in_words(post.created_at)%> ago</p>    
+        <% if post.photos.present?%> 
+          <div class="slider slider-for" style="margin-top:50px;margin-left:100px;height:225px;overflow:hidden;">
+            <% post.photos.each do |photo| %>
+              <div style="height:270px">
+                <a class="group1" href="<%= photo.image %>"><img src="<%= photo.image %>" width="300px" height="200" ></a>
+              </div>            
+            <% end %>
+          </div>                         
+        <% end %>      
+     </div>  
+             <div class="fb-status-container fb-border">
+          <div class="fb-time-action">
+                    <a href="#" >Comments(<%= post.comments.count %>)</a>
+          <% if current_user.employee.id == post.employee.id %> <span>-</span>
+            <%= link_to "Delete", album_path(post.id), method: :delete, data: {confirm: "Are You sure?"} %>
           <% end %>
-        <% end %>          
-        </div>
-        <div class="fb-user-details">
-          <h3><a href="#"><%= link_to post.employee.full_name, profile_employee_path(post.employee), :target => "/blank" %></a> added <%= pluralize(post.photos.count, 'photo') %> <a href="#"><%= post.title %></a></h3>
-         
-          <p><%= time_ago_in_words(post.created_at)%> ago</p>    
-          <% if post.photos.present?%> 
-            <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
-              <% post.photos.each do |photo| %>
-                <div style="width:400px;height:250px;overflow:hidden;">
-                  <a class="group1" href="<%= photo.image %>"><img src="<%= photo.image %>" width="300px" height="200" ></a>
-                </div>            
-              <% end %>
+          <span>-</span>
+            <% if post.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
+              <%= link_to 'Unlike', remove_like_album_path(post.id, :employee_id => current_user.employee), :method => "post" %>
+            <% else %> 
+              <%= link_to 'Like', add_like_album_path(post.id, :employee_id => current_user.employee), :method => "post" %>
+            <% end %>
+          </div>
+        </div> 
+        <div class="fb-status-container fb-border fb-gray-bg">
+          <div class="fb-time-action like-info">
+            <% if post.likes.present? %>
+              <% post.likes.limit(2).each do |like| %>
+              <a href="#"><%= like.employee.full_name %>,</a>
+              <% end %>                       
+              <% if post.likes.count >= 3 %>
+                <span class="like">and</span>
+                <a href="#" class="employee_like" id="<%= post.id %>"><%= (post.likes.count) - 2 %> more</a>
+              <% end %>            
+              <span>likes this</span>
+              <div class="employee_like_list hidden">                              
+            <% end %>                      
+          </div>
+          <ul class="fb-comments">
+        <!--<%# if post.comments.count > 3 %>
+          <%# link_to "Show Previous Comments", status_path(post.id) %>            
+        <%# end %>-->
+          <% post.comments.each do |comm| %> 
+            <li>
+              <a href="#" class="cmt-thumb">
+                <% if comm.employee.avatar_url.present? %> 
+                  <%= image_tag(comm.employee.avatar_url,:style=>"width:40px!important; height:40px;") %>
+                <% else %>
+                   <% if comm.employee.gender == "Female" %>
+                     <%= image_tag("1.jpg", :style=>"width:40px!important; height:40px;") %> 
+                   <% else %>
+                      <%= image_tag("user.png", :style=>"width:40px!important; height:40px;") %> 
+                   <% end %> 
+                <% end %>
+              </a>
+            <div class="cmt-details">         
+                <a href="#"> <%= link_to comm.employee.full_name , profile_path(comm.employee), :target => "/blank" %></a>
+                <span> <%=comm.comment %> </span>
+                <p><%= time_ago_in_words(comm.created_at)%> ago</p>
             </div>
-            
-            <!--<div class="slider slider-nav">
-              <%# album.photos.each do |photo| %> 
-                <div ><img src="<%# photo.image %>" width="50px" height="50"></div>
-              <%# end %> 
-            </div>-->               
-            <% end %>      
-          </div>                                                     
-    </div>
-  </section> 
+          </li>        
+          <% end %>
+          <li><%= render "albums/add_comment",  :album => post.id %></li>                    
+        </ul>
+        <div class="clearfix"></div>
+      </div>                                                   
+  </div>
+</section> 

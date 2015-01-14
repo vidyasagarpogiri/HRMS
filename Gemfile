@@ -140,3 +140,6 @@ gem "fog"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#For Auditing
+gem "audited-activerecord", "~> 4.0"
+
