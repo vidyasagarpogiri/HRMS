@@ -16,15 +16,16 @@
        
         <p><%= time_ago_in_words(post.created_at)%> ago</p>    
         <% if post.photos.present?%> 
-          <div class="slider slider-for" style="margin-top:50px;margin-left:100px">
+          <div class="slider slider-for" style="margin-top:50px;margin-left:100px;height:225px;overflow:hidden;">
             <% post.photos.each do |photo| %>
-              <div style="width:400px;height:250px;overflow:hidden;">
+              <div style="height:270px">
                 <a class="group1" href="<%= photo.image %>"><img src="<%= photo.image %>" width="300px" height="200" ></a>
               </div>            
             <% end %>
-          </div>
-         <% end %> 
-        <div class="fb-status-container fb-border">
+          </div>                         
+        <% end %>      
+     </div>  
+             <div class="fb-status-container fb-border">
           <div class="fb-time-action">
             <% if post.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
               <%= link_to 'Unlike', remove_like_album_path(post.id, :employee_id => current_user.employee), :method => "post",remote: true %>
@@ -74,8 +75,6 @@
           <li><%= render "albums/add_comment",  :album => post.id %></li>                    
         </ul>
         <div class="clearfix"></div>
-      </div>                  
-            
-     </div>                                                     
+      </div>                                                   
   </div>
 </section> 
