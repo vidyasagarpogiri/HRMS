@@ -5,45 +5,42 @@
              <div class="panel-heading">
                 <label class="pull-left"><a id="prev" ><i class="icon-chevron-left"></i> Previous Week</a></label>
                 <label class="pull-right"><a  id="next">Next Week <i class=" icon-chevron-right"></i></a></label><br>
-              </div>                                                                                        
-              <div class="panel-body">                                                                          								
-                <table class="table table-striped table-bordered table-condensed" id="attendance_table">
-								  <thead>
-									  <tr>		
-  									  <th>Employee Name</th>								    
-									    <th class="Mon"><br>Monday</th>									     
-                      <th class="Tue"><br>Tuesday</th>
-                      <th class="Wed"><br>Wednesday</th>
-                      <th class="Thu"><br>Thursday</th>
-                      <th class="Fri"><br>Friday</th>
-                      <th class="Sat"><br>Saturday</th>
-                      <th class="Sun"><br>Sunday</th>                         
-									  </tr>
-								  </thead>
-								  <tbody>
-								    <% @employees.each do |employee| %>  
-                    <tr id= "<%= employee.id %>">
-                      <td><%= employee.full_name%></td>
-									    <td class="Mon"></td>
-									    <td class="Tue"></td>
-									    <td class="Wed"></td>
-									    <td class="Thu"></td>
-									    <td class="Fri"></td>
-									    <td class="Sat"></td>
-									    <td class="Sun"></td>
-                    </tr>
-                    <% end %>                    
-								  </tbody>
-								</table>
-								<input type="hidden" value="0" id="week_num">
-              </div><!-- module body-->
-            </div>                   
+             </div>
+             <div class="panel-body">
+             <%= form_tag('/employee_attendence/show_attendance', method: :get, remote: true, :class => "form-horizontal") do %>
+                <div class="col-lg-6">
+                  <div class="col-lg-3">
+                    <select  name="group_type" class="company_select form-control">
+                      <option value="Company">All</option>
+                      <option value="Department">Department</option>
+                   <!--   <option value="Group">Group</option>
+                      <option value="Workgroup">WorkGroup</option>
+                      <option value ="Reportees">Reportees</option> -->
+                    </select>
+                  </div>
+                  <div class="col-lg-3">
+                    <div id ="departments">             
+                      <%= select_tag :department_id, options_from_collection_for_select(Department.all, "id", "department_name"), prompt: "All Departments", :class => "form-control department_attendence" %>
+                    </div>
+                   <!-- <div id="groups">
+                      <%# select_tag :group_id, options_from_collection_for_select(Group.all, "id", "group_name"), prompt: "All Groups", :class => "form-control group_attendence" %>  
+                    </div>
+                    <div id="workgroups">
+                      <%# select_tag :workgroup_id, options_from_collection_for_select(Workgroup.all, "id", "name"), prompt: "All Work Groups", :class => "form-control work_group_attendence" %>
+                    </div> -->
+                  </div> 
+                <% end %>
+              </div>        
+                  <div class="attend_data">
+                    <%= render "employee_attend_data" %>
+                  
+                  </div>  
+                             
         </div><!--/.span9-->                
      </div><!--/.row-->
 
 <script>
 $(function(){
-
   var i = 0 ;
   call_sw();
   $("#prev").click(function(){
@@ -58,6 +55,62 @@ $(function(){
       call_sw();
     }
   });
+  $("#departments").hide();
+  $("#groups").hide();
+  $("#workgroups").hide();
+  $(".company_select").change(function () {
+    var str = $( ".company_select" ).val();  
+    console.log(str);
+    switch (str) { 
+    case 'Group': 
+          $("#departments").hide();
+          $("#groups").show();
+          $(this).closest('form').submit();
+          get_sw(str,0);
+          $(".group_attendence").change(function(){
+            $(this).closest('form').submit();
+            get_sw(str,$(this).val());
+          });
+          $("#workgroups").hide();
+        break;
+    case 'Department':
+        $("#departments").show();
+          $(this).closest('form').submit();
+          get_sw(str,0);
+          $(".department_attendence").change(function(){
+            $(this).closest('form').submit();
+            get_sw(str,$(this).val());
+          });
+          $("#groups").hide();
+          $("#workgroups").hide();
+        break;
+    case 'Workgroup': 
+        $(this).closest('form').submit();
+        get_sw(str,0);
+        $(".work_group_attendence").change(function(){
+            $(this).closest('form').submit();
+            get_sw(str,$(this).val());
+        });
+        $("#departments").hide();
+          $("#groups").hide();
+          $("#workgroups").show();
+        break;      
+    case 'Company': 
+         $("#departments").hide();
+          $("#groups").hide();
+          $("#workgroups").hide();
+          $('.company_select').closest('form').submit();
+          call_sw();
+          break;
+    case 'Reportees':
+      get_sw(str,0);
+      $(this).closest('form').submit(); 
+      $("#departments").hide();
+      $("#groups").hide();
+      $("#workgroups").hide();
+    }
+  });
+  $(this).closest('form').submit();
 });
 
 
@@ -93,6 +146,39 @@ function call_sw(){
    });
   });
 }
+function get_sw(selected_value, value_id){
+console.log(selected_value);
+  $("#attendance_table tr td:not(:first-child)").html("0");
+  // sekhar - json to get dates and working hours of employees based on week 
+  $.getJSON( "/employee_attendence/attandence_ws.json?week_no="+$("#week_num").val()+"&value="+selected_value+"&value_id="+value_id, function( data ) {
+    $.each(data, function( key, value ) {
+          $("th span").remove();
+          // loop for append dates and day value in the table
+          $.each(data["dt"], function( dt, v ) {
+            $("th."+dt).prepend("<span>"+v+"</span> "); // append day and date to th tag in the table
+          });
+
+      var i=0;          
+      $.each(value, function( day, hrs ) {
+        day_arr = day.split("|"); 
+        if(hrs!="0" && hrs.toString().split("hr").length==2){ // if working hours present
+          $("tr#"+key+" ."+day_arr[0]).html("<a style='cursor: pointer'  onclick='call_log_sw($(this).parent().parent().attr(&#39;id&#39;),&#39;"+data["dt"][day]+"&#39;)'>" +hrs+ "</a>" ); // append working hours of corresponding date to table row
+        }
+        else {
+          if((day_arr[0]=="Sat" || day_arr[0]=="Sun") && hrs.toString().split("hr").length!=2){ // for sat and sunday
+            $("tr#"+key+" ."+day_arr[0]).text(0); 
+          } else 
+          {
+            $("tr#"+key+" ."+day_arr[0]).text(hrs); 
+          }
+          
+        }
+        
+        i+=1;
+      });
+   });
+  });
+ }
 
 // function will be called when we click on comment icon of timings in the table
 function call_log_sw(id, val){
