@@ -38,6 +38,7 @@ class StatusesController < ApplicationController
     @status.update likes_count: count + 1
     @status.update(updated_at: Time.now)
     @status = Status.new
+    redirect_to welcome_wall_path
   end
 
   def remove_like # unlikes the status which is being liked previously
@@ -50,7 +51,7 @@ class StatusesController < ApplicationController
     @status.update(updated_at: Time.now)
     @like.destroy
     @status = Status.new
-    #redirect_to welcome_wall_path
+    redirect_to welcome_wall_path
   end
 
   # Present we are not using this one.

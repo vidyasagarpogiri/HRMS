@@ -12,7 +12,7 @@
       <% end %>          
       </div>
       <div class="fb-user-details">
-        <h3><a href="#"><%= link_to post.employee.full_name, profile_employee_path(post.employee), :target => "/blank" %></a> added <%= pluralize(post.photos.count, 'photo') %> to  <%= post.title %></h3>
+        <h3><a href="#"><%= link_to post.employee.full_name, profile_employee_path(post.employee), :target => "/blank" %></a> added <%= pluralize(post.photos.count, 'photo') %> <a href="#"><%= post.title %></a></h3>
        
         <p><%= time_ago_in_words(post.created_at)%> ago</p>    
         <% if post.photos.present?%> 
@@ -25,18 +25,17 @@
           </div>                         
         <% end %>      
      </div>  
-      <div class="fb-status-container fb-border">
+             <div class="fb-status-container fb-border">
           <div class="fb-time-action">
-          <a href="#" >Comments(<%= post.comments.count %>)</a>
-         
+                    <a href="#" >Comments(<%= post.comments.count %>)</a>
           <% if current_user.employee.id == post.employee.id %> <span>-</span>
-            <%= link_to "Delete", status_path(post.id), method: :delete, data: {confirm: "Are You sure?"} %>
+            <%= link_to "Delete", album_path(post.id), method: :delete, data: {confirm: "Are You sure?"} %>
           <% end %>
           <span>-</span>
             <% if post.likes.where(:employee_id => current_user.employee.id, :is_like => true).first %>  
-              <%= link_to 'Unlike', remove_like_album_path(post.id, :employee_id => current_user.employee), :method => "post",remote: true %>
+              <%= link_to 'Unlike', remove_like_album_path(post.id, :employee_id => current_user.employee), :method => "post" %>
             <% else %> 
-              <%= link_to 'Like', add_like_album_path(post.id, :employee_id => current_user.employee), :method => "post",remote: true  %>
+              <%= link_to 'Like', add_like_album_path(post.id, :employee_id => current_user.employee), :method => "post" %>
             <% end %>
           </div>
         </div> 

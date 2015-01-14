@@ -8,4 +8,6 @@ class Album < ActiveRecord::Base
   accepts_nested_attributes_for :photos # Allows album to accept multiple photos
   validates :title, presence: true # Validation for album's title  
   validates :employee_id, presence: true # Validation for employee_id to whome album belongs
+  # Displays the albums in descending order based on last updated time
+  default_scope { order('updated_at DESC') }
 end

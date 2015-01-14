@@ -39,6 +39,7 @@ class AlbumsController < ApplicationController
     @album.update likes_count: count + 1 # increases the likes count by one
     @album.update(updated_at: Time.now)
     @album = Album.new
+    redirect_to welcome_wall_path
   end
 
   def remove_like # unlikes the Album which is being liked previously
@@ -51,7 +52,7 @@ class AlbumsController < ApplicationController
     @album.update(updated_at: Time.now)
     @like.destroy
     @album = Album.new
-    #redirect_to welcome_wall_path
+    redirect_to welcome_wall_path
   end
 
   def show  # Show method for displaying perticular album based on its id
