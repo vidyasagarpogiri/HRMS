@@ -33,7 +33,7 @@
         <div class="form-group">   
           <label class="control-label col-lg-2" for="basicinput">End Time</label>
           <div class="col-lg-6">
-             <%= shift.text_field :to_time, :class => "form-control time-picker", :placeholder =>"Enter End Time",:data => {:error => "Please Select End Time "},:required => true %>
+             <%= shift.text_field :to_time, :class => "form-control time-picker", :placeholder =>"Enter End Time",:data => {:error => "Please Select End Time "},:input_html=>{:readonly=>true, :value=>@shift.to_time.blank? ? "" : @shift.to_time}, :required => true %>
             <span class="help-block with-errors"></span>
           </div>
         </div>
@@ -58,5 +58,6 @@
 <script>
   $(function(){
     $(".time-picker").timepicker();
+    
   });
 </script>
