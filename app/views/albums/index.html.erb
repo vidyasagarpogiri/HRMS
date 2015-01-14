@@ -34,7 +34,7 @@
         <div class="image-container" > 
           <% if album.photos.present? %>            		       					       					                        
           <div class="image-row">
-            <a href="<%= album_path(album) %>" title ="click to view Album">
+            <a href="<%= album_path(album) %>" >
               <%= image_tag album.photos.first.image_url, :class => "photo-style" %>
             </a>
           </div>                                   
