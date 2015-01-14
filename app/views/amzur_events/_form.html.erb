@@ -149,8 +149,10 @@ $('.date-picker').datepicker({
 
 <script>
 
- $(".timepicker").timepicker({defaultTime: 'value'}); 
-  
+ $(".timepicker").timepicker();
+ document.getElementById("amzur_event_to_time").value = '<%= @amzurevent.to_time.strftime("%I:%M %p")%>'
+ document.getElementById("amzur_event_from_time").value = '<%= @amzurevent.from_time.strftime("%I:%M %p")%>' 
+ defaultTime: 'value';
 </script>
 
 <script>
