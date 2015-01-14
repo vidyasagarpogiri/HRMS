@@ -58,6 +58,7 @@
 <script>
   $(function(){
     $(".time-picker").timepicker();
-    
+     document.getElementById("shift_to_time").value = '<%= @shift.to_time%>'
+     document.getElementById("shift_from_time").value = '<%= @shift.from_time%>'
   });
 </script>
