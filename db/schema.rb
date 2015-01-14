@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(version: 20150114053451) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.boolean  "is_proper_data"
   end
 
   create_table "employee_skills", force: true do |t|

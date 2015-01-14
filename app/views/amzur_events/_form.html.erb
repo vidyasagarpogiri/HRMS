@@ -73,18 +73,18 @@
     <div class="form-group">
       <div class="col-lg-5">
         <div class="form-group">                                                                              
-        <label class="col-lg-5 control-label" style="margin-left:-10px;">Start Time: </label>
+        <label class="col-lg-5 control-label" style="margin-left:-10px;">Start Time (IST): </label>
           <div class="col-lg-7">
-            <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "form-control timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
+            <%= f.text_field :from_time, :placeholder =>"Enter Time Of Event", :class => "form-control timepicker", :id => "form_time_picker", :data => {:error => "Please Select Event Time"}, :required => true %>
             <span class="help-block with-errors"></span>   
           </div>
         </div>              
       </div>     
       <div class="col-lg-7" >           
         <div class="form-group">             
-        <label  class="col-lg-2  control-label">End Time: </label>
+        <label  class="col-lg-2  control-label">End Time (IST): </label>
           <div class="col-lg-5">
-            <%= f.text_field :to_time, :placeholder =>"Enter Time Of Event", :class => "form-control timepicker", :data => {:error => "Please Select Event Time"}, :required => true %>
+            <%= f.text_field :to_time, :placeholder =>"Enter Time Of Event", :class => "form-control timepicker", :id => "to_time_picker", :data => {:error => "Please Select Event Time"}, :required => true %>
             <span class="help-block with-errors"></span>   
 
           </div>
@@ -144,13 +144,18 @@ $('.date-picker').datepicker({
 </script>
 
 
-
+<script>
+  $(function(){
+    <%  unless @amzurevent.new_record? %>
+    $("#form_time_picker").val('<%= @amzurevent.from_time.strftime("%H:%M %p") %>');
+    $("#to_time_picker").val('<%= @amzurevent.to_time.strftime("%H:%M %p") %>');
+    <% end %>
+  });
+</script>
 
 
 <script>
-
  $(".timepicker").timepicker(); 
-  
 </script>
 
 <script>
