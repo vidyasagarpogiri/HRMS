@@ -1,0 +1,26 @@
+<%= form_tag add_comments_albums_path, :data => {:toggle => "validator"}, :html => {:class=>"form-horizontal row-fluid shift_from"}, method: :post do %>
+
+  <div class="control-group">
+    <a href="#" class="cmt-thumb">
+      <% if current_user.employee.avatar_url.present? %> 
+        <%= image_tag(current_user.employee.avatar_url, :style=>"width:40px!important; height:40px;") %>
+      <% else %>
+        <% if current_user.employee.gender == "Female" %>
+          <%= image_tag("1.jpg", :style=>"width:40px!important; height:40px;") %> 
+        <% else %>
+          <%= image_tag("user.png", :style=>"width:40px!important; height:40px;") %> 
+        <% end %> 
+      <% end %>
+    </a>
+    <div class="controls">
+      <div class="cmt-form">
+        <%= text_area_tag  'comment', " ", :class => "form-control", :placeholder =>"Write a comment...",:data => {:error => "Please Enter Comment"}, required: true %>
+      </div>                  
+      <span class="help-block with-errors"></span>
+    </div>
+  </div>
+  <input type="hidden" value="<%= album %>" name="album_id">                  
+  <ul class="nav nav-pills pull-right">     
+    <li><button type="submit" class="btn btn-success"> Comment </button></li>    									
+  </ul>
+<% end %>

@@ -39,10 +39,11 @@
         <% @photos.each do |photo| %>                                                                           
         <div>
           <% if current_user.employee.id == @id %>                    
-          <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"image-delete", :title => "delete photo " %>
+          <%= link_to "X", album_photo_path(@album,photo),method: :delete, data: {confirm: "Are You sure?"}, :class=>"image-delete" %>
           <% end %>  
           <a class="group1" href="<%= photo.image %>" ><%= image_tag photo.image, size: "400x300" %></a>                                         
         </div>
+        
         <% end %>                                 
       </div>
     </div><br>
@@ -68,7 +69,7 @@ margin-left:500px;
 color:rgb(135, 10, 10);
 }
 </style>
-<script>
+<script>   
   $(function() {
     $( document ).tooltip();
   });

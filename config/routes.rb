@@ -316,7 +316,13 @@ post 'create_package' => "features#create_package"
     resources :photos 
     member do
      get "add_more_photos_form"
+     get "add_comment"
      post "add_more_photos"
+     post "add_like"
+     post "remove_like"
+    end
+    collection do
+      post "add_comments"
     end
   end
   
