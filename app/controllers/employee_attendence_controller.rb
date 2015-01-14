@@ -19,12 +19,17 @@ class EmployeeAttendenceController < ApplicationController
     #raise attendance_hash.inspect
     @employeeattendece.each do|rec|
     #raise attendance_hash.has_key?(rec.employee_id.to_s).inspect
+   # if rec.employee_attendence_logs.count.inspect
       if attendance_hash.has_key?(rec.employee_id.to_s)
      # raise week_days.inspect
         if rec.total_working_hours==0.0
           attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.status
         else 
-          attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
+          if rec.is_proper_data
+            attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
+          else
+            attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours).to_s+"*"
+          end
         end
       else
       #  raise (week_days+1).inspect
@@ -32,7 +37,11 @@ class EmployeeAttendenceController < ApplicationController
         if rec.total_working_hours==0.0
           attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.status
         else 
-          attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
+         if rec.is_proper_data
+            attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
+          else
+            attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours).to_s+"*"
+          end
         end
       end
     end
@@ -68,6 +77,15 @@ class EmployeeAttendenceController < ApplicationController
   
   def show_attendance
     @employees =  Employee.where(:status => false)
+    
+    employee_attendences =  EmployeeAttendence.where(is_proper_data: nil )
+    employee_attendences.each do |employee_attendence|
+      if employee_attendence.employee_attendence_logs.count % 2 == 0
+        employee_attendence.update(is_proper_data: true)
+      else
+        employee_attendence.update(is_proper_data: false)
+      end
+    end
 =begin    
    if current_user.department == Department::HR
     @employees =  Employee.where(:status => false)
