@@ -169,7 +169,7 @@ class EmployeeAttendenceController < ApplicationController
         #raise from_work_time.inspect
         #raise to_work_time.inspect
         employeeAttendenceLogs =  if(from_work_time > to_work_time)
-        EmployeeAttendenceLog.where("devise_id=? and employee_id = ? and time >= ? and time < ?", deviceUserId, emp_rec.id, logDate.to_datetime.at_noon, logDate.to_datetime.tomorrow.at_noon)
+        EmployeeAttendenceLog.where("devise_id=? and employee_id = ? and time >= ? and time < ?", deviceUserId, emp_rec.id, logDate.to_datetime.beginning_of_day+ 10.hours, logDate.to_datetime.tomorrow.beginning_of_day+ 8.hours)
         else
         EmployeeAttendenceLog.where("devise_id=? and employee_id = ? and time >= ? and time < ?", deviceUserId, emp_rec.id, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day)
         end
