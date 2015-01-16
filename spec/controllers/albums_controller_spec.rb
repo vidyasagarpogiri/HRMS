@@ -34,7 +34,7 @@ RSpec.describe AlbumsController, :type => :controller do
         }.to change(Album, :count). by(1)
       end      
     end       
-  end    
+  end   
 end
 
 

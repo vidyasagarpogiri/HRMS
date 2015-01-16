@@ -13,9 +13,15 @@
           <th>Name Of The Employee </th>
           <td>:   <%= @employee.first_name %> <%= @employee.last_name%></td>
 </tr><tr>
+          <th>Department</th>
+          <td>:   <%= @employee.department.department_name %></td>
+</tr><tr>
+          <th>Designation</th>
+          <td>:   <%= @employee.designation.designation_name %></td>
+</tr><tr>   
           <th>Leave Type</th>
           <td>:   <%= @leave_history.leave_type.type_name %></td>
-</tr><tr>
+</tr><tr>         
           <th>From Date </th>
            <td>:  <%= @leave_history.from_date.to_date.strftime("%d %b, %Y") %></td>
 </tr><tr>
@@ -30,20 +36,14 @@
 </tr><tr>
 
           <th>Leave Status </th>
-           <td>:  <%= @leave_history.status %></td>
+           <td>: <font color="green"><%= @leave_history.status %></td></font>
+
 </tr>     
     </thead>
            
   </table>
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 
