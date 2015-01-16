@@ -1,0 +1,31 @@
+        <div class="panel-body">                                                                          								
+                <table class="table table-striped table-bordered table-condensed" id="attendance_table">
+								  <thead>
+									  <tr>		
+  									  <th>Employee Name</th>								    
+									    <th class="Mon"><br>Monday</th>									     
+                      <th class="Tue"><br>Tuesday</th>
+                      <th class="Wed"><br>Wednesday</th>
+                      <th class="Thu"><br>Thursday</th>
+                      <th class="Fri"><br>Friday</th>
+                      <th class="Sat"><br>Saturday</th>
+                      <th class="Sun"><br>Sunday</th>                         
+									  </tr>
+								  </thead>
+								  <tbody>
+								    <% @employees.each do |employee| %>  
+                    <tr id= "<%= employee.id %>">
+                      <td><%= employee.full_name%></td>
+									    <td class="Mon"></td>
+									    <td class="Tue"></td>
+									    <td class="Wed"></td>
+									    <td class="Thu"></td>
+									    <td class="Fri"></td>
+									    <td class="Sat"></td>
+									    <td class="Sun"></td>
+                    </tr>
+                    <% end %>                    
+								  </tbody>
+								</table>
+								<input type="hidden" value="0" id="week_num">
+              </div><!-- module body-->

@@ -11,40 +11,51 @@ class EmployeeAttendenceController < ApplicationController
   
   def attandence_ws
     last_week = EmployeeAttendence.last.log_date 
-    last_week = EmployeeAttendence.last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?    
-    @employeeattendece = EmployeeAttendence.where("log_date >=? and log_date < ?", last_week.beginning_of_week, last_week.end_of_week)
-    #raise @employeeattendece.inspect
-    week_days = last_week.beginning_of_week
-    attendance_hash = {"dt"=>{ "Mon"=>week_days.strftime("%d-%m-%Y"), "Tue"=>(week_days + 1.day).strftime("%d-%m-%Y"), "Wed"=>(week_days + 2.day).strftime("%d-%m-%Y"), "Thu"=>(week_days + 3.day).strftime("%d-%m-%Y"), "Fri"=>(week_days + 4.day).strftime("%d-%m-%Y"), "Sat"=>(week_days + 5.day).strftime("%d-%m-%Y"), "Sun"=>(week_days + 6.day).strftime("%d-%m-%Y")}} 
-    #raise attendance_hash.inspect
-    @employeeattendece.each do|rec|
-    #raise attendance_hash.has_key?(rec.employee_id.to_s).inspect
-   # if rec.employee_attendence_logs.count.inspect
-      if attendance_hash.has_key?(rec.employee_id.to_s)
-     # raise week_days.inspect
-        if rec.total_working_hours==0.0
-          attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.status
-        else 
-          if rec.is_proper_data
-            attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
-          else
-            attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours).to_s+"*"
+    last_week = EmployeeAttendence.last.log_date.to_datetime + params["week_no"].to_i.week if params["week_no"].present?
+    selected_group = params[:value]
+    selected_group_id = params[:value_id]
+      if selected_group.present? && selected_group_id.present?
+        employees = EmployeeAttendence.selected_group_employees(selected_group,selected_group_id)
+          employee_attendence_records = []
+          if employees.present?
+            employees.each do |id|
+              employee_attendence = EmployeeAttendence.where("log_date >=? and log_date < ? and employee_id = ?", last_week.beginning_of_week, last_week.end_of_week, id)
+              employee_attendence_records << employee_attendence
+            end
+            @employeeattendence = employee_attendence_records.flatten!
           end
-        end
-      else
-      #  raise (week_days+1).inspect
-        attendance_hash[rec.employee_id.to_s] =  {"Mon" => 0, "Tue" => 0, "Wed" => 0, "Thu" => 0, "Fri" => 0, "Sat" => 0, "Sun" => 0} 
-        if rec.total_working_hours==0.0
-          attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.status
-        else 
-         if rec.is_proper_data
-            attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
-          else
-            attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours).to_s+"*"
+      else    
+        @employeeattendence = EmployeeAttendence.where("log_date >=? and log_date < ?", last_week.beginning_of_week, last_week.end_of_week)
+    end
+      week_days = last_week.beginning_of_week
+      attendance_hash = {"dt"=>{ "Mon"=>week_days.strftime("%d-%m-%Y"), "Tue"=>(week_days + 1.day).strftime("%d-%m-%Y"), "Wed"=>(week_days  + 2.day).strftime("%d-%m-%Y"), "Thu"=>(week_days + 3.day).strftime("%d-%m-%Y"), "Fri"=>(week_days + 4.day).strftime("%d-%m-%Y"), "Sat"=>(week_days + 5.day).strftime("%d-%m-%Y"), "Sun"=>(week_days + 6.day).strftime("%d-%m-%Y")}} 
+      @employeeattendence.each do |rec|
+# if rec.employee_attendence_logs.count.inspect
+        if attendance_hash.has_key?(rec.employee_id.to_s)
+# raise week_days.inspect
+          if rec.total_working_hours==0.0
+            attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.status
+          else 
+            if rec.is_proper_data
+              attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
+            else
+              attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours).to_s+"*"
+            end
+          end
+        else
+#  raise (week_days+1).inspect
+          attendance_hash[rec.employee_id.to_s] =  {"Mon" => 0, "Tue" => 0, "Wed" => 0, "Thu" => 0, "Fri" => 0, "Sat" => 0, "Sun" => 0} 
+          if rec.total_working_hours==0.0
+            attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = rec.status
+          else 
+            if rec.is_proper_data
+              attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours)
+            else
+              attendance_hash[rec.employee_id.to_s][rec.log_date.strftime("%a").to_s] = calculate_time_diff(rec.total_working_hours).to_s+"*"
+            end
           end
         end
       end
-    end
     respond_to do |format|
       format.json { render json: attendance_hash }
     end
@@ -76,16 +87,15 @@ class EmployeeAttendenceController < ApplicationController
   end
   
   def show_attendance
-    @employees =  Employee.where(:status => false)
-    
-    employee_attendences =  EmployeeAttendence.where(is_proper_data: nil )
-    employee_attendences.each do |employee_attendence|
-      if employee_attendence.employee_attendence_logs.count % 2 == 0
-        employee_attendence.update(is_proper_data: true)
-      else
-        employee_attendence.update(is_proper_data: false)
-      end
-    end
+  #raise params.inspect
+    group_type = params[:group_type]
+    if group_type.present?
+      group_id = params[:department_id] if params[:department_id].present? ||  0
+        @employees = EmployeeAttendence.employees_of_required_group(group_type, group_id)
+    else
+        @employees = Employee.where(status: false)
+    end    
+
 =begin    
    if current_user.department == Department::HR
     @employees =  Employee.where(:status => false)
@@ -129,7 +139,7 @@ class EmployeeAttendenceController < ApplicationController
         from_work_time = emp_rec.shift.from_time 
         to_work_time = emp_rec.shift.to_time 
         inOutTimingsArray =  if(from_work_time > to_work_time)
-        TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.at_noon, logDate.to_datetime.tomorrow.at_noon).map(&:date_time)
+        TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day+ 10.hours, logDate.to_datetime.tomorrow.beginning_of_day+ 8.hours).map(&:date_time)
         else
         TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day).map(&:date_time)
         end
@@ -159,7 +169,7 @@ class EmployeeAttendenceController < ApplicationController
         #raise from_work_time.inspect
         #raise to_work_time.inspect
         employeeAttendenceLogs =  if(from_work_time > to_work_time)
-        EmployeeAttendenceLog.where("devise_id=? and employee_id = ? and time >= ? and time < ?", deviceUserId, emp_rec.id, logDate.to_datetime.at_noon, logDate.to_datetime.tomorrow.at_noon)
+        EmployeeAttendenceLog.where("devise_id=? and employee_id = ? and time >= ? and time < ?", deviceUserId, emp_rec.id, logDate.to_datetime.beginning_of_day+ 10.hours, logDate.to_datetime.tomorrow.beginning_of_day+ 8.hours)
         else
         EmployeeAttendenceLog.where("devise_id=? and employee_id = ? and time >= ? and time < ?", deviceUserId, emp_rec.id, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day)
         end
