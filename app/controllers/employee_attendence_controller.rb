@@ -62,21 +62,19 @@ class EmployeeAttendenceController < ApplicationController
   end
   
   def attendence_log_ws
-   usr = current_user.employee
-   usr = Employee.find(params[:emp_id]) if params[:emp_id].present?
-   current_date = Time.now
-   from_work_time = usr.shift.from_time
-   to_work_time = usr.shift.to_time
-   current_date = params[:dt].to_datetime
-   log_date = current_date.strftime("%d-%m-%Y")
-   current_date = params["dt"].to_datetime if params["dt"].present?
-    
+    usr = current_user.employee
+    usr = Employee.find(params[:emp_id]) if params[:emp_id].present?
+    current_date = Time.now
+    from_work_time = usr.shift.from_time
+    to_work_time = usr.shift.to_time
+    current_date = params[:dt].to_datetime
+    log_date = current_date.strftime("%d-%m-%Y")
+    current_date = params["dt"].to_datetime if params["dt"].present?
     @employee_attendence_logs = if(from_work_time > to_work_time)
-    EmployeeAttendenceLog.where("time >= ? and time <= ? and employee_id = ? ",current_date.to_datetime.at_noon, current_date.to_datetime.tomorrow.at_noon,  usr.id)
-    else 
-    EmployeeAttendenceLog.where("time >= ? and time <= ? and employee_id = ? ",current_date.beginning_of_day, current_date.end_of_day,  usr.id)
-    end
-    
+        EmployeeAttendenceLog.where("time >= ? and time <= ? and employee_id = ? ",current_date.to_datetime.beginning_of_day+ 10.hours, current_date.to_datetime.tomorrow.beginning_of_day+ 8.hours,  usr.id)
+      else 
+        EmployeeAttendenceLog.where("time >= ? and time <= ? and employee_id = ? ",current_date.beginning_of_day, current_date.end_of_day,  usr.id)
+      end 
     in_out_timings = @employee_attendence_logs.pluck("time, in_out")
     in_out_timings = in_out_timings.collect { |dt| dt[0] = dt[0].strftime("%H:%M:%S"); dt  }
     in_out_timings_json = {}
@@ -87,21 +85,13 @@ class EmployeeAttendenceController < ApplicationController
   end
   
   def show_attendance
-  #raise params.inspect
     group_type = params[:group_type]
-    if group_type.present?
+    if group_type.present? && group_type != "Company"
       group_id = params[:department_id] if params[:department_id].present? ||  0
-        @employees = EmployeeAttendence.employees_of_required_group(group_type, group_id)
+      @employees = EmployeeAttendence.employees_of_required_group(group_type, group_id) 
     else
-        @employees = Employee.where(status: false)
-    end    
-
-=begin    
-   if current_user.department == Department::HR
-    @employees =  Employee.where(:status => false)
-   elsif current_user.degnation 
-   end
-=end     
+      @employees = Employee.where(status: false)
+    end        
   end
 
   def new_attendence_log
@@ -197,6 +187,7 @@ class EmployeeAttendenceController < ApplicationController
           end
           #raise employee_attendance_logs.inspect
           employee_attendance_logs.update_all(employee_attendence_id: @empAttendance.id)
+
       end
     end
     redirect_to "/employee_attendence/show_attendance"

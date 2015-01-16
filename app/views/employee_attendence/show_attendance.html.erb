@@ -13,8 +13,8 @@
                     <select  name="group_type" class="company_select form-control">
                       <option value="Company">All</option>
                       <option value="Department">Department</option>
-                   <!--   <option value="Group">Group</option>
-                      <option value="Workgroup">WorkGroup</option>
+                     <!--   <option value="Group">Group</option>
+                    <option value="Workgroup">WorkGroup</option>
                       <option value ="Reportees">Reportees</option> -->
                     </select>
                   </div>
@@ -22,10 +22,10 @@
                     <div class ="departments">             
                       <%= select_tag :department_id, options_from_collection_for_select(Department.all, "id", "department_name"), prompt: "All Departments", :class => "form-control department_attendence" %>
                     </div>
-                   <!-- <div class="groups">
-                      <%# select_tag :group_id, options_from_collection_for_select(Group.all, "id", "group_name"), prompt: "All Groups", :class => "form-control group_attendence" %>  
+                    <div class="groups">
+                      <%#select_tag :group_id, options_from_collection_for_select(Group.all, "id", "group_name"), prompt: "All Groups", :class => "form-control group_attendence" %>  
                     </div>
-                    <div class="workgroups">
+                   <!-- <div class="workgroups">
                       <%# select_tag :workgroup_id, options_from_collection_for_select(Workgroup.all, "id", "name"), prompt: "All Work Groups", :class => "form-control work_group_attendence" %>
                     </div> -->
                   </div> 
@@ -98,7 +98,7 @@ $(function(){
          $(".departments").hide();
           $(".groups").hide();
           $(".workgroups").hide();
-          $('.company_select').closest('form').submit();
+          $(this).closest('form').submit();
           call_sw();
           break;
     case 'Reportees':
