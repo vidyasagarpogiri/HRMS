@@ -14,7 +14,7 @@ class Notification < ActionMailer::Base
   def accept_leave(employee, leave_history)
     @employee = employee
     @leave_history = leave_history
-    mail(to: @employee.user.email, subject: 'Leave Approved')
+    mail(to: @employee.user.email, subject: 'Leave Approved',cc: 'leaverequest@amzur.com')
   end
   
   # email for leave reject

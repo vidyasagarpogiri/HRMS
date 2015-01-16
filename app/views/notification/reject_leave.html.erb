@@ -26,12 +26,12 @@
           <th>Number Of Day(s)</th>
            <td>:  <%= @leave_history.days %></td>
 </tr><tr>
-          <th>Reason </th>
+          <th>Leave Rejection Reason </th>
            <td>:  <%= @leave_history.feedback %></td>
 </tr><tr>
 
           <th>Leave Status </th>
-           <td>:  <%= @leave_history.status %></td>
+           <td>: <font color="red"><%= @leave_history.status %></td></font>
 </tr>     
       
     </thead>
