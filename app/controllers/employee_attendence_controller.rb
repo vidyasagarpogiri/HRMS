@@ -62,21 +62,19 @@ class EmployeeAttendenceController < ApplicationController
   end
   
   def attendence_log_ws
-   usr = current_user.employee
-   usr = Employee.find(params[:emp_id]) if params[:emp_id].present?
-   current_date = Time.now
-   from_work_time = usr.shift.from_time
-   to_work_time = usr.shift.to_time
-   current_date = params[:dt].to_datetime
-   log_date = current_date.strftime("%d-%m-%Y")
-   current_date = params["dt"].to_datetime if params["dt"].present?
-    
+    usr = current_user.employee
+    usr = Employee.find(params[:emp_id]) if params[:emp_id].present?
+    current_date = Time.now
+    from_work_time = usr.shift.from_time
+    to_work_time = usr.shift.to_time
+    current_date = params[:dt].to_datetime
+    log_date = current_date.strftime("%d-%m-%Y")
+    current_date = params["dt"].to_datetime if params["dt"].present?
     @employee_attendence_logs = if(from_work_time > to_work_time)
-    EmployeeAttendenceLog.where("time >= ? and time <= ? and employee_id = ? ",current_date.to_datetime.at_noon, current_date.to_datetime.tomorrow.at_noon,  usr.id)
-    else 
-    EmployeeAttendenceLog.where("time >= ? and time <= ? and employee_id = ? ",current_date.beginning_of_day, current_date.end_of_day,  usr.id)
-    end
-    
+        EmployeeAttendenceLog.where("time >= ? and time <= ? and employee_id = ? ",current_date.to_datetime.beginning_of_day+ 10.hours, current_date.to_datetime.tomorrow.beginning_of_day+ 8.hours,  usr.id)
+      else 
+        EmployeeAttendenceLog.where("time >= ? and time <= ? and employee_id = ? ",current_date.beginning_of_day, current_date.end_of_day,  usr.id)
+      end 
     in_out_timings = @employee_attendence_logs.pluck("time, in_out")
     in_out_timings = in_out_timings.collect { |dt| dt[0] = dt[0].strftime("%H:%M:%S"); dt  }
     in_out_timings_json = {}
@@ -87,21 +85,13 @@ class EmployeeAttendenceController < ApplicationController
   end
   
   def show_attendance
-  #raise params.inspect
     group_type = params[:group_type]
-    if group_type.present?
+    if group_type.present? && group_type != "Company"
       group_id = params[:department_id] if params[:department_id].present? ||  0
-        @employees = EmployeeAttendence.employees_of_required_group(group_type, group_id)
+      @employees = EmployeeAttendence.employees_of_required_group(group_type, group_id) 
     else
-        @employees = Employee.where(status: false)
-    end    
-
-=begin    
-   if current_user.department == Department::HR
-    @employees =  Employee.where(:status => false)
-   elsif current_user.degnation 
-   end
-=end     
+      @employees = Employee.where(status: false)
+    end        
   end
 
   def new_attendence_log
@@ -109,11 +99,8 @@ class EmployeeAttendenceController < ApplicationController
   end
   
   def upload_file    
-   uploader = AttendenceLogCsvUploader.new
-   uploader.store!(params[:employee_attendence_log_file][:log_file])
-
-   #raise uploader.path.inspect
-    #TemporaryAttendenceLog.destroy_all
+    uploader = AttendenceLogCsvUploader.new
+    uploader.store!(params[:employee_attendence_log_file][:log_file])
     ActiveRecord::Base.connection.execute("TRUNCATE temporary_attendence_logs") #destroying temporaryattendancelogs
     bulk_insert = []
     i=0
@@ -121,114 +108,88 @@ class EmployeeAttendenceController < ApplicationController
       bulk_insert.push"(#{column[2].to_i}, #{column[3].to_i}, '#{column[4]}')" unless i==0
       i+=1
     end
-    ActiveRecord::Base.connection.execute("INSERT INTO temporary_attendence_logs(`device_id`, `employee_id`, `date_time`) VALUES #{bulk_insert.join(', ')}")  
-    #creating temporaryattendancelogs
-        
-    @allUserIds = TemporaryAttendenceLog.all.map(&:employee_id).uniq
-    @attendanceDates = TemporaryAttendenceLog.all.map(&:date_time).compact
-    @attendaceDates = @attendanceDates.collect {|dt| dt.to_datetime.strftime("%d-%m-%Y") }
-    @attendaceDates = @attendaceDates.uniq
-
-   # @employee_devise_ids = Employee.where(:status=>false).map(&:devise_id).compact.uniq
+    ActiveRecord::Base.connection.execute("INSERT INTO temporary_attendence_logs(`device_id`, `employee_id`, `date_time`) VALUES #{bulk_insert.join(', ')}") 
+    @allUserDeviseIds = TemporaryAttendenceLog.all.map(&:employee_id).uniq
+    attendanceDates = TemporaryAttendenceLog.all.map(&:date_time).compact
+    #raise attendanceDates.inspect
+    @attendanceDates = attendanceDates.collect {|dt| dt.to_datetime.strftime("%d-%m-%Y") }
+    @attendanceDates = @attendanceDates.uniq
+    #raise @attendanceDates.inspect
     @employee_devise_ids = Employee.devise_ids_employees
     @employee_devise_ids.each do|deviceUserId|
-      @attendaceDates.each do|logDate|
+    #raise deviceUserId.inspect
+      @attendanceDates.each do|logDate|
+      #raise logDate.inspect
         inFlag = true
-        inTime = 0         
+        inTime = 0
+        totalWorkingHours = 0.0
+        is_emp_present = false      
         emp_rec = Employee.find_by_devise_id(deviceUserId)
         from_work_time = emp_rec.shift.from_time 
         to_work_time = emp_rec.shift.to_time 
         inOutTimingsArray =  if(from_work_time > to_work_time)
-        TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day+ 10.hours, logDate.to_datetime.tomorrow.beginning_of_day+ 8.hours).map(&:date_time)
-        else
-        TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day).map(&:date_time)
-        end
-       #raise inOutTimingsArray.inspect
-          inOutTimingsArray.each do |inOutTime|
-            #raise inOutTime.inspect
-              if inFlag
-                inTime = inOutTime
-                inFlag = false
-                EmployeeAttendenceLog.find_or_create_by(devise_id: deviceUserId, employee_id: emp_rec.id, time: inOutTime , in_out: true)
-              else
-                inFlag = true
-                EmployeeAttendenceLog.find_or_create_by(devise_id: deviceUserId, employee_id: emp_rec.id, time: inOutTime , in_out: false)
-              end
+            TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day+ 10.hours, logDate.to_datetime.tomorrow.beginning_of_day+ 8.hours).map(&:date_time)
+          else
+            TemporaryAttendenceLog.where("employee_id = ? and date_time >= ? and date_time < ?", deviceUserId, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day).map(&:date_time)
           end
-      end
-    end
-    #raise EmployeeAttendenceLog.second.inspect
-    #raise @attendaceDates.inspect
-    #raise @employee_devise_ids.insepct
-    @employee_devise_ids.each do |deviceUserId|
-      @attendaceDates.each do |logDate|
-        emp_rec = Employee.find_by_devise_id(deviceUserId)
-        #raise emp_rec.inspect
-        from_work_time = emp_rec.shift.from_time
-        to_work_time = emp_rec.shift.to_time
-        #raise from_work_time.inspect
-        #raise to_work_time.inspect
-        employeeAttendenceLogs =  if(from_work_time > to_work_time)
-        EmployeeAttendenceLog.where("devise_id=? and employee_id = ? and time >= ? and time < ?", deviceUserId, emp_rec.id, logDate.to_datetime.beginning_of_day+ 10.hours, logDate.to_datetime.tomorrow.beginning_of_day+ 8.hours)
-        else
-        EmployeeAttendenceLog.where("devise_id=? and employee_id = ? and time >= ? and time < ?", deviceUserId, emp_rec.id, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day)
-        end
-        #raise EmployeeAttendenceLog.second.inspect
-
-#        raise worked_hours.inspect
-
-        totalWorkingHours = 0.0
-        is_emp_present = false
-        
-        worked_hours = employeeAttendenceLogs.map(&:time)
-       # raise worked_hours.inspect
-        worked_hours.each_with_index do|w_hr, index|
-        #raise w_hr.inspect
+          #raise inOutTimingsArray.inspect
+        inOutTimingsArray.each_with_index do |inOutTime, index|
+        #raise inOutTime.inspect
         #raise index.inspect
-          break if worked_hours.count == index+1
+          if inFlag
+            inTime = inOutTime
+            inFlag = false
+            EmployeeAttendenceLog.find_or_create_by(devise_id: deviceUserId, employee_id: emp_rec.id, time: inOutTime , in_out: true)
+          else
+            inFlag = true
+            EmployeeAttendenceLog.find_or_create_by(devise_id: deviceUserId, employee_id: emp_rec.id, time: inOutTime , in_out: false)
+          end
+          break if inOutTimingsArray.count == index+1
           if index.even?
-          #raise worked_hours[index].inspect
-            totalWorkingHours += worked_hours[index+1] - worked_hours[index]
-            #raise totalWorkingHours.inspect
+            totalWorkingHours += inOutTimingsArray[index+1] - inOutTimingsArray[index]
           end
         end
-#        raise totalWorkingHours.inspect
-        
-        is_emp_present = true if totalWorkingHours.to_f != 0.0 
-        
-        @empAttendence = if EmployeeAttendence.where(employee_id: emp_rec.id, log_date: logDate.to_date).empty?
-         EmployeeAttendence.create(employee_id: emp_rec.id, log_date: logDate)
-        else
-         EmployeeAttendence.where(employee_id: emp_rec.id, log_date: logDate.to_date).first
-        end
-        #raise EmployeeAttendence.first.inspect
-        @empAttendence.is_present = is_emp_present
-        @empAttendence.total_working_hours = totalWorkingHours
-        #raise @empAttendence.inspect
-        attedance_status = "Absent"
+        #raise totalWorkingHours.inspect
+        is_emp_present = true if totalWorkingHours.to_f != 0.0        
+        @empAttendance = if EmployeeAttendence.where(employee_id: emp_rec.id, log_date: logDate.to_date).empty?
+            EmployeeAttendence.create(employee_id: emp_rec.id, log_date: logDate)
+          else
+            EmployeeAttendence.where(employee_id: emp_rec.id, log_date: logDate.to_date).first
+          end
+          #raise @empAttendance.inspect
+        @empAttendance.is_present = is_emp_present
+        @empAttendance.total_working_hours = totalWorkingHours
+        #raise @empAttendance.inspect
+        attendance_status = "Absent"
         holiday_list = []
         if !is_emp_present #if not present
           holiday_list =  Event.where(:id=>emp_rec.group.holiday_calenders.map(&:event_id)).map(&:event_date) if emp_rec.group.present?
           holiday_list = holiday_list.collect{ |holiday| holiday.to_date }
           if holiday_list.include?(logDate.to_date)
-            attedance_status = "Holiday"
-          else 
+            attendance_status = "Holiday"
+          else
             leaves = LeaveHistory.where(:employee_id => emp_rec.id)
             leaves = leaves.collect{ |leave| (leave.from_date.to_date..leave.to_date.to_date).to_a }
             leaves.flatten!
-            attedance_status ="On Leave" if leaves.include?(logDate.to_date)
+            attendance_status ="On Leave" if leaves.include?(logDate.to_date)
           end
         end
-        @empAttendence.status = attedance_status
-        #TODO: status : need yo check date is - leave or holiday
-        
-        @empAttendence.save 
-        
-        employeeAttendenceLogs.update_all(employee_attendence_id: @empAttendence.id)
-        
+        if inOutTimingsArray.length.odd?
+          @empAttendance.update(status: attendance_status, is_proper_data: false)
+        else
+          @empAttendance.update(status: attendance_status, is_proper_data: true)
+        end
+        @empAttendance.save     
+        employee_attendance_logs =  if(from_work_time > to_work_time)
+            EmployeeAttendenceLog.where("devise_id= ? and time >= ? and time < ?", deviceUserId, logDate.to_datetime.beginning_of_day+ 10.hours, logDate.to_datetime.tomorrow.beginning_of_day+ 8.hours)
+          else
+            EmployeeAttendenceLog.where("devise_id = ? and time >= ? and time < ?", deviceUserId, logDate.to_datetime.beginning_of_day, logDate.to_datetime.end_of_day)
+          end
+          #raise employee_attendance_logs.inspect
+          employee_attendance_logs.update_all(employee_attendence_id: @empAttendance.id)
+
       end
-    end  
-      
+    end
     redirect_to "/employee_attendence/show_attendance"
   end
   
