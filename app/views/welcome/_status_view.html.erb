@@ -44,7 +44,7 @@
             <% end %>                       
             <% if post.likes.count >= 3 %>
               <span class="like">and</span>
-              <%= link_to (post.likes.count) - 2, '#', :data => {:toggle => "modal", :target => "#listModal"}, :id => "modal-text" %> more
+              <a href="#" class="employee_like" id="<%= post.id %>"><%= (post.likes.count) - 2 %> more</a>             
             <% end %>            
             <span>likes this</span>
             <div class="employee_like_list hidden">
