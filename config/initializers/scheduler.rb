@@ -24,59 +24,13 @@ scheduler.cron '0 0 7 * *'  do
       end 
       pdf = ReportPdf.new(payslip)
      pdf.render_file File.join(file_path, "#{payslip.employee.id}.pdf")
-      Notification.delay.send_pdf(payslip, File.join(file_path, "#{payslip.employee.id}.pdf"))
+     # Notification.delay.send_pdf(payslip, File.join(file_path, "#{payslip.employee.id}.pdf"))
 	  end
-	  
- # @employees = Employee.all
-  #@employees.where(status: false).each do |emp|
-      #Notification.event_notification(emp.user, AmzurEvent.last).deliver
-      #Notification.send_pdf(emp.user,emp).deliver
+
  
 end
 
 
-
-=begin
-scheduler.cron '0 0 7 * *'  do 
-   #puts "hello"
-end
-
-#cron job to do a task in every month day 7 at zero th hour  5th minute (5 min after mid night) 
-scheduler.cron '5 0 7 * *'  do 
-   #puts "hello"
-end
-=end
-=begin
-  scheduler.cron '20 23	31 12	* ' do    # This scheduler will run at midnight 11:20 on Dec 31 for wising new year
-  puts "happy new year"
-  @employees = Employee.where(status: false)
-  @employees.each do |employee|
-    if(Date.today.day == 31)
-      if(Date.today.month == 12)
-       #raise emp.full_name.inspect
-        Employee.where(status: false).each do |emp|
-        #raise emp.inspect
-        Notification.newyear_notification(emp.user,employee).deliver # have to add the template in notification.rb
-        end
-      end
-    end                        
- end
- end
-=end
-
-
-#code for birth day notification
-=begin
-  scheduler.cron '5 0 * *	*	' do    # This scheduler will run at midnight 12:05 everyday (birthday email) 
-  #puts "happy bday"
-  @employees = Employee.where(status: false)
-  @employees.each do |employee|
-    if Date.today.month == employee.date_of_birth.to_date.month && Date.today.mday == employee.date_of_birth.to_date.mday
-        Notification.birthday_notification(employee).deliver
-     end                      
-   end
- end
-=end
 
 # to change ff_status of employee according to date of exit 
  scheduler.cron '59 * * * *' do
