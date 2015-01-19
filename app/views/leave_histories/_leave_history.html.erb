@@ -13,7 +13,7 @@
 	          <th> Reason </th>
 	          <th> Leave Type </th>											
 	          <th> Status</th>
-	          <th colspan=2>Action</th>							
+	          <th>Action</th>							
          </tr>            
         </thead>
         <tbody >                           
@@ -44,7 +44,7 @@
 	          <th> Reason </th>
 	          <th> Leave Type </th>											
 	          <th> Status</th>
-	          <th colspan=2>Action</th>							
+	          <th>Action</th>							
          </tr>          
         </tfoot>
       </table>
@@ -57,16 +57,7 @@
   <% end %>                               
   </div>                          												  									
 </div><!--panel panel-info-->							
-<script>
-$(function(){
-  $("td a[id='modal-text']").click(function(){
-    var content=$(this).prev().text();
-    $("#modal_body-reason3").text(content);
-  });
-  
 
-});
-</script>
 
 <script>
 	$(document).ready(function() {
@@ -81,7 +72,7 @@ $(function(){
 							
 
 <!-- Modal -->
-<div class="modal hide" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -89,7 +80,7 @@ $(function(){
         <h4 class="modal-title" id="myModalLabel">Reason for leave</h4>
       </div>
       <div class="modal-body">
-        <span id="modal_body-reason3"></span>
+        <span id="modal_body-reason4"></span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -97,3 +88,15 @@ $(function(){
     </div>
   </div>
 </div>
+
+
+<script>
+$(function(){
+  $("td a[id='modal-text']").click(function(){
+    var content=$(this).prev().text();
+    $("#modal_body-reason4").text(content);
+  });
+  
+
+});
+</script>
