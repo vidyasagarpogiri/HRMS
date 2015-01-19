@@ -14,7 +14,7 @@ class Notification < ActionMailer::Base
   def accept_leave(employee, leave_history)
     @employee = employee
     @leave_history = leave_history
-    mail(to: @employee.user.email, subject: 'Leave Approved',cc: 'leaverequest@amzur.com')
+    mail(to: @employee.user.email, subject: 'Leave Approved', cc: 'leaverequest@amzur.com')
   end
   
   # email for leave reject
@@ -22,6 +22,15 @@ class Notification < ActionMailer::Base
     @employee = employee
     @leave_history = leave_history
     mail(to: @leave_history.employee.user.email, subject: 'Leave Rejected')
+  end
+
+   # email for leave accept edit
+  def edit_leave(employee, leave_history, leave_history_old)
+    @employee = employee
+    @leave_history = leave_history
+    @leave_history_old = leave_history_old
+    #raise @leave_history.inspect
+    mail(to: @employee.reporting_manager_user, subject: 'Approved Leave Modified')
   end
 
   # email for new job notification
