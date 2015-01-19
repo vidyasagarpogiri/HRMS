@@ -119,13 +119,11 @@ class LeaveHistoriesController < ApplicationController
   def edit
    @employee = current_user.employee
    @leave_history = LeaveHistory.find(params[:id]) 
-   #raise @leave_history.inspect #
   end
   
   def update
-   @leave_history_old = LeaveHistory.find(params[:id])
+  #raise params.inspect
    @leave_history = LeaveHistory.find(params[:id])
-   #raise @leave_history_old.inspect #
    @employee = @leave_history.employee
    #Checking Wehter Leave already apporved or not if apporved then we added days to leaves avialalbe days
     if @leave_history.status == LeaveHistory::APPROVED
@@ -152,27 +150,24 @@ class LeaveHistoriesController < ApplicationController
         @error = "Already You Applied for Floating Holiday"
       else
         @leave_history.update(:from_date =>date, :to_date =>date, :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id])
-        Notification.delay.edit_leave(current_user.employee, @leave_history,@leave_history_old)
+        Notification.delay.applyleave(current_user.employee, @leave_history)
          redirect_to leave_histories_path
       end
    else
-   #raise params.inspect #
       if params[:leave_history][:is_halfday] == "full_day"
         @leave_history.update(params_leave_history)
         total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_f + 1.0
         weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date, @employee.group)
         applied_days = total_days - weekend_count  
-        @leave_history.update(days: applied_days, status: LeaveHistory::HOLD, :is_halfday => false,:reason => params[:leave_history][:reason])
-         #raise @leave_history.inspect #
-        Notification.delay.edit_leave(current_user.employee, @leave_history,@leave_history_old)
-        #raise Notification.inspect #
+        @leave_history.update(days: applied_days, status: LeaveHistory::HOLD, :is_halfday => false)
+        Notification.delay.applyleave(current_user.employee, @leave_history)
       else
         @leave_history.update(:from_date =>params[:leave_date], :to_date =>params[:leave_date], :section => params[:leave_history][:section], :reason => params[:leave_history][:reason], :leave_type_id => params[:leave_history][:leave_type_id], :is_halfday => true)
         @leave_history.update(:days => 0.5, status: LeaveHistory::HOLD)     
         @days ||= 0
         a_leaves = Leave.employee_available_leaves(@employee)
         @employee.leave.update(available_leaves: a_leaves + @days )
-        Notification.delay.edit_leave(current_user.employee, @leave_history,@leave_history_old)
+        Notification.delay.applyleave(current_user.employee, @leave_history)
       end
          redirect_to leave_histories_path
       end
