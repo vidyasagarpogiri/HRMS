@@ -44,17 +44,12 @@
             <% end %>                       
             <% if post.likes.count >= 3 %>
               <span class="like">and</span>
-              <a href="#" class="employee_like" id="<%= post.id %>"><%= (post.likes.count) - 2 %> more</a>             
+              
+              <%= link_to (post.likes.count) - 2, "#likesModal", :class => "likes_show likes_show_#{post.id}", :url => status_path(post.id), "data-toggle" => "modal" %> more
+              
+                          
             <% end %>            
-            <span>likes this</span>
-            <div class="employee_like_list hidden">
-              <ul>
-                <% post.likes.each do |like| %>
-                  <li> <%= like.employee.full_name %> </li>
-                <% end %>
-              </ul>
-            </div>
-                 
+            <span>likes this</span>                            
           <% end %>                      
         </div>
 <!----------------------------#TODO THis code for show more comments------------------------------------------------------------>
@@ -117,35 +112,7 @@
   </section>   
 </div>
 
-<script>
-$(function(){
-  $("span a[id='modal-text']").click(function(){
-    var content=$(this).next().text();
-    $("#employee_list").text(content);
-  });  
-});
-</script>
 
-
-
-
-<!-- Modal -->
-<div class="modal hide" id="listModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel"></h4>
-      </div>
-      <div class="modal-body">
-        <span id="employee_list"></span>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!--------------#This script for More comments or less comemnts  ------------------>
 <script>
@@ -159,12 +126,3 @@ $(function(){
 </script>	
 
 
-<style>
-.hidden{
-visibility: hidden;
-}
-.employee_like_list{
-margin-left:300px;
-margin-top:-100px;
-}
-</style>

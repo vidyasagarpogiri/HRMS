@@ -22,7 +22,7 @@
         <%= render "shared/hrm_side_bar" %>
       <!--main content start-->
       <section id="main-content">
-        <section class="wrapper" style="min-height:820px;">
+        <section class="wrapper" >
           <!-- page start-->
             <%= yield %>
           <!-- page end-->
@@ -42,3 +42,7 @@
     
   </body>
 </html>
+
+<script>
+$("html").niceScroll({styler:"fb",cursorcolor:"#e8403f", cursorwidth: '6', cursorborderradius: '10px', background: '#404040', spacebarenabled:false,  cursorborder: '', zindex: '1000'});
+</script>

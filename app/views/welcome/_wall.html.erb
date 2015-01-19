@@ -47,13 +47,10 @@
           <ul>
             <% @welcome_event.each do |welcome_event| %>             
               <li class="active">
-                <div class="col-lg-8" style="padding:2px;"><strong><%= link_to welcome_event.title, "#eventsModal", :class => " event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal", :id => "eventModal" %></strong></div>
+                <div class="col-lg-8" style="padding:2px;"><strong><%= link_to welcome_event.title, "#eventsModal", :class => " event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal" %></strong></div>
                 <div class="col-lg-4" style="font-size:9px;margin-top:5px;" ><%= time_ago_in_words(welcome_event.created_at)%> ago </div>
                
-                <!--<div class="control-group">
-                  <label class="idesc" for="basicinput"> <%= raw welcome_event.description %></label>                
-                </div>
-                <%#link_to "Continue..", "#eventsModal", :class => "btn btn-link event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal", :id => "eventModal" %>-->
+              
               </li>
             <% end %>	
           </ul>
@@ -196,61 +193,5 @@
     });
   });
 </script>
-
-<script>
-  $(function(){
-    $('.event_show').click(function(){ 
-      var url = $(this).attr("url");
-      $.ajax({
-        type: "GET",
-        url: url,
-        dataType: "script"
-      });
-    });
-  });
-</script>
-<!-- Button trigger modal -->
-<script>
-  $(function(){
-    $('.announcement-show').click(function(){ 
-      var url = $(this).attr("url");
-      $.ajax({
-        type: "GET",
-        url: url,
-        dataType: "script"
-      });
-    });
-  });
-</script>
-
-
-
-
-
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"  class="modal fade eventsModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-        <h4 class="modal-title">Event</h4>
-      </div>
-      <div class="modal-body event_show_body">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-        <h4 class="modal-title">Announcement</h4>
-      </div>
-      <div class="modal-body announcement_show_body">
-      </div>
-    </div>
-  </div>
-</div>
 
 

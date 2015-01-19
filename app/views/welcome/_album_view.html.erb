@@ -47,7 +47,9 @@
               <% end %>                       
               <% if post.likes.count >= 3 %>
                 <span class="like">and</span>
-                <a href="#" class="employee_like" id="<%= post.id %>"><%= (post.likes.count) - 2 %> more</a>
+                
+                 <%= link_to (post.likes.count) - 2, "#albumsModal", :class => "album_show album_show_#{post.id}", :url => album_path(post.id), "data-toggle" => "modal" %> more
+               
               <% end %>            
               <span>likes this</span>
               <div class="employee_like_list hidden">                              

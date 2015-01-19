@@ -1,3 +1,4 @@
+
 <div class="actual-wall-template">
   <%= render 'wall'%>
 </div>
@@ -5,51 +6,6 @@
 </div>
 <!-- page start-->
 <!-- page end-->
-<style>
-  /* See license.txt for terms of usage */
-  /** reset styling **/
-  .row .wall-layout{
-    margin-left:200pximportant;
-  }
-  .jdesc,.idesc{
-    height:40px;
-    overflow:hidden;
-    font-weight:normal;
-  }
-  .pt4{
-    border-left: 0px solid #d3d7dd!important;
-    float: right;
-  }
-  .slick-track > .slick-slide .slick-active{
-    width:100px!important;
-  }
-  .slick-prev, .slick-next{
-    background: rgb(113, 195, 235);
-  }
-  input[type="text"]{
-    padding :15px;
-  }
-  .total_status{
-    padding:5px;
-    margin-left:50px;
-  }
-  .album-title{
-    color:#FF6C60 !important
-  }
-  
-  .text-scroll{
-    overflow-y: auto;
-    max-height:300px;
-  }
-  
-  .text-scroll ul li a:first-child{
-  border-left: 4px solid #d3d7dd;
-  }
-  .text-scroll ul li a,.text-scroll ul li a:hover{
-  border-left: 4px solid #f1f2f7;
-  }
-  
-</style>
 
 <script>
   $(function() {
@@ -100,7 +56,30 @@
 </script>
 
 
-
+<script>
+  $(function(){
+    $('.likes_show').click(function(){ 
+      var url = $(this).attr("url");
+      $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "script"
+      });
+    });
+  });
+</script>
+<script>
+  $(function(){
+    $('.album_show').click(function(){ 
+      var url = $(this).attr("url");
+      $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "script"
+      });
+    });
+  });
+</script>
 
 
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="eventsModal" class="modal fade">
@@ -124,6 +103,31 @@
         <h4 class="modal-title">Announcement</h4>
       </div>
       <div class="modal-body announcement_show_body">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal status likes -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="likesModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>  <br>     
+      </div>
+      <div class="modal-body likes_show_body">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal album likes -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="albumsModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>  <br>     
+      </div>
+      <div class="modal-body album_show_body">
       </div>
     </div>
   </div>
