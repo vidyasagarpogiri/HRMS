@@ -148,9 +148,11 @@ $('.date-picker').datepicker({
 
 <script>
  $(".timepicker").timepicker();
- document.getElementById("amzur_event_to_time").value = '<%= @amzurevent.to_time.strftime("%I:%M %p")%>'
- document.getElementById("amzur_event_from_time").value = '<%= @amzurevent.from_time.strftime("%I:%M %p")%>' 
+ <% unless @amzurevent.new_record? %>
+ document.getElementById("amzur_event_to_time").value = '<%= @amzurevent.to_time.strftime("%I:%M %p") if @amzurevent.to_time.present? %>'
+ document.getElementById("amzur_event_from_time").value = '<%= @amzurevent.from_time.strftime("%I:%M %p") if @amzurevent.from_time.present?%>' 
  defaultTime: 'value';
+ <% end %>
 </script>
 
 <script>

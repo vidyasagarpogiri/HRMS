@@ -1,0 +1,14 @@
+
+
+<section class="panel panel-info">  
+  <div class="panel-body">
+    <div class="form-group">
+      <ul>
+        <% @status.likes.each do |like| %>
+          <li> <%= like.employee.full_name %> </li>
+        <% end %> liked your Status...
+      </ul>  
+    </div>
+  </div><!--panel-body-->                                                                      
+</section>  
+
