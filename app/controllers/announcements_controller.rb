@@ -31,7 +31,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
         #raise @announcement.is_send_mail.inspect
           if @announcement.is_send_mail
             Group.find(params[:group_id]).employees.where(status: false).each do |emp|
-            Notification.delay.announcement_notification(emp.user,@announcement) 
+            #Notification.delay.announcement_notification(emp.user,@announcement) 
           end
         end
           redirect_to welcome_wall_path
@@ -45,7 +45,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
         if @announcement.save
           if @announcement.is_send_mail
            Department.find(params[:department_id]).employees.where(status: false).each do |emp|
-            Notification.delay.announcement_notification(emp.user,@announcement) 
+            #Notification.delay.announcement_notification(emp.user,@announcement) 
           end
         end
           redirect_to welcome_wall_path
@@ -60,7 +60,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
         if @announcement.save
           if @announcement.is_send_mail
             Workgroup.find(params[:workgroup_id]).employees.where(status: false).each do |emp|
-            Notification.delay.announcement_notification(emp.user,@announcement) 
+            #Notification.delay.announcement_notification(emp.user,@announcement) 
           end
         end
           redirect_to welcome_wall_path
@@ -75,7 +75,7 @@ before_action :find_announcement, only: [:edit, :update, :destroy, :show]
         if @announcement.save
           if @announcement.is_send_mail
             Employee.where(status: false).each do |emp|
-            Notification.delay.announcement_notification(emp.user,@announcement) 
+            #Notification.delay.announcement_notification(emp.user,@announcement) 
           end
         end
           redirect_to welcome_wall_path

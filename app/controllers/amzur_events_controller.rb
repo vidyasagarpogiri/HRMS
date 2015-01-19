@@ -36,7 +36,7 @@ class AmzurEventsController < ApplicationController
           if @amzurevent.is_send_mail
             #raise params.inspect
             Group.find(params[:group_id]).employees.where(status: false).each do |emp|
-            Notification.delay.event_notification(emp.user,@amzurevent)
+            #Notification.delay.event_notification(emp.user,@amzurevent)
             end
           end
         redirect_to welcome_wall_path
@@ -52,7 +52,7 @@ class AmzurEventsController < ApplicationController
       @amzurevent.update(:employee_id => current_user.employee.id)
         if @amzurevent.is_send_mail
           Department.find(params[:department_id]).employees.where(status: false).each do |emp|
-          Notification.delay.event_notification(emp.user,@amzurevent)
+          #Notification.delay.event_notification(emp.user,@amzurevent)
           end
         end
       redirect_to welcome_wall_path
@@ -70,7 +70,7 @@ class AmzurEventsController < ApplicationController
           if @amzurevent.is_send_mail
           
             Workgroup.find(params[:workgroup_id]).employees.where(status: false).each do |emp|
-            Notification.delay.event_notification(emp.user,@amzurevent)
+            #Notification.delay.event_notification(emp.user,@amzurevent)
             end
           end
         redirect_to welcome_wall_path
@@ -83,7 +83,7 @@ class AmzurEventsController < ApplicationController
       if @amzurevent.save
         if @amzurevent.is_send_mail
           Employee.where(status: false).each do |emp|
-          Notification.delay.event_notification(emp.user,@amzurevent)
+          #Notification.delay.event_notification(emp.user,@amzurevent)
           end
         end
       redirect_to welcome_wall_path
@@ -120,7 +120,7 @@ class AmzurEventsController < ApplicationController
       if @amzurevent
         if @amzurevent.is_send_mail
           Employee.where(status: false).each do |emp|
-          Notification.delay.event_notification(emp.user,@amzurevent)
+          #Notification.delay.event_notification(emp.user,@amzurevent)
         end
       end
       redirect_to welcome_wall_path

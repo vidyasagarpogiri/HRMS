@@ -27,7 +27,7 @@ class PoliciesController < ApplicationController
     @policy = Policy.new(policy_params)
     if @policy.save
       Employee.where(status: false).each do |emp|
-        Notification.delay.policy_notification(emp.user, @policy)
+        #Notification.delay.policy_notification(emp.user, @policy)
       end
       redirect_to policies_path
     else
