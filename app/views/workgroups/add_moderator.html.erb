@@ -46,13 +46,15 @@
                       <% end %>
                     <% end %>
                   </th>
-                </tr>	                  
+                </tr>	
+               <% end %>                  
         </tbody>
         </table>
-              <%= submit_tag 'Submit', :class => "btn btn-success" %>                          
-              <%= link_to 'Cancel', workgroup_path(@workgroup), :class => "btn btn-danger" %>         
+         
+              <%= submit_tag 'Submit', :class => "btn btn-success btn-sm" %>                          
+              <%= link_to 'Cancel', workgroup_path(@workgroup), :class => "btn btn-danger btn-sm" %>         
               <% end %>         
-          <% end %>                
+                         
       <% else %>  
         <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;

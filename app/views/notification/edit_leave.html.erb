@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+Hello  <%= @employee.reporting_manager %>,
+ <p>You have a <%= @leave_history.leave_type.type_name %> request from <%= @employee.first_name %> <%= @employee.last_name%> </p>
+<table border="0">
+    <thead>
+      <tr>
+          <th>Employee Id </th>
+          <td>:   <%= @employee.employee_id %></td> 
+ </tr><tr>
+          <th>Name Of The Employee </th>
+          <td>:   <%= @employee.first_name %> <%= @employee.last_name%></td>
+</tr><tr>
+          <th>Leave Type</th>
+          <td>:   <%= @leave_history.leave_type.type_name %></td>
+</tr><tr>
+  <% if @leave_history.is_halfday %>
+    <th>New Leave Date</th>
+    <td>:    <%= @leave_history.from_date.to_date.strftime("%d %b, %Y") %></td></tr>
+    <tr><th>Leave</th>
+    <td>:   Half Day</td></tr>
+    <tr><th>Section</th>
+    <td>:    <%= @leave_history.section %></td></tr>
+    <th>Reason </th>
+    <td>:  <%= @leave_history.reason %></td>
+    <tr><th>Previous Leave Date</th>
+    <td>:    <%= @leave_history_old.from_date.to_date.strftime("%d %b, %Y") %></td></tr>
+    <tr><th>Leave</th>
+    <td>:   Half Day</td></tr>
+    <tr><th>Section</th>
+    <td>:    <%= @leave_history_old.section %></td></tr>
+  <% else %>
+</tr><tr>
+          <th>New From Date </th>
+           <td>:  <%= @leave_history.from_date.to_date.strftime("%d %b, %Y") %></td>
+</tr><tr>
+          <th>New To Date </th>
+          <td>:   <%= @leave_history.to_date.to_date.strftime("%d %b, %Y") %> </td>
+</tr><tr>
+          <th>Number Of Day(s)</th>
+           <td>:  <%= @leave_history.days %></td>
+</tr><tr>
+          <th> Reason </th>
+           <td>:  <%= @leave_history.reason %></td>
+</tr><tr>           
+<th>Previous From Date </th>
+           <td>:  <%= @leave_history_old.from_date.to_date.strftime("%d %b, %Y") %></td>
+</tr><tr>
+          <th>Previous To Date </th>
+          <td>:   <%= @leave_history_old.to_date.to_date.strftime("%d %b, %Y") %> </td>
+</tr><tr>
+          <th>Number Of Day(s) Approved Previously</th>
+           <td>:  <%= @leave_history_old.days %></td>
+</tr><tr>
+<% end %>
+          <th>Previous Reason </th>
+           <td>:  <%= @leave_history_old.reason %></td>
+</tr>
+      
+    </thead>
+           
+  </table>
+</body>
+</html>
