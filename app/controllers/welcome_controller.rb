@@ -85,10 +85,17 @@ class WelcomeController < ApplicationController
     @posts.flatten!
     @posts.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!
     @notifications = [ @welcome_event, @welcome_announcements, @welcome_recruitments]
-    @notifications.flatten!
+    @notifications.flatten!    
     @notifications.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!
     #raise @notifications.inspect
- end
+    @current_emp_posts= []
+    @posts.each do |p|
+      if p.employee_id  == current_user.employee.id
+        @current_emp_posts << p
+      end
+    end
+    #raise @current_emp_posts.limit(3)inspect
+  end
  
   def login
   

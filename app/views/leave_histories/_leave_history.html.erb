@@ -20,19 +20,33 @@
           <%  @leave_histories.each do |f| %>
        		<% if((f.from_date.to_date <= Date.today && f.to_date.to_date >= Date.today) || (f.to_date.to_date < Date.today)) %>											
           <tr>               
-            <% if f.is_halfday %>
-              <td><%= f.from_date %></td>
-              <td>half day(<%= f.section %>)</td>               
-             <% else %>
-           	  <td><%= format_date(f.from_date) %> - <%= format_date(f.to_date) %> </td>													
-	            <td>  <%= pluralize(f.days, 'day') %>  </td>
-	           <% end %>
+            
+            <td>
+              <% if f.is_halfday %>
+                <%= f.from_date %>
+              <% else %>
+                <%= format_date(f.from_date) %> - <%= format_date(f.to_date) %>
+              <% end %>
+            </td>
+            <td>
+              <% if f.is_halfday %>
+              half day(<%= f.section %>)
+              <% else %>
+                <%= pluralize(f.days, 'day') %>
+              <% end %>
+            </td>
+            <!------------------------------------------------->
+      
 	          <td><span style='display: none;'><%= f.reason %></span><%= truncate(f.reason) { link_to "Continue", "#", :data => {:toggle => "modal", :target => "#myModal3"}, :id => "modal-text" } %>  </td>
 	          <td><%=f.leave_type.type_name %> </td>													
 	          <td><%=f.status %></td>
-	          <% unless f.to_date.to_date <= Date.today %>
-	            <td><%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info btn-xs", :remote => true  %></td>								 
-	          <% end %>
+	          
+	            <td>
+	            <% unless f.to_date.to_date <= Date.today %>
+	              <%= link_to "Edit", edit_leave_history_path(f),  :class => "btn btn-info btn-xs", :remote => true  %>
+	              <% end %>
+	            </td>								 
+	          
           </tr>																						
         </tbody>
         <% end %>	

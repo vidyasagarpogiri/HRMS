@@ -48,23 +48,62 @@
           <li class="active">
           <% if notification.class.name == "AmzurEvent" %>
             <div class="col-lg-8" style="padding:2px;"><strong><%= link_to " "+"#{notification.title}", "#eventsModal", :class => " fa fa-bell event_show event-show_#{notification.id}", :url => amzur_event_path(notification), "data-toggle" => "modal" %></strong></div>
-            <div class="col-lg-4" style="font-size:10px;margin-top:5px;" ><%= time_ago_in_words(notification.created_at)%> ago </div>
+            <div class="col-lg-4" style="margin-top:5px;" ><%= time_ago_in_words(notification.created_at)%> ago </div>
           <% elsif notification.class.name == "Announcement" %>
             <div class="col-lg-8" style="padding:2px;"><strong><%= link_to " "+"#{notification.title}", "#announcementModal", :class => " fa fa-bullhorn announcement-show event-show_#{notification.id}", :url => announcement_path(notification.id), "data-toggle" => "modal" %> </strong></div>
-            <div class="col-lg-4" style="font-size:10px;margin-top:5px;" ><%= time_ago_in_words(notification.created_at)%> ago </div>
+            <div class="col-lg-4" style="margin-top:5px;" ><%= time_ago_in_words(notification.created_at)%> ago </div>
           <% else notification.class.name == "Recruitment" %>
             <div class="col-lg-8" style="padding:2px;"><strong> <%=link_to " "+"#{notification.title}", recruitments_path, :class => "fa fa-briefcase" %></strong></div>
-            <div class="col-lg-4" style="font-size:10px;margin-top:5px;" ><%= time_ago_in_words(notification.created_at)%> ago </div>
+            <div class="col-lg-4" style="margin-top:5px;" ><%= time_ago_in_words(notification.created_at)%> ago </div>
           <% end %>
             
         <% end %> 
         </ul>                   
       </div>                  
     </div>
-  </div><!--"col-md-4-->
+                            	           
+    <div class="fb-timeliner">
+      <h2 class="recent-highlight">My Recent Posts <span class="pull-right"></span></h2>      
+        <% if @current_emp_posts.present? %>	
+        <div class="text-scroll">
+        <ul>
+          <% @current_emp_posts.first(3).each do |post| %>             
+            <li class="active">           
+              <% if post.class.name == "Album" %>
+                <% if post.present? && post.employee.avatar_url.present? %>
+                    <%= image_tag post.employee.avatar_url, :width => "60px", :height => "60px" %>
+                  <% else %>
+                    <% if post.employee.gender == "Female" %>
+                      <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+                    <% else %>
+                      <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+                    <% end %>                    
+                  <% end %> 
+                    <%= post.title%>
+              <% else post.class.name == "Status" %>
+              <% if post.present? && post.employee.avatar_url.present? %>
+                    <%= image_tag post.employee.avatar_url, :width => "60px", :height => "60px" %>
+                  <% else %>
+                    <% if post.employee.gender == "Female" %>
+                      <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+                    <% else %>
+                      <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+                    <% end %>
+                    <% end %>
+                <%= post.status %>
+              <% end %>           
+            </li>
+          <% end %>	
+        </ul></div>
+        <% else %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            There are no status
+          </div>    
+        <% end %> 
+      </div>                                                                       
+  </div><!--col-md-4-->
 </div><!--row-->
- 
-   
 
 <style>
   /* See license.txt for terms of usage */
@@ -92,7 +131,7 @@
   }
   .total_status{
     padding:5px;
-    margin-left:50px;
+    margin-left:30px;
   }
   .album-title{
     color:#FF6C60 !important
@@ -109,11 +148,13 @@
   .text-scroll ul li a,.text-scroll ul li a:hover{
   border-left: 4px solid #f1f2f7;
   }
-  .fb-timeliner ul li{
+  .fb-timeliner .panel-body ul li.active{
   margin-left: -20px;
+  height:50px!important;
   }
   .fb-timeliner ul li.active a{
   border-left: 5px solid #f1f2f7;
+  color: #428bca;
     } 
   
 </style>
