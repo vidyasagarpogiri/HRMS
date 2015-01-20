@@ -123,9 +123,56 @@
       </div>
 
     </div>                	          
-   </div><!--col-md-3-->
+ <%# raise @current_emp_posts.inspect %>
+    <div class="fb-timeliner">
+      <h2 class="recent-highlight">My Recent Posts <span class="pull-right"></span></h2>
+      <div class="text-scroll">
+        <% if @current_emp_posts.present? %>	
+          <ul>
+            <% @current_emp_posts.each do |post| %>             
+              <li class="active">
+           
+  <% if post.class.name == "Album" %>
+    <% if post.present? && post.employee.avatar_url.present? %>
+        <%= image_tag post.employee.avatar_url, :width => "60px", :height => "60px" %>
+      <% else %>
+        <% if post.employee.gender == "Female" %>
+          <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+        <% else %>
+          <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+        <% end %>
+        
+      <% end %> 
+        <%= post.title%>
+  <% else post.class.name == "Status" %>
+  <% if post.present? && post.employee.avatar_url.present? %>
+        <%= image_tag post.employee.avatar_url, :width => "60px", :height => "60px" %>
+      <% else %>
+        <% if post.employee.gender == "Female" %>
+          <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
+        <% else %>
+          <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
+        <% end %>
+        <% end %>
+    <%= post.status %>
+  <% end %>
+
+              
+              </li>
+            <% end %>	
+          </ul>
+        <% else %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            There are no status
+          </div>    
+        <% end %> 
+      </div>                                                                
+    </div>
+    
+    
+      </div><!--col-md-3-->
  </div><!--row-->
- 
 <style>
   /* See license.txt for terms of usage */
   /** reset styling **/

@@ -4,7 +4,7 @@
   <div class="panel-body">
     <div class="form-group">
       <ul>
-        <% @status.likes.each do |like| %>
+        <% @status.likes.uniq.each do |like| %>
           <li> <%= like.employee.full_name %> </li>
         <% end %> liked your Status...
       </ul>  

@@ -85,6 +85,15 @@ class WelcomeController < ApplicationController
     @posts = [@albums, @statuses]
     @posts.flatten!
     @posts.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!
+    @current_emp_posts= []
+    @posts.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!.each do |p|
+    if p.employee_id  == current_user.employee.id
+    @current_emp_posts << p
+    end
+    end
+   # raise @posts.inspect
+    #@current_emp_albums = Album.where(employee_id: current_user.employee.id)
+  # raise @employee.inspect
  end
  
   def login
