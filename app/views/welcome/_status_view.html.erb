@@ -40,14 +40,11 @@
         <div class="fb-time-action like-info">
           <% if post.likes.present? %>
             <% post.likes.limit(2).each do |like| %>
-            <a href="#"><%= like.employee.full_name %>,</a>
+            <%= link_to like.employee.full_name, profile_employee_path(like.employee), :target => "/blank" %>,
             <% end %>                       
             <% if post.likes.count >= 3 %>
-              <span class="like">and</span>
-              
-              <%= link_to (post.likes.count) - 2, "#likesModal", :class => "likes_show likes_show_#{post.id}", :url => status_path(post.id), "data-toggle" => "modal" %> more
-              
-                          
+              <span class="like">and</span>              
+              <%= link_to "#{(post.likes.count) - 2} more", "#likesModal", :class => "likes_show likes_show_#{post.id}", :url => status_path(post.id), "data-toggle" => "modal" %> more                                       
             <% end %>            
             <span>likes this</span>                            
           <% end %>                      
@@ -59,7 +56,7 @@
         <% end %>
         <% post.comments.last(3).each do |comm| %> 
           <li>
-            <a href="#" class="cmt-thumb">
+            <div href="#" class="cmt-thumb">
               <% if comm.employee.avatar_url.present? %> 
                 <%= image_tag(comm.employee.avatar_url,:style=>"width:40px!important; height:40px;") %>
               <% else %>
@@ -69,9 +66,9 @@
                     <%= image_tag("user.png", :style=>"width:40px!important; height:40px;") %> 
                  <% end %> 
              <% end %>
-          </a>
+          </div>
           <div class="cmt-details">         
-              <a href="#"> <%= link_to comm.employee.full_name , profile_path(comm.employee), :target => "/blank" %></a>
+              <%= link_to comm.employee.full_name , profile_path(comm.employee), :target => "/blank" %>
               <span> <%=comm.comment %> </span>
               <p><%= time_ago_in_words(comm.created_at)%> ago</p>
           </div>
