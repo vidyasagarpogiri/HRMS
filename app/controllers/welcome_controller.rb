@@ -72,8 +72,7 @@ class WelcomeController < ApplicationController
    end
   end  
   
-  def wall
-    
+  def wall    
     @status = Status.new
     #@welcome_event = AmzurEvent.all.order('created_at DESC')
     @welcome_event = AmzurEvent.all_events(current_user.employee)
@@ -85,6 +84,10 @@ class WelcomeController < ApplicationController
     @posts = [@albums, @statuses]
     @posts.flatten!
     @posts.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!
+    @notifications = [ @welcome_event, @welcome_announcements, @welcome_recruitments]
+    @notifications.flatten!
+    @notifications.sort!{|a,b|a.updated_at <=> b.updated_at}.reverse!
+    #raise @notifications.inspect
  end
  
   def login

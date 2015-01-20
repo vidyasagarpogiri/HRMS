@@ -1,131 +1,71 @@
 <!-- page start-->
 <div class="row">
-    <div class="col-md-9">
-      <section class="panel">
-        <div class="cover-photo">  
-          <div class="fb-timeline-img">
-            <%=image_tag "ofc_day_out1.jpg" %>
-          </div>
-          <div class="fb-name">
-            <h2><a href="#"><%= current_user.employee.full_name %></a></h2>
-          </div>       
+  <div class="col-md-8">
+    <section class="panel">
+      <div class="cover-photo">  
+        <div class="fb-timeline-img">
+          <%=image_tag "ofc_day_out1.jpg" %>
         </div>
-        <div class="panel-body">
-          <div class="profile-thumb">                
-            <% if current_user.present? && current_user.employee.avatar_url.present? %>		  
-              <%= image_tag current_user.employee.avatar_url,  :class=> "nav-avatar" %> 
+        <div class="fb-name">
+          <h2><a href="#"><%= current_user.employee.full_name %></a></h2>
+        </div>       
+      </div>
+      <div class="panel-body">
+        <div class="profile-thumb">                
+          <% if current_user.present? && current_user.employee.avatar_url.present? %>		  
+            <%= image_tag current_user.employee.avatar_url,  :class=> "nav-avatar" %> 
+          <% else %>
+            <% if current_user.employee.gender == "Female" %>
+              <%= image_tag "1.jpg", :class=> "nav-avatar" %> 
             <% else %>
-              <% if current_user.employee.gender == "Female" %>
-                <%= image_tag "1.jpg", :class=> "nav-avatar" %> 
-              <% else %>
-                <%= image_tag "user.png", :class=> "nav-avatar" %> 
-              <% end %>
-            <% end %>							
-          </div>
-         <a href="#" class="fb-user-mail"><%= current_user.email %></a>
+              <%= image_tag "user.png", :class=> "nav-avatar" %> 
+            <% end %>
+          <% end %>							
         </div>
-      </section>            
-      <section class="panel">
-        <div class="new_status">
-          <%= render 'statuses/form' %>
-        </div>
-        <div class="new_album">
-          <%= render 'albums/form' %>
-        </div>        
-      </section>
-      <div class="panel-body posts" >
-        <%= render "welcome/posts"%>                      
-      </div>    
-    </div><!--"col-md-9-->
+       <a href="#" class="fb-user-mail"><%= current_user.email %></a>
+      </div>
+    </section>            
+    <section class="panel">
+      <div class="new_status">
+        <%= render 'statuses/form' %>
+      </div>
+      <div class="new_album">
+        <%= render 'albums/form' %>
+      </div>        
+    </section>
+    <div class="panel-body posts" >
+      <%= render "welcome/posts"%>                      
+    </div>    
+  </div><!--"col-md-8-->
 
 <!--Notifications-->
-   <div class="col-md-3">
+  <div class="col-md-4">
     <div class="fb-timeliner">
-      <h2 class="recent-highlight">Events <span class="pull-right"><%= link_to ' Add New',  new_amzur_event_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px; color:white" %></span></h2>
-      <div class="text-scroll">
-        <% if @welcome_event.present? %>	
-          <ul>
-            <% @welcome_event.each do |welcome_event| %>             
-              <li class="active">
-                <div class="col-lg-8" style="padding:2px;"><strong><%= link_to welcome_event.title, "#eventsModal", :class => " event_show event-show_#{welcome_event.id}", :url => amzur_event_path(welcome_event), "data-toggle" => "modal" %></strong></div>
-                <div class="col-lg-4" style="font-size:9px;margin-top:5px;" ><%= time_ago_in_words(welcome_event.created_at)%> ago </div>
-               
-              
-              </li>
-            <% end %>	
-          </ul>
-        <% else %>
-          <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            There are no events
-          </div>    
+      <h2 class="recent-highlight">Bulletin Board <span class="pull-right"><%= link_to ' Add Event',  new_amzur_event_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px; color:white" %></span></h2>
+        <div class="panel-body posts" >
+        <ul>
+        <% @notifications.each do |notification| %>                    
+          <li class="active">
+          <% if notification.class.name == "AmzurEvent" %>
+            <div class="col-lg-8" style="padding:2px;"><strong><%= link_to " "+"#{notification.title}", "#eventsModal", :class => " fa fa-bell event_show event-show_#{notification.id}", :url => amzur_event_path(notification), "data-toggle" => "modal" %></strong></div>
+            <div class="col-lg-4" style="font-size:10px;margin-top:5px;" ><%= time_ago_in_words(notification.created_at)%> ago </div>
+          <% elsif notification.class.name == "Announcement" %>
+            <div class="col-lg-8" style="padding:2px;"><strong><%= link_to " "+"#{notification.title}", "#announcementModal", :class => " fa fa-bullhorn announcement-show event-show_#{notification.id}", :url => announcement_path(notification.id), "data-toggle" => "modal" %> </strong></div>
+            <div class="col-lg-4" style="font-size:10px;margin-top:5px;" ><%= time_ago_in_words(notification.created_at)%> ago </div>
+          <% else notification.class.name == "Recruitment" %>
+            <div class="col-lg-8" style="padding:2px;"><strong> <%=link_to " "+"#{notification.title}", recruitments_path, :class => "fa fa-briefcase" %></strong></div>
+            <div class="col-lg-4" style="font-size:10px;margin-top:5px;" ><%= time_ago_in_words(notification.created_at)%> ago </div>
+          <% end %>
+            
         <% end %> 
-      </div>                                                                
-    </div>   
-                                  
-
-    <div class="fb-timeliner">
-      <h2 class="recent-highlight">Announcements
-        <% if current_user.department == Department::HR %>
-          <span class="pull-right">
-            <%= link_to ' Add New',  new_announcement_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px;color:white" %>
-          </span>
-        <%end%>  
-      </h2>
-      <div class="text-scroll">
-        <% if @welcome_announcements.present? %>
-          <ul>
-            <% @welcome_announcements.each do |welcome_announcement| %>
-              <li>
-                <div class="col-lg-8" style="padding:2px;"><a href="#"><strong><%= link_to welcome_announcement.title, "#announcementModal", :class => "announcement-show event-show_#{welcome_announcement.id}", :url => announcement_path(welcome_announcement.id), "data-toggle" => "modal" %></strong></a></div>
-                <div class="col-lg-4" style="font-size:9px;margin-top:10px;"> <%= time_ago_in_words(welcome_announcement.created_at)%> ago</div>
-                
-                <!--<div class="control-group">
-                  <label class="idesc" for="basicinput"><%# raw welcome_announcement.description %> </label>
-                </div>      -->             
-              </li>         
-            <% end %>
-          </ul>      
-        <% else %>
-          <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            There are no announcements
-          </div>
-        <% end %> 
-      </div>
-    </div>	<br>  
-    <div class="fb-timeliner">      
-      <h2 class="recent-highlight">Job Openings
-        <% if current_user.department == Department::HR %>
-          <span class="pull-right">
-            <%= link_to ' Add New',  new_recruitment_path, :class => "fa fa-plus-circle", :style=> "font-size: 12px; color:white" %>
-          </span>
-        <%end%>
-      </h2>
-
-      <div class="text-scroll">
-        <% if @welcome_recruitments.present? %>
-          <ul>
-            <% @welcome_recruitments.each do |welcome_recruitment| %>
-              <li>
-              <div class="col-lg-8" style="padding:2px;"><a href="#"><strong><%= link_to welcome_recruitment.title , recruitments_path %></strong></a></div>
-                <div class="col-lg-4" style="font-size:9px;margin-top:10px;"> <%= time_ago_in_words(welcome_recruitment.created_at)%> ago</div>
-                                                      
-              </li>
-            <% end %>
-          </ul>
-        <% else %>
-          <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            There are no Job Openings
-          </div>     
-        <% end %>
-      </div>
-
-    </div>                	          
-   </div><!--col-md-3-->
- </div><!--row-->
+        </ul>                   
+      </div>                  
+    </div>
+  </div><!--"col-md-4-->
+</div><!--row-->
  
+   
+
 <style>
   /* See license.txt for terms of usage */
   /** reset styling **/
@@ -169,6 +109,12 @@
   .text-scroll ul li a,.text-scroll ul li a:hover{
   border-left: 4px solid #f1f2f7;
   }
+  .fb-timeliner ul li{
+  margin-left: -20px;
+  }
+  .fb-timeliner ul li.active a{
+  border-left: 5px solid #f1f2f7;
+    } 
   
 </style>
 
