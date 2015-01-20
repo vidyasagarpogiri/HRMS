@@ -44,7 +44,7 @@
             <% end %>                       
             <% if post.likes.count >= 3 %>
               <span class="like">and</span>              
-              <%= link_to "#{(post.likes.count) - 2} more", "#likesModal", :class => "likes_show likes_show_#{post.id}", :url => status_path(post.id), "data-toggle" => "modal" %> more                                       
+              <%= link_to "#{(post.likes.count) - 2} more", "#likesModal", :class => "likes_show likes_show_#{post.id}", :url => status_path(post.id), "data-toggle" => "modal" %>                                     
             <% end %>            
             <span>likes this</span>                            
           <% end %>                      
