@@ -4,7 +4,9 @@
     <div class="form-group">
       <ul>
         <% @album.likes.each do |like| %>
-          <li> <%= like.employee.full_name %> </li>
+          <% if like.is_like == true %>
+            <li> <%= like.employee.full_name %> </li>
+          <% end %>  
         <% end %> liked your Album...
       </ul>  
     </div>

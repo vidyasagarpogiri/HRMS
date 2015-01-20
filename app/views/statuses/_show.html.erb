@@ -5,7 +5,9 @@
     <div class="form-group">
       <ul>
         <% @status.likes.each do |like| %>
+        <% if like.is_like == true %>
           <li> <%= like.employee.full_name %> </li>
+          <%end %>
         <% end %> liked your Status...
       </ul>  
     </div>
