@@ -62,7 +62,7 @@
       </div>                  
     </div>
                             	           
-    <div class="fb-timeliner">
+    <div class="fb-timeliner"> 
       <h2 class="recent-highlight">My Recent Posts <span class="pull-right"></span></h2>      
         <% if @current_emp_posts.present? %>	
         <div class="text-scroll">
@@ -70,27 +70,13 @@
           <% @current_emp_posts.first(3).each do |post| %>             
             <li class="active">           
               <% if post.class.name == "Album" %>
-                <% if post.present? && post.employee.avatar_url.present? %>
-                    <%= image_tag post.employee.avatar_url, :width => "60px", :height => "60px" %>
-                  <% else %>
-                    <% if post.employee.gender == "Female" %>
-                      <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
-                    <% else %>
-                      <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
-                    <% end %>                    
-                  <% end %> 
-                    <%= post.title%>
+                    <div class="col-lg-8" style="padding:2px;"><%= link_to post.title %></div>
+                    <div class="col-lg-4" style="margin-top:5px;"><%= time_ago_in_words(post.created_at)%> ago </div>
+                    <div class="col-lg-8" style="margin-top:5px;">Likes(<%= post.likes.count %>),Comments(<%= post.comments.count %>) </div>
               <% else post.class.name == "Status" %>
-              <% if post.present? && post.employee.avatar_url.present? %>
-                    <%= image_tag post.employee.avatar_url, :width => "60px", :height => "60px" %>
-                  <% else %>
-                    <% if post.employee.gender == "Female" %>
-                      <%= image_tag("1.jpg", :style => "width:60px;height:60px;") %> 
-                    <% else %>
-                      <%= image_tag "user.png", :width => "60px", :height => "60px" %> 
-                    <% end %>
-                    <% end %>
-                <%= post.status %>
+                    <div class="col-lg-8"style="padding:2px;"><%= link_to post.status %></div>
+                    <div class="col-lg-4" style="margin-top:5px;"><%= time_ago_in_words(post.created_at)%> ago </div>
+                    <div class="col-lg-8" style="margin-top:5px;">Likes(<%= post.likes.count %>),Comments(<%= post.comments.count %>) </div>
               <% end %>           
             </li>
           <% end %>	
@@ -99,6 +85,36 @@
           <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             There are no status
+          </div>    
+        <% end %> 
+      </div>   
+           
+       <div class="fb-timeliner"> 
+      <h2 class="recent-highlight">Popular Posts <span class="pull-right"></span></h2>      
+        <% if @current_emp_posts.present? %>	
+        <div class="text-scroll">
+        <ul>
+          <% @current_emp_posts.first(3).each do |post| %> 
+            <% if post.likes_count >=1 && post.comments.count >=3 %>            
+              <li class="active">           
+                <% if post.class.name == "Album" %>
+                      <div class="col-lg-8" style="padding:2px;"><%= link_to post.title, album_path(post.id) %></div>
+                      <div class="col-lg-4" style="margin-top:5px;"><%= time_ago_in_words(post.created_at)%> ago </div>
+                      <div class="col-lg-8" style="margin-top:5px;">Likes(<%= post.likes.count %>),Comments(<%= post.comments.count %>) </div>
+                <% else post.class.name == "Status" %>
+                      <div class="col-lg-8"style="padding:2px;"><%= link_to post.status, status_path(post.id) %></div>
+                      <div class="col-lg-4" style="margin-top:5px;"><%= time_ago_in_words(post.created_at)%> ago </div>
+                      <div class="col-lg-8" style="margin-top:5px;">Likes(<%= post.likes.count %>),Comments(<%= post.comments.count %>) </div>
+                <% end %> 
+               <%# raise post.inspect %>          
+              </li>
+            <% end %>
+          <% end %>	
+        </ul></div>
+        <% else %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            There are no popular posts
           </div>    
         <% end %> 
       </div>                                                                       
