@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   resources :events
   get 'getAllEmployees' => 'employees#getAllEmployees'  
 
@@ -14,7 +12,7 @@ Rails.application.routes.draw do
    authenticated :user do
     root 'employees#index', :as => "authenticated_root"
    end
-    root 'welcome#index'
+    root 'welcome#index' # root of the application
    
    
     devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
