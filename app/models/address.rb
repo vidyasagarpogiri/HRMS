@@ -1,14 +1,14 @@
 class Address < ActiveRecord::Base
-  belongs_to :employee
-  has_one :job_location
+  belongs_to :employee # belongs to relation
+  has_one :job_location # has one realtion
   
 # validations for fields
 
   validates :line1, presence: true
-	validates :line, presence: true
-	validates :city, presence: true
-	validates :state, presence: true
+  validates :line, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
   validates :country, presence: true
-	validates :zipcode, presence: true	
+  validates :zipcode, presence: true	
 	
 end
