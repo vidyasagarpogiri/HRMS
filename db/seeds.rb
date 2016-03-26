@@ -1,5 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup), the bwlow data tables are executed.
 #
 # Examples:
 #
@@ -37,9 +37,6 @@ Event.destroy_all
  @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
  @user2 = User.invite!(:email =>  "priyanka.muddana@amzur.com", :skip_invitation => true)
  @user3 = User.invite!(:email =>  "ramarao.pattabhi@amzur.com", :skip_invitation => true)
-
-
-
 
 
 Address.create(:line1 => "BAY STREET",:line => "GUL END",:city => "Tampa",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
