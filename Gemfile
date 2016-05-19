@@ -54,7 +54,7 @@ gem "capybara", :group => [:development, :test]
                    gem "cucumber-rails", :require => false
                    gem "database_cleaner"
                    gem 'factory_girl_rails'   
-										gem 'rspec-rails'
+		   gem 'rspec-rails'
                  end
 
 #gem for avatar upload
