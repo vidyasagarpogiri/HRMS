@@ -42,12 +42,11 @@ Rails.application.routes.draw do
       
     end 
     collection do
-				get 'holiday_list'
-			end 
+	get 'holiday_list'
+    end 
 
   end
 
-  
    
   resources :designations do 
     member do
