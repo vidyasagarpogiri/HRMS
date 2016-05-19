@@ -97,12 +97,10 @@ EmailEttiquitie.create(:ettiquite => ettiquite )
 end
 EmailEttiquities = EmailEttiquitie.all.pluck(:id)
 
-
 ["Personal Leave", "Carry Forward Leave"].each do |leave|
 LeaveType.create(:type_name => leave ) 
 end
 LeaveTypes = LeaveType.all.pluck(:id)
-
 
 Event.create(:event_name =>"Pongal", :event_date => "14/01/2014")
 Event.create(:event_name =>"Ugadi", :event_date => "11/04/2014")
@@ -114,6 +112,4 @@ Event.create(:event_name =>"Diwali", :event_date => "14/11/2014")
 Event.create(:event_name =>"Naga Panchami", :event_date => "21/11/2014")
 Event.create(:event_name =>"Thanks Giving Day", :event_date => "27/11/2014")
 Event.create(:event_name =>"Christmas", :event_date => "25/12/2014")
-
-
 
