@@ -29,7 +29,7 @@ class AddressesController < ApplicationController
 
   
   def show
-   #raise params.ispect
+   #raise params.inspect
   end
   
   def edit
