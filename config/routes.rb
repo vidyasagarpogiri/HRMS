@@ -38,15 +38,12 @@ Rails.application.routes.draw do
       post 'update_employee'
       get '/employee_leaves' => "departments#employee_leaves"
       get '/leaves' => "departments#leaves"
-      
-      
     end 
+    
     collection do
 	get 'holiday_list'
     end 
-
   end
-
    
   resources :designations do 
     member do
