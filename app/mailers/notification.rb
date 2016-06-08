@@ -13,7 +13,6 @@ class Notification < ActionMailer::Base
 	#	@employee.user.email
 		@employee = employee
 		@leave_history = leave_history
-    #raise @leave_history.inspect
 		 mail(:to => @employee.user.email, :subject => "Leave Approved")
 
 	end
