@@ -67,7 +67,6 @@ Rails.application.routes.draw do
 		#collection do
 		#get 'holiday_list'
 		#end
-		   
      end
     
     resources :leave_types 
