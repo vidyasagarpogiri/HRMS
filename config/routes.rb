@@ -63,9 +63,9 @@ Rails.application.routes.draw do
         get 'add_employee'
         post 'update_add_employee'
        end
-		#collection do
-		#get 'holiday_list'
-		#end
+	#collection do
+	#get 'holiday_list'
+	#end
      end
     
     resources :leave_types 
