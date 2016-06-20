@@ -56,9 +56,7 @@ Department.all.each do |dept|
   
  
   ["Junior #{dept.department_name}", "Senior #{dept.department_name}"].each do |desg|
-    designation = Designation.create(:designation_name => desg, :department_id => dept.id ) 
-    
-  
+    designation = Designation.create(:designation_name => desg, :department_id => dept.id )
   end
   
 end
