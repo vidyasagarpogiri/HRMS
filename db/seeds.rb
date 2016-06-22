@@ -40,7 +40,6 @@ Event.destroy_all
 Address.create(:line1 => "BAY STREET",:line => "GUL END",:city => "Tampa",:state=>"New South Wales",:country=>"Australia",:zipcode=>"2000")
 Address.create(:line1 => "street 1",:line => "near KFC",:city => "Vizag",:state=>"Andhra",:country=>"India",:zipcode=>"530003")
 addresses = Address.all.pluck(:id)
-
 (addresses).each do 
 JobLocation.create( :address_id => addresses[rand(addresses.length)])
 end
