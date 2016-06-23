@@ -60,7 +60,6 @@ gem 'carrierwave'
 #gem for pagination
 gem 'kaminari'
 
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
