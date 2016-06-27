@@ -33,7 +33,6 @@ gem 'rails_admin' # for admin panel
 # gem 'unicorn'
 
 #twitter bootstrap
-
 gem "twitter-bootstrap-rails"
 gem "less-rails"
 gem "therubyracer"
