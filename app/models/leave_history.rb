@@ -6,9 +6,9 @@ class LeaveHistory < ActiveRecord::Base
 	
 
 
-	HOLD = "HOLD"
-	APPROVED = "APPROVED"
-	REJECTED = "REJECTED"
+  HOLD = "HOLD"
+  APPROVED = "APPROVED"
+  REJECTED = "REJECTED"
   STARTED = "STARTED"
   COMPLETE = "COMPLETE"
   
