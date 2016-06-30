@@ -8,8 +8,6 @@
 
 # seeds for bloodgroup
 
-#seeds for country
-
 Address.destroy_all
 JobLocation.destroy_all
 Department.destroy_all
