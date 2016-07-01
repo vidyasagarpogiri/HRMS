@@ -3,5 +3,5 @@ class Promotion < ActiveRecord::Base
   belongs_to :designation
   
   validates :date_of_promotion, presence: true
-	validates :designation_id, presence: true
+  validates :designation_id, presence: true
 end
