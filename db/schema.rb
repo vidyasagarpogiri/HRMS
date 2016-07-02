@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140925054132) do
 
   add_index "educations", ["Employee_id"], name: "index_educations_on_Employee_id", using: :btree
 
+
   create_table "email_ettiquities", force: true do |t|
     t.text     "ettiquite"
     t.datetime "created_at"
