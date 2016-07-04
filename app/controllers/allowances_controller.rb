@@ -47,9 +47,9 @@ def destroy
 @employee= Employee.find(params[:employee_id])
   @salary = Salary.find(params[:salary_id])
   @allowance = Allowance.find(params[:id])
-	@allowance.destroy
-	redirect_to employee_salaries_path(@employee)
-	end
+ @allowance.destroy
+ redirect_to employee_salaries_path(@employee)
+ end
  private
    
   def params_allowance
