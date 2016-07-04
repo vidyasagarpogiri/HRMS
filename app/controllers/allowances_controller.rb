@@ -43,8 +43,8 @@ class AllowancesController < ApplicationController
   redirect_to employee_salaries_path(@employee)
  end
 	
-	def destroy
-	@employee= Employee.find(params[:employee_id])
+def destroy
+@employee= Employee.find(params[:employee_id])
   @salary = Salary.find(params[:salary_id])
   @allowance = Allowance.find(params[:id])
 	@allowance.destroy
