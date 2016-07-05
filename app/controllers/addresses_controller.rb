@@ -14,9 +14,9 @@ class AddressesController < ApplicationController
   def new
     @employee = Employee.find(params[:employee_id])
     @address = Address.new
-   	@address_type_value, @address_type = false, "Present" if params[:address_type]=="false" 
- 		@address_type_value, @address_type = true, "Permanent" if params[:address_type]=="true"
- 		@copy_address_type = @address_type == "Present" ? "Permanent":"Present" if @address_type.present?
+  	@address_type_value, @address_type = false, "Present" if params[:address_type]=="false" 
+ 	@address_type_value, @address_type = true, "Permanent" if params[:address_type]=="true"
+ 	@copy_address_type = @address_type == "Present" ? "Permanent":"Present" if @address_type.present?
   end
   
   def create
@@ -24,7 +24,7 @@ class AddressesController < ApplicationController
  	@address_type_value, @address_type = true, "Permanent" if params[:address_type]=="true"
 	@employee = Employee.find(params[:employee_id])
    	@address = @employee.addresses.create(params_present_address)
-		@errors = @address.errors.full_messages
+	@errors = @address.errors.full_messages
  	end
 
   
