@@ -25,7 +25,7 @@ class Employee < ActiveRecord::Base
   has_many :employee_attachments
   accepts_nested_attributes_for :employee_attachments
  	 	
- 	has_one :leave
+ has_one :leave
   
   has_many :leave_histories
   
