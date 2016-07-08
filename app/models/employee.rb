@@ -42,8 +42,6 @@ class Employee < ActiveRecord::Base
 	validates :mobile_number, presence: true, numericality: true , length: { maximum: 10 }
 
 
-
-
 	validates :father_name, presence: true
 	validates :blood_group_id, presence: true
 	validates :date_of_join, presence: true
