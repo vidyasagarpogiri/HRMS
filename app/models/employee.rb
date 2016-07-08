@@ -31,8 +31,6 @@ class Employee < ActiveRecord::Base
   
   has_many :educations
 
-
-
 	validates :employee_id, presence: true 
 
 	validates :first_name, presence: true
