@@ -21,11 +21,12 @@ class Employee < ActiveRecord::Base
   belongs_to :group
   
   has_many :reporting_managers
+  
   # for file attachments
   has_many :employee_attachments
   accepts_nested_attributes_for :employee_attachments
  	 	
- has_one :leave
+  has_one :leave
   
   has_many :leave_histories
   
@@ -36,7 +37,7 @@ class Employee < ActiveRecord::Base
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :date_of_birth, presence: true
-  validates :department_id, presence: true
+        validates :department_id, presence: true
 
 
 	validates :mobile_number, presence: true, numericality: true , length: { maximum: 10 }
