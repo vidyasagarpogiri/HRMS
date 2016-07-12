@@ -69,7 +69,6 @@ class Employee < ActiveRecord::Base
 	end
   
   def reporting_manager?
-    
     if reporting_managers.present?
       return true
     else
