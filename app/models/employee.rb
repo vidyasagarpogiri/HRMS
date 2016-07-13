@@ -31,12 +31,12 @@ class Employee < ActiveRecord::Base
   has_many :leave_histories
   
   has_many :educations
+  
   validates :employee_id, presence: true 
-
-	validates :first_name, presence: true
-	validates :last_name, presence: true
-	validates :date_of_birth, presence: true
-        validates :department_id, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :date_of_birth, presence: true
+  validates :department_id, presence: true
 
 
 	validates :mobile_number, presence: true, numericality: true , length: { maximum: 10 }
