@@ -47,11 +47,8 @@ class Employee < ActiveRecord::Base
 	validates :date_of_join, presence: true
 
 	
-
-	
 	#after_create :add_leaves
 	#after_update :update_leaves
-
 
 
   def reporting_manager
