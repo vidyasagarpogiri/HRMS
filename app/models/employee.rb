@@ -69,6 +69,6 @@ class Employee < ActiveRecord::Base
 	
   def reporting_managerId
     ReportingManager.find_by_employee_id(id).manager_id
-	end
+  end
 
 end
