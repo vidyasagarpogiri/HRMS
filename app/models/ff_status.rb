@@ -2,7 +2,7 @@ class FfStatus < ActiveRecord::Base
   has_many :employees
 
  OPEN = "OPEN"
-	HOLD = "HOLD"
+ HOLD = "HOLD"
 	CLOSE = "CLOSE"
 	STATUS = [OPEN, HOLD, CLOSE]
 	
