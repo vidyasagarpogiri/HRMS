@@ -3,7 +3,7 @@ class FfStatus < ActiveRecord::Base
 
  OPEN = "OPEN"
  HOLD = "HOLD"
-	CLOSE = "CLOSE"
+ CLOSE = "CLOSE"
 	STATUS = [OPEN, HOLD, CLOSE]
 	
 	validates :status_name, presence: true
