@@ -36,9 +36,9 @@ class LeaveHistoriesController < ApplicationController
     @leave_history.save
     @leave_history.update(:days => applied_days)
     Notification.applyleave(current_user.employee, @leave_history).deliver
-		redirect_to leave_histories_path
+	redirect_to leave_histories_path
 	#else
-		#flash[:notice]= "no leave policy for you"
+	  #flash[:notice]= "no leave policy for you"
    #render 'new'
 #	end
   end
@@ -65,8 +65,8 @@ class LeaveHistoriesController < ApplicationController
   
   
   def applied_leaves
-		@leave_histories = LeaveHistory.all.page(params[:page]).per(2)
-	end
+    @leave_histories = LeaveHistory.all.page(params[:page]).per(2)
+  end
 	
 
 	
