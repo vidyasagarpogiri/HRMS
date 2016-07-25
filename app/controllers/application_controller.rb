@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
   end
   
   def hr_view
-	  unless current_user.department == Department::HR
-	    render :text => "You Dont Have Permission"  
-	  end
-	end 
+    unless current_user.department == Department::HR
+    render :text => "You Dont Have Permission"  
+    end
+  end 
   
   def other_emp_view
     unless current_user.employee == @emp  
