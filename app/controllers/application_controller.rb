@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :empId
   
   private
+  
   def empId
   
     resource, id = request.path.split('/')[1,2]
