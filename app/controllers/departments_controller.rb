@@ -45,13 +45,11 @@ class DepartmentsController < ApplicationController
   end
   
    def update_employee
-    
     @department = Department.find(params[:id])
     @employee = Employee.find(params[:employee_id])
     @employee.update(:department_id => @department.id)
     #raise @employee.inspect
     redirect_to @department
-
    end
    
    def leaves
