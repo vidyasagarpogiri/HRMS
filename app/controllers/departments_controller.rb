@@ -39,11 +39,11 @@ class DepartmentsController < ApplicationController
     redirect_to @department
   end
 	
-	def add_employee
-	 
+  def add_employee
     @department = Department.find(params[:id])
     @employee = Employee.all
   end
+  
    def update_employee
     
     @department = Department.find(params[:id])
