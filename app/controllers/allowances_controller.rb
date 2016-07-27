@@ -14,7 +14,6 @@ class AllowancesController < ApplicationController
  end
  
  def create
-  
   @form_type = params[:commit]
   @allowance1 = Allowance.create(params_allowance)
   @allowance1.save
