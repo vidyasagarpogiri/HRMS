@@ -8,7 +8,6 @@ class AllowancesController < ApplicationController
  end
  
  def new
- #raise params.inspect
    @employee= Employee.find(params[:employee_id])
    @salary = Salary.find(params[:salary_id])
    @allowance = Allowance.new
@@ -44,7 +43,7 @@ class AllowancesController < ApplicationController
  end
 	
 def destroy
-@employee= Employee.find(params[:employee_id])
+  @employee= Employee.find(params[:employee_id])
   @salary = Salary.find(params[:salary_id])
   @allowance = Allowance.find(params[:id])
   @allowance.destroy
