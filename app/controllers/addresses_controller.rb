@@ -7,8 +7,8 @@ class AddressesController < ApplicationController
   
   def index
     @employee = Employee.find(params[:employee_id])
-	@address1 = @employee.addresses.where(:address_type=>0).first
-	@address2 = @employee.addresses.where(:address_type=>1).first
+    @address1 = @employee.addresses.where(:address_type=>0).first
+    @address2 = @employee.addresses.where(:address_type=>1).first
   end
   
   def new
