@@ -33,10 +33,8 @@ class AddressesController < ApplicationController
   end
   
   def edit
-    #raise params.inspect
     @employee = Employee.find(params[:employee_id])
     @address = Address.find(params[:id])
-    
   end
   
   def update
