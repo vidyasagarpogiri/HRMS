@@ -20,12 +20,12 @@ class AddressesController < ApplicationController
   end
   
   def create
-   	@address_type_value, @address_type = false, "Present" if params[:address_type]=="false" 
- 	@address_type_value, @address_type = true, "Permanent" if params[:address_type]=="true"
-	@employee = Employee.find(params[:employee_id])
-   	@address = @employee.addresses.create(params_present_address)
-	@errors = @address.errors.full_messages
- 	end
+   @address_type_value, @address_type = false, "Present" if params[:address_type]=="false" 
+   @address_type_value, @address_type = true, "Permanent" if params[:address_type]=="true"
+   @employee = Employee.find(params[:employee_id])
+   @address = @employee.addresses.create(params_present_address)
+   @errors = @address.errors.full_messages
+  end
 
   
   def show
