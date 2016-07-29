@@ -46,12 +46,11 @@ class AddressesController < ApplicationController
     else
       redirect_to employee_addresses_path(@employee)
     end
-    
   end
   
-	def destroy
-		@employee = Employee.find(params[:employee_id])
-		@address = Address.find(params[:id])
+  def destroy
+    @employee = Employee.find(params[:employee_id])
+    @address = Address.find(params[:id])
     if @employee.present_address_id == @address.id
 			@employee.update(:present_address_id => nil)
 			@address.destroy
