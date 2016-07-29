@@ -49,9 +49,7 @@ class AddressesController < ApplicationController
     
   end
   
-  
 	def destroy
-			
 		@employee = Employee.find(params[:employee_id])
 		@address = Address.find(params[:id])
     if @employee.present_address_id == @address.id
