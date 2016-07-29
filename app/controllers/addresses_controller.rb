@@ -52,8 +52,8 @@ class AddressesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @address = Address.find(params[:id])
     if @employee.present_address_id == @address.id
-			@employee.update(:present_address_id => nil)
-			@address.destroy
+       @employee.update(:present_address_id => nil)
+       @address.destroy
 		#raise params.inspect
 		else
 			@address.destroy
