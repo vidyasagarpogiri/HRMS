@@ -27,7 +27,6 @@ class AddressesController < ApplicationController
    @errors = @address.errors.full_messages
   end
 
-  
   def show
    #raise params.inspect
   end
