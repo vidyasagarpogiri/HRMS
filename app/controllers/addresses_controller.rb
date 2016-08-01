@@ -54,15 +54,14 @@ class AddressesController < ApplicationController
     if @employee.present_address_id == @address.id
        @employee.update(:present_address_id => nil)
        @address.destroy
-		#raise params.inspect
-		else
-			@address.destroy
-			@employee.update(:permanent_address_id => nil)
-		end
-		
-		redirect_to employee_addresses_path
-	
+        #raise params.inspect
+	else
+	  @address.destroy
+          @employee.update(:permanent_address_id => nil)
 	end
+		
+   redirect_to employee_addresses_path
+  end
   
   
   
