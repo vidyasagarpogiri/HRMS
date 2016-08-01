@@ -59,14 +59,11 @@ class AddressesController < ApplicationController
 	  @address.destroy
           @employee.update(:permanent_address_id => nil)
 	end
-		
    redirect_to employee_addresses_path
   end
   
   
-  
   private
-  
   def params_present_address
     params.require(:address).permit(:line, :line1, :city, :state, :country, :zipcode, :address_type)
   end
