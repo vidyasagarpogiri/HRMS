@@ -68,5 +68,4 @@ class AddressesController < ApplicationController
     params.require(:address).permit(:line, :line1, :city, :state, :country, :zipcode, :address_type)
   end
    
-  
 end  
