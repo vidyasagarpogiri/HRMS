@@ -1,8 +1,7 @@
 class AllowancesController < ApplicationController
   layout "profile_template", only: [:index, :new, :create, :show, :update]
- def index
-  #raise params.inspect
   
+ def index
   @salary = Salary.find(params[:salary_id])
   @allowance = @salary.allowances
  end
