@@ -42,11 +42,12 @@ class DesignationsController < ApplicationController
     @designation = Designation.find(params[:id])
     @employee = Employee.all
   end
+  
    def update_employee
+    #raise @employee.inspect
     @designation = Designation.find(params[:id])
     @employee = Employee.find(params[:employee_id])
     @employee.update(:designation_id => @designation.id)
-    #raise @employee.inspect
     redirect_to @designation
    end 
     
