@@ -84,9 +84,9 @@ class DepartmentsController < ApplicationController
   def holiday_list
     @holidays = current_user.employee.department.holiday_calenders
     #raise @holiday.inspect
-		@leave_policy = current_user.employee.department.leave_policy
-		@department = current_user.employee.department
-	end
+    @leave_policy = current_user.employee.department.leave_policy
+    @department = current_user.employee.department
+ end
   
 
   private
