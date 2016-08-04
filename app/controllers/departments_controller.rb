@@ -67,7 +67,6 @@ class DepartmentsController < ApplicationController
 
    
   def employee_leaves
-  
     @dept = Department.find(params[:id])
     #raise @dept.inspect
     @employees = @dept.employees
