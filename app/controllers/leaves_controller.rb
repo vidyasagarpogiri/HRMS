@@ -6,13 +6,14 @@ class LeavesController < ApplicationController
  def index
   @leaves = Leave.all
   @employee = Employee.find(params[:employee_id])
-  
  end
+ 
  def new
  #raise params.inspect
   @leave = Leave.new
   @employee = Employee.find(params[:employee_id])
  end
+ 
  def create
    #raise params.inspect
    @employee = Employee.find(params[:employee_id])
