@@ -34,7 +34,6 @@ class GroupsController < ApplicationController
   end
   
   def edit
-     
      @group = Group.find(params[:id])
      @reporting_manager = ReportingManager.find_by(@group.id)
      @employee = Employee.find_by(@reporting_manager.id)
