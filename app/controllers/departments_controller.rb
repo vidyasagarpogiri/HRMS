@@ -57,7 +57,6 @@ class DepartmentsController < ApplicationController
     @employees = @department.employees
     @leave_policy = @department.leave_policy
     @holiday_calenders = @department.holiday_calenders
-    #raise @holiday_calenders.inspect
    end 
    
    def department_index
