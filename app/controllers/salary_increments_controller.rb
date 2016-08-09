@@ -38,13 +38,13 @@ class SalaryIncrementsController < ApplicationController
     redirect_to employee_salaries_path(@employee)
   end
 
-	def destroy	
-		@employee= Employee.find(params[:employee_id])
+  def destroy	
+    @employee= Employee.find(params[:employee_id])
     @salary = Salary.find(params[:salary_id])
     @salary_increment = SalaryIncrement.find(params[:id])
-		@salary_increment.destroy
-		redirect_to employee_salaries_path(@employee)
-	end
+    @salary_increment.destroy
+    redirect_to employee_salaries_path(@employee)
+  end
   
    
  private
