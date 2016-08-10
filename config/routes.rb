@@ -68,7 +68,7 @@ Rails.application.routes.draw do
 	#end
      end
     
-    resources :leave_types 
+ resources :leave_types 
  resources :leave_histories do 
   member do 
     get 'getLeaveForm'
