@@ -107,9 +107,9 @@ post 'accept' => "leave_histories#accept"
      collection do
         get 'qualifications'
         post 'new_form'
-				
       end
     end
+    
     resources :email_ettiquities
 		resources :promotions
 		resources :salaries do 
