@@ -47,6 +47,7 @@ class SalaryIncrementsController < ApplicationController
   end
   
    
+   
  private
    
   def params_salary_increment
