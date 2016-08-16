@@ -59,7 +59,7 @@ class SalariesController < ApplicationController
     @salary_increments =@salary.salary_increments
   end
 
-	def destroy
+def destroy
 	 @salary =  Salary.find(params[:id])
 	 @employee= Employee.find(params[:employee_id])
 	 @allowances = SalariesAllowance.where(:salary_id => @salary.id)
@@ -69,10 +69,9 @@ class SalariesController < ApplicationController
   end
   
 	def configure_allowance
-	    
-			@employee= Employee.find(params[:employee_id])
-			@salary =  Salary.find(params[:salary_id])
-			@allowances = Allowance.all
+	@employee= Employee.find(params[:employee_id])
+	@salary =  Salary.find(params[:salary_id])
+	@allowances = Allowance.all
 	end
 	
 	def create_allowance
