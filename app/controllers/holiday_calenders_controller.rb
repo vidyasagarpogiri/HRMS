@@ -48,7 +48,6 @@ def index
       redirect_to group_path(@group)
     end
     
-    
     def show
     end
     
