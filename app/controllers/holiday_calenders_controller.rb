@@ -4,10 +4,10 @@ class HolidayCalendersController < ApplicationController
   layout "leave_template"
   
 def index
-      #raise params.inspect
-      @department = Group.find(params[:department_id])
-      @holiday_calenders =@department.holiday_calenders
-    end
+   #raise params.inspect
+   @department = Group.find(params[:department_id])
+   @holiday_calenders =@department.holiday_calenders
+ end
     
     def new
     #raise params.inspect
