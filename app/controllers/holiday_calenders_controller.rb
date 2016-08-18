@@ -17,7 +17,6 @@ def index
     end
     
     def create
-      #raise params.inspect
       @department = Department.find(params[:department_id])
       #TODO - BalaRaju - Have to modify this condition 
       @department.holiday_calenders.destroy_all
