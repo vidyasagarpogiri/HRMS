@@ -1,4 +1,5 @@
 class InsentivesController < ApplicationController
+	
   before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view 
   
@@ -51,7 +52,6 @@ class InsentivesController < ApplicationController
 	@insentive.destroy
 	redirect_to employee_salaries_path(@employee)
 	end
- 
  
  private
    
