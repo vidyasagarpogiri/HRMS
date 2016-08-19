@@ -45,7 +45,7 @@ class InsentivesController < ApplicationController
  end
 
  def destroy
-	@employee= Employee.find(params[:employee_id])
+ @employee= Employee.find(params[:employee_id])
   @salary = Salary.find(params[:salary_id])
   @insentive = Insentive.find(params[:id])
 	@insentive.destroy
