@@ -3,7 +3,6 @@ class LeaveHistory < ActiveRecord::Base
 	belongs_to :leave_type
 	before_create :status_hold
 	
-
   HOLD = "HOLD"
   APPROVED = "APPROVED"
   REJECTED = "REJECTED"
@@ -16,7 +15,7 @@ class LeaveHistory < ActiveRecord::Base
 	#validates :leave_type_id, presence: true
 	#validates :reason, presence: true
     
-  
+
 	private
 	def status_hold
 	  self.status = HOLD
