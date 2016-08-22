@@ -16,8 +16,9 @@ class LeaveHistory < ActiveRecord::Base
 #validates :reason, presence: true
     
 
-	private
-	def status_hold
-	  self.status = HOLD
-	end
+private
+def status_hold
+  self.status = HOLD
+end
+
 end
