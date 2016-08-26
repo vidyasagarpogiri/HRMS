@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   end
   
   has_one :employee
+  
   def password_required?
     super && provider.blank?
   end 
