@@ -1,6 +1,5 @@
 class Employee < ActiveRecord::Base
 
-	
   mount_uploader :avatar, AvatarUploader
   belongs_to :department
   belongs_to :blood_group
@@ -49,6 +48,7 @@ class Employee < ActiveRecord::Base
        Employee.find(reporting_managers.first.manager_id).full_name  unless reporting_managers.first.manager_id == 0 
     end
   end
+
 	
  def reporting_manager_user
    if reporting_managers.first.present? && reporting_managers.first.manager_id.present? 
@@ -63,6 +63,7 @@ class Employee < ActiveRecord::Base
       return false
     end
   end
+
 
   def full_name
      "#{first_name} #{last_name}"
