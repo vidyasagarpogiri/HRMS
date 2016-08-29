@@ -61,7 +61,9 @@ class AddressesController < ApplicationController
    redirect_to employee_addresses_path
   end
   
+  
   private
+  
   def params_present_address
     params.require(:address).permit(:line, :line1, :city, :state, :country, :zipcode, :address_type)
   end
