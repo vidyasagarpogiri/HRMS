@@ -1,8 +1,7 @@
 class Address < ActiveRecord::Base
 	
-  belongs_to :employee # belongs to relation
-  has_one :job_location # has one realtion
-  
+  belongs_to :employee 
+  has_one :job_location  
   validates :line1, presence: true
   validates :line, presence: true
   validates :city, presence: true
