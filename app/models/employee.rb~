@@ -41,7 +41,6 @@ class Employee < ActiveRecord::Base
  validates :father_name, presence: true
  validates :blood_group_id, presence: true
  validates :date_of_join, presence: true
-
  #after_create :add_leaves
  #after_update :update_leaves
 
