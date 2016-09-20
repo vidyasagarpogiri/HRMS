@@ -52,14 +52,13 @@ def reporting_manager_user
   end
 end
   
-  def reporting_manager?
-    
-    if reporting_managers.present?
-      return true
-    else
-      return false
-    end
-  end
+def reporting_manager?
+ if reporting_managers.present?
+  return true
+ else
+  return false
+ end
+end
 
   def full_name
      "#{first_name} #{last_name}"
