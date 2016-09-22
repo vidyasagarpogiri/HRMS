@@ -36,9 +36,9 @@ class Employee < ActiveRecord::Base
   validates :mobile_number, presence: true, numericality: true , length: { maximum: 10 }
   validates :father_name, presence: true
   validates :blood_group_id, presence: true
- validates :date_of_join, presence: true
- #after_create :add_leaves
- #after_update :update_leaves
+  validates :date_of_join, presence: true
+  #after_create :add_leaves
+  #after_update :update_leaves
 
   def reporting_manager
     if reporting_managers.first.present? && reporting_managers.first.manager_id.present? 
