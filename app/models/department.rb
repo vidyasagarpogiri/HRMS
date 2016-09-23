@@ -1,4 +1,5 @@
 class Department < ActiveRecord::Base
+  
   has_many :employees
   has_many :reporting_managers
   has_many :designations
@@ -10,4 +11,5 @@ class Department < ActiveRecord::Base
   validates :department_name, uniqueness: { case_sensitive: false }, presence: true
   has_one :leave_policy
   HR = "HR"
+  
 end
