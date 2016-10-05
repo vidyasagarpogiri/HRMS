@@ -1,6 +1,7 @@
 class Employee < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
+	
   belongs_to :department
   belongs_to :blood_group
   belongs_to :designation
@@ -60,7 +61,6 @@ class Employee < ActiveRecord::Base
       return false
     end
   end
-
 
   def full_name
      "#{first_name} #{last_name}"
