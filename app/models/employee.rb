@@ -40,7 +40,6 @@ class Employee < ActiveRecord::Base
   validates :blood_group_id, presence: true
   validates :date_of_join, presence: true
 
-	
   def reporting_manager
      if reporting_managers.first.present? && reporting_managers.first.manager_id.present? 
        Employee.find(reporting_managers.first.manager_id).full_name  unless reporting_managers.first.manager_id == 0 
