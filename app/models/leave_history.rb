@@ -17,6 +17,7 @@ class LeaveHistory < ActiveRecord::Base
     
 
   private
+	
   def status_hold
     self.status = HOLD
   end
