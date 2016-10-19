@@ -19,7 +19,6 @@ class DesignationsController < ApplicationController
     @designation = Designation.find(params[:id])
     @employees = @designation.employees
     @grades = @designation.grades
-
   end
 
   def update
