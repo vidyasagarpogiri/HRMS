@@ -24,6 +24,7 @@ class AllowancesController < ApplicationController
  end
  
  def show
+  # for displaying/showing a respective record
  end
  
  def edit
