@@ -15,7 +15,6 @@ class LeaveHistory < ActiveRecord::Base
  #validates :leave_type_id, presence: true
  #validates :reason, presence: true
     
-
   private
 	
   def status_hold
