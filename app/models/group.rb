@@ -7,7 +7,7 @@ class Group < ActiveRecord::Base
   has_one :reporting_manager
   
   def reporting_manager_full_name
-   reporting_manager.employee.full_name if reporting_manager.present?
+    reporting_manager.employee.full_name if reporting_manager.present?
   end
   
 end
