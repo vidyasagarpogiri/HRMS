@@ -60,10 +60,10 @@ class DepartmentsController < ApplicationController
     @holiday_calenders = @department.holiday_calenders
    end 
    
+	
    def department_index
      @departments = Department.all
    end
-
    
   def employee_leaves
     @dept = Department.find(params[:id])
