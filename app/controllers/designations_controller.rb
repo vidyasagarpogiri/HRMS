@@ -43,7 +43,6 @@ class DesignationsController < ApplicationController
   end
   
    def update_employee
-    #raise @employee.inspect
     @designation = Designation.find(params[:id])
     @employee = Employee.find(params[:employee_id])
     @employee.update(:designation_id => @designation.id)
