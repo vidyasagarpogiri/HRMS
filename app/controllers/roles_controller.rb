@@ -51,7 +51,9 @@ class RolesController < ApplicationController
     redirect_to @role
    end 
     
+	
   private
+	
   def role_params
     params.require(:role).permit(:role_name) 
   end
