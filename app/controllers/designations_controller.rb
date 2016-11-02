@@ -15,7 +15,6 @@ class DesignationsController < ApplicationController
   end
 
   def show
-    #raise params.inspect
     @designation = Designation.find(params[:id])
     @employees = @designation.employees
     @grades = @designation.grades
