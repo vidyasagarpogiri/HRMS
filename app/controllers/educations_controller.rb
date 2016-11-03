@@ -32,7 +32,7 @@ class EducationsController < ApplicationController
   end
   
   def show
-    
+    # show method
   end
   
   def edit
