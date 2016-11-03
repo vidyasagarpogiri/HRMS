@@ -17,15 +17,10 @@ class EducationsController < ApplicationController
   end
   
   def create
-  
-
-               
+     
     @new_education = Education.create(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage).merge(Employee_id: params[:employee_id]))
     @errors = @new_education.errors.full_messages
-    #raise @errors.inspect
-
-  
-    
+    #raise @errors.inspect     
     #for new form 
     @employee = Employee.find(params[:employee_id])
     @education = Education.new
