@@ -10,7 +10,6 @@ class LeavesController < ApplicationController
  end
  
  def new
- #raise params.inspect
   @leave = Leave.new
   @employee = Employee.find(params[:employee_id])
  end
