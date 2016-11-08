@@ -26,7 +26,6 @@ class LeavePoliciesController < ApplicationController
 	
 
  def edit
-  #raise params.inspect
  @department = Department.find(params[:department_id])
   @leave_policy = @department.leave_policy
  end
