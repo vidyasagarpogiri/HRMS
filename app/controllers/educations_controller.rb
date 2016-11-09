@@ -27,7 +27,6 @@ class EducationsController < ApplicationController
     @list =  Education.where(:Employee_id => params[:employee_id])
     @form_type = params[:commit]
     #EducationQualification.create(:qualification_id => @qualification_id, :education_id => @education.id)
-  
   end
   
   def show
