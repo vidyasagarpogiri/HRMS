@@ -59,10 +59,10 @@ class EducationsController < ApplicationController
   end
 
  	def destroy
-		@employee = Employee.find(params[:employee_id])
+	@employee = Employee.find(params[:employee_id])
     @education = Education.find(params[:id])
-		@education.destroy
-		redirect_to employee_educations_path(@employee)
+	@education.destroy
+	redirect_to employee_educations_path(@employee)
 	end
   
 
