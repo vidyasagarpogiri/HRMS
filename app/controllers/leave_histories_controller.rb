@@ -14,11 +14,11 @@ end
 
 
 
-  def new
-    @employee = current_user.employee
-    @leave_history = LeaveHistory.new
-  end
-  
+def new
+@employee = current_user.employee
+@leave_history = LeaveHistory.new
+end
+
   
   def show
   #raise params.inspect
