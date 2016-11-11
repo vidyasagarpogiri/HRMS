@@ -36,10 +36,10 @@ end
     @leave_history.save
     @leave_history.update(:days => applied_days)
     Notification.applyleave(current_user.employee, @leave_history).deliver
-	redirect_to leave_histories_path
-	#else
-	  #flash[:notice]= "no leave policy for you"
-   #render 'new'
+redirect_to leave_histories_path
+#else
+  #flash[:notice]= "no leave policy for you"
+#render 'new'
 #	end
   end
   
