@@ -5,12 +5,12 @@ class LeaveHistoriesController < ApplicationController
  	
  include ApplicationHelper
 
-	def index
-	  @leave =current_user.employee.department.leave_policy
-	  @leaves = current_user.employee.leave_histories.where(:status => 'HOLD').page(params[:page]).per(4)
-	  @leave_histories = current_user.employee.leave_histories.where("status != ?", "HOLD" ).page(params[:page]).per(4)
-	  @employee = current_user.employee
-	end
+def index
+  @leave =current_user.employee.department.leave_policy
+  @leaves = current_user.employee.leave_histories.where(:status => 'HOLD').page(params[:page]).per(4)
+  @leave_histories = current_user.employee.leave_histories.where("status != ?", "HOLD" ).page(params[:page]).per(4)
+  @employee = current_user.employee
+end
 
 
 
