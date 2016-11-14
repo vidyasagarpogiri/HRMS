@@ -60,7 +60,7 @@ class SalariesController < ApplicationController
     @salary_increments =@salary.salary_increments
   end
 
-def destroy
+  def destroy
 	 @salary =  Salary.find(params[:id])
 	 @employee= Employee.find(params[:employee_id])
 	 @allowances = SalariesAllowance.where(:salary_id => @salary.id)
