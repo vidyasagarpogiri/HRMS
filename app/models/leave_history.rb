@@ -9,7 +9,8 @@ class LeaveHistory < ActiveRecord::Base
   REJECTED = "REJECTED"
   STARTED = "STARTED"
   COMPLETE = "COMPLETE"
-  
+ 
+	
  #validates :from_date, presence: true
  #validates :to_date, presence: true
  #validates :leave_type_id, presence: true
