@@ -10,7 +10,6 @@ class LeaveHistory < ActiveRecord::Base
   STARTED = "STARTED"
   COMPLETE = "COMPLETE"
  
-	
  #validates :from_date, presence: true
  #validates :to_date, presence: true
  #validates :leave_type_id, presence: true
