@@ -58,7 +58,6 @@ class DepartmentsController < ApplicationController
     @leave_policy = @department.leave_policy
     @holiday_calenders = @department.holiday_calenders
    end 
-   
 	
    def department_index
      @departments = Department.all
