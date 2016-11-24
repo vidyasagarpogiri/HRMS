@@ -2,7 +2,6 @@ class OmniauthCallbacksController < ApplicationController
       
     
     def all
-  
     @user = User.from_omniauth(request.env["omniauth.auth"])
     @user1 = User.find_by_email(@user.email)
     if @user1.sign_in_count == 0
@@ -33,7 +32,6 @@ class OmniauthCallbacksController < ApplicationController
   end
   alias_method :google_oauth2, :all
   
- 
   
   
 end
