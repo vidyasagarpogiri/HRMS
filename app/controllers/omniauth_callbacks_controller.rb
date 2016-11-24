@@ -1,6 +1,5 @@
 class OmniauthCallbacksController < ApplicationController
       
-    
     def all
     @user = User.from_omniauth(request.env["omniauth.auth"])
     @user1 = User.find_by_email(@user.email)
