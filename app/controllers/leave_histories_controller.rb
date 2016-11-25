@@ -14,8 +14,6 @@ def index
   @employee = current_user.employee
 end
 
-
-
   def new
    @employee = current_user.employee
    @leave_history = LeaveHistory.new
