@@ -51,7 +51,6 @@ redirect_to leave_histories_path
   end
   
   def update
-  
     @leave_history = LeaveHistory.find(params[:id])
     @leave_history.update(params_leave_history)
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
