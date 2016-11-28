@@ -15,7 +15,6 @@ class LeavesController < ApplicationController
  end
  
  def create
-   #raise params.inspect
    @employee = Employee.find(params[:employee_id])
    @leave = Leave.create(params_leaves)
    redirect_to employee_leaves_path
