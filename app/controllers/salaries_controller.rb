@@ -100,6 +100,7 @@ class SalariesController < ApplicationController
 		end
 		redirect_to employee_salaries_path(@employee)
 	end
+
 	def add_allowance
 		@employee= Employee.find(params[:employee_id])
 		@salary =  Salary.find(params[:salary_id])
