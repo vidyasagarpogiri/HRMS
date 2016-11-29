@@ -15,11 +15,11 @@ class SalariesController < ApplicationController
     @employee= Employee.find(params[:employee_id])
     @salary =  @employee.salary
     if @salary.present?
-      @allowances = @salary.allowances
-      @insentive = Insentive.new
-      @salary_increment = SalaryIncrement.new
-      @allowances = @salary.allowances
-      @insentive = Insentive.new  
+       @allowances = @salary.allowances
+       @insentive = Insentive.new
+       @salary_increment = SalaryIncrement.new
+       @allowances = @salary.allowances
+       @insentive = Insentive.new  
     else
        @salary = Salary.new
     end  
