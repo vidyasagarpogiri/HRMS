@@ -47,7 +47,6 @@ class RolesController < ApplicationController
     @role = Role.find(params[:id])
     @employee = Employee.find(params[:employee_id])
     @employee.update(:role_id => @role.id)
-    #raise @employee.inspect
     redirect_to @role
    end 
     
