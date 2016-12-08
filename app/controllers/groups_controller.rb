@@ -11,8 +11,8 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     @employee = Employee.new
+    #raise params.inspect
     @reporting_manager = ReportingManager.new
-     
   end
  
   
