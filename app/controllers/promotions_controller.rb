@@ -43,8 +43,8 @@ class PromotionsController < ApplicationController
     end
   end
   def destroy
-		@employee = Employee.find(params[:employee_id])
-    @promotion = Promotion.find(params[:id])
+@employee = Employee.find(params[:employee_id])
+@promotion = Promotion.find(params[:id])
 		@promotion.destroy
 		redirect_to employee_promotions_path(@employee)
 	end
