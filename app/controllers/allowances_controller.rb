@@ -1,5 +1,6 @@
 class AllowancesController < ApplicationController
 	
+	
   layout "profile_template", only: [:index, :new, :create, :show, :update]
   
  def index
