@@ -9,7 +9,6 @@ def index
  end
     
     def new
-    #raise params.inspect
       @holiday_calender = HolidayCalender.new
       @department = Department.find(params[:department_id])
       @events = Event.all
