@@ -43,6 +43,7 @@ class EducationsController < ApplicationController
   def update
     @employee = Employee.find(params[:employee_id])
     @education = Education.find(params[:id])
+   #raise params.inspect
     if @education.update(params.require(:education).permit(:specilization, :institute, :year_of_admission, :year_of_pass, :cgpa_percentage))
     redirect_to employee_educations_path(@employee.id)
     else
