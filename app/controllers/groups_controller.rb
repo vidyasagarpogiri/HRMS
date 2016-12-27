@@ -45,6 +45,7 @@ class GroupsController < ApplicationController
   end
   
   def add_employee
+   
     @group = Group.find(params[:id])
     @employees = Employee.all    
   end
