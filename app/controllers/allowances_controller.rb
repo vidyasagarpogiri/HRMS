@@ -57,5 +57,4 @@ def destroy
     params.require(:allowance).permit(:allowance_name, :value).merge(:salary_id => params[:salary_id])
   end
   
-  
 end
