@@ -46,7 +46,7 @@ def index
     end
     
     def show
-     
+     #raise params[:mandatory].inspect
     end
     
     private
