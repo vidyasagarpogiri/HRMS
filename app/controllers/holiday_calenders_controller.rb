@@ -8,11 +8,11 @@ def index
    @holiday_calenders =@department.holiday_calenders
  end
     
-    def new
-      @holiday_calender = HolidayCalender.new
-      @department = Department.find(params[:department_id])
-      @events = Event.all
-    end
+  def new
+    @holiday_calender = HolidayCalender.new
+    @department = Department.find(params[:department_id])
+    @events = Event.all
+  end
     
     def create
       @department = Department.find(params[:department_id])
