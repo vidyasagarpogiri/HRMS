@@ -24,7 +24,6 @@ class EducationsController < ApplicationController
     #for new form 
     @employee = Employee.find(params[:employee_id])
     @education = Education.new
-    
     @list =  Education.where(:Employee_id => params[:employee_id])
     @form_type = params[:commit]
     #EducationQualification.create(:qualification_id => @qualification_id, :education_id => @education.id)
