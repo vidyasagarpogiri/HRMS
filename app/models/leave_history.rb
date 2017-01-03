@@ -12,7 +12,6 @@ class LeaveHistory < ActiveRecord::Base
  
   #validates :from_date, presence: true
   #validates :to_date, presence: true
-	
   #validates :leave_type_id, presence: true
   #validates :reason, presence: true
     
