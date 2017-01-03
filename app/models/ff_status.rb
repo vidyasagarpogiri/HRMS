@@ -1,4 +1,5 @@
 class FfStatus < ActiveRecord::Base
+	
   has_many :employees
 
  OPEN = "OPEN"
