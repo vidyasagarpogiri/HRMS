@@ -28,4 +28,5 @@ class Salary < ActiveRecord::Base
   def esic_contribution
     (self.esic * 50)/100
   end
+  
 end
