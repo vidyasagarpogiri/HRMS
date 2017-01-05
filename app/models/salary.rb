@@ -28,7 +28,4 @@ class Salary < ActiveRecord::Base
   def esic_contribution
     (self.esic * 50)/100
   end
-  #def ctc_sum
-   # self.ctc_fixed = 
- # end
 end
