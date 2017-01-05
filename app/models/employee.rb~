@@ -71,5 +71,4 @@ end
     ReportingManager.find_by_employee_id(id).manager_id
   end
   
-  
 end
