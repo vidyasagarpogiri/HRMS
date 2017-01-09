@@ -43,6 +43,7 @@ JobLocation.create( :address_id => addresses[rand(addresses.length)])
 end
 JobLocations = JobLocation.all.pluck(:id)
 
+
 #-------------------------------------------------------------------------------------#
 ["Development", "HR", "Accounts", "Business Development"].each do |dept|
   Department.create(:department_name => dept ) 
