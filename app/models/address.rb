@@ -2,6 +2,7 @@ class Address < ActiveRecord::Base
 	
   belongs_to :employee 
   has_one :job_location
+	
   # validations	
   validates :line1, presence: true
   validates :line, presence: true
