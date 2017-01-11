@@ -1,5 +1,6 @@
 class Address < ActiveRecord::Base
-	
+
+ # Associations
   belongs_to :employee 
   has_one :job_location
 	
