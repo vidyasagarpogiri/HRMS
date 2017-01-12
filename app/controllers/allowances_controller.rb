@@ -55,6 +55,8 @@ def destroy
   redirect_to employee_salaries_path(@employee)
  end
  
+	
+	
  private
    
   def params_allowance
