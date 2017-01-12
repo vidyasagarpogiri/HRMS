@@ -22,6 +22,7 @@ class AllowancesController < ApplicationController
   @employee= Employee.find(params[:employee_id])
   @salary = Salary.find(params[:salary_id])
   @allowances = @salary.allowances
+#raise params.inspect
    @allowance = Allowance.new
   #redirect_to employee_salary_path(@employee, @salary)
  end
