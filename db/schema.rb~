@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140925054132) do
     t.boolean  "is_permanent"
   end
 
+
   create_table "allowances", force: true do |t|
     t.string   "allowance_name"
     t.float    "value",           limit: 24
