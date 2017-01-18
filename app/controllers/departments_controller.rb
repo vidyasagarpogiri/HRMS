@@ -66,9 +66,9 @@ class DepartmentsController < ApplicationController
   def employee_leaves
     @dept = Department.find(params[:id])
     @employees = @dept.employees
-    #raise @employees.inspect
+    # raise @employees.inspect
     @leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?
-    #raise @leaves.flatten.inspect
+    # raise @leaves.flatten.inspect
     #flatten makes array of arrys into a single array
     # Here @leaves object is depatrment all Employee leaves of array tpye pasrse it in employee_leaves view page..BY:GPR###
     #raise @leaves[1][1]['employee_id'].inspect
