@@ -48,7 +48,8 @@ class RolesController < ApplicationController
     @employee.update(:role_id => @role.id)
     redirect_to @role
    end 
-   	
+  
+	
   private
 	
   def role_params
