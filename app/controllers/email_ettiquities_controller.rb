@@ -17,7 +17,7 @@ end
  end
   
   def create
-@employee = Employee.find(params[:employee_id])
+ @employee = Employee.find(params[:employee_id])
     @email = EmailEttiquitie.create(:ettiquite => params[:email_ettiquitie][:ettiquite], :dateofsending => Date.today,:employee_id => @employee.id)
     if @email.save
 redirect_to employee_email_ettiquities_path(@employee)
