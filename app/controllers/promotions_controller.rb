@@ -23,8 +23,8 @@ if @promotion.saves
 @employee.update(:designation_id => @promotion.designation_id)
 redirect_to employee_promotions_path
 else 
-render 'new'
-end
+ render 'new'
+ end
 end
   
   def edit
