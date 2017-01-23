@@ -15,9 +15,9 @@ class PromotionsController < ApplicationController
   end
     
  def create
- #raise params.inspect
- @employee = Employee.find(params[:employee_id])    
- @promotion = Promotion.create(:date_of_promotion=> params[:promotion][:date_of_promotion], :employee_id=>params[:employee_id],
+   #raise params.inspect
+   @employee = Employee.find(params[:employee_id])    
+   @promotion = Promotion.create(:date_of_promotion=> params[:promotion][:date_of_promotion], :employee_id=>params[:employee_id],
 :designation_id=>param[:promotion][:designation_id])                      
 if @promotion.saves
 @employee.update(:designation_id => @promotion.designation_id)
