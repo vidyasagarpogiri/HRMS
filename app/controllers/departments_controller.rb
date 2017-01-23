@@ -52,7 +52,7 @@ class DepartmentsController < ApplicationController
    end
    
    def leaves
-    #raise params.inspect
+    # raise params.inspect
     @department = Department.find(params[:id])
     @employees = @department.employees
     @leave_policy = @department.leave_policy
