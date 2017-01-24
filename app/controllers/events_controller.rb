@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view  
 
- 
  def index
     @events = Event.all
   end
@@ -25,7 +24,7 @@ class EventsController < ApplicationController
 
  
   def create
-    #raise params.inspect
+    # raise params.inspect
     @event = Event.new(event_params)
     if @event.save
     redirect_to events_path
