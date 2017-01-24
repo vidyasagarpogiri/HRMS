@@ -22,7 +22,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
- 
   def create
     # raise params.inspect
     @event = Event.new(event_params)
