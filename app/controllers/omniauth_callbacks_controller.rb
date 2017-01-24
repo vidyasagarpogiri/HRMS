@@ -1,8 +1,8 @@
 class OmniauthCallbacksController < ApplicationController
       
     def all
-    @user = User.from_omniauth(request.env["omniauth.auth"])
-    @user1 = User.find_by_email(@user.email)
+      @user = User.from_omniauth(request.env["omniauth.auth"])
+      @user1 = User.find_by_email(@user.email)
     if @user1.sign_in_count == 0
       @user1.provider = @user.provider 
       @user1.uid = @user.uid 
