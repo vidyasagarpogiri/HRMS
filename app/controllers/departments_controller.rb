@@ -69,7 +69,7 @@ class DepartmentsController < ApplicationController
     # raise @employees.inspect
     @leaves = @employees.order("created_at DESC").map(&:leave_histories).flatten if @employees.present?
     # raise @leaves.flatten.inspect
-    #flatten makes array of arrys into a single array
+    # flatten makes array of arrys into a single array
     # Here @leaves object is depatrment all Employee leaves of array tpye pasrse it in employee_leaves view page..BY:GPR###
     #raise @leaves[1][1]['employee_id'].inspect
   end
