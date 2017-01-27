@@ -12,8 +12,8 @@ def index
 end
 
  def new
-@employee= Employee.find(params[:employee_id])
-@email = EmailEttiquitie.new		
+  @employee= Employee.find(params[:employee_id])
+  @email = EmailEttiquitie.new		
  end
   
   def create
