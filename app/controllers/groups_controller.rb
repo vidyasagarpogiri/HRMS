@@ -50,10 +50,10 @@ class GroupsController < ApplicationController
   end
   
   def update_add_employee
-      @group = Group.find(params[:id])
-      @employee = Employee.find(params[:employee_id])      
-      @employee.update(:group_id => @group.id)
-      redirect_to @group
+     @group = Group.find(params[:id])
+     @employee = Employee.find(params[:employee_id])      
+     @employee.update(:group_id => @group.id)
+     redirect_to @group
   end
 
   def holiday_list
