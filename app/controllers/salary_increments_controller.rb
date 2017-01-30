@@ -50,7 +50,6 @@ class SalaryIncrementsController < ApplicationController
    
    
  private
-   
   def params_salary_increment
     params.require(:salary_increment).permit(:increment_date, :increment_value).merge(:salary_id => params[:salary_id])
   end
