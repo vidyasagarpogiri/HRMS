@@ -127,8 +127,6 @@ post 'accept' => "leave_histories#accept"
   resources :addresses
 end
 
-
-
   #get 'profile/:id/edit' => "profile#edit" 
   get 'profile/:id' => "profile#edit",  as: :profile
   get 'new_profile' => "profile#edit"
