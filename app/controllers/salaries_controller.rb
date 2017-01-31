@@ -90,15 +90,15 @@ end
 	  @allownces = Allowance.all
 	end
 	
-	def update_allowance
-		@employee= Employee.find(params[:employee_id])
-		@salary =  Salary.find(params[:salary_id])
-		allowances = SalariesAllowance.where(:salary_id => @salary.id)
-		allowances.destroy_all
-		params[:allowance_ids].each do |a|	
-			SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)	
-		end
-		redirect_to employee_salaries_path(@employee)
+def update_allowance
+@employee= Employee.find(params[:employee_id])
+@salary =  Salary.find(params[:salary_id])
+allowances = SalariesAllowance.where(:salary_id => @salary.id)
+allowances.destroy_all
+params[:allowance_ids].each do |a|	
+	SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)	
+end
+redirect_to employee_salaries_path(@employee)
 	end
 
 	def add_allowance
