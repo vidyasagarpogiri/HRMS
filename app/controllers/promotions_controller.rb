@@ -50,15 +50,15 @@ end
    redirect_to employee_promotions_path(@employee)
  end
 
-	private
-	def user_authentication	
-	@employee = Employee.find(params[:employee_id])
-	#raise @employee.inspect
-		if current_user.employee.employee_id  == @employee.employee_id || current_user.employee.role_id == 2
-		else
-			redirect_to employees_path
-		end
+private
+def user_authentication	
+@employee = Employee.find(params[:employee_id])
+#raise @employee.inspect
+	if current_user.employee.employee_id  == @employee.employee_id || current_user.employee.role_id == 2
+	else
+		redirect_to employees_path
 	end
+end
      
  
 end
