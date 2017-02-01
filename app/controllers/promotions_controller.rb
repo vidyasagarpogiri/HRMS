@@ -42,6 +42,7 @@ end
     render 'edit' 
     end
   end
+	
   def destroy
 @employee = Employee.find(params[:employee_id])
 @promotion = Promotion.find(params[:id])
