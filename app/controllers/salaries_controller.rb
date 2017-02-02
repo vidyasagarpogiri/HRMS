@@ -101,14 +101,14 @@ end
 redirect_to employee_salaries_path(@employee)
 	end
 
-	def add_allowance
-		@employee= Employee.find(params[:employee_id])
-		@salary =  Salary.find(params[:salary_id])
-		salary_allowance= @salary.allowances.map(&:allowance_name)
-		respond_to do |format|
-			format.js
-		end
+def add_allowance
+	@employee= Employee.find(params[:employee_id])
+	@salary =  Salary.find(params[:salary_id])
+	salary_allowance= @salary.allowances.map(&:allowance_name)
+	respond_to do |format|
+		format.js
 	end
+end
 	
 	def configure_pf
 	  #raise params.inspect
