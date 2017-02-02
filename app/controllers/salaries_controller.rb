@@ -76,12 +76,12 @@ def configure_allowance
 end
 	
 def create_allowance
-@employee= Employee.find(params[:employee_id])
-@salary =  Salary.find(params[:salary_id])
-params[:allowance_ids].each do |a|
-  SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)
-end
-redirect_to employee_salaries_path(@employee)
+	@employee= Employee.find(params[:employee_id])
+	@salary =  Salary.find(params[:salary_id])
+	params[:allowance_ids].each do |a|
+  	SalariesAllowance.create(:salary_id => @salary.id, :allowance_id => a)
+	end
+	redirect_to employee_salaries_path(@employee)
 end
 
 def edit_allowance
