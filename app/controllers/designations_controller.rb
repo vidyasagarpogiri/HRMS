@@ -49,6 +49,7 @@ class DesignationsController < ApplicationController
     redirect_to @designation
    end 
  	
+	
   private
   def designation_params
     params.require(:designation).permit(:designation_name, :email) 
