@@ -1,5 +1,5 @@
 class BloodGroup < ActiveRecord::Base
- #association
+ # association
  has_many :employees
 end
 
