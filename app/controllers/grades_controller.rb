@@ -33,7 +33,7 @@ class GradesController < ApplicationController
   def edit     
     @grade = Grade.find(params[:id])        
   end
-  
+ 
   def destroy
      @grade = Grade.find(params[:id])
      @grade.destroy
