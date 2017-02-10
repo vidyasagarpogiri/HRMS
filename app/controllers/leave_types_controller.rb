@@ -42,6 +42,7 @@ class LeaveTypesController < ApplicationController
     redirect_to leave_types_path
   end
   
+ 
   private
   
   def parama_leave_types
