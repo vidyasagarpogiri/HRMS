@@ -34,8 +34,8 @@ class LeaveTypesController < ApplicationController
   def show
     #raise params.inspect
   end
-
-  def destroy
+  
+ def destroy
     #raise params.inspect
     @leave_type = LeaveType.find(params[:id])
     @leave_type.destroy
