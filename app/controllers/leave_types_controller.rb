@@ -25,7 +25,7 @@ class LeaveTypesController < ApplicationController
   end
   
   def update
-   #raise params.inspect
+   # raise params.inspect
     @leave_type = LeaveType.find(params[:id])
     @leave_type.update(parama_leave_types)
     redirect_to leave_types_path
