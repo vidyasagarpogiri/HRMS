@@ -12,7 +12,7 @@ class LeaveTypesController < ApplicationController
     @leave_type = LeaveType.new
   end
   
-  def create
+  def create 
   # raise params.inspect
     @leave_type = LeaveType.create(parama_leave_types)
     @leave_type.save
