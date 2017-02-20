@@ -41,7 +41,6 @@ class LeaveTypesController < ApplicationController
     @leave_type.destroy
     redirect_to leave_types_path
   end
-  
  
   private
   
