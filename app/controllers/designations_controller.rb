@@ -36,7 +36,6 @@ class DesignationsController < ApplicationController
     redirect_to @designation
   end
 	
-	
   def add_employee
     @designation = Designation.find(params[:id])
     @employee = Employee.all
