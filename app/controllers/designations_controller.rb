@@ -47,7 +47,6 @@ class DesignationsController < ApplicationController
     @employee.update(:designation_id => @designation.id)
     redirect_to @designation
    end 
- 	
 	
   private
   def designation_params
