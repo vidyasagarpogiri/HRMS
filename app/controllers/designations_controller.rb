@@ -46,7 +46,7 @@ class DesignationsController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @employee.update(:designation_id => @designation.id)
     redirect_to @designation
-   end 
+   end   
 	
   private
   def designation_params
