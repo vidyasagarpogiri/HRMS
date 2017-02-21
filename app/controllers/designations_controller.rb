@@ -13,7 +13,7 @@ class DesignationsController < ApplicationController
     @designation = @department.designations.create(designation_params)
     redirect_to @department
   end
-
+  
   def show
     @designation = Designation.find(params[:id])
     @employees = @designation.employees
