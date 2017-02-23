@@ -21,7 +21,7 @@ class LeavePoliciesController < ApplicationController
    @leave_policy.save
    redirect_to leaves_department_path(@department)
  end
-	
+	 
 
  def edit
  @department = Department.find(params[:department_id])
