@@ -27,7 +27,7 @@ def index
       end 
     end
        redirect_to leaves_department_path(@department)  
-    end
+    end 
      
     def edit
      # raise params.inspect
