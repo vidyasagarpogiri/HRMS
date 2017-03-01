@@ -49,7 +49,7 @@ def index
      #raise params[:mandatory].inspect
     end
     
-    private
+    private 
     def params_calender
       #params.require(:holiday_calender).permit(:mandatory_or_optional)
     end
