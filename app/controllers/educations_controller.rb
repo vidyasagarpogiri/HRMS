@@ -56,7 +56,7 @@ class EducationsController < ApplicationController
     end
   end
 
-def destroy
+def destroy 
 @employee = Employee.find(params[:employee_id])
 @education = Education.find(params[:id])
 @education.destroy
