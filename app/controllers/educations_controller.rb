@@ -60,9 +60,8 @@ def destroy
 @employee = Employee.find(params[:employee_id])
 @education = Education.find(params[:id])
 @education.destroy
- #raise params.inspect
+ # raise params.inspect
 redirect_to employee_educations_path(@employee)
 end
   
-
 end
