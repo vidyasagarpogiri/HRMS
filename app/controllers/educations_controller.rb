@@ -63,5 +63,5 @@ def destroy
  # raise params.inspect
 redirect_to employee_educations_path(@employee)
 end
-  
+ 
 end
