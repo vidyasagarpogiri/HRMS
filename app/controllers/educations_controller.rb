@@ -31,7 +31,7 @@ class EducationsController < ApplicationController
   
   def show
     # show method
-  end
+  end 
   
   def edit
     # raise params.inspect
