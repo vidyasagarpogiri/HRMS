@@ -55,7 +55,7 @@ class EducationsController < ApplicationController
       format.json  { render :json => getQualificationList }
     end
   end
-
+ 
 def destroy 
 @employee = Employee.find(params[:employee_id])
 @education = Education.find(params[:id])
