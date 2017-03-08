@@ -23,7 +23,7 @@ class Employee < ActiveRecord::Base
   has_many :email_ettiquities, :class_name => "EmailEttiquitie"
   belongs_to :group
   has_many :reporting_managers
-  
+     
   # for file attachments
   has_many :employee_attachments
   accepts_nested_attributes_for :employee_attachments
