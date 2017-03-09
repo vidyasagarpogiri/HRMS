@@ -21,7 +21,6 @@ class GradesController < ApplicationController
   def show
     @grade = Grade.find(params[:id])
     @employees = @grade.employees
-
   end
 
   def update
