@@ -51,7 +51,7 @@ class GradesController < ApplicationController
     @employee.update(:grade_id => @grade.id)
     #raise @employee.inspect
     redirect_to @grade
-   end 
+   end  
   
   private
   def grade_params
