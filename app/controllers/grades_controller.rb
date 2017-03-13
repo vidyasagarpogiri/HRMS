@@ -42,7 +42,7 @@ class GradesController < ApplicationController
    def add_employee
     @grade = Grade.find(params[:id])
     @employee = Employee.all
-  end
+  end 
 	
    def update_employee
     #raise params.inspect
