@@ -1,5 +1,5 @@
 class HolidayCalender < ActiveRecord::Base
-     
+        
   #association
   belongs_to :department
   belongs_to :group
