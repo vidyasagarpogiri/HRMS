@@ -43,7 +43,7 @@ class DepartmentsController < ApplicationController
     @department = Department.find(params[:id])
     @employee = Employee.all
   end
-  
+     
    def update_employee
     @department = Department.find(params[:id])
     @employee = Employee.find(params[:employee_id])
@@ -72,7 +72,7 @@ class DepartmentsController < ApplicationController
     # flatten makes array of arrys into a single array
     # Here @leaves object is depatrment all Employee leaves of array tpye pasrse it in employee_leaves view page..BY:GPR###
     # raise @leaves[1][1]['employee_id'].inspect
-  end
+  end  
   
   def holiday_list
     @holidays = current_user.employee.department.holiday_calenders
