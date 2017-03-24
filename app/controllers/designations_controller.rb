@@ -29,7 +29,7 @@ class DesignationsController < ApplicationController
   def edit     
     @designation = Designation.find(params[:id])        
   end
-  
+        
   def destroy
     @designation = Designation.find(params[:id])
     @designation.destroy
