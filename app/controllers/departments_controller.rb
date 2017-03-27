@@ -13,7 +13,7 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.create(department_params)
     redirect_to @department
-  end
+  end   
    
   def show
     @department = Department.find(params[:id])
