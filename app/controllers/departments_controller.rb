@@ -49,7 +49,7 @@ class DepartmentsController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @employee.update(:department_id => @department.id)
     redirect_to @department
-   end
+   end   
    
    def leaves
     # raise params.inspect
