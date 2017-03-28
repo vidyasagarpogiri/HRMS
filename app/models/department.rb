@@ -6,7 +6,7 @@ class Department < ActiveRecord::Base
   has_many :grades       
   has_many :holiday_calenders
   has_many :events, :through => :holiday_calenders
-                                              
+                                                  
   # TODO since there is a problem in relation with employ and department i have commented this -  vidyasagar
   # has_many : employees, :through => :reporting_managers   
                            
