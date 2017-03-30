@@ -13,5 +13,5 @@ class Department < ActiveRecord::Base
   validates :department_name, uniqueness: { case_sensitive: false }, presence: true
   has_one :leave_policy
   HR = "HR"
-  
+ 
 end   
