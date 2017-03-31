@@ -49,7 +49,7 @@ class EducationsController < ApplicationController
     render 'edit'
   end
   end
-
+ 
   def qualifications
     respond_to do |format|
       format.json  { render :json => getQualificationList }
