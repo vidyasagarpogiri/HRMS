@@ -28,7 +28,7 @@ class EducationsController < ApplicationController
     @form_type = params[:commit]
     #EducationQualification.create(:qualification_id => @qualification_id, :education_id => @education.id)
   end
-  
+     
   def show
     # show method
   end 
