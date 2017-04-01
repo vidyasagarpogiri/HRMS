@@ -19,7 +19,6 @@ end
    @leave_history = LeaveHistory.new
   end
    
-  
   def show
   #raise params.inspect
   end
