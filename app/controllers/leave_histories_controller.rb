@@ -39,7 +39,7 @@ redirect_to leave_histories_path
   #flash[:notice]= "no leave policy for you"
 #render 'new'   
 #	end
-  end
+  end    
   
   
   def edit
