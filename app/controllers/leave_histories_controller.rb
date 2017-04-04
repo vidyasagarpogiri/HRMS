@@ -122,7 +122,7 @@ redirect_to leave_histories_path
     #raise params.inspect
     @leave = LeaveHistory.find(params[:id])
 	 
-  end
+  end   
 
 	private
   
