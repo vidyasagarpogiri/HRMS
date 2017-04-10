@@ -16,7 +16,7 @@ class Employee < ActiveRecord::Base
   belongs_to :grade
   belongs_to :user
   belongs_to :salary
-	           
+	                            
   has_many :promotions           
   has_many :educations
   has_many :experiences
