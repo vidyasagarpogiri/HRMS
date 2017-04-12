@@ -24,7 +24,7 @@ class SalariesController < ApplicationController
        @salary = Salary.new
     end  
   end
-  
+ 
   def create
     @salary = Salary.new(params_salary)
     @employee = Employee.find(params[:employee_id])
