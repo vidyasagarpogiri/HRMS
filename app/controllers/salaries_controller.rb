@@ -11,7 +11,7 @@ class SalariesController < ApplicationController
     @salary = Salary.new
   end
   
-  def index            
+  def index                       
     @employee= Employee.find(params[:employee_id])
     @salary =  @employee.salary
     if @salary.present?
