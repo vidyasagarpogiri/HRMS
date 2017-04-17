@@ -1,4 +1,4 @@
-class Leave < ActiveRecord::Base
+class Leave < ActiveRecord::Base   
                          
   belongs_to :employee
                                           
