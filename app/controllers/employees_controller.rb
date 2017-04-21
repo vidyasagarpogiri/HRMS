@@ -50,7 +50,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
   
-  def update
+  def update   
    
     @employee = Employee.find(params[:id])
    
