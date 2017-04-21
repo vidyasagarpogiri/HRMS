@@ -44,7 +44,7 @@ class EmployeesController < ApplicationController
      if @employee.educations.present?
      @specialization = @employee.educations.order('year_of_pass DESC').first
      end
-  end    
+  end        
   
   def edit
     @employee = Employee.find(params[:id])
