@@ -16,7 +16,7 @@ class RolesController < ApplicationController
     redirect_to @role
   end
     
-  def show
+  def show           
     @role = Role.find(params[:id])
     @employees = @role.employees
   end    
