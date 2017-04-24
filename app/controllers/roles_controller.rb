@@ -20,7 +20,7 @@ class RolesController < ApplicationController
     @role = Role.find(params[:id])
     @employees = @role.employees
   end    
-      
+                         
   def update
     @role = Role.find(params[:id])
     @role.update(role_params)
