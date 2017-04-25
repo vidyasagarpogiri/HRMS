@@ -43,7 +43,7 @@ class GroupsController < ApplicationController
     @reporting_manager = ReportingManager.find_by(@group.id)
     @reporting_manager.update(:employee_id => @employee.id)
     redirect_to  @group
-  end
+  end             
   
   def add_employee
     @group = Group.find(params[:id])
