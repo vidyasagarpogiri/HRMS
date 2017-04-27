@@ -27,7 +27,7 @@ else
  end 
 end                  
   
-  def edit
+  def edit   
     @employee = Employee.find(params[:employee_id])
     @promotion = Promotion.find(params[:id])
   end
