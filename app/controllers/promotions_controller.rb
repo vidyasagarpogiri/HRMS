@@ -24,7 +24,7 @@ if @promotion.saves
 redirect_to employee_promotions_path
 else 
  render 'new'
- end
+ end 
 end
   
   def edit
