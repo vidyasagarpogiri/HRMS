@@ -4,4 +4,4 @@ class Grade < ActiveRecord::Base
   belongs_to :designation    
   # validates :value, uniqueness: { case_sensitive: false }
 
-end
+end    
