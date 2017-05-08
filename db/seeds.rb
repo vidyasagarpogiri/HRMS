@@ -17,7 +17,7 @@ Designation.destroy_all
 Grade.destroy_all
 Role.destroy_all
 Employee.destroy_all
-Education.destroy_all
+Education.destroy_all               
 Experience.destroy_all
 Promotion.destroy_all
 EmailEttiquitie.destroy_all
