@@ -19,7 +19,7 @@ Role.destroy_all
 Employee.destroy_all
 Education.destroy_all               
 Experience.destroy_all
-Promotion.destroy_all
+Promotion.destroy_all               
 EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all                 
