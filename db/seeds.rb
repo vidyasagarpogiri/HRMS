@@ -23,7 +23,7 @@ Promotion.destroy_all
 EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all                 
-Group.destroy_all;
+Group.destroy_all;                    
 Allowance.destroy_all
 Event.destroy_all 
 
@@ -55,7 +55,7 @@ Department.all.each do |dept|
     designation = Designation.create(:designation_name => desg, :department_id => dept.id )
   end
   
-end
+end                
 
 Designations = Designation.all.pluck(:id)
 
