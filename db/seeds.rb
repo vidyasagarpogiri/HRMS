@@ -23,7 +23,7 @@ Promotion.destroy_all
 EmailEttiquitie.destroy_all
 Salary.destroy_all
 LeaveType.destroy_all                 
-Group.destroy_all;                    
+Group.destroy_all;                                      
 Allowance.destroy_all
 Event.destroy_all 
 
