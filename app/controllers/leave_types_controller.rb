@@ -24,7 +24,7 @@ class LeaveTypesController < ApplicationController
     @leave_type = LeaveType.find(params[:id])
   end            
                   
-  def update
+  def update             
    # raise params.inspect
     @leave_type = LeaveType.find(params[:id])
     @leave_type.update(parama_leave_types)
