@@ -6,7 +6,7 @@ class Group < ActiveRecord::Base
   has_many :events, :through => :holiday_calenders
   has_one :reporting_manager
                                                            
-  def reporting_manager_full_name
+  def reporting_manager_full_name                 
     reporting_manager.employee.full_name if reporting_manager.present?
   end               
         
