@@ -2,7 +2,7 @@ class HolidayCalender < ActiveRecord::Base
         
   #association
   belongs_to :department
-  belongs_to :group
+  belongs_to :group              
   belongs_to :event    
                
   #validation
