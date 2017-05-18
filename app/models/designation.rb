@@ -1,5 +1,5 @@
 class Designation < ActiveRecord::Base
-       
+                         
   belongs_to :departmnet
   has_many :employees
   has_many :promotions
