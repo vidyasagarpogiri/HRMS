@@ -16,7 +16,7 @@ def index
     
     def create            
       @department = Department.find(params[:department_id])
-      #TODO 
+      #TODO              
       @department.holiday_calenders.destroy_all
       params[:event_ids].each do |event|
       if params[:mandatory].include?(event)
