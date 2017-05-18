@@ -20,7 +20,7 @@ def index
       @department.holiday_calenders.destroy_all
       params[:event_ids].each do |event|
       if params[:mandatory].include?(event)
-      # raise params[:mandatory].inspect
+      # raise params[:mandatory].inspect                 
         @holiday_calender = HolidayCalender.create(department_id: @department.id, event_id: event, mandatory_or_optional: true)
       else
         @holiday_calender = HolidayCalender.create(department_id: @department.id, event_id: event, mandatory_or_optional: false)
