@@ -14,7 +14,7 @@ def index
     @events = Event.all
   end
     
-    def create            
+    def create                          
       @department = Department.find(params[:department_id])
       #TODO              
       @department.holiday_calenders.destroy_all
