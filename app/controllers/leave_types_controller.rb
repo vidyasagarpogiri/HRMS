@@ -19,7 +19,7 @@ class LeaveTypesController < ApplicationController
     redirect_to leave_types_path
   end    
  
-  def edit                                   
+  def edit                                                        
    # raise params.inspect                                 
     @leave_type = LeaveType.find(params[:id])
   end            
