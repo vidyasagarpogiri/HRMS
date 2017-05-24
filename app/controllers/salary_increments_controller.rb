@@ -23,7 +23,7 @@ class SalaryIncrementsController < ApplicationController
     @salary_increments = @salary.salary_increments       
     @salary_increment = SalaryIncrement.new
     # redirect_to employee_salary_path(@employee, @salary)
-  end            
+  end                          
                                           
   def edit
     @employee= Employee.find(params[:employee_id])
