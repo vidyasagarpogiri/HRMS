@@ -13,7 +13,7 @@ class SalaryIncrementsController < ApplicationController
    @salary = Salary.find(params[:salary_id])
    @salary_increment = SalaryIncrement.new
   end
-  
+                    
   def create                                       
     @form_type = params[:commit]
     @salary_increment1 = SalaryIncrement.create(params_salary_increment)
