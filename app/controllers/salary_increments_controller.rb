@@ -14,7 +14,7 @@ class SalaryIncrementsController < ApplicationController
    @salary_increment = SalaryIncrement.new
   end
   
-  def create                    
+  def create                                       
     @form_type = params[:commit]
     @salary_increment1 = SalaryIncrement.create(params_salary_increment)
     @salary_increment1.save
