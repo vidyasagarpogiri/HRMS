@@ -35,7 +35,7 @@ class SalariesController < ApplicationController
     redirect_to  employee_salary_path(@employee, @salary)
   end
 
-  def edit
+  def edit           
     @employee = Employee.find(params[:employee_id])
     @salary = Salary.find(params[:id])
   end
