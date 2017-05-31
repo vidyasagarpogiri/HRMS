@@ -20,7 +20,7 @@ class SalariesController < ApplicationController
        @salary_increment = SalaryIncrement.new
        @allowances = @salary.allowances
        @insentive = Insentive.new  
-    else                       
+    else                                        
        @salary = Salary.new
     end                                
   end                                
