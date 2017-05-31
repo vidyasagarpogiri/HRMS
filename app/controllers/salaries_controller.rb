@@ -23,7 +23,7 @@ class SalariesController < ApplicationController
     else                       
        @salary = Salary.new
     end                                
-  end                        
+  end                                
  
   def create
     @salary = Salary.new(params_salary)
