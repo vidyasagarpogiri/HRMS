@@ -22,7 +22,7 @@ class SalariesController < ApplicationController
        @insentive = Insentive.new  
     else                       
        @salary = Salary.new
-    end           
+    end                                
   end                        
  
   def create
