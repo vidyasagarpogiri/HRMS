@@ -23,11 +23,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    # raise params.inspect
+    #   raise params.inspect
     @event = Event.new(event_params)
     if @event.save
     redirect_to events_path
-    else
+    else               
      flash.now[:error]
      render "new"
     end
