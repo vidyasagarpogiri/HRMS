@@ -20,7 +20,7 @@ class EventsController < ApplicationController
                                                                           
   def edit            
     @event = Event.find(params[:id])
-  end
+  end         
 
   def create
     #   raise params.inspect
