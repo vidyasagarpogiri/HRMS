@@ -10,7 +10,7 @@ class Notification < ActionMailer::Base
   end
 
 	def accept_leave(employee, leave_history)
-	#	@employee.user.email
+	#	@employee.user.email                  
 		@employee = employee
 		@leave_history = leave_history
 		 mail(:to => @employee.user.email, :subject => "Leave Approved")
