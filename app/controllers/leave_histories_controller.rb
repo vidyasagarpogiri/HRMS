@@ -23,7 +23,7 @@ end
   #raise params.inspect
   end
     
-  def create  
+  def create                             
     #raise params.inspect
     @employee = current_user.employee
     @leave_history = current_user.employee.leave_histories.new(params_leave_history)
