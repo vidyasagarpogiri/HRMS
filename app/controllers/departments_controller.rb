@@ -21,7 +21,7 @@ class DepartmentsController < ApplicationController
     @leave_policy = @department.leave_policy                
     @holiday_calender = @department.events
     @designations = @department.designations
-  end                           
+  end                                           
              
   def update
     @department = Department.find(params[:id])              
