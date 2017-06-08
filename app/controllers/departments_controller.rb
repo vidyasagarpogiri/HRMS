@@ -15,7 +15,7 @@ class DepartmentsController < ApplicationController
     redirect_to @department
   end   
          
-  def show
+  def show            
     @department = Department.find(params[:id])
     @employees = @department.employees
     @leave_policy = @department.leave_policy 
