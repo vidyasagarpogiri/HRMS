@@ -1,4 +1,4 @@
-class BloodGroup < ActiveRecord::Base
+class BloodGroup < ActiveRecord::Base                            
                                                                                                           
  has_many :employees                       
                                        
