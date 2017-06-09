@@ -26,7 +26,7 @@ LeaveType.destroy_all
 Group.destroy_all;                                      
 Allowance.destroy_all
 Event.destroy_all 
-
+                 
 
  @user = User.invite!(:email =>  "vidyasagar.pogiri@amzur.com", :skip_invitation => true)
  @user1 = User.invite!(:email =>  "balaraju.vankala@amzur.com", :skip_invitation => true)
