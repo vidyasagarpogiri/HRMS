@@ -21,7 +21,7 @@ class Employee < ActiveRecord::Base
   has_many :educations
   has_many :experiences
   has_many :email_ettiquities, :class_name => "EmailEttiquitie"
-  belongs_to :group              
+  belongs_to :group                               
   has_many :reporting_managers
      
   # for file attachments                  
