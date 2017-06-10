@@ -24,7 +24,7 @@ class Employee < ActiveRecord::Base
   belongs_to :group              
   has_many :reporting_managers
      
-  # for file attachments
+  # for file attachments                  
   has_many :employee_attachments
   accepts_nested_attributes_for :employee_attachments
   has_one :leave
