@@ -14,7 +14,7 @@ class DesignationsController < ApplicationController
     redirect_to @department
   end
   
-  def show
+  def show                                  
     @designation = Designation.find(params[:id])
     @employees = @designation.employees
     @grades = @designation.grades
