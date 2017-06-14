@@ -51,7 +51,7 @@ class DesignationsController < ApplicationController
   private
   def designation_params
     params.require(:designation).permit(:designation_name, :email) 
-  end
+  end   
 	
 end
 
