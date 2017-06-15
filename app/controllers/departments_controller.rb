@@ -22,7 +22,7 @@ class DepartmentsController < ApplicationController
     @holiday_calender = @department.events
     @designations = @department.designations
   end                                           
-             
+                           
   def update
     @department = Department.find(params[:id])              
     @department.update(department_params)
