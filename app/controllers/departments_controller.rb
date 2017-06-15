@@ -14,7 +14,7 @@ class DepartmentsController < ApplicationController
     @department = Department.create(department_params)
     redirect_to @department
   end   
-         
+                                             
   def show                                
     @department = Department.find(params[:id])
     @employees = @department.employees
