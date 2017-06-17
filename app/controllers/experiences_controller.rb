@@ -14,7 +14,7 @@ class ExperiencesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
   end
    
-  def create
+  def create            
     #raise params.inspect
     @new_experience = Experience.create(params.require(:experience).permit(:previous_company, :last_designation, :from_date, :to_date).merge(employee_id: params[:employee_id]))
    @errors = @new_experience.errors.full_messages
