@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
    
    resources :roles do
-   member do
+   member do                   
       get "/add_employee" => "roles#add_employee"
       post 'update_employee'
     end  
