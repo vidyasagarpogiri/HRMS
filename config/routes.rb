@@ -25,7 +25,7 @@ Rails.application.routes.draw do
    member do                   
       get "/add_employee" => "roles#add_employee"
       post 'update_employee'
-    end  
+    end                   
   end
    get '/departments_list' => "departments#department_index"
    resources :departments do
