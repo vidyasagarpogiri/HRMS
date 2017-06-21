@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get '/users/auth/:provider/callback' => 'omniauth_callbacks#all'
   end
-   
+                   
    resources :roles do
    member do                   
       get "/add_employee" => "roles#add_employee"
