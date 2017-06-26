@@ -25,7 +25,7 @@ class DesignationsController < ApplicationController
     @designation.update(designation_params)
     redirect_to @designation              
   end                     
-                                             
+                                                                  
   def edit     
     @designation = Designation.find(params[:id])        
   end                              
