@@ -17,7 +17,7 @@ class SalariesController < ApplicationController
     if @salary.present?
        @allowances = @salary.allowances
        @insentive = Insentive.new
-       @salary_increment = SalaryIncrement.new
+       @salary_increment = SalaryIncrement.new                 
        @allowances = @salary.allowances
        @insentive = Insentive.new  
     else                                                           
