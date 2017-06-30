@@ -1,7 +1,7 @@
 class ProfileController < ApplicationController
                                                                            
   layout "emp_profile_template"             
-                                                                   
+                                                                      
   before_filter :hr_view, :only => [ :edit]
                       
   def edit                                                     
