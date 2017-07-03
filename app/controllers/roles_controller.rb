@@ -18,7 +18,7 @@ class RolesController < ApplicationController
                              
   def show           
     @role = Role.find(params[:id])
-    @employees = @role.employees
+    @employees = @role.employees               
   end    
                          
   def update
