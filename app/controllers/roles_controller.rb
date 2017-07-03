@@ -15,7 +15,7 @@ class RolesController < ApplicationController
     @role = Role.create(role_params)
     redirect_to @role
   end
-    
+                             
   def show           
     @role = Role.find(params[:id])
     @employees = @role.employees
