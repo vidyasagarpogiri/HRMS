@@ -22,7 +22,7 @@ class RolesController < ApplicationController
   end    
                          
   def update
-    @role = Role.find(params[:id])
+    @role = Role.find(params[:id])                
     @role.update(role_params)
     redirect_to @role                   
   end         
