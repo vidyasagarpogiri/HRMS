@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
     @group = Group.create(group_params)
     @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :group_id => @group.id)
     redirect_to  @group
-  end                                                                                      
+  end                                                                                                    
                                                 
   def show                                       
      @group = Group.find(params[:id])
