@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
     redirect_to  @group
   end                                                                                      
                                                 
-  def show                       
+  def show                                       
      @group = Group.find(params[:id])
      @employee = @group.reporting_manager.employee
      @leave_policy = @group.leave_policy
