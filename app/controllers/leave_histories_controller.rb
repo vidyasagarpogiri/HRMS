@@ -4,7 +4,7 @@ class LeaveHistoriesController < ApplicationController
   #before_filter :other_emp_view
 	
   layout "leave_template"    
- 	   
+ 	            
  include ApplicationHelper
 
 def index
@@ -12,7 +12,7 @@ def index
   @leaves = current_user.employee.leave_histories.where(:status => 'HOLD').page(params[:page]).per(4)
   @leave_histories = current_user.employee.leave_histories.where("status != ?", "HOLD" ).page(params[:page]).per(4)
   @employee = current_user.employee
-end                 
+end                   
 
   def new
    @employee = current_user.employee
@@ -21,8 +21,8 @@ end
                                  
   def show                   
   #raise params.inspect                                     
-  end                 
-    
+  end                      
+               
   def create                                               
     #raise params.inspect
     @employee = current_user.employee
@@ -31,7 +31,7 @@ end
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)  
     applied_days = total_days - weekend_count 
     #--TODO----- leave balance alert before save
-    @leave_history.save             
+    @leave_history.save                                           
     @leave_history.update(:days => applied_days)
     Notification.applyleave(current_user.employee, @leave_history).deliver
 redirect_to leave_histories_path   
