@@ -28,7 +28,7 @@ class ExperiencesController < ApplicationController
   end                                       
                     
   def show
-  end
+  end                    
    
   def edit             
     #raise params.inspect
