@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       get '/employee_leaves' => "departments#employee_leaves"
       get '/leaves' => "departments#leaves"
     end           
-              
+                             
     collection do
 	get 'holiday_list'
     end 
