@@ -37,7 +37,7 @@ end
 redirect_to leave_histories_path   
 #else                                     
   #flash[:notice]= "no leave policy for you"
-#render 'new'          
+#render 'new'                        
 #	end
   end    
   
