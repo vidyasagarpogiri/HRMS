@@ -20,7 +20,7 @@ class DepartmentsController < ApplicationController
     @employees = @department.employees
     @leave_policy = @department.leave_policy                
     @holiday_calender = @department.events
-    @designations = @department.designations
+    @designations = @department.designations                 
   end                                                                       
                                                                       
   def update
