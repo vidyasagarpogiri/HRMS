@@ -28,8 +28,8 @@ def index
     end 
        redirect_to leaves_department_path(@department)  
     end 
-     
-    def edit
+       
+    def edit                
      # raise params.inspect
      @group = Group.find(params[:group_id])
      @holiday_calender = HolidayCalender.find(params[:id])
