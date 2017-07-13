@@ -24,7 +24,7 @@ def index
         @holiday_calender = HolidayCalender.create(department_id: @department.id, event_id: event, mandatory_or_optional: true)
       else
         @holiday_calender = HolidayCalender.create(department_id: @department.id, event_id: event, mandatory_or_optional: false)
-      end 
+      end              
     end 
        redirect_to leaves_department_path(@department)  
     end 
