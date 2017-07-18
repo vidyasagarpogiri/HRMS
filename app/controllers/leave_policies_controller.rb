@@ -23,7 +23,7 @@ class LeavePoliciesController < ApplicationController
  end                 
 	 
  
- def edit
+ def edit               
  @department = Department.find(params[:department_id])
   @leave_policy = @department.leave_policy
  end
