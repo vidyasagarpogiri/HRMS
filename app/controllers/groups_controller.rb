@@ -57,7 +57,7 @@ class GroupsController < ApplicationController
      redirect_to @group
   end
 
-  def holiday_list
+  def holiday_list         
    @holidays = current_user.employee.group.holiday_calenders
    @leave_policy = current_user.employee.group.leave_policy
    @group = current_user.employee.group
