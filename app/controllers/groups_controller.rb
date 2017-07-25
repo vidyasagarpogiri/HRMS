@@ -35,7 +35,7 @@ class GroupsController < ApplicationController
      @reporting_manager = ReportingManager.find_by(@group.id)
      @employee = Employee.find_by(@reporting_manager.id)
   end
-                                     
+                                               
   def update                             
     @group = Group.find(params[:id])                                                                                                     
     @group.update(group_params)
