@@ -34,7 +34,7 @@ layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :upda
 		@employee = Employee.find(params[:employee_id])
 		          
 	end	
-	
+	              
 	def edit     
 		#raise params.inspect
 		@employee = Employee.find(params[:employee_id])
