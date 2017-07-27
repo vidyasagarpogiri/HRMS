@@ -28,7 +28,7 @@ def index
     end 
        redirect_to leaves_department_path(@department)  
     end 
-       
+                           
     def edit                
      # raise params.inspect
      @group = Group.find(params[:group_id])
