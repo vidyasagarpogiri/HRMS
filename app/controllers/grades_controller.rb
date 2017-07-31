@@ -32,7 +32,7 @@ class GradesController < ApplicationController
     @grade = Grade.find(params[:id])        
   end
                     
-  def destroy
+  def destroy                   
      @grade = Grade.find(params[:id])
      @grade.destroy
      redirect_to @grade                 
