@@ -4,7 +4,7 @@ class Employee < ActiveRecord::Base
   belongs_to :department
   belongs_to :blood_group
   belongs_to :designation
-  belongs_to :job_location
+  belongs_to :job_location           
   
  # belongs_to :present_address, :class_name=>"Address", foreign_key: :id
  # belongs_to :permanent_address, :class_name=>"Address", foreign_key: :id
