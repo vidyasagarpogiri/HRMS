@@ -35,7 +35,7 @@ class Employee < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :date_of_birth, presence: true            
-  validates :department_id, presence: true          
+  validates :department_id, presence: true                                
   validates :mobile_number, presence: true, numericality: true , length: { maximum: 10 }
   validates :father_name, presence: true             
   validates :blood_group_id, presence: true
