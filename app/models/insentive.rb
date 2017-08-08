@@ -1,5 +1,5 @@
 class Insentive < ActiveRecord::Base
  
- belongs_to :salary
+ belongs_to :salary            
  
 end
