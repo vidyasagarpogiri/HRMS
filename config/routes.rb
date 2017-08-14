@@ -31,7 +31,7 @@ Rails.application.routes.draw do
    resources :departments do
    resources :holiday_calenders
 	 resources :leave_policies
-   member do
+   member do              
       get "/add_employee" => "departments#add_employee"
       post 'update_employee'
       get '/employee_leaves' => "departments#employee_leaves"
