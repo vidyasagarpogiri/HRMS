@@ -6,5 +6,5 @@ class Leave < ActiveRecord::Base
   validates :pl_applied, presence: true
   validates :sl_applied, presence: true
   validates :employee_id, presence: true
-  
+                 
 end
