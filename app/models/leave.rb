@@ -8,3 +8,4 @@ class Leave < ActiveRecord::Base
   validates :employee_id, presence: true
                  
 end
+              
