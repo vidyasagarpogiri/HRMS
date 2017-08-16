@@ -26,7 +26,7 @@ class SalariesController < ApplicationController
   end                                                                               
  
   def create
-    @salary = Salary.new(params_salary)
+    @salary = Salary.new(params_salary)            
     @employee = Employee.find(params[:employee_id])
     @salary.save
     @employee.update(:salary_id => @salary.id)
