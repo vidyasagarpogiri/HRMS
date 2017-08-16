@@ -10,7 +10,7 @@ class SalariesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @salary = Salary.new
   end             
-  
+       
   def index                       
     @employee= Employee.find(params[:employee_id])
     @salary =  @employee.salary
