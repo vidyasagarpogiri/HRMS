@@ -30,7 +30,7 @@ class OmniauthCallbacksController < ApplicationController
     end
   end
   alias_method :google_oauth2, :all
-  
+          
   
   
 end          
