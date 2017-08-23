@@ -15,7 +15,7 @@ class LeavesController < ApplicationController
   @leave = Leave.new
   @employee = Employee.find(params[:employee_id])
  end
- 
+            
  def create             
    @employee = Employee.find(params[:employee_id])
    @leave = Leave.create(params_leaves)
