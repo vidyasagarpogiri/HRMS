@@ -1,6 +1,6 @@
 class Experience < ActiveRecord::Base
                   
-belongs_to :employee                                                 
+belongs_to :employee                                                               
                                                                                                                                          
 validates :previous_company, presence: true
 validates :last_designation, presence: true
