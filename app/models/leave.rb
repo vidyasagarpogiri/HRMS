@@ -5,5 +5,6 @@ class Leave < ActiveRecord::Base
   validates :pl_carry_forward_prev_year, presence: true 
   validates :pl_applied, presence: true
   validates :sl_applied, presence: true
-  validates :employee_id, presence: true              
+  validates :employee_id, presence: true    
+  
 end              
