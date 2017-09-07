@@ -4,7 +4,7 @@ class SalaryIncrementsController < ApplicationController
   before_filter :other_emp_view
   
   def index
-  @salary = Salary.find(params[:salary_id])
+  @salary = Salary.find(params[:salary_id])     
   @salary_increment = @salary.salary_increments
   end
   
