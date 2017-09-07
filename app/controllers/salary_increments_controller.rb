@@ -37,7 +37,7 @@ class SalaryIncrementsController < ApplicationController
     @salary_increment = SalaryIncrement.find(params[:id])
     @salary_increment.update(params.require(:salary_increment).permit(:increment_date, :increment_value))
     redirect_to employee_salaries_path(@employee)
-  end
+  end     
 
   def destroy	
     @employee= Employee.find(params[:employee_id])
