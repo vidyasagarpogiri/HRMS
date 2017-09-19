@@ -4,3 +4,4 @@ class LeaveType < ActiveRecord::Base
   validates :type_name, presence: true
    
 end
+       
