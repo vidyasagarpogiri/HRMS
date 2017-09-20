@@ -9,3 +9,4 @@ class ReportingManager < ActiveRecord::Base
   end
   
 end
+          
