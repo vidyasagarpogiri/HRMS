@@ -7,7 +7,7 @@ class ReportingManager < ActiveRecord::Base
   def full_name                
      "#{self.employee.full_name}"
   end
-  
+               
 end
           
               
