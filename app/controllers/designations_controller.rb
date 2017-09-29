@@ -5,7 +5,7 @@ class DesignationsController < ApplicationController
   end
             
   def new                                                  
-    @designation = Designation.new
+    @designation = Designation.new              
   end          
 
   def create
