@@ -4,7 +4,7 @@ class DesignationsController < ApplicationController
     @designations = Designation.all.page(params[:page]).per(4)
   end
             
-  def new                                
+  def new                                                  
     @designation = Designation.new
   end
 
