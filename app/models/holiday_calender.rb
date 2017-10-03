@@ -1,6 +1,6 @@
 class HolidayCalender < ActiveRecord::Base
         
-  #association
+  #association                 
   belongs_to :department
   belongs_to :group              
   belongs_to :event                                   
