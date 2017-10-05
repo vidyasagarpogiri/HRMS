@@ -3,7 +3,7 @@ class Notification < ActionMailer::Base
   
   def applyleave(employee, leave_history)
                                             
-   @employee = employee
+   @employee = employee            
    @leave_history = leave_history      
    #raise @employee.reporting_manager.inspect
    mail(:to => @employee.reporting_manager_user, :subject => "Leave Applied By "  " #{@employee.first_name} #{@employee.last_name}")
