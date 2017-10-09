@@ -24,7 +24,7 @@ class EventsController < ApplicationController
 
   def create
     #   raise params.inspect
-    @event = Event.new(event_params)
+    @event = Event.new(event_params)   
     if @event.save
     redirect_to events_path
     else               
