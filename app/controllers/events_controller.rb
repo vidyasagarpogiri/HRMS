@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   before_filter :other_emp_view            
              
  def index
-    @events = Event.all
+    @events = Event.all              
   end
                               
   def show
