@@ -4,7 +4,7 @@ class LeaveHistory < ActiveRecord::Base
   belongs_to :leave_type
   before_create :status_hold
 	
-  HOLD = "HOLD"
+  HOLD = "HOLD"             
   APPROVED = "APPROVED"
   REJECTED = "REJECTED"
   STARTED = "STARTED"
