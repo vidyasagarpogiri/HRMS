@@ -11,3 +11,4 @@ class Education < ActiveRecord::Base
   validates :cgpa_percentage, presence: true	
 end
         
+               
