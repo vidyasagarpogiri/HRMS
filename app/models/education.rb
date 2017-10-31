@@ -10,3 +10,4 @@ class Education < ActiveRecord::Base
   validates :year_of_pass, presence: true
   validates :cgpa_percentage, presence: true	
 end
+ 
