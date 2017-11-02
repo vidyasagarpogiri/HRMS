@@ -6,7 +6,7 @@ class AllowancesController < ApplicationController
   #raise params.inspect
   @salary = Salary.find(params[:salary_id])
   @allowance = @salary.allowances
- end
+ end                   
  
  def new
     #raise params.inspect
