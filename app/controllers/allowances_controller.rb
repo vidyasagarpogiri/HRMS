@@ -26,7 +26,7 @@ class AllowancesController < ApplicationController
    @allowance = Allowance.new
   #redirect_to employee_salary_path(@employee, @salary)
  end
- 
+                  
 	
  def show
   # for displaying/showing a respective record(s)
