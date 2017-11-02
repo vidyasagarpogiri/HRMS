@@ -36,7 +36,7 @@ class AllowancesController < ApplicationController
  def edit
   @employee= Employee.find(params[:employee_id])
   @salary = Salary.find(params[:salary_id])
-  @allowance = Allowance.find(params[:id])                                      
+  @allowance = Allowance.find(params[:id])                                                
  end
 	
  def update
