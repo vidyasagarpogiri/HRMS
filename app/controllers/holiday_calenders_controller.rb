@@ -36,8 +36,8 @@ def index
     end
     
     def update         
-     # raise params.inspect                       
-      @group = Group.find(params[:group_id])   
+     # raise params.inspect                            
+      @group = Group.find(params[:group_id])    
       @holiday_calender = HolidayCalender.find(params[:id])
       #raise params.inspect
       params_with_group = params_calender.merge(group_id: params[:group_id])
