@@ -32,7 +32,7 @@ class EducationsController < ApplicationController
   def show
     # show method
   end 
-                 
+                           
   def edit 
     # raise params.inspect                                         
     @employee = Employee.find(params[:employee_id])             
