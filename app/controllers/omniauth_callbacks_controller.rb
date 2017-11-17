@@ -11,7 +11,7 @@ class OmniauthCallbacksController < ApplicationController
       @user1.save!
       @user = @user1
     end          
-    
+                                 
     if request.env["omniauth.auth"]["extra"]["raw_info"]["hd"] == "amzur.com"
       if @user.persisted?
       
