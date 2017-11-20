@@ -34,7 +34,7 @@ class EducationsController < ApplicationController
   end 
                            
   def edit                         
-    # raise params.inspect                                                      
+    # raise params.inspect                                                                 
     @employee = Employee.find(params[:employee_id])             
     @education = Education.find(params[:id])                                            
   end                
