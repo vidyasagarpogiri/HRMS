@@ -37,7 +37,7 @@ class EducationsController < ApplicationController
     # raise params.inspect                                         
     @employee = Employee.find(params[:employee_id])             
     @education = Education.find(params[:id])                                            
-  end
+  end                
   
   def update 
     @employee = Employee.find(params[:employee_id])
