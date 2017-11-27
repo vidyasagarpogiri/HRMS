@@ -32,7 +32,7 @@ class DepartmentsController < ApplicationController
   def edit     
     @department = Department.find(params[:id])        
   end
-                    
+                                     
   def destroy
     @department = Department.find(params[:id])
     @department.destroy                           
