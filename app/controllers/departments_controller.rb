@@ -4,7 +4,7 @@ class DepartmentsController < ApplicationController
  
   def index
     @departments = Department.all
-  end               
+  end                         
                   
   def new
     @department = Department.new    
