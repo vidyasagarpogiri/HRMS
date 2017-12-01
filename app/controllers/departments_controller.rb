@@ -6,7 +6,7 @@ class DepartmentsController < ApplicationController
     @departments = Department.all
   end                                    
                   
-  def new
+  def new      
     @department = Department.new    
   end                                       
 
