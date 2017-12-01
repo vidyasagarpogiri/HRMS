@@ -4,7 +4,7 @@ class DepartmentsController < ApplicationController
  
   def index
     @departments = Department.all
-  end                                    
+  end                                         
                   
   def new      
     @department = Department.new    
@@ -57,7 +57,7 @@ class DepartmentsController < ApplicationController
     @employees = @department.employees
     @leave_policy = @department.leave_policy
     @holiday_calenders = @department.holiday_calenders
-   end 
+   end
 	
    def department_index
      @departments = Department.all
@@ -87,4 +87,4 @@ class DepartmentsController < ApplicationController
     params.require(:department).permit(:department_name) 
   end    
 	
-end
+end              
