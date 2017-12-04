@@ -2,9 +2,9 @@ class AddressesController < ApplicationController
   
   layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]
   before_filter :hr_view,  only: ["new", "edit"]               
-  before_filter :other_emp_view
+  before_filter :other_emp_view 
   
-  def index                                         
+  def index                                                            
     @employee = Employee.find(params[:employee_id])
     @address1 = @employee.addresses.where(:address_type=>0).first
     @address2 = @employee.addresses.where(:address_type=>1).first
