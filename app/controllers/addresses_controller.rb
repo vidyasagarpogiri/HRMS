@@ -29,7 +29,7 @@ class AddressesController < ApplicationController
   def show
    #raise params.inspect 
   end
-  
+                  
   def edit
     @employee = Employee.find(params[:employee_id])
     @address = Address.find(params[:id])
