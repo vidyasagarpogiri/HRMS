@@ -31,10 +31,10 @@ class AddressesController < ApplicationController
   end
                   
   def edit
-    @employee = Employee.find(params[:employee_id])
+    @employee = Employee.find(params[:employee_id])                      
     @address = Address.find(params[:id])
   end
-  
+               
   def update
     @employee = Employee.find(params[:employee_id])             
     @address = Address.find(params[:id])                         
