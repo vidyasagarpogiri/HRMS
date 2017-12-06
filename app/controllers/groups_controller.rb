@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
      @leave_policy = @group.leave_policy
      @holiday_calenders = @group.holiday_calenders                      
   end
-  
+                         
   def edit
      @group = Group.find(params[:id])
      @reporting_manager = ReportingManager.find_by(@group.id)
