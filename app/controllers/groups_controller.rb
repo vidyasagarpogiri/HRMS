@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
      @group = Group.find(params[:id])
      @employee = @group.reporting_manager.employee
      @leave_policy = @group.leave_policy
-     @holiday_calenders = @group.holiday_calenders
+     @holiday_calenders = @group.holiday_calenders                      
   end
   
   def edit
