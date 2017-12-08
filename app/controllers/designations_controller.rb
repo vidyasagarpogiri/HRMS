@@ -3,7 +3,7 @@ class DesignationsController < ApplicationController
   def index
     @designations = Designation.all.page(params[:page]).per(4)
   end
-            
+             
   def new                                                  
     @designation = Designation.new                                
   end                  
@@ -36,7 +36,7 @@ class DesignationsController < ApplicationController
     redirect_to @designation
   end
                                           
-  def add_employee                                                                                       
+  def add_employee                                                                                        
     @designation = Designation.find(params[:id])                                                       
     @employee = Employee.all
   end   
