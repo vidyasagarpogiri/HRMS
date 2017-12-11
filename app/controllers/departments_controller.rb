@@ -9,12 +9,12 @@ class DepartmentsController < ApplicationController
   def new      
     @department = Department.new    
   end                                       
-
+ 
   def create
     @department = Department.create(department_params)
     redirect_to @department
   end   
-                                             
+                                                               
   def show                                               
     @department = Department.find(params[:id])
     @employees = @department.employees
