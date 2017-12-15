@@ -33,7 +33,7 @@ layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :upda
 		@status = FfStatus.find(params[:id])
 		@employee = Employee.find(params[:employee_id])
 		                       
-	end	                
+	end	                             
 	              
 	def edit                                                                     
 		#raise params.inspect                                    
