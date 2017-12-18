@@ -36,7 +36,7 @@ def index
     end                     
     
     def update                        
-     # raise params.inspect                            
+     # raise params.inspect                                             
       @group = Group.find(params[:group_id])    
       @holiday_calender = HolidayCalender.find(params[:id])
       #raise params.inspect
