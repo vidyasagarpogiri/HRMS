@@ -28,7 +28,7 @@ class DesignationsController < ApplicationController
                                                                              
   def edit     
     @designation = Designation.find(params[:id])        
-  end                              
+  end                                                    
         
   def destroy
     @designation = Designation.find(params[:id])            
@@ -47,7 +47,7 @@ class DesignationsController < ApplicationController
     @employee.update(:designation_id => @designation.id)
     redirect_to @designation
    end   
-	
+	              
   private
   def designation_params
     params.require(:designation).permit(:designation_name, :email) 
