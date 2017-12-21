@@ -37,7 +37,7 @@ class DesignationsController < ApplicationController
   end                            
                                                        
   def add_employee                                                                                              
-    @designation = Designation.find(params[:id])                                                                    
+    @designation = Designation.find(params[:id])                                                                             
     @employee = Employee.all
   end   
    
