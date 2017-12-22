@@ -36,7 +36,7 @@ class GradesController < ApplicationController
      @grade = Grade.find(params[:id])
      @grade.destroy                       
      redirect_to @grade                 
-  end                                                                      
+  end                                                                                      
 	                       
    def add_employee
     @grade = Grade.find(params[:id])
