@@ -5,8 +5,8 @@ class DesignationsController < ApplicationController
   end
                                              
   def new                                                                  
-    @designation = Designation.new                                                 
-  end                  
+    @designation = Designation.new                                                  
+  end                                       
 
   def create
     @department = Department.find(params[:designation][:department_id])
