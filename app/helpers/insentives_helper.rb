@@ -1,2 +1,2 @@
-module InsentivesHelper             
+module InsentivesHelper                      
 end
