@@ -4,8 +4,8 @@ class GradesController < ApplicationController
   before_filter :other_emp_view                                           
 	                     
   def index                                                
-    @grades = Grade.all                                    
-  end                                                  
+    @grades = Grade.all                                     
+  end                                                                     
                                                                     
   def new                         
     @grade = Grade.new
