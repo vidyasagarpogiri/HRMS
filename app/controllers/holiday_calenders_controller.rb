@@ -1,7 +1,7 @@
 class HolidayCalendersController < ApplicationController
   before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view
-  layout "leave_template"             
+  layout "leave_template"                                        
                                                                                      
 def index                               
    @department = Group.find(params[:department_id])
@@ -19,7 +19,7 @@ def index
       #TODO              
       @department.holiday_calenders.destroy_all
       params[:event_ids].each do |event|
-      if params[:mandatory].include?(event)
+      if params[:mandatory].include?(event) 
       # raise params[:mandatory].inspect                 
         @holiday_calender = HolidayCalender.create(department_id: @department.id, event_id: event, mandatory_or_optional: true)
       else
