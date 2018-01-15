@@ -35,3 +35,4 @@ end
     @leave_history.update(:days => applied_days)                                                                                                                                                                                  
     
                               
+                
