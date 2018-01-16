@@ -5,7 +5,7 @@ class EmployeesController < ApplicationController
 	  #before_filter :other_emp_view, :except => [:index, :profile]
 
 	  #before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]	
-
+                              
                
   def index
     @employees =  Employee.all.page(params[:page]).per(6)
@@ -36,7 +36,7 @@ class EmployeesController < ApplicationController
         @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name 
       end
     end
-  end           
+  end                
 
   def profile
      @employee = Employee.find(params[:id])
