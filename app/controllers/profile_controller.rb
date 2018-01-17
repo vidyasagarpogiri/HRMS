@@ -14,6 +14,7 @@ class ProfileController < ApplicationController
   end
 
 end                      
-                       
+                                         
           
  
+       
