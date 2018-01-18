@@ -33,7 +33,7 @@ class InsentivesController < ApplicationController
   # raise params.inspect 
  end                                                 
                                                                                                                                                                                           
- def edit                                                    
+ def edit                                                                    
   @employee= Employee.find(params[:employee_id])                            
   @salary = Salary.find(params[:salary_id])          
   @insentive = Insentive.find(params[:id])                                                                                                                                                                             
