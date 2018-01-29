@@ -32,7 +32,7 @@ end
     @promotion = Promotion.find(params[:id])
   end               
              
-  def update
+  def update                      
     # raise params.inspect                                             
     @employee = Employee.find(params[:employee_id])                                                                                                                       
     @promotion = Promotion.find(params[:id])
