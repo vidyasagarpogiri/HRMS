@@ -28,7 +28,7 @@ class OmniauthCallbacksController < ApplicationController
       flash[:notice]= "Not an amzur mail"
       redirect_to root_path
     end
-  end
+  end                   
   alias_method :google_oauth2, :all
                 
                                                         
