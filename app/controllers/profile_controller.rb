@@ -3,8 +3,8 @@ class ProfileController < ApplicationController
   layout "emp_profile_template"                
                                                                                  
   before_filter :hr_view, :only => [ :edit]                            
-                                                              
-  def edit                                                                                                                                                
+                                                               
+  def edit                                                                                                                                                              
     if params[:id].present?                                                                       
       @employee = Employee.find(params[:id])        
     else
