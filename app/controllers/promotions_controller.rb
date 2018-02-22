@@ -34,7 +34,7 @@ end
               
   def update                                                                                   
     # raise params.inspect                                                                                             
-    @employee = Employee.find(params[:employee_id])                                                                                                                                                                                                                                                                   
+    @employee = Employee.find(params[:employee_id])                                                                                                                                                                                                                                                                                            
     @promotion = Promotion.find(params[:id])                                                                       
     if @promotion.update(:date_of_promotion=> params[:promotion][:date_of_promotion], :designation_id=>params[:promotion][:designation_id] )
     redirect_to employee_promotions_path
