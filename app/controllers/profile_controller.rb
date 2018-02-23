@@ -8,7 +8,7 @@ class ProfileController < ApplicationController
     if params[:id].present?                                                                       
       @employee = Employee.find(params[:id])        
     else
-      @employee = Employee.new              
+      @employee = Employee.new                                 
     end               
     @address = Address.new
   end
