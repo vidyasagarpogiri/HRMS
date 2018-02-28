@@ -33,7 +33,7 @@ class DepartmentsController < ApplicationController
     @department = Department.find(params[:id])        
   end
                                      
-  def destroy
+  def destroy             
     @department = Department.find(params[:id])
     @department.destroy                                                             
     redirect_to @department                                                                                                                                                 
