@@ -4,7 +4,7 @@ class DepartmentsController < ApplicationController
                    
   def index
     @departments = Department.all                 
-  end                                                         
+  end                                                                                    
                                        
   def new      
     @department = Department.new    
@@ -35,7 +35,7 @@ class DepartmentsController < ApplicationController
                                      
   def destroy
     @department = Department.find(params[:id])
-    @department.destroy                                                   
+    @department.destroy                                                             
     redirect_to @department                                                                                                                                                 
   end                                                  
 	
