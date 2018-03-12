@@ -40,4 +40,4 @@ class LeavePoliciesController < ApplicationController
     params.require(:leave_policy).permit(:pl_this_year, :sl_this_year, :eligible_carry_forward_leaves)
   end
          
-end
+end              
