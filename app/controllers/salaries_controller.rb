@@ -3,7 +3,7 @@ class SalariesController < ApplicationController
    include ApplicationHelper                                           
    layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update, :configure_allowance]
 
-   before_filter :hr_view,  only: ["new", "edit"]
+   before_filter :hr_view,  only: ["new", "edit"]                     
    before_filter :other_emp_view                             
                          
   def new                                                                                                    
