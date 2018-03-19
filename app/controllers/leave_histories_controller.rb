@@ -13,7 +13,7 @@ def index
   @leave_histories = current_user.employee.leave_histories.where("status != ?", "HOLD" ).page(params[:page]).per(4)
   @employee = current_user.employee
 end                   
-
+                       
   def new
    @employee = current_user.employee
    @leave_history = LeaveHistory.new
