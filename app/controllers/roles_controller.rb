@@ -32,11 +32,11 @@ class RolesController < ApplicationController
   end
   
   def destroy
-    @role = Role.find(params[:id])
+    @role = Role.find(params[:id])                        
     @role.destroy
     redirect_to @role                
   end                                                                        
-	                                                                                                                                                  
+	                                                                                                                                                                 
    def add_employee       
     @role = Role.find(params[:id])
     @employee = Employee.all
