@@ -2,7 +2,7 @@ class InsentivesController < ApplicationController
 	
   before_filter :hr_view,  only: ["new", "edit"]                                
                                                             
-  before_filter :other_emp_view                         
+  before_filter :other_emp_view                                        
                                                          
  def index                                                                                                              
   #raise params.inspect                                          
@@ -16,7 +16,7 @@ class InsentivesController < ApplicationController
    @salary = Salary.find(params[:salary_id])
    @insentive = Insentive.new
  end
- 
+                
  def create
  #raise params.inspect
   @form_type = params[:commit]
