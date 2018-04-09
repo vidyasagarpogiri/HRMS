@@ -11,6 +11,6 @@ class ProfileController < ApplicationController
       @employee = Employee.new                                 
     end               
     @address = Address.new
-  end                 
-                                                
+  end                                                        
 end                                                                                 
+                 
