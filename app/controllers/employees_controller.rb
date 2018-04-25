@@ -29,7 +29,7 @@ class EmployeesController < ApplicationController
                         
   end
 
-  def show
+  def show                  
     @employee = Employee.find(params[:id])
     if @employee.reporting_managers.first.present? &&  @employee.reporting_managers.first.manager_id.present? 
       unless @employee.reporting_managers.first.manager_id == 0 
