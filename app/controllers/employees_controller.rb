@@ -36,7 +36,7 @@ class EmployeesController < ApplicationController
         @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name 
       end                    
     end     
-  end                
+  end                                    
 
   def profile
      @employee = Employee.find(params[:id])
