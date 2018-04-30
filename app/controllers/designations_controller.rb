@@ -31,7 +31,7 @@ class DesignationsController < ApplicationController
   end                                                    
         
   def destroy
-    @designation = Designation.find(params[:id])            
+    @designation = Designation.find(params[:id])                              
     @designation.destroy                       
     redirect_to @designation                                  
   end                                                                                                                                                
