@@ -33,7 +33,7 @@ class DesignationsController < ApplicationController
   def destroy
     @designation = Designation.find(params[:id])                              
     @designation.destroy                       
-    redirect_to @designation                                  
+    redirect_to @designation                                             
   end                                                                                                                                                
                                                                                                                                                                             
   def add_employee                                                                                                                 
