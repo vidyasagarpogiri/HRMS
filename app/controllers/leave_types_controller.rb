@@ -48,4 +48,4 @@ class LeaveTypesController < ApplicationController
     params.require(:leave_type).permit(:type_name)
   end
   
-end
+end             
