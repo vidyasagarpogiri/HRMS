@@ -4,7 +4,7 @@ class FfStatusesController < ApplicationController
   before_filter :other_emp_view                                                                            
                                  
 layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update
-                                          
+                                                       
   def index                                      
      @employee = Employee.find(params[:employee_id])              
      @status = @employee.ff_status
