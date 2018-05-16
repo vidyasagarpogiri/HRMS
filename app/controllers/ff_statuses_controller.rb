@@ -9,7 +9,7 @@ layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :upda
      @employee = Employee.find(params[:employee_id])              
      @status = @employee.ff_status
     # raise @statuses.inspect                           
-  end
+  end                      
 	def new
 		@employee = Employee.find(params[:employee_id])
 		@status = FfStatus.new
