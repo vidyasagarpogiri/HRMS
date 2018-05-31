@@ -7,7 +7,7 @@ class PromotionsController < ApplicationController
  def index                                                                                                   
   @employee = Employee.find(params[:employee_id])                                   
   @promotions = @employee.promotions                                                                             
- end      
+ end         
 	               
   def new
     @promotion = Promotion.new
@@ -33,7 +33,7 @@ end
   end               
               
   def update                                                                                   
-    # raise params.inspect                                                                                                                                                                                                                
+    # raise params.inspect                                                                                                                                                                                                                                               
     @employee = Employee.find(params[:employee_id])                                                                                                                                                                                                                                                                                                                                                                                                                     
     @promotion = Promotion.find(params[:id])                                                                       
     if @promotion.update(:date_of_promotion=> params[:promotion][:date_of_promotion], :designation_id=>params[:promotion][:designation_id] )
