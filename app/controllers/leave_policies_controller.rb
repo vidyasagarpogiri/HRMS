@@ -35,8 +35,8 @@ class LeavePoliciesController < ApplicationController
   redirect_to leaves_department_path(@department)                                                                     
  end                                      
                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
- def params_leavepolicy                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+ def params_leavepolicy                                                                                                                                                                                                                  
     params.require(:leave_policy).permit(:pl_this_year, :sl_this_year, :eligible_carry_forward_leaves)
   end
          
