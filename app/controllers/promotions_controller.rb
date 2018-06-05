@@ -1,6 +1,6 @@
 class PromotionsController < ApplicationController
                          
- before_filter :hr_view, :only => [:create, :new, :edit, :update]	                   
+ before_filter :hr_view, :only => [:create, :new, :edit, :update]	                    
  before_filter :other_emp_view        
  layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]                                 
 
@@ -8,7 +8,7 @@ class PromotionsController < ApplicationController
   @employee = Employee.find(params[:employee_id])                                   
   @promotions = @employee.promotions                                                                             
  end         
-	               
+	                                  
   def new
     @promotion = Promotion.new
     @employee = Employee.find(params[:employee_id])
