@@ -33,7 +33,4 @@ end
     #--TODO----- leave balance alert before save                                                                                                     
     @leave_history.save                                                                                                                                                   
     @leave_history.update(:days => applied_days)                                                                                                                                                                                                                                                                                                                                                  
-                                                                              
-                                                                                                                                                                                                                           
-                                                                                                                                          
-                                          
+      
