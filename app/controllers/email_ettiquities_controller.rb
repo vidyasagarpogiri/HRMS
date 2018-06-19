@@ -4,7 +4,7 @@ class EmailEttiquitiesController < ApplicationController
 
   before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view               
-	
+	               
 def index                        
 # raise params.inspect
  @employee = Employee.find(params[:employee_id])
