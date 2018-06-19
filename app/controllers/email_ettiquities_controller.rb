@@ -3,7 +3,7 @@ class EmailEttiquitiesController < ApplicationController
    layout "emp_profile_template", only: [:index, :new, :create, :show]
 
   before_filter :hr_view,  only: ["new", "edit"]
-  before_filter :other_emp_view                              
+  before_filter :other_emp_view                                           
 	               
 def index                        
 # raise params.inspect
