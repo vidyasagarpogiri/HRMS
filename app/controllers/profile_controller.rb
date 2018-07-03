@@ -9,7 +9,7 @@ class ProfileController < ApplicationController
       @employee = Employee.find(params[:id])                                                 
     else                                      
       @employee = Employee.new                                 
-    end                                                 
+    end                                                               
     @address = Address.new
   end                                                        
 end     
