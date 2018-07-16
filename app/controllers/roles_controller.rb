@@ -7,7 +7,7 @@ class RolesController < ApplicationController
     @roles = Role.all                                                          
   end                                         
                                       
-  def new                   
+  def new                                        
     @role = Role.new          
   end                         
 
