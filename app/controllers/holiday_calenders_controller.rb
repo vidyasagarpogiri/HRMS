@@ -2,10 +2,10 @@ class HolidayCalendersController < ApplicationController
   before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view
   layout "leave_template"                                                                   
-                                                                                                                     
+                                                                                                                         
 def index                                  
    @department = Group.find(params[:department_id])            
-   @holiday_calenders =@department.holiday_calenders
+   @holiday_calenders =@department.holiday_calenders          
  end              
                              
   def new
