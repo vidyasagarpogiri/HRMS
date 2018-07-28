@@ -1,1 +1,10 @@
 This is a HRMS (internal) Application 
+
+
+text to speech
+
+https://www.youtube.com/watch?v=iWk8okXM54E
+
+http://java-buddy.blogspot.com/2014/09/javafx-with-text-to-speech-with-java.html
+
+https://www.youtube.com/watch?v=9xeIEcr7lqs
