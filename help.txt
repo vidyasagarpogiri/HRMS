@@ -5,6 +5,17 @@ text to speech
 
 https://www.youtube.com/watch?v=iWk8okXM54E
 
+https://code.google.com/archive/p/java-google-translate-text-to-speech/downloads
+
 http://java-buddy.blogspot.com/2014/09/javafx-with-text-to-speech-with-java.html
 
 https://www.youtube.com/watch?v=9xeIEcr7lqs
+
+https://www.youtube.com/watch?v=HzpY-uKF4d0
+
+https://www.youtube.com/watch?v=okLA1tNbNiU
+
+https://www.geeksforgeeks.org/converting-text-speech-java/
+
+
+https://www.youtube.com/watch?v=ccOzjwyPb8Y
