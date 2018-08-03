@@ -4,7 +4,7 @@ class PromotionsController < ApplicationController
  before_filter :other_emp_view                                         
  layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]                                 
                                                                
- def index                                                                                                                             
+ def index                                                                                                                                           
   @employee = Employee.find(params[:employee_id])                                               
   @promotions = @employee.promotions                                                                                             
  end                         
