@@ -3,10 +3,10 @@ class GroupsController < ApplicationController
   layout "leave_template"                                                                                                                                                                 
                                                                    
   before_filter :hr_view,  only: ["new", "edit"]
-  before_filter :other_emp_view                                           
+  before_filter :other_emp_view                                                       
                                                                                         
   def index
-    @groups = Group.all
+    @groups = Group.all          
   end
   
   def new 
