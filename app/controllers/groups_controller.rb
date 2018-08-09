@@ -35,5 +35,5 @@ class GroupsController < ApplicationController
      @reporting_manager = ReportingManager.find_by
   end          
            
-                                                                                  
+                                                                                                                   
      
