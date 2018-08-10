@@ -5,7 +5,7 @@ class SalaryIncrementsController < ApplicationController
   
   def index
   @salary = Salary.find(params[:salary_id])     
-  @salary_increment = @salary.salary_increments    
+  @salary_increment = @salary.salary_increments                 
   end
   
   def new
