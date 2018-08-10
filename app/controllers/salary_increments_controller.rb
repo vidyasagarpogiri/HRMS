@@ -31,7 +31,7 @@ class SalaryIncrementsController < ApplicationController
     @salary_increment = SalaryIncrement.find(params[:id])
   end
   
-  def update                     
+  def update                                  
     @employee= Employee.find(params[:employee_id])
     @salary = Salary.find(params[:salary_id])
     @salary_increment = SalaryIncrement.find(params[:id])       
