@@ -3,3 +3,4 @@ class EducationQualification < ActiveRecord::Base
   belongs_to :qualification
 end      
       
+    
