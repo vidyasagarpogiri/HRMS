@@ -31,7 +31,7 @@ end
   end
   
   def edit
-  end                     
+  end                        
                                                                                                              
 def destroy                                  
  @employee = Employee.find(params[:employee_id])
