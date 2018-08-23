@@ -5,7 +5,7 @@ class Education < ActiveRecord::Base
   has_many :qualifications, through: :education_qualifications
   has_many :education_qualifications    
        
-  validates :specilization, presence: true                        
+  validates :specilization, presence: true                              
   validates :institute, presence: true
   validates :year_of_pass, presence: true
   validates :cgpa_percentage, presence: true	
