@@ -29,7 +29,7 @@ end
   def show
     @email= EmailEttiquitie.find(params[:id])
   end
-  
+      
   def edit
   end                        
                                                                                                              
