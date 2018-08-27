@@ -1,5 +1,5 @@
     class EducationsController < ApplicationController               
-                                        
+                                             
  # helper class included                                                                                          
  include EducationsHelper                                                                                                                                                                                                                            
                                                                                                                                              
