@@ -1,7 +1,7 @@
     class EducationsController < ApplicationController               
                                         
  # helper class included                                                                                          
- include EducationsHelper                                                                                                                                                                                                                         
+ include EducationsHelper                                                                                                                                                                                                                            
                                                                                                                                              
    layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]    
    before_filter :hr_view,  only: ["new", "edit"]               
@@ -29,7 +29,7 @@
     #EducationQualification.create(:qualification_id => @qualification_id, :education_id => @education.id)
   end
      
-  def show
+  def show   
     # show method                 
   end                         
                                                
