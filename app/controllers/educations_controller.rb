@@ -1,6 +1,6 @@
  class EducationsController < ApplicationController               
                                              
- # helper class included                                                                                          
+ # helper class included                                                                                              
  include EducationsHelper                                                                                                                                                                                                                            
                                                                                                                                              
    layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]       
