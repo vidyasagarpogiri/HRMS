@@ -1,4 +1,4 @@
-    class EducationsController < ApplicationController               
+ class EducationsController < ApplicationController               
                                              
  # helper class included                                                                                          
  include EducationsHelper                                                                                                                                                                                                                            
@@ -22,7 +22,7 @@
     @errors = @new_education.errors.full_messages
     # raise @errors.inspect     
     #for new form              
-    @employee = Employee.find(params[:employee_id])
+    @employee = Employee.find(params[:employee_id])    
     @education = Education.new
     @list =  Education.where(:Employee_id => params[:employee_id])
     @form_type = params[:commit]
