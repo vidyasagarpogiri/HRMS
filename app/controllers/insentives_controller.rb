@@ -31,7 +31,7 @@ class InsentivesController < ApplicationController
                               
  def show                                     
   # raise params.inspect 
- end                                                                                    
+ end                                                                                         
                                                                                                                                                                                                                                        
  def edit                                                                                                                                                                                          
   @employee= Employee.find(params[:employee_id])                                                                             
