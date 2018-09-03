@@ -30,7 +30,7 @@ class LeaveTypesController < ApplicationController
     @leave_type.update(parama_leave_types)
     redirect_to leave_types_path            
   end                                           
-                                 
+                                     
   def show               
     # raise params.inspect                                                                                                                                 
   end                                                                        
