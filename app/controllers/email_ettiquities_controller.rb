@@ -6,7 +6,7 @@ class EmailEttiquitiesController < ApplicationController
   before_filter :other_emp_view                                               
 	                   
 def index                                     
-# raise params.inspect
+# raise params.inspect    
  @employee = Employee.find(params[:employee_id])   
  @emails = @employee.email_ettiquities    
 end
