@@ -30,7 +30,7 @@ end
     @email= EmailEttiquitie.find(params[:id])
   end
       
-  def edit
+  def edit    
   end                        
                                                                                                              
 def destroy                                  
