@@ -28,7 +28,7 @@ class LeavePoliciesController < ApplicationController
   @leave_policy = @department.leave_policy
  end  
               
- def update
+ def update                             
   @department = Department.find(params[:department_id])             
   @leave_policy = @department.leave_policy                
   @leave_policy.update(params_leavepolicy)                             
