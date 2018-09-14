@@ -25,7 +25,7 @@ end
                                     
   def create                                               
     #raise params.inspect
-    @employee = current_user.employee
+    @employee = current_user.employee                  
     @leave_history = current_user.employee.leave_histories.new(params_leave_history)
     total_days = (@leave_history.to_date.to_date - @leave_history.from_date.to_date).to_i + 1
     weekend_count = weekends(@leave_history.to_date.to_date,  @leave_history.from_date.to_date)  
