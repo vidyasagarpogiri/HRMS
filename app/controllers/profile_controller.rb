@@ -13,4 +13,4 @@ class ProfileController < ApplicationController
     @address = Address.new
   end                                                        
 end
-              
+        
