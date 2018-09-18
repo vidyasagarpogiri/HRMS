@@ -4,7 +4,7 @@ class ProfileController < ApplicationController
                                                                                                                                                                                                                      
   before_filter :hr_view, :only => [ :edit]                                                                                  
                                                                                                                                                                                                 
-  def edit                                                                                                                                                                                                                                                               
+  def edit                                                                                                                                                                                                                                                                                
     if params[:id].present?                                                                                                                                             
       @employee = Employee.find(params[:id])                                                 
     else                                      
@@ -13,6 +13,3 @@ class ProfileController < ApplicationController
     @address = Address.new
   end                                                        
 end
-   
-  
-     
