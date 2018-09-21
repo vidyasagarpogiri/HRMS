@@ -32,8 +32,8 @@ class LeaveTypesController < ApplicationController
   end                                                         
                                      
   def show                            
-    # raise params.inspect                                                                                                                                                         
-  end                                                                        
+    # raise params.inspect                                                                                                                                                                           
+  end          
                                                                                                                                                                                                                                                                                                   
  def destroy                                                                                                                                                                                                                                                                                                                                                          
     #raise params.inspect                                                                                        
