@@ -33,7 +33,7 @@ class SalariesController < ApplicationController
     @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
     @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => @salary.basic)
     redirect_to  employee_salary_path(@employee, @salary) 
-  end                                                  
+  end                                                                
                                                                                                               
   def edit                                                                                                   
     @employee = Employee.find(params[:employee_id])                                                                                                                                                                                                                                                                                                               
