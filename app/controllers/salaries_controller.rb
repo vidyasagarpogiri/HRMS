@@ -34,7 +34,7 @@ class SalariesController < ApplicationController
     @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => @salary.basic)
     redirect_to  employee_salary_path(@employee, @salary) 
   end                                                  
-                                                                                                 
+                                                                                                              
   def edit                                                                                                   
     @employee = Employee.find(params[:employee_id])                                                                                                                                                                                                                                                                                                               
     @salary = Salary.find(params[:id])
