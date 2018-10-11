@@ -26,7 +26,3 @@ class LeavesController < ApplicationController
   end
                                                                              
 end 
-     
-                       
-              
-              
