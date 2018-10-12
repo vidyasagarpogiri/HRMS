@@ -9,7 +9,7 @@ class LeaveTypesController < ApplicationController
   end                                                   
     
   def new                   
-    @leave_type = LeaveType.new                          
+    @leave_type = LeaveType.new                                         
   end                                
   
   def create 
