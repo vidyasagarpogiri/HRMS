@@ -35,7 +35,7 @@ end
                                                                                                              
 def destroy                                           
  @employee = Employee.find(params[:employee_id])      
- @email= EmailEttiquitie.find(params[:id])   
+ @email= EmailEttiquitie.find(params[:id])       
  @email.destroy       
 	redirect_to employee_email_ettiquities_path(@employee.id)
 end
