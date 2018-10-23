@@ -35,7 +35,7 @@ class ExperiencesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @experience = Experience.find(params[:id])
   end                                                                       
-                                                                                                                                     
+                                                                                                                                                          
   def update                     
     #raise params.inspect
     @employee = Employee.find(params[:employee_id])
