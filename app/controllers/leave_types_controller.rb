@@ -32,11 +32,11 @@ class LeaveTypesController < ApplicationController
   end                                                                           
                                      
   def show                                                                              
-    # raise params.inspect                                                                                                                                                                           
+    # raise params.inspect                                                                                                                                                                               
   end          
                                                                                                                                                                                                                                                                                                                      
  def destroy                                                                                                                                                                                                                                                                                                                                                            
-    #raise params.inspect                                                                                            
+    #raise params.inspect                                                                                               
     @leave_type = LeaveType.find(params[:id])                         
     @leave_type.destroy
     redirect_to leave_types_path
