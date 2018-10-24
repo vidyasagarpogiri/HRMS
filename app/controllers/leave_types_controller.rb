@@ -47,5 +47,5 @@ class LeaveTypesController < ApplicationController
   def parama_leave_types
     params.require(:leave_type).permit(:type_name)
   end
-  
+                 
 end             
