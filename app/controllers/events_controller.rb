@@ -33,7 +33,7 @@ class EventsController < ApplicationController
     end
   end
                      
-  def update
+  def update             
    #raise params.inspect
    @event = Event.find(params[:id])
    @event.update(event_params)                             
