@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   
-  layout "leave_template" 
+  layout "leave_template"     
   before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view            
              
@@ -32,8 +32,7 @@ class EventsController < ApplicationController
      render "new"
     end
   end
-
-  
+                     
   def update
    #raise params.inspect
    @event = Event.find(params[:id])
