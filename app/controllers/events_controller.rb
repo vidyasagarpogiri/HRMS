@@ -37,7 +37,7 @@ class EventsController < ApplicationController
    #raise params.inspect
    @event = Event.find(params[:id])
    @event.update(event_params)
-                 
+                             
    redirect_to events_path
   end
 
