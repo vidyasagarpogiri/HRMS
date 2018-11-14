@@ -8,7 +8,7 @@ class GradesController < ApplicationController
   end                                                                                                                                  
                                                                                        
   def new                                            
-    @grade = Grade.new                 
+    @grade = Grade.new                                
   end
 
   def create
