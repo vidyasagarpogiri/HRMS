@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
                                                                                         
   def index
     @groups = Group.all                           
-  end               
+  end                       
   
   def new 
     @group = Group.new
@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
   end
  
   def create
-    @employee = Employee.find(params[:emp_id]) 
+    @employee = Employee.find(params[:emp_id])      
     @group = Group.create(group_params)
     @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :group_id => @group.id)
     redirect_to  @group
