@@ -10,7 +10,7 @@ class LeaveTypesController < ApplicationController
     
   def new                       
     @leave_type = LeaveType.new                                         
-  end                                
+  end                                                              
       
   def create 
   # raise params.inspect
@@ -35,7 +35,7 @@ class LeaveTypesController < ApplicationController
     # raise params.inspect                                                                                                                                                                               
   end          
                                                                                                                                                                                                                                                                                                                      
- def destroy                                                                                                                                                                                                                                                                                                                                                            
+ def destroy                                                                                                                                                                                                                                                                                                                                                                           
     #raise params.inspect                                                                                                                
     @leave_type = LeaveType.find(params[:id])                         
     @leave_type.destroy
