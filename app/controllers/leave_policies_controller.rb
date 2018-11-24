@@ -29,7 +29,7 @@ class LeavePoliciesController < ApplicationController
  end      
               
  def update                             
-  @department = Department.find(params[:department_id])                             
+  @department = Department.find(params[:department_id])                                  
   @leave_policy = @department.leave_policy                                        
   @leave_policy.update(params_leavepolicy)                                                                                                                                         
   redirect_to leaves_department_path(@department)                                                                                                                                                                   
