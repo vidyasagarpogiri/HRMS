@@ -1,11 +1,11 @@
  class EducationsController < ApplicationController               
                                              
  # helper class included                                                                                                                    
- include EducationsHelper                                                                                                                                                                                                                                                    
+ include EducationsHelper                                                                                                                                                                                                                                                                       
                                                                                                                                                                   
    layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]                    
    before_filter :hr_view,  only: ["new", "edit"]                                              
-   before_filter :other_emp_view                                    
+   before_filter :other_emp_view                                        
                     
   def index         
     @employee = Employee.find(params[:employee_id])     
