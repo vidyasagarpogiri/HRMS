@@ -6,8 +6,8 @@ class PromotionsController < ApplicationController
                                                                                             
  def index                                                                                                                                           
   @employee = Employee.find(params[:employee_id])                                                                 
-  @promotions = @employee.promotions                                                                                                                        
- end                             
+  @promotions = @employee.promotions                                                                                                                                                       
+ end                                                
 	                                      
   def new
     @promotion = Promotion.new
