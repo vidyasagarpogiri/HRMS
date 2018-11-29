@@ -1,5 +1,5 @@
 class PromotionsController < ApplicationController
-                         
+                                           
  before_filter :hr_view, :only => [:create, :new, :edit, :update]	                                                              
  before_filter :other_emp_view                                                         
  layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]                                                 
