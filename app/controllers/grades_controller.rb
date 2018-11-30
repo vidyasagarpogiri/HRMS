@@ -5,7 +5,7 @@ class GradesController < ApplicationController
 	                                                                     
   def index                                                                            
     @grades = Grade.all                                                                                                
-  end                                                                                                                                                        
+  end                                                                                                                                                                                  
                                                                                                                                                                                   
   def new                                                          
     @grade = Grade.new                                
