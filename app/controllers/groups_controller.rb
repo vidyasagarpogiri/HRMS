@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
                                                                    
   before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view                                    
-                                                                                                                                           
+                                                                                                                                            
   def index
     @groups = Group.all                                               
   end                                                           
@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
                          
   def edit            
      @group = Group.find(params[:id])                              
-     @reporting_manager = ReportingManager.find_by             
+     @reporting_manager = ReportingManager.find_by                         
   end                                         
                            
                                                                                                                                 
