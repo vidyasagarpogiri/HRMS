@@ -7,7 +7,7 @@ class InsentivesController < ApplicationController
  def index                                                                                                                                                                            
   #raise params.inspect                                          
   @salary = Salary.find(params[:salary_id])                                                                                                              
-  @insentive = @salary.insentives                                                            
+  @insentive = @salary.insentives                                                                 
  end                             
                                  
  def new
@@ -29,7 +29,7 @@ class InsentivesController < ApplicationController
  # redirect_to employee_salary_path(@employee, @salary)
  end                
                               
- def show                                     
+ def show                                                          
   # raise params.inspect                  
  end                                                                                                                     
                                                                                                                                                                                                                                                        
