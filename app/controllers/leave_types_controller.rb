@@ -8,7 +8,7 @@ class LeaveTypesController < ApplicationController
     @leave_types = LeaveType.all                                                                                                    
   end                                                                        
                     
-  def new                                                            
+  def new                                                                  
     @leave_type = LeaveType.new                                                                                                    
   end                                                              
       
@@ -32,7 +32,7 @@ class LeaveTypesController < ApplicationController
   end                                                                           
                                      
   def show                                                                                                       
-    # raise params.inspect                                                                                                                                                                               
+    # raise params.inspect                                                                                                                                                                                                  
   end          
                                                                                                                                                                                                                                                                                                                      
  def destroy                                                                                                                                                                                                                                                                                                                                                                           
