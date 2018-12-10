@@ -6,8 +6,8 @@ class LeavePoliciesController < ApplicationController
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
  def index                                                                                                                                                                                                                                                            
    @department = Department.find(params[:department_id])                                                                                                                                                                                                                                                    
-   @leave_policy = @department.leave_policy                                                                                                         
- end                                                                      
+   @leave_policy = @department.leave_policy                                                                                                                                    
+ end                                                                                                             
                                                                                                                           
  def new                                                                                                 
   @department = Department.find(params[:department_id])                                                                                       
