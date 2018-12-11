@@ -3,7 +3,7 @@ class LeavePoliciesController < ApplicationController
   before_filter :hr_view,  only: ["new", "edit"]                                                
   before_filter :other_emp_view                                          
   layout "leave_template"                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
  def index                                                                                                                                                                                                                                                            
    @department = Department.find(params[:department_id])                                                                                                                                                                                                                                                    
    @leave_policy = @department.leave_policy                                                                                                                                    
@@ -22,7 +22,7 @@ class LeavePoliciesController < ApplicationController
    redirect_to leaves_department_path(@department)
  end                 
 	 
- 
+                     
  def edit               
  @department = Department.find(params[:department_id])
   @leave_policy = @department.leave_policy
