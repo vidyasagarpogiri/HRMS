@@ -5,7 +5,7 @@ class InsentivesController < ApplicationController
   before_filter :other_emp_view                                                            
                                                                                                                                                                                    
  def index                                                                                                                                                                                                                                      
-  #raise params.inspect                                          
+  #raise params.inspect                                                                 
   @salary = Salary.find(params[:salary_id])                                                                                                              
   @insentive = @salary.insentives                                                                 
  end                                                
