@@ -9,7 +9,7 @@ class GradesController < ApplicationController
                                                                                                                                                                                   
   def new                                                                                            
     @grade = Grade.new                                                
-  end
+  end                 
 
   def create
     @designation = Designation.find(params[:grade][:designation_id])
