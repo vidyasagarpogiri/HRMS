@@ -4,8 +4,8 @@ class LeaveHistoriesController < ApplicationController
   #before_filter :other_emp_view                                                                                              
 	                                                                     
   layout "leave_template"                                                                                                                                       
-                                                          
- include ApplicationHelper                                                                                                                                                                                                                                 
+                                                                       
+ include ApplicationHelper                                                                                                                                                                                                                                              
                                                                                           
 def index
   @leave =current_user.employee.department.leave_policy
