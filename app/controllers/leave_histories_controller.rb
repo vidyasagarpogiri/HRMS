@@ -4,7 +4,7 @@ class LeaveHistoriesController < ApplicationController
   #before_filter :other_emp_view                                                                                                                                          
 	                                                                                                     
   layout "leave_template"                                                                                                                                                                            
-                                                                                          
+                                                                                                         
  include ApplicationHelper                                                                                                                                                                                                                                                                 
                                                                                           
 def index
@@ -18,7 +18,7 @@ end
    @employee = current_user.employee
    @leave_history = LeaveHistory.new
   end
-                                 
+                                          
   def show                                            
   #raise params.inspect                                                                   
   end                      
