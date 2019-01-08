@@ -1,4 +1,4 @@
-class LeaveTypesController < ApplicationController
+ class LeaveTypesController < ApplicationController
  
  before_filter :hr_view,  only: ["new", "edit"]                                                                       
  before_filter :other_emp_view                       
@@ -29,7 +29,7 @@ class LeaveTypesController < ApplicationController
     @leave_type = LeaveType.find(params[:id])
     @leave_type.update(parama_leave_types)
     redirect_to leave_types_path            
-  end                                                                           
+  end                                                                                  
                                      
   def show                                                                                                       
     # raise params.inspect                                                                                                                                                                                                                                                                  
