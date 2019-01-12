@@ -1,7 +1,7 @@
 class LeaveHistoriesController < ApplicationController
 	                     
   #before_filter :hr_view,  only: ["new", "edit"]                                                 
-  #before_filter :other_emp_view                                                                                                                                          
+  #before_filter :other_emp_view                                                                                                                                           
 	                                                                                                                        
   layout "leave_template"                                                                                                                                                                                             
                                                                                                                                            
@@ -33,7 +33,7 @@ end
     #--TODO----- leave balance alert before save                                                                                                                                                  
     @leave_history.save                                                                                                                                                                    
     @leave_history.update(:days => applied_days)                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                        
+                                                                                                                        
   end                                                                                                                                                                            
 end                                                                                                                                                                                                                                             
                                                                                                          
