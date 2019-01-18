@@ -31,7 +31,7 @@
     redirect_to leave_types_path            
   end                                                                                                        
                                      
-  def show                                                                                                       
+  def show                                                                                                                         
     # raise params.inspect                                                                                                                                                                                                                                                                  
   end          
                                                                                                                                                                                                                                                                                                                      
