@@ -3,7 +3,7 @@
  before_filter :hr_view,  only: ["new", "edit"]                                                                       
  before_filter :other_emp_view                                                                                                            
  layout "leave_template"                                                                                                                                
-                                                                                                                                         
+                                                                                                                                          
   def index                                                                                                   
     @leave_types = LeaveType.all                                                                                                                                                                                                                                   
   end                                                                                                                                               
@@ -34,7 +34,7 @@
   def show                                                                                                                         
     # raise params.inspect                                                                                                                                                                                                                                                                  
   end          
-                                                                                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                                                                                    
  def destroy                                                                                                                                                                                                                                                                                                                                                                           
     #raise params.inspect                                                                                                                
     @leave_type = LeaveType.find(params[:id])                         
