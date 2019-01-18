@@ -5,7 +5,7 @@
  layout "leave_template"                                                                                                                                
                                                                                                                                          
   def index                                                                                                   
-    @leave_types = LeaveType.all                                                                                                                                                                                                              
+    @leave_types = LeaveType.all                                                                                                                                                                                                                   
   end                                                                                                                                               
                                                                                  
   def new                                                                                   
