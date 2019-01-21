@@ -30,7 +30,7 @@ class ExperiencesController < ApplicationController
   def show
   end                    
                          
-  def edit             
+  def edit                                      
     #raise params.inspect
     @employee = Employee.find(params[:employee_id])            
     @experience = Experience.find(params[:id])    
