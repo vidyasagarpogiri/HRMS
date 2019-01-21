@@ -1,7 +1,7 @@
 class ExperiencesController < ApplicationController
 	
   layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]
-  before_filter :hr_view,  only: ["new", "edit"]
+  before_filter :hr_view,  only: ["new", "edit"]                  
   before_filter :other_emp_view                   
                                  
   def index
