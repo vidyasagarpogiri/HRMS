@@ -7,7 +7,7 @@ def index
    @department = Group.find(params[:department_id])                          
    @holiday_calenders =@department.holiday_calenders           
  end                                 
-                                                                                         
+                                                                                          
   def new               
     @holiday_calender = HolidayCalender.new
     @department = Department.find(params[:department_id])                                                                                                 
@@ -29,7 +29,7 @@ def index
        redirect_to leaves_department_path(@department)  
     end 
                            
-    def edit                
+    def edit                               
      # raise params.inspect
      @group = Group.find(params[:group_id])                
      @holiday_calender = HolidayCalender.find(params[:id])
@@ -51,6 +51,4 @@ def index
     
     private 
     def params_calender
-      #params.require(:holiday_calender).permit(:mandatory_or_optional)
-    end
-end
+      #params.re
