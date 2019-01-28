@@ -30,7 +30,7 @@ def index
     end 
                                                   
     def edit                               
-     # raise params.inspect
+     # raise params.inspect                      
      @group = Group.find(params[:group_id])                
      @holiday_calender = HolidayCalender.find(params[:id])                           
     end                     
