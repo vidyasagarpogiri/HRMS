@@ -8,7 +8,7 @@
     @leave_types = LeaveType.all                                                                                                                                                                                                                                                     
   end                                                                                                                                               
                                                                                  
-  def new                                                                                   
+  def new                                                                                                               
     @leave_type = LeaveType.new                                                                                                                                            
   end                                                              
       
