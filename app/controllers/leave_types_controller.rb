@@ -11,7 +11,7 @@
   def new                                                                                                               
     @leave_type = LeaveType.new                                                                                                                                            
   end                                                              
-      
+                      
   def create 
   # raise params.inspect
     @leave_type = LeaveType.create(parama_leave_types)
