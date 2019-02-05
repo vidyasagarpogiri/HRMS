@@ -8,7 +8,7 @@ class LeavesController < ApplicationController
  def index                                                                                                                                                                                     
   @leaves = Leave.all                                                                                         
   @employee = Employee.find(params[:employee_id])                                                            
- end                      
+ end                                                  
  
  def new
   @leave = Leave.new
