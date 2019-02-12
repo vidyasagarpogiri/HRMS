@@ -3,7 +3,7 @@ class FfStatusesController < ApplicationController
   before_filter :hr_view,  only: ["new", "edit"]                                                                               
   before_filter :other_emp_view                                                                                                                                 
                                                                                  
-layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update
+layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update    
                                                                                                         
   def index                                                                                                   
      @employee = Employee.find(params[:employee_id])                                                                  
