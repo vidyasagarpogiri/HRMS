@@ -6,7 +6,7 @@
                                                                                                                                                                      
   def index                                                                                                                                
     @leave_types = LeaveType.all                                                                                                                                                                                                                                                                                                                          
-  end                                                                                                                                                                                                                                                     
+  end                                                                                                                                                                                                                                                                    
                                                                                                  
   def new                                                                                                                                  
     @leave_type = LeaveType.new                                                                                                                                                               
