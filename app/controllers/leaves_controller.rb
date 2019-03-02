@@ -4,11 +4,11 @@ class LeavesController < ApplicationController
  before_filter :other_emp_view              
                                                                                                               
  layout "leave_template"                                                                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                         
  def index                                                                                                                                                                                     
   @leaves = Leave.all                                                                                         
   @employee = Employee.find(params[:employee_id])                                                                                            
- end                                                                        
+ end                                                                                                   
  
  def new
   @leave = Leave.new
