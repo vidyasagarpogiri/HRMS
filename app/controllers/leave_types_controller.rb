@@ -7,7 +7,7 @@
   def index                                                                                                                                                                                                                     
     @leave_types = LeaveType.all                                                                                                                                                                                                                                                                                                                                                                 
   end                                                                                                                                                                                                                                                                                                                                                                                                                  
-                                                                                                 
+                                                                                                                    
   def new                                                                                                                                  
     @leave_type = LeaveType.new                                                                                                                                                               
   end                                                              
@@ -19,7 +19,7 @@
     redirect_to leave_types_path
   end                      
  
-  def edit                                                          
+  def edit                                                           
    # raise params.inspect                                 
     @leave_type = LeaveType.find(params[:id])
   end            
