@@ -6,7 +6,7 @@
                                                                                                                                                                      
   def index                                                                                                                                                                                                                     
     @leave_types = LeaveType.all                                                                                                                                                                                                                                                                                                                                                                 
-  end                                                                                                                                                                                                                                                                                                                                          
+  end                                                                                                                                                                                                                                                                                                                                                                        
                                                                                                  
   def new                                                                                                                                  
     @leave_type = LeaveType.new                                                                                                                                                               
@@ -17,7 +17,7 @@
     @leave_type = LeaveType.create(parama_leave_types)
     @leave_type.save
     redirect_to leave_types_path
-  end    
+  end                      
  
   def edit                                                          
    # raise params.inspect                                 
