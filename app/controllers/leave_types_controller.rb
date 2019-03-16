@@ -7,7 +7,7 @@
   def index                                                                                                                                                                                                                                                                 
     @leave_types = LeaveType.all                                                                                                                                                                                                                                                                                                                                                                                                                                                       
   end                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                            
+                                                                                                                                                               
   def new                                                                                                                                                                        
     @leave_type = LeaveType.new                                                                                                                                                               
   end                                                              
@@ -24,7 +24,7 @@
     @leave_type = LeaveType.find(params[:id])
   end            
                   
-  def update             
+  def update                                   
    # raise params.inspect
     @leave_type = LeaveType.find(params[:id])
     @leave_type.update(parama_leave_types)                                                           
