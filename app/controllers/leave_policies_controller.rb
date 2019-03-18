@@ -1,4 +1,4 @@
-    class LeavePoliciesController < ApplicationController                            
+      class LeavePoliciesController < ApplicationController                            
 	                         
   before_filter :hr_view,  only: ["new", "edit"]                                                
   before_filter :other_emp_view                                                                                                                        
@@ -33,7 +33,7 @@
   @leave_policy = @department.leave_policy                                                                                                                         
   @leave_policy.update(params_leavepolicy)                                                                                                                                                                             
   redirect_to leaves_department_path(@department)                                                                                                                                                                                                        
- end                                                                                                                                                               
+ end                                                                                                                                                                                
                                                                                                                                                                                                                                                                                                                                                                                                    
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
  def params_leavepolicy                                                                                                                                                                                                                                                       
