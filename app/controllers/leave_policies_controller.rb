@@ -16,7 +16,7 @@
  
  def create
    @department = Department.find(params[:department_id])
-   @leave_policy = LeavePolicy.create(params_leavepolicy)  
+   @leave_policy = LeavePolicy.create(params_leavepolicy)      
    @leave_policy.department_id = params[:department_id]
    @leave_policy.save
    redirect_to leaves_department_path(@department)
@@ -33,7 +33,7 @@
   @leave_policy = @department.leave_policy                                                                                                                         
   @leave_policy.update(params_leavepolicy)                                                                                                                                                                             
   redirect_to leaves_department_path(@department)                                                                                                                                                                                                        
- end                                                                                                                         
+ end                                                                                                                                                
                                                                                                                                                                                                                                                                                                                                                                                                    
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
  def params_leavepolicy                                                                                                                                                                                                                                                       
