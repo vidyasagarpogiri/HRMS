@@ -5,7 +5,7 @@
                                                                                                                                                         
 def index                                                               
    @department = Group.find(params[:department_id])                                         
-   @holiday_calenders =@department.holiday_calenders                                    layout "leave_template" 
+   @holiday_calenders =@department.holiday_calenders                                   
  end                                                                                   
                                                                                           
   def new                                                                          
