@@ -7,9 +7,9 @@ def index
    @department = Group.find(params[:department_id])                                                                                                                      
    @holiday_calenders =@department.holiday_calenders                                                                                                            
  end                                                                                   
-                                                                                          
+                                                                                                                                           
   def new                                                                          
-    @holiday_calender = HolidayCalender.new
+    @holiday_calender = HolidayCalender.new                                      
     @department = Department.find(params[:department_id])                                                                                                 
     @events = Event.all                        
   end
