@@ -25,7 +25,7 @@ redirect_to employee_promotions_path
 else 
  render 'new'               
  end 
-end                  
+end                                                       
   
   def edit   
     @employee = Employee.find(params[:employee_id])
