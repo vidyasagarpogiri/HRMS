@@ -7,7 +7,7 @@
                                                                                                                                                                                                                                                                                                                                                                                
  def index                                                                                                                                                                                                                                                                                                                                                                        
   @leaves = Leave.all                                                                                                                                                                                                                             
-  @employee = Employee.find(params[:employee_id])                                                                                                                                                                     
+  @employee = Employee.find(params[:employee_id])                                                                                                                                                                                     
  end                                                                                                                 
  
  def new
