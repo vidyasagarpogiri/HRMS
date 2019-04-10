@@ -8,7 +8,7 @@ def index
    @holiday_calenders =@department.holiday_calenders                                                                                                                             
  end                                                                                                    
                                                                                                                                                                  
-  def new                                                                          
+  def new                                                                                        
     @holiday_calender = HolidayCalender.new                                      
     @department = Department.find(params[:department_id])                                                                                                 
     @events = Event.all                        
@@ -26,7 +26,7 @@ def index
         @holiday_calender = HolidayCalender.create(department_id: @department.id, event_id: event, mandatory_or_optional: false)
       end              
     end                  
-       redirect_to leaves_department_path(@department)  
+       redirect_to leaves_department_path(@department)                     
     end 
                                                   
     def edit                               
