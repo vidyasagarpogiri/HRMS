@@ -3,7 +3,7 @@
   before_filter :other_emp_view                                  
   layout "leave_template"                                                                                                 
                                                                                                                                                                       
-def index                                                                                                      
+def index                                                                                                                     
    @department = Group.find(params[:department_id])                                                                                                                                                                                                         
    @holiday_calenders =@department.holiday_calenders                                                                                                                                                                                                         
  end                                                                                                                                                      
