@@ -18,7 +18,7 @@ def index
       @department = Department.find(params[:department_id])
       #TODO              
       @department.holiday_calenders.destroy_all
-      params[:event_ids].each do |event|
+      params[:event_ids].each do |event|           
       if params[:mandatory].include?(event) 
       # raise params[:mandatory].inspect                 
         @holiday_calender = HolidayCalender.create(department_id: @department.id, event_id: event, mandatory_or_optional: true)
@@ -33,7 +33,7 @@ def index
      # raise params.inspect                      
      @group = Group.find(params[:group_id])                
      @holiday_calender = HolidayCalender.find(params[:id])                           
-    end                                              
+    end                                                                        
                                                           
     def update                                                                                                                                                      
      # raise params.inspect                                                                                                                        
