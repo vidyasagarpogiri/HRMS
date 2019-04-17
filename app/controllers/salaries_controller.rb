@@ -1,4 +1,4 @@
-class SalariesController < ApplicationController  
+ class SalariesController < ApplicationController  
 	                         
    include ApplicationHelper                                                                            
    layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update, :configure_allowance]
@@ -31,7 +31,7 @@ class SalariesController < ApplicationController
     @salary.save                                   
     @employee.update(:salary_id => @salary.id)                             
     @ctc_fixed = @salary.gross_salary.to_f + @salary.bonus.to_f+ @salary.gratuity.to_f + @salary.medical_insurance.to_f
-    @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => @salary.basic)
+    @salary.update(:ctc_fixed => @ctc_fixed, :basic_salary => @salary.basic)                                                                                              
     redirect_to  employee_salary_path(@employee, @salary) 
   end                                                                
                                                                                                               
