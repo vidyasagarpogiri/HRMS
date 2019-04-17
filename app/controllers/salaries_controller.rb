@@ -5,7 +5,7 @@
 
    before_filter :hr_view,  only: ["new", "edit"]                     
    before_filter :other_emp_view                                                                              
-                                                       
+                                                                       
   def new                                                                                                    
     @employee = Employee.find(params[:employee_id])                    
     @salary = Salary.new                
