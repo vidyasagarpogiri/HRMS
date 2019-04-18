@@ -33,7 +33,7 @@ class RolesController < ApplicationController
   
   def destroy           
     @role = Role.find(params[:id])                                                                              
-    @role.destroy                                                   
+    @role.destroy                                                                       
     redirect_to @role                                                                                                                                                                                              
   end                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 	                                                                                                                                                                                                                                                                                                                                                                           
