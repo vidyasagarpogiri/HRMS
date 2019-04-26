@@ -8,7 +8,7 @@ class RolesController < ApplicationController
   end                                                                                                                                                                                                                                                                                                                                                                                              
                                                                                               
   def new                                                                                                                                 
-    @role = Role.new                            
+    @role = Role.new                                  
   end                         
 
   def create
@@ -27,7 +27,7 @@ class RolesController < ApplicationController
     redirect_to @role                   
   end                          
                      
-  def edit     
+  def edit                          
     @role = Role.find(params[:id])        
   end
   
