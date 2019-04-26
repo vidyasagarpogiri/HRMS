@@ -9,7 +9,7 @@ class RolesController < ApplicationController
                                                                                               
   def new                                                                                                                                 
     @role = Role.new                                  
-  end                         
+  end                                              
 
   def create
     @role = Role.create(role_params)
