@@ -11,7 +11,7 @@ class RolesController < ApplicationController
     @role = Role.new                                  
   end                                              
 
-  def create
+  def create     
     @role = Role.create(role_params)
     redirect_to @role
   end      
