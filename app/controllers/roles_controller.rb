@@ -1,4 +1,4 @@
-class RolesController < ApplicationController
+ class RolesController < ApplicationController
 	                        
   before_filter :hr_view,  only: ["new", "edit"]                   
   before_filter :other_emp_view                                                    
@@ -33,7 +33,7 @@ class RolesController < ApplicationController
   
   def destroy           
     @role = Role.find(params[:id])                                                                                                                                                           
-    @role.destroy                                                                       
+    @role.destroy                                                                          
     redirect_to @role                                                                                                                                                                                              
   end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 	                                                                                                                                                                                                                                                                                                                                                                           
