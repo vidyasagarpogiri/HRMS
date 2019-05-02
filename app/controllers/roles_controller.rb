@@ -5,7 +5,7 @@
 	                                                                                                                                               
   def index                                                                                                                                                                                                             
     @roles = Role.all                                                                                                                                                                                                                                                                                                                  
-  end                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+  end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
                                                                                                                          
   def new                                                                                                                                                                  
     @role = Role.new                                  
@@ -32,7 +32,7 @@
   end
   
   def destroy           
-    @role = Role.find(params[:id])                                                                                                                                                           
+    @role = Role.find(params[:id])                                                                                                                                                              
     @role.destroy                                                                                               
     redirect_to @role                                                                                                                                                                                              
   end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
