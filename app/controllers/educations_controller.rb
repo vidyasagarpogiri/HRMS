@@ -9,7 +9,7 @@
                         
   def index         
     @employee = Employee.find(params[:employee_id])     
-    @educations =  Education.where(:Employee_id => params[:employee_id])   
+    @educations =  Education.where(:Employee_id => params[:employee_id])              
   end   
        
   def new
