@@ -2,7 +2,7 @@
 	                        
   before_filter :hr_view,  only: ["new", "edit"]                   
   before_filter :other_emp_view                                                           
-	                                                                                                                                               
+	                                                                                                                                                     
   def index                                                                                                                                                                                                                                                               
     @roles = Role.all                                                                                                                                                                                                                                                                                                                                                          
   end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
@@ -27,7 +27,7 @@
     redirect_to @role                   
   end                          
                      
-  def edit                          
+  def edit                                  
     @role = Role.find(params[:id])        
   end     
   
