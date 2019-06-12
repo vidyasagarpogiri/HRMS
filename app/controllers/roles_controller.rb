@@ -10,7 +10,7 @@
   def new                                                                                                                                                                                                                                    
     @role = Role.new                                                                                      
   end                                                       
-                                  
+                                                  
   def create     
     @role = Role.create(role_params)
     redirect_to @role
