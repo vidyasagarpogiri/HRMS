@@ -13,7 +13,7 @@
                                                                    
   def create     
     @role = Role.create(role_params)
-    redirect_to @role
+    redirect_to @role             
   end      
                              
   def show           
@@ -29,7 +29,7 @@
                      
   def edit                                  
     @role = Role.find(params[:id])        
-  end     
+  end                            
   
   def destroy              
     @role = Role.find(params[:id])                                                                                                                                                              
