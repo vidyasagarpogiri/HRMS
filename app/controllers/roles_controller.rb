@@ -6,7 +6,7 @@
   def index                                                                                                                                                                                                                                                                                                                                                                                                            
     @roles = Role.all                                                                                                                                               						                                                                                                                                                                                                                                                                                                                                                      
   end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                              
+                                                                                                                                                                                                                
   def new                                                                                                                                                                                                                                                              
     @role = Role.new                                                                                                                                      
   end                                                                                          
@@ -27,7 +27,7 @@
     redirect_to @role                       
   end                          
                      
-  def edit                                  
+  def edit                                                    
     @role = Role.find(params[:id])        
   end                            
   
