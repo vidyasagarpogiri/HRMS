@@ -11,7 +11,7 @@
     @role = Role.new                                                                                                                                      
   end                                                                                          
                                                                                     
-  def create     
+  def create           
     @role = Role.create(role_params)
     redirect_to @role             
   end      
@@ -29,7 +29,7 @@
                      
   def edit                                                    
     @role = Role.find(params[:id])        
-  end                            
+  end                                                   
   
   def destroy              
     @role = Role.find(params[:id])                                                                                                                                                              
