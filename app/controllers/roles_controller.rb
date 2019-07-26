@@ -1,4 +1,4 @@
- class RolesController < ApplicationController                            
+  class RolesController < ApplicationController                            
 	                                                                               
   before_filter :hr_view,  only: ["new", "edit"]                                                            
   before_filter :other_emp_view                                                                                                                                                                                                    
@@ -35,7 +35,7 @@
     @role = Role.find(params[:id])                                                                                                                                                                                 
     @role.destroy                                                                                                                                                                                 
     redirect_to @role                                                                                                                                                                                                                                                                                                                        
-  end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+  end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 	                                                                                                                                                                                                                                                                                                                                                                              
    def add_employee           
     @role = Role.find(params[:id])
