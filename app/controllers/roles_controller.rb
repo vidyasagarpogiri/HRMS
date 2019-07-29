@@ -33,7 +33,7 @@
   end                                                   
    
   def destroy              
-    @role = Role.find(params[:id])                                                                                                                                                                                 
+    @role = Role.find(params[:id])                                                                                                                                                                                   
     @role.destroy                                                                                                                                                                                     
     redirect_to @role                                                                                                                                                                                                                                                                                                                             
   end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
