@@ -31,7 +31,7 @@
 	  
   def edit                                                    
     @role = Role.find(params[:id])                        
-  end                                                                     
+  end                                                                        
                           
   def destroy                                                              
     @role = Role.find(params[:id])                                                                                                                                                                                     
