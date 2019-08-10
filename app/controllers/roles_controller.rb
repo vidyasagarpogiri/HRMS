@@ -7,7 +7,7 @@
     @roles = Role.all                                                                                                                                                                                                                                                                                                                                                                                                                    
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          						                                                                                                                                                                                                                                                                                                                                                      
   end                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                                                                           
   def new                                                                                                                                                                                                                                                                                                           
     @role = Role.new                                                                                                                                             
   end                                                                                          
@@ -21,7 +21,7 @@
     @role = Role.find(params[:id])
     @employees = @role.employees               
   end    
-                         
+                                              
   def update   
     @role = Role.find(params[:id])                                               
     @role.update(role_params)
