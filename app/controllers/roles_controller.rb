@@ -13,7 +13,7 @@
   end                                                                                              
                                                                                        
   def create                                 
-    @role = Role.create(role_params)
+    @role = Role.create(role_params)               
     redirect_to @role             
   end           
                              
