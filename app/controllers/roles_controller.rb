@@ -12,7 +12,7 @@
     @role = Role.new                                                                                                                                                                                                                                               
   end                                                                                                              
                                                                                                      
-  def create                                                    
+  def create                                                        before_filter	before_filter
     @role = Role.create(role_params)               
     redirect_to @role             
   end           
