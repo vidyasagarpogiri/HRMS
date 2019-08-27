@@ -14,7 +14,7 @@
                                                                                                      
   def create                                                        
 	  @role = Role.create(role_params)               
-    redirect_to @role             
+    redirect_to @role                        
   end           
                              
   def show           
