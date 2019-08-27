@@ -12,8 +12,8 @@
     @role = Role.new                                                                                                                                                                                                                                               
   end                                                                                                              
                                                                                                      
-  def create                                                        before_filter	before_filter
-    @role = Role.create(role_params)               
+  def create                                                        
+	  @role = Role.create(role_params)               
     redirect_to @role             
   end           
                              
