@@ -33,12 +33,12 @@
     @role = Role.find(params[:id])                                              
   end                                                                        
                                 
-  def destroy                                                                                                                                                           
+  def destroy                                                                                                                                                                                        
     @role = Role.find(params[:id])                                                                                                                                                                                                                              
     @role.destroy                                                                                                                                                                                                                                                                                                                                                                      
   end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-	                                                                                                                                                                                                                                                                                                                                                                                 
-   def add_employee           
+	                                                                                                                                                                                                                                                                                                                                                                                    
+   def add_employee               
     @role = Role.find(params[:id])
     @employee = Employee.all
   end
