@@ -9,7 +9,7 @@
   end                                                                                                                                                                                                                                                                                                                                                                                        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
   def new                                                                                                                                                                                                                                                                                                                                                                                                                
-    @role = Role.new                                                                                                                                                                                                                                                                                                                                                                
+    @role = Role.new                                                                                                                                                                                                                                                                                                                                                                                                  
   end                                                                                                                           
                                                                                                      
   def create                                                        
@@ -39,7 +39,7 @@
   end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 	                                                                                                                                                                                                                                                                                                                                                                                    
    def add_employee               
-    @role = Role.find(params[:id])
+    @role = Role.find(params[:id])                             
     @employee = Employee.all
   end
   
