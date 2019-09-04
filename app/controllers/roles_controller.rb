@@ -10,9 +10,9 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
   def new                                                                                                                                                                                                                                                                                                                                                                                                                
     @role = Role.new                                                                                                                                                                                                                                                                                                                                                                                                                                             
-  end                                                                                                                                                                                          
+  end                                                                                                                                                                                                                                                  
                                                                                                                                              
-  def create                                                                   
+  def create                                                                      
 	  @role = Role.create(role_params)                   
     redirect_to @role                        
   end           
