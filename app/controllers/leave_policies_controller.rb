@@ -11,7 +11,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  def new                                                                                                                                                                                                                                                    
   @department = Department.find(params[:department_id])                                                                                                                                                                                                                 
-  @leave_policy = LeavePolicy.new                                                                                                                            
+  @leave_policy = LeavePolicy.new                                                                                                                                      
  end                                                                  
                     
  def create
