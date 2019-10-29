@@ -8,7 +8,7 @@
     @leave_types = LeaveType.all                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
   end                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
                                                                                                                                                                                      
-  def new                                                                                                                                                                        
+  def new                                                                                                                                                                                           
     @leave_type = LeaveType.new                                                                                                                                                               
   end                                                              
                       
@@ -31,7 +31,7 @@
     redirect_to leave_types_path              
   end                                                                                                        
                                               
-  def show                                                                                                                                            
+  def show                                                                                                                                               
     # raise params.inspect                                                                                                                                                                                                                                                                                     
   end                                                                                      
                                                                                                                                                                                                                                                                                                                                                                                       
