@@ -15,7 +15,7 @@ class LeavePoliciesController < ApplicationController
  end                                                                                                                                    
                                                                 
  def create               
-   @department = Department.find(params[:department_id])
+   @department = Department.find(params[:department_id])            
    @leave_policy = LeavePolicy.create(params_leavepolicy)      
    @leave_policy.department_id = params[:department_id]                                      
    @leave_policy.save
