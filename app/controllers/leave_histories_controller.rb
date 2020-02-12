@@ -26,5 +26,4 @@ class LeaveHistoriesController < ApplicationController
     @leave_history.update(:days => applied_days)                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
                                                                                                                              
   end                                                                                                                                                                                                                    
-end                                                                                                                                                                                                                                                            
-                                                                                                         
+end
