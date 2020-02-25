@@ -8,7 +8,7 @@ class LeaveHistoriesController < ApplicationController
  include ApplicationHelper                                                                                                                                                   
    @employee = current_user.employee                                                                                                                                                        
    @leave_history = LeaveHistory.new                                                                                                                                      
-  end                                                                                                                                                                                                             
+  end                                                                                                                                                                                                                 
                                                                                                                        
   def show                                                               
   #raise params.inspect                                                                                           
