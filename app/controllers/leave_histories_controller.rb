@@ -11,7 +11,7 @@ class LeaveHistoriesController < ApplicationController
   end                                                                                                                                                                                                                                                                                                                             
                                                                                                                                                                        
   def show                                                                                  
-  #raise params.inspect                                                                                                          
+  #raise params.inspect                                                                                                                         
   end                                               
                                                                
   def create                                                              
@@ -26,4 +26,4 @@ class LeaveHistoriesController < ApplicationController
     @leave_history.update(:days => applied_days)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
                                                                                                                                        
   end                                                                                                                                                                                                                    
-end
+end           
