@@ -11,7 +11,7 @@ class LeaveHistoriesController < ApplicationController
   end                                                                                                                                                                                                                                                                                                                                                                                                    
                                                                                                                                                                                                                                                                                                                                  
   def show                                                                                                                                                                                    
-  #raise params.inspect                                                                                                                                                                               
+  #raise params.inspect                                                                                                                                                                                  
   end                                                                                               
                                                                
   def create                                                              
