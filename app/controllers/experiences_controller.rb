@@ -9,8 +9,8 @@ class ExperiencesController < ApplicationController
      @experinces = @employee.experiences                                                                                                                             
   end                                                                        
                                                                          
-  def new 
-    @experience = Experience.new                                                   
+  def new              
+    @experience = Experience.new                                                                           
     @employee = Employee.find(params[:employee_id])
   end                   
    
