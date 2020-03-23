@@ -6,7 +6,7 @@ class ExperiencesController < ApplicationController
                                                
   def index                                                                                  
      @employee = Employee.find(params[:employee_id])                                                                                                    
-     @experinces = @employee.experiences                                                                                                                             
+     @experinces = @employee.experiences                                                                                                                                                     
   end                                                                        
                                                                                                  
   def new              
