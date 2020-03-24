@@ -22,9 +22,9 @@ class ExperiencesController < ApplicationController
     #for new form 
     @employee = Employee.find(params[:employee_id])
     @experience = Experience.new                                    
-    
+               
     @list =  Experience.where(:Employee_id => params[:employee_id])
-    @form_type = params[:commit]
+    @form_type = params[:commit]         
   end                                       
                     
   def show
