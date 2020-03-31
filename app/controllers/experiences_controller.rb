@@ -11,7 +11,7 @@ class ExperiencesController < ApplicationController
                                                                                                                                                                                          
   def new                                                                                                                                                     
     @experience = Experience.new                                                                                                                                                                                                   
-    @employee = Employee.find(params[:employee_id])                                                       
+    @employee = Employee.find(params[:employee_id])                                                         
   end                   
    
   def create            
@@ -33,7 +33,7 @@ class ExperiencesController < ApplicationController
   def edit                                      
     #raise params.inspect   
     @employee = Employee.find(params[:employee_id])            
-    @experience = Experience.find(params[:id])    
+    @experience = Experience.find(params[:id])       
   end                                                                       
                                                                                                                                                           
   def update                     
