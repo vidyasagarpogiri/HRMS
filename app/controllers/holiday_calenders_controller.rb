@@ -10,9 +10,9 @@ def index
                                                                                                                                                                                                                                  
   def new                                                                                                                      
     @holiday_calender = HolidayCalender.new                                                                                                             
-    @department = Department.find(params[:department_id])                                                                                                                   
+    @department = Department.find(params[:department_id])                                                          ApplicationController                                                                       
     @events = Event.all                                           
-  end
+  end  
     
     def create                          
       @department = Department.find(params[:department_id])
