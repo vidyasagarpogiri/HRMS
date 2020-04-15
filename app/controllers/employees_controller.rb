@@ -11,7 +11,7 @@ class EmployeesController < ApplicationController
     @employees =  Employee.all.page(params[:page]).per(6)                                                                         
   end                                                        
                                                                                                                                          
-                                  
+                                                  
   def new                     
     @employee = Employee.new                                                                                                    
   end                                                         
