@@ -150,7 +150,7 @@ def attachment_show
 	 #raise @emp_get_attachements.inspect
 end
 	
-	def myprofile
+	def myprofile        
 	  @employee = current_user.employee
 	  @emp = @employee
 	  @id = @employee.id
