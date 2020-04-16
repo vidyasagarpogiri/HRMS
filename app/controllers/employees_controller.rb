@@ -8,7 +8,7 @@ class EmployeesController < ApplicationController
                                                 
                                    
   def index                                      
-    @employees =  Employee.all.page(params[:page]).per(6)                                                                         
+    @employees =  Employee.all.page(params[:page]).per(6)                                                                                     
   end                                                                        
                                                                                                                                            
                                                                                               
@@ -53,7 +53,7 @@ class EmployeesController < ApplicationController
    
     @employee = Employee.find(params[:id])
    
-    if params["employee_attachments"].present?
+    if params["employee_attachments"].present?              
       if params["employee_attachments"]["attachment"].present? 
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
       #raise a.inspect
