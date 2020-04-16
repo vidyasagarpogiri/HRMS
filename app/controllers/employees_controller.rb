@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController              
-                  
+                                         
   layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index, :attachment_edit]
 	
 	  #before_filter :other_emp_view, :except => [:index, :profile]                                      
@@ -9,13 +9,13 @@ class EmployeesController < ApplicationController
                                    
   def index                                      
     @employees =  Employee.all.page(params[:page]).per(6)                                                                         
-  end                                                                       
+  end                                                                        
                                                                                                                                            
                                                                                               
   def new                     
     @employee = Employee.new                                                                                                                                         
   end                                                            
-                                                      
+                                                        
   def create   
      @employee = Employee.create(params_employees)
     if @employee.errors.present?
