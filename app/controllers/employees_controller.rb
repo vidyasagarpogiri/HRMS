@@ -12,7 +12,7 @@ class EmployeesController < ApplicationController
   end                                                                        
                                                                                                                                            
                                                                                               
-  def new                                 
+  def new                                             ApplicationController
     @employee = Employee.new                                                                                                                                         
   end                                                            
                                                         
