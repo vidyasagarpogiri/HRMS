@@ -12,11 +12,11 @@ class EmployeesController < ApplicationController
   end                                                                        
                                                                                                                                            
                                                                                               
-  def new                                             ApplicationController
+  def new                                             
     @employee = Employee.new                                                                                                                                         
   end                                                            
                                                         
-  def create   
+  def create                  
      @employee = Employee.create(params_employees)
     if @employee.errors.present?
       render 'new'              
