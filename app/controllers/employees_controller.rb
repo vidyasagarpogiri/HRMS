@@ -9,14 +9,14 @@ class EmployeesController < ApplicationController
                                    
   def index                                      
     @employees =  Employee.all.page(params[:page]).per(6)                                                                                                     
-  end                                                                        
+  end                                                                                   
                                                                                                                                                                
                                                                                                                               
   def new                                                
     @employee = Employee.new                                                                                                                                         
   end                                                               
                                                         
-  def create                  
+  def create                    
      @employee = Employee.create(params_employees)
     if @employee.errors.present?
       render 'new'              
