@@ -16,7 +16,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new                                                                                                                                         
   end                                                               
                                                                                                   
-  def create                    
+  def create                                 
      @employee = Employee.create(params_employees)
     if @employee.errors.present?                
       render 'new'              
