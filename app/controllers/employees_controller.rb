@@ -8,7 +8,7 @@ class EmployeesController < ApplicationController
                                                 
                                                                                                                                  
   def index                                                                                                    
-    @employees =  Employee.all.page(params[:page]).per(6)                                                                                                                                   
+    @employees =  Employee.all.page(params[:page]).per(6)                                                                                                                                        
   end                                                                                   
                                                                                                                                                                
                                                                                                                                                                            
@@ -24,7 +24,7 @@ class EmployeesController < ApplicationController
      @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
      @employee.update(:user_id => @user.id)
       redirect_to @employee                             
-    end    
+    end        
                                     
   end
 
