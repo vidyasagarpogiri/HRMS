@@ -8,7 +8,7 @@ class EmployeesController < ApplicationController
                                                 
                                                                                                                                  
   def index                                                                                                    
-    @employees =  Employee.all.page(params[:page]).per(6)                                                                before_filter                                                                   
+    @employees =  Employee.all.page(params[:page]).per(6)                                                                                                                                   
   end                                                                                   
                                                                                                                                                                
                                                                                                                                                                            
