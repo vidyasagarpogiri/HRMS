@@ -8,7 +8,7 @@ class EmployeesController < ApplicationController
                                                 
                                                                                                                                                                        
   def index                                                                                                       
-    @employees =  Employee.all.page(params[:page]).per(6)                                                          before_filter                                                                                                                
+    @employees =  Employee.all.page(params[:page]).per(6)                                                                                                                                                                          
   end                                                                                       
                                                                                                                                                                                
                                                                                                                                                                                                                   
@@ -47,7 +47,7 @@ class EmployeesController < ApplicationController
   def edit
     @employee = Employee.find(params[:id])
   end
-  
+         
   def update   
    
     @employee = Employee.find(params[:id])
