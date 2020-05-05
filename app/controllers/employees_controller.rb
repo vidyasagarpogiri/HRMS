@@ -6,7 +6,7 @@ class EmployeesController < ApplicationController
                                   
 	  #before_filter :hr_view, :only => [:create, :new, :edit, :update, :exit_edit_form, :exit_form, :update_exit_form, :attachment_form_new, :attachment_destroy, :attachment_edit, :show_exit, :attachment_update]	
                                                 
-                                                                                                                                                                                                          
+                                                                                                                                                                                                                        
   def index                                                                                                                                                                 
     @employees =  Employee.all.page(params[:page]).per(6)                                                                                                                                                                                                      
   end                                                                                                  
@@ -109,7 +109,7 @@ class EmployeesController < ApplicationController
     #redirect_to @attachment
    
   end
-
+                 
    def attachment_destroy
     @employee = Employee.find(params[:id])
 		@emp_get_attachements = EmployeeAttachment.find(params[:attachment_id])
