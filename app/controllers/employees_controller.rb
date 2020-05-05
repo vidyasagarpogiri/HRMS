@@ -9,7 +9,7 @@ class EmployeesController < ApplicationController
                                                                                                                                                                                                           
   def index                                                                                                                      before_filter                                              
     @employees =  Employee.all.page(params[:page]).per(6)                                                                                                                                                                                                      
-  end                                                                                       
+  end                                                                                                  
                                                                                                                                                                                                                  
                                                                                                                                                                                                                                                           
   def new                                                                                                              
