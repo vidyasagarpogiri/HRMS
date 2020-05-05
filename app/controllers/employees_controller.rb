@@ -13,7 +13,7 @@ class EmployeesController < ApplicationController
                                                                                                                                                                                                                               
                                                                                                                                                                                                                                                                                                
   def new                                                                                                                               
-    @employee = Employee.new                                                                                                                  
+    @employee = Employee.new                                                                                                                            
                                                                                                                                               
   def create                                                                                                           
      @employee = Employee.create(params_employees)
