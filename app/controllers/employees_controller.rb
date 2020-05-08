@@ -10,11 +10,11 @@ class EmployeesController < ApplicationController
   def index                                                                                                                                                                 
     @employees =  Employee.all.page(params[:page]).per(6)                                                                                                                                                                                                                    
   end                                                                                                                                   
-                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                       
                                                                                                                                                                                                                                                                                                                       
   def new                                                                                                                                                            
     @employee = Employee.new                                                                                                                            
-                                                                                                                                              
+                                                                                                                                                                 
   def create                                                                                                           
      @employee = Employee.create(params_employees)
     if @employee.errors.present?                               
