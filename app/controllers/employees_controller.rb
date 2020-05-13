@@ -47,7 +47,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
          
-  def update                before_filter
+  def update      
    
     @employee = Employee.find(params[:id])
    
