@@ -12,7 +12,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                          
   def new                                                                                                                                                                                                                                                                                     
     @employee = Employee.new                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                          
+                                                                                       before_filter                                                                                                                       
   def create                                                                                                           
      @employee = Employee.create(params_employees)   
     if @employee.errors.present?                               
