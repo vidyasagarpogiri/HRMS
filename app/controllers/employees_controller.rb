@@ -14,7 +14,7 @@
     @employee = Employee.new                                                                                                                                                                                                                                                                                                                                         
                                                                                                                                                                                                                               
   def create                                                                                                                         
-     @employee = Employee.create(params_employees)                            
+     @employee = Employee.create(params_employees)                                         
     if @employee.errors.present?                                                                       
       render 'new'              
     else
