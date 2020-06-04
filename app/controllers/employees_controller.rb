@@ -15,7 +15,7 @@
                                                                                                                                                                                                                                                       
   def create                                                                                                                                                                                         
      @employee = Employee.create(params_employees)                                            
-    if @employee.errors.present?                                                                       
+    if @employee.errors.present?                                                                                     
       render 'new'                                           
     else
      @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
