@@ -12,12 +12,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                     
   def new                                                                                                                                                                                                                                                                                                                                                                       
     @employee = Employee.new                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                      
-  def create                                                                                                                                                                                         
-     @employee = Employee.create(params_employees)                                            
-    if @employee.errors.present?                                                                                     
-      render 'new'                                                              
-    else
+                                                                                                          
      @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :manager_id => params[:reporting_id])
      @user = User.invite!(:email =>  params[:email], :skip_invitation => true)
      @employee.update(:user_id => @user.id)
@@ -26,7 +21,7 @@
                                                   
   end
 
-  def show                                       
+  def show                                                      
     @employee = Employee.find(params[:id])                             
     if @employee.reporting_managers.first.present? &&  @employee.reporting_managers.first.manager_id.present? 
       unless @employee.reporting_managers.first.manager_id == 0 
