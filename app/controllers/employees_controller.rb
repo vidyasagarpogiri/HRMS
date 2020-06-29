@@ -127,7 +127,7 @@
 	    #raise @emp_attachement.inspect
 	    redirect_to attachment_show_employee_path(@employee,@employee_attachement)
 	 end
-	
+	 
 	def show_exit
 		
 		@employee = Employee.find(params[:id])
