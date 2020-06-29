@@ -83,7 +83,7 @@
 		if !@employee.nil?
 		  redirect_to show_exit_employee_path(@id)
 		end
-	end
+	end      
 
 	def update_exit_form
 			@employee = Employee.find(params[:id])
