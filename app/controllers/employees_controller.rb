@@ -45,7 +45,7 @@
    
     @employee = Employee.find(params[:id])
    
-    if params["employee_attachments"].present?              
+    if params["employee_attachments"].present?                       
       if params["employee_attachments"]["attachment"].present? 
       params["employee_attachments"]["attachment"].each_with_index do |a, i|
       #raise a.inspect
