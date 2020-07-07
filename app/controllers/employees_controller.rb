@@ -93,7 +93,7 @@
   
 
   
-  def attachment_form_new
+  def attachment_form_new                  
    @emp_get_attachements = Employee.find(params[:id]).employee_attachments
     @emp_get_attachements = [] if Employee.find(params[:id]).employee_attachments.nil?
     @employee = Employee.find(params[:id])
