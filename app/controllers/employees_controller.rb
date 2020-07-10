@@ -25,7 +25,7 @@
     @employee = Employee.find(params[:id])                             
     if @employee.reporting_managers.first.present? &&  @employee.reporting_managers.first.manager_id.present? 
       unless @employee.reporting_managers.first.manager_id == 0 
-        @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name 
+        @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name                
       end                                                               
     end                                                              
   end                                                                                         
