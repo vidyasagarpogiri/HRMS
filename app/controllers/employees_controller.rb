@@ -86,7 +86,7 @@
 	end      
 
 	def update_exit_form
-			@employee = Employee.find(params[:id])
+			@employee = Employee.find(params[:id])                  
 			@employee.update(:date_of_exit=>params[:employee][:date_of_exit],:ff_status_id=> params[:employee][:ff_status_id])
 			redirect_to show_exit_employee_path(@employee.id)
 	end
