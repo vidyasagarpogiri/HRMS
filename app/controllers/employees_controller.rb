@@ -111,7 +111,7 @@
 	end
 	
 	def attachment_edit
-	  #raise params.inspect
+	  #raise params.inspect                 
 	  @employee = Employee.find(params[:id])
 	  #raise params.inspect
 	  @emp_attachement = EmployeeAttachment.find(params[:attachment_id])
