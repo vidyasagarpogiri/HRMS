@@ -27,7 +27,7 @@
       unless @employee.reporting_managers.first.manager_id == 0 
         @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name                
       end                                                               
-    end                                                                            hr_view
+    end                                                                                       
   end                                                                                         
                                      
   def profile                                               
@@ -38,7 +38,7 @@
   end                   
   
   def edit           
-    @employee = Employee.find(params[:id])
+    @employee = Employee.find(params[:id]) 
   end           
          
   def update      
