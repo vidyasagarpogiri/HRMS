@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     if resource == "employees" && id.present?
       @emp = Employee.find(id) 
     end
-                 
+                               
   end
                    
   def hr_view
