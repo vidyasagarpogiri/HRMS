@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
   
   def empId
-    resource, id = request.path.split('/')[1,2]
+    resource, id = request.path.split('/')[1,2]                   
     @id= id
     if resource == "employees" && id.present?
       @emp = Employee.find(id) 
