@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
 
   end
-  
+                   
   def hr_view
     unless current_user.department == Department::HR
     render :text => "You Dont Have Permission"  
