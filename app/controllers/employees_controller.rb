@@ -27,9 +27,9 @@
       unless @employee.reporting_managers.first.manager_id == 0 
         @reporting_manager = Employee.find(@employee.reporting_managers.first.manager_id).full_name                
       end                                                               
-    end                                                                                       
+    end                                                                                                   
   end                                                                                         
-                                                                                    
+                                                                                             
   def profile                                                              
      @employee = Employee.find(params[:id])              
      if @employee.educations.present?               
