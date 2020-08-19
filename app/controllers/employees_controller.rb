@@ -38,7 +38,7 @@
   end                   
   
   def edit           
-    @employee = Employee.find(params[:id]) 
+    @employee = Employee.find(params[:id])                       
   end           
          
   def update                         
