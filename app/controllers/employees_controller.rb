@@ -29,7 +29,7 @@
       end                                                               
     end                                                                                                   
   end                                                                                         
-                                                                                                                     
+                                                                                                                         
   def profile                                                                                               
      @employee = Employee.find(params[:id])                 
      if @employee.educations.present?                               
