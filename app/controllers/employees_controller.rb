@@ -42,7 +42,7 @@
   end           
          
   def update                         
-   
+        
     @employee = Employee.find(params[:id])
    
     if params["employee_attachments"].present?                                   
