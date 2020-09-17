@@ -31,7 +31,7 @@
   end                                                                                         
                                                                                                                               
   def profile                                                                                                              
-     @employee = Employee.find(params[:id])                     
+     @employee = Employee.find(params[:id])                           
      if @employee.educations.present?                               
      @specialization = @employee.educations.order('year_of_pass DESC').first
      end                                           
