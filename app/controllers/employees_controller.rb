@@ -52,7 +52,7 @@
         @employee_attachment = @employee.employee_attachments.create!(:attachment => a, :attachment_name => params["employee_attachments"]["attachment_name"][i], :employee_id => @employee.id)
         
       end
-     
+        
         
     end
        redirect_to attachment_show_employee_path(@employee)
@@ -81,7 +81,7 @@
 	def exit_form
 		@employee = Employee.find(params[:id])
 		if !@employee.nil?
-		  redirect_to show_exit_employee_path(@id)
+		  redirect_to show_exit_employee_path(@id)  
 		end
 	end      
 
