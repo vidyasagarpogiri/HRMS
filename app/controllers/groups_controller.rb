@@ -5,10 +5,10 @@ class GroupsController < ApplicationController
   before_filter :hr_view,  only: ["new", "edit"]
   before_filter :other_emp_view                                         
                                                                                                                                                                                                                 
-  def index              
+  def index                             
     @groups = Group.all                                                                                    
   end                                                                                                             
-                                                                                                     
+                                                                                                         
   def new 
     @group = Group.new                  
     @employee = Employee.new
