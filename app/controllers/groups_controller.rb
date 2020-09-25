@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
     @groups = Group.all                                                                                    
   end                                                                                                                    
                                                                                                                                               
-  def new                
+  def new                     
     @group = Group.new                                                        
     @employee = Employee.new        
     #raise params.inspect        
