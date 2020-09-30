@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
     @group = Group.new                                                           
     @employee = Employee.new                    
     #raise params.inspect        
-    @reporting_manager = ReportingManager.new                          
+    @reporting_manager = ReportingManager.new                             
   end
  
   def create
