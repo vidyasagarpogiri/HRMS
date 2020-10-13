@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
     #raise params.inspect                                                                                                                       
     @reporting_manager = ReportingManager.new                                
   end                                            
- 
+               
   def create
     @employee = Employee.find(params[:emp_id])      
     @group = Group.create(group_params)
