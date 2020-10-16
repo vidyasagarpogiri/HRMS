@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
     @groups = Group.all                                                                                       
   end                                                                                                                                   
                                                                                                                                                                                                    
-  def new                                                                                          
+  def new                                                                                           
     @group = Group.new                                                                                                                                                                                     
     @employee = Employee.new                                                                                                                                                  
     #raise params.inspect                                                                                                                                      
@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
      @holiday_calenders = @group.holiday_calenders                      
   end             
                                   
-  def edit                                 
+  def edit                                    
      @group = Group.find(params[:id])                                                                   
      @reporting_manager = ReportingManager.find_by                         
   end                                                                   
