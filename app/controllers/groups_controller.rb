@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   def index                                                       
     @groups = Group.all                                                                                                                
   end                                                                                                                                                                          
-                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                       
   def new                                                                                                                                                                                                                        
     @group = Group.new                                                                                                                                                                                                                                                                                                                    
     @employee = Employee.new                                                                                                                                                                                                                          
@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
     @reporting_manager = ReportingManager.new                                                                                                                         
   end                                                                                                                             
                       
-  def create                      
+  def create                         
     @employee = Employee.find(params[:emp_id])      
     @group = Group.create(group_params)
     @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :group_id => @group.id)
