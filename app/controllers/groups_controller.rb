@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
                                                                                                                                                                                                                                                                  
   def index                                                       
     @groups = Group.all                                                                                                                
-  end                                                                                                                                                                          
+  end                                                                                                                                                                                        
                                                                                                                                                                                                                                                        
   def new                                                                                                                                                                                                                        
     @group = Group.new                                                                                                                                                                                                                                                                                                                    
@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
     #raise params.inspect                                                                                                                                                                                                      
     @reporting_manager = ReportingManager.new                                                                                                                         
   end                                                                                                                             
-                      
+                                     
   def create                         
     @employee = Employee.find(params[:emp_id])      
     @group = Group.create(group_params)
@@ -34,5 +34,5 @@ class GroupsController < ApplicationController
      @reporting_manager = ReportingManager.find_by                             
   end                                                                   
                            
-end
+end    
      
