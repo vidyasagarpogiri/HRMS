@@ -9,24 +9,7 @@ class GroupsController < ApplicationController
   end                                                                                                                                                                                                          
                                                                                                                                                                                                                                                                                      
   def new                                                                                                                                                                                                                                                                
-    @group = Group.new                                                                                                                                                                                                                                                                                                                                                                      
-    @employee = Employee.new                                                                                                                                                                                                                                                                                                        
-    #raise params.inspect                                                                                                                                                                                                                             
-    @reporting_manager = ReportingManager.new                                                                                                                         
-  end                                                                                                                                       
-                                     
-  def create                         
-    @employee = Employee.find(params[:emp_id])      
-    @group = Group.create(group_params)
-    @reporting_manager = ReportingManager.create(:employee_id => @employee.id, :group_id => @group.id)
-    redirect_to  @group
-  end                                                                                                    
-                                                
-  def show                                       
-     @group = Group.find(params[:id])
-     @employee = @group.reporting_manager.employee                             
-     @leave_policy = @group.leave_policy
-     @holiday_calenders = @group.holiday_calenders                      
+    @group = Group.new                                                                                                          
   end                                           
             
   def edit                                           
@@ -34,5 +17,4 @@ class GroupsController < ApplicationController
      @reporting_manager = ReportingManager.find_by                             
   end                                                                   
                            
-end    
-     
+end 
