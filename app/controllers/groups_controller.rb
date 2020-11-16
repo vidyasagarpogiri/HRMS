@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
                                                       
-  layout "leave_template"                                                                                                                                                                              
+  layout "leave_template"                                                                                                                                                                                   
                                                                                           
   before_filter :other_emp_view                                                                                    
                                                                                                                                                                                                                                                                       
