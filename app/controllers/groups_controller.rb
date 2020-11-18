@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
     @group = Group.new                                                                                                                   
   end                                                          
                                       
-  def edit                                              
+  def edit                                                 
      @group = Group.find(params[:id])                                                                                                                                             
      @reporting_manager = ReportingManager.find_by                             
   end                                                                   
