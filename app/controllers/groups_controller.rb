@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   end                                                                                                                                                                                                                
                                                                                                                                                                                                                                                                                           
   def new                                                                                                                                                                                                                                                                                          
-    @group = Group.new                                                                                                          
+    @group = Group.new                                                                                                                   
   end                                                          
                                       
   def edit                                              
@@ -17,5 +17,4 @@ class GroupsController < ApplicationController
      @reporting_manager = ReportingManager.find_by                             
   end                                                                   
                            
-end
-                              
+end     
