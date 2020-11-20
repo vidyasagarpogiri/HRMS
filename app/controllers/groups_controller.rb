@@ -4,8 +4,8 @@ class GroupsController < ApplicationController
                                                                                           
   before_filter :other_emp_view                                                                                    
                                                                                                                                                                                                                                                                       
-  def index                                                                                       
-    @groups = Group.all                                                                                                                                                                       
+  def index                                                                                          
+    @groups = Group.all                                                                                                                                                                            
   end                                                                                                                                                                                                                
                                                                                                                                                                                                                                                                                                                       
   def new                                                                                                                                                                                                                                                                                                                             
