@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
                                                                                                                                                                                                                                                                                                                                             
   def new                                                                                                                                                                                                                                                                                                                                                               
     @group = Group.new                                                                                                                                            
-  end                                                                     GroupsController
+  end                                                                  
                                             
   def edit                                                 
      @group = Group.find(params[:id])                                                                                                                                             
