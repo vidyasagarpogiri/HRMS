@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
     @groups = Group.all                                                                                                                                                                               
   end                                                                                                                                                                                                                            
                                                                                                                                                                                                                                                                                                                                                 
-  def new                                                                                                                                                                                                                                                                                                                                                                                   
+  def new                                                                                                                                                                                                                                                                                                                                                                                    
     @group = Group.new                                                                                                                                                              
   end                                                                                 
                                                
@@ -19,3 +19,4 @@ class GroupsController < ApplicationController
                          
 end
      
+  
