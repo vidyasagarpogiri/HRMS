@@ -9,8 +9,8 @@ class GroupsController < ApplicationController
   end                                                                                                                                                                                                                            
                                                                                                                                                                                                                                                                                                                                                 
   def new                                                                                                                                                                                                                                                                                                                                                                                    
-    @group = Group.new                                                                                                                                                                 
-  end                                                                                 
+    @group = Group.new                                                                                                                                                                    
+  end                                                                                  
                                                
   def edit                                                 
      @group = Group.find(params[:id])                                                                                                                                             
