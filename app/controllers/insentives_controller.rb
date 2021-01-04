@@ -4,7 +4,7 @@ class InsentivesController < ApplicationController
                                                                           
   before_filter :other_emp_view                                                                                                                       
                                                                                                                                                                                                                                                                           
- def index                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+ def index                                                                                                                                                                                                                                                                                                                                                                                                                                                  
   #raise params.inspect                                                                                                                                                   
   @salary = Salary.find(params[:salary_id])                                                                                                                                                                                                                      
   @insentive = @salary.insentives                                                                                                                                         
@@ -28,7 +28,7 @@ class InsentivesController < ApplicationController
   @insentive = Insentive.new
  # redirect_to employee_salary_path(@employee, @salary)
  end                             
-                                 
+                                    
  def show                                                          
   # raise params.inspect                             
  end                                                                                                                     
