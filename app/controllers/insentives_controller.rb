@@ -51,7 +51,7 @@ class InsentivesController < ApplicationController
  @employee= Employee.find(params[:employee_id])
   @salary = Salary.find(params[:salary_id])
   @insentive = Insentive.find(params[:id])
-	@insentive.destroy
+	@insentive.destroy    
 	redirect_to employee_salaries_path(@employee)
 	end
  
