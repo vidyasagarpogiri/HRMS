@@ -27,7 +27,7 @@ class InsentivesController < ApplicationController
  # redirect_to employee_salary_path(@employee, @salary)
  end                             
                                        
- def show                                                               
+ def show                                                                   
   # raise params.inspect                             
  end                                                                                                                     
                                                                                                                                                                                                                                                           
