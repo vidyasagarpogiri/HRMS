@@ -18,7 +18,7 @@ class InsentivesController < ApplicationController
  def create                              
  #raise params.inspect
   @form_type = params[:commit]
-  @insentive1 = Insentive.create(params_insentive)                                
+  @insentive1 = Insentive.create(params_insentive)                                        
   @insentive1.save
   @salary = Salary.find(params[:salary_id])
   @insentives =  @salary.insentives
