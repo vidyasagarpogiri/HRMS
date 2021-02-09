@@ -8,7 +8,7 @@ class InsentivesController < ApplicationController
   #raise params.inspect                                                                                                                                                                                                                
   @salary = Salary.find(params[:salary_id])                                                                                                                                                                                                                                                        
   @insentive = @salary.insentives                                                                                                                                                                                                                                                                                                                 
- end                                         ApplicationController
+ end                                         
 	                                                                                                                        
  def new                                                                                                                                                                                                                                                            
  #raise params.inspect                                                                                                                                                                                                                                                                                  
