@@ -10,8 +10,8 @@ class InsentivesController < ApplicationController
   @insentive = @salary.insentives                                                                                                                                                                                                                                                                                                                 
  end                                         
 	                                                                                                                                           
- def new                                                                                                                                                                                                                                                                                                      
-   @employee= Employee.find(params[:employee_id])                                                                                                 ApplicationController                                                         
+ def new                                                                                                                                                                                                                                                                                                       
+   @employee= Employee.find(params[:employee_id])                                                                                                                                                 
    @salary = Salary.find(params[:salary_id])                                                                                        
  end                                                    
                              
