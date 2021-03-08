@@ -1,4 +1,4 @@
-class InsentivesController < ApplicationController            InsentivesController
+class InsentivesController < ApplicationController             InsentivesController
 	   
   before_filter :hr_view,  only: ["new", "edit"]                                              
                                                                              
@@ -11,7 +11,7 @@ class InsentivesController < ApplicationController            InsentivesControll
  end                                                                                      
 	                                                                                                                                                                                                                                                                                                                                                                         
  def new                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-   @employee= Employee.find(params[:employee_id])                                                                                                                                                                
+   @employee= Employee.find(params[:employee_id])                                                                                                                                                                                
                                                                   
  private
                                                 
