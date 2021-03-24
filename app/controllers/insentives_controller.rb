@@ -13,7 +13,7 @@ class InsentivesController < ApplicationController
  def new                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
    @employee= Employee.find(params[:employee_id])                                                                                                                                                                                                                                                                                                                                                                                       
                                                                                                                                                                                         
- private                       
+ private                                              
                                                                            
   def params_insentive                             
     params.require(:insentive).permit(:insentive_type, :value).merge(:salary_id => params[:salary_id])
