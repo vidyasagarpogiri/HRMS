@@ -14,7 +14,7 @@ class InsentivesController < ApplicationController
                                                                                                                                                                                                     
  private                                              
                                                                             
-  def params_insentive                             
+  def params_insentive                                       
     params.require(:insentive).permit(:insentive_type, :value).merge(:salary_id => params[:salary_id])
   end
   
