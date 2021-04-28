@@ -1,4 +1,4 @@
-class InsentivesController < ApplicationController              
+  class InsentivesController < ApplicationController              
 	   
   before_filter :hr_view,  only: ["new", "edit"]                                              
                                                                                              
@@ -21,3 +21,4 @@ class InsentivesController < ApplicationController
 end
              
      
+    
