@@ -10,7 +10,7 @@ class PromotionsController < ApplicationController
  end                                                
 	                                                                     
   def new                                
-    @promotion = Promotion.new                   
+    @promotion = Promotion.new                        
     @employee = Employee.find(params[:employee_id])              
   end                                
     
@@ -28,7 +28,7 @@ else
 end                                                       
   
   def edit   
-    @employee = Employee.find(params[:employee_id])
+    @employee = Employee.find(params[:employee_id])   
     @promotion = Promotion.find(params[:id])
   end               
                   
