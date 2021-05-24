@@ -8,4 +8,3 @@
   #raise params.inspect                                                                                                                                                                                                                                                                                                                           
   @salary = Salary.find(params[:salary_id])                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
  end    
-     
