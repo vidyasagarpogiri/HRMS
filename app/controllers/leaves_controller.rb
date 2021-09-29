@@ -10,7 +10,7 @@
   @employee = Employee.find(params[:employee_id])                                                                                                                                                                                     
  end                                                                                                                                     
         params_insentive
- def new  
+ def new    
   @leave = Leave.new        
   @employee = Employee.find(params[:employee_id])                       
  end
