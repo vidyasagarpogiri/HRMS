@@ -29,7 +29,7 @@ end
   
   def edit   
     @employee = Employee.find(params[:employee_id])      
-    @promotion = Promotion.find(params[:id])
+    @promotion = Promotion.find(params[:id])   
   end                  
                   
   def update                                                                                               
