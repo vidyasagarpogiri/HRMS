@@ -11,7 +11,7 @@ def index
  @emails = @employee.email_ettiquities           
 end
      
- def new
+ def new   
   @employee= Employee.find(params[:employee_id])
   @email = EmailEttiquitie.new		
  end
