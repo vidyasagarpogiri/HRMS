@@ -9,7 +9,7 @@ def index
 # raise params.inspect    
  @employee = Employee.find(params[:employee_id])      
  @emails = @employee.email_ettiquities           
-end
+end   
      
  def new      
   @employee= Employee.find(params[:employee_id])
