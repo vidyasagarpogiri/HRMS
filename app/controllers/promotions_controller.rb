@@ -13,7 +13,7 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.new                          
     @employee = Employee.find(params[:employee_id])                
   end                                            
-    
+      
  def create
    # raise params.inspect
    @employee = Employee.find(params[:employee_id])    
