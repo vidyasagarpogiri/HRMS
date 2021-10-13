@@ -8,7 +8,7 @@
  def index                                                                                                                                                                                                                                                                                                                                                                        
   @leaves = Leave.all                                                                                                                                                                                                                             
   @employee = Employee.find(params[:employee_id])                                                                                                                                                                                                
- end                                                                                                                                            
+ end                                                                                                                                               
         params_insentive   
  def new    
   @leave = Leave.new        
