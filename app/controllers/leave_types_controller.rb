@@ -10,7 +10,7 @@
                                                                                                                                                                                      
   def new                                                                                                                                                                                           
     @leave_type = LeaveType.new                                                                                                                                                               
-  end                                                                            
+  end                                                                               
                          
   def create 
   # raise params.inspect
