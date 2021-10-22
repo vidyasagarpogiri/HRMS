@@ -12,7 +12,7 @@ class OmniauthCallbacksController < ApplicationController
       @user = @user1
     end              
                                    
-    if request.env["omniauth.auth"]["extra"]["raw_info"]["hd"] == "amzur.com"
+    if request.env["omniauth.auth"]["extra"]["raw_info"]["hd"] == "amzur.com"  
       if @user.persisted?
       
         session["oauth"] = request.env["omniauth.auth"]["info"]
