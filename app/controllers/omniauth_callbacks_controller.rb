@@ -6,7 +6,7 @@ class OmniauthCallbacksController < ApplicationController
     if @user1.sign_in_count == 0            
       @user1.provider = @user.provider 
       @user1.uid = @user.uid                              
-      @user1.token= @user.token
+      @user1.token= @user.token         
       @user1.secret=  @user.secret
       @user1.save!
       @user = @user1
