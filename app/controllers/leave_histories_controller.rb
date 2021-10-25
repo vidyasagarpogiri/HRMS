@@ -27,3 +27,4 @@ class LeaveHistoriesController < ApplicationController
                                                                                                                                             
   end                                                                                                                                                                                                                    
 end           
+ 
