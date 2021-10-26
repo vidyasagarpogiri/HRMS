@@ -1,4 +1,4 @@
-class PromotionsController < ApplicationController
+ class PromotionsController < ApplicationController
                                                      
  before_filter :hr_view, :only => [:create, :new, :edit, :update]	                                                                                                                  
  before_filter :other_emp_view                                                         
@@ -31,7 +31,7 @@ end
     @employee = Employee.find(params[:employee_id])        
     @promotion = Promotion.find(params[:id])   
   end                  
-                    
+                                      
   def update                                                                                               
     # raise params.inspect                                                                                                                                                                                                                                                                                                    
     @employee = Employee.find(params[:employee_id])                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
