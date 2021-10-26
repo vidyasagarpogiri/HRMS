@@ -11,7 +11,7 @@ class PromotionsController < ApplicationController
 	                                                                                      
   def new                                                         
     @promotion = Promotion.new                              
-    @employee = Employee.find(params[:employee_id])                  
+    @employee = Employee.find(params[:employee_id])                     
   end                                            
       
  def create
