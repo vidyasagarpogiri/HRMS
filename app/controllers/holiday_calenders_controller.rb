@@ -51,6 +51,6 @@ def index
     
     private 
     def params_calender
-      #params.re    
+      #params.re      
     end
   end
