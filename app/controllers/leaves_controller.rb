@@ -25,7 +25,7 @@
     params.require(:leave).permit(:pl_carry_forward_prev_year, :pl_applied, :sl_applied, :lop_applied)
   end
                                                                             
-end 
+end   
                                
                      
                        
