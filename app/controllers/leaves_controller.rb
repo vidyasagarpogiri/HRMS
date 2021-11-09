@@ -13,7 +13,7 @@
  def new    
   @leave = Leave.new            
   @employee = Employee.find(params[:employee_id])                         
- end
+ end    
             
  def create                  
    @employee = Employee.find(params[:employee_id])
