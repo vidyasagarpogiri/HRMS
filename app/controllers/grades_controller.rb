@@ -27,7 +27,7 @@ class GradesController < ApplicationController
     @grade.update(grade_params)
     redirect_to @grade
   end
-  
+     
   def edit     
     @grade = Grade.find(params[:id])        
   end
