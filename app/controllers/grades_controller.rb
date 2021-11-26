@@ -12,7 +12,7 @@ class GradesController < ApplicationController
   end                                   
 
   def create
-    @designation = Designation.find(params[:grade][:designation_id])
+    @designation = Designation.find(params[:grade][:designation_id])    
     @grade = @designation.grades.create(grade_params)
     redirect_to @designation 
   end   
