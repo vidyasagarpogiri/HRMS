@@ -7,6 +7,5 @@
  def index                                   
     
             
-      
-   
+     
                
