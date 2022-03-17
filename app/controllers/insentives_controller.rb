@@ -1,4 +1,4 @@
- class InsentivesController < ApplicationController          
+  class InsentivesController < ApplicationController          
 	                         
   before_filter :hr_view,  only: ["new", "edit"]                                                                                                                                                                                                      
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
@@ -7,3 +7,4 @@
  def index                                                                                                                                                                                         
    other_emp_view                                                       
                                     
+   
