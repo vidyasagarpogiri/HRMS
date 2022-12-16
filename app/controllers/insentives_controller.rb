@@ -6,4 +6,3 @@ class InsentivesController < ApplicationController
   end  
  
    
-   
