@@ -5,4 +5,4 @@ class InsentivesController < ApplicationController
   before_filter :other_emp_view                
   end                                                                   
   other_emp_view 
-    
+ 
