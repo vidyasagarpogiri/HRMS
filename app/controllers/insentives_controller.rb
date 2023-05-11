@@ -3,4 +3,3 @@
   before_filter :other_emp_view                                                     
  end                   
  
-  
