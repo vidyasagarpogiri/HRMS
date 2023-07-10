@@ -1,4 +1,4 @@
-class WelcomeController<Controller                                                                         
+class WelcomeController<Controller                                                                   
   
   def index
     render :layout => false
