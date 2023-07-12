@@ -1,4 +1,4 @@
-class OmniauthCallbacksController<Controller                                                                         
+class OmniauthCallbacksController<Controller                                                                   
       
     def all              
       @user = User.from_omniauth(request.env["omniauth.auth"])
