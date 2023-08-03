@@ -1,4 +1,4 @@
-  class EmployeesController<Controller                                                                                                                                                      
+  class EmployeesController<Controller                                                                                                                                                             
                                               
   layout "emp_profile_template", only: [:show, :show_exit, :edit, :exit_edit_form, :attachment_form_new, :attachment_show, :attachment_index, :attachment_edit]
 	                               
