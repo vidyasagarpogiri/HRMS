@@ -1,4 +1,4 @@
-class AllowancesController<Controller                                                                                                
+class AllowancesController<Controller                                                                                                           
 	
   layout "profile_template", only: [:index, :new, :create, :show, :update]
    
