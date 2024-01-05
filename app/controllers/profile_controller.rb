@@ -1,4 +1,4 @@
-class ProfileController < ApplicationController
+class ProfileController < Controller  
                                                                                         
   layout "emp_profile_template"                                              
                                                                                                                                                                                                                      
