@@ -1,4 +1,4 @@
-class GroupsController < ApplicationController
+class GroupsController < Controller  
                                                       
   layout "leave_template"                                                                                                                                                                                                             
                                                                                                             
