@@ -1,4 +1,4 @@
-class DepartmentsController < ApplicationController
+class DepartmentsController < Controller  
 	
  layout "leave_template", only: [:leaves, :index, :employee_leaves, :holiday_list]
                    
