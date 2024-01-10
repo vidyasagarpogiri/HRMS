@@ -1,3 +1,2 @@
 class EmailDetailsController < ApplicationController
-
 end
