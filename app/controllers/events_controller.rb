@@ -1,4 +1,4 @@
-class EventsController < ApplicationController 
+class EventsController < Controller   
  
   layout "leave_template"        
   before_filter :hr_view,  only: ["new", "edit"]
