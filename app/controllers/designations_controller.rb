@@ -1,4 +1,4 @@
-class DesignationsController < Controller  
+class DesignationsController      < Controller       
                    
   def index
     @designations = Designation.all.page(params[:page]).per(4)                                                       
