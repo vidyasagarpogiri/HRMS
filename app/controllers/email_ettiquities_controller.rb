@@ -1,4 +1,4 @@
-class EmailEttiquitiesController<Controller      
+class EmailEttiquitiesController<Controller        
   
    layout "emp_profile_template", only: [:index, :new, :create, :show]
 
