@@ -1,4 +1,4 @@
-class ProfileController<Controller                      
+class ProfileController<Controller                                                               
                                                                                         
   layout "emp_profile_template"                                              
                                                                                                                                                                                                                      
