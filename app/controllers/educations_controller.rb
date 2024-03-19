@@ -1,4 +1,4 @@
- class EducationsController<Controller                                                                              
+ class EducationsController<Controller                                                                                 
                                              
  # helper class included                                                                                                                    
  include EducationsHelper                                                                                                                                                                                                                                                                       
