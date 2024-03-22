@@ -1,4 +1,4 @@
- class SalariesController<Controller                                                                 
+ class SalariesController<Controller                                                                    
 	                         
    include ApplicationHelper                                                                            
    layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update, :configure_allowance]
