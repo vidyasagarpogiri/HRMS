@@ -1,4 +1,4 @@
-class EmailDetailsController<Controller                                                               
+class EmailDetailsController<Controller                                                                  
 
 
 end
