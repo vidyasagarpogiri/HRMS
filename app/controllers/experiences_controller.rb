@@ -1,4 +1,4 @@
-class ExperiencesController<Controller                                                                  
+class ExperiencesController<Controller                                                                         
 	
   layout "emp_profile_template", only: [:index, :new, :create, :show, :edit, :update]                                       
   before_filter :hr_view,  only: ["new", "edit"]                                        
