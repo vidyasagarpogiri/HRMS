@@ -1,4 +1,4 @@
-class GroupsController<Controller                                                                  
+class GroupsController<Controller                                                                         
                                                       
   layout "leave_template"                                                                                                                                                                                                             
                                                                                                             
